@@ -1,0 +1,2051 @@
+{
+  "schema": "grandet.public-hub-data-manifest/v1",
+  "file": "data/free-tokens.json",
+  "sha256": "a5990be035d1fb01c78fe336d9969591b36c48e961fc96d3520f60b99cac1653",
+  "bytes": 283346,
+  "officialRecords": 73,
+  "thirdPartyMechanismRecords": 34,
+  "source": "Grandet reviewed public projection; primary sources identified inside each record",
+  "evidenceDates": "Preserved in checkedAt, observedAt, capturedAt and observationWindow; no refresh performed",
+  "owners": "Underlying provider statements and source materials: respective providers/rightsholders; compilation and original code: Grandet contributors",
+  "dataLicense": "No blanket license granted; software AGPL-3.0-only excludes third-party data",
+  "redistributionAuthority": "Grandet original factual compilation and summaries authorized for publication; no license or redistribution authority asserted over underlying supplier statements, quoted material or trademarks.",
+  "publicationStatus": "FACT_COMPILATION_PUBLICATION_AUTHORIZED_SOURCE_RIGHTS_RETAINED",
+  "excluded": "Vendor fullStatement/excerpt text, private source bodies, credentials, SQLite, operational paths and unreviewed candidates",
+  "records": [
+    {
+      "id": "google-gemini-free",
+      "kind": "official",
+      "owner": "Google",
+      "observationDate": "2026-10-04T15:58:10.424191+00:00",
+      "sources": [
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/pricing",
+          "bodySha256": "f0a5f2132379a57468e52c58e0f0b9a9a7e4e908579e62bc785979fb97b2063c",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/docs/available-regions",
+          "bodySha256": "154599cc57b8e7a5ca95351794c3fb47d1fe7d384ad0be538be9ff4f45e041f0",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://ai.google.dev/gemini-api/terms",
+          "bodySha256": "43f25cf2d5cb69b5b6a62e26f603b135b1d8a920a5729aab90c2155a1f68cd46",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "groq-free",
+      "kind": "official",
+      "owner": "Groq",
+      "observationDate": "2026-10-04T15:58:10.424191+00:00",
+      "sources": [
+        {
+          "url": "https://console.groq.com/docs/billing-faqs",
+          "bodySha256": "0b22123b01f27206c0fd87349b25f9fa795f9b42e8ab86440474c8330120a778",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://console.groq.com/docs/rate-limits",
+          "bodySha256": "916ba0ab28e8d0d229be7b272581744b5bc269abc2fd40c077eff3e677d321ac",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://console.groq.com/docs/your-data",
+          "bodySha256": "fe237f70dd59c03342bc9932b51b40bfa95f24ee3d991f2a92667ded673cb1b4",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "mistral-free",
+      "kind": "official",
+      "owner": "Mistral AI",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://mistral.ai/pricing/",
+          "bodySha256": "94c58768944bdd8b27e20fe9f1ff1dd48b6bddb73920d94c309e16a64fd31bc8",
+          "observedAt": "2026-10-04T17:55:26.197354+00:00"
+        },
+        {
+          "url": "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
+          "bodySha256": "73c4367ed3fd06773a6e7887abf2fe33033558c30cc0b7a78b31f11387f9432b",
+          "observedAt": "2026-10-04T17:55:26.238124+00:00"
+        },
+        {
+          "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+          "bodySha256": "f05e81e32f90ec9f7f784cea42c328a037e623dcc62cdd285b17d45e51b6a6db",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them",
+          "bodySha256": "bda8332f8c58e4415d4c90aa496bc3df8e01ef214a46ca7923b93dea045bd805",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models",
+          "bodySha256": "3964bef6f32e040b88c2060afd3b7bc36a4017aa14f3d2a15fabd1ffa298b865",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr",
+          "bodySha256": "e2c92860fe62354b804a19b5630d83faf8288e9e4d0b8aa666469e60f5af2ab8",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cloudflare-workers-ai-free",
+      "kind": "official",
+      "owner": "Cloudflare",
+      "observationDate": "2026-10-04T15:58:10.424191+00:00",
+      "sources": [
+        {
+          "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+          "bodySha256": "2b54d977fd5f4da51a710e1652570655c8450091226e974d7bfd5425fc6ec77c",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+          "bodySha256": "13b171653c2594523292fe8aee82ad6db445e88f5a62845cc718e8cec7970790",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cerebras-free",
+      "kind": "official",
+      "owner": "Cerebras",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.cerebras.ai/pricing",
+          "bodySha256": "07930350de00d4d3b3867d8b9ec491644f228a522fa1ad66f12ad148eab5d335",
+          "observedAt": "2026-10-04T17:55:25.409559+00:00"
+        },
+        {
+          "url": "https://www.cerebras.ai/inference",
+          "bodySha256": "1cb0a01486dd626a7bd03f04b634d120d089e837a6a32ac9b1441d62951bce5e",
+          "observedAt": "2026-10-04T17:55:25.407134+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "openrouter-free",
+      "kind": "official",
+      "owner": "OpenRouter",
+      "observationDate": "2026-10-04T15:58:10.424191+00:00",
+      "sources": [
+        {
+          "url": "https://openrouter.ai/pricing/",
+          "bodySha256": "a9c7f2ed387afab45e10444c3894a644a4461e22dc9b918251cc2826b4eb290d",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://openrouter.zendesk.com/hc/en-us/articles/39501163636379-OpenRouter-Rate-Limits-What-You-Need-to-Know",
+          "bodySha256": "78935a1c6c7ff66a8d85ef4b88f5234823bd41f85c267d55b51f067a99b8f54a",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://openrouter.ai/privacy/",
+          "bodySha256": "a6108222aa685632fa3ed0ce662dc8070a6894d309f55039115c4956611565ba",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://openrouter.ai/terms",
+          "bodySha256": "9ca8431b30fdc262b05fb7c6f8e3e5d3341d6b0713cdbce90de3df30f0cbef0a",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "nvidia-api-trial",
+      "kind": "official",
+      "owner": "NVIDIA",
+      "observationDate": "2026-10-04T15:58:10.424191+00:00",
+      "sources": [
+        {
+          "url": "https://docs.api.nvidia.com/nim/re/docs/api-quickstart",
+          "bodySha256": "14b71f9755f2299761aeea508e7f4a3868f8adb706253404d20cedfb77c906fa",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+          "bodySha256": "afd5df0322615ff95736f2f8b59fa952f5f4582dfe05f97213c0ae860f628b30",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "google-cloud-ai-startup",
+      "kind": "official",
+      "owner": "Google Cloud",
+      "observationDate": "2026-10-04T15:58:10.424191+00:00",
+      "sources": [
+        {
+          "url": "https://cloud.google.com/startup/ai",
+          "bodySha256": "1b3d9b68587d8b7259f100c887bda69513b8f17553c66190f8e147a3aed0e609",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        },
+        {
+          "url": "https://cloud.google.com/startup/faq",
+          "bodySha256": "fcc6b9036e423bf0910fa6771d4108f48362a844ec48c2c6a6a4b6820cc26045",
+          "observedAt": "2026-10-04T15:58:10.424191+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "aliyun-modelstudio-new-quota",
+      "kind": "official",
+      "owner": "Alibaba Cloud Model Studio",
+      "observationDate": "2026-10-04T17:24:10.825893+00:00",
+      "sources": [
+        {
+          "url": "https://help.aliyun.com/zh/model-studio/new-free-quota",
+          "bodySha256": "78111abc3dd7eeb91a3026aebae9f0a193c6d45c4a23c5346acac314a80bef9b",
+          "observedAt": "2026-10-04T17:22:05.948621+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "tencent-tokenhub-new-trial",
+      "kind": "official",
+      "owner": "Tencent Cloud TokenHub",
+      "observationDate": "2026-10-04T17:24:10.825893+00:00",
+      "sources": [
+        {
+          "url": "https://cloud.tencent.com/document/product/1823/130053",
+          "bodySha256": "c69950389dfa7fb998cb3651322e7839aafeb222ef91b0e83cbb9ae433e714ce",
+          "observedAt": "2026-10-04T17:22:11.875797+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "baidu-qianfan-new-credit",
+      "kind": "official",
+      "owner": "Baidu Qianfan",
+      "observationDate": "2026-10-04T17:24:10.825893+00:00",
+      "sources": [
+        {
+          "url": "https://cloud.baidu.com/doc/Qianfan/index.html",
+          "bodySha256": "0df6400637ca7ef40d914de804eb326f032c74d0b2797ff27f9a9bb07197e769",
+          "observedAt": "2026-10-04T17:22:10.685058+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "siliconflow-verified-voucher",
+      "kind": "official",
+      "owner": "SiliconFlow",
+      "observationDate": "2026-10-04T17:56:29.875249+00:00",
+      "sources": [
+        {
+          "url": "https://www.siliconflow.cn/news/od7wj9rr23p95uhihmhrombp",
+          "bodySha256": "b6b95355003786acb3330d6fa0314f0f00e37cb2e27e603bb021852754fcbae5",
+          "observedAt": "2026-10-04T17:22:14.251663+00:00"
+        },
+        {
+          "url": "https://docs.siliconflow.cn/docs/legals/terms-of-service",
+          "bodySha256": "ab4e4c17c97996898a9eeec5438efc3186661cab289141d71af12d8773e5c614",
+          "observedAt": "2026-10-04T17:56:29.875249+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "huggingface-monthly-credit",
+      "kind": "official",
+      "owner": "Hugging Face",
+      "observationDate": "2026-10-04T17:24:10.707262+00:00",
+      "sources": [
+        {
+          "url": "https://huggingface.co/docs/inference-providers/en/pricing",
+          "bodySha256": "b81f591436d9227deaf89f6a7a679039c9e49c1730945f0dfb1346c9c60cfe08",
+          "observedAt": "2026-10-04T17:24:10.707262+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cohere-api-trial",
+      "kind": "official",
+      "owner": "Cohere",
+      "observationDate": "2026-10-04T17:24:10.775907+00:00",
+      "sources": [
+        {
+          "url": "https://docs.cohere.com/v2/docs/rate-limits",
+          "bodySha256": "0b7e8223b08914267251212ed3fac910bc623849801c5bcf6a750783a4311331",
+          "observedAt": "2026-10-04T17:24:10.775907+00:00"
+        },
+        {
+          "url": "https://docs.cohere.com/docs/going-live",
+          "bodySha256": "9ab99c3e68c03201da8e6c7937b148c30d148fe2bde39d595e679eca185bfa46",
+          "observedAt": "2026-10-04T17:24:10.596430+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "modal-monthly-compute",
+      "kind": "official",
+      "owner": "Modal",
+      "observationDate": "2026-10-04T17:57:10.554759+00:00",
+      "sources": [
+        {
+          "url": "https://modal.com/pricing",
+          "bodySha256": "0ef97ddcb5ee35b222f4b7c958fcf51cda431b114dda0092c51de2709041221b",
+          "observedAt": "2026-10-04T17:24:11.401287+00:00"
+        },
+        {
+          "url": "https://modal.com/docs/guide/budgets",
+          "bodySha256": "8c4997322fa318406123c272045dfe5f023dad1c881302fd99ab6a93617bfac4",
+          "observedAt": "2026-10-04T17:24:11.257773+00:00"
+        },
+        {
+          "url": "https://modal.com/docs/guide/billing",
+          "bodySha256": "ef9c08200104cc5aba8dedf25fff50dac6aaa17378555f23e4b94f6b8c907828",
+          "observedAt": "2026-10-04T17:57:10.554759+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "google-cloud-new-customer-credit",
+      "kind": "official",
+      "owner": "Google Cloud",
+      "observationDate": "2026-10-04T17:25:18.249142+00:00",
+      "sources": [
+        {
+          "url": "https://docs.cloud.google.com/free/docs/free-cloud-features",
+          "bodySha256": "026d68fb0468a641cff5f5f2fa9fb8e6d8ddc922442618449d094b225dea8769",
+          "observedAt": "2026-10-04T17:22:29.214386+00:00"
+        },
+        {
+          "url": "https://cloud.google.com/signup-faqs",
+          "bodySha256": "b42223a90bf7111f6e5e885a7f35c4d517621a4f370ca5855128e5591b105733",
+          "observedAt": "2026-10-04T17:22:30.245193+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "azure-new-customer-credit",
+      "kind": "official",
+      "owner": "Microsoft Azure",
+      "observationDate": "2026-10-04T17:25:18.249142+00:00",
+      "sources": [
+        {
+          "url": "https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account",
+          "bodySha256": "3e5c0765d23a6faf68a4f412c6ac2288cdd95ccee8c6d6bd5f1c46711cf3a74a",
+          "observedAt": "2026-10-04T17:22:28.195938+00:00"
+        },
+        {
+          "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0044p/",
+          "bodySha256": "8c707d19917e71801d056dfa0eb6e382ee051fca222aa39be8c0d6d42dea55e3",
+          "observedAt": "2026-10-04T17:22:28.216700+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "aws-new-customer-credit",
+      "kind": "official",
+      "owner": "Amazon Web Services",
+      "observationDate": "2026-10-04T17:25:18.249142+00:00",
+      "sources": [
+        {
+          "url": "https://aws.amazon.com/free/",
+          "bodySha256": "5eb305f20629d22ae90b068c687af154b0531e6bc368cdfb5d166a6855bfddeb",
+          "observedAt": "2026-10-04T17:22:29.081727+00:00"
+        },
+        {
+          "url": "https://aws.amazon.com/free/free-tier-faqs/",
+          "bodySha256": "f713484b804a8287edebdd6ae5b0a79c8ccd92362126d40b485da30f9393e2af",
+          "observedAt": "2026-10-04T17:22:29.097900+00:00"
+        },
+        {
+          "url": "https://aws.amazon.com/awscredits/",
+          "bodySha256": "90bac4d97949c9f815bf8a556b37b4ef85a120d41895dca1df6459d3da1ed0e0",
+          "observedAt": "2026-10-04T17:22:29.488656+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "microsoft-startups-credit",
+      "kind": "official",
+      "owner": "Microsoft Azure",
+      "observationDate": "2026-10-04T17:25:18.249142+00:00",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/getting-started-mfs",
+          "bodySha256": "888771e89094155c6077960771d3a8b7da18a65f81f8b97fca3a32d6bca1b3ac",
+          "observedAt": "2026-10-04T17:22:28.461939+00:00"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview",
+          "bodySha256": "86afcbcca47a328a6c72a0f3705637bd4518989a389b77b192049a98181485c8",
+          "observedAt": "2026-10-04T17:22:28.206142+00:00"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/startups/benefits/azure-activation-faqs",
+          "bodySha256": "4033e3fc1093ddf3d1de194d309d6c57ce8d88a2489941181822c8397754b953",
+          "observedAt": "2026-10-04T17:22:28.399519+00:00"
+        },
+        {
+          "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0036p/",
+          "bodySha256": "f135e5c38fcb1b9e7cb021967345acbdf75d6501a749febccb93f56917bf55ec",
+          "observedAt": "2026-10-04T17:22:28.265162+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "aws-activate-credit",
+      "kind": "official",
+      "owner": "Amazon Web Services",
+      "observationDate": "2026-10-04T17:25:18.249142+00:00",
+      "sources": [
+        {
+          "url": "https://aws.amazon.com/startups/credits",
+          "bodySha256": "d54838f632795dfbecc7dc429f620680365e40c80eed43e70c217978ec002933",
+          "observedAt": "2026-10-04T17:22:29.629831+00:00"
+        },
+        {
+          "url": "https://aws.amazon.com/activate/terms/",
+          "bodySha256": "5247c252793b70cfd9d17372714ba7e00404c0d9a24925887cf12c66be6a8ec7",
+          "observedAt": "2026-10-04T17:22:29.442051+00:00"
+        },
+        {
+          "url": "https://aws.amazon.com/awscredits/",
+          "bodySha256": "90bac4d97949c9f815bf8a556b37b4ef85a120d41895dca1df6459d3da1ed0e0",
+          "observedAt": "2026-10-04T17:22:29.488656+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "oracle-cloud-trial-credit",
+      "kind": "official",
+      "owner": "Oracle Cloud",
+      "observationDate": "2026-10-04T17:25:18.249142+00:00",
+      "sources": [
+        {
+          "url": "https://www.oracle.com/cloud/free/faq/",
+          "bodySha256": "214a50863da41f43e65251344e4d084bf57dbaa73b56b89714af99221b74c0c4",
+          "observedAt": "2026-10-04T17:22:29.751173+00:00"
+        },
+        {
+          "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm",
+          "bodySha256": "fbfb0ab25c4f237068f9a7aee31efb3aefb92af046bd80f25a6183cbfccf8ed9",
+          "observedAt": "2026-10-04T17:22:30.517744+00:00"
+        },
+        {
+          "url": "https://www.oracle.com/cloud/free/",
+          "bodySha256": "b915ec57fee4191714895cc6e8f411ae533187488a8cf78bd5ed6b04411de2b6",
+          "observedAt": "2026-10-04T17:23:22.448556+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "aliyun-knowledge-base-runtime-trial",
+      "kind": "official",
+      "owner": "Alibaba Cloud",
+      "observationDate": "2026-10-04T17:56:25.374802+00:00",
+      "sources": [
+        {
+          "url": "https://help.aliyun.com/zh/model-studio/billing-for-knowledge-base",
+          "bodySha256": "5017eeb8c81f5f0a04abf1ddd8700ca550347978b43e7f906d46a2e7be79a7bc",
+          "observedAt": "2026-10-04T17:56:25.374802+00:00"
+        },
+        {
+          "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+          "bodySha256": "6ae3cfb3f7569871d2a362e75d4031e4d6772e9e2a79f2e8a979b8514a61b063",
+          "observedAt": "2026-10-04T17:56:25.373732+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "aliyun-agent-runtime-trial",
+      "kind": "official",
+      "owner": "Alibaba Cloud",
+      "observationDate": "2026-10-04T17:56:25.375961+00:00",
+      "sources": [
+        {
+          "url": "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
+          "bodySha256": "4be6dd80d25e0ed4b156f5bfbbde1d525bc8730317735b8ddd26a73d33c81e03",
+          "observedAt": "2026-10-04T17:56:25.375961+00:00"
+        },
+        {
+          "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+          "bodySha256": "6ae3cfb3f7569871d2a362e75d4031e4d6772e9e2a79f2e8a979b8514a61b063",
+          "observedAt": "2026-10-04T17:56:25.373732+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "zhipu-selected-flash-free",
+      "kind": "official",
+      "owner": "Zhipu BigModel",
+      "observationDate": "2026-10-04T17:58:04.113383+00:00",
+      "sources": [
+        {
+          "url": "https://docs.bigmodel.cn/cn/guide/start/pricing.md",
+          "bodySha256": "7224d9566404ed86a97dbfb41cf1703f1f31a25d2b4e91953018ceb5be638d0b",
+          "observedAt": "2026-10-04T17:58:04.113383+00:00"
+        },
+        {
+          "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+          "bodySha256": "fb14fa0127cae8c100b6403362e4dded41b9d7f858cee8b82046133e06442733",
+          "observedAt": "2026-10-04T17:56:28.635147+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "moonshot-file-parsing-free",
+      "kind": "official",
+      "owner": "Moonshot Kimi",
+      "observationDate": "2026-10-04T18:02:37.719669+00:00",
+      "sources": [
+        {
+          "url": "https://platform.moonshot.cn/docs/api/files",
+          "bodySha256": "db7cef5c7d263219f31351dbf27b060929988cd6e6f2ac4fd97feeb4dfcf38dc",
+          "observedAt": "2026-10-04T18:02:37.719669+00:00"
+        },
+        {
+          "url": "https://platform.moonshot.ai/docs/pricing/chat",
+          "bodySha256": "a7e0a382039aa7f9be49e53f038ad14cfc8dc50aecd8482600e3833779dde79a",
+          "observedAt": "2026-10-04T17:56:29.037761+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "siliconflow-verified-free-models",
+      "kind": "official",
+      "owner": "SiliconFlow",
+      "observationDate": "2026-10-04T17:56:29.875249+00:00",
+      "sources": [
+        {
+          "url": "https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation",
+          "bodySha256": "f81851187ba46ffae84de59c86148b79dd460165eebdd20ad638b1ca893bd685",
+          "observedAt": "2026-10-04T17:56:29.766424+00:00"
+        },
+        {
+          "url": "https://docs.siliconflow.cn/docs/legals/terms-of-service",
+          "bodySha256": "ab4e4c17c97996898a9eeec5438efc3186661cab289141d71af12d8773e5c614",
+          "observedAt": "2026-10-04T17:56:29.875249+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "modelscope-magicube-api",
+      "kind": "official",
+      "owner": "ModelScope",
+      "observationDate": "2026-10-04T18:00:00.172Z",
+      "sources": [
+        {
+          "url": "https://www.modelscope.cn/docs/magicube/intro",
+          "bodySha256": "eff6daa5f7b1107f67ee953cc1987d3fd83d3d6507ce043084975c906b9bf2d8",
+          "observedAt": "2026-10-04T18:00:00.172Z"
+        },
+        {
+          "url": "https://www.modelscope.cn/docs/model-service/API-Inference/limits",
+          "bodySha256": "78b3c30a62bd6f8a85c150b74c1dad3dc5bc5280d9e9bb7f332663b8272674ec",
+          "observedAt": "2026-10-04T17:59:29.633Z"
+        },
+        {
+          "url": "https://www.modelscope.cn/docs/model-service/API-Inference/intro",
+          "bodySha256": "c7ffa9fc57c5d307ac3b8bb94d0c61e3c34b2022cd38db6c97345c996d1e1c96",
+          "observedAt": "2026-10-04T17:58:57.333Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "stepfun-builder-program",
+      "kind": "official",
+      "owner": "StepFun",
+      "observationDate": "2026-10-04T17:56:33.831865+00:00",
+      "sources": [
+        {
+          "url": "https://platform.stepfun.com/builder-program",
+          "bodySha256": "65605a9bbb009cc11cf2c42c3c3368bcd92cf8f2342bb2ea739acfd863605a82",
+          "observedAt": "2026-10-04T17:56:32.527829+00:00"
+        },
+        {
+          "url": "https://platform.stepfun.com/legal/user-agreement.html",
+          "bodySha256": "fb3e3705fb0c8d77c09696424fa93ed0091ec39c77ab7fd2bda403f2e72259ba",
+          "observedAt": "2026-10-04T17:56:33.831865+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "spark-selected-free-models",
+      "kind": "official",
+      "owner": "iFlytek Spark",
+      "observationDate": "2026-10-04T17:58:53.773Z",
+      "sources": [
+        {
+          "url": "https://xinghuo.xfyun.cn/sparkapi",
+          "bodySha256": "f463282b970dc625754cafb681506dde6cc4ee8f1513962b229dfd770211c586",
+          "observedAt": "2026-10-04T17:58:53.773Z"
+        },
+        {
+          "url": "https://www.xfyun.cn/doc/spark/HTTP%E8%B0%83%E7%94%A8%E6%96%87%E6%A1%A3.html",
+          "bodySha256": "a40abf0d7effc3e60920581a1c5a36df2a6b194d1f8bd1f996c984ce1ee7074c",
+          "observedAt": "2026-10-04T17:58:04.124449+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "sensenova-u15-lite-free",
+      "kind": "official",
+      "owner": "SenseTime SenseNova",
+      "observationDate": "2026-10-04T17:56:34.875987+00:00",
+      "sources": [
+        {
+          "url": "https://www.sensetime.com/cn/news/sensenova-u1-5-lite-token-plan-20260911-1741",
+          "bodySha256": "3643f0a107f8054f8dead3b0edf44664e9eabcfa4932cf268994d4b988e9f3e0",
+          "observedAt": "2026-10-04T17:56:34.875987+00:00"
+        },
+        {
+          "url": "https://sensetime.com/cn/faq/",
+          "bodySha256": "5a043edee302ebd271b069d132a8abe099526e86e367cb578af80fa14ee85319",
+          "observedAt": "2026-10-04T17:56:34.824675+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "mimo-tts-limited-free",
+      "kind": "official",
+      "owner": "Xiaomi MiMo",
+      "observationDate": "2026-10-04T17:58:21.897Z",
+      "sources": [
+        {
+          "url": "https://mimo.mi.com/docs/en-US/price/pay-as-you-go",
+          "bodySha256": "7e18d532ef9e15b640284591a6680c50040bde3fea12d158b888635a1dce3502",
+          "observedAt": "2026-10-04T17:58:21.897Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "360-new-user-credit",
+      "kind": "official",
+      "owner": "360 Zhinao",
+      "observationDate": "2026-10-04T17:56:36.967743+00:00",
+      "sources": [
+        {
+          "url": "https://ai.360.com/docs/8256390m0",
+          "bodySha256": "4ae44d11a46d851511594f42fa7c390bbf9274865a379e6b8860e0d889bed6b3",
+          "observedAt": "2026-10-04T17:56:36.818955+00:00"
+        },
+        {
+          "url": "https://ai.360.com/docs/413291998e0",
+          "bodySha256": "79518c30d21fde7cb7c6070b9040c959f3fae61a8cbbe2bd51e23b9ecf96b311",
+          "observedAt": "2026-10-04T17:56:36.967743+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "baichuan-new-user-credit",
+      "kind": "official",
+      "owner": "Baichuan",
+      "observationDate": "2026-10-04T17:56:36.995027+00:00",
+      "sources": [
+        {
+          "url": "https://platform.baichuan-ai.com/prices",
+          "bodySha256": "6d5fd4f22c5ae9dc3254b22d25f194872af641fec2a55e3111b592a6e2250718",
+          "observedAt": "2026-10-04T17:56:36.995027+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "huawei-agentarts-model-trial",
+      "kind": "official",
+      "owner": "Huawei Cloud",
+      "observationDate": "2026-10-04T18:02:36.351862+00:00",
+      "sources": [
+        {
+          "url": "https://support.huaweicloud.com/usermanual-agentarts0/agentarts_05_0186.html",
+          "bodySha256": "682bebe949a2893d3f13bdc13c5bb41ff41371b0fc75a227779d42647c73661d",
+          "observedAt": "2026-10-04T18:02:36.351862+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "together-startup-accelerator",
+      "kind": "official",
+      "owner": "Together AI",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.together.ai/startup-accelerator",
+          "bodySha256": "32038cbfd9106d2507bd6ee7c67f37d1180fc39b371dd50fd297daf45ffe6c9f",
+          "observedAt": "2026-10-04T17:55:25.414273+00:00"
+        },
+        {
+          "url": "https://support.together.ai/articles/1862638756-changes-to-free-tier-and-billing-july-2025",
+          "bodySha256": "6b8b95f61ced114c28ad6ac9ac57ae7a9bf6c3b97be03f2004d47b02e0d759ea",
+          "observedAt": "2026-10-04T17:55:25.417375+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "together-research-invite",
+      "kind": "official",
+      "owner": "Together AI",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.together.ai/research-credits-program-request",
+          "bodySha256": "a65f79ff8422b2dd7347f5a8f51417e563cbcdd3e7fea97f40c4e9346be85570",
+          "observedAt": "2026-10-04T17:55:25.415873+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "fireworks-startup-credit",
+      "kind": "official",
+      "owner": "Fireworks AI",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://fireworks.ai/startups",
+          "bodySha256": "32659843e7604d51faa50a3e78db20112412637aa98f8d4ca1c69b51b5e618f6",
+          "observedAt": "2026-10-04T17:55:25.904713+00:00"
+        },
+        {
+          "url": "https://docs.fireworks.ai/faq-new/billing-pricing/how-does-billing-and-credit-usage-work",
+          "bodySha256": "c468572fc6d2caaf1d0368fb07126095b6c7714e741fd58253875b73c98aa894",
+          "observedAt": "2026-10-04T17:57:11.995158+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "novita-startup-credit",
+      "kind": "official",
+      "owner": "Novita AI",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://startups.novita.ai/",
+          "bodySha256": "0df851cb0120d2856964ca9d07f779c8c0792adc5301ec410c7f08404821583c",
+          "observedAt": "2026-10-04T17:55:27.204222+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "nebius-research-grant",
+      "kind": "official",
+      "owner": "Nebius",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://nebius.com/nebius-research-grants",
+          "bodySha256": "ba26d25d19d765dff2953765d5834c87fdd36266e99979ada587d38da434a661",
+          "observedAt": "2026-10-04T17:55:27.324614+00:00"
+        },
+        {
+          "url": "https://nebius.com/nebius-research-credits-program/terms-and-condiitions",
+          "bodySha256": "b3ea49e3b503a3b7404638a92f78bd52c0b902c0baf1d12197a04b6aad4ade36",
+          "observedAt": "2026-10-04T17:55:27.469495+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "baseten-starter-credit",
+      "kind": "official",
+      "owner": "Baseten",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.baseten.co/pricing/",
+          "bodySha256": "123c52fc8b98f112cbda17353546b4f3df41e29366f7d5f5b99e068ab357dbd4",
+          "observedAt": "2026-10-04T17:55:27.818433+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "baseten-startup-credit",
+      "kind": "official",
+      "owner": "Baseten",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.baseten.co/startup-program/",
+          "bodySha256": "6383455b5d6126c61a25db9b036cd59de91fe6f77e6358d91675c2ba663f49b3",
+          "observedAt": "2026-10-04T17:57:11.856476+00:00"
+        },
+        {
+          "url": "https://www.baseten.co/pricing/",
+          "bodySha256": "123c52fc8b98f112cbda17353546b4f3df41e29366f7d5f5b99e068ab357dbd4",
+          "observedAt": "2026-10-04T17:55:27.818433+00:00"
+        },
+        {
+          "url": "https://www.baseten.co/startup-program-legal-disclaimers/",
+          "bodySha256": "a3666327c954cce209b57fe76d36a86111881dd4bd0a2b8db48dc27d77662ba1",
+          "observedAt": "2026-10-04T18:02:07.336986+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "fal-startup-credit",
+      "kind": "official",
+      "owner": "fal.ai",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://fal.ai/startup-program",
+          "bodySha256": "5977a025c7a71fcaaa7eef6d4284449ac21980b57c28f12c7717a97b1ea92379",
+          "observedAt": "2026-10-04T17:55:28.342570+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "runpod-referral-credit",
+      "kind": "official",
+      "owner": "RunPod",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.runpod.io/refer-a-friend",
+          "bodySha256": "eeae205351e56d0919fbed152d37ce7bdf3dfdfbfa20a6f5aa1aa33d24abe297",
+          "observedAt": "2026-10-04T17:55:28.688706+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "runpod-startup-program",
+      "kind": "official",
+      "owner": "RunPod",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.runpod.io/startup-program",
+          "bodySha256": "4f0165e38a91109a08fa0045cbd0921262999c1fdba5c13e794aee552adb2ffc",
+          "observedAt": "2026-10-04T17:57:11.647653+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "lambda-research-grant",
+      "kind": "official",
+      "owner": "Lambda",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://lambda.ai/research",
+          "bodySha256": "2acec1c75978188974d3218dd6abbf964d4cf744c870f3fd99f39b745385323f",
+          "observedAt": "2026-10-04T17:55:29.139747+00:00"
+        },
+        {
+          "url": "https://lambda.ai/legal/terms-of-service",
+          "bodySha256": "7c066de8e68df688a20e5649ad3b0bb28c2a7d820ebc7ad9875f7ac3e0c4410c",
+          "observedAt": "2026-10-04T17:57:11.645160+00:00"
+        },
+        {
+          "url": "https://docs.lambda.ai/public-cloud/manage-billing/",
+          "bodySha256": "84304a571410c32ecdd1912dde5e8ed3271a948e54d9a9941ec88cecee753b16",
+          "observedAt": "2026-10-04T17:57:11.646169+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cerebras-referral-bonus",
+      "kind": "official",
+      "owner": "Cerebras",
+      "observationDate": "2026-10-04T18:03:30.803060+00:00",
+      "sources": [
+        {
+          "url": "https://www.cerebras.ai/referral-program",
+          "bodySha256": "65202028f130762f331f4782ed3e531d3e5b2fa50d7e1b2f486013c6d5563957",
+          "observedAt": "2026-10-04T18:02:07.334255+00:00"
+        },
+        {
+          "url": "https://www.cerebras.ai/referral-program-addendum",
+          "bodySha256": "ac01e50748ca29afdc3af4581add45d92133cc821d72c8cfa1f2adfbc38f5a88",
+          "observedAt": "2026-10-04T18:02:07.335019+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "google-cloud-prefunded-start",
+      "kind": "official",
+      "owner": "Google Cloud",
+      "observationDate": "2026-10-04T18:00:34.808850+00:00",
+      "sources": [
+        {
+          "url": "https://cloud.google.com/startup/pre-funded",
+          "bodySha256": "02e188218076848f8737de3a93ac3999475a46a0f103ef0d9c89e67e6709fe46",
+          "observedAt": "2026-10-04T17:57:08.302812+00:00"
+        },
+        {
+          "url": "https://cloud.google.com/startup/faq",
+          "bodySha256": "aae5ed2386c72eb43a7e8e7e215752cd534278403473ed58a437de119fa2aa27",
+          "observedAt": "2026-10-04T18:00:34.808850+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "azure-student-credit",
+      "kind": "official",
+      "owner": "Microsoft Azure",
+      "observationDate": "2026-10-04T17:57:08.308781+00:00",
+      "sources": [
+        {
+          "url": "https://azure.microsoft.com/en-us/free/students",
+          "bodySha256": "238ccae991d20359264cbf313e53dd254ea94edce4f4fd3d4fa17b251b8981af",
+          "observedAt": "2026-10-04T17:57:08.307428+00:00"
+        },
+        {
+          "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0170p",
+          "bodySha256": "94b7bc145f1f031fccce18baab4474646a1d7d57ac327bd89d595ae6e71d60b4",
+          "observedAt": "2026-10-04T17:57:08.308781+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "aws-cloud-research-credit",
+      "kind": "official",
+      "owner": "AWS",
+      "observationDate": "2026-10-04T17:57:08.860779+00:00",
+      "sources": [
+        {
+          "url": "https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/",
+          "bodySha256": "5832784b52e06de683e4a6cf139dd247c98abcbed79a7ab3d366fb2a9119eff1",
+          "observedAt": "2026-10-04T17:57:08.315387+00:00"
+        },
+        {
+          "url": "https://aws.amazon.com/awscredits/",
+          "bodySha256": "8d75fd0127693db7a305960136ab725849cb02b5bf28df2649a4feef2d0e28fb",
+          "observedAt": "2026-10-04T17:57:08.860779+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "ibm-cloud-new-credit",
+      "kind": "official",
+      "owner": "IBM Cloud",
+      "observationDate": "2026-10-04T17:57:09.497127+00:00",
+      "sources": [
+        {
+          "url": "https://cloud.ibm.com/docs/overview?topic=overview-tutorial-try-for-free",
+          "bodySha256": "ebb919a108dfc5d25cc4492c4a768a22e9f67331ef51b61903294b2458c1a519",
+          "observedAt": "2026-10-04T17:57:09.390296+00:00"
+        },
+        {
+          "url": "https://www.ibm.com/products/cloud/free",
+          "bodySha256": "8167b50bf752b2904a6f5a68a3ed1f2d7a90d0a94e7be464a0da358ecd734348",
+          "observedAt": "2026-10-04T17:57:09.497127+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cloudflare-startup-credit",
+      "kind": "official",
+      "owner": "Cloudflare",
+      "observationDate": "2026-10-04T17:57:10.220108+00:00",
+      "sources": [
+        {
+          "url": "https://www.cloudflare.com/startups/",
+          "bodySha256": "f5c3792a3ddf7c4bc372c80ce70da939988d1f854fd54dba3e94ec78eac1eb40",
+          "observedAt": "2026-10-04T17:57:10.220108+00:00"
+        },
+        {
+          "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+          "bodySha256": "3432870fcca3a0a88c9cc9302a7f26ef15a0297e0389d04863ce3bdf846370d7",
+          "observedAt": "2026-10-04T17:57:09.995577+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cloudflare-students-developer",
+      "kind": "official",
+      "owner": "Cloudflare",
+      "observationDate": "2026-10-04T17:57:10.307076+00:00",
+      "sources": [
+        {
+          "url": "https://blog.cloudflare.com/workers-for-students/",
+          "bodySha256": "2c91df2f48b0af34718f021dd7399732f98e84315237bd8da9b6eca5d0e08c53",
+          "observedAt": "2026-10-04T17:57:10.307076+00:00"
+        },
+        {
+          "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+          "bodySha256": "3432870fcca3a0a88c9cc9302a7f26ef15a0297e0389d04863ce3bdf846370d7",
+          "observedAt": "2026-10-04T17:57:09.995577+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "vercel-ai-gateway-monthly",
+      "kind": "official",
+      "owner": "Vercel",
+      "observationDate": "2026-10-04T17:57:11.091805+00:00",
+      "sources": [
+        {
+          "url": "https://vercel.com/docs/ai-gateway/pricing",
+          "bodySha256": "d3dec255d15ae36c34433a32af2baaf394855f5263623d712df3f99cf146f6bd",
+          "observedAt": "2026-10-04T17:57:11.012183+00:00"
+        },
+        {
+          "url": "https://vercel.com/docs/plans/hobby",
+          "bodySha256": "d5f67c12f5be4f36d5cd2312877fe421876d044058a3f70468fbf91c179e8346",
+          "observedAt": "2026-10-04T17:57:11.091805+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "deepgram-signup-credit",
+      "kind": "official",
+      "owner": "Deepgram",
+      "observationDate": "2026-10-04T17:57:11.851675+00:00",
+      "sources": [
+        {
+          "url": "https://deepgram.com/pricing",
+          "bodySha256": "13b2c395c536763f73783856747b7ef7e4fbabeb8e222f98d35810b6ca3816c0",
+          "observedAt": "2026-10-04T17:57:11.652761+00:00"
+        },
+        {
+          "url": "https://deepgram.com/promotions/2026-09/flux-tts-promo-terms-and-conditions",
+          "bodySha256": "40ebfac0eade30d61a5c0cb66b19d67096e21474d3055091cd05ba9e2a16c22c",
+          "observedAt": "2026-10-04T17:57:11.851675+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "deepgram-startup-program",
+      "kind": "official",
+      "owner": "Deepgram",
+      "observationDate": "2026-10-04T17:57:11.697126+00:00",
+      "sources": [
+        {
+          "url": "https://deepgram.com/startup-program",
+          "bodySha256": "da77dcac515a874851580982d837ffc11b5315f9f389f55fddd938f8b7b6ef0d",
+          "observedAt": "2026-10-04T17:57:11.679654+00:00"
+        },
+        {
+          "url": "https://deepgram.com/startup-program-terms-of-service",
+          "bodySha256": "fb3e19275fb9d324cd71d46fbcfd9dacfa422640cab0c3c79aaf809b5171171a",
+          "observedAt": "2026-10-04T17:57:11.697126+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "deepgram-flux-tts-paid-bonus-2026",
+      "kind": "official",
+      "owner": "Deepgram",
+      "observationDate": "2026-10-04T17:57:11.851675+00:00",
+      "sources": [
+        {
+          "url": "https://deepgram.com/promotions/2026-09/flux-tts-promo-terms-and-conditions",
+          "bodySha256": "40ebfac0eade30d61a5c0cb66b19d67096e21474d3055091cd05ba9e2a16c22c",
+          "observedAt": "2026-10-04T17:57:11.851675+00:00"
+        },
+        {
+          "url": "https://deepgram.com/pricing",
+          "bodySha256": "13b2c395c536763f73783856747b7ef7e4fbabeb8e222f98d35810b6ca3816c0",
+          "observedAt": "2026-10-04T17:57:11.652761+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "assemblyai-trial-credit",
+      "kind": "official",
+      "owner": "AssemblyAI",
+      "observationDate": "2026-10-04T18:00:34.793735+00:00",
+      "sources": [
+        {
+          "url": "https://support.assemblyai.com/articles/5370767329-can-i-sign-up-for-free",
+          "bodySha256": "463c5f7ee096b2c341bab9d6f0c3e7a86f2df0858e8990bb5a57d499431be718",
+          "observedAt": "2026-10-04T17:57:11.982089+00:00"
+        },
+        {
+          "url": "https://www.assemblyai.com/pricing/",
+          "bodySha256": "9fabf7f8f70dd387d1d8c9be167528dd03a3eadbb36aa1139135c73f3d26a1a5",
+          "observedAt": "2026-10-04T17:57:11.882894+00:00"
+        },
+        {
+          "url": "https://support.assemblyai.com/articles/8688235663-do-my-free-credits-expire",
+          "bodySha256": "24164a3527f735775e39b8855942e475091d47786a17eb17860b72bb96b686a6",
+          "observedAt": "2026-10-04T18:00:34.793735+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "assemblyai-startup-program",
+      "kind": "official",
+      "owner": "AssemblyAI",
+      "observationDate": "2026-10-04T17:57:12.583489+00:00",
+      "sources": [
+        {
+          "url": "https://www.assemblyai.com/contact/startup-program",
+          "bodySha256": "722f3bdc78bdcabd48bd62657e99ace9cf8e0e92325d1fa082a1518ac01eabc5",
+          "observedAt": "2026-10-04T17:57:12.583489+00:00"
+        },
+        {
+          "url": "https://www.assemblyai.com/pricing/",
+          "bodySha256": "9fabf7f8f70dd387d1d8c9be167528dd03a3eadbb36aa1139135c73f3d26a1a5",
+          "observedAt": "2026-10-04T17:57:11.882894+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "elevenlabs-api-free-tier",
+      "kind": "official",
+      "owner": "ElevenLabs",
+      "observationDate": "2026-10-04T18:00:34.799697+00:00",
+      "sources": [
+        {
+          "url": "https://elevenlabs.io/pricing/api",
+          "bodySha256": "0aa98a1930efc6c5e83316ca78bac7abe3a34d5db18d05c314e788587857fbba",
+          "observedAt": "2026-10-04T17:57:12.631570+00:00"
+        },
+        {
+          "url": "https://elevenlabs.io/docs/overview/administration/billing.md",
+          "bodySha256": "d5d68fa42ab41ad2f1203a3e82d4b38875218654aaba58ad6f0b3418a79be3db",
+          "observedAt": "2026-10-04T18:00:34.799697+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "elevenlabs-startup-grant",
+      "kind": "official",
+      "owner": "ElevenLabs",
+      "observationDate": "2026-10-04T17:57:12.816021+00:00",
+      "sources": [
+        {
+          "url": "https://elevenlabs.io/startup-grants",
+          "bodySha256": "7da8d49ed2af6f1f281849ed7f1e2f12427a687ea98897ca1f17624b7095ad1f",
+          "observedAt": "2026-10-04T17:57:12.816021+00:00"
+        },
+        {
+          "url": "https://elevenlabs.io/pricing/api",
+          "bodySha256": "0aa98a1930efc6c5e83316ca78bac7abe3a34d5db18d05c314e788587857fbba",
+          "observedAt": "2026-10-04T17:57:12.631570+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "speechmatics-signup-credit",
+      "kind": "official",
+      "owner": "Speechmatics",
+      "observationDate": "2026-10-04T17:57:12.932870+00:00",
+      "sources": [
+        {
+          "url": "https://www.speechmatics.com/pricing",
+          "bodySha256": "a4e1c47c62884fa9440caf641a9ba3271ef03684640045dfcd12a17e4c405c86",
+          "observedAt": "2026-10-04T17:57:12.834904+00:00"
+        },
+        {
+          "url": "https://www.speechmatics.com/company/articles-and-news/moving-to-credit-based-billing",
+          "bodySha256": "8290ef2bbef72abba71da0301b405407caaceae7746fd3210d37acab1e0761d1",
+          "observedAt": "2026-10-04T17:57:12.932870+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cartesia-api-free-tier",
+      "kind": "official",
+      "owner": "Cartesia",
+      "observationDate": "2026-10-04T17:57:13.571264+00:00",
+      "sources": [
+        {
+          "url": "https://www.cartesia.ai/pricing",
+          "bodySha256": "c576f1c19b8fc2f91cd700e132a3edf18e567f7684bac925934376c6d53d1064",
+          "observedAt": "2026-10-04T17:57:13.040984+00:00"
+        },
+        {
+          "url": "https://www.cartesia.ai/startups",
+          "bodySha256": "5d98ab446e8915232e27f650062b5c8a409f8ab243e2ac8272f41d127d34e8a1",
+          "observedAt": "2026-10-04T17:57:13.571264+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "cartesia-startup-grant",
+      "kind": "official",
+      "owner": "Cartesia",
+      "observationDate": "2026-10-04T17:57:13.571264+00:00",
+      "sources": [
+        {
+          "url": "https://www.cartesia.ai/startups",
+          "bodySha256": "5d98ab446e8915232e27f650062b5c8a409f8ab243e2ac8272f41d127d34e8a1",
+          "observedAt": "2026-10-04T17:57:13.571264+00:00"
+        },
+        {
+          "url": "https://www.cartesia.ai/pricing",
+          "bodySha256": "c576f1c19b8fc2f91cd700e132a3edf18e567f7684bac925934376c6d53d1064",
+          "observedAt": "2026-10-04T17:57:13.040984+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "jina-new-key-token-trial",
+      "kind": "official",
+      "owner": "Jina AI",
+      "observationDate": "2026-10-04T17:57:13.670205+00:00",
+      "sources": [
+        {
+          "url": "https://jina.ai/reader/",
+          "bodySha256": "3883e16e0d3acdcbec4e43e251419deab0e9ab38157a4c47c50155515302d337",
+          "observedAt": "2026-10-04T17:57:13.670205+00:00"
+        },
+        {
+          "url": "https://jina.ai/api-dashboard/pricing/",
+          "bodySha256": "5b7fa02a336a971a25268ed858a27d595bde44e5c2ea6551ed69bfd291f7ede6",
+          "observedAt": "2026-10-04T17:57:13.592415+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "voyage-model-token-trial",
+      "kind": "official",
+      "owner": "Voyage AI",
+      "observationDate": "2026-10-04T17:57:14.019146+00:00",
+      "sources": [
+        {
+          "url": "https://docs.voyageai.com/docs/pricing",
+          "bodySha256": "49f6b1eb99c00d6d0d3b9f398b2286f1c2066d04e3cde8360087efb17d25f516",
+          "observedAt": "2026-10-04T17:57:13.818035+00:00"
+        },
+        {
+          "url": "https://docs.voyageai.com/docs/faq",
+          "bodySha256": "9977548da8cbfe78726a3aeed24a2c8cc68fd4c6b12466992d24ec17d018dc0e",
+          "observedAt": "2026-10-04T17:57:13.898525+00:00"
+        },
+        {
+          "url": "https://docs.voyageai.com/docs/rate-limits",
+          "bodySha256": "1a621ca4749a73af01e88fc1e2af352c65998a04e5904297bd50486687bfcaa2",
+          "observedAt": "2026-10-04T17:57:14.019146+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "tavily-monthly-free-api",
+      "kind": "official",
+      "owner": "Tavily",
+      "observationDate": "2026-10-04T17:57:14.431464+00:00",
+      "sources": [
+        {
+          "url": "https://www.tavily.com/pricing",
+          "bodySha256": "4673314891f204551ea43389c4093e71ca74767cbfea839169f39a61a630c701",
+          "observedAt": "2026-10-04T17:57:14.081660+00:00"
+        },
+        {
+          "url": "https://help.tavily.com/articles/8816424538-pricing",
+          "bodySha256": "131e324f60acdfc37dbbb93b56ddd75f60473375afd46d91bf45b46b6c661d57",
+          "observedAt": "2026-10-04T17:57:14.177015+00:00"
+        },
+        {
+          "url": "https://www.tavily.com/terms",
+          "bodySha256": "46d6faa5af7c43a11230cdef2884f8e0ae2d56413bb60329f1d1107c65bdced8",
+          "observedAt": "2026-10-04T17:57:14.431464+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "tavily-student-project",
+      "kind": "official",
+      "owner": "Tavily",
+      "observationDate": "2026-10-04T17:57:14.431464+00:00",
+      "sources": [
+        {
+          "url": "https://help.tavily.com/articles/6606514713-student-account",
+          "bodySha256": "e88c99881f22058c9ee756737e6bdff8a87d668c5fddc7f5cbe42c7e749e0d6c",
+          "observedAt": "2026-10-04T17:57:14.329477+00:00"
+        },
+        {
+          "url": "https://help.tavily.com/articles/8816424538-pricing",
+          "bodySha256": "131e324f60acdfc37dbbb93b56ddd75f60473375afd46d91bf45b46b6c661d57",
+          "observedAt": "2026-10-04T17:57:14.177015+00:00"
+        },
+        {
+          "url": "https://www.tavily.com/terms",
+          "bodySha256": "46d6faa5af7c43a11230cdef2884f8e0ae2d56413bb60329f1d1107c65bdced8",
+          "observedAt": "2026-10-04T17:57:14.431464+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "exa-monthly-free-search",
+      "kind": "official",
+      "owner": "Exa",
+      "observationDate": "2026-10-04T17:57:14.526009+00:00",
+      "sources": [
+        {
+          "url": "https://exa.ai/pricing",
+          "bodySha256": "cc38e67ff603eeb99c0c71e3b3ac60be4acc9fc61f0079b10996867d9f81175a",
+          "observedAt": "2026-10-04T17:57:14.503069+00:00"
+        },
+        {
+          "url": "https://docs.exa.ai/reference/pricing",
+          "bodySha256": "316f97d7d12bce6ce65ccbf691e939709f28f3ee211e622aa5f6d7e48d1d6747",
+          "observedAt": "2026-10-04T17:57:14.526009+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "stability-api-initial-credit",
+      "kind": "official",
+      "owner": "Stability AI",
+      "observationDate": "2026-10-04T17:57:15.646217+00:00",
+      "sources": [
+        {
+          "url": "https://kb.stability.ai/knowledge-base/where-can-i-find-my-api-key",
+          "bodySha256": "eca90f7c816abfe1fdbd991350c5564e1e4d7372df020e400b125780acc75204",
+          "observedAt": "2026-10-04T17:57:15.646217+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "anthropic-startup-api-credit",
+      "kind": "official",
+      "owner": "Anthropic",
+      "observationDate": "2026-10-04T18:03:46.023742+00:00",
+      "sources": [
+        {
+          "url": "https://claude.com/programs/startups",
+          "bodySha256": "cfd708cbcafb4f8262f87193db87990d2bb21ccc9d3b7f2ba6bde525ddb7776c",
+          "observedAt": "2026-10-04T17:55:47.839004+00:00"
+        },
+        {
+          "url": "https://www.anthropic.com/startup-program-official-terms",
+          "bodySha256": "33043a40ce4d9e7135bcc425b58c24be4d874aa5938f3e7b0227d890ec06636b",
+          "observedAt": "2026-10-04T17:55:47.501995+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "anthropic-external-researcher-credit",
+      "kind": "official",
+      "owner": "Anthropic",
+      "observationDate": "2026-10-04T18:03:46.023742+00:00",
+      "sources": [
+        {
+          "url": "https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program",
+          "bodySha256": "4b5697d7643ad1acace664f0e5f47ac8e770a58cf4dbb82a064a8263ee9eb23e",
+          "observedAt": "2026-10-04T17:55:48.105609+00:00"
+        },
+        {
+          "url": "https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-api-usage",
+          "bodySha256": "b28f369e29f5a6d476d3a70b4252fc51a7a9bf4b571f85a9c80ca9450ff1a42f",
+          "observedAt": "2026-10-04T17:55:48.608896+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "anthropic-ai-science-credit",
+      "kind": "official",
+      "owner": "Anthropic",
+      "observationDate": "2026-10-04T18:03:46.023742+00:00",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/news/expanding-support-for-scientists",
+          "bodySha256": "6296b7bb10a542a3ca3182db3fc0cef640730d6fbd7aeb28f3d5008f949b663c",
+          "observedAt": "2026-10-04T17:55:47.638063+00:00"
+        },
+        {
+          "url": "https://www.anthropic.com/news/ai-for-science-program",
+          "bodySha256": "c4d0f55e9b58588bd980fce4f46a26f3d2f148653db5663b480fe762b2bb315a",
+          "observedAt": "2026-10-04T17:55:47.742479+00:00"
+        },
+        {
+          "url": "https://www.anthropic.com/ai-for-science-program-rules",
+          "bodySha256": "c69619b6b73d353cdf6d6fde11cb4f7607bdd216cd2b46abee640f59017a689b",
+          "observedAt": "2026-10-04T18:02:09.155917+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "openai-oss-api-fund",
+      "kind": "official",
+      "owner": "OpenAI",
+      "observationDate": "2026-10-04T18:03:46.023742+00:00",
+      "sources": [
+        {
+          "url": "https://developers.openai.com/community/codex-for-oss",
+          "bodySha256": "f5d9295d1777e55ced1672be6c43b94fa6fb4446ede4ebe404b0fc9f254fdb04",
+          "observedAt": "2026-10-04T18:00:33.754966+00:00"
+        },
+        {
+          "url": "https://learn.chatgpt.com/docs/codex-for-oss-terms",
+          "bodySha256": "da425c2ca8adbcac46ea2b1415647f20d28de31537268579aa3d4f7cec853d98",
+          "observedAt": "2026-10-04T18:02:08.868168+00:00"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "e834637a5383a9d1ad2412607c69f422b7562d990f745a0c93b4f22b50075a6a",
+      "kind": "third-party",
+      "owner": "api.yunhe.one",
+      "observationDate": "2026-10-03T23:46:25.488Z",
+      "sources": [
+        {
+          "url": "https://api.yunhe.one/api/status",
+          "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+          "observedAt": "2026-10-03T23:46:25.488Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "d41538494e5dc8b010c31ed58438df9dcff4d845982856571f9f0a5fe657141b",
+      "kind": "third-party",
+      "owner": "api.yunhe.one",
+      "observationDate": "2026-10-03T23:46:25.488Z",
+      "sources": [
+        {
+          "url": "https://api.yunhe.one/api/status",
+          "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+          "observedAt": "2026-10-03T23:46:25.488Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "f02ed5195b7da34e83f27b2e0c5316ef63c35b9c458a55c9885b706baa11f005",
+      "kind": "third-party",
+      "owner": "api.yunhe.one",
+      "observationDate": "2026-10-03T23:46:25.488Z",
+      "sources": [
+        {
+          "url": "https://api.yunhe.one/api/status",
+          "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+          "observedAt": "2026-10-03T23:46:25.488Z"
+        },
+        {
+          "url": "https://api.yunhe.one/api/status",
+          "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+          "observedAt": "2026-10-03T23:46:25.488Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "1f2173da6457eb674387e2f19e958e789fbfbc388c1405b6ad4c1f036f09a700",
+      "kind": "third-party",
+      "owner": "token.ithinkai.cn",
+      "observationDate": "2026-10-03T23:56:02.650Z",
+      "sources": [
+        {
+          "url": "https://token.ithinkai.cn/api/status",
+          "bodySha256": "46134277417709fa209e4ba9208fc152ffb5c7759d937bea7cb28610060730fa",
+          "observedAt": "2026-10-03T23:56:02.650Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "12f04866fe4af97900f9952df14bd1af677b45c3f8064c05611bfa33c15b9808",
+      "kind": "third-party",
+      "owner": "token.ithinkai.cn",
+      "observationDate": "2026-10-03T23:56:02.650Z",
+      "sources": [
+        {
+          "url": "https://token.ithinkai.cn/api/status",
+          "bodySha256": "46134277417709fa209e4ba9208fc152ffb5c7759d937bea7cb28610060730fa",
+          "observedAt": "2026-10-03T23:56:02.650Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "fa4c61e8a414df8174c5c025654babd8f77575d4568b53c998ab44dcdbcd6827",
+      "kind": "third-party",
+      "owner": "callxyq.xyz",
+      "observationDate": "2026-10-03T23:48:07.702Z",
+      "sources": [
+        {
+          "url": "https://callxyq.xyz/api/status",
+          "bodySha256": "8bb45a2988e6ad2580dd39c330bf9f3da099388a5d4497ddc9ea028f0b3a5ea7",
+          "observedAt": "2026-10-03T23:48:07.702Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "16e09909caa36999c716e638d37a75a14fde5a2701c1221658db32a905c145ea",
+      "kind": "third-party",
+      "owner": "callxyq.xyz",
+      "observationDate": "2026-10-03T23:48:07.702Z",
+      "sources": [
+        {
+          "url": "https://callxyq.xyz/api/status",
+          "bodySha256": "8bb45a2988e6ad2580dd39c330bf9f3da099388a5d4497ddc9ea028f0b3a5ea7",
+          "observedAt": "2026-10-03T23:48:07.702Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "41e9f015ca391e2b554bae4da45ed4b7a54bad6c52406b1fb53a9a39a60db561",
+      "kind": "third-party",
+      "owner": "api.jiushi.xin",
+      "observationDate": "2026-10-03T23:43:32.206Z",
+      "sources": [
+        {
+          "url": "https://api.jiushi.xin/api/status",
+          "bodySha256": "b0c32f6002185ba430130f32cec267324fdbd121ce9edc5910ec1a294ca80092",
+          "observedAt": "2026-10-03T23:43:32.206Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "d9237fb5cfc814f386dc0ef9b518df2e2a01ded4e76d9d0aca0ddd298e23950e",
+      "kind": "third-party",
+      "owner": "api.jiushi.xin",
+      "observationDate": "2026-10-03T23:43:32.206Z",
+      "sources": [
+        {
+          "url": "https://api.jiushi.xin/api/status",
+          "bodySha256": "b0c32f6002185ba430130f32cec267324fdbd121ce9edc5910ec1a294ca80092",
+          "observedAt": "2026-10-03T23:43:32.206Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "eddbae3c41284f3f30c723bb7ed1fb93a04e1f22094172eb0b97f72274056ce5",
+      "kind": "third-party",
+      "owner": "open.selart.cc",
+      "observationDate": "2026-10-03T23:54:29.280Z",
+      "sources": [
+        {
+          "url": "https://open.selart.cc/api/status",
+          "bodySha256": "b5d384044425df276733cf44c00593e59e56cc53f6ac57eed27cb99d041171dd",
+          "observedAt": "2026-10-03T23:54:29.280Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "fc5bc42526ce7d16837b54ea3a8671b3f4b3c3347685062dd19ebdae2b7f00c8",
+      "kind": "third-party",
+      "owner": "open.selart.cc",
+      "observationDate": "2026-10-03T23:54:29.280Z",
+      "sources": [
+        {
+          "url": "https://open.selart.cc/api/status",
+          "bodySha256": "b5d384044425df276733cf44c00593e59e56cc53f6ac57eed27cb99d041171dd",
+          "observedAt": "2026-10-03T23:54:29.280Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "5bbd99346c4c80cec5646917e66c82c71e69ff8dd33c863606873339448603b2",
+      "kind": "third-party",
+      "owner": "bridge.pulseneko.com",
+      "observationDate": "2026-10-03T23:47:58.162Z",
+      "sources": [
+        {
+          "url": "https://bridge.pulseneko.com/api/status",
+          "bodySha256": "9e33f1344a246006c69218802f30fff63a4199f396a18db9f20a429884e7df7c",
+          "observedAt": "2026-10-03T23:47:58.162Z"
+        },
+        {
+          "url": "https://bridge.pulseneko.com/api/status",
+          "bodySha256": "9e33f1344a246006c69218802f30fff63a4199f396a18db9f20a429884e7df7c",
+          "observedAt": "2026-10-03T23:47:58.162Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "8de75e7c27014cc6766b3802ede445756c01ee35c153aa9abea037552f69de63",
+      "kind": "third-party",
+      "owner": "pipio.io",
+      "observationDate": "2026-10-03T23:54:28.591Z",
+      "sources": [
+        {
+          "url": "https://pipio.io/api/status",
+          "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+          "observedAt": "2026-10-03T23:54:28.591Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "ee1f43851942d3101917398c26ecf1cc83c62605cc2aa60f225dea01bdf7bd76",
+      "kind": "third-party",
+      "owner": "pipio.io",
+      "observationDate": "2026-10-03T23:54:28.591Z",
+      "sources": [
+        {
+          "url": "https://pipio.io/api/status",
+          "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+          "observedAt": "2026-10-03T23:54:28.591Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "8ab9359d1604c596a1e110c1dfb9014c2162ebd3faba1a41e604c56bdeac5f7b",
+      "kind": "third-party",
+      "owner": "pipio.io",
+      "observationDate": "2026-10-03T23:54:28.591Z",
+      "sources": [
+        {
+          "url": "https://pipio.io/api/status",
+          "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+          "observedAt": "2026-10-03T23:54:28.591Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "a72e05d8f656a0965de0cafcb17c7ea6315b9e6eb201f3eeb70b890b641fe7d0",
+      "kind": "third-party",
+      "owner": "pipio.io",
+      "observationDate": "2026-10-03T23:54:28.591Z",
+      "sources": [
+        {
+          "url": "https://pipio.io/api/status",
+          "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+          "observedAt": "2026-10-03T23:54:28.591Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "375348774df4846b2635f66009c3d80cefb2f5decdc48aed3cf09068691558b9",
+      "kind": "third-party",
+      "owner": "pipio.io",
+      "observationDate": "2026-10-03T23:54:28.591Z",
+      "sources": [
+        {
+          "url": "https://pipio.io/api/status",
+          "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+          "observedAt": "2026-10-03T23:54:28.591Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "5a091c0e3e894dbf3efde0bf67d5d95387ec7f26b92273a7364043abb0abd9ac",
+      "kind": "third-party",
+      "owner": "fanrenapi.com",
+      "observationDate": "2026-10-03T23:50:00.063Z",
+      "sources": [
+        {
+          "url": "https://fanrenapi.com/api/status",
+          "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+          "observedAt": "2026-10-03T23:50:00.063Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "d2b3109ecc2beb9b11842a17f113b5b95998128921ac68c853435d8f475a25ee",
+      "kind": "third-party",
+      "owner": "fanrenapi.com",
+      "observationDate": "2026-10-03T23:50:00.063Z",
+      "sources": [
+        {
+          "url": "https://fanrenapi.com/api/status",
+          "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+          "observedAt": "2026-10-03T23:50:00.063Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "33e6dc4d3ce264851d6057604389b263af616a5cca4ca120d4a2a62e8cbf4fa9",
+      "kind": "third-party",
+      "owner": "fanrenapi.com",
+      "observationDate": "2026-10-03T23:50:00.063Z",
+      "sources": [
+        {
+          "url": "https://fanrenapi.com/api/status",
+          "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+          "observedAt": "2026-10-03T23:50:00.063Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "4c19fa1b26f2d9e9a3fcd30fd3de2830e41caec125cc6e2f28060c63bb3a5ae5",
+      "kind": "third-party",
+      "owner": "fanrenapi.com",
+      "observationDate": "2026-10-03T23:50:00.063Z",
+      "sources": [
+        {
+          "url": "https://fanrenapi.com/api/status",
+          "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+          "observedAt": "2026-10-03T23:50:00.063Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "2c933b53ab4e01957ae625c8dcd34ae3111d43092c8d79a7ae943f0fc6cd0af6",
+      "kind": "third-party",
+      "owner": "guxiaomo.site",
+      "observationDate": "2026-10-03T23:50:15.166Z",
+      "sources": [
+        {
+          "url": "https://guxiaomo.site/api/status",
+          "bodySha256": "25bf3b1cad4f9c914edbcbdc4cb4241584606384a8f4dc09d133bd4a900a0032",
+          "observedAt": "2026-10-03T23:50:15.166Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "0fe793f09cb10447d69b6b3e62a6bae81c9749fa03c0dfaa0eb8afb896ca3971",
+      "kind": "third-party",
+      "owner": "weclawapi.com",
+      "observationDate": "2026-10-03T23:57:08.016Z",
+      "sources": [
+        {
+          "url": "https://weclawapi.com/api/status",
+          "bodySha256": "8ec525a314729a1200a968e53a2ea23cad6d51179c4192a1de0525e20a7bfed4",
+          "observedAt": "2026-10-03T23:57:08.016Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "3d587e0681dd81fb3dfdb09ef9ccb407b330db98df0543b6dc966647520f237f",
+      "kind": "third-party",
+      "owner": "aheapi.com",
+      "observationDate": "2026-10-04T00:01:01.486Z",
+      "sources": [
+        {
+          "url": "https://aheapi.com/pricing",
+          "bodySha256": "65b38fbe94cf6ba820c9d5128ab8f61546010c2a9ad0969cf33ca807364be43b",
+          "observedAt": "2026-10-04T00:01:01.486Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "7b2def694f85c9fe57a2c16e2d124c2f46aa68d732b3872f79f58cedccaf6edd",
+      "kind": "third-party",
+      "owner": "aispacestation.com.cn",
+      "observationDate": "2026-10-04T00:00:57.223Z",
+      "sources": [
+        {
+          "url": "https://aispacestation.com.cn/",
+          "bodySha256": "b885b979340277503472f9b42caad6709d28a9d0050f37f2fce8fde73c3cb516",
+          "observedAt": "2026-10-04T00:00:57.223Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "df8b22dfa199b59706b6f5a3d2bf97b453f0b2b3966db4939644ed9b7463ccb1",
+      "kind": "third-party",
+      "owner": "opper.ai",
+      "observationDate": "2026-10-04T00:01:07.467Z",
+      "sources": [
+        {
+          "url": "https://opper.ai/pricing",
+          "bodySha256": "6ffc94f63bb9aba1bbb221f32d93bb6a889a0a01d08fd7578bd735e002609aed",
+          "observedAt": "2026-10-04T00:01:07.467Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "594af6f82304a2a47b8ad5210732efa721fce856925d5808052a93260702fe1b",
+      "kind": "third-party",
+      "owner": "www.ohmygpt.com",
+      "observationDate": "2026-10-04T00:01:09.695Z",
+      "sources": [
+        {
+          "url": "https://www.ohmygpt.com/pricing",
+          "bodySha256": "a68aaad4f97068f29936e1e2a88c4eb53cbf0ae03fc952a039c0f4af825a7ec1",
+          "observedAt": "2026-10-04T00:01:09.695Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "ddf2eb04f89953f1735c170bd2dfd9b035603dd8f97a433f336f399acc0a8ae4",
+      "kind": "third-party",
+      "owner": "api.dzzi.ai",
+      "observationDate": "2026-10-03T23:42:40.701Z",
+      "sources": [
+        {
+          "url": "https://api.dzzi.ai/api/pricing",
+          "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+          "observedAt": "2026-10-03T23:42:40.701Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "73743d227e0656f27ecba0e3443bd61233d5ceb7ee797c31c472fbf0f95e1a9b",
+      "kind": "third-party",
+      "owner": "api.dzzi.ai",
+      "observationDate": "2026-10-03T23:42:40.701Z",
+      "sources": [
+        {
+          "url": "https://api.dzzi.ai/api/pricing",
+          "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+          "observedAt": "2026-10-03T23:42:40.701Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "4a5cefd7adbbe10bf9298b2362d96e0bcd2cdf57627b3e957a23fab272af9b0f",
+      "kind": "third-party",
+      "owner": "api.dzzi.org",
+      "observationDate": "2026-10-03T23:42:41.791Z",
+      "sources": [
+        {
+          "url": "https://api.dzzi.org/api/pricing",
+          "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+          "observedAt": "2026-10-03T23:42:41.791Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "6696afcd2c48852b804e9f4b33504eb1338cea7046791a67ae6496c9b9b2441c",
+      "kind": "third-party",
+      "owner": "api.dzzi.org",
+      "observationDate": "2026-10-03T23:42:41.791Z",
+      "sources": [
+        {
+          "url": "https://api.dzzi.org/api/pricing",
+          "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+          "observedAt": "2026-10-03T23:42:41.791Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "270159fab758c7f3fc1e13cd055843464c5a8236cb0753de330e26e8d6f22a49",
+      "kind": "third-party",
+      "owner": "claudecn.ai",
+      "observationDate": "2026-10-03T23:48:26.893Z",
+      "sources": [
+        {
+          "url": "https://claudecn.ai/api/pricing",
+          "bodySha256": "2c785308f4db80747f673bcb9e28d99247bc6a872f2ed27f561f64d3b6b4dbba",
+          "observedAt": "2026-10-03T23:48:26.893Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "3389595a8d48867244770aa680f950f3752a341e690a97d47b6ea4a44d737a98",
+      "kind": "third-party",
+      "owner": "claudecn.top",
+      "observationDate": "2026-10-03T23:48:27.872Z",
+      "sources": [
+        {
+          "url": "https://claudecn.top/api/pricing",
+          "bodySha256": "2c785308f4db80747f673bcb9e28d99247bc6a872f2ed27f561f64d3b6b4dbba",
+          "observedAt": "2026-10-03T23:48:27.872Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    },
+    {
+      "id": "844646c170d7e69fca1b9e1ce08bb7c28ad95f7a4d6dc83c682c8887a2c89876",
+      "kind": "third-party",
+      "owner": "jp.claudecn.top",
+      "observationDate": "2026-10-03T23:50:58.843Z",
+      "sources": [
+        {
+          "url": "https://jp.claudecn.top/api/pricing",
+          "bodySha256": "0e48f4a6ef2481d594fb34d4f80f68e774448b31c364b6971e7287b080f41c8a",
+          "observedAt": "2026-10-03T23:50:58.843Z"
+        }
+      ],
+      "license": "Grandet factual compilation: published with source attribution; underlying statements: respective source rights retained, no sublicense granted",
+      "scope": "Grandet factual summaries, complete structured conditions and source references; vendor full statements/excerpts omitted; no private captured bodies"
+    }
+  ],
+  "derivedFrom": {
+    "schema": "grandet.free-token-offers/v2",
+    "sha256": "581a6fcd246070d9a69eacdbbebe1630d734c67c3c168ccf3680fbdcf27f405b",
+    "transformation": "Official objects unchanged; third-party fullStatement and evidence[].excerpt removed; editorialFacts and derivation metadata added. No observation refresh."
+  },
+  "structuralSha256": "ccf73983dc25785e11598bcfaca46238fa45a0355350172dd66c4ab8b1e50dec",
+  "allowedChanges": [
+    "schema",
+    "derivedFrom",
+    "offers[].fullStatement removal",
+    "offers[].evidence[].excerpt removal",
+    "offers[].editorialFacts addition",
+    "offers[].derivedFrom addition"
+  ]
+}

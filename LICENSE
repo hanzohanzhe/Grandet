@@ -1,0 +1,19 @@
+Grandet public catalogue hub — license scope
+
+The original catalogue tool and browser code in scripts/, tests/, app.mjs,
+index.html and style.css, and Grandet-authored project documentation and
+contribution templates listed in public-export-manifest.json, are licensed
+under the GNU Affero General Public License version 3 only
+(SPDX: AGPL-3.0-only). The complete license text is in
+LICENSES/AGPL-3.0-only.txt.
+
+This independent hub contains no desktop client, SDK, gateway, or Apache
+licensed source distribution. Its public-export-manifest.json enumerates
+this hub's actual files and their individual rights categories.
+
+The software license does not cover data/free-tokens.json, the factual
+catalogue CATALOGUE.md, source evidence references, vendor statements, or
+trademarks. DATA-LICENSE.md and data/MANIFEST.json define the data boundary;
+TRADEMARKS.md defines the Grandet name boundary. No supplier rights are
+sublicensed by this software license. The data manifest records the public
+factual compilation scope and respective source ownership.
