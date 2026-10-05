@@ -6,6 +6,8 @@ A small open-source catalogue tool and a dated research index of **73 official p
 
 “Free tokens” is a discovery label. Credits, quota points, coupons, money-labelled balances and activity vouchers retain their original units. Payment, invitations, identity checks, expiry, lotteries and disabled/conflicting announcements are preserved. Inclusion does not prove eligibility or successful redemption; this is not an exhaustive worldwide directory.
 
+Compilation date: **2026-10-05**. Each record retains its original observation date; this compilation date does not renew observations. This repository preserves its fixed initial reviewed factual export and does not automatically track the website's latest v3 DTO. Repository and website publication versions may differ.
+
 ## Run locally
 
 Requires Node.js 20+; no packages or installation needed.
