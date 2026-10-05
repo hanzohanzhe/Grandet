@@ -89,6 +89,34 @@
     {
       "path": "tests/catalogue.test.mjs",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "data/free-tokens-v3.json",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+    },
+    {
+      "path": "data/RELEASE-v3.json",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+    },
+    {
+      "path": "CATALOGUE-v3.md",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+    },
+    {
+      "path": "llms.txt",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "catalogue-index.json",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "scripts/validate-public.mjs",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": ".github/workflows/catalogue.yml",
+      "rights": "AGPL-3.0-only"
     }
   ],
   "codeLicense": "AGPL-3.0-only",

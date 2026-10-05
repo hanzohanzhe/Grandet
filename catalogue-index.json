@@ -1,0 +1,22 @@
+{
+  "schema": "grandet.machine-entry-index/v1",
+  "updatedAt": "2026-10-06",
+  "repository": "https://github.com/hanzohanzhe/Grandet",
+  "latest": "data/RELEASE-v3.json",
+  "entries": [
+    "llms.txt",
+    "data/RELEASE-v3.json",
+    "data/free-tokens-v3.json",
+    "CATALOGUE-v3.md",
+    "METHODOLOGY.md",
+    "DATA-LICENSE.md",
+    "data/MANIFEST.json",
+    "data/free-tokens.json",
+    "CATALOGUE.md"
+  ],
+  "website": {
+    "url": "https://grandet.ai",
+    "status": "DEPLOYMENT_IN_PROGRESS_NOT_YET_ACCEPTED"
+  },
+  "desktopReleaseStatus": "NOT_RELEASED"
+}

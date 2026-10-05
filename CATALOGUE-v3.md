@@ -1,0 +1,14775 @@
+# Complete catalogue / 完整目录
+
+Dated source statements; eligibility and redemption are not verified. Full conditions and all derived fields follow every entry; vendor full text and excerpts are omitted. No blanket data license is granted; see DATA-LICENSE.md and data/MANIFEST.json.
+
+## Official programmes / 官方项目 (73)
+
+### 1. Gemini API 免费层 / Gemini API free tier
+
+部分 Gemini 模型免费输入与输出，限额按模型和项目分别计算。 / Free input and output for eligible Gemini models; limits depend on model and project.
+
+- Provider/source: Google
+- Category: free-tier
+- Observed/checked: 2026-10-04T15:58:10.424191+00:00
+- Billing: 免费层限指定模型；付费升级单独计费。 / Only eligible models are free; paid upgrades are billed separately.
+
+Conditions / 完整条件:
+
+- 需要Google账号/API key；支持地区与18+年龄要求适用。
+- 免费范围限特定模型/功能；付费层需独立计费。信用卡是否为免费注册必需：本轮未获明确证据，不宣称无需信用卡。
+- 未付费输入/输出可用于改进产品并由人工审阅；EEA、瑞士、英国的数据条款不同。
+- Google account/API key required; supported-region and age 18+ requirements apply.
+- Only eligible models/features are free; inspect the current pricing and account limits.
+- Unpaid inputs/outputs may improve Google products and be reviewed by people; EEA, Switzerland and UK have different data terms.
+
+Sources / 来源:
+
+- [Official evidence](https://ai.google.dev/gemini-api/docs/pricing) — SHA-256 `f0a5f2132379a57468e52c58e0f0b9a9a7e4e908579e62bc785979fb97b2063c`
+- [Official evidence](https://ai.google.dev/gemini-api/docs/available-regions) — SHA-256 `154599cc57b8e7a5ca95351794c3fb47d1fe7d384ad0be538be9ff4f45e041f0`
+- [Official evidence](https://ai.google.dev/gemini-api/terms) — SHA-256 `43f25cf2d5cb69b5b6a62e26f603b135b1d8a920a5729aab90c2155a1f68cd46`
+
+[Provider programme page / 提供方入口](https://aistudio.google.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "google-gemini-free",
+  "provider": "Google",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Gemini API 免费层",
+    "en": "Gemini API free tier"
+  },
+  "benefitText": {
+    "zh-CN": "部分 Gemini 模型免费输入与输出，限额按模型和项目分别计算。",
+    "en": "Free input and output for eligible Gemini models; limits depend on model and project."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需要Google账号/API key；支持地区与18+年龄要求适用。",
+      "免费范围限特定模型/功能；付费层需独立计费。信用卡是否为免费注册必需：本轮未获明确证据，不宣称无需信用卡。",
+      "未付费输入/输出可用于改进产品并由人工审阅；EEA、瑞士、英国的数据条款不同。"
+    ],
+    "en": [
+      "Google account/API key required; supported-region and age 18+ requirements apply.",
+      "Only eligible models/features are free; inspect the current pricing and account limits.",
+      "Unpaid inputs/outputs may improve Google products and be reviewed by people; EEA, Switzerland and UK have different data terms."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费层限指定模型；付费升级单独计费。",
+    "en": "Only eligible models are free; paid upgrades are billed separately."
+  },
+  "claimUrl": "https://aistudio.google.com/",
+  "checkedAt": "2026-10-04T15:58:10.424191+00:00",
+  "evidence": [
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "bodySha256": "f0a5f2132379a57468e52c58e0f0b9a9a7e4e908579e62bc785979fb97b2063c",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google",
+        "en": "Official evidence · Google"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/available-regions",
+      "bodySha256": "154599cc57b8e7a5ca95351794c3fb47d1fe7d384ad0be538be9ff4f45e041f0",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google",
+        "en": "Official evidence · Google"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/terms",
+      "bodySha256": "43f25cf2d5cb69b5b6a62e26f603b135b1d8a920a5729aab90c2155a1f68cd46",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google",
+        "en": "Official evidence · Google"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 2. GroqCloud API Free tier / GroqCloud API Free tier
+
+GroqCloud 提供开发者 API 免费层，请求数和 Token 吞吐按模型设限。 / GroqCloud offers a developer API free tier with model-specific request and token limits.
+
+- Provider/source: Groq
+- Category: free-tier
+- Observed/checked: 2026-10-04T15:58:10.424191+00:00
+- Billing: 免费层受模型限流；Developer 升级按量收费。 / Model rate limits apply; Developer upgrades introduce usage billing.
+
+Conditions / 完整条件:
+
+- 升级Developer才需有效付款方式，包含信用卡/美国银行/SEPA；不将升级无即时扣费称为免费试用。
+- 免费层注册信用卡、电话与支持地区细节本轮未获明确文档，不填否定值。
+- 推理内容默认不保留；可靠性/滥用日志可保留最多30天，提供ZDR控制。
+- Create an account/API key and stay within the model limits; exceeding any limit can produce 429.
+- Developer upgrade requires a valid payment method and introduces usage billing.
+- Inference content is not retained by default; reliability/abuse logs can last up to 30 days, with ZDR controls.
+
+Sources / 来源:
+
+- [Official evidence](https://console.groq.com/docs/billing-faqs) — SHA-256 `0b22123b01f27206c0fd87349b25f9fa795f9b42e8ab86440474c8330120a778`
+- [Official evidence](https://console.groq.com/docs/rate-limits) — SHA-256 `916ba0ab28e8d0d229be7b272581744b5bc269abc2fd40c077eff3e677d321ac`
+- [Official evidence](https://console.groq.com/docs/your-data) — SHA-256 `fe237f70dd59c03342bc9932b51b40bfa95f24ee3d991f2a92667ded673cb1b4`
+
+[Provider programme page / 提供方入口](https://console.groq.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "groq-free",
+  "provider": "Groq",
+  "operatorKind": "inference-provider",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "GroqCloud API Free tier",
+    "en": "GroqCloud API Free tier"
+  },
+  "benefitText": {
+    "zh-CN": "GroqCloud 提供开发者 API 免费层，请求数和 Token 吞吐按模型设限。",
+    "en": "GroqCloud offers a developer API free tier with model-specific request and token limits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "升级Developer才需有效付款方式，包含信用卡/美国银行/SEPA；不将升级无即时扣费称为免费试用。",
+      "免费层注册信用卡、电话与支持地区细节本轮未获明确文档，不填否定值。",
+      "推理内容默认不保留；可靠性/滥用日志可保留最多30天，提供ZDR控制。"
+    ],
+    "en": [
+      "Create an account/API key and stay within the model limits; exceeding any limit can produce 429.",
+      "Developer upgrade requires a valid payment method and introduces usage billing.",
+      "Inference content is not retained by default; reliability/abuse logs can last up to 30 days, with ZDR controls."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费层受模型限流；Developer 升级按量收费。",
+    "en": "Model rate limits apply; Developer upgrades introduce usage billing."
+  },
+  "claimUrl": "https://console.groq.com/",
+  "checkedAt": "2026-10-04T15:58:10.424191+00:00",
+  "evidence": [
+    {
+      "url": "https://console.groq.com/docs/billing-faqs",
+      "bodySha256": "0b22123b01f27206c0fd87349b25f9fa795f9b42e8ab86440474c8330120a778",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Groq",
+        "en": "Official evidence · Groq"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://console.groq.com/docs/rate-limits",
+      "bodySha256": "916ba0ab28e8d0d229be7b272581744b5bc269abc2fd40c077eff3e677d321ac",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Groq",
+        "en": "Official evidence · Groq"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://console.groq.com/docs/your-data",
+      "bodySha256": "fe237f70dd59c03342bc9932b51b40bfa95f24ee3d991f2a92667ded673cb1b4",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Groq",
+        "en": "Official evidence · Groq"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 3. Mistral Studio Free mode / Mistral Studio Free mode
+
+当前Free计划列US$10/月API额度；默认免费API访问有限额。 / Current Free plan lists US$10/month API credits; default free API access has usage limits.
+
+- Provider/source: Mistral AI
+- Category: free-tier
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 用于评估与原型；扩展用量需切换按量付费。 / Intended for evaluation and prototypes; extended use requires pay-as-you-go.
+
+Conditions / 完整条件:
+
+- 默认Free mode用于评估和原型；pay-as-you-go延伸用量。
+- 组织、模型的请求、吞吐与月度限额适用；地区及额外身份条件以账号为准，不承诺统一Token数量。
+- Free mode输入/输出可能用于训练，可退出；ZDR需要pay-as-you-go。
+- 最新官方API key quickstart明确默认免费访问无需信用卡；付费学生教育计划不计为免费赠金。
+- Free mode is intended for evaluation and prototypes.
+- Organization/model request, throughput and monthly limits apply; regional/additional identity eligibility follows account rules; no universal token grant is claimed.
+- Free-mode inputs/outputs may be used for training; users can opt out. ZDR requires pay-as-you-go.
+- Current API key quickstart explicitly states default free access needs no credit card; paid student Education plans are separate.
+
+Sources / 来源:
+
+- [Official evidence](https://mistral.ai/pricing/) — SHA-256 `94c58768944bdd8b27e20fe9f1ff1dd48b6bddb73920d94c309e16a64fd31bc8`
+- [Official evidence](https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key) — SHA-256 `73c4367ed3fd06773a6e7887abf2fe33033558c30cc0b7a78b31f11387f9432b`
+- [Official evidence](https://docs.mistral.ai/admin/billing-usage/usage-limits) — SHA-256 `f05e81e32f90ec9f7f784cea42c328a037e623dcc62cdd285b17d45e51b6a6db`
+- [Official evidence](https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them) — SHA-256 `bda8332f8c58e4415d4c90aa496bc3df8e01ef214a46ca7923b93dea045bd805`
+- [Official evidence](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models) — SHA-256 `3964bef6f32e040b88c2060afd3b7bc36a4017aa14f3d2a15fabd1ffa298b865`
+- [Official evidence](https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr) — SHA-256 `e2c92860fe62354b804a19b5630d83faf8288e9e4d0b8aa666469e60f5af2ab8`
+
+[Provider programme page / 提供方入口](https://console.mistral.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "mistral-free",
+  "provider": "Mistral AI",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Mistral Studio Free mode",
+    "en": "Mistral Studio Free mode"
+  },
+  "benefitText": {
+    "zh-CN": "当前Free计划列US$10/月API额度；默认免费API访问有限额。",
+    "en": "Current Free plan lists US$10/month API credits; default free API access has usage limits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "默认Free mode用于评估和原型；pay-as-you-go延伸用量。",
+      "组织、模型的请求、吞吐与月度限额适用；地区及额外身份条件以账号为准，不承诺统一Token数量。",
+      "Free mode输入/输出可能用于训练，可退出；ZDR需要pay-as-you-go。",
+      "最新官方API key quickstart明确默认免费访问无需信用卡；付费学生教育计划不计为免费赠金。"
+    ],
+    "en": [
+      "Free mode is intended for evaluation and prototypes.",
+      "Organization/model request, throughput and monthly limits apply; regional/additional identity eligibility follows account rules; no universal token grant is claimed.",
+      "Free-mode inputs/outputs may be used for training; users can opt out. ZDR requires pay-as-you-go.",
+      "Current API key quickstart explicitly states default free access needs no credit card; paid student Education plans are separate."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "用于评估与原型；扩展用量需切换按量付费。",
+    "en": "Intended for evaluation and prototypes; extended use requires pay-as-you-go."
+  },
+  "claimUrl": "https://console.mistral.ai/",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://mistral.ai/pricing/",
+      "bodySha256": "94c58768944bdd8b27e20fe9f1ff1dd48b6bddb73920d94c309e16a64fd31bc8",
+      "capturedAt": "2026-10-04T17:55:26.197354+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Mistral AI",
+        "en": "Official evidence · Mistral AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
+      "bodySha256": "73c4367ed3fd06773a6e7887abf2fe33033558c30cc0b7a78b31f11387f9432b",
+      "capturedAt": "2026-10-04T17:55:26.238124+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Mistral AI",
+        "en": "Official evidence · Mistral AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+      "bodySha256": "f05e81e32f90ec9f7f784cea42c328a037e623dcc62cdd285b17d45e51b6a6db",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Mistral AI",
+        "en": "Official evidence · Mistral AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.mistral.ai/en/articles/698531-why-am-i-hitting-api-rate-limits-and-how-do-i-increase-them",
+      "bodySha256": "bda8332f8c58e4415d4c90aa496bc3df8e01ef214a46ca7923b93dea045bd805",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Mistral AI",
+        "en": "Official evidence · Mistral AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models",
+      "bodySha256": "3964bef6f32e040b88c2060afd3b7bc36a4017aa14f3d2a15fabd1ffa298b865",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Mistral AI",
+        "en": "Official evidence · Mistral AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr",
+      "bodySha256": "e2c92860fe62354b804a19b5630d83faf8288e9e4d0b8aa666469e60f5af2ab8",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Mistral AI",
+        "en": "Official evidence · Mistral AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "所核对条款明确本卡起步/免费范围无需付款方式；付费升级另算。",
+        "en": "Pinned terms explicitly allow the stated starter/free scope without a payment method; paid upgrades are separate."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 4. Workers AI 每日免费配额 / Workers AI daily free allocation
+
+每天 10,000 Neurons，UTC 00:00 重置。Neurons 是算力单位，不是 Token 数。 / 10,000 Neurons per day, resetting at 00:00 UTC. Neurons are compute units, not tokens.
+
+- Provider/source: Cloudflare
+- Category: free-tier
+- Observed/checked: 2026-10-04T15:58:10.424191+00:00
+- Billing: 部分模型需付费；超免费配额需 Workers Paid。 / Some models require payment; use above the allowance requires Workers Paid.
+
+Conditions / 完整条件:
+
+- 超免费配额需Workers Paid并按量收费；Free达到限额后失败。
+- 部分前沿模型需付款方式，可用Workers Paid或预付AI Gateway credits，不承诺所有模型免费。
+- 免费注册是否需信用卡及区域细节本轮未明确。
+- 未明确同意时，不用客户内容训练模型或改善服务。
+- Available with Workers Free and Paid; Free requests fail once the allowance is exceeded.
+- Some frontier models require a paid billing method via Workers Paid or prepaid AI Gateway credits.
+- Cloudflare does not train or improve services using Workers AI customer content without explicit consent.
+
+Sources / 来源:
+
+- [Official evidence](https://developers.cloudflare.com/workers-ai/platform/pricing/) — SHA-256 `2b54d977fd5f4da51a710e1652570655c8450091226e974d7bfd5425fc6ec77c`
+- [Official evidence](https://developers.cloudflare.com/workers-ai/platform/data-usage/) — SHA-256 `13b171653c2594523292fe8aee82ad6db445e88f5a62845cc718e8cec7970790`
+
+[Provider programme page / 提供方入口](https://dash.cloudflare.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cloudflare-workers-ai-free",
+  "provider": "Cloudflare",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Workers AI 每日免费配额",
+    "en": "Workers AI daily free allocation"
+  },
+  "benefitText": {
+    "zh-CN": "每天 10,000 Neurons，UTC 00:00 重置。Neurons 是算力单位，不是 Token 数。",
+    "en": "10,000 Neurons per day, resetting at 00:00 UTC. Neurons are compute units, not tokens."
+  },
+  "conditions": {
+    "zh-CN": [
+      "超免费配额需Workers Paid并按量收费；Free达到限额后失败。",
+      "部分前沿模型需付款方式，可用Workers Paid或预付AI Gateway credits，不承诺所有模型免费。",
+      "免费注册是否需信用卡及区域细节本轮未明确。",
+      "未明确同意时，不用客户内容训练模型或改善服务。"
+    ],
+    "en": [
+      "Available with Workers Free and Paid; Free requests fail once the allowance is exceeded.",
+      "Some frontier models require a paid billing method via Workers Paid or prepaid AI Gateway credits.",
+      "Cloudflare does not train or improve services using Workers AI customer content without explicit consent."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "部分模型需付费；超免费配额需 Workers Paid。",
+    "en": "Some models require payment; use above the allowance requires Workers Paid."
+  },
+  "claimUrl": "https://dash.cloudflare.com/",
+  "checkedAt": "2026-10-04T15:58:10.424191+00:00",
+  "evidence": [
+    {
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "bodySha256": "2b54d977fd5f4da51a710e1652570655c8450091226e974d7bfd5425fc6ec77c",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Cloudflare",
+        "en": "Official evidence · Cloudflare"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+      "bodySha256": "13b171653c2594523292fe8aee82ad6db445e88f5a62845cc718e8cec7970790",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Cloudflare",
+        "en": "Official evidence · Cloudflare"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "特定模型、身份核验、账单层级或升级环节可能要求付款方式；不能推及全部免费用量。",
+        "en": "Some models, verification, billing tiers or upgrade steps require a payment method; this is not a universal free-scope requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 5. Cerebras 30天推理试用 / Cerebras 30-day inference trial
+
+一次性 US$5 促销额度；有效支付方式激活后30天到期。 / One-time US$5 promotional credit; expires 30 days after activation with a valid payment method.
+
+- Provider/source: Cerebras
+- Category: trial
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 需有效支付方式激活；试用用尽或30天到期暂停，不自动收费或加入付费计划。 / A valid payment method activates the trial; exhaustion or 30-day expiry pauses access, with no automatic charge or paid enrollment.
+
+Conditions / 完整条件:
+
+- 用于开发、评估和实验，不面向生产。
+- 需有效支付方式；不自动收费或加入付费，用尽/到期API和Playground暂停，除非另购PayGo。
+- 不可转让提现；重复账号/滥用可能撤销；地区原文未明确。
+- Development/evaluation/experimentation, not production.
+- Valid payment method required; no automatic charge or paid enrollment; API/Playground pause at expiry/exhaustion unless PayGo purchased separately.
+- Nontransferable/no cash value; abuse/duplicate accounts may be revoked; regions unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://www.cerebras.ai/pricing) — SHA-256 `07930350de00d4d3b3867d8b9ec491644f228a522fa1ad66f12ad148eab5d335`
+- [Official evidence](https://www.cerebras.ai/inference) — SHA-256 `1cb0a01486dd626a7bd03f04b634d120d089e837a6a32ac9b1441d62951bce5e`
+
+[Provider programme page / 提供方入口](https://www.cerebras.ai/pricing)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cerebras-free",
+  "provider": "Cerebras",
+  "operatorKind": "inference-provider",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Cerebras 30天推理试用",
+    "en": "Cerebras 30-day inference trial"
+  },
+  "benefitText": {
+    "zh-CN": "一次性 US$5 促销额度；有效支付方式激活后30天到期。",
+    "en": "One-time US$5 promotional credit; expires 30 days after activation with a valid payment method."
+  },
+  "conditions": {
+    "zh-CN": [
+      "用于开发、评估和实验，不面向生产。",
+      "需有效支付方式；不自动收费或加入付费，用尽/到期API和Playground暂停，除非另购PayGo。",
+      "不可转让提现；重复账号/滥用可能撤销；地区原文未明确。"
+    ],
+    "en": [
+      "Development/evaluation/experimentation, not production.",
+      "Valid payment method required; no automatic charge or paid enrollment; API/Playground pause at expiry/exhaustion unless PayGo purchased separately.",
+      "Nontransferable/no cash value; abuse/duplicate accounts may be revoked; regions unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "需有效支付方式激活；试用用尽或30天到期暂停，不自动收费或加入付费计划。",
+    "en": "A valid payment method activates the trial; exhaustion or 30-day expiry pauses access, with no automatic charge or paid enrollment."
+  },
+  "claimUrl": "https://www.cerebras.ai/pricing",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.cerebras.ai/pricing",
+      "bodySha256": "07930350de00d4d3b3867d8b9ec491644f228a522fa1ad66f12ad148eab5d335",
+      "capturedAt": "2026-10-04T17:55:25.409559+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cerebras",
+        "en": "Official evidence · Cerebras"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.cerebras.ai/inference",
+      "bodySha256": "1cb0a01486dd626a7bd03f04b634d120d089e837a6a32ac9b1441d62951bce5e",
+      "capturedAt": "2026-10-04T17:55:25.407134+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cerebras",
+        "en": "Official evidence · Cerebras"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 6. OpenRouter 免费模型API / OpenRouter free model API
+
+免费模型每天最多 50 次请求，另有每分钟限制。OpenRouter 是聚合平台。 / Up to 50 free-model requests per day, plus per-minute limits. OpenRouter is an aggregation platform.
+
+- Provider/source: OpenRouter
+- Category: free-tier
+- Observed/checked: 2026-10-04T15:58:10.424191+00:00
+- Billing: 免费模型另限 20 次/分钟；充值提升上限另算。 / Free models are also limited to 20 requests/minute; higher purchased-credit limits are separate.
+
+Conditions / 完整条件:
+
+- OpenRouter是模型聚合平台，不是模型原厂。
+- 需要账号/API key与免费模型可用端点。
+- 服务商/模型可能有地区与主体限制；条款禁止绕过。信用卡是否为免费注册必需本轮未明确。
+- OpenRouter不训练输入/输出；上游政策不同，隐私限制可能使免费端点不可用。
+- OpenRouter is an aggregator, not the original vendor of the routed models.
+- An account/API key and an available free-model endpoint are required.
+- Provider/model regional and entity restrictions apply; terms prohibit circumventing them.
+- OpenRouter does not train on inputs/outputs; routed providers have their own data policies, and privacy filters can remove available endpoints.
+
+Sources / 来源:
+
+- [Official evidence](https://openrouter.ai/pricing/) — SHA-256 `a9c7f2ed387afab45e10444c3894a644a4461e22dc9b918251cc2826b4eb290d`
+- [Official evidence](https://openrouter.zendesk.com/hc/en-us/articles/39501163636379-OpenRouter-Rate-Limits-What-You-Need-to-Know) — SHA-256 `78935a1c6c7ff66a8d85ef4b88f5234823bd41f85c267d55b51f067a99b8f54a`
+- [Official evidence](https://openrouter.ai/privacy/) — SHA-256 `a6108222aa685632fa3ed0ce662dc8070a6894d309f55039115c4956611565ba`
+- [Official evidence](https://openrouter.ai/terms) — SHA-256 `9ca8431b30fdc262b05fb7c6f8e3e5d3341d6b0713cdbce90de3df30f0cbef0a`
+
+[Provider programme page / 提供方入口](https://openrouter.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "openrouter-free",
+  "provider": "OpenRouter",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "OpenRouter 免费模型API",
+    "en": "OpenRouter free model API"
+  },
+  "benefitText": {
+    "zh-CN": "免费模型每天最多 50 次请求，另有每分钟限制。OpenRouter 是聚合平台。",
+    "en": "Up to 50 free-model requests per day, plus per-minute limits. OpenRouter is an aggregation platform."
+  },
+  "conditions": {
+    "zh-CN": [
+      "OpenRouter是模型聚合平台，不是模型原厂。",
+      "需要账号/API key与免费模型可用端点。",
+      "服务商/模型可能有地区与主体限制；条款禁止绕过。信用卡是否为免费注册必需本轮未明确。",
+      "OpenRouter不训练输入/输出；上游政策不同，隐私限制可能使免费端点不可用。"
+    ],
+    "en": [
+      "OpenRouter is an aggregator, not the original vendor of the routed models.",
+      "An account/API key and an available free-model endpoint are required.",
+      "Provider/model regional and entity restrictions apply; terms prohibit circumventing them.",
+      "OpenRouter does not train on inputs/outputs; routed providers have their own data policies, and privacy filters can remove available endpoints."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费模型另限 20 次/分钟；充值提升上限另算。",
+    "en": "Free models are also limited to 20 requests/minute; higher purchased-credit limits are separate."
+  },
+  "claimUrl": "https://openrouter.ai/",
+  "checkedAt": "2026-10-04T15:58:10.424191+00:00",
+  "evidence": [
+    {
+      "url": "https://openrouter.ai/pricing/",
+      "bodySha256": "a9c7f2ed387afab45e10444c3894a644a4461e22dc9b918251cc2826b4eb290d",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · OpenRouter",
+        "en": "Official evidence · OpenRouter"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://openrouter.zendesk.com/hc/en-us/articles/39501163636379-OpenRouter-Rate-Limits-What-You-Need-to-Know",
+      "bodySha256": "78935a1c6c7ff66a8d85ef4b88f5234823bd41f85c267d55b51f067a99b8f54a",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · OpenRouter",
+        "en": "Official evidence · OpenRouter"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://openrouter.ai/privacy/",
+      "bodySha256": "a6108222aa685632fa3ed0ce662dc8070a6894d309f55039115c4956611565ba",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · OpenRouter",
+        "en": "Official evidence · OpenRouter"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://openrouter.ai/terms",
+      "bodySha256": "9ca8431b30fdc262b05fb7c6f8e3e5d3341d6b0713cdbce90de3df30f0cbef0a",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · OpenRouter",
+        "en": "Official evidence · OpenRouter"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 7. NVIDIA API Catalog 开发者试用 / NVIDIA API Catalog developer trial
+
+NVIDIA 托管 API 的有限评估试用；具体额度与期限以服务为准。 / Limited evaluation access to NVIDIA-hosted APIs; allocation and duration depend on the service.
+
+- Provider/source: NVIDIA
+- Category: trial
+- Observed/checked: 2026-10-04T15:58:10.424191+00:00
+- Billing: 仅限内部测试评估，试用服务与输出不可用于生产。 / Trial services and outputs are for internal testing and evaluation, not production.
+
+Conditions / 完整条件:
+
+- 必须满足当地法定成年；仅内部测试评估，试用服务及输出不得用于生产。
+- 生产或用尽额度需要另行订阅；注册加入Developer Program。信用卡与具体地区资格本轮未明确。
+- 不可提交保密或禁止的敏感数据；部分服务与安全用途有留存例外。
+- Registration joins the Developer Program and enables an API key; legal adulthood is required.
+- Trial service and generated content are restricted to internal testing/evaluation, not production.
+- Production or access after trial credits requires a separate subscription.
+- Do not submit confidential or prohibited sensitive data; content retention has service/security exceptions.
+
+Sources / 来源:
+
+- [Official evidence](https://docs.api.nvidia.com/nim/re/docs/api-quickstart) — SHA-256 `14b71f9755f2299761aeea508e7f4a3868f8adb706253404d20cedfb77c906fa`
+- [Official evidence](https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf) — SHA-256 `afd5df0322615ff95736f2f8b59fa952f5f4582dfe05f97213c0ae860f628b30`
+
+[Provider programme page / 提供方入口](https://build.nvidia.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "nvidia-api-trial",
+  "provider": "NVIDIA",
+  "operatorKind": "inference-provider",
+  "category": "trial",
+  "title": {
+    "zh-CN": "NVIDIA API Catalog 开发者试用",
+    "en": "NVIDIA API Catalog developer trial"
+  },
+  "benefitText": {
+    "zh-CN": "NVIDIA 托管 API 的有限评估试用；具体额度与期限以服务为准。",
+    "en": "Limited evaluation access to NVIDIA-hosted APIs; allocation and duration depend on the service."
+  },
+  "conditions": {
+    "zh-CN": [
+      "必须满足当地法定成年；仅内部测试评估，试用服务及输出不得用于生产。",
+      "生产或用尽额度需要另行订阅；注册加入Developer Program。信用卡与具体地区资格本轮未明确。",
+      "不可提交保密或禁止的敏感数据；部分服务与安全用途有留存例外。"
+    ],
+    "en": [
+      "Registration joins the Developer Program and enables an API key; legal adulthood is required.",
+      "Trial service and generated content are restricted to internal testing/evaluation, not production.",
+      "Production or access after trial credits requires a separate subscription.",
+      "Do not submit confidential or prohibited sensitive data; content retention has service/security exceptions."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "仅限内部测试评估，试用服务与输出不可用于生产。",
+    "en": "Trial services and outputs are for internal testing and evaluation, not production."
+  },
+  "claimUrl": "https://build.nvidia.com/",
+  "checkedAt": "2026-10-04T15:58:10.424191+00:00",
+  "evidence": [
+    {
+      "url": "https://docs.api.nvidia.com/nim/re/docs/api-quickstart",
+      "bodySha256": "14b71f9755f2299761aeea508e7f4a3868f8adb706253404d20cedfb77c906fa",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · NVIDIA",
+        "en": "Official evidence · NVIDIA"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+      "bodySha256": "afd5df0322615ff95736f2f8b59fa952f5f4582dfe05f97213c0ae860f628b30",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · NVIDIA",
+        "en": "Official evidence · NVIDIA"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 8. AI startup 申请制Cloud credits / Google Cloud AI startup credits
+
+AI 创业企业可申请两年最高 US$350,000 Cloud credits；不是每人自动赠送。 / Eligible AI startups can apply for up to US$350,000 over two years; this is not an automatic personal grant.
+
+- Provider/source: Google Cloud
+- Category: startup-credit
+- Observed/checked: 2026-10-04T15:58:10.424191+00:00
+- Billing: 审批制：首年 100% 覆盖最高 US$250,000；次年 20% 覆盖最高 US$100,000。 / Approval required: Year 1 covers 100% up to US$250,000; Year 2 covers 20% up to US$100,000.
+
+Conditions / 完整条件:
+
+- 申请审核由Google Cloud裁量；初创五年内，Pre-Seed/Seed融资五年内或Series A一年内，既有Cloud credits不超过5000美元。
+- AI作为核心产品并使用/计划使用Google指定AI平台/Gemini；申请需billing account ID、企业域名邮箱和融资证明。
+- credits覆盖Google模型如Gemini/Gemma；第三方模型直接计费不覆盖；付款方式与地区资格本轮未明确。
+- VC-funded AI-first startups; founded within five years, Pre-Seed/Seed within five years or Series A within 12 months.
+- Prior Google Cloud credits must not exceed US$5,000; a billing account ID, company-domain email and funding evidence are required.
+- AI-first Year 1 covers 100% up to US$250,000; Year 2 covers 20% up to US$100,000.
+- Credits cover Google models such as Gemini/Gemma; third-party models are not covered.
+
+Sources / 来源:
+
+- [Official evidence](https://cloud.google.com/startup/ai) — SHA-256 `1b3d9b68587d8b7259f100c887bda69513b8f17553c66190f8e147a3aed0e609`
+- [Official evidence](https://cloud.google.com/startup/faq) — SHA-256 `fcc6b9036e423bf0910fa6771d4108f48362a844ec48c2c6a6a4b6820cc26045`
+
+[Provider programme page / 提供方入口](https://cloud.google.com/startup/ai)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "google-cloud-ai-startup",
+  "provider": "Google Cloud",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "AI startup 申请制Cloud credits",
+    "en": "Google Cloud AI startup credits"
+  },
+  "benefitText": {
+    "zh-CN": "AI 创业企业可申请两年最高 US$350,000 Cloud credits；不是每人自动赠送。",
+    "en": "Eligible AI startups can apply for up to US$350,000 over two years; this is not an automatic personal grant."
+  },
+  "conditions": {
+    "zh-CN": [
+      "申请审核由Google Cloud裁量；初创五年内，Pre-Seed/Seed融资五年内或Series A一年内，既有Cloud credits不超过5000美元。",
+      "AI作为核心产品并使用/计划使用Google指定AI平台/Gemini；申请需billing account ID、企业域名邮箱和融资证明。",
+      "credits覆盖Google模型如Gemini/Gemma；第三方模型直接计费不覆盖；付款方式与地区资格本轮未明确。"
+    ],
+    "en": [
+      "VC-funded AI-first startups; founded within five years, Pre-Seed/Seed within five years or Series A within 12 months.",
+      "Prior Google Cloud credits must not exceed US$5,000; a billing account ID, company-domain email and funding evidence are required.",
+      "AI-first Year 1 covers 100% up to US$250,000; Year 2 covers 20% up to US$100,000.",
+      "Credits cover Google models such as Gemini/Gemma; third-party models are not covered."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "审批制：首年 100% 覆盖最高 US$250,000；次年 20% 覆盖最高 US$100,000。",
+    "en": "Approval required: Year 1 covers 100% up to US$250,000; Year 2 covers 20% up to US$100,000."
+  },
+  "claimUrl": "https://cloud.google.com/startup/ai",
+  "checkedAt": "2026-10-04T15:58:10.424191+00:00",
+  "evidence": [
+    {
+      "url": "https://cloud.google.com/startup/ai",
+      "bodySha256": "1b3d9b68587d8b7259f100c887bda69513b8f17553c66190f8e147a3aed0e609",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google Cloud",
+        "en": "Official evidence · Google Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://cloud.google.com/startup/faq",
+      "bodySha256": "fcc6b9036e423bf0910fa6771d4108f48362a844ec48c2c6a6a4b6820cc26045",
+      "capturedAt": "2026-10-04T15:58:10.424191+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google Cloud",
+        "en": "Official evidence · Google Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 9. 阿里云百炼新人模型免费额度 / Model Studio new-user model allowance
+
+首次开通发放模型专属免费额度，通常每模型100万Token，有效期90天。 / First activation grants model-specific allowances, usually one million tokens per model, valid for 90 days.
+
+- Provider/source: Alibaba Cloud Model Studio
+- Category: trial
+- Observed/checked: 2026-10-04T17:24:10.825893+00:00
+- Billing: 额度不是现金，过期/耗尽后调用可能收费。 / Allowances are not cash; calls after expiration or exhaustion may be billed.
+
+Conditions / 完整条件:
+
+- 仅北京地域且参与额度发放的模型；各模型/快照额度不能互转。
+- 90天从开通、发布或申请通过较晚者起算；同实名主体重注册不能再领。
+- 实时推理适用；Batch、调优、部署、存储等不抵扣。
+- 认证用户耗尽后自动付费，可开启用完即停；未认证用户耗尽后需认证充值。
+- Only participating models in Beijing; allowances are separate by model and snapshot.
+- 90 days from the later of activation, release or approval; re-registering the same verified identity gives no repeat grant.
+- Covers real-time inference; excludes Batch, tuning, deployment and storage.
+- Verified users switch to billing unless stop-on-exhaustion is enabled; unverified users must verify and recharge after exhaustion.
+
+Sources / 来源:
+
+- [Official evidence](https://help.aliyun.com/zh/model-studio/new-free-quota) — SHA-256 `78111abc3dd7eeb91a3026aebae9f0a193c6d45c4a23c5346acac314a80bef9b`
+
+[Provider programme page / 提供方入口](https://bailian.console.aliyun.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "aliyun-modelstudio-new-quota",
+  "provider": "Alibaba Cloud Model Studio",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "阿里云百炼新人模型免费额度",
+    "en": "Model Studio new-user model allowance"
+  },
+  "benefitText": {
+    "zh-CN": "首次开通发放模型专属免费额度，通常每模型100万Token，有效期90天。",
+    "en": "First activation grants model-specific allowances, usually one million tokens per model, valid for 90 days."
+  },
+  "conditions": {
+    "zh-CN": [
+      "仅北京地域且参与额度发放的模型；各模型/快照额度不能互转。",
+      "90天从开通、发布或申请通过较晚者起算；同实名主体重注册不能再领。",
+      "实时推理适用；Batch、调优、部署、存储等不抵扣。",
+      "认证用户耗尽后自动付费，可开启用完即停；未认证用户耗尽后需认证充值。"
+    ],
+    "en": [
+      "Only participating models in Beijing; allowances are separate by model and snapshot.",
+      "90 days from the later of activation, release or approval; re-registering the same verified identity gives no repeat grant.",
+      "Covers real-time inference; excludes Batch, tuning, deployment and storage.",
+      "Verified users switch to billing unless stop-on-exhaustion is enabled; unverified users must verify and recharge after exhaustion."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "额度不是现金，过期/耗尽后调用可能收费。",
+    "en": "Allowances are not cash; calls after expiration or exhaustion may be billed."
+  },
+  "claimUrl": "https://bailian.console.aliyun.com/",
+  "checkedAt": "2026-10-04T17:24:10.825893+00:00",
+  "evidence": [
+    {
+      "url": "https://help.aliyun.com/zh/model-studio/new-free-quota",
+      "bodySha256": "78111abc3dd7eeb91a3026aebae9f0a193c6d45c4a23c5346acac314a80bef9b",
+      "capturedAt": "2026-10-04T17:22:05.948621+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Alibaba Cloud Model Studio",
+        "en": "Official evidence · Alibaba Cloud Model Studio"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "原条件区分认证与未认证用户；耗尽后未认证用户需认证充值，不将此升级门槛当作免费起步必需实名。",
+        "en": "The pinned terms distinguish verified/unverified users; verification and top-up are needed after exhaustion for unverified users, not established as a universal free-start prerequisite."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 10. 腾讯云TokenHub新人体验包 / TokenHub new-user trial allowance
+
+国内站说明：语言及多模态理解模型100万Token免费体验，有效期1年。 / China-site documentation offers one million trial tokens for language and multimodal-understanding models, valid for one year.
+
+- Provider/source: Tencent Cloud TokenHub
+- Category: trial
+- Observed/checked: 2026-10-04T17:24:10.825893+00:00
+- Billing: 优先免费额度；耗尽且未开后付费则停服，开后付费后按用量收费。 / Trial quota is consumed first; service stops at exhaustion unless postpaid billing is enabled.
+
+Conditions / 完整条件:
+
+- 本期活动至2026-12-31；主账号每模型仅领取一次。
+- 开通TokenHub后从模型广场或启用管理领取，支持首次调用自动领取。
+- 原页同时注明同一账号下所有模型共享额度；不把每模型领取次数叠加为账号总Token。
+- 有效期从领取起算，不转让、不叠加、不兑换现金。
+- 账户实名/支付门槛该页未明确；不套用国际站90天和冻结US$1规则。
+- Current campaign ends 2026-12-31; once per model per primary account.
+- Activate TokenHub and claim in Model Square or activation management; supported first calls auto-claim.
+- The same page says all models in an account share quota; per-model claim frequency is not summed into an account token total.
+- Validity starts at claim; non-transferable, non-stackable and not redeemable for cash.
+- Identity/payment prerequisites are not stated on this page; international-site 90-day/US$1-hold terms are not applied.
+
+Sources / 来源:
+
+- [Official evidence](https://cloud.tencent.com/document/product/1823/130053) — SHA-256 `c69950389dfa7fb998cb3651322e7839aafeb222ef91b0e83cbb9ae433e714ce`
+
+[Provider programme page / 提供方入口](https://console.cloud.tencent.com/tokenhub)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "tencent-tokenhub-new-trial",
+  "provider": "Tencent Cloud TokenHub",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "腾讯云TokenHub新人体验包",
+    "en": "TokenHub new-user trial allowance"
+  },
+  "benefitText": {
+    "zh-CN": "国内站说明：语言及多模态理解模型100万Token免费体验，有效期1年。",
+    "en": "China-site documentation offers one million trial tokens for language and multimodal-understanding models, valid for one year."
+  },
+  "conditions": {
+    "zh-CN": [
+      "本期活动至2026-12-31；主账号每模型仅领取一次。",
+      "开通TokenHub后从模型广场或启用管理领取，支持首次调用自动领取。",
+      "原页同时注明同一账号下所有模型共享额度；不把每模型领取次数叠加为账号总Token。",
+      "有效期从领取起算，不转让、不叠加、不兑换现金。",
+      "账户实名/支付门槛该页未明确；不套用国际站90天和冻结US$1规则。"
+    ],
+    "en": [
+      "Current campaign ends 2026-12-31; once per model per primary account.",
+      "Activate TokenHub and claim in Model Square or activation management; supported first calls auto-claim.",
+      "The same page says all models in an account share quota; per-model claim frequency is not summed into an account token total.",
+      "Validity starts at claim; non-transferable, non-stackable and not redeemable for cash.",
+      "Identity/payment prerequisites are not stated on this page; international-site 90-day/US$1-hold terms are not applied."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "优先免费额度；耗尽且未开后付费则停服，开后付费后按用量收费。",
+    "en": "Trial quota is consumed first; service stops at exhaustion unless postpaid billing is enabled."
+  },
+  "claimUrl": "https://console.cloud.tencent.com/tokenhub",
+  "checkedAt": "2026-10-04T17:24:10.825893+00:00",
+  "evidence": [
+    {
+      "url": "https://cloud.tencent.com/document/product/1823/130053",
+      "bodySha256": "c69950389dfa7fb998cb3651322e7839aafeb222ef91b0e83cbb9ae433e714ce",
+      "capturedAt": "2026-10-04T17:22:11.875797+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Tencent Cloud TokenHub",
+        "en": "Official evidence · Tencent Cloud TokenHub"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityDeadline": {
+    "date": "2026-12-31",
+    "timezone": "unspecified",
+    "expiryUpperBound": "2027-01-01T12:00:00Z",
+    "interpretation": "Conservative latest possible end of the stated calendar date over UTC-12 through UTC+14; not a source-provided exact deadline or promise of availability."
+  },
+  "activityStatus": "deadline-stated"
+}
+```
+
+### 11. 百度千帆注册实名20元券 / Qianfan verified new-user CNY20 voucher
+
+新用户注册并实名认证，赠20元代金券，全平台无门槛使用，有效期1个月。 / New users who register and verify identity receive a CNY20 voucher, usable platform-wide without a spending threshold, valid for one month.
+
+- Provider/source: Baidu Qianfan
+- Category: trial
+- Observed/checked: 2026-10-04T17:24:10.825893+00:00
+- Billing: 只抵扣可用券额度；继续使用的费用按平台计费规则处理。 / Only available voucher value offsets costs; further use follows platform billing rules.
+
+Conditions / 完整条件:
+
+- 须为新用户并完成实名认证。
+- 这是消费抵扣券，不是现金或固定Token总量。
+- 该页未明确地区、付款方式和过期后停服规则；以账户实际券详情为准。
+- New-user registration and identity verification are required.
+- A service voucher, not cash or a fixed token allocation.
+- Region, payment-method and post-expiry stop rules are not specified; inspect the actual account voucher.
+
+Sources / 来源:
+
+- [Official evidence](https://cloud.baidu.com/doc/Qianfan/index.html) — SHA-256 `0df6400637ca7ef40d914de804eb326f032c74d0b2797ff27f9a9bb07197e769`
+
+[Provider programme page / 提供方入口](https://console.bce.baidu.com/qianfan/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "baidu-qianfan-new-credit",
+  "provider": "Baidu Qianfan",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "百度千帆注册实名20元券",
+    "en": "Qianfan verified new-user CNY20 voucher"
+  },
+  "benefitText": {
+    "zh-CN": "新用户注册并实名认证，赠20元代金券，全平台无门槛使用，有效期1个月。",
+    "en": "New users who register and verify identity receive a CNY20 voucher, usable platform-wide without a spending threshold, valid for one month."
+  },
+  "conditions": {
+    "zh-CN": [
+      "须为新用户并完成实名认证。",
+      "这是消费抵扣券，不是现金或固定Token总量。",
+      "该页未明确地区、付款方式和过期后停服规则；以账户实际券详情为准。"
+    ],
+    "en": [
+      "New-user registration and identity verification are required.",
+      "A service voucher, not cash or a fixed token allocation.",
+      "Region, payment-method and post-expiry stop rules are not specified; inspect the actual account voucher."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "只抵扣可用券额度；继续使用的费用按平台计费规则处理。",
+    "en": "Only available voucher value offsets costs; further use follows platform billing rules."
+  },
+  "claimUrl": "https://console.bce.baidu.com/qianfan/",
+  "checkedAt": "2026-10-04T17:24:10.825893+00:00",
+  "evidence": [
+    {
+      "url": "https://cloud.baidu.com/doc/Qianfan/index.html",
+      "bodySha256": "0df6400637ca7ef40d914de804eb326f032c74d0b2797ff27f9a9bb07197e769",
+      "capturedAt": "2026-10-04T17:22:10.685058+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Baidu Qianfan",
+        "en": "Official evidence · Baidu Qianfan"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本卡核验实名/身份条件；不将普通账号注册等同实名认证。",
+        "en": "This program requires verified identity; ordinary account registration is not treated as identity verification."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 12. 硅基流动实名专享16元券 / SiliconFlow identity-verification CNY16 voucher
+
+国内站完成实名后手动领取16元通用券，有效期180天；活动至2026-12-31。 / China-site verified users can manually claim a CNY16 general voucher, valid for 180 days; campaign runs through 2026-12-31.
+
+- Provider/source: SiliconFlow
+- Category: trial
+- Observed/checked: 2026-10-04T17:56:29.875249+00:00
+- Billing: 服务抵扣券，不兑换现金；获得后180天内使用。 / A service voucher, not cash; use within 180 days of receipt.
+
+Conditions / 完整条件:
+
+- 活动中心→认证专享礼→领取；含机构用户，不需要邀请好友领取此实名券。
+- 重复实名或同身份二次认证不再次奖励。
+- 可抵扣API、批量推理、微调及Pro模型；邀请券是另一个条件机制。
+- 本文未明确绑卡/充值门槛，不推断全部账号免卡；余额和服务计费另查。
+- 服务条款要求年满18岁；未满18岁不能实名认证或使用。
+- Claim in Activity Center → verification gift; includes organizations, with no referral required for this verification voucher.
+- Repeated verification or second verification with the same identity earns no repeat reward.
+- Applicable to API, batch inference, tuning and Pro models; referral rewards are a separate conditional mechanism.
+- Card/recharge prerequisites are not stated here; no universal card-free claim is made, and service billing must be checked separately.
+- Terms require age 18 or older; minors cannot complete identity verification or use the service.
+
+Sources / 来源:
+
+- [Official evidence](https://www.siliconflow.cn/news/od7wj9rr23p95uhihmhrombp) — SHA-256 `b6b95355003786acb3330d6fa0314f0f00e37cb2e27e603bb021852754fcbae5`
+- [Official evidence](https://docs.siliconflow.cn/docs/legals/terms-of-service) — SHA-256 `ab4e4c17c97996898a9eeec5438efc3186661cab289141d71af12d8773e5c614`
+
+[Provider programme page / 提供方入口](https://cloud.siliconflow.cn/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "siliconflow-verified-voucher",
+  "provider": "SiliconFlow",
+  "operatorKind": "inference-provider",
+  "category": "trial",
+  "title": {
+    "zh-CN": "硅基流动实名专享16元券",
+    "en": "SiliconFlow identity-verification CNY16 voucher"
+  },
+  "benefitText": {
+    "zh-CN": "国内站完成实名后手动领取16元通用券，有效期180天；活动至2026-12-31。",
+    "en": "China-site verified users can manually claim a CNY16 general voucher, valid for 180 days; campaign runs through 2026-12-31."
+  },
+  "conditions": {
+    "zh-CN": [
+      "活动中心→认证专享礼→领取；含机构用户，不需要邀请好友领取此实名券。",
+      "重复实名或同身份二次认证不再次奖励。",
+      "可抵扣API、批量推理、微调及Pro模型；邀请券是另一个条件机制。",
+      "本文未明确绑卡/充值门槛，不推断全部账号免卡；余额和服务计费另查。",
+      "服务条款要求年满18岁；未满18岁不能实名认证或使用。"
+    ],
+    "en": [
+      "Claim in Activity Center → verification gift; includes organizations, with no referral required for this verification voucher.",
+      "Repeated verification or second verification with the same identity earns no repeat reward.",
+      "Applicable to API, batch inference, tuning and Pro models; referral rewards are a separate conditional mechanism.",
+      "Card/recharge prerequisites are not stated here; no universal card-free claim is made, and service billing must be checked separately.",
+      "Terms require age 18 or older; minors cannot complete identity verification or use the service."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "服务抵扣券，不兑换现金；获得后180天内使用。",
+    "en": "A service voucher, not cash; use within 180 days of receipt."
+  },
+  "claimUrl": "https://cloud.siliconflow.cn/",
+  "checkedAt": "2026-10-04T17:56:29.875249+00:00",
+  "evidence": [
+    {
+      "url": "https://www.siliconflow.cn/news/od7wj9rr23p95uhihmhrombp",
+      "bodySha256": "b6b95355003786acb3330d6fa0314f0f00e37cb2e27e603bb021852754fcbae5",
+      "capturedAt": "2026-10-04T17:22:14.251663+00:00",
+      "label": {
+        "zh-CN": "官方依据 · SiliconFlow",
+        "en": "Official evidence · SiliconFlow"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.siliconflow.cn/docs/legals/terms-of-service",
+      "bodySha256": "ab4e4c17c97996898a9eeec5438efc3186661cab289141d71af12d8773e5c614",
+      "capturedAt": "2026-10-04T17:56:29.875249+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · SiliconFlow",
+        "en": "Official evidence · SiliconFlow"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本卡核验实名/身份条件；不将普通账号注册等同实名认证。",
+        "en": "This program requires verified identity; ordinary account registration is not treated as identity verification."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 13. Hugging Face 每月推理额度 / Hugging Face monthly inference credits
+
+免费账户每月 US$0.10 的 Inference Providers 额度；官方注明金额可变。 / Free accounts receive US$0.10 monthly for Inference Providers; the amount is subject to change.
+
+- Provider/source: Hugging Face
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:24:10.707262+00:00
+- Billing: 超出需购买额度；付费订阅所含 US$2 不算免费账户赠送。 / Extra use requires purchased credits; the US$2 included with paid plans is separate.
+
+Conditions / 完整条件:
+
+- 限通过 Hugging Face 路由的推理；自带供应商 API key 不消耗此额度。
+- 仅推理额度，不可提现；模型和供应商可用性以账户为准。
+- 免费与付费订阅的额度范围不同；本轮未确认个人地区或支付资格。
+- Applies to requests routed through Hugging Face; custom provider keys do not use these credits.
+- Inference service credits, not withdrawable cash; account and provider availability apply.
+- Free and paid plans cover different services; individual region and payment eligibility are unverified.
+
+Sources / 来源:
+
+- [Official evidence](https://huggingface.co/docs/inference-providers/en/pricing) — SHA-256 `b81f591436d9227deaf89f6a7a679039c9e49c1730945f0dfb1346c9c60cfe08`
+
+[Provider programme page / 提供方入口](https://huggingface.co/settings/inference-providers)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "huggingface-monthly-credit",
+  "provider": "Hugging Face",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Hugging Face 每月推理额度",
+    "en": "Hugging Face monthly inference credits"
+  },
+  "benefitText": {
+    "zh-CN": "免费账户每月 US$0.10 的 Inference Providers 额度；官方注明金额可变。",
+    "en": "Free accounts receive US$0.10 monthly for Inference Providers; the amount is subject to change."
+  },
+  "conditions": {
+    "zh-CN": [
+      "限通过 Hugging Face 路由的推理；自带供应商 API key 不消耗此额度。",
+      "仅推理额度，不可提现；模型和供应商可用性以账户为准。",
+      "免费与付费订阅的额度范围不同；本轮未确认个人地区或支付资格。"
+    ],
+    "en": [
+      "Applies to requests routed through Hugging Face; custom provider keys do not use these credits.",
+      "Inference service credits, not withdrawable cash; account and provider availability apply.",
+      "Free and paid plans cover different services; individual region and payment eligibility are unverified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "超出需购买额度；付费订阅所含 US$2 不算免费账户赠送。",
+    "en": "Extra use requires purchased credits; the US$2 included with paid plans is separate."
+  },
+  "claimUrl": "https://huggingface.co/settings/inference-providers",
+  "checkedAt": "2026-10-04T17:24:10.707262+00:00",
+  "evidence": [
+    {
+      "url": "https://huggingface.co/docs/inference-providers/en/pricing",
+      "bodySha256": "b81f591436d9227deaf89f6a7a679039c9e49c1730945f0dfb1346c9c60cfe08",
+      "capturedAt": "2026-10-04T17:24:10.707262+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Hugging Face",
+        "en": "Official evidence · Hugging Face"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 14. Cohere API 免费评估 / Cohere free API evaluation
+
+免费 Trial key 每月最多 1,000 次 API 调用，端点另有限流。 / Free trial keys are capped at 1,000 API calls per month, with endpoint-specific rate limits.
+
+- Provider/source: Cohere
+- Category: trial
+- Observed/checked: 2026-10-04T17:24:10.775907+00:00
+- Billing: Trial 用于评估；上线生产需 Production key 与付费条款。 / Trial access is for evaluation; production requires a Production key and paid terms.
+
+Conditions / 完整条件:
+
+- 注册账户获取 Trial key；聊天端点试用限 20 次/分钟，其他端点不同。
+- 1,000 次是调用数，不是 1,000 Token，也不是现金赠金。
+- 生产用途、较新模型与敏感用途可能要求额外审核；账户资格须自行确认。
+- Create a trial key; chat trial requests are limited to 20/minute, with other endpoint limits varying.
+- The allowance counts API calls, not tokens or cash.
+- Production, newer models and sensitive use cases may require additional review; check account eligibility.
+
+Sources / 来源:
+
+- [Official evidence](https://docs.cohere.com/v2/docs/rate-limits) — SHA-256 `0b7e8223b08914267251212ed3fac910bc623849801c5bcf6a750783a4311331`
+- [Official evidence](https://docs.cohere.com/docs/going-live) — SHA-256 `9ab99c3e68c03201da8e6c7937b148c30d148fe2bde39d595e679eca185bfa46`
+
+[Provider programme page / 提供方入口](https://dashboard.cohere.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cohere-api-trial",
+  "provider": "Cohere",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Cohere API 免费评估",
+    "en": "Cohere free API evaluation"
+  },
+  "benefitText": {
+    "zh-CN": "免费 Trial key 每月最多 1,000 次 API 调用，端点另有限流。",
+    "en": "Free trial keys are capped at 1,000 API calls per month, with endpoint-specific rate limits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "注册账户获取 Trial key；聊天端点试用限 20 次/分钟，其他端点不同。",
+      "1,000 次是调用数，不是 1,000 Token，也不是现金赠金。",
+      "生产用途、较新模型与敏感用途可能要求额外审核；账户资格须自行确认。"
+    ],
+    "en": [
+      "Create a trial key; chat trial requests are limited to 20/minute, with other endpoint limits varying.",
+      "The allowance counts API calls, not tokens or cash.",
+      "Production, newer models and sensitive use cases may require additional review; check account eligibility."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "Trial 用于评估；上线生产需 Production key 与付费条款。",
+    "en": "Trial access is for evaluation; production requires a Production key and paid terms."
+  },
+  "claimUrl": "https://dashboard.cohere.com/",
+  "checkedAt": "2026-10-04T17:24:10.775907+00:00",
+  "evidence": [
+    {
+      "url": "https://docs.cohere.com/v2/docs/rate-limits",
+      "bodySha256": "0b7e8223b08914267251212ed3fac910bc623849801c5bcf6a750783a4311331",
+      "capturedAt": "2026-10-04T17:24:10.775907+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Cohere",
+        "en": "Official evidence · Cohere"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.cohere.com/docs/going-live",
+      "bodySha256": "9ab99c3e68c03201da8e6c7937b148c30d148fe2bde39d595e679eca185bfa46",
+      "capturedAt": "2026-10-04T17:24:10.596430+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Cohere",
+        "en": "Official evidence · Cohere"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 15. Modal 每月免费计算额度 / Modal monthly compute credits
+
+Starter 计划每月 US$30 计算额度，可运行自建模型推理或训练。 / Starter includes US$30 monthly compute credit for workloads such as self-hosted model inference and training.
+
+- Provider/source: Modal
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:57:10.554759+00:00
+- Billing: 需支付方式；超出30美元赠金的计算按月或阈值自动扣款。Shared Endpoints另收费，不抵计算赠金。 / Payment method required; compute beyond the $30 grant is automatically charged monthly or at billing thresholds. Shared Endpoints are billed separately without using compute credits.
+
+Conditions / 完整条件:
+
+- 需要编写并部署自己的工作负载；GPU、CPU、内存等按资源消耗计价。
+- Starter 工作区最多 3 个席位；额度不是无限 GPU 时长。
+- 工作区净支出限额与总用量限额不同；默认支出上限可能超过赠金额度，领取后应核对预算。
+- Shared Endpoints 的 Token 用量从首次请求起收费，不使用 Starter 的 US$30 计算额度。
+- 需要绑定有效支付方式；按月自动结账，支出达到阈值也可能提前扣款。
+- Deploy your own workload; GPU, CPU and memory usage are metered separately.
+- Starter workspaces support up to 3 seats; credits do not mean unlimited GPU time.
+- Net spend limits differ from usage budgets; default spend limits can exceed credits, so inspect billing budgets.
+- Shared Endpoints token usage is billed from the first request and does not use the Starter US$30 compute credit.
+- A valid payment method must be on file; monthly automatic billing and threshold-triggered charges may apply.
+
+Sources / 来源:
+
+- [Official evidence](https://modal.com/pricing) — SHA-256 `0ef97ddcb5ee35b222f4b7c958fcf51cda431b114dda0092c51de2709041221b`
+- [Official evidence](https://modal.com/docs/guide/budgets) — SHA-256 `8c4997322fa318406123c272045dfe5f023dad1c881302fd99ab6a93617bfac4`
+- [Official evidence](https://modal.com/docs/guide/billing) — SHA-256 `ef9c08200104cc5aba8dedf25fff50dac6aaa17378555f23e4b94f6b8c907828`
+
+[Provider programme page / 提供方入口](https://modal.com/signup)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "modal-monthly-compute",
+  "provider": "Modal",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Modal 每月免费计算额度",
+    "en": "Modal monthly compute credits"
+  },
+  "benefitText": {
+    "zh-CN": "Starter 计划每月 US$30 计算额度，可运行自建模型推理或训练。",
+    "en": "Starter includes US$30 monthly compute credit for workloads such as self-hosted model inference and training."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需要编写并部署自己的工作负载；GPU、CPU、内存等按资源消耗计价。",
+      "Starter 工作区最多 3 个席位；额度不是无限 GPU 时长。",
+      "工作区净支出限额与总用量限额不同；默认支出上限可能超过赠金额度，领取后应核对预算。",
+      "Shared Endpoints 的 Token 用量从首次请求起收费，不使用 Starter 的 US$30 计算额度。",
+      "需要绑定有效支付方式；按月自动结账，支出达到阈值也可能提前扣款。"
+    ],
+    "en": [
+      "Deploy your own workload; GPU, CPU and memory usage are metered separately.",
+      "Starter workspaces support up to 3 seats; credits do not mean unlimited GPU time.",
+      "Net spend limits differ from usage budgets; default spend limits can exceed credits, so inspect billing budgets.",
+      "Shared Endpoints token usage is billed from the first request and does not use the Starter US$30 compute credit.",
+      "A valid payment method must be on file; monthly automatic billing and threshold-triggered charges may apply."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "需支付方式；超出30美元赠金的计算按月或阈值自动扣款。Shared Endpoints另收费，不抵计算赠金。",
+    "en": "Payment method required; compute beyond the $30 grant is automatically charged monthly or at billing thresholds. Shared Endpoints are billed separately without using compute credits."
+  },
+  "claimUrl": "https://modal.com/signup",
+  "checkedAt": "2026-10-04T17:57:10.554759+00:00",
+  "evidence": [
+    {
+      "url": "https://modal.com/pricing",
+      "bodySha256": "0ef97ddcb5ee35b222f4b7c958fcf51cda431b114dda0092c51de2709041221b",
+      "capturedAt": "2026-10-04T17:24:11.401287+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Modal",
+        "en": "Official evidence · Modal"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://modal.com/docs/guide/budgets",
+      "bodySha256": "8c4997322fa318406123c272045dfe5f023dad1c881302fd99ab6a93617bfac4",
+      "capturedAt": "2026-10-04T17:24:11.257773+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Modal",
+        "en": "Official evidence · Modal"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://modal.com/docs/guide/billing",
+      "bodySha256": "ef9c08200104cc5aba8dedf25fff50dac6aaa17378555f23e4b94f6b8c907828",
+      "capturedAt": "2026-10-04T17:57:10.554759+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Modal",
+        "en": "Official evidence · Modal"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 16. Google Cloud 新用户试用额度 / Google Cloud new-customer trial credit
+
+合格新用户可获300美元服务抵扣额度，90天有效；这不是可提现现金或通用Gemini API赠金。 / Eligible new customers receive $300 of service credit valid for 90 days; this is service credit, not withdrawable cash or universal Gemini API credit.
+
+- Provider/source: Google Cloud
+- Category: trial
+- Observed/checked: 2026-10-04T17:25:18.249142+00:00
+- Billing: 未主动升级不扣款；到期/用尽关闭试用资源，升级后未覆盖用量收费。 / No charges without manual upgrade; expiry/depletion stops trial resources. Uncovered usage is billed after upgrade.
+
+Conditions / 完整条件:
+
+- 此前未付费使用Google Cloud/Maps/Firebase且未领取过该试用；注册需付款信息核验身份。
+- 可用于符合试用范围的Google Cloud AI服务；不能支付AI Studio的Gemini API或第三方托管生成式模型API，非付费试用账号也不能使用GPU/Marketplace或提升配额。
+- 手动升级保留原90天内未用额度；不可把它与已有最高35万美元AI创业申请合并计数。
+- No prior paying use of Google Cloud, Maps or Firebase, and no prior trial; payment information is required for identity checks.
+- Eligible Google Cloud AI services are in scope; AI Studio Gemini API and third-party managed generative model APIs are excluded. Non-billable trial accounts cannot use GPUs/Marketplace or request quota increases.
+- Manual upgrade retains unused credit only within the original 90 days; this is distinct from the existing up-to-$350K AI startup application.
+
+Sources / 来源:
+
+- [Official evidence](https://docs.cloud.google.com/free/docs/free-cloud-features) — SHA-256 `026d68fb0468a641cff5f5f2fa9fb8e6d8ddc922442618449d094b225dea8769`
+- [Official evidence](https://cloud.google.com/signup-faqs) — SHA-256 `b42223a90bf7111f6e5e885a7f35c4d517621a4f370ca5855128e5591b105733`
+
+[Provider programme page / 提供方入口](https://cloud.google.com/free)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "google-cloud-new-customer-credit",
+  "provider": "Google Cloud",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Google Cloud 新用户试用额度",
+    "en": "Google Cloud new-customer trial credit"
+  },
+  "benefitText": {
+    "zh-CN": "合格新用户可获300美元服务抵扣额度，90天有效；这不是可提现现金或通用Gemini API赠金。",
+    "en": "Eligible new customers receive $300 of service credit valid for 90 days; this is service credit, not withdrawable cash or universal Gemini API credit."
+  },
+  "conditions": {
+    "zh-CN": [
+      "此前未付费使用Google Cloud/Maps/Firebase且未领取过该试用；注册需付款信息核验身份。",
+      "可用于符合试用范围的Google Cloud AI服务；不能支付AI Studio的Gemini API或第三方托管生成式模型API，非付费试用账号也不能使用GPU/Marketplace或提升配额。",
+      "手动升级保留原90天内未用额度；不可把它与已有最高35万美元AI创业申请合并计数。"
+    ],
+    "en": [
+      "No prior paying use of Google Cloud, Maps or Firebase, and no prior trial; payment information is required for identity checks.",
+      "Eligible Google Cloud AI services are in scope; AI Studio Gemini API and third-party managed generative model APIs are excluded. Non-billable trial accounts cannot use GPUs/Marketplace or request quota increases.",
+      "Manual upgrade retains unused credit only within the original 90 days; this is distinct from the existing up-to-$350K AI startup application."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "未主动升级不扣款；到期/用尽关闭试用资源，升级后未覆盖用量收费。",
+    "en": "No charges without manual upgrade; expiry/depletion stops trial resources. Uncovered usage is billed after upgrade."
+  },
+  "claimUrl": "https://cloud.google.com/free",
+  "checkedAt": "2026-10-04T17:25:18.249142+00:00",
+  "evidence": [
+    {
+      "url": "https://docs.cloud.google.com/free/docs/free-cloud-features",
+      "bodySha256": "026d68fb0468a641cff5f5f2fa9fb8e6d8ddc922442618449d094b225dea8769",
+      "capturedAt": "2026-10-04T17:22:29.214386+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google Cloud",
+        "en": "Official evidence · Google Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://cloud.google.com/signup-faqs",
+      "bodySha256": "b42223a90bf7111f6e5e885a7f35c4d517621a4f370ca5855128e5591b105733",
+      "capturedAt": "2026-10-04T17:22:30.245193+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Google Cloud",
+        "en": "Official evidence · Google Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 17. Azure 新用户200美元试用 / Azure $200 new-customer trial
+
+合格新用户可获200美元服务额度，30天有效；不是现金。 / Eligible new users receive $200 of service credit for 30 days; this is not cash.
+
+- Provider/source: Microsoft Azure
+- Category: trial
+- Observed/checked: 2026-10-04T17:25:18.249142+00:00
+- Billing: 主动转按量付费后超额收费；不升级则30天或额度用尽时停用服务。 / Charges require moving to pay-as-you-go; without upgrade, services are disabled at 30 days or credit depletion.
+
+Conditions / 完整条件:
+
+- 每位合格用户限一个免费账户；需要电话号码、Microsoft/GitHub账号及非预付信用/借记卡，香港和巴西只接受信用卡，可能临时授权。
+- 用于多数Azure服务；不覆盖支持计划、Azure DevOps、Visual Studio订阅/App Center、ExpressRoute、第三方产品、Marketplace和单独许可产品。不能承诺每个AI模型都适用。
+- One free account per eligible customer; phone, Microsoft/GitHub account and non-prepaid credit/debit card required. Hong Kong and Brazil require credit cards; temporary authorization may occur.
+- Covers most Azure services; excludes support, Azure DevOps, Visual Studio subscriptions/App Center, ExpressRoute, third-party, Marketplace and separately licensed products. Eligibility for every AI model is not guaranteed.
+
+Sources / 来源:
+
+- [Official evidence](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) — SHA-256 `3e5c0765d23a6faf68a4f412c6ac2288cdd95ccee8c6d6bd5f1c46711cf3a74a`
+- [Official evidence](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0044p/) — SHA-256 `8c707d19917e71801d056dfa0eb6e382ee051fca222aa39be8c0d6d42dea55e3`
+
+[Provider programme page / 提供方入口](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "azure-new-customer-credit",
+  "provider": "Microsoft Azure",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Azure 新用户200美元试用",
+    "en": "Azure $200 new-customer trial"
+  },
+  "benefitText": {
+    "zh-CN": "合格新用户可获200美元服务额度，30天有效；不是现金。",
+    "en": "Eligible new users receive $200 of service credit for 30 days; this is not cash."
+  },
+  "conditions": {
+    "zh-CN": [
+      "每位合格用户限一个免费账户；需要电话号码、Microsoft/GitHub账号及非预付信用/借记卡，香港和巴西只接受信用卡，可能临时授权。",
+      "用于多数Azure服务；不覆盖支持计划、Azure DevOps、Visual Studio订阅/App Center、ExpressRoute、第三方产品、Marketplace和单独许可产品。不能承诺每个AI模型都适用。"
+    ],
+    "en": [
+      "One free account per eligible customer; phone, Microsoft/GitHub account and non-prepaid credit/debit card required. Hong Kong and Brazil require credit cards; temporary authorization may occur.",
+      "Covers most Azure services; excludes support, Azure DevOps, Visual Studio subscriptions/App Center, ExpressRoute, third-party, Marketplace and separately licensed products. Eligibility for every AI model is not guaranteed."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "主动转按量付费后超额收费；不升级则30天或额度用尽时停用服务。",
+    "en": "Charges require moving to pay-as-you-go; without upgrade, services are disabled at 30 days or credit depletion."
+  },
+  "claimUrl": "https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account",
+  "checkedAt": "2026-10-04T17:25:18.249142+00:00",
+  "evidence": [
+    {
+      "url": "https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account",
+      "bodySha256": "3e5c0765d23a6faf68a4f412c6ac2288cdd95ccee8c6d6bd5f1c46711cf3a74a",
+      "capturedAt": "2026-10-04T17:22:28.195938+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0044p/",
+      "bodySha256": "8c707d19917e71801d056dfa0eb6e382ee051fca222aa39be8c0d6d42dea55e3",
+      "capturedAt": "2026-10-04T17:22:28.216700+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 18. AWS 新用户最高200美元额度 / AWS up to $200 new-customer credits
+
+新客户注册先获100美元，完成指定活动再获最高100美元；200美元不是注册自动全额赠送。 / New customers receive $100 at signup and can earn up to $100 more through activities; the full $200 is not automatic.
+
+- Provider/source: Amazon Web Services
+- Category: trial
+- Observed/checked: 2026-10-04T17:25:18.249142+00:00
+- Billing: Free plan不自动收费；转Paid后未覆盖或用尽额度的用量收费。额度不能提现。 / No automatic charges on the Free plan; Paid plans bill uncovered usage or usage after depletion. Credits are not redeemable for cash.
+
+Conditions / 完整条件:
+
+- Free plan只开放部分服务，Amazon SageMaker AI在范围内；Bedrock相关功能/活动与AgentCore必须分别查计划资格，不能承诺所有Bedrock免费。
+- 最新FAQ称多数新用户无需付款方式，部分身份核验仍可能要求；Free plan不能领Activate，需Paid plan。
+- Free plan最多6个月或额度用尽即关闭；FAQ一般到期写6个月，Paid升级/活动章节写12个月，具体以账号额度到期日为准。
+- The Free plan covers selected services, including SageMaker AI; check Bedrock features/activities and AgentCore separately by plan. Universal free Bedrock access is not promised.
+- The current FAQ says most new users need no payment method, but verification may require one. Activate requires a Paid plan and is unavailable on the Free plan.
+- The Free plan closes after up to six months or depletion. The FAQ states six months generally but 12 months in paid-upgrade/activity sections; verify account-specific credit expiry.
+
+Sources / 来源:
+
+- [Official evidence](https://aws.amazon.com/free/) — SHA-256 `5eb305f20629d22ae90b068c687af154b0531e6bc368cdfb5d166a6855bfddeb`
+- [Official evidence](https://aws.amazon.com/free/free-tier-faqs/) — SHA-256 `f713484b804a8287edebdd6ae5b0a79c8ccd92362126d40b485da30f9393e2af`
+- [Official evidence](https://aws.amazon.com/awscredits/) — SHA-256 `90bac4d97949c9f815bf8a556b37b4ef85a120d41895dca1df6459d3da1ed0e0`
+
+[Provider programme page / 提供方入口](https://aws.amazon.com/free/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "aws-new-customer-credit",
+  "provider": "Amazon Web Services",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "AWS 新用户最高200美元额度",
+    "en": "AWS up to $200 new-customer credits"
+  },
+  "benefitText": {
+    "zh-CN": "新客户注册先获100美元，完成指定活动再获最高100美元；200美元不是注册自动全额赠送。",
+    "en": "New customers receive $100 at signup and can earn up to $100 more through activities; the full $200 is not automatic."
+  },
+  "conditions": {
+    "zh-CN": [
+      "Free plan只开放部分服务，Amazon SageMaker AI在范围内；Bedrock相关功能/活动与AgentCore必须分别查计划资格，不能承诺所有Bedrock免费。",
+      "最新FAQ称多数新用户无需付款方式，部分身份核验仍可能要求；Free plan不能领Activate，需Paid plan。",
+      "Free plan最多6个月或额度用尽即关闭；FAQ一般到期写6个月，Paid升级/活动章节写12个月，具体以账号额度到期日为准。"
+    ],
+    "en": [
+      "The Free plan covers selected services, including SageMaker AI; check Bedrock features/activities and AgentCore separately by plan. Universal free Bedrock access is not promised.",
+      "The current FAQ says most new users need no payment method, but verification may require one. Activate requires a Paid plan and is unavailable on the Free plan.",
+      "The Free plan closes after up to six months or depletion. The FAQ states six months generally but 12 months in paid-upgrade/activity sections; verify account-specific credit expiry."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "Free plan不自动收费；转Paid后未覆盖或用尽额度的用量收费。额度不能提现。",
+    "en": "No automatic charges on the Free plan; Paid plans bill uncovered usage or usage after depletion. Credits are not redeemable for cash."
+  },
+  "claimUrl": "https://aws.amazon.com/free/",
+  "checkedAt": "2026-10-04T17:25:18.249142+00:00",
+  "evidence": [
+    {
+      "url": "https://aws.amazon.com/free/",
+      "bodySha256": "5eb305f20629d22ae90b068c687af154b0531e6bc368cdfb5d166a6855bfddeb",
+      "capturedAt": "2026-10-04T17:22:29.081727+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Amazon Web Services",
+        "en": "Official evidence · Amazon Web Services"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://aws.amazon.com/free/free-tier-faqs/",
+      "bodySha256": "f713484b804a8287edebdd6ae5b0a79c8ccd92362126d40b485da30f9393e2af",
+      "capturedAt": "2026-10-04T17:22:29.097900+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Amazon Web Services",
+        "en": "Official evidence · Amazon Web Services"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://aws.amazon.com/awscredits/",
+      "bodySha256": "90bac4d97949c9f815bf8a556b37b4ef85a120d41895dca1df6459d3da1ed0e0",
+      "capturedAt": "2026-10-04T17:22:29.488656+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Amazon Web Services",
+        "en": "Official evidence · Amazon Web Services"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "特定模型、身份核验、账单层级或升级环节可能要求付款方式；不能推及全部免费用量。",
+        "en": "Some models, verification, billing tiers or upgrade steps require a payment method; this is not a universal free-scope requirement."
+      }
+    },
+    "identity": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "核验流程可能要求额外身份检查，是否适用于个人须在账户确认。",
+        "en": "Additional identity checks may apply in the verification/review process; confirm applicability in the account."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 19. Microsoft for Startups 创业额度 / Microsoft for Startups credits
+
+最新申请路径起始最高200美元，企业核验后5000美元，随服务和持续用量最高解锁150000美元；最高额不是注册赠金。 / The current path starts at up to $200, reaches $5,000 after business verification, and may unlock up to $150,000 through sustained adoption and usage; the ceiling is not signup credit.
+
+- Provider/source: Microsoft Azure
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:25:18.249142+00:00
+- Billing: 非现金抵扣。Sponsorship条款称到Usage Cap/End Date可自动转PAYG并收费（法律或书面例外除外）；领取前核具体offer。 / Non-cash service credit. Sponsorship terms allow automatic PAYG conversion and billing at Usage Cap/End Date unless law or written terms override; verify the specific offer.
+
+Conditions / 完整条件:
+
+- 须有自有软件产品，私营营利、Azure支持地区、未融资到Series C、累计免费Azure额度不超过350000美元；排除学校、政府、咨询/代理和挖矿。
+- 个人LinkedIn核验起始身份；5000美元需注册法律实体；高档依赖持续工作负载与用量，非简单点击领取。
+- 支持符合条件的Azure AI/Foundry模型；Sponsorship排除第三方品牌、Marketplace、支持及单独销售产品，付款信息需要核验。
+- 期限/额度以邀请End Date/Usage Cap为准；25000美元里程碑有一次两年延期，不套用所有申请固定年限。
+- Requires an owned software product, private for-profit status, supported region, pre-Series-C stage and no more than $350K lifetime free Azure credits; excludes schools, government, consultancies/agencies and mining.
+- Initial identity verification uses personal LinkedIn; $5K requires a registered legal entity. Higher tiers require sustained workloads and usage, not a simple claim.
+- Eligible Azure AI/Foundry models are supported; Sponsorship excludes third-party-branded, Marketplace, support and separately sold products. Payment information is required.
+- End Date and Usage Cap are invitation-specific; the $25K milestone grants a one-time two-year extension, not a universal fixed validity period.
+
+Sources / 来源:
+
+- [Official evidence](https://learn.microsoft.com/en-us/startups/microsoft-for-startups/getting-started-mfs) — SHA-256 `888771e89094155c6077960771d3a8b7da18a65f81f8b97fca3a32d6bca1b3ac`
+- [Official evidence](https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview) — SHA-256 `86afcbcca47a328a6c72a0f3705637bd4518989a389b77b192049a98181485c8`
+- [Official evidence](https://learn.microsoft.com/en-us/startups/benefits/azure-activation-faqs) — SHA-256 `4033e3fc1093ddf3d1de194d309d6c57ce8d88a2489941181822c8397754b953`
+- [Official evidence](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0036p/) — SHA-256 `f135e5c38fcb1b9e7cb021967345acbdf75d6501a749febccb93f56917bf55ec`
+
+[Provider programme page / 提供方入口](https://startups.microsoft.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "microsoft-startups-credit",
+  "provider": "Microsoft Azure",
+  "operatorKind": "platform",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Microsoft for Startups 创业额度",
+    "en": "Microsoft for Startups credits"
+  },
+  "benefitText": {
+    "zh-CN": "最新申请路径起始最高200美元，企业核验后5000美元，随服务和持续用量最高解锁150000美元；最高额不是注册赠金。",
+    "en": "The current path starts at up to $200, reaches $5,000 after business verification, and may unlock up to $150,000 through sustained adoption and usage; the ceiling is not signup credit."
+  },
+  "conditions": {
+    "zh-CN": [
+      "须有自有软件产品，私营营利、Azure支持地区、未融资到Series C、累计免费Azure额度不超过350000美元；排除学校、政府、咨询/代理和挖矿。",
+      "个人LinkedIn核验起始身份；5000美元需注册法律实体；高档依赖持续工作负载与用量，非简单点击领取。",
+      "支持符合条件的Azure AI/Foundry模型；Sponsorship排除第三方品牌、Marketplace、支持及单独销售产品，付款信息需要核验。",
+      "期限/额度以邀请End Date/Usage Cap为准；25000美元里程碑有一次两年延期，不套用所有申请固定年限。"
+    ],
+    "en": [
+      "Requires an owned software product, private for-profit status, supported region, pre-Series-C stage and no more than $350K lifetime free Azure credits; excludes schools, government, consultancies/agencies and mining.",
+      "Initial identity verification uses personal LinkedIn; $5K requires a registered legal entity. Higher tiers require sustained workloads and usage, not a simple claim.",
+      "Eligible Azure AI/Foundry models are supported; Sponsorship excludes third-party-branded, Marketplace, support and separately sold products. Payment information is required.",
+      "End Date and Usage Cap are invitation-specific; the $25K milestone grants a one-time two-year extension, not a universal fixed validity period."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "非现金抵扣。Sponsorship条款称到Usage Cap/End Date可自动转PAYG并收费（法律或书面例外除外）；领取前核具体offer。",
+    "en": "Non-cash service credit. Sponsorship terms allow automatic PAYG conversion and billing at Usage Cap/End Date unless law or written terms override; verify the specific offer."
+  },
+  "claimUrl": "https://startups.microsoft.com/",
+  "checkedAt": "2026-10-04T17:25:18.249142+00:00",
+  "evidence": [
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/getting-started-mfs",
+      "bodySha256": "888771e89094155c6077960771d3a8b7da18a65f81f8b97fca3a32d6bca1b3ac",
+      "capturedAt": "2026-10-04T17:22:28.461939+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview",
+      "bodySha256": "86afcbcca47a328a6c72a0f3705637bd4518989a389b77b192049a98181485c8",
+      "capturedAt": "2026-10-04T17:22:28.206142+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/benefits/azure-activation-faqs",
+      "bodySha256": "4033e3fc1093ddf3d1de194d309d6c57ce8d88a2489941181822c8397754b953",
+      "capturedAt": "2026-10-04T17:22:28.399519+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0036p/",
+      "bodySha256": "f135e5c38fcb1b9e7cb021967345acbdf75d6501a749febccb93f56917bf55ec",
+      "capturedAt": "2026-10-04T17:22:28.265162+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本卡核验实名/身份条件；不将普通账号注册等同实名认证。",
+        "en": "This program requires verified identity; ordinary account registration is not treated as identity verification."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 20. AWS Activate 创业额度 / AWS Activate startup credits
+
+Founders先申请1000美元、部分最高5000美元；Portfolio最高200000美元，另有邀请制AI扩展额度，均非自动赠金。 / Founders starts with a $1,000 application, selected startups up to $5K; Portfolio offers up to $200K, with invite-only AI expansion beyond that. These are not automatic grants.
+
+- Provider/source: Amazon Web Services
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:25:18.249142+00:00
+- Billing: Paid账户的超额/排除项仍收费；额度不等于停止付费保险。 / Paid accounts bill excess and ineligible services; credits do not guarantee spending stops.
+
+Conditions / 完整条件:
+
+- 需Paid Tier账户、成立10年内、Pre-Series B及新领或申请高于已领额度；Portfolio须Activate Provider Org ID，审批可拒绝。
+- 可抵Amazon Bedrock第三方基础模型费用；一般Marketplace排除的例外只适用Bedrock第三方模型，不适用全部Marketplace。
+- 排除域名注册/转移、预付Reserved Instances/Savings Plans、税费等；实际期限以授予额度明确的截止日为准，不猜统一有效年限。
+- 激活促销码需有效信用卡；不可转卖/提现或转给终端客户。
+- Requires a Paid Tier account, founding within ten years, pre-Series-B stage and a new or higher-than-prior credit application; Portfolio requires an Activate Provider Org ID and approval is discretionary.
+- Third-party foundation models on Bedrock are eligible; the Marketplace exception is specific to Bedrock third-party model spend, not all Marketplace purchases.
+- Excludes domain registration/transfers, upfront Reserved Instances/Savings Plans, taxes and other ineligible fees; validity follows the awarded credit expiry, not an assumed universal duration.
+- Promotional-code activation requires a valid credit card; credits cannot be sold, cashed out or passed to end customers.
+
+Sources / 来源:
+
+- [Official evidence](https://aws.amazon.com/startups/credits) — SHA-256 `d54838f632795dfbecc7dc429f620680365e40c80eed43e70c217978ec002933`
+- [Official evidence](https://aws.amazon.com/activate/terms/) — SHA-256 `5247c252793b70cfd9d17372714ba7e00404c0d9a24925887cf12c66be6a8ec7`
+- [Official evidence](https://aws.amazon.com/awscredits/) — SHA-256 `90bac4d97949c9f815bf8a556b37b4ef85a120d41895dca1df6459d3da1ed0e0`
+
+[Provider programme page / 提供方入口](https://aws.amazon.com/startups/credits)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "aws-activate-credit",
+  "provider": "Amazon Web Services",
+  "operatorKind": "platform",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "AWS Activate 创业额度",
+    "en": "AWS Activate startup credits"
+  },
+  "benefitText": {
+    "zh-CN": "Founders先申请1000美元、部分最高5000美元；Portfolio最高200000美元，另有邀请制AI扩展额度，均非自动赠金。",
+    "en": "Founders starts with a $1,000 application, selected startups up to $5K; Portfolio offers up to $200K, with invite-only AI expansion beyond that. These are not automatic grants."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需Paid Tier账户、成立10年内、Pre-Series B及新领或申请高于已领额度；Portfolio须Activate Provider Org ID，审批可拒绝。",
+      "可抵Amazon Bedrock第三方基础模型费用；一般Marketplace排除的例外只适用Bedrock第三方模型，不适用全部Marketplace。",
+      "排除域名注册/转移、预付Reserved Instances/Savings Plans、税费等；实际期限以授予额度明确的截止日为准，不猜统一有效年限。",
+      "激活促销码需有效信用卡；不可转卖/提现或转给终端客户。"
+    ],
+    "en": [
+      "Requires a Paid Tier account, founding within ten years, pre-Series-B stage and a new or higher-than-prior credit application; Portfolio requires an Activate Provider Org ID and approval is discretionary.",
+      "Third-party foundation models on Bedrock are eligible; the Marketplace exception is specific to Bedrock third-party model spend, not all Marketplace purchases.",
+      "Excludes domain registration/transfers, upfront Reserved Instances/Savings Plans, taxes and other ineligible fees; validity follows the awarded credit expiry, not an assumed universal duration.",
+      "Promotional-code activation requires a valid credit card; credits cannot be sold, cashed out or passed to end customers."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "Paid账户的超额/排除项仍收费；额度不等于停止付费保险。",
+    "en": "Paid accounts bill excess and ineligible services; credits do not guarantee spending stops."
+  },
+  "claimUrl": "https://aws.amazon.com/startups/credits",
+  "checkedAt": "2026-10-04T17:25:18.249142+00:00",
+  "evidence": [
+    {
+      "url": "https://aws.amazon.com/startups/credits",
+      "bodySha256": "d54838f632795dfbecc7dc429f620680365e40c80eed43e70c217978ec002933",
+      "capturedAt": "2026-10-04T17:22:29.629831+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Amazon Web Services",
+        "en": "Official evidence · Amazon Web Services"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://aws.amazon.com/activate/terms/",
+      "bodySha256": "5247c252793b70cfd9d17372714ba7e00404c0d9a24925887cf12c66be6a8ec7",
+      "capturedAt": "2026-10-04T17:22:29.442051+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Amazon Web Services",
+        "en": "Official evidence · Amazon Web Services"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://aws.amazon.com/awscredits/",
+      "bodySha256": "90bac4d97949c9f815bf8a556b37b4ef85a120d41895dca1df6459d3da1ed0e0",
+      "capturedAt": "2026-10-04T17:22:29.488656+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Amazon Web Services",
+        "en": "Official evidence · Amazon Web Services"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "部分档位、配比、账户方案或继续使用需要真实付款；详见消费与费用条件。",
+        "en": "Some tiers, matching stages, account plans or continued use require actual spend; consult the spending and billing terms."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 21. Oracle Cloud 300美元试用 / Oracle Cloud $300 trial
+
+符合地区与身份条件的新试用用户获300美元服务额度，最多30天；不是永久生成模型免费层。 / Eligible trial users receive $300 of service credit for up to 30 days; this is not a permanent free generative-model tier.
+
+- Provider/source: Oracle Cloud
+- Category: trial
+- Observed/checked: 2026-10-04T17:25:18.249142+00:00
+- Billing: 不主动升级为付费账户不收正式用量费；升级后试用结束或额度用尽开始计费，不能降回免费账户。 / Without upgrading to a paid account, no paid usage charges apply; after upgrade, billing begins at trial expiry/depletion and downgrade is unavailable.
+
+Conditions / 完整条件:
+
+- 每人只允许一个免费账户；需准确身份/联系方式，通常手机号及信用卡或像信用卡使用的借记卡，不接受虚拟/预付/一次性/PIN借记卡。
+- 可用于合格OCI服务，官方页面列AI API服务；生成式模型的具体信用资格本轮未闭合，不承诺全部OCI Generative AI可用。地区、容量和服务可用性限制适用。
+- 30天或耗尽即结束，未升级会回收试用付费资源，Always Free合格资源另依限制保留。
+- One free account per person; accurate identity/contact details required, usually phone and a credit card or credit-style debit card. Virtual, prepaid, single-use and PIN debit cards are not accepted.
+- Eligible OCI services are covered and the official page lists AI API services; model-specific Generative AI credit eligibility remains unverified, so universal availability is not promised. Region, capacity and service limits apply.
+- Ends at 30 days or depletion; without upgrade, paid trial resources are reclaimed, while eligible Always Free resources remain subject to limits.
+
+Sources / 来源:
+
+- [Official evidence](https://www.oracle.com/cloud/free/faq/) — SHA-256 `214a50863da41f43e65251344e4d084bf57dbaa73b56b89714af99221b74c0c4`
+- [Official evidence](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm) — SHA-256 `fbfb0ab25c4f237068f9a7aee31efb3aefb92af046bd80f25a6183cbfccf8ed9`
+- [Official evidence](https://www.oracle.com/cloud/free/) — SHA-256 `b915ec57fee4191714895cc6e8f411ae533187488a8cf78bd5ed6b04411de2b6`
+
+[Provider programme page / 提供方入口](https://www.oracle.com/cloud/free/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "oracle-cloud-trial-credit",
+  "provider": "Oracle Cloud",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Oracle Cloud 300美元试用",
+    "en": "Oracle Cloud $300 trial"
+  },
+  "benefitText": {
+    "zh-CN": "符合地区与身份条件的新试用用户获300美元服务额度，最多30天；不是永久生成模型免费层。",
+    "en": "Eligible trial users receive $300 of service credit for up to 30 days; this is not a permanent free generative-model tier."
+  },
+  "conditions": {
+    "zh-CN": [
+      "每人只允许一个免费账户；需准确身份/联系方式，通常手机号及信用卡或像信用卡使用的借记卡，不接受虚拟/预付/一次性/PIN借记卡。",
+      "可用于合格OCI服务，官方页面列AI API服务；生成式模型的具体信用资格本轮未闭合，不承诺全部OCI Generative AI可用。地区、容量和服务可用性限制适用。",
+      "30天或耗尽即结束，未升级会回收试用付费资源，Always Free合格资源另依限制保留。"
+    ],
+    "en": [
+      "One free account per person; accurate identity/contact details required, usually phone and a credit card or credit-style debit card. Virtual, prepaid, single-use and PIN debit cards are not accepted.",
+      "Eligible OCI services are covered and the official page lists AI API services; model-specific Generative AI credit eligibility remains unverified, so universal availability is not promised. Region, capacity and service limits apply.",
+      "Ends at 30 days or depletion; without upgrade, paid trial resources are reclaimed, while eligible Always Free resources remain subject to limits."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "不主动升级为付费账户不收正式用量费；升级后试用结束或额度用尽开始计费，不能降回免费账户。",
+    "en": "Without upgrading to a paid account, no paid usage charges apply; after upgrade, billing begins at trial expiry/depletion and downgrade is unavailable."
+  },
+  "claimUrl": "https://www.oracle.com/cloud/free/",
+  "checkedAt": "2026-10-04T17:25:18.249142+00:00",
+  "evidence": [
+    {
+      "url": "https://www.oracle.com/cloud/free/faq/",
+      "bodySha256": "214a50863da41f43e65251344e4d084bf57dbaa73b56b89714af99221b74c0c4",
+      "capturedAt": "2026-10-04T17:22:29.751173+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Oracle Cloud",
+        "en": "Official evidence · Oracle Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm",
+      "bodySha256": "fbfb0ab25c4f237068f9a7aee31efb3aefb92af046bd80f25a6183cbfccf8ed9",
+      "capturedAt": "2026-10-04T17:22:30.517744+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Oracle Cloud",
+        "en": "Official evidence · Oracle Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.oracle.com/cloud/free/",
+      "bodySha256": "b915ec57fee4191714895cc6e8f411ae533187488a8cf78bd5ed6b04411de2b6",
+      "capturedAt": "2026-10-04T17:23:22.448556+00:00",
+      "label": {
+        "zh-CN": "官方依据 · Oracle Cloud",
+        "en": "Official evidence · Oracle Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 22. 百炼知识库运行时试用 / Model Studio knowledge-base runtime trial
+
+新用户标准版知识库赠720小时运行额度，有效期30天。 / New users receive 720 runtime hours for standard knowledge bases, valid for 30 days.
+
+- Provider/source: Alibaba Cloud
+- Category: trial
+- Observed/checked: 2026-10-04T17:56:25.374802+00:00
+- Billing: 免费额度耗尽后自动转按量付费。 / After free hours are exhausted, usage automatically becomes pay-as-you-go.
+
+Conditions / 完整条件:
+
+- 多个知识库按数量共同扣减；旧用户政策已于2026-02-03结束。
+- 只抵扣规格运行费，模型调用及自购向量数据库另计。
+- Multiple knowledge bases consume the shared hours; the old-user promotion ended on 2026-02-03.
+- Only runtime specification charges are covered; model calls and external vector databases are separate.
+
+Sources / 来源:
+
+- [Official evidence](https://help.aliyun.com/zh/model-studio/billing-for-knowledge-base) — SHA-256 `5017eeb8c81f5f0a04abf1ddd8700ca550347978b43e7f906d46a2e7be79a7bc`
+- [Official evidence](https://help.aliyun.com/zh/model-studio/model-pricing) — SHA-256 `6ae3cfb3f7569871d2a362e75d4031e4d6772e9e2a79f2e8a979b8514a61b063`
+
+[Provider programme page / 提供方入口](https://help.aliyun.com/zh/model-studio/billing-for-knowledge-base)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "aliyun-knowledge-base-runtime-trial",
+  "provider": "Alibaba Cloud",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "百炼知识库运行时试用",
+    "en": "Model Studio knowledge-base runtime trial"
+  },
+  "benefitText": {
+    "zh-CN": "新用户标准版知识库赠720小时运行额度，有效期30天。",
+    "en": "New users receive 720 runtime hours for standard knowledge bases, valid for 30 days."
+  },
+  "conditions": {
+    "zh-CN": [
+      "多个知识库按数量共同扣减；旧用户政策已于2026-02-03结束。",
+      "只抵扣规格运行费，模型调用及自购向量数据库另计。"
+    ],
+    "en": [
+      "Multiple knowledge bases consume the shared hours; the old-user promotion ended on 2026-02-03.",
+      "Only runtime specification charges are covered; model calls and external vector databases are separate."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费额度耗尽后自动转按量付费。",
+    "en": "After free hours are exhausted, usage automatically becomes pay-as-you-go."
+  },
+  "claimUrl": "https://help.aliyun.com/zh/model-studio/billing-for-knowledge-base",
+  "checkedAt": "2026-10-04T17:56:25.374802+00:00",
+  "evidence": [
+    {
+      "url": "https://help.aliyun.com/zh/model-studio/billing-for-knowledge-base",
+      "bodySha256": "5017eeb8c81f5f0a04abf1ddd8700ca550347978b43e7f906d46a2e7be79a7bc",
+      "capturedAt": "2026-10-04T17:56:25.374802+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Alibaba Cloud",
+        "en": "Official evidence · Alibaba Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+      "bodySha256": "6ae3cfb3f7569871d2a362e75d4031e4d6772e9e2a79f2e8a979b8514a61b063",
+      "capturedAt": "2026-10-04T17:56:25.373732+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Alibaba Cloud",
+        "en": "Official evidence · Alibaba Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 23. 百炼托管Agent运行时试用 / Model Studio managed-agent runtime trial
+
+提供10小时会话运行时试用额度，有效期30天。 / A 10-hour session-runtime trial is available for 30 days.
+
+- Provider/source: Alibaba Cloud
+- Category: trial
+- Observed/checked: 2026-10-04T17:56:25.375961+00:00
+- Billing: 额外运行时间及模型调用按对应价格计费。 / Additional runtime and model calls follow their respective prices.
+
+Conditions / 完整条件:
+
+- 仅会话运行时；模型、工具和MCP费用不包含。
+- 试用有效期30天；申请者地区和付款方式门槛原文未明，以账户规则为准。
+- Only session runtime is covered; model, tool and MCP costs are excluded.
+- Trial expires in 30 days; applicant region and payment prerequisites not stated here follow account rules.
+
+Sources / 来源:
+
+- [Official evidence](https://help.aliyun.com/zh/model-studio/managed-agents-billing) — SHA-256 `4be6dd80d25e0ed4b156f5bfbbde1d525bc8730317735b8ddd26a73d33c81e03`
+- [Official evidence](https://help.aliyun.com/zh/model-studio/model-pricing) — SHA-256 `6ae3cfb3f7569871d2a362e75d4031e4d6772e9e2a79f2e8a979b8514a61b063`
+
+[Provider programme page / 提供方入口](https://help.aliyun.com/zh/model-studio/managed-agents-billing)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "aliyun-agent-runtime-trial",
+  "provider": "Alibaba Cloud",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "百炼托管Agent运行时试用",
+    "en": "Model Studio managed-agent runtime trial"
+  },
+  "benefitText": {
+    "zh-CN": "提供10小时会话运行时试用额度，有效期30天。",
+    "en": "A 10-hour session-runtime trial is available for 30 days."
+  },
+  "conditions": {
+    "zh-CN": [
+      "仅会话运行时；模型、工具和MCP费用不包含。",
+      "试用有效期30天；申请者地区和付款方式门槛原文未明，以账户规则为准。"
+    ],
+    "en": [
+      "Only session runtime is covered; model, tool and MCP costs are excluded.",
+      "Trial expires in 30 days; applicant region and payment prerequisites not stated here follow account rules."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "额外运行时间及模型调用按对应价格计费。",
+    "en": "Additional runtime and model calls follow their respective prices."
+  },
+  "claimUrl": "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
+  "checkedAt": "2026-10-04T17:56:25.375961+00:00",
+  "evidence": [
+    {
+      "url": "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
+      "bodySha256": "4be6dd80d25e0ed4b156f5bfbbde1d525bc8730317735b8ddd26a73d33c81e03",
+      "capturedAt": "2026-10-04T17:56:25.375961+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Alibaba Cloud",
+        "en": "Official evidence · Alibaba Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+      "bodySha256": "6ae3cfb3f7569871d2a362e75d4031e4d6772e9e2a79f2e8a979b8514a61b063",
+      "capturedAt": "2026-10-04T17:56:25.373732+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Alibaba Cloud",
+        "en": "Official evidence · Alibaba Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 24. 智谱指定Flash模型免费API / Zhipu selected Flash models: free API
+
+价目表列GLM-4.7-Flash、GLM-4-Flash-250414、GLM-Z1-Flash及若干视觉/图像/视频Flash为免费。 / The price list marks GLM-4.7-Flash, GLM-4-Flash-250414, GLM-Z1-Flash and selected vision/image/video Flash models as free.
+
+- Provider/source: Zhipu BigModel
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:58:04.113383+00:00
+- Billing: 其他模型和收费能力独立计费，不按Flash名称推断免费。 / Other models/features are billed separately; a Flash name does not imply free pricing.
+
+Conditions / 完整条件:
+
+- 需要账号/API key；仅价目表明确免费的模型适用，GLM-5.3-Flash收费。
+- 额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。
+- An account/API key is needed. Only explicitly free models qualify; GLM-5.3-Flash is paid.
+- Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.
+
+Sources / 来源:
+
+- [Official evidence](https://docs.bigmodel.cn/cn/guide/start/pricing.md) — SHA-256 `7224d9566404ed86a97dbfb41cf1703f1f31a25d2b4e91953018ceb5be638d0b`
+- [Official evidence](https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash) — SHA-256 `fb14fa0127cae8c100b6403362e4dded41b9d7f858cee8b82046133e06442733`
+
+[Provider programme page / 提供方入口](https://docs.bigmodel.cn/cn/guide/start/pricing.md)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "zhipu-selected-flash-free",
+  "provider": "Zhipu BigModel",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "智谱指定Flash模型免费API",
+    "en": "Zhipu selected Flash models: free API"
+  },
+  "benefitText": {
+    "zh-CN": "价目表列GLM-4.7-Flash、GLM-4-Flash-250414、GLM-Z1-Flash及若干视觉/图像/视频Flash为免费。",
+    "en": "The price list marks GLM-4.7-Flash, GLM-4-Flash-250414, GLM-Z1-Flash and selected vision/image/video Flash models as free."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需要账号/API key；仅价目表明确免费的模型适用，GLM-5.3-Flash收费。",
+      "额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。"
+    ],
+    "en": [
+      "An account/API key is needed. Only explicitly free models qualify; GLM-5.3-Flash is paid.",
+      "Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "其他模型和收费能力独立计费，不按Flash名称推断免费。",
+    "en": "Other models/features are billed separately; a Flash name does not imply free pricing."
+  },
+  "claimUrl": "https://docs.bigmodel.cn/cn/guide/start/pricing.md",
+  "checkedAt": "2026-10-04T17:58:04.113383+00:00",
+  "evidence": [
+    {
+      "url": "https://docs.bigmodel.cn/cn/guide/start/pricing.md",
+      "bodySha256": "7224d9566404ed86a97dbfb41cf1703f1f31a25d2b4e91953018ceb5be638d0b",
+      "capturedAt": "2026-10-04T17:58:04.113383+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Zhipu BigModel",
+        "en": "Official evidence · Zhipu BigModel"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "bodySha256": "fb14fa0127cae8c100b6403362e4dded41b9d7f858cee8b82046133e06442733",
+      "capturedAt": "2026-10-04T17:56:28.635147+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Zhipu BigModel",
+        "en": "Official evidence · Zhipu BigModel"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 25. Kimi文件解析API限时免费 / Kimi file-parsing API: limited-time free
+
+文件解析服务限时免费；单文件100MiB、组织默认存储上限10GiB。 / File parsing is temporarily free; files are capped at 100 MiB and organization storage defaults to 10 GiB.
+
+- Provider/source: Moonshot Kimi
+- Category: free-tier
+- Observed/checked: 2026-10-04T18:02:37.719669+00:00
+- Billing: 将解析内容交给聊天模型仍按模型价格收费。 / Chat-model processing of extracted content remains billable.
+
+Conditions / 完整条件:
+
+- 需要平台账号/API key；请求高峰可能限流。
+- 这是文件解析福利，非聊天Token赠金；结束日期未明确。
+- Platform account/API key required; peak-time rate limits may apply.
+- This is a file-parsing benefit, not chat-token credit; no end date is specified.
+
+Sources / 来源:
+
+- [Official evidence](https://platform.moonshot.cn/docs/api/files) — SHA-256 `db7cef5c7d263219f31351dbf27b060929988cd6e6f2ac4fd97feeb4dfcf38dc`
+- [Official evidence](https://platform.moonshot.ai/docs/pricing/chat) — SHA-256 `a7e0a382039aa7f9be49e53f038ad14cfc8dc50aecd8482600e3833779dde79a`
+
+[Provider programme page / 提供方入口](https://platform.moonshot.cn/docs/api/files)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "moonshot-file-parsing-free",
+  "provider": "Moonshot Kimi",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Kimi文件解析API限时免费",
+    "en": "Kimi file-parsing API: limited-time free"
+  },
+  "benefitText": {
+    "zh-CN": "文件解析服务限时免费；单文件100MiB、组织默认存储上限10GiB。",
+    "en": "File parsing is temporarily free; files are capped at 100 MiB and organization storage defaults to 10 GiB."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需要平台账号/API key；请求高峰可能限流。",
+      "这是文件解析福利，非聊天Token赠金；结束日期未明确。"
+    ],
+    "en": [
+      "Platform account/API key required; peak-time rate limits may apply.",
+      "This is a file-parsing benefit, not chat-token credit; no end date is specified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "将解析内容交给聊天模型仍按模型价格收费。",
+    "en": "Chat-model processing of extracted content remains billable."
+  },
+  "claimUrl": "https://platform.moonshot.cn/docs/api/files",
+  "checkedAt": "2026-10-04T18:02:37.719669+00:00",
+  "evidence": [
+    {
+      "url": "https://platform.moonshot.cn/docs/api/files",
+      "bodySha256": "db7cef5c7d263219f31351dbf27b060929988cd6e6f2ac4fd97feeb4dfcf38dc",
+      "capturedAt": "2026-10-04T18:02:37.719669+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Moonshot Kimi",
+        "en": "Official evidence · Moonshot Kimi"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://platform.moonshot.ai/docs/pricing/chat",
+      "bodySha256": "a7e0a382039aa7f9be49e53f038ad14cfc8dc50aecd8482600e3833779dde79a",
+      "capturedAt": "2026-10-04T17:56:29.037761+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Moonshot Kimi",
+        "en": "Official evidence · Moonshot Kimi"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 26. 硅基流动实名免费模型 / SiliconFlow verified-account free models
+
+实名认证后可使用平台所有免费模型，免费模型调用费用为0。 / Verified accounts can use the platform’s free models at zero call cost.
+
+- Provider/source: SiliconFlow
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:56:29.875249+00:00
+- Billing: 收费模型另计；服务条款允许欠费导致包括免费能力在内的服务暂停。 / Paid models are separate; arrears may suspend services including free capabilities.
+
+Conditions / 完整条件:
+
+- 按账号和模型设RPM/TPM限流，不能靠多个key提高账号限额。
+- 额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。
+- 服务条款要求年满18岁；未满18岁不能实名认证或使用。
+- RPM/TPM limits apply per account/model; extra keys do not increase account limits.
+- Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.
+- Terms require age 18 or older; minors cannot complete identity verification or use the service.
+
+Sources / 来源:
+
+- [Official evidence](https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation) — SHA-256 `f81851187ba46ffae84de59c86148b79dd460165eebdd20ad638b1ca893bd685`
+- [Official evidence](https://docs.siliconflow.cn/docs/legals/terms-of-service) — SHA-256 `ab4e4c17c97996898a9eeec5438efc3186661cab289141d71af12d8773e5c614`
+
+[Provider programme page / 提供方入口](https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "siliconflow-verified-free-models",
+  "provider": "SiliconFlow",
+  "operatorKind": "inference-provider",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "硅基流动实名免费模型",
+    "en": "SiliconFlow verified-account free models"
+  },
+  "benefitText": {
+    "zh-CN": "实名认证后可使用平台所有免费模型，免费模型调用费用为0。",
+    "en": "Verified accounts can use the platform’s free models at zero call cost."
+  },
+  "conditions": {
+    "zh-CN": [
+      "按账号和模型设RPM/TPM限流，不能靠多个key提高账号限额。",
+      "额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。",
+      "服务条款要求年满18岁；未满18岁不能实名认证或使用。"
+    ],
+    "en": [
+      "RPM/TPM limits apply per account/model; extra keys do not increase account limits.",
+      "Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.",
+      "Terms require age 18 or older; minors cannot complete identity verification or use the service."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "收费模型另计；服务条款允许欠费导致包括免费能力在内的服务暂停。",
+    "en": "Paid models are separate; arrears may suspend services including free capabilities."
+  },
+  "claimUrl": "https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation",
+  "checkedAt": "2026-10-04T17:56:29.875249+00:00",
+  "evidence": [
+    {
+      "url": "https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation",
+      "bodySha256": "f81851187ba46ffae84de59c86148b79dd460165eebdd20ad638b1ca893bd685",
+      "capturedAt": "2026-10-04T17:56:29.766424+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · SiliconFlow",
+        "en": "Official evidence · SiliconFlow"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.siliconflow.cn/docs/legals/terms-of-service",
+      "bodySha256": "ab4e4c17c97996898a9eeec5438efc3186661cab289141d71af12d8773e5c614",
+      "capturedAt": "2026-10-04T17:56:29.875249+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · SiliconFlow",
+        "en": "Official evidence · SiliconFlow"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本卡核验实名/身份条件；不将普通账号注册等同实名认证。",
+        "en": "This program requires verified identity; ordinary account registration is not treated as identity verification."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 27. 魔搭魔粒推理API / ModelScope magicube inference API
+
+验证邮箱后每日登录可领200魔粒；绑定阿里云后每日额外50。API按模型每次消耗0.5/1/2魔粒。 / After email verification, daily login grants 200 magicubes; linking Alibaba Cloud adds 50 daily. Each API request costs 0.5, 1 or 2 magicubes depending on the model.
+
+- Provider/source: ModelScope
+- Category: free-tier
+- Observed/checked: 2026-10-04T18:00:00.172Z
+- Billing: 余额足够时可继续请求；不沿用已失效的每日2000次口径。 / Requests can continue while the magicube balance is sufficient; the old 2,000/day quota is not used.
+
+Conditions / 完整条件:
+
+- 短期魔粒发放后24小时过期，长期90天，优先消耗最早过期额度。
+- API需绑定已实名阿里云账号；单并发、动态限流，无商业SLA；模型可能下架。
+- 邀请/贡献有独立审核与月上限条件；本卡不把奖励自动计入基础额度。
+- Short-term magicubes expire after 24 hours; long-term ones after 90 days; earliest expiry is consumed first.
+- API access requires a linked verified Alibaba Cloud account; single concurrency, dynamic limits, no commercial SLA, and models may be removed.
+- Referral/contribution rewards have separate caps/review; they are not automatically included in the base allowance.
+
+Sources / 来源:
+
+- [Official evidence](https://www.modelscope.cn/docs/magicube/intro) — SHA-256 `eff6daa5f7b1107f67ee953cc1987d3fd83d3d6507ce043084975c906b9bf2d8`
+- [Official evidence](https://www.modelscope.cn/docs/model-service/API-Inference/limits) — SHA-256 `78b3c30a62bd6f8a85c150b74c1dad3dc5bc5280d9e9bb7f332663b8272674ec`
+- [Official evidence](https://www.modelscope.cn/docs/model-service/API-Inference/intro) — SHA-256 `c7ffa9fc57c5d307ac3b8bb94d0c61e3c34b2022cd38db6c97345c996d1e1c96`
+
+[Provider programme page / 提供方入口](https://www.modelscope.cn/docs/magicube/intro)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "modelscope-magicube-api",
+  "provider": "ModelScope",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "魔搭魔粒推理API",
+    "en": "ModelScope magicube inference API"
+  },
+  "benefitText": {
+    "zh-CN": "验证邮箱后每日登录可领200魔粒；绑定阿里云后每日额外50。API按模型每次消耗0.5/1/2魔粒。",
+    "en": "After email verification, daily login grants 200 magicubes; linking Alibaba Cloud adds 50 daily. Each API request costs 0.5, 1 or 2 magicubes depending on the model."
+  },
+  "conditions": {
+    "zh-CN": [
+      "短期魔粒发放后24小时过期，长期90天，优先消耗最早过期额度。",
+      "API需绑定已实名阿里云账号；单并发、动态限流，无商业SLA；模型可能下架。",
+      "邀请/贡献有独立审核与月上限条件；本卡不把奖励自动计入基础额度。"
+    ],
+    "en": [
+      "Short-term magicubes expire after 24 hours; long-term ones after 90 days; earliest expiry is consumed first.",
+      "API access requires a linked verified Alibaba Cloud account; single concurrency, dynamic limits, no commercial SLA, and models may be removed.",
+      "Referral/contribution rewards have separate caps/review; they are not automatically included in the base allowance."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "余额足够时可继续请求；不沿用已失效的每日2000次口径。",
+    "en": "Requests can continue while the magicube balance is sufficient; the old 2,000/day quota is not used."
+  },
+  "claimUrl": "https://www.modelscope.cn/docs/magicube/intro",
+  "checkedAt": "2026-10-04T18:00:00.172Z",
+  "evidence": [
+    {
+      "url": "https://www.modelscope.cn/docs/magicube/intro",
+      "bodySha256": "eff6daa5f7b1107f67ee953cc1987d3fd83d3d6507ce043084975c906b9bf2d8",
+      "capturedAt": "2026-10-04T18:00:00.172Z",
+      "captureKind": "rendered-text",
+      "label": {
+        "zh-CN": "官方依据 · ModelScope",
+        "en": "Official evidence · ModelScope"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.modelscope.cn/docs/model-service/API-Inference/limits",
+      "bodySha256": "78b3c30a62bd6f8a85c150b74c1dad3dc5bc5280d9e9bb7f332663b8272674ec",
+      "capturedAt": "2026-10-04T17:59:29.633Z",
+      "captureKind": "rendered-text",
+      "label": {
+        "zh-CN": "官方依据 · ModelScope",
+        "en": "Official evidence · ModelScope"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.modelscope.cn/docs/model-service/API-Inference/intro",
+      "bodySha256": "c7ffa9fc57c5d307ac3b8bb94d0c61e3c34b2022cd38db6c97345c996d1e1c96",
+      "capturedAt": "2026-10-04T17:58:57.333Z",
+      "captureKind": "rendered-text",
+      "label": {
+        "zh-CN": "官方依据 · ModelScope",
+        "en": "Official evidence · ModelScope"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本卡核验实名/身份条件；不将普通账号注册等同实名认证。",
+        "en": "This program requires verified identity; ordinary account registration is not treated as identity verification."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 28. 阶跃Builder开发者扶持申请 / StepFun Builder developer-support application
+
+经申请评选可获API、Step Plan或开发资源支持，金额未公开。 / Selected applicants may receive API, Step Plan or development-resource support; amounts are not published.
+
+- Provider/source: StepFun
+- Category: developer-program
+- Observed/checked: 2026-10-04T17:56:33.831865+00:00
+- Billing: 获批范围外服务按平台条款计费。 / Usage outside approved support follows platform billing terms.
+
+Conditions / 完整条件:
+
+- 个人、学生等可申请；填写UID、项目目标等，按季度评选并由官方邮件通知。
+- 须申请获批；不保证人人获得或固定Token额度。
+- Individuals including students may apply with a UID and project goals; selection is quarterly and results are emailed by the operator.
+- Approval is required; neither universal acceptance nor a fixed token allowance is promised.
+
+Sources / 来源:
+
+- [Official evidence](https://platform.stepfun.com/builder-program) — SHA-256 `65605a9bbb009cc11cf2c42c3c3368bcd92cf8f2342bb2ea739acfd863605a82`
+- [Official evidence](https://platform.stepfun.com/legal/user-agreement.html) — SHA-256 `fb3e3705fb0c8d77c09696424fa93ed0091ec39c77ab7fd2bda403f2e72259ba`
+
+[Provider programme page / 提供方入口](https://platform.stepfun.com/builder-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "stepfun-builder-program",
+  "provider": "StepFun",
+  "operatorKind": "vendor",
+  "category": "developer-program",
+  "title": {
+    "zh-CN": "阶跃Builder开发者扶持申请",
+    "en": "StepFun Builder developer-support application"
+  },
+  "benefitText": {
+    "zh-CN": "经申请评选可获API、Step Plan或开发资源支持，金额未公开。",
+    "en": "Selected applicants may receive API, Step Plan or development-resource support; amounts are not published."
+  },
+  "conditions": {
+    "zh-CN": [
+      "个人、学生等可申请；填写UID、项目目标等，按季度评选并由官方邮件通知。",
+      "须申请获批；不保证人人获得或固定Token额度。"
+    ],
+    "en": [
+      "Individuals including students may apply with a UID and project goals; selection is quarterly and results are emailed by the operator.",
+      "Approval is required; neither universal acceptance nor a fixed token allowance is promised."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "获批范围外服务按平台条款计费。",
+    "en": "Usage outside approved support follows platform billing terms."
+  },
+  "claimUrl": "https://platform.stepfun.com/builder-program",
+  "checkedAt": "2026-10-04T17:56:33.831865+00:00",
+  "evidence": [
+    {
+      "url": "https://platform.stepfun.com/builder-program",
+      "bodySha256": "65605a9bbb009cc11cf2c42c3c3368bcd92cf8f2342bb2ea739acfd863605a82",
+      "capturedAt": "2026-10-04T17:56:32.527829+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · StepFun",
+        "en": "Official evidence · StepFun"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://platform.stepfun.com/legal/user-agreement.html",
+      "bodySha256": "fb3e3705fb0c8d77c09696424fa93ed0091ec39c77ab7fd2bda403f2e72259ba",
+      "capturedAt": "2026-10-04T17:56:33.831865+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · StepFun",
+        "en": "Official evidence · StepFun"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 29. 星火指定小模型免费API / Spark selected small-model free API
+
+当前价格页标Spark X2.5-1.7B免费、4B限时免费；HTTP文档另列Spark Lite免费。 / The current price page marks Spark X2.5-1.7B free and 4B temporarily free; HTTP docs also list Spark Lite as free.
+
+- Provider/source: iFlytek Spark
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:58:53.773Z
+- Billing: 其他模型的免费领取按钮是试用领取入口，不能据此认定模型永久免费。 / Trial-claim buttons for other models do not establish permanently free pricing.
+
+Conditions / 完整条件:
+
+- 须创建应用并获取API鉴权；按指定模型调用。
+- 额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。
+- Create an application and obtain API credentials; use the specified models.
+- Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.
+
+Sources / 来源:
+
+- [Official evidence](https://xinghuo.xfyun.cn/sparkapi) — SHA-256 `f463282b970dc625754cafb681506dde6cc4ee8f1513962b229dfd770211c586`
+- [Official evidence](https://www.xfyun.cn/doc/spark/HTTP%E8%B0%83%E7%94%A8%E6%96%87%E6%A1%A3.html) — SHA-256 `a40abf0d7effc3e60920581a1c5a36df2a6b194d1f8bd1f996c984ce1ee7074c`
+
+[Provider programme page / 提供方入口](https://xinghuo.xfyun.cn/sparkapi)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "spark-selected-free-models",
+  "provider": "iFlytek Spark",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "星火指定小模型免费API",
+    "en": "Spark selected small-model free API"
+  },
+  "benefitText": {
+    "zh-CN": "当前价格页标Spark X2.5-1.7B免费、4B限时免费；HTTP文档另列Spark Lite免费。",
+    "en": "The current price page marks Spark X2.5-1.7B free and 4B temporarily free; HTTP docs also list Spark Lite as free."
+  },
+  "conditions": {
+    "zh-CN": [
+      "须创建应用并获取API鉴权；按指定模型调用。",
+      "额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。"
+    ],
+    "en": [
+      "Create an application and obtain API credentials; use the specified models.",
+      "Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "其他模型的免费领取按钮是试用领取入口，不能据此认定模型永久免费。",
+    "en": "Trial-claim buttons for other models do not establish permanently free pricing."
+  },
+  "claimUrl": "https://xinghuo.xfyun.cn/sparkapi",
+  "checkedAt": "2026-10-04T17:58:53.773Z",
+  "evidence": [
+    {
+      "url": "https://xinghuo.xfyun.cn/sparkapi",
+      "bodySha256": "f463282b970dc625754cafb681506dde6cc4ee8f1513962b229dfd770211c586",
+      "capturedAt": "2026-10-04T17:58:53.773Z",
+      "captureKind": "rendered-text",
+      "label": {
+        "zh-CN": "官方依据 · iFlytek Spark",
+        "en": "Official evidence · iFlytek Spark"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.xfyun.cn/doc/spark/HTTP%E8%B0%83%E7%94%A8%E6%96%87%E6%A1%A3.html",
+      "bodySha256": "a40abf0d7effc3e60920581a1c5a36df2a6b194d1f8bd1f996c984ce1ee7074c",
+      "capturedAt": "2026-10-04T17:58:04.124449+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · iFlytek Spark",
+        "en": "Official evidence · iFlytek Spark"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 30. 日日新U1.5 Lite图像模型免费公测 / SenseNova U1.5 Lite free image-model beta
+
+官方新闻及现行FAQ提供免费公测额度1500次/5小时。 / Official news and the current FAQ describe a free-beta allowance of 1,500 requests per five hours.
+
+- Provider/source: SenseTime SenseNova
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:56:34.875987+00:00
+- Billing: 付费Token Plan与其他模型另有价格。 / Paid Token Plans and other models have separate pricing.
+
+Conditions / 完整条件:
+
+- 仅指定模型与公测政策；不保证永久免费或所有特殊模型适用。
+- 额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。
+- Limited to specified models and beta terms; permanent free availability and coverage of special models are not guaranteed.
+- Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.
+
+Sources / 来源:
+
+- [Official evidence](https://www.sensetime.com/cn/news/sensenova-u1-5-lite-token-plan-20260911-1741) — SHA-256 `3643f0a107f8054f8dead3b0edf44664e9eabcfa4932cf268994d4b988e9f3e0`
+- [Official evidence](https://sensetime.com/cn/faq/) — SHA-256 `5a043edee302ebd271b069d132a8abe099526e86e367cb578af80fa14ee85319`
+
+[Provider programme page / 提供方入口](https://www.sensetime.com/cn/news/sensenova-u1-5-lite-token-plan-20260911-1741)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "sensenova-u15-lite-free",
+  "provider": "SenseTime SenseNova",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "日日新U1.5 Lite图像模型免费公测",
+    "en": "SenseNova U1.5 Lite free image-model beta"
+  },
+  "benefitText": {
+    "zh-CN": "官方新闻及现行FAQ提供免费公测额度1500次/5小时。",
+    "en": "Official news and the current FAQ describe a free-beta allowance of 1,500 requests per five hours."
+  },
+  "conditions": {
+    "zh-CN": [
+      "仅指定模型与公测政策；不保证永久免费或所有特殊模型适用。",
+      "额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。"
+    ],
+    "en": [
+      "Limited to specified models and beta terms; permanent free availability and coverage of special models are not guaranteed.",
+      "Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "付费Token Plan与其他模型另有价格。",
+    "en": "Paid Token Plans and other models have separate pricing."
+  },
+  "claimUrl": "https://www.sensetime.com/cn/news/sensenova-u1-5-lite-token-plan-20260911-1741",
+  "checkedAt": "2026-10-04T17:56:34.875987+00:00",
+  "evidence": [
+    {
+      "url": "https://www.sensetime.com/cn/news/sensenova-u1-5-lite-token-plan-20260911-1741",
+      "bodySha256": "3643f0a107f8054f8dead3b0edf44664e9eabcfa4932cf268994d4b988e9f3e0",
+      "capturedAt": "2026-10-04T17:56:34.875987+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · SenseTime SenseNova",
+        "en": "Official evidence · SenseTime SenseNova"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://sensetime.com/cn/faq/",
+      "bodySha256": "5a043edee302ebd271b069d132a8abe099526e86e367cb578af80fa14ee85319",
+      "capturedAt": "2026-10-04T17:56:34.824675+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · SenseTime SenseNova",
+        "en": "Official evidence · SenseTime SenseNova"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 31. MiMo指定TTS模型限时免费 / MiMo selected TTS models: limited-time free
+
+当前按量价格页列三款TTS模型限时免费。 / The current pay-as-you-go price page marks three TTS models temporarily free.
+
+- Provider/source: Xiaomi MiMo
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:58:21.897Z
+- Billing: 普通API key按量账户与Token Plan不同，其他调用按对应价目收费。 / Pay-as-you-go API accounts differ from Token Plans; other calls use their published prices.
+
+Conditions / 完整条件:
+
+- 仅价目表指定TTS，ASR和语言模型收费。
+- 额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。
+- Only the listed TTS models qualify; ASR and language models are paid.
+- Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.
+
+Sources / 来源:
+
+- [Official evidence](https://mimo.mi.com/docs/en-US/price/pay-as-you-go) — SHA-256 `7e18d532ef9e15b640284591a6680c50040bde3fea12d158b888635a1dce3502`
+
+[Provider programme page / 提供方入口](https://mimo.mi.com/docs/en-US/price/pay-as-you-go)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "mimo-tts-limited-free",
+  "provider": "Xiaomi MiMo",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "MiMo指定TTS模型限时免费",
+    "en": "MiMo selected TTS models: limited-time free"
+  },
+  "benefitText": {
+    "zh-CN": "当前按量价格页列三款TTS模型限时免费。",
+    "en": "The current pay-as-you-go price page marks three TTS models temporarily free."
+  },
+  "conditions": {
+    "zh-CN": [
+      "仅价目表指定TTS，ASR和语言模型收费。",
+      "额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。"
+    ],
+    "en": [
+      "Only the listed TTS models qualify; ASR and language models are paid.",
+      "Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "普通API key按量账户与Token Plan不同，其他调用按对应价目收费。",
+    "en": "Pay-as-you-go API accounts differ from Token Plans; other calls use their published prices."
+  },
+  "claimUrl": "https://mimo.mi.com/docs/en-US/price/pay-as-you-go",
+  "checkedAt": "2026-10-04T17:58:21.897Z",
+  "evidence": [
+    {
+      "url": "https://mimo.mi.com/docs/en-US/price/pay-as-you-go",
+      "bodySha256": "7e18d532ef9e15b640284591a6680c50040bde3fea12d158b888635a1dce3502",
+      "capturedAt": "2026-10-04T17:58:21.897Z",
+      "captureKind": "rendered-text",
+      "label": {
+        "zh-CN": "官方依据 · Xiaomi MiMo",
+        "en": "Official evidence · Xiaomi MiMo"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 32. 360智脑新注册50元体验金 / 360 Zhinao new-user CNY 50 credit
+
+官方翻译及知识库API文档列新注册用户50元体验金。 / Official translation and knowledge-base API docs list CNY 50 trial credit for newly registered users.
+
+- Provider/source: 360 Zhinao
+- Category: trial
+- Observed/checked: 2026-10-04T17:56:36.967743+00:00
+- Billing: 抵扣后继续调用按对应模型与服务价格计费。 / Further use follows the relevant model/service prices after the credit is consumed.
+
+Conditions / 完整条件:
+
+- 各文档描述同一新注册福利，不能累加为多份50元。
+- 额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。
+- These pages describe the same registration benefit; do not add them as multiple CNY 50 grants.
+- Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised.
+
+Sources / 来源:
+
+- [Official evidence](https://ai.360.com/docs/8256390m0) — SHA-256 `4ae44d11a46d851511594f42fa7c390bbf9274865a379e6b8860e0d889bed6b3`
+- [Official evidence](https://ai.360.com/docs/413291998e0) — SHA-256 `79518c30d21fde7cb7c6070b9040c959f3fae61a8cbbe2bd51e23b9ecf96b311`
+
+[Provider programme page / 提供方入口](https://ai.360.com/docs/8256390m0)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "360-new-user-credit",
+  "provider": "360 Zhinao",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "360智脑新注册50元体验金",
+    "en": "360 Zhinao new-user CNY 50 credit"
+  },
+  "benefitText": {
+    "zh-CN": "官方翻译及知识库API文档列新注册用户50元体验金。",
+    "en": "Official translation and knowledge-base API docs list CNY 50 trial credit for newly registered users."
+  },
+  "conditions": {
+    "zh-CN": [
+      "各文档描述同一新注册福利，不能累加为多份50元。",
+      "额度有效期、支持地区和付款方式门槛未明确；以账号和现行条款为准，不保证无限使用。"
+    ],
+    "en": [
+      "These pages describe the same registration benefit; do not add them as multiple CNY 50 grants.",
+      "Expiry, region eligibility and payment-method requirements are unspecified; account limits and current terms apply. Unlimited use is not promised."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "抵扣后继续调用按对应模型与服务价格计费。",
+    "en": "Further use follows the relevant model/service prices after the credit is consumed."
+  },
+  "claimUrl": "https://ai.360.com/docs/8256390m0",
+  "checkedAt": "2026-10-04T17:56:36.967743+00:00",
+  "evidence": [
+    {
+      "url": "https://ai.360.com/docs/8256390m0",
+      "bodySha256": "4ae44d11a46d851511594f42fa7c390bbf9274865a379e6b8860e0d889bed6b3",
+      "capturedAt": "2026-10-04T17:56:36.818955+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · 360 Zhinao",
+        "en": "Official evidence · 360 Zhinao"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://ai.360.com/docs/413291998e0",
+      "bodySha256": "79518c30d21fde7cb7c6070b9040c959f3fae61a8cbbe2bd51e23b9ecf96b311",
+      "capturedAt": "2026-10-04T17:56:36.967743+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · 360 Zhinao",
+        "en": "Official evidence · 360 Zhinao"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 33. 百川新注册80元赠送金 / Baichuan new-user CNY 80 credit
+
+现行价格页保留2024-05-22下午起新注册用户80元赠送金，注册后生效3个月。 / The current price page retains a CNY 80 grant for users registering from the afternoon of 2024-05-22, valid for three months after signup.
+
+- Provider/source: Baichuan
+- Category: trial
+- Observed/checked: 2026-10-04T17:56:36.995027+00:00
+- Billing: 赠送金耗尽后模型、存储等按现行价格计费。 / Model/storage services follow current prices after gifted credit runs out.
+
+Conditions / 完整条件:
+
+- 1000万Token仅为Baichuan2-Turbo旧价格等值例子，不是全部模型固定额度。
+- 未执行真实新账号领取；身份与付款门槛以账号条款为准。
+- The 10-million-token figure is an old Baichuan2-Turbo price-equivalence example, not a fixed allowance across models.
+- No live signup redemption was performed; identity/payment requirements depend on account terms.
+
+Sources / 来源:
+
+- [Official evidence](https://platform.baichuan-ai.com/prices) — SHA-256 `6d5fd4f22c5ae9dc3254b22d25f194872af641fec2a55e3111b592a6e2250718`
+
+[Provider programme page / 提供方入口](https://platform.baichuan-ai.com/prices)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "baichuan-new-user-credit",
+  "provider": "Baichuan",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "百川新注册80元赠送金",
+    "en": "Baichuan new-user CNY 80 credit"
+  },
+  "benefitText": {
+    "zh-CN": "现行价格页保留2024-05-22下午起新注册用户80元赠送金，注册后生效3个月。",
+    "en": "The current price page retains a CNY 80 grant for users registering from the afternoon of 2024-05-22, valid for three months after signup."
+  },
+  "conditions": {
+    "zh-CN": [
+      "1000万Token仅为Baichuan2-Turbo旧价格等值例子，不是全部模型固定额度。",
+      "未执行真实新账号领取；身份与付款门槛以账号条款为准。"
+    ],
+    "en": [
+      "The 10-million-token figure is an old Baichuan2-Turbo price-equivalence example, not a fixed allowance across models.",
+      "No live signup redemption was performed; identity/payment requirements depend on account terms."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "赠送金耗尽后模型、存储等按现行价格计费。",
+    "en": "Model/storage services follow current prices after gifted credit runs out."
+  },
+  "claimUrl": "https://platform.baichuan-ai.com/prices",
+  "checkedAt": "2026-10-04T17:56:36.995027+00:00",
+  "evidence": [
+    {
+      "url": "https://platform.baichuan-ai.com/prices",
+      "bodySha256": "6d5fd4f22c5ae9dc3254b22d25f194872af641fec2a55e3111b592a6e2250718",
+      "capturedAt": "2026-10-04T17:56:36.995027+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Baichuan",
+        "en": "Official evidence · Baichuan"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 34. AgentArts预置模型200万Token / AgentArts preset-model 2M-token allowance
+
+开通AgentArts后默认提供200万Token，用于平台预置模型服务。 / Activating AgentArts provides 2 million tokens for its preset model services.
+
+- Provider/source: Huawei Cloud
+- Category: trial
+- Observed/checked: 2026-10-04T18:02:36.351862+00:00
+- Billing: 用尽后须开通MaaS对应付费模型并完成鉴权才继续使用。 / After exhaustion, continued use requires activating and authenticating the corresponding paid MaaS model.
+
+Conditions / 完整条件:
+
+- 范围为华北北京四的AgentArts平台，不宣称独立通用MaaS API免费额度。
+- 服务区域为华北北京四；申请者所在地资格、额度期限和付款方式门槛原文未明确。
+- Scoped to AgentArts in North China Beijing 4; this does not establish an unrestricted standalone MaaS API entitlement.
+- The service region is North China Beijing 4; applicant-location eligibility, allowance expiry and payment prerequisites are unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://support.huaweicloud.com/usermanual-agentarts0/agentarts_05_0186.html) — SHA-256 `682bebe949a2893d3f13bdc13c5bb41ff41371b0fc75a227779d42647c73661d`
+
+[Provider programme page / 提供方入口](https://support.huaweicloud.com/usermanual-agentarts0/agentarts_05_0186.html)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "huawei-agentarts-model-trial",
+  "provider": "Huawei Cloud",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "AgentArts预置模型200万Token",
+    "en": "AgentArts preset-model 2M-token allowance"
+  },
+  "benefitText": {
+    "zh-CN": "开通AgentArts后默认提供200万Token，用于平台预置模型服务。",
+    "en": "Activating AgentArts provides 2 million tokens for its preset model services."
+  },
+  "conditions": {
+    "zh-CN": [
+      "范围为华北北京四的AgentArts平台，不宣称独立通用MaaS API免费额度。",
+      "服务区域为华北北京四；申请者所在地资格、额度期限和付款方式门槛原文未明确。"
+    ],
+    "en": [
+      "Scoped to AgentArts in North China Beijing 4; this does not establish an unrestricted standalone MaaS API entitlement.",
+      "The service region is North China Beijing 4; applicant-location eligibility, allowance expiry and payment prerequisites are unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "用尽后须开通MaaS对应付费模型并完成鉴权才继续使用。",
+    "en": "After exhaustion, continued use requires activating and authenticating the corresponding paid MaaS model."
+  },
+  "claimUrl": "https://support.huaweicloud.com/usermanual-agentarts0/agentarts_05_0186.html",
+  "checkedAt": "2026-10-04T18:02:36.351862+00:00",
+  "evidence": [
+    {
+      "url": "https://support.huaweicloud.com/usermanual-agentarts0/agentarts_05_0186.html",
+      "bodySha256": "682bebe949a2893d3f13bdc13c5bb41ff41371b0fc75a227779d42647c73661d",
+      "capturedAt": "2026-10-04T18:02:36.351862+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Huawei Cloud",
+        "en": "Official evidence · Huawei Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 35. Together AI 创业加速器 / Together AI Startup Accelerator
+
+按融资阶段申请最高 US$15,000 / 30,000 / 50,000 平台额度。 / Apply for up to US$15,000 / 30,000 / 50,000 platform credits by funding stage.
+
+- Provider/source: Together AI
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- 择优审批，非自动注册赠金；Build融资≤500万美元、Scale 500万–1000万美元、Grow超过1000万美元。
+- 覆盖serverless、专用端点、微调和instant clusters；不适用Reserved GPU Clusters。
+- 发放额与优惠期限原文未明确；通常自助API仍须最低5美元充值，勿推断获批可免全部支付门槛。
+- Selective approval, not automatic signup credit: Build raised up to $5M, Scale $5M–$10M, Grow over $10M.
+- Covers serverless, dedicated endpoints, fine-tuning and instant clusters; excludes Reserved GPU Clusters.
+- Award and expiry are unspecified; ordinary self-serve API access requires a $5 purchase, so approval does not establish exemption.
+
+Sources / 来源:
+
+- [Official evidence](https://www.together.ai/startup-accelerator) — SHA-256 `32038cbfd9106d2507bd6ee7c67f37d1180fc39b371dd50fd297daf45ffe6c9f`
+- [Official evidence](https://support.together.ai/articles/1862638756-changes-to-free-tier-and-billing-july-2025) — SHA-256 `6b8b95f61ced114c28ad6ac9ac57ae7a9bf6c3b97be03f2004d47b02e0d759ea`
+
+[Provider programme page / 提供方入口](https://www.together.ai/startup-accelerator)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "together-startup-accelerator",
+  "provider": "Together AI",
+  "operatorKind": "inference-provider",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Together AI 创业加速器",
+    "en": "Together AI Startup Accelerator"
+  },
+  "benefitText": {
+    "zh-CN": "按融资阶段申请最高 US$15,000 / 30,000 / 50,000 平台额度。",
+    "en": "Apply for up to US$15,000 / 30,000 / 50,000 platform credits by funding stage."
+  },
+  "conditions": {
+    "zh-CN": [
+      "择优审批，非自动注册赠金；Build融资≤500万美元、Scale 500万–1000万美元、Grow超过1000万美元。",
+      "覆盖serverless、专用端点、微调和instant clusters；不适用Reserved GPU Clusters。",
+      "发放额与优惠期限原文未明确；通常自助API仍须最低5美元充值，勿推断获批可免全部支付门槛。"
+    ],
+    "en": [
+      "Selective approval, not automatic signup credit: Build raised up to $5M, Scale $5M–$10M, Grow over $10M.",
+      "Covers serverless, dedicated endpoints, fine-tuning and instant clusters; excludes Reserved GPU Clusters.",
+      "Award and expiry are unspecified; ordinary self-serve API access requires a $5 purchase, so approval does not establish exemption."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://www.together.ai/startup-accelerator",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.together.ai/startup-accelerator",
+      "bodySha256": "32038cbfd9106d2507bd6ee7c67f37d1180fc39b371dd50fd297daf45ffe6c9f",
+      "capturedAt": "2026-10-04T17:55:25.414273+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Together AI",
+        "en": "Official evidence · Together AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://support.together.ai/articles/1862638756-changes-to-free-tier-and-billing-july-2025",
+      "bodySha256": "6b8b95f61ced114c28ad6ac9ac57ae7a9bf6c3b97be03f2004d47b02e0d759ea",
+      "capturedAt": "2026-10-04T17:55:25.417375+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Together AI",
+        "en": "Official evidence · Together AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "部分档位、配比、账户方案或继续使用需要真实付款；详见消费与费用条件。",
+        "en": "Some tiers, matching stages, account plans or continued use require actual spend; consult the spending and billing terms."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 36. Together AI 邀请制研究额度 / Together AI invite-only research credits
+
+为课外学生研究提供小额资助；原文仅称几百美元支持，未保证固定金额。 / Small grants for student research outside formal classes; no fixed award is guaranteed.
+
+- Provider/source: Together AI
+- Category: student-research
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- 仅邀请制，并未广泛开放；需要研究项目申请。
+- 受资助者被请求在成果中致谢Together AI；有效期、支付、地区原文未明确。
+- Invite-only and not broadly available; research application required.
+- Recipients are asked to acknowledge Together AI; expiry, payment and regions are unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://www.together.ai/research-credits-program-request) — SHA-256 `a65f79ff8422b2dd7347f5a8f51417e563cbcdd3e7fea97f40c4e9346be85570`
+
+[Provider programme page / 提供方入口](https://www.together.ai/research-credits-program-request)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "together-research-invite",
+  "provider": "Together AI",
+  "operatorKind": "inference-provider",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "Together AI 邀请制研究额度",
+    "en": "Together AI invite-only research credits"
+  },
+  "benefitText": {
+    "zh-CN": "为课外学生研究提供小额资助；原文仅称几百美元支持，未保证固定金额。",
+    "en": "Small grants for student research outside formal classes; no fixed award is guaranteed."
+  },
+  "conditions": {
+    "zh-CN": [
+      "仅邀请制，并未广泛开放；需要研究项目申请。",
+      "受资助者被请求在成果中致谢Together AI；有效期、支付、地区原文未明确。"
+    ],
+    "en": [
+      "Invite-only and not broadly available; research application required.",
+      "Recipients are asked to acknowledge Together AI; expiry, payment and regions are unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://www.together.ai/research-credits-program-request",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.together.ai/research-credits-program-request",
+      "bodySha256": "a65f79ff8422b2dd7347f5a8f51417e563cbcdd3e7fea97f40c4e9346be85570",
+      "capturedAt": "2026-10-04T17:55:25.415873+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Together AI",
+        "en": "Official evidence · Together AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需项目邀请或有效推荐关系；不得当作普通注册即送。",
+        "en": "A program invitation or valid referral is required; this is not an unconditional signup grant."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 37. Fireworks 创业项目额度 / Fireworks startup credits
+
+合资格创业企业可申请平台额度；原文没有固定金额。 / Eligible startups can apply for platform credits; no fixed amount is stated.
+
+- Provider/source: Fireworks AI
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- 注册公司且有功能网站，私有营利企业、成立五年内、VC融资超过50万美元、未达Series D。
+- 审批后额度一年到期；覆盖文本/视觉、图像、语音、embedding、微调和按需GPU。
+- 不覆盖预留GPU承诺、SLA、专业服务或高级支持；金额及地区未明确。
+- 活动页称绑支付方式后用尽可续付费，当前自助账单文档为预付/可选自动充值，须核实际账户。
+- Registered private for-profit company with functional website, founded within 5 years, VC funding above $500k, no Series D or later.
+- Approved credits expire after one year; text/vision, images, STT, embeddings, fine-tuning and on-demand GPU usage.
+- Excludes reserved GPU commitments, SLAs, professional services and premium support; award and regions unspecified.
+- Program mentions paid continuation with a payment method; current self-serve billing is prepaid with optional auto reload: confirm account terms.
+
+Sources / 来源:
+
+- [Official evidence](https://fireworks.ai/startups) — SHA-256 `32659843e7604d51faa50a3e78db20112412637aa98f8d4ca1c69b51b5e618f6`
+- [Official evidence](https://docs.fireworks.ai/faq-new/billing-pricing/how-does-billing-and-credit-usage-work) — SHA-256 `c468572fc6d2caaf1d0368fb07126095b6c7714e741fd58253875b73c98aa894`
+
+[Provider programme page / 提供方入口](https://fireworks.ai/startups)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "fireworks-startup-credit",
+  "provider": "Fireworks AI",
+  "operatorKind": "inference-provider",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Fireworks 创业项目额度",
+    "en": "Fireworks startup credits"
+  },
+  "benefitText": {
+    "zh-CN": "合资格创业企业可申请平台额度；原文没有固定金额。",
+    "en": "Eligible startups can apply for platform credits; no fixed amount is stated."
+  },
+  "conditions": {
+    "zh-CN": [
+      "注册公司且有功能网站，私有营利企业、成立五年内、VC融资超过50万美元、未达Series D。",
+      "审批后额度一年到期；覆盖文本/视觉、图像、语音、embedding、微调和按需GPU。",
+      "不覆盖预留GPU承诺、SLA、专业服务或高级支持；金额及地区未明确。",
+      "活动页称绑支付方式后用尽可续付费，当前自助账单文档为预付/可选自动充值，须核实际账户。"
+    ],
+    "en": [
+      "Registered private for-profit company with functional website, founded within 5 years, VC funding above $500k, no Series D or later.",
+      "Approved credits expire after one year; text/vision, images, STT, embeddings, fine-tuning and on-demand GPU usage.",
+      "Excludes reserved GPU commitments, SLAs, professional services and premium support; award and regions unspecified.",
+      "Program mentions paid continuation with a payment method; current self-serve billing is prepaid with optional auto reload: confirm account terms."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://fireworks.ai/startups",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://fireworks.ai/startups",
+      "bodySha256": "32659843e7604d51faa50a3e78db20112412637aa98f8d4ca1c69b51b5e618f6",
+      "capturedAt": "2026-10-04T17:55:25.904713+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Fireworks AI",
+        "en": "Official evidence · Fireworks AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.fireworks.ai/faq-new/billing-pricing/how-does-billing-and-credit-usage-work",
+      "bodySha256": "c468572fc6d2caaf1d0368fb07126095b6c7714e741fd58253875b73c98aa894",
+      "capturedAt": "2026-10-04T17:57:11.995158+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Fireworks AI",
+        "en": "Official evidence · Fireworks AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "特定模型、身份核验、账单层级或升级环节可能要求付款方式；不能推及全部免费用量。",
+        "en": "Some models, verification, billing tiers or upgrade steps require a payment method; this is not a universal free-scope requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "自动充值/续费取决于已启用的账户设置或专属条款，须在账户核对。",
+        "en": "Auto-reload/renewal depends on enabled account settings or award-specific terms; verify in the account."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 38. Novita AI 创业额度与消费配比 / Novita AI startup credits and spend matching
+
+获批最高 US$10,000；最高 US$1,000 起步，其余需要消费配比。 / Approved awards up to US$10,000: up to $1,000 upfront; remaining credits require matching spend.
+
+- Provider/source: Novita AI
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 审批后部分额度需1:1或2:1消费配比；最高1万美元不是无消费赠金。有效期一年，额外用量计费。 / Approval is required and later credits require 1:1 or 2:1 matching spend; the $10k maximum is not a no-spend gift. One-year validity; additional use is billed.
+
+Conditions / 完整条件:
+
+- VC支持、Series B或以前、AI原生产品、Novita新用户；审核资金、团队和使用计划。
+- 后续5000美元按1:1消费匹配，末4000美元每消费2美元赠1美元；不能称自动送一万美元。
+- 最高5000美元Agent Sandbox和5000美元Model API分开；额度可使用一年。
+- Venture-backed, Series B or earlier, AI-native product and new Novita user; funding, team and usage reviewed.
+- Next $5,000 matched 1:1 with spend; final $4,000 at $1 credit per $2 spend; not a $10k automatic gift.
+- Up to $5,000 each for Agent Sandbox and Model API; redeemable for one year.
+
+Sources / 来源:
+
+- [Official evidence](https://startups.novita.ai/) — SHA-256 `0df851cb0120d2856964ca9d07f779c8c0792adc5301ec410c7f08404821583c`
+
+[Provider programme page / 提供方入口](https://startups.novita.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "novita-startup-credit",
+  "provider": "Novita AI",
+  "operatorKind": "inference-provider",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Novita AI 创业额度与消费配比",
+    "en": "Novita AI startup credits and spend matching"
+  },
+  "benefitText": {
+    "zh-CN": "获批最高 US$10,000；最高 US$1,000 起步，其余需要消费配比。",
+    "en": "Approved awards up to US$10,000: up to $1,000 upfront; remaining credits require matching spend."
+  },
+  "conditions": {
+    "zh-CN": [
+      "VC支持、Series B或以前、AI原生产品、Novita新用户；审核资金、团队和使用计划。",
+      "后续5000美元按1:1消费匹配，末4000美元每消费2美元赠1美元；不能称自动送一万美元。",
+      "最高5000美元Agent Sandbox和5000美元Model API分开；额度可使用一年。"
+    ],
+    "en": [
+      "Venture-backed, Series B or earlier, AI-native product and new Novita user; funding, team and usage reviewed.",
+      "Next $5,000 matched 1:1 with spend; final $4,000 at $1 credit per $2 spend; not a $10k automatic gift.",
+      "Up to $5,000 each for Agent Sandbox and Model API; redeemable for one year."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "审批后部分额度需1:1或2:1消费配比；最高1万美元不是无消费赠金。有效期一年，额外用量计费。",
+    "en": "Approval is required and later credits require 1:1 or 2:1 matching spend; the $10k maximum is not a no-spend gift. One-year validity; additional use is billed."
+  },
+  "claimUrl": "https://startups.novita.ai/",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://startups.novita.ai/",
+      "bodySha256": "0df851cb0120d2856964ca9d07f779c8c0792adc5301ec410c7f08404821583c",
+      "capturedAt": "2026-10-04T17:55:27.204222+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Novita AI",
+        "en": "Official evidence · Novita AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "部分档位、配比、账户方案或继续使用需要真实付款；详见消费与费用条件。",
+        "en": "Some tiers, matching stages, account plans or continued use require actual spend; consult the spending and billing terms."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 39. Nebius 研究资助 / Nebius research grants
+
+按项目审批GPU云、Token Factory与Tavily额度；金额逐提案决定。 / GPU cloud, Token Factory and Tavily credits awarded individually by proposal.
+
+- Provider/source: Nebius
+- Category: student-research
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- 面向研究生、博士/博士后、认可院校教职员及院校/非营利研究机构研究者；择优审批。
+- 项目开始日起30天内激活，发放365天到期；不能商业使用或个人使用、不可转售转让。
+- 同一研究团队仅一人申请，同项目仅申请一次；具体服务/额度按批准。
+- 不能与其他促销或折扣叠加；资格要求愿公开致谢并参与联合传播。
+- Postgraduates, PhD/postdocs, accredited faculty and academic/nonprofit researchers; discretionary approval.
+- Activate within 30 days of project start; expires 365 days after provision; no commercial/personal use or resale/transfer.
+- One applicant per research team and one application for the same project; service allocation follows approval.
+- Cannot be combined with other promotions or discounts; eligibility requires willingness to publicly acknowledge the award and participate in co-marketing.
+
+Sources / 来源:
+
+- [Official evidence](https://nebius.com/nebius-research-grants) — SHA-256 `ba26d25d19d765dff2953765d5834c87fdd36266e99979ada587d38da434a661`
+- [Official evidence](https://nebius.com/nebius-research-credits-program/terms-and-condiitions) — SHA-256 `b3ea49e3b503a3b7404638a92f78bd52c0b902c0baf1d12197a04b6aad4ade36`
+
+[Provider programme page / 提供方入口](https://nebius.com/nebius-research-grants)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "nebius-research-grant",
+  "provider": "Nebius",
+  "operatorKind": "inference-provider",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "Nebius 研究资助",
+    "en": "Nebius research grants"
+  },
+  "benefitText": {
+    "zh-CN": "按项目审批GPU云、Token Factory与Tavily额度；金额逐提案决定。",
+    "en": "GPU cloud, Token Factory and Tavily credits awarded individually by proposal."
+  },
+  "conditions": {
+    "zh-CN": [
+      "面向研究生、博士/博士后、认可院校教职员及院校/非营利研究机构研究者；择优审批。",
+      "项目开始日起30天内激活，发放365天到期；不能商业使用或个人使用、不可转售转让。",
+      "同一研究团队仅一人申请，同项目仅申请一次；具体服务/额度按批准。",
+      "不能与其他促销或折扣叠加；资格要求愿公开致谢并参与联合传播。"
+    ],
+    "en": [
+      "Postgraduates, PhD/postdocs, accredited faculty and academic/nonprofit researchers; discretionary approval.",
+      "Activate within 30 days of project start; expires 365 days after provision; no commercial/personal use or resale/transfer.",
+      "One applicant per research team and one application for the same project; service allocation follows approval.",
+      "Cannot be combined with other promotions or discounts; eligibility requires willingness to publicly acknowledge the award and participate in co-marketing."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://nebius.com/nebius-research-grants",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://nebius.com/nebius-research-grants",
+      "bodySha256": "ba26d25d19d765dff2953765d5834c87fdd36266e99979ada587d38da434a661",
+      "capturedAt": "2026-10-04T17:55:27.324614+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Nebius",
+        "en": "Official evidence · Nebius"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://nebius.com/nebius-research-credits-program/terms-and-condiitions",
+      "bodySha256": "b3ea49e3b503a3b7404638a92f78bd52c0b902c0baf1d12197a04b6aad4ade36",
+      "capturedAt": "2026-10-04T17:55:27.469495+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Nebius",
+        "en": "Official evidence · Nebius"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 40. Baseten 新用户部署额度 / Baseten new-account deployment credits
+
+新账户有免费探索部署额度，原文未列金额。 / New accounts include credits to experiment with deployments; amount is unspecified.
+
+- Provider/source: Baseten
+- Category: trial
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- 注册新账户；用于部署试验，非无限Model API免费层。
+- 有效期、是否必须绑卡及地区原文未明确。
+- New account; experiment with deployments, not unlimited free Model APIs.
+- Expiry, mandatory card and regions are unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://www.baseten.co/pricing/) — SHA-256 `123c52fc8b98f112cbda17353546b4f3df41e29366f7d5f5b99e068ab357dbd4`
+
+[Provider programme page / 提供方入口](https://www.baseten.co/pricing/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "baseten-starter-credit",
+  "provider": "Baseten",
+  "operatorKind": "inference-provider",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Baseten 新用户部署额度",
+    "en": "Baseten new-account deployment credits"
+  },
+  "benefitText": {
+    "zh-CN": "新账户有免费探索部署额度，原文未列金额。",
+    "en": "New accounts include credits to experiment with deployments; amount is unspecified."
+  },
+  "conditions": {
+    "zh-CN": [
+      "注册新账户；用于部署试验，非无限Model API免费层。",
+      "有效期、是否必须绑卡及地区原文未明确。"
+    ],
+    "en": [
+      "New account; experiment with deployments, not unlimited free Model APIs.",
+      "Expiry, mandatory card and regions are unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://www.baseten.co/pricing/",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.baseten.co/pricing/",
+      "bodySha256": "123c52fc8b98f112cbda17353546b4f3df41e29366f7d5f5b99e068ab357dbd4",
+      "capturedAt": "2026-10-04T17:55:27.818433+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Baseten",
+        "en": "Official evidence · Baseten"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 41. Baseten AI 创业扶持 / Baseten AI startup program
+
+审批最高 US$25,000 Dedicated Inference/Training 与最高 US$2,500 Model API额度。 / Approval for up to $25,000 Dedicated Inference/Training and up to $2,500 Model API credits.
+
+- Provider/source: Baseten
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- AI是核心产品，VC融资Seed至Series A、成立不足五年。
+- 仅从未获Baseten额度的新客户；须申请，最高额不是保证发放。
+- 额度发放后六个月到期；申请前31天至申请权益时公司域名不得有Baseten付费订阅。排除已IPO/被并购、教育/政府/非营利、博客、开发服务/咨询/代理及某些加密公司；地区和支付方式未明确。
+- AI-core product, VC-funded Seed–Series A, founded less than five years ago.
+- Net-new customer who has never received Baseten credits; application required, maximum not guaranteed.
+- Credits expire six months after grant; company domain cannot have a paid plan from 31 days before application through benefit request. Excludes IPO/acquired, education/government/nonprofit, blogs, development shops/consultancies/agencies and certain crypto businesses; region/payment unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://www.baseten.co/startup-program/) — SHA-256 `6383455b5d6126c61a25db9b036cd59de91fe6f77e6358d91675c2ba663f49b3`
+- [Official evidence](https://www.baseten.co/pricing/) — SHA-256 `123c52fc8b98f112cbda17353546b4f3df41e29366f7d5f5b99e068ab357dbd4`
+- [Official evidence](https://www.baseten.co/startup-program-legal-disclaimers/) — SHA-256 `a3666327c954cce209b57fe76d36a86111881dd4bd0a2b8db48dc27d77662ba1`
+
+[Provider programme page / 提供方入口](https://www.baseten.co/startup-program/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "baseten-startup-credit",
+  "provider": "Baseten",
+  "operatorKind": "inference-provider",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Baseten AI 创业扶持",
+    "en": "Baseten AI startup program"
+  },
+  "benefitText": {
+    "zh-CN": "审批最高 US$25,000 Dedicated Inference/Training 与最高 US$2,500 Model API额度。",
+    "en": "Approval for up to $25,000 Dedicated Inference/Training and up to $2,500 Model API credits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "AI是核心产品，VC融资Seed至Series A、成立不足五年。",
+      "仅从未获Baseten额度的新客户；须申请，最高额不是保证发放。",
+      "额度发放后六个月到期；申请前31天至申请权益时公司域名不得有Baseten付费订阅。排除已IPO/被并购、教育/政府/非营利、博客、开发服务/咨询/代理及某些加密公司；地区和支付方式未明确。"
+    ],
+    "en": [
+      "AI-core product, VC-funded Seed–Series A, founded less than five years ago.",
+      "Net-new customer who has never received Baseten credits; application required, maximum not guaranteed.",
+      "Credits expire six months after grant; company domain cannot have a paid plan from 31 days before application through benefit request. Excludes IPO/acquired, education/government/nonprofit, blogs, development shops/consultancies/agencies and certain crypto businesses; region/payment unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://www.baseten.co/startup-program/",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.baseten.co/startup-program/",
+      "bodySha256": "6383455b5d6126c61a25db9b036cd59de91fe6f77e6358d91675c2ba663f49b3",
+      "capturedAt": "2026-10-04T17:57:11.856476+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Baseten",
+        "en": "Official evidence · Baseten"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.baseten.co/pricing/",
+      "bodySha256": "123c52fc8b98f112cbda17353546b4f3df41e29366f7d5f5b99e068ab357dbd4",
+      "capturedAt": "2026-10-04T17:55:27.818433+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Baseten",
+        "en": "Official evidence · Baseten"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.baseten.co/startup-program-legal-disclaimers/",
+      "bodySha256": "a3666327c954cce209b57fe76d36a86111881dd4bd0a2b8db48dc27d77662ba1",
+      "capturedAt": "2026-10-04T18:02:07.336986+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Baseten",
+        "en": "Official evidence · Baseten"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 42. fal 创业额度 / fal startup credits
+
+获批 US$1,000 起步；按月fal消费申请增至 US$2,500 / 5,000。 / Approved $1,000 starter pack; request growth to $2,500 / $5,000 based on monthly fal spend.
+
+- Provider/source: fal.ai
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 增额需月消费1000或2500美元并主动申请；地区限欧洲与亚洲，原文未列额度期限。 / Increased grants require monthly spend of $1,000 or $2,500 and a request; Europe/Asia only; expiry is unspecified.
+
+Conditions / 完整条件:
+
+- 仅欧洲与亚洲团队；需实际用户/牵引力/收入或机构VC投资，通常有简短面谈。
+- 2500美元档需fal月消费1000美元，5000档需月消费2500美元；需联系增额，非自动送5000美元。
+- 每公司三个月一次申请，不可转售转让；伙伴推荐优先，额度期限原文未明确。
+- Europe/Asia teams; traction/users/revenue or institutional VC backing; usually a short call.
+- $2,500 pack requires $1,000 monthly fal spend; $5,000 requires $2,500 monthly spend; request the bump.
+- One application/company per three months, no resale/transfer; partner referrals prioritized; expiry unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://fal.ai/startup-program) — SHA-256 `5977a025c7a71fcaaa7eef6d4284449ac21980b57c28f12c7717a97b1ea92379`
+
+[Provider programme page / 提供方入口](https://fal.ai/startup-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "fal-startup-credit",
+  "provider": "fal.ai",
+  "operatorKind": "inference-provider",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "fal 创业额度",
+    "en": "fal startup credits"
+  },
+  "benefitText": {
+    "zh-CN": "获批 US$1,000 起步；按月fal消费申请增至 US$2,500 / 5,000。",
+    "en": "Approved $1,000 starter pack; request growth to $2,500 / $5,000 based on monthly fal spend."
+  },
+  "conditions": {
+    "zh-CN": [
+      "仅欧洲与亚洲团队；需实际用户/牵引力/收入或机构VC投资，通常有简短面谈。",
+      "2500美元档需fal月消费1000美元，5000档需月消费2500美元；需联系增额，非自动送5000美元。",
+      "每公司三个月一次申请，不可转售转让；伙伴推荐优先，额度期限原文未明确。"
+    ],
+    "en": [
+      "Europe/Asia teams; traction/users/revenue or institutional VC backing; usually a short call.",
+      "$2,500 pack requires $1,000 monthly fal spend; $5,000 requires $2,500 monthly spend; request the bump.",
+      "One application/company per three months, no resale/transfer; partner referrals prioritized; expiry unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "增额需月消费1000或2500美元并主动申请；地区限欧洲与亚洲，原文未列额度期限。",
+    "en": "Increased grants require monthly spend of $1,000 or $2,500 and a request; Europe/Asia only; expiry is unspecified."
+  },
+  "claimUrl": "https://fal.ai/startup-program",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://fal.ai/startup-program",
+      "bodySha256": "5977a025c7a71fcaaa7eef6d4284449ac21980b57c28f12c7717a97b1ea92379",
+      "capturedAt": "2026-10-04T17:55:28.342570+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · fal.ai",
+        "en": "Official evidence · fal.ai"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "部分档位、配比、账户方案或继续使用需要真实付款；详见消费与费用条件。",
+        "en": "Some tiers, matching stages, account plans or continued use require actual spend; consult the spending and billing terms."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 43. Runpod 邀请与消费奖励 / Runpod referral and spend reward
+
+新邀请用户消费首个 US$10 后，双方各得随机 US$5–500额度。 / After a new referral spends their first $10, both parties receive a random $5–500 credit reward.
+
+- Provider/source: RunPod
+- Category: conditional-reward
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 必须新用户先真实消费10美元；随机额度90天到期，500美元仅上限。 / A new referral must first spend $10; random credits expire in 90 days and $500 is only the maximum.
+
+Conditions / 完整条件:
+
+- 新用户通过独特邀请链接注册并真实消费10美元；最高500美元不是固定奖励。
+- 额度90天到期、不可转让，禁止自邀/操纵。
+- 邀请人另获前六个月Pods消费3%/Serverless 5%额度佣金；不是零消费注册免费层。
+- New user registers through unique referral link and spends $10; $500 is not guaranteed.
+- Credits expire in 90 days, nontransferable, no self-referrals/manipulation.
+- Referrer additionally earns 3% Pods/5% Serverless spend commissions for six months; not free signup without spend.
+
+Sources / 来源:
+
+- [Official evidence](https://www.runpod.io/refer-a-friend) — SHA-256 `eeae205351e56d0919fbed152d37ce7bdf3dfdfbfa20a6f5aa1aa33d24abe297`
+
+[Provider programme page / 提供方入口](https://www.runpod.io/refer-a-friend)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "runpod-referral-credit",
+  "provider": "RunPod",
+  "operatorKind": "inference-provider",
+  "category": "conditional-reward",
+  "title": {
+    "zh-CN": "Runpod 邀请与消费奖励",
+    "en": "Runpod referral and spend reward"
+  },
+  "benefitText": {
+    "zh-CN": "新邀请用户消费首个 US$10 后，双方各得随机 US$5–500额度。",
+    "en": "After a new referral spends their first $10, both parties receive a random $5–500 credit reward."
+  },
+  "conditions": {
+    "zh-CN": [
+      "新用户通过独特邀请链接注册并真实消费10美元；最高500美元不是固定奖励。",
+      "额度90天到期、不可转让，禁止自邀/操纵。",
+      "邀请人另获前六个月Pods消费3%/Serverless 5%额度佣金；不是零消费注册免费层。"
+    ],
+    "en": [
+      "New user registers through unique referral link and spends $10; $500 is not guaranteed.",
+      "Credits expire in 90 days, nontransferable, no self-referrals/manipulation.",
+      "Referrer additionally earns 3% Pods/5% Serverless spend commissions for six months; not free signup without spend."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "必须新用户先真实消费10美元；随机额度90天到期，500美元仅上限。",
+    "en": "A new referral must first spend $10; random credits expire in 90 days and $500 is only the maximum."
+  },
+  "claimUrl": "https://www.runpod.io/refer-a-friend",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.runpod.io/refer-a-friend",
+      "bodySha256": "eeae205351e56d0919fbed152d37ce7bdf3dfdfbfa20a6f5aa1aa33d24abe297",
+      "capturedAt": "2026-10-04T17:55:28.688706+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · RunPod",
+        "en": "Official evidence · RunPod"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "受邀新用户须先真实消费10美元。",
+        "en": "The new referred user must first spend US$10."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需项目邀请或有效推荐关系；不得当作普通注册即送。",
+        "en": "A program invitation or valid referral is required; this is not an unconditional signup grant."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 44. Runpod 创业扶持与预付匹配 / Runpod startup credits and upfront match
+
+获批Starter 1000美元；Growth预付50000美元后奖励25000美元。 / Approved Starter $1,000; Growth adds $25,000 bonus after a $50,000 commitment.
+
+- Provider/source: RunPod
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: Growth须预付5万美元并签12个月协议，额外赠2.5万美元；Starter审批制，不把自付金额称赠金。 / Growth requires $50,000 upfront and a 12-month agreement for a $25,000 bonus; Starter requires approval. Paid funds are not a grant.
+
+Conditions / 完整条件:
+
+- 择优创业项目、偏好VC支持、真实AI负载及近期GPU需求；主要新客户，旧客逐案审。
+- Growth须50000美元预付及12个月协议，75000美元总额包含自付部分。
+- 覆盖Pods、Serverless、Clusters、Storage；Starter到期与地区原文未明确。
+- Selective startups, VC preferred, real AI workloads and near-term GPU needs; mainly new customers, existing users case-by-case.
+- Growth requires $50k upfront and a 12-month agreement; $75k total includes paid funds.
+- Pods, Serverless, Clusters and Storage; Starter expiry and regions unspecified.
+
+Sources / 来源:
+
+- [Official evidence](https://www.runpod.io/startup-program) — SHA-256 `4f0165e38a91109a08fa0045cbd0921262999c1fdba5c13e794aee552adb2ffc`
+
+[Provider programme page / 提供方入口](https://www.runpod.io/startup-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "runpod-startup-program",
+  "provider": "RunPod",
+  "operatorKind": "inference-provider",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Runpod 创业扶持与预付匹配",
+    "en": "Runpod startup credits and upfront match"
+  },
+  "benefitText": {
+    "zh-CN": "获批Starter 1000美元；Growth预付50000美元后奖励25000美元。",
+    "en": "Approved Starter $1,000; Growth adds $25,000 bonus after a $50,000 commitment."
+  },
+  "conditions": {
+    "zh-CN": [
+      "择优创业项目、偏好VC支持、真实AI负载及近期GPU需求；主要新客户，旧客逐案审。",
+      "Growth须50000美元预付及12个月协议，75000美元总额包含自付部分。",
+      "覆盖Pods、Serverless、Clusters、Storage；Starter到期与地区原文未明确。"
+    ],
+    "en": [
+      "Selective startups, VC preferred, real AI workloads and near-term GPU needs; mainly new customers, existing users case-by-case.",
+      "Growth requires $50k upfront and a 12-month agreement; $75k total includes paid funds.",
+      "Pods, Serverless, Clusters and Storage; Starter expiry and regions unspecified."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "Growth须预付5万美元并签12个月协议，额外赠2.5万美元；Starter审批制，不把自付金额称赠金。",
+    "en": "Growth requires $50,000 upfront and a 12-month agreement for a $25,000 bonus; Starter requires approval. Paid funds are not a grant."
+  },
+  "claimUrl": "https://www.runpod.io/startup-program",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.runpod.io/startup-program",
+      "bodySha256": "4f0165e38a91109a08fa0045cbd0921262999c1fdba5c13e794aee552adb2ffc",
+      "capturedAt": "2026-10-04T17:57:11.647653+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · RunPod",
+        "en": "Official evidence · RunPod"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "部分档位、配比、账户方案或继续使用需要真实付款；详见消费与费用条件。",
+        "en": "Some tiers, matching stages, account plans or continued use require actual spend; consult the spending and billing terms."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 45. Lambda 研究GPU云资助 / Lambda research GPU grant
+
+合资格研究者申请最高 US$5,000 Instances计算额度。 / Qualifying researchers can apply for up to US$5,000 Instances compute credits.
+
+- Provider/source: Lambda
+- Category: student-research
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 研究额度先审批；启动需支持地区的信用卡及可退10美元预授权。按所列到期条款使用，额外服务另计费。 / Grant approval comes first; launching requires a supported-country credit card and refundable $10 authorization. Use within the listed expiry; additional services are billed.
+
+Conditions / 完整条件:
+
+- 申请研究资助、金额由批准决定；部分研究可被官网展示。
+- 一般服务启动需信用卡，有10美元预授权后退还；不得宣称无需绑卡。
+- 通用条款额度默认发放12个月到期，具体券可更早并可被撤销；不可提现。
+- 购买支持国家/地区仅限官方账单清单：中国大陆未列。清单包含澳大利亚、加拿大、智利、欧盟（立陶宛除外）、冰岛、以色列、日本、新西兰、挪威、波多黎各、新加坡、南非、韩国、瑞士、台湾、土耳其、阿联酋、英国和美国。仅支持主要信用卡，不支持借记卡或预付卡。
+- Research grant application, award subject to approval; selected research may be featured.
+- Ordinary service launch requires a card with refundable $10 authorization; no card-free claim.
+- General credits expire 12 months after issue unless instrument specifies earlier and may be revoked; no cash value.
+- Purchasing is limited to the official country/region list; mainland China is not listed. It includes Australia, Canada, Chile, EU except Lithuania, Iceland, Israel, Japan, New Zealand, Norway, Puerto Rico, Singapore, South Africa, South Korea, Switzerland, Taiwan, Turkey, UAE, UK and USA. Major credit cards only; debit/prepaid cards are unsupported.
+
+Sources / 来源:
+
+- [Official evidence](https://lambda.ai/research) — SHA-256 `2acec1c75978188974d3218dd6abbf964d4cf744c870f3fd99f39b745385323f`
+- [Official evidence](https://lambda.ai/legal/terms-of-service) — SHA-256 `7c066de8e68df688a20e5649ad3b0bb28c2a7d820ebc7ad9875f7ac3e0c4410c`
+- [Official evidence](https://docs.lambda.ai/public-cloud/manage-billing/) — SHA-256 `84304a571410c32ecdd1912dde5e8ed3271a948e54d9a9941ec88cecee753b16`
+
+[Provider programme page / 提供方入口](https://lambda.ai/research)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "lambda-research-grant",
+  "provider": "Lambda",
+  "operatorKind": "inference-provider",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "Lambda 研究GPU云资助",
+    "en": "Lambda research GPU grant"
+  },
+  "benefitText": {
+    "zh-CN": "合资格研究者申请最高 US$5,000 Instances计算额度。",
+    "en": "Qualifying researchers can apply for up to US$5,000 Instances compute credits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "申请研究资助、金额由批准决定；部分研究可被官网展示。",
+      "一般服务启动需信用卡，有10美元预授权后退还；不得宣称无需绑卡。",
+      "通用条款额度默认发放12个月到期，具体券可更早并可被撤销；不可提现。",
+      "购买支持国家/地区仅限官方账单清单：中国大陆未列。清单包含澳大利亚、加拿大、智利、欧盟（立陶宛除外）、冰岛、以色列、日本、新西兰、挪威、波多黎各、新加坡、南非、韩国、瑞士、台湾、土耳其、阿联酋、英国和美国。仅支持主要信用卡，不支持借记卡或预付卡。"
+    ],
+    "en": [
+      "Research grant application, award subject to approval; selected research may be featured.",
+      "Ordinary service launch requires a card with refundable $10 authorization; no card-free claim.",
+      "General credits expire 12 months after issue unless instrument specifies earlier and may be revoked; no cash value.",
+      "Purchasing is limited to the official country/region list; mainland China is not listed. It includes Australia, Canada, Chile, EU except Lithuania, Iceland, Israel, Japan, New Zealand, Norway, Puerto Rico, Singapore, South Africa, South Korea, Switzerland, Taiwan, Turkey, UAE, UK and USA. Major credit cards only; debit/prepaid cards are unsupported."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "研究额度先审批；启动需支持地区的信用卡及可退10美元预授权。按所列到期条款使用，额外服务另计费。",
+    "en": "Grant approval comes first; launching requires a supported-country credit card and refundable $10 authorization. Use within the listed expiry; additional services are billed."
+  },
+  "claimUrl": "https://lambda.ai/research",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://lambda.ai/research",
+      "bodySha256": "2acec1c75978188974d3218dd6abbf964d4cf744c870f3fd99f39b745385323f",
+      "capturedAt": "2026-10-04T17:55:29.139747+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Lambda",
+        "en": "Official evidence · Lambda"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://lambda.ai/legal/terms-of-service",
+      "bodySha256": "7c066de8e68df688a20e5649ad3b0bb28c2a7d820ebc7ad9875f7ac3e0c4410c",
+      "capturedAt": "2026-10-04T17:57:11.645160+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Lambda",
+        "en": "Official evidence · Lambda"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.lambda.ai/public-cloud/manage-billing/",
+      "bodySha256": "84304a571410c32ecdd1912dde5e8ed3271a948e54d9a9941ec88cecee753b16",
+      "capturedAt": "2026-10-04T17:57:11.646169+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Lambda",
+        "en": "Official evidence · Lambda"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 46. Cerebras 邀请Token奖励 / Cerebras referral token bonus
+
+有效邀请注册后双方每日增加200,000奖励Token；每用户累计上限1,000,000。 / Valid referral signup gives both parties 200,000 bonus tokens/day, capped at 1,000,000 total per user.
+
+- Provider/source: Cerebras
+- Category: conditional-reward
+- Observed/checked: 2026-10-04T18:03:30.803060+00:00
+- Billing: 发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。 / Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here.
+
+Conditions / 完整条件:
+
+- 个人良好状态账号；美国及国际附录指定印度、欧盟、英国、加拿大、澳大利亚、新加坡、日本。
+- 至多五个成功邀请；被邀请加入者最多另邀四人；明确选择加入。
+- 仅个人非商业分享，不得公开发布邀请链接、骚扰、自邀或造假；可被修改或终止。
+- 奖励有效期及与5美元30天新试用的消费关系未明确，应核账户；不推断两者互斥。
+- Personal accounts in good standing; US and addendum regions India, EU, UK, Canada, Australia, Singapore and Japan.
+- Up to five successful referrals; users joining through a referral can refer four more; explicit opt-in.
+- Personal noncommercial sharing only; no public referral posting, spam, self-referral or fraud; may change/end.
+- Reward expiry and interaction with $5/30-day trial unspecified; inspect account, without assuming mutual exclusivity.
+
+Sources / 来源:
+
+- [Official evidence](https://www.cerebras.ai/referral-program) — SHA-256 `65202028f130762f331f4782ed3e531d3e5b2fa50d7e1b2f486013c6d5563957`
+- [Official evidence](https://www.cerebras.ai/referral-program-addendum) — SHA-256 `ac01e50748ca29afdc3af4581add45d92133cc821d72c8cfa1f2adfbc38f5a88`
+
+[Provider programme page / 提供方入口](https://www.cerebras.ai/referral-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cerebras-referral-bonus",
+  "provider": "Cerebras",
+  "operatorKind": "inference-provider",
+  "category": "conditional-reward",
+  "title": {
+    "zh-CN": "Cerebras 邀请Token奖励",
+    "en": "Cerebras referral token bonus"
+  },
+  "benefitText": {
+    "zh-CN": "有效邀请注册后双方每日增加200,000奖励Token；每用户累计上限1,000,000。",
+    "en": "Valid referral signup gives both parties 200,000 bonus tokens/day, capped at 1,000,000 total per user."
+  },
+  "conditions": {
+    "zh-CN": [
+      "个人良好状态账号；美国及国际附录指定印度、欧盟、英国、加拿大、澳大利亚、新加坡、日本。",
+      "至多五个成功邀请；被邀请加入者最多另邀四人；明确选择加入。",
+      "仅个人非商业分享，不得公开发布邀请链接、骚扰、自邀或造假；可被修改或终止。",
+      "奖励有效期及与5美元30天新试用的消费关系未明确，应核账户；不推断两者互斥。"
+    ],
+    "en": [
+      "Personal accounts in good standing; US and addendum regions India, EU, UK, Canada, Australia, Singapore and Japan.",
+      "Up to five successful referrals; users joining through a referral can refer four more; explicit opt-in.",
+      "Personal noncommercial sharing only; no public referral posting, spam, self-referral or fraud; may change/end.",
+      "Reward expiry and interaction with $5/30-day trial unspecified; inspect account, without assuming mutual exclusivity."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "发放额度以批准为准；地区和付款条件如原文未明，需账户核对。超过赠金的服务按官方计费，期限按本卡所列条款。",
+    "en": "Allocation follows approval; confirm regional/payment conditions not stated in these sources. Additional use follows official billing; expiry follows the terms listed here."
+  },
+  "claimUrl": "https://www.cerebras.ai/referral-program",
+  "checkedAt": "2026-10-04T18:03:30.803060+00:00",
+  "evidence": [
+    {
+      "url": "https://www.cerebras.ai/referral-program",
+      "bodySha256": "65202028f130762f331f4782ed3e531d3e5b2fa50d7e1b2f486013c6d5563957",
+      "capturedAt": "2026-10-04T18:02:07.334255+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cerebras",
+        "en": "Official evidence · Cerebras"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.cerebras.ai/referral-program-addendum",
+      "bodySha256": "ac01e50748ca29afdc3af4581add45d92133cc821d72c8cfa1f2adfbc38f5a88",
+      "capturedAt": "2026-10-04T18:02:07.335019+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cerebras",
+        "en": "Official evidence · Cerebras"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需项目邀请或有效推荐关系；不得当作普通注册即送。",
+        "en": "A program invitation or valid referral is required; this is not an unconditional signup grant."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 47. Google Cloud 未融资 Start 申请额度 / Google Cloud pre-funded Start credits
+
+审核通过可获$2,000 Cloud credits，使用期12个月。 / Accepted pre-funded startups can receive $2,000 Cloud credits for 12 months.
+
+- Provider/source: Google Cloud
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:00:34.808850+00:00
+- Billing: 抵扣合格服务；超额与非覆盖服务按相应计费账户收费。 / Offsets eligible services; excess and excluded services follow the billing account terms.
+
+Conditions / 完整条件:
+
+- 须有MVP、明确商业模式及近期寻求VC融资计划；成立24个月内，未领取免费试用以外Cloud credits。
+- 需billing account ID；Google自行审核，咨询/代理、教育/政府/非营利等不适用。
+- 可抵Google自有模型；第三方模型直接计费不抵扣。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Working MVP, clear business model and plans to seek VC funding; founded within 24 months and no prior credits beyond the free trial.
+- Billing account ID and discretionary approval required; consultancies/agencies, education, government and nonprofits are excluded.
+- Covers proprietary Google models; third-party models billed directly are excluded.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://cloud.google.com/startup/pre-funded) — SHA-256 `02e188218076848f8737de3a93ac3999475a46a0f103ef0d9c89e67e6709fe46`
+- [Official evidence](https://cloud.google.com/startup/faq) — SHA-256 `aae5ed2386c72eb43a7e8e7e215752cd534278403473ed58a437de119fa2aa27`
+
+[Provider programme page / 提供方入口](https://cloud.google.com/startup/pre-funded)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "google-cloud-prefunded-start",
+  "provider": "Google Cloud",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Google Cloud 未融资 Start 申请额度",
+    "en": "Google Cloud pre-funded Start credits"
+  },
+  "benefitText": {
+    "zh-CN": "审核通过可获$2,000 Cloud credits，使用期12个月。",
+    "en": "Accepted pre-funded startups can receive $2,000 Cloud credits for 12 months."
+  },
+  "conditions": {
+    "zh-CN": [
+      "须有MVP、明确商业模式及近期寻求VC融资计划；成立24个月内，未领取免费试用以外Cloud credits。",
+      "需billing account ID；Google自行审核，咨询/代理、教育/政府/非营利等不适用。",
+      "可抵Google自有模型；第三方模型直接计费不抵扣。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Working MVP, clear business model and plans to seek VC funding; founded within 24 months and no prior credits beyond the free trial.",
+      "Billing account ID and discretionary approval required; consultancies/agencies, education, government and nonprofits are excluded.",
+      "Covers proprietary Google models; third-party models billed directly are excluded.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "抵扣合格服务；超额与非覆盖服务按相应计费账户收费。",
+    "en": "Offsets eligible services; excess and excluded services follow the billing account terms."
+  },
+  "claimUrl": "https://cloud.google.com/startup/pre-funded",
+  "checkedAt": "2026-10-04T18:00:34.808850+00:00",
+  "evidence": [
+    {
+      "url": "https://cloud.google.com/startup/pre-funded",
+      "bodySha256": "02e188218076848f8737de3a93ac3999475a46a0f103ef0d9c89e67e6709fe46",
+      "capturedAt": "2026-10-04T17:57:08.302812+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Google Cloud",
+        "en": "Official evidence · Google Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://cloud.google.com/startup/faq",
+      "bodySha256": "aae5ed2386c72eb43a7e8e7e215752cd534278403473ed58a437de119fa2aa27",
+      "capturedAt": "2026-10-04T18:00:34.808850+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Google Cloud",
+        "en": "Official evidence · Google Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 48. Azure 全日制大学生额度 / Azure for Students credits
+
+$100服务额度，12个月内使用，可在仍具学生身份时申请年度续期。 / $100 service credit for use within 12 months; eligible students may renew annually.
+
+- Provider/source: Microsoft Azure
+- Category: student-research
+- Observed/checked: 2026-10-04T17:57:08.308781+00:00
+- Billing: 额度耗尽停用，选择升级PAYG才继续收费。 / Disabled after exhaustion unless you choose a PAYG upgrade.
+
+Conditions / 完整条件:
+
+- 18岁以上、认可的二年/四年制学位学校全日制学生，学校邮箱验证；MOOC/商业培训不适用。
+- 每人一个、不可转让；注册不需信用卡；Azure Marketplace产品不抵扣。
+- 用于教育、教学、非商业科研或相关应用开发测试；服务额度与模型访问资格须分别核对。
+- Age 18+, full-time student at an accredited two/four-year degree institution, verified school email; excludes MOOCs and commercial training.
+- One subscription per person, non-transferable, no card at signup; excludes Azure Marketplace offers.
+- For education, teaching, non-commercial research and related software development/testing; credit coverage does not guarantee every model entitlement.
+
+Sources / 来源:
+
+- [Official evidence](https://azure.microsoft.com/en-us/free/students) — SHA-256 `238ccae991d20359264cbf313e53dd254ea94edce4f4fd3d4fa17b251b8981af`
+- [Official evidence](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0170p) — SHA-256 `94b7bc145f1f031fccce18baab4474646a1d7d57ac327bd89d595ae6e71d60b4`
+
+[Provider programme page / 提供方入口](https://azure.microsoft.com/en-us/free/students)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "azure-student-credit",
+  "provider": "Microsoft Azure",
+  "operatorKind": "vendor",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "Azure 全日制大学生额度",
+    "en": "Azure for Students credits"
+  },
+  "benefitText": {
+    "zh-CN": "$100服务额度，12个月内使用，可在仍具学生身份时申请年度续期。",
+    "en": "$100 service credit for use within 12 months; eligible students may renew annually."
+  },
+  "conditions": {
+    "zh-CN": [
+      "18岁以上、认可的二年/四年制学位学校全日制学生，学校邮箱验证；MOOC/商业培训不适用。",
+      "每人一个、不可转让；注册不需信用卡；Azure Marketplace产品不抵扣。",
+      "用于教育、教学、非商业科研或相关应用开发测试；服务额度与模型访问资格须分别核对。"
+    ],
+    "en": [
+      "Age 18+, full-time student at an accredited two/four-year degree institution, verified school email; excludes MOOCs and commercial training.",
+      "One subscription per person, non-transferable, no card at signup; excludes Azure Marketplace offers.",
+      "For education, teaching, non-commercial research and related software development/testing; credit coverage does not guarantee every model entitlement."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "额度耗尽停用，选择升级PAYG才继续收费。",
+    "en": "Disabled after exhaustion unless you choose a PAYG upgrade."
+  },
+  "claimUrl": "https://azure.microsoft.com/en-us/free/students",
+  "checkedAt": "2026-10-04T17:57:08.308781+00:00",
+  "evidence": [
+    {
+      "url": "https://azure.microsoft.com/en-us/free/students",
+      "bodySha256": "238ccae991d20359264cbf313e53dd254ea94edce4f4fd3d4fa17b251b8981af",
+      "capturedAt": "2026-10-04T17:57:08.307428+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0170p",
+      "bodySha256": "94b7bc145f1f031fccce18baab4474646a1d7d57ac327bd89d595ae6e71d60b4",
+      "capturedAt": "2026-10-04T17:57:08.308781+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Microsoft Azure",
+        "en": "Official evidence · Microsoft Azure"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "所核对条款明确本卡起步/免费范围无需付款方式；付费升级另算。",
+        "en": "Pinned terms explicitly allow the stated starter/free scope without a payment method; paid upgrades are separate."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 49. AWS 科研申请额度 / AWS Cloud Credit for Research
+
+学生获批最高$5,000；教师/研究职员无固定上限，金额按提案决定。 / Approved student awards up to $5,000; faculty/staff awards have no fixed cap and depend on the proposal.
+
+- Provider/source: AWS
+- Category: student-research
+- Observed/checked: 2026-10-04T17:57:08.860779+00:00
+- Billing: 非覆盖和超额度服务会按量扣费；不可提现或转售。 / Excluded services and usage beyond credit are billed; no cash value or resale.
+
+Conditions / 完整条件:
+
+- 认可科研机构全职教师、研究职员或研究生/博士；滚动审查通常90–120天。
+- 只能用于获批科研项目，不能做内部行政工作；EC2只限on-demand/spot。
+- 有效信用卡激活/兑码；通常一年（收到码或入账较早者起算），或耗尽。
+- 促销通用条款排除Marketplace、支持、预付/保留实例费用等；Bedrock第三方模型仅有明确的例外。
+- Full-time faculty/research staff or graduate/PhD students at accredited research institutions; typical review 90–120 days.
+- Research-purpose only, excluding internal administration; supported EC2 usage is on-demand/spot only.
+- Valid card for activation/redemption; one year from earlier code receipt or account deposit, or exhaustion.
+- Promotional terms exclude Marketplace, support and prepaid/reserved-instance fees with specific exceptions, including Bedrock third-party model spend; do not generalize exceptions.
+
+Sources / 来源:
+
+- [Official evidence](https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/) — SHA-256 `5832784b52e06de683e4a6cf139dd247c98abcbed79a7ab3d366fb2a9119eff1`
+- [Official evidence](https://aws.amazon.com/awscredits/) — SHA-256 `8d75fd0127693db7a305960136ab725849cb02b5bf28df2649a4feef2d0e28fb`
+
+[Provider programme page / 提供方入口](https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "aws-cloud-research-credit",
+  "provider": "AWS",
+  "operatorKind": "vendor",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "AWS 科研申请额度",
+    "en": "AWS Cloud Credit for Research"
+  },
+  "benefitText": {
+    "zh-CN": "学生获批最高$5,000；教师/研究职员无固定上限，金额按提案决定。",
+    "en": "Approved student awards up to $5,000; faculty/staff awards have no fixed cap and depend on the proposal."
+  },
+  "conditions": {
+    "zh-CN": [
+      "认可科研机构全职教师、研究职员或研究生/博士；滚动审查通常90–120天。",
+      "只能用于获批科研项目，不能做内部行政工作；EC2只限on-demand/spot。",
+      "有效信用卡激活/兑码；通常一年（收到码或入账较早者起算），或耗尽。",
+      "促销通用条款排除Marketplace、支持、预付/保留实例费用等；Bedrock第三方模型仅有明确的例外。"
+    ],
+    "en": [
+      "Full-time faculty/research staff or graduate/PhD students at accredited research institutions; typical review 90–120 days.",
+      "Research-purpose only, excluding internal administration; supported EC2 usage is on-demand/spot only.",
+      "Valid card for activation/redemption; one year from earlier code receipt or account deposit, or exhaustion.",
+      "Promotional terms exclude Marketplace, support and prepaid/reserved-instance fees with specific exceptions, including Bedrock third-party model spend; do not generalize exceptions."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "非覆盖和超额度服务会按量扣费；不可提现或转售。",
+    "en": "Excluded services and usage beyond credit are billed; no cash value or resale."
+  },
+  "claimUrl": "https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/",
+  "checkedAt": "2026-10-04T17:57:08.860779+00:00",
+  "evidence": [
+    {
+      "url": "https://aws.amazon.com/government-education/research-and-technical-computing/cloud-credit-for-research/",
+      "bodySha256": "5832784b52e06de683e4a6cf139dd247c98abcbed79a7ab3d366fb2a9119eff1",
+      "capturedAt": "2026-10-04T17:57:08.315387+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AWS",
+        "en": "Official evidence · AWS"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://aws.amazon.com/awscredits/",
+      "bodySha256": "8d75fd0127693db7a305960136ab725849cb02b5bf28df2649a4feef2d0e28fb",
+      "capturedAt": "2026-10-04T17:57:08.860779+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AWS",
+        "en": "Official evidence · AWS"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 50. IBM Cloud 新PAYG账户额度 / IBM Cloud new PAYG account credit
+
+首次Pay-As-You-Go账户可获$200，前30天使用。 / First-time Pay-As-You-Go accounts receive $200 for use in the first 30 days.
+
+- Provider/source: IBM Cloud
+- Category: trial
+- Observed/checked: 2026-10-04T17:57:09.497127+00:00
+- Billing: 非免费、超额或到期服务可收费，应核预算和资源。 / Billable services beyond free limits or credits can incur charges; inspect resources and budgets.
+
+Conditions / 完整条件:
+
+- 需信用卡验证，可能小额预授权；不是自动停止的纯沙盒账户。
+- 可用于合格IBM Cloud服务和Watson相关服务；不适用第三方产品。
+- Lite免费服务有独立限制，30天无开发活动可删除实例。
+- 需信用卡验证；地区与额外身份限制如原文未明，以实际申领规则为准。
+- Card verification required with a possible small authorization hold; this is a PAYG account.
+- Eligible IBM Cloud and Watson-related services; third-party offerings excluded.
+- Lite services have separate limits; instances may be deleted after 30 days of inactivity.
+- Card verification is required; regional/additional identity conditions not stated here follow actual signup rules.
+
+Sources / 来源:
+
+- [Official evidence](https://cloud.ibm.com/docs/overview?topic=overview-tutorial-try-for-free) — SHA-256 `ebb919a108dfc5d25cc4492c4a768a22e9f67331ef51b61903294b2458c1a519`
+- [Official evidence](https://www.ibm.com/products/cloud/free) — SHA-256 `8167b50bf752b2904a6f5a68a3ed1f2d7a90d0a94e7be464a0da358ecd734348`
+
+[Provider programme page / 提供方入口](https://cloud.ibm.com/registration)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "ibm-cloud-new-credit",
+  "provider": "IBM Cloud",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "IBM Cloud 新PAYG账户额度",
+    "en": "IBM Cloud new PAYG account credit"
+  },
+  "benefitText": {
+    "zh-CN": "首次Pay-As-You-Go账户可获$200，前30天使用。",
+    "en": "First-time Pay-As-You-Go accounts receive $200 for use in the first 30 days."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需信用卡验证，可能小额预授权；不是自动停止的纯沙盒账户。",
+      "可用于合格IBM Cloud服务和Watson相关服务；不适用第三方产品。",
+      "Lite免费服务有独立限制，30天无开发活动可删除实例。",
+      "需信用卡验证；地区与额外身份限制如原文未明，以实际申领规则为准。"
+    ],
+    "en": [
+      "Card verification required with a possible small authorization hold; this is a PAYG account.",
+      "Eligible IBM Cloud and Watson-related services; third-party offerings excluded.",
+      "Lite services have separate limits; instances may be deleted after 30 days of inactivity.",
+      "Card verification is required; regional/additional identity conditions not stated here follow actual signup rules."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "非免费、超额或到期服务可收费，应核预算和资源。",
+    "en": "Billable services beyond free limits or credits can incur charges; inspect resources and budgets."
+  },
+  "claimUrl": "https://cloud.ibm.com/registration",
+  "checkedAt": "2026-10-04T17:57:09.497127+00:00",
+  "evidence": [
+    {
+      "url": "https://cloud.ibm.com/docs/overview?topic=overview-tutorial-try-for-free",
+      "bodySha256": "ebb919a108dfc5d25cc4492c4a768a22e9f67331ef51b61903294b2458c1a519",
+      "capturedAt": "2026-10-04T17:57:09.390296+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · IBM Cloud",
+        "en": "Official evidence · IBM Cloud"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.ibm.com/products/cloud/free",
+      "bodySha256": "8167b50bf752b2904a6f5a68a3ed1f2d7a90d0a94e7be464a0da358ecd734348",
+      "capturedAt": "2026-10-04T17:57:09.497127+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · IBM Cloud",
+        "en": "Official evidence · IBM Cloud"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 51. Cloudflare 创业企业申请额度 / Cloudflare startup credits
+
+一年申请制$10K/$100K/$350K；Workers AI抵扣分别限$2.5K/$10K/$50K。 / Application-based $10K/$100K/$350K for one year; Workers AI caps $2.5K/$10K/$50K respectively.
+
+- Provider/source: Cloudflare
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:57:10.220108+00:00
+- Billing: 超额及到期后按账户付款方式自动计费；各域名毕业计划须主动管理。 / Overages and post-credit usage are automatically billed; manage graduation plans for each domain.
+
+Conditions / 完整条件:
+
+- 成立10年内、至Series B、科技产品/有效网站与企业邮箱及社交存在、首次获批；融资及合作伙伴条件按层级。
+- R2抵扣上限$10K；AI Gateway、域名注册及部分企业/高级网络服务排除。
+- 需有效付款方式；额度一年或耗尽，不延期/不转让。
+- 许可使用公司名称/logo做营销；不适用于现有企业客户、教育、个人博客、代理、MSP、转售等。
+- 公开资格清单还写融资须在12个月内；bootstrapped层与融资路径条件不同，应由项目审核确认。
+- Founded within 10 years, through Series B, technology product, live website/business email/social presence, first approval; funding/partner criteria vary by tier.
+- R2 credit cap $10K; AI Gateway, domain registration and selected enterprise/premium networking services excluded.
+- Valid payment method required; one year or exhaustion, no extensions or transfers.
+- Name/logo marketing permission; excludes existing enterprise customers, education, personal blogs, agencies, MSPs and resellers.
+- The public criteria also list funding within the last 12 months; bootstrapped and funded-tier paths differ and require program review.
+
+Sources / 来源:
+
+- [Official evidence](https://www.cloudflare.com/startups/) — SHA-256 `f5c3792a3ddf7c4bc372c80ce70da939988d1f854fd54dba3e94ec78eac1eb40`
+- [Official evidence](https://developers.cloudflare.com/workers-ai/platform/pricing/) — SHA-256 `3432870fcca3a0a88c9cc9302a7f26ef15a0297e0389d04863ce3bdf846370d7`
+
+[Provider programme page / 提供方入口](https://www.cloudflare.com/startups/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cloudflare-startup-credit",
+  "provider": "Cloudflare",
+  "operatorKind": "platform",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Cloudflare 创业企业申请额度",
+    "en": "Cloudflare startup credits"
+  },
+  "benefitText": {
+    "zh-CN": "一年申请制$10K/$100K/$350K；Workers AI抵扣分别限$2.5K/$10K/$50K。",
+    "en": "Application-based $10K/$100K/$350K for one year; Workers AI caps $2.5K/$10K/$50K respectively."
+  },
+  "conditions": {
+    "zh-CN": [
+      "成立10年内、至Series B、科技产品/有效网站与企业邮箱及社交存在、首次获批；融资及合作伙伴条件按层级。",
+      "R2抵扣上限$10K；AI Gateway、域名注册及部分企业/高级网络服务排除。",
+      "需有效付款方式；额度一年或耗尽，不延期/不转让。",
+      "许可使用公司名称/logo做营销；不适用于现有企业客户、教育、个人博客、代理、MSP、转售等。",
+      "公开资格清单还写融资须在12个月内；bootstrapped层与融资路径条件不同，应由项目审核确认。"
+    ],
+    "en": [
+      "Founded within 10 years, through Series B, technology product, live website/business email/social presence, first approval; funding/partner criteria vary by tier.",
+      "R2 credit cap $10K; AI Gateway, domain registration and selected enterprise/premium networking services excluded.",
+      "Valid payment method required; one year or exhaustion, no extensions or transfers.",
+      "Name/logo marketing permission; excludes existing enterprise customers, education, personal blogs, agencies, MSPs and resellers.",
+      "The public criteria also list funding within the last 12 months; bootstrapped and funded-tier paths differ and require program review."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "超额及到期后按账户付款方式自动计费；各域名毕业计划须主动管理。",
+    "en": "Overages and post-credit usage are automatically billed; manage graduation plans for each domain."
+  },
+  "claimUrl": "https://www.cloudflare.com/startups/",
+  "checkedAt": "2026-10-04T17:57:10.220108+00:00",
+  "evidence": [
+    {
+      "url": "https://www.cloudflare.com/startups/",
+      "bodySha256": "f5c3792a3ddf7c4bc372c80ce70da939988d1f854fd54dba3e94ec78eac1eb40",
+      "capturedAt": "2026-10-04T17:57:10.220108+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cloudflare",
+        "en": "Official evidence · Cloudflare"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "bodySha256": "3432870fcca3a0a88c9cc9302a7f26ef15a0297e0389d04863ce3bdf846370d7",
+      "capturedAt": "2026-10-04T17:57:09.995577+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cloudflare",
+        "en": "Official evidence · Cloudflare"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 52. Cloudflare 美国学生开发者计划 / Cloudflare US student developer plan
+
+合格学生12个月付费开发者功能基础计划免费；不是无限Workers AI Tokens。 / Eligible students receive 12 months of paid developer-plan access; not unlimited Workers AI tokens.
+
+- Provider/source: Cloudflare
+- Category: student-research
+- Observed/checked: 2026-10-04T17:57:10.307076+00:00
+- Billing: 12个月后若不主动续付费则自动回Free，不收续计划费；优惠期间超配额仍可收费。 / After 12 months the account automatically returns to Free with no renewal-plan charge unless a paid renewal is chosen; program overages can still be billed.
+
+Conditions / 完整条件:
+
+- 美国18岁以上学生，需验证.edu邮箱。2025-09-22只是新旧账号兑换流程分界，不是申请截止；两类账户均有官方流程。
+- 需信用卡并将.edu作为账单邮箱，在Workers Plans选择Paid。
+- 提高Workers/存储等配额，超配额仍按标准收费；Workers AI免费配额另计。
+- US students aged 18+, with verified .edu email. Sep 22, 2025 distinguishes new/existing account redemption flows; it is not an application deadline, and both flows are documented.
+- Card required and .edu billing email; redeem by selecting Workers Paid.
+- Higher Workers/storage allotments; standard overage charges apply; Workers AI free allocation remains separate.
+
+Sources / 来源:
+
+- [Official evidence](https://blog.cloudflare.com/workers-for-students/) — SHA-256 `2c91df2f48b0af34718f021dd7399732f98e84315237bd8da9b6eca5d0e08c53`
+- [Official evidence](https://developers.cloudflare.com/workers-ai/platform/pricing/) — SHA-256 `3432870fcca3a0a88c9cc9302a7f26ef15a0297e0389d04863ce3bdf846370d7`
+
+[Provider programme page / 提供方入口](https://dash.cloudflare.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cloudflare-students-developer",
+  "provider": "Cloudflare",
+  "operatorKind": "platform",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "Cloudflare 美国学生开发者计划",
+    "en": "Cloudflare US student developer plan"
+  },
+  "benefitText": {
+    "zh-CN": "合格学生12个月付费开发者功能基础计划免费；不是无限Workers AI Tokens。",
+    "en": "Eligible students receive 12 months of paid developer-plan access; not unlimited Workers AI tokens."
+  },
+  "conditions": {
+    "zh-CN": [
+      "美国18岁以上学生，需验证.edu邮箱。2025-09-22只是新旧账号兑换流程分界，不是申请截止；两类账户均有官方流程。",
+      "需信用卡并将.edu作为账单邮箱，在Workers Plans选择Paid。",
+      "提高Workers/存储等配额，超配额仍按标准收费；Workers AI免费配额另计。"
+    ],
+    "en": [
+      "US students aged 18+, with verified .edu email. Sep 22, 2025 distinguishes new/existing account redemption flows; it is not an application deadline, and both flows are documented.",
+      "Card required and .edu billing email; redeem by selecting Workers Paid.",
+      "Higher Workers/storage allotments; standard overage charges apply; Workers AI free allocation remains separate."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "12个月后若不主动续付费则自动回Free，不收续计划费；优惠期间超配额仍可收费。",
+    "en": "After 12 months the account automatically returns to Free with no renewal-plan charge unless a paid renewal is chosen; program overages can still be billed."
+  },
+  "claimUrl": "https://dash.cloudflare.com/",
+  "checkedAt": "2026-10-04T17:57:10.307076+00:00",
+  "evidence": [
+    {
+      "url": "https://blog.cloudflare.com/workers-for-students/",
+      "bodySha256": "2c91df2f48b0af34718f021dd7399732f98e84315237bd8da9b6eca5d0e08c53",
+      "capturedAt": "2026-10-04T17:57:10.307076+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cloudflare",
+        "en": "Official evidence · Cloudflare"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "bodySha256": "3432870fcca3a0a88c9cc9302a7f26ef15a0297e0389d04863ce3bdf846370d7",
+      "capturedAt": "2026-10-04T17:57:09.995577+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cloudflare",
+        "en": "Official evidence · Cloudflare"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "required",
+      "note": {
+        "zh-CN": "已核对条件要求有效付款方式/绑卡；详情见本卡申请条件。",
+        "en": "Pinned terms require a valid payment method/card; consult this card’s eligibility details."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 53. Vercel AI Gateway 月度免费额度 / Vercel AI Gateway monthly credits
+
+每个team免费层$5/月，从首次AI Gateway请求开始。 / Each team gets $5/month on the free tier, beginning with the first AI Gateway request.
+
+- Provider/source: Vercel
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:57:11.091805+00:00
+- Billing: 付费使用消耗另购credits；零加价不等于模型免费。 / Paid use consumes purchased credits; zero markup does not make inference free.
+
+Conditions / 完整条件:
+
+- 只限free-tier eligible模型；免费层不能BYOK，按模型低限流，超限429。
+- 购入credits后转付费层，月度免费额度不再适用。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Eligible free-tier models only, no BYOK on free tier, lower per-model limits with 429 on excess.
+- Purchasing credits moves the team to paid tier and ends the monthly free credit.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://vercel.com/docs/ai-gateway/pricing) — SHA-256 `d3dec255d15ae36c34433a32af2baaf394855f5263623d712df3f99cf146f6bd`
+- [Official evidence](https://vercel.com/docs/plans/hobby) — SHA-256 `d5f67c12f5be4f36d5cd2312877fe421876d044058a3f70468fbf91c179e8346`
+
+[Provider programme page / 提供方入口](https://vercel.com/ai-gateway)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "vercel-ai-gateway-monthly",
+  "provider": "Vercel",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Vercel AI Gateway 月度免费额度",
+    "en": "Vercel AI Gateway monthly credits"
+  },
+  "benefitText": {
+    "zh-CN": "每个team免费层$5/月，从首次AI Gateway请求开始。",
+    "en": "Each team gets $5/month on the free tier, beginning with the first AI Gateway request."
+  },
+  "conditions": {
+    "zh-CN": [
+      "只限free-tier eligible模型；免费层不能BYOK，按模型低限流，超限429。",
+      "购入credits后转付费层，月度免费额度不再适用。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Eligible free-tier models only, no BYOK on free tier, lower per-model limits with 429 on excess.",
+      "Purchasing credits moves the team to paid tier and ends the monthly free credit.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "付费使用消耗另购credits；零加价不等于模型免费。",
+    "en": "Paid use consumes purchased credits; zero markup does not make inference free."
+  },
+  "claimUrl": "https://vercel.com/ai-gateway",
+  "checkedAt": "2026-10-04T17:57:11.091805+00:00",
+  "evidence": [
+    {
+      "url": "https://vercel.com/docs/ai-gateway/pricing",
+      "bodySha256": "d3dec255d15ae36c34433a32af2baaf394855f5263623d712df3f99cf146f6bd",
+      "capturedAt": "2026-10-04T17:57:11.012183+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Vercel",
+        "en": "Official evidence · Vercel"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://vercel.com/docs/plans/hobby",
+      "bodySha256": "d5f67c12f5be4f36d5cd2312877fe421876d044058a3f70468fbf91c179e8346",
+      "capturedAt": "2026-10-04T17:57:11.091805+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Vercel",
+        "en": "Official evidence · Vercel"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 54. Deepgram 新账号API额度 / Deepgram signup API credit
+
+新账户$200免费API credits；不能把某个模型折合时长推广到所有API。 / New accounts receive $200 API credits; model-specific equivalent hours are not a universal quota.
+
+- Provider/source: Deepgram
+- Category: trial
+- Observed/checked: 2026-10-04T17:57:11.851675+00:00
+- Billing: 付费转换/充值单独处理；不宣称API终身无限免费。 / Paid upgrades/topups are separate; no lifetime unlimited API claim.
+
+Conditions / 完整条件:
+
+- 适用STT/TTS/Voice Agent，耗用量按产品计费。
+- 需账号/API key；地区/额外身份以条款为准。
+- 价格页注明无信用卡开始；付费存款/启用auto-reload后依账单设置扣费。
+- 价格页注明赠金不失效；按服务费率消耗，不可提现。
+- Covers STT/TTS/Voice Agent usage at product-specific rates.
+- Account/API key required; regional/additional identity requirements follow terms.
+- Pricing offers card-free start; paid deposits and enabled auto-reload are billed according to settings.
+- Pricing states the credits do not expire; product rates consume the balance; no cash withdrawal.
+
+Sources / 来源:
+
+- [Official evidence](https://deepgram.com/pricing) — SHA-256 `13b2c395c536763f73783856747b7ef7e4fbabeb8e222f98d35810b6ca3816c0`
+- [Official evidence](https://deepgram.com/promotions/2026-09/flux-tts-promo-terms-and-conditions) — SHA-256 `40ebfac0eade30d61a5c0cb66b19d67096e21474d3055091cd05ba9e2a16c22c`
+
+[Provider programme page / 提供方入口](https://console.deepgram.com/signup)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "deepgram-signup-credit",
+  "provider": "Deepgram",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Deepgram 新账号API额度",
+    "en": "Deepgram signup API credit"
+  },
+  "benefitText": {
+    "zh-CN": "新账户$200免费API credits；不能把某个模型折合时长推广到所有API。",
+    "en": "New accounts receive $200 API credits; model-specific equivalent hours are not a universal quota."
+  },
+  "conditions": {
+    "zh-CN": [
+      "适用STT/TTS/Voice Agent，耗用量按产品计费。",
+      "需账号/API key；地区/额外身份以条款为准。",
+      "价格页注明无信用卡开始；付费存款/启用auto-reload后依账单设置扣费。",
+      "价格页注明赠金不失效；按服务费率消耗，不可提现。"
+    ],
+    "en": [
+      "Covers STT/TTS/Voice Agent usage at product-specific rates.",
+      "Account/API key required; regional/additional identity requirements follow terms.",
+      "Pricing offers card-free start; paid deposits and enabled auto-reload are billed according to settings.",
+      "Pricing states the credits do not expire; product rates consume the balance; no cash withdrawal."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "付费转换/充值单独处理；不宣称API终身无限免费。",
+    "en": "Paid upgrades/topups are separate; no lifetime unlimited API claim."
+  },
+  "claimUrl": "https://console.deepgram.com/signup",
+  "checkedAt": "2026-10-04T17:57:11.851675+00:00",
+  "evidence": [
+    {
+      "url": "https://deepgram.com/pricing",
+      "bodySha256": "13b2c395c536763f73783856747b7ef7e4fbabeb8e222f98d35810b6ca3816c0",
+      "capturedAt": "2026-10-04T17:57:11.652761+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Deepgram",
+        "en": "Official evidence · Deepgram"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://deepgram.com/promotions/2026-09/flux-tts-promo-terms-and-conditions",
+      "bodySha256": "40ebfac0eade30d61a5c0cb66b19d67096e21474d3055091cd05ba9e2a16c22c",
+      "capturedAt": "2026-10-04T17:57:11.851675+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Deepgram",
+        "en": "Official evidence · Deepgram"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "所核对条款明确本卡起步/免费范围无需付款方式；付费升级另算。",
+        "en": "Pinned terms explicitly allow the stated starter/free scope without a payment method; paid upgrades are separate."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "自动充值/续费取决于已启用的账户设置或专属条款，须在账户核对。",
+        "en": "Auto-reload/renewal depends on enabled account settings or award-specific terms; verify in the account."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 55. Deepgram 创业申请额度 / Deepgram startup credit program
+
+直接申请起步$1,000，成长/伙伴层级最高$100K；每笔发放12个月。 / Direct applicants start at $1,000 with growth/partner tiers up to $100K; each grant lasts 12 months.
+
+- Provider/source: Deepgram
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:57:11.697126+00:00
+- Billing: 超赠金用量按相应计划收费，须核支付/auto-reload设置。 / Usage beyond grant follows the paid plan; inspect payment/auto-reload settings.
+
+Conditions / 完整条件:
+
+- AI builder/早期企业，已生产或6个月内上线，须持续产品使用及社区参与，审批制。
+- 额度可用于STT/TTS/Voice Agent，tier取决于阶段、用途和伙伴。
+- 每笔额度12个月；不得转让/套现；受程序条款，可修改或终止。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- 必须先用完标准注册赠金，只可在Pay-As-You-Go计划使用，赠金绑定项目而非个人用户。
+- 仅用于产品开发，不用于竞争对手研究；永久许可Deepgram使用企业名称、网站、logo及商标做项目营销。
+- AI builders/early startups, in production or launching within six months, active usage/community engagement, discretionary approval.
+- Credits cover STT/TTS/Voice Agent; tier depends on stage, usage and partner referral.
+- Each award expires after 12 months, non-transferable/no cash, subject to program changes/termination.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+- Use standard signup credits first; startup credits apply only to Pay-As-You-Go and are tied to a project, not a user.
+- Product development only, not competitor research; perpetual name/website/logo/trademark marketing license.
+
+Sources / 来源:
+
+- [Official evidence](https://deepgram.com/startup-program) — SHA-256 `da77dcac515a874851580982d837ffc11b5315f9f389f55fddd938f8b7b6ef0d`
+- [Official evidence](https://deepgram.com/startup-program-terms-of-service) — SHA-256 `fb3e19275fb9d324cd71d46fbcfd9dacfa422640cab0c3c79aaf809b5171171a`
+
+[Provider programme page / 提供方入口](https://deepgram.com/startup-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "deepgram-startup-program",
+  "provider": "Deepgram",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Deepgram 创业申请额度",
+    "en": "Deepgram startup credit program"
+  },
+  "benefitText": {
+    "zh-CN": "直接申请起步$1,000，成长/伙伴层级最高$100K；每笔发放12个月。",
+    "en": "Direct applicants start at $1,000 with growth/partner tiers up to $100K; each grant lasts 12 months."
+  },
+  "conditions": {
+    "zh-CN": [
+      "AI builder/早期企业，已生产或6个月内上线，须持续产品使用及社区参与，审批制。",
+      "额度可用于STT/TTS/Voice Agent，tier取决于阶段、用途和伙伴。",
+      "每笔额度12个月；不得转让/套现；受程序条款，可修改或终止。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。",
+      "必须先用完标准注册赠金，只可在Pay-As-You-Go计划使用，赠金绑定项目而非个人用户。",
+      "仅用于产品开发，不用于竞争对手研究；永久许可Deepgram使用企业名称、网站、logo及商标做项目营销。"
+    ],
+    "en": [
+      "AI builders/early startups, in production or launching within six months, active usage/community engagement, discretionary approval.",
+      "Credits cover STT/TTS/Voice Agent; tier depends on stage, usage and partner referral.",
+      "Each award expires after 12 months, non-transferable/no cash, subject to program changes/termination.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.",
+      "Use standard signup credits first; startup credits apply only to Pay-As-You-Go and are tied to a project, not a user.",
+      "Product development only, not competitor research; perpetual name/website/logo/trademark marketing license."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "超赠金用量按相应计划收费，须核支付/auto-reload设置。",
+    "en": "Usage beyond grant follows the paid plan; inspect payment/auto-reload settings."
+  },
+  "claimUrl": "https://deepgram.com/startup-program",
+  "checkedAt": "2026-10-04T17:57:11.697126+00:00",
+  "evidence": [
+    {
+      "url": "https://deepgram.com/startup-program",
+      "bodySha256": "da77dcac515a874851580982d837ffc11b5315f9f389f55fddd938f8b7b6ef0d",
+      "capturedAt": "2026-10-04T17:57:11.679654+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Deepgram",
+        "en": "Official evidence · Deepgram"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://deepgram.com/startup-program-terms-of-service",
+      "bodySha256": "fb3e19275fb9d324cd71d46fbcfd9dacfa422640cab0c3c79aaf809b5171171a",
+      "capturedAt": "2026-10-04T17:57:11.697126+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Deepgram",
+        "en": "Official evidence · Deepgram"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "自动充值/续费取决于已启用的账户设置或专属条款，须在账户核对。",
+        "en": "Auto-reload/renewal depends on enabled account settings or award-specific terms; verify in the account."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 56. Deepgram Flux TTS 付费用量返赠 / Deepgram Flux TTS paid-usage bonus
+
+2026-09-15至12-31 Pacific Time，合格Flux TTS付费用量每$1返$1，项目最高$500。 / Sep 15–Dec 31 2026 Pacific Time: $1 bonus for each $1 eligible paid Flux TTS usage, up to $500 per project.
+
+- Provider/source: Deepgram
+- Category: conditional-reward
+- Observed/checked: 2026-10-04T17:57:11.851675+00:00
+- Billing: 必须先付费；auto-reload非必要但启用会自动扣款；活动可修改/终止。 / Paid usage required; auto-reload optional but charges automatically if enabled; campaign may change/end.
+
+Conditions / 完整条件:
+
+- 限PAYG/Growth有效项目与有效付款方式；Enterprise排除；不支持滥用重复项目。
+- 赠金/免费注册$200付出的用量不能返赠；其他产品不算；项目间不可合并/转让。
+- 通常一周内返赠；只能抵该项目后续API，税/第三方/专业服务排除，无现金价值，赠金不失效。
+- 与其他优惠不得叠加除非书面允许（标准$200注册赠金可并存但不计合格用量）；退款/拒付收回。
+- 合法服务地区限制；政府/监管客户须符合机构规则，可另需批准。
+- Active PAYG/Growth projects with valid payment method; Enterprise excluded; abusive duplicate projects disallowed.
+- Usage funded by signup/promotional credit and other products does not qualify; no cross-project pooling/transfers.
+- Typically granted within a week; future project API only, excludes tax/third-party/professional services; no cash value, bonus does not expire.
+- No combination unless permitted in writing (standard $200 signup may coexist but cannot fund qualifying usage); refunds/chargebacks forfeit bonuses.
+- Only lawfully served jurisdictions; public-sector/regulated clients must comply with institutional rules and may need approval.
+
+Sources / 来源:
+
+- [Official evidence](https://deepgram.com/promotions/2026-09/flux-tts-promo-terms-and-conditions) — SHA-256 `40ebfac0eade30d61a5c0cb66b19d67096e21474d3055091cd05ba9e2a16c22c`
+- [Official evidence](https://deepgram.com/pricing) — SHA-256 `13b2c395c536763f73783856747b7ef7e4fbabeb8e222f98d35810b6ca3816c0`
+
+[Provider programme page / 提供方入口](https://console.deepgram.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "deepgram-flux-tts-paid-bonus-2026",
+  "provider": "Deepgram",
+  "operatorKind": "vendor",
+  "category": "conditional-reward",
+  "title": {
+    "zh-CN": "Deepgram Flux TTS 付费用量返赠",
+    "en": "Deepgram Flux TTS paid-usage bonus"
+  },
+  "benefitText": {
+    "zh-CN": "2026-09-15至12-31 Pacific Time，合格Flux TTS付费用量每$1返$1，项目最高$500。",
+    "en": "Sep 15–Dec 31 2026 Pacific Time: $1 bonus for each $1 eligible paid Flux TTS usage, up to $500 per project."
+  },
+  "conditions": {
+    "zh-CN": [
+      "限PAYG/Growth有效项目与有效付款方式；Enterprise排除；不支持滥用重复项目。",
+      "赠金/免费注册$200付出的用量不能返赠；其他产品不算；项目间不可合并/转让。",
+      "通常一周内返赠；只能抵该项目后续API，税/第三方/专业服务排除，无现金价值，赠金不失效。",
+      "与其他优惠不得叠加除非书面允许（标准$200注册赠金可并存但不计合格用量）；退款/拒付收回。",
+      "合法服务地区限制；政府/监管客户须符合机构规则，可另需批准。"
+    ],
+    "en": [
+      "Active PAYG/Growth projects with valid payment method; Enterprise excluded; abusive duplicate projects disallowed.",
+      "Usage funded by signup/promotional credit and other products does not qualify; no cross-project pooling/transfers.",
+      "Typically granted within a week; future project API only, excludes tax/third-party/professional services; no cash value, bonus does not expire.",
+      "No combination unless permitted in writing (standard $200 signup may coexist but cannot fund qualifying usage); refunds/chargebacks forfeit bonuses.",
+      "Only lawfully served jurisdictions; public-sector/regulated clients must comply with institutional rules and may need approval."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "必须先付费；auto-reload非必要但启用会自动扣款；活动可修改/终止。",
+    "en": "Paid usage required; auto-reload optional but charges automatically if enabled; campaign may change/end."
+  },
+  "claimUrl": "https://console.deepgram.com/",
+  "checkedAt": "2026-10-04T17:57:11.851675+00:00",
+  "evidence": [
+    {
+      "url": "https://deepgram.com/promotions/2026-09/flux-tts-promo-terms-and-conditions",
+      "bodySha256": "40ebfac0eade30d61a5c0cb66b19d67096e21474d3055091cd05ba9e2a16c22c",
+      "capturedAt": "2026-10-04T17:57:11.851675+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Deepgram",
+        "en": "Official evidence · Deepgram"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://deepgram.com/pricing",
+      "bodySha256": "13b2c395c536763f73783856747b7ef7e4fbabeb8e222f98d35810b6ca3816c0",
+      "capturedAt": "2026-10-04T17:57:11.652761+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Deepgram",
+        "en": "Official evidence · Deepgram"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "只有符合条件的真实付费用量可获奖励；赠金额度支出不计。",
+        "en": "Only eligible paid usage earns the bonus; usage funded by granted credits does not qualify."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "自动充值/续费取决于已启用的账户设置或专属条款，须在账户核对。",
+        "en": "Auto-reload/renewal depends on enabled account settings or award-specific terms; verify in the account."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 57. AssemblyAI 免费API试用 / AssemblyAI free API trial
+
+限量$50语音API试用，非每月$50。 / Limited $50 audio API trial; not $50 every month.
+
+- Provider/source: AssemblyAI
+- Category: trial
+- Observed/checked: 2026-10-04T18:00:34.793735+00:00
+- Billing: 免费余额耗尽需升级继续；大文件余额估算/最后任务超额须看FAQ。 / Upgrade required after exhaustion; inspect FAQ for final-job balance/overrun handling.
+
+Conditions / 完整条件:
+
+- Async转录/语音理解及Streaming可用；LLM Gateway不在免费层。
+- 不用信用卡开始，添加卡升级付费；余额未用完可保留到升级后。
+- 免费credits不失效，升级后未用余额仍保留；不能提现。
+- Async transcription/understanding and Streaming included; LLM Gateway excluded.
+- Card-free start; adding a card upgrades to paid; unused allowance retained on upgrade.
+- Free credits do not expire and remain after upgrade; no cash value.
+
+Sources / 来源:
+
+- [Official evidence](https://support.assemblyai.com/articles/5370767329-can-i-sign-up-for-free) — SHA-256 `463c5f7ee096b2c341bab9d6f0c3e7a86f2df0858e8990bb5a57d499431be718`
+- [Official evidence](https://www.assemblyai.com/pricing/) — SHA-256 `9fabf7f8f70dd387d1d8c9be167528dd03a3eadbb36aa1139135c73f3d26a1a5`
+- [Official evidence](https://support.assemblyai.com/articles/8688235663-do-my-free-credits-expire) — SHA-256 `24164a3527f735775e39b8855942e475091d47786a17eb17860b72bb96b686a6`
+
+[Provider programme page / 提供方入口](https://www.assemblyai.com/dashboard/signup)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "assemblyai-trial-credit",
+  "provider": "AssemblyAI",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "AssemblyAI 免费API试用",
+    "en": "AssemblyAI free API trial"
+  },
+  "benefitText": {
+    "zh-CN": "限量$50语音API试用，非每月$50。",
+    "en": "Limited $50 audio API trial; not $50 every month."
+  },
+  "conditions": {
+    "zh-CN": [
+      "Async转录/语音理解及Streaming可用；LLM Gateway不在免费层。",
+      "不用信用卡开始，添加卡升级付费；余额未用完可保留到升级后。",
+      "免费credits不失效，升级后未用余额仍保留；不能提现。"
+    ],
+    "en": [
+      "Async transcription/understanding and Streaming included; LLM Gateway excluded.",
+      "Card-free start; adding a card upgrades to paid; unused allowance retained on upgrade.",
+      "Free credits do not expire and remain after upgrade; no cash value."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费余额耗尽需升级继续；大文件余额估算/最后任务超额须看FAQ。",
+    "en": "Upgrade required after exhaustion; inspect FAQ for final-job balance/overrun handling."
+  },
+  "claimUrl": "https://www.assemblyai.com/dashboard/signup",
+  "checkedAt": "2026-10-04T18:00:34.793735+00:00",
+  "evidence": [
+    {
+      "url": "https://support.assemblyai.com/articles/5370767329-can-i-sign-up-for-free",
+      "bodySha256": "463c5f7ee096b2c341bab9d6f0c3e7a86f2df0858e8990bb5a57d499431be718",
+      "capturedAt": "2026-10-04T17:57:11.982089+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AssemblyAI",
+        "en": "Official evidence · AssemblyAI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.assemblyai.com/pricing/",
+      "bodySha256": "9fabf7f8f70dd387d1d8c9be167528dd03a3eadbb36aa1139135c73f3d26a1a5",
+      "capturedAt": "2026-10-04T17:57:11.882894+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AssemblyAI",
+        "en": "Official evidence · AssemblyAI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://support.assemblyai.com/articles/8688235663-do-my-free-credits-expire",
+      "bodySha256": "24164a3527f735775e39b8855942e475091d47786a17eb17860b72bb96b686a6",
+      "capturedAt": "2026-10-04T18:00:34.793735+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AssemblyAI",
+        "en": "Official evidence · AssemblyAI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "所核对条款明确本卡起步/免费范围无需付款方式；付费升级另算。",
+        "en": "Pinned terms explicitly allow the stated starter/free scope without a payment method; paid upgrades are separate."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 58. AssemblyAI 创业申请计划 / AssemblyAI startup program
+
+审核通过12个月周期赠金；公开未给固定金额，不借用注册$50。 / Approved startups receive 12 months of recurring credits; no public fixed amount, separate from the $50 trial.
+
+- Provider/source: AssemblyAI
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:57:12.583489+00:00
+- Billing: 用尽后继续startup折扣并逐步过渡标准计费，非永久免费。 / Startup discounts continue after credits run out with standard pricing phased in; not permanently free.
+
+Conditions / 完整条件:
+
+- Bootstrapped至Series A，语音/音频产品，已上线或6个月内上线，需工作邮箱并申请。
+- 覆盖核心STT/Streaming/Dictation；startup折扣不适用LLM Gateway。
+- 审批后约48小时到账；额度/付款/期限细节以授予记录为准。
+- Bootstrapped through Series A voice/audio startups, live or launching within six months; business email/application.
+- Core STT/Streaming/Dictation; startup discounts exclude LLM Gateway.
+- Credits typically land within 48 hours of approval; amount/payment/expiry details follow award records.
+
+Sources / 来源:
+
+- [Official evidence](https://www.assemblyai.com/contact/startup-program) — SHA-256 `722f3bdc78bdcabd48bd62657e99ace9cf8e0e92325d1fa082a1518ac01eabc5`
+- [Official evidence](https://www.assemblyai.com/pricing/) — SHA-256 `9fabf7f8f70dd387d1d8c9be167528dd03a3eadbb36aa1139135c73f3d26a1a5`
+
+[Provider programme page / 提供方入口](https://www.assemblyai.com/contact/startup-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "assemblyai-startup-program",
+  "provider": "AssemblyAI",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "AssemblyAI 创业申请计划",
+    "en": "AssemblyAI startup program"
+  },
+  "benefitText": {
+    "zh-CN": "审核通过12个月周期赠金；公开未给固定金额，不借用注册$50。",
+    "en": "Approved startups receive 12 months of recurring credits; no public fixed amount, separate from the $50 trial."
+  },
+  "conditions": {
+    "zh-CN": [
+      "Bootstrapped至Series A，语音/音频产品，已上线或6个月内上线，需工作邮箱并申请。",
+      "覆盖核心STT/Streaming/Dictation；startup折扣不适用LLM Gateway。",
+      "审批后约48小时到账；额度/付款/期限细节以授予记录为准。"
+    ],
+    "en": [
+      "Bootstrapped through Series A voice/audio startups, live or launching within six months; business email/application.",
+      "Core STT/Streaming/Dictation; startup discounts exclude LLM Gateway.",
+      "Credits typically land within 48 hours of approval; amount/payment/expiry details follow award records."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "用尽后继续startup折扣并逐步过渡标准计费，非永久免费。",
+    "en": "Startup discounts continue after credits run out with standard pricing phased in; not permanently free."
+  },
+  "claimUrl": "https://www.assemblyai.com/contact/startup-program",
+  "checkedAt": "2026-10-04T17:57:12.583489+00:00",
+  "evidence": [
+    {
+      "url": "https://www.assemblyai.com/contact/startup-program",
+      "bodySha256": "722f3bdc78bdcabd48bd62657e99ace9cf8e0e92325d1fa082a1518ac01eabc5",
+      "capturedAt": "2026-10-04T17:57:12.583489+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AssemblyAI",
+        "en": "Official evidence · AssemblyAI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.assemblyai.com/pricing/",
+      "bodySha256": "9fabf7f8f70dd387d1d8c9be167528dd03a3eadbb36aa1139135c73f3d26a1a5",
+      "capturedAt": "2026-10-04T17:57:11.882894+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · AssemblyAI",
+        "en": "Official evidence · AssemblyAI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 59. ElevenLabs API免费层 / ElevenLabs API free tier
+
+免费层提供10,000月度额度/部分TTS模型字符用量；模型扣率不同。 / Free tier includes 10,000 monthly credits/eligible TTS character usage; consumption varies by model.
+
+- Provider/source: ElevenLabs
+- Category: free-tier
+- Observed/checked: 2026-10-04T18:00:34.799697+00:00
+- Billing: 付费/按量方案另计；升级/取消会改变可用量与续费。 / Paid/PAYG plans are separate; upgrade/cancellation changes quota and renewal.
+
+Conditions / 完整条件:
+
+- 可用API；不能将不同模型字符数/分钟折算统一成Tokens。
+- 免费内容只限非商业使用且需注明来源；商业许可须付费计划。
+- 免费用量月周期重置，额度未明确可跨API通用时不得推断。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- API available; model-specific character/minute equivalents are not tokens.
+- Free-plan content is for non-commercial use with attribution; commercial rights require a paid plan.
+- Free usage resets monthly; do not infer universal product interchangeability.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://elevenlabs.io/pricing/api) — SHA-256 `0aa98a1930efc6c5e83316ca78bac7abe3a34d5db18d05c314e788587857fbba`
+- [Official evidence](https://elevenlabs.io/docs/overview/administration/billing.md) — SHA-256 `d5d68fa42ab41ad2f1203a3e82d4b38875218654aaba58ad6f0b3418a79be3db`
+
+[Provider programme page / 提供方入口](https://elevenlabs.io/app/sign-up)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "elevenlabs-api-free-tier",
+  "provider": "ElevenLabs",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "ElevenLabs API免费层",
+    "en": "ElevenLabs API free tier"
+  },
+  "benefitText": {
+    "zh-CN": "免费层提供10,000月度额度/部分TTS模型字符用量；模型扣率不同。",
+    "en": "Free tier includes 10,000 monthly credits/eligible TTS character usage; consumption varies by model."
+  },
+  "conditions": {
+    "zh-CN": [
+      "可用API；不能将不同模型字符数/分钟折算统一成Tokens。",
+      "免费内容只限非商业使用且需注明来源；商业许可须付费计划。",
+      "免费用量月周期重置，额度未明确可跨API通用时不得推断。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "API available; model-specific character/minute equivalents are not tokens.",
+      "Free-plan content is for non-commercial use with attribution; commercial rights require a paid plan.",
+      "Free usage resets monthly; do not infer universal product interchangeability.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "付费/按量方案另计；升级/取消会改变可用量与续费。",
+    "en": "Paid/PAYG plans are separate; upgrade/cancellation changes quota and renewal."
+  },
+  "claimUrl": "https://elevenlabs.io/app/sign-up",
+  "checkedAt": "2026-10-04T18:00:34.799697+00:00",
+  "evidence": [
+    {
+      "url": "https://elevenlabs.io/pricing/api",
+      "bodySha256": "0aa98a1930efc6c5e83316ca78bac7abe3a34d5db18d05c314e788587857fbba",
+      "capturedAt": "2026-10-04T17:57:12.631570+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · ElevenLabs",
+        "en": "Official evidence · ElevenLabs"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://elevenlabs.io/docs/overview/administration/billing.md",
+      "bodySha256": "d5d68fa42ab41ad2f1203a3e82d4b38875218654aaba58ad6f0b3418a79be3db",
+      "capturedAt": "2026-10-04T18:00:34.799697+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · ElevenLabs",
+        "en": "Official evidence · ElevenLabs"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 60. ElevenLabs 创业Grant / ElevenLabs startup grant
+
+获批12个月，33,000,000字符；不是现金$5,500。 / Approved 12-month grant with 33,000,000 characters, not $5,500 cash.
+
+- Provider/source: ElevenLabs
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:57:12.816021+00:00
+- Billing: 12个月结束或仅余10K credits/提前用尽时自动Free，除非主动选其他计划。 / Reverts to the Free plan after 12 months, near 10K credits remaining or early exhaustion, unless another plan is selected.
+
+Conditions / 完整条件:
+
+- 商业/变现产品、有效企业邮箱、申请时少于25员工；排除咨询/代理、一次性项目及面向18岁以下儿童的项目。
+- 每公司一次申请；现企业客户排除；审查制，不能转售/套现。
+- 包含API相关语音能力，但字符不是所有产品无限配额。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Business/monetization plan, valid business email, fewer than 25 staff; excludes consulting/agencies, one-off projects and projects for children aged 18 or under.
+- One application per company, existing enterprise customers excluded; approval required, no resale/cash exchange.
+- Includes API voice capabilities, but characters are not unlimited allocation for every product.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://elevenlabs.io/startup-grants) — SHA-256 `7da8d49ed2af6f1f281849ed7f1e2f12427a687ea98897ca1f17624b7095ad1f`
+- [Official evidence](https://elevenlabs.io/pricing/api) — SHA-256 `0aa98a1930efc6c5e83316ca78bac7abe3a34d5db18d05c314e788587857fbba`
+
+[Provider programme page / 提供方入口](https://elevenlabs.io/startup-grants)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "elevenlabs-startup-grant",
+  "provider": "ElevenLabs",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "ElevenLabs 创业Grant",
+    "en": "ElevenLabs startup grant"
+  },
+  "benefitText": {
+    "zh-CN": "获批12个月，33,000,000字符；不是现金$5,500。",
+    "en": "Approved 12-month grant with 33,000,000 characters, not $5,500 cash."
+  },
+  "conditions": {
+    "zh-CN": [
+      "商业/变现产品、有效企业邮箱、申请时少于25员工；排除咨询/代理、一次性项目及面向18岁以下儿童的项目。",
+      "每公司一次申请；现企业客户排除；审查制，不能转售/套现。",
+      "包含API相关语音能力，但字符不是所有产品无限配额。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Business/monetization plan, valid business email, fewer than 25 staff; excludes consulting/agencies, one-off projects and projects for children aged 18 or under.",
+      "One application per company, existing enterprise customers excluded; approval required, no resale/cash exchange.",
+      "Includes API voice capabilities, but characters are not unlimited allocation for every product.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "12个月结束或仅余10K credits/提前用尽时自动Free，除非主动选其他计划。",
+    "en": "Reverts to the Free plan after 12 months, near 10K credits remaining or early exhaustion, unless another plan is selected."
+  },
+  "claimUrl": "https://elevenlabs.io/startup-grants",
+  "checkedAt": "2026-10-04T17:57:12.816021+00:00",
+  "evidence": [
+    {
+      "url": "https://elevenlabs.io/startup-grants",
+      "bodySha256": "7da8d49ed2af6f1f281849ed7f1e2f12427a687ea98897ca1f17624b7095ad1f",
+      "capturedAt": "2026-10-04T17:57:12.816021+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · ElevenLabs",
+        "en": "Official evidence · ElevenLabs"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://elevenlabs.io/pricing/api",
+      "bodySha256": "0aa98a1930efc6c5e83316ca78bac7abe3a34d5db18d05c314e788587857fbba",
+      "capturedAt": "2026-10-04T17:57:12.631570+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · ElevenLabs",
+        "en": "Official evidence · ElevenLabs"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "本卡已核对期限/耗尽后暂停、关闭或回到免费层；需主动选择付费升级/续订才有该续期收费。",
+        "en": "Pinned terms pause/close access or revert to Free at expiry/exhaustion; paid upgrade/renewal requires a choice. Other overages remain separate."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 61. Speechmatics 新账号API额度 / Speechmatics signup API credit
+
+新账号起步$100 credits，无需信用卡；一次性额度，不是旧每月免费小时。 / Start with $100 credits, no card required; one-time credit, not old monthly free hours.
+
+- Provider/source: Speechmatics
+- Category: trial
+- Observed/checked: 2026-10-04T17:57:12.932870+00:00
+- Billing: 付款方式可PAYG、topup、订阅；到期/余额不足细节本轮FAQ正文未取到，应核账户。 / PAYG/topup/subscription payment options; expiry/exhaustion FAQ body not captured, inspect account.
+
+Conditions / 完整条件:
+
+- 用于公开自助API；实际用量按不同语音模型及附加功能收费。
+- 2026-08-01前自助客户$25过渡赠金是另一历史机制，不能当当前注册额。
+- 额度期限如原文未明确，以账户/授予记录为准；额度不可提现。
+- Self-service API usage billed by speech model and add-ons.
+- The $25 migration credit for pre-Aug-1-2026 users is a separate historical mechanism.
+- Where expiry is unspecified, inspect account or award records; service credits are not withdrawable cash.
+
+Sources / 来源:
+
+- [Official evidence](https://www.speechmatics.com/pricing) — SHA-256 `a4e1c47c62884fa9440caf641a9ba3271ef03684640045dfcd12a17e4c405c86`
+- [Official evidence](https://www.speechmatics.com/company/articles-and-news/moving-to-credit-based-billing) — SHA-256 `8290ef2bbef72abba71da0301b405407caaceae7746fd3210d37acab1e0761d1`
+
+[Provider programme page / 提供方入口](https://portal.speechmatics.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "speechmatics-signup-credit",
+  "provider": "Speechmatics",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Speechmatics 新账号API额度",
+    "en": "Speechmatics signup API credit"
+  },
+  "benefitText": {
+    "zh-CN": "新账号起步$100 credits，无需信用卡；一次性额度，不是旧每月免费小时。",
+    "en": "Start with $100 credits, no card required; one-time credit, not old monthly free hours."
+  },
+  "conditions": {
+    "zh-CN": [
+      "用于公开自助API；实际用量按不同语音模型及附加功能收费。",
+      "2026-08-01前自助客户$25过渡赠金是另一历史机制，不能当当前注册额。",
+      "额度期限如原文未明确，以账户/授予记录为准；额度不可提现。"
+    ],
+    "en": [
+      "Self-service API usage billed by speech model and add-ons.",
+      "The $25 migration credit for pre-Aug-1-2026 users is a separate historical mechanism.",
+      "Where expiry is unspecified, inspect account or award records; service credits are not withdrawable cash."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "付款方式可PAYG、topup、订阅；到期/余额不足细节本轮FAQ正文未取到，应核账户。",
+    "en": "PAYG/topup/subscription payment options; expiry/exhaustion FAQ body not captured, inspect account."
+  },
+  "claimUrl": "https://portal.speechmatics.com/",
+  "checkedAt": "2026-10-04T17:57:12.932870+00:00",
+  "evidence": [
+    {
+      "url": "https://www.speechmatics.com/pricing",
+      "bodySha256": "a4e1c47c62884fa9440caf641a9ba3271ef03684640045dfcd12a17e4c405c86",
+      "capturedAt": "2026-10-04T17:57:12.834904+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Speechmatics",
+        "en": "Official evidence · Speechmatics"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.speechmatics.com/company/articles-and-news/moving-to-credit-based-billing",
+      "bodySha256": "8290ef2bbef72abba71da0301b405407caaceae7746fd3210d37acab1e0761d1",
+      "capturedAt": "2026-10-04T17:57:12.932870+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Speechmatics",
+        "en": "Official evidence · Speechmatics"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 62. Cartesia 月度语音API额度 / Cartesia monthly voice API allowance
+
+Free每月20K模型credits与$1 Managed Agents预付用量。 / Free includes 20K model credits and $1 prepaid Managed Agents usage monthly.
+
+- Provider/source: Cartesia
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:57:13.571264+00:00
+- Billing: 免费额度受限，付费overage/订阅另计。 / Free quota is limited; paid overages/subscriptions are separate.
+
+Conditions / 完整条件:
+
+- Sonic TTS与Ink STT共享模型额度；Agents余额独立，不能加总为Tokens。
+- 商业许可属于Pro以上，免费层不宣称商业许可。
+- 付费用户可开overages；没开超额且用尽时请求阻止。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Sonic TTS and Ink STT share model credits; Agents balance is separate, not tokens.
+- Commercial license is a Pro-or-higher feature; do not claim it for Free.
+- Paid users can enable overages; requests block at exhaustion without overages.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://www.cartesia.ai/pricing) — SHA-256 `c576f1c19b8fc2f91cd700e132a3edf18e567f7684bac925934376c6d53d1064`
+- [Official evidence](https://www.cartesia.ai/startups) — SHA-256 `5d98ab446e8915232e27f650062b5c8a409f8ab243e2ac8272f41d127d34e8a1`
+
+[Provider programme page / 提供方入口](https://play.cartesia.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cartesia-api-free-tier",
+  "provider": "Cartesia",
+  "operatorKind": "vendor",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Cartesia 月度语音API额度",
+    "en": "Cartesia monthly voice API allowance"
+  },
+  "benefitText": {
+    "zh-CN": "Free每月20K模型credits与$1 Managed Agents预付用量。",
+    "en": "Free includes 20K model credits and $1 prepaid Managed Agents usage monthly."
+  },
+  "conditions": {
+    "zh-CN": [
+      "Sonic TTS与Ink STT共享模型额度；Agents余额独立，不能加总为Tokens。",
+      "商业许可属于Pro以上，免费层不宣称商业许可。",
+      "付费用户可开overages；没开超额且用尽时请求阻止。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Sonic TTS and Ink STT share model credits; Agents balance is separate, not tokens.",
+      "Commercial license is a Pro-or-higher feature; do not claim it for Free.",
+      "Paid users can enable overages; requests block at exhaustion without overages.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费额度受限，付费overage/订阅另计。",
+    "en": "Free quota is limited; paid overages/subscriptions are separate."
+  },
+  "claimUrl": "https://play.cartesia.ai/",
+  "checkedAt": "2026-10-04T17:57:13.571264+00:00",
+  "evidence": [
+    {
+      "url": "https://www.cartesia.ai/pricing",
+      "bodySha256": "c576f1c19b8fc2f91cd700e132a3edf18e567f7684bac925934376c6d53d1064",
+      "capturedAt": "2026-10-04T17:57:13.040984+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cartesia",
+        "en": "Official evidence · Cartesia"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.cartesia.ai/startups",
+      "bodySha256": "5d98ab446e8915232e27f650062b5c8a409f8ab243e2ac8272f41d127d34e8a1",
+      "capturedAt": "2026-10-04T17:57:13.571264+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cartesia",
+        "en": "Official evidence · Cartesia"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 63. Cartesia 创业语音Grant / Cartesia startup voice grant
+
+获批12个月Scale：Sonic/Ink共享8M credits/月，Agents另$299/月。 / Approved 12-month Scale grant: 8M shared Sonic/Ink credits per month plus $299/month Agents credits.
+
+- Provider/source: Cartesia
+- Category: startup-credit
+- Observed/checked: 2026-10-04T17:57:13.571264+00:00
+- Billing: 12个月后继续Scale自动$299/月；可取消/降级；开启overage另收费。 / After 12 months Scale becomes $299/month; cancel/downgrade available, enabled overages billed separately.
+
+Conditions / 完整条件:
+
+- 各阶段startup可申请，学生/单次项目个案评估；需审批与coupon。
+- 需提供logo并许可营销，必要时在社交账号发布grant信息。
+- 模型额度最多滚存至月量2倍；Agents独立，不合并或当现金。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Startups at any stage may apply; student/one-off projects case-by-case; approval/coupon required.
+- Logo/name marketing permission and requested social posts are conditions.
+- Model-credit rollover capped at 2x monthly allowance; Agents separate, not cash.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://www.cartesia.ai/startups) — SHA-256 `5d98ab446e8915232e27f650062b5c8a409f8ab243e2ac8272f41d127d34e8a1`
+- [Official evidence](https://www.cartesia.ai/pricing) — SHA-256 `c576f1c19b8fc2f91cd700e132a3edf18e567f7684bac925934376c6d53d1064`
+
+[Provider programme page / 提供方入口](https://www.cartesia.ai/startups)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "cartesia-startup-grant",
+  "provider": "Cartesia",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Cartesia 创业语音Grant",
+    "en": "Cartesia startup voice grant"
+  },
+  "benefitText": {
+    "zh-CN": "获批12个月Scale：Sonic/Ink共享8M credits/月，Agents另$299/月。",
+    "en": "Approved 12-month Scale grant: 8M shared Sonic/Ink credits per month plus $299/month Agents credits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "各阶段startup可申请，学生/单次项目个案评估；需审批与coupon。",
+      "需提供logo并许可营销，必要时在社交账号发布grant信息。",
+      "模型额度最多滚存至月量2倍；Agents独立，不合并或当现金。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Startups at any stage may apply; student/one-off projects case-by-case; approval/coupon required.",
+      "Logo/name marketing permission and requested social posts are conditions.",
+      "Model-credit rollover capped at 2x monthly allowance; Agents separate, not cash.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "12个月后继续Scale自动$299/月；可取消/降级；开启overage另收费。",
+    "en": "After 12 months Scale becomes $299/month; cancel/downgrade available, enabled overages billed separately."
+  },
+  "claimUrl": "https://www.cartesia.ai/startups",
+  "checkedAt": "2026-10-04T17:57:13.571264+00:00",
+  "evidence": [
+    {
+      "url": "https://www.cartesia.ai/startups",
+      "bodySha256": "5d98ab446e8915232e27f650062b5c8a409f8ab243e2ac8272f41d127d34e8a1",
+      "capturedAt": "2026-10-04T17:57:13.571264+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cartesia",
+        "en": "Official evidence · Cartesia"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.cartesia.ai/pricing",
+      "bodySha256": "c576f1c19b8fc2f91cd700e132a3edf18e567f7684bac925934376c6d53d1064",
+      "capturedAt": "2026-10-04T17:57:13.040984+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Cartesia",
+        "en": "Official evidence · Cartesia"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 64. Jina 新API key Token试用 / Jina new API-key token trial
+
+每个新API key随10M免费Tokens，适用共享API余额；不是每月。 / New API keys include 10M free tokens on shared API balance; not monthly.
+
+- Provider/source: Jina AI
+- Category: trial
+- Observed/checked: 2026-10-04T17:57:13.670205+00:00
+- Billing: 免费余额耗尽后需付费；余额/速率绑定key而不是可任意合并账户。 / Paid tokens needed after exhaustion; balance/rate tier belongs to the key rather than pooled account balance.
+
+Conditions / 完整条件:
+
+- Reader/Search/Embedding/Reranker按不同规则消耗，搜索最低10K tokens/请求；限流按key/IP。
+- 免费API key不绕过目标网站限制；禁止推断可无限建key套利。
+- 自动top-up启用后低余额会对保存支付方式自动充值；未明确免费余额期限。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Reader/Search/Embedding/Reranker consume tokens differently; search starts at 10K/request; limits by key/IP.
+- Free keys do not bypass website restrictions; no claim of unlimited key creation to farm grants.
+- Enabled auto-topup recharges saved payment method at low balance; free-balance expiry unspecified.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://jina.ai/reader/) — SHA-256 `3883e16e0d3acdcbec4e43e251419deab0e9ab38157a4c47c50155515302d337`
+- [Official evidence](https://jina.ai/api-dashboard/pricing/) — SHA-256 `5b7fa02a336a971a25268ed858a27d595bde44e5c2ea6551ed69bfd291f7ede6`
+
+[Provider programme page / 提供方入口](https://jina.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "jina-new-key-token-trial",
+  "provider": "Jina AI",
+  "operatorKind": "platform",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Jina 新API key Token试用",
+    "en": "Jina new API-key token trial"
+  },
+  "benefitText": {
+    "zh-CN": "每个新API key随10M免费Tokens，适用共享API余额；不是每月。",
+    "en": "New API keys include 10M free tokens on shared API balance; not monthly."
+  },
+  "conditions": {
+    "zh-CN": [
+      "Reader/Search/Embedding/Reranker按不同规则消耗，搜索最低10K tokens/请求；限流按key/IP。",
+      "免费API key不绕过目标网站限制；禁止推断可无限建key套利。",
+      "自动top-up启用后低余额会对保存支付方式自动充值；未明确免费余额期限。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Reader/Search/Embedding/Reranker consume tokens differently; search starts at 10K/request; limits by key/IP.",
+      "Free keys do not bypass website restrictions; no claim of unlimited key creation to farm grants.",
+      "Enabled auto-topup recharges saved payment method at low balance; free-balance expiry unspecified.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "免费余额耗尽后需付费；余额/速率绑定key而不是可任意合并账户。",
+    "en": "Paid tokens needed after exhaustion; balance/rate tier belongs to the key rather than pooled account balance."
+  },
+  "claimUrl": "https://jina.ai/",
+  "checkedAt": "2026-10-04T17:57:13.670205+00:00",
+  "evidence": [
+    {
+      "url": "https://jina.ai/reader/",
+      "bodySha256": "3883e16e0d3acdcbec4e43e251419deab0e9ab38157a4c47c50155515302d337",
+      "capturedAt": "2026-10-04T17:57:13.670205+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Jina AI",
+        "en": "Official evidence · Jina AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://jina.ai/api-dashboard/pricing/",
+      "bodySha256": "5b7fa02a336a971a25268ed858a27d595bde44e5c2ea6551ed69bfd291f7ede6",
+      "capturedAt": "2026-10-04T17:57:13.592415+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Jina AI",
+        "en": "Official evidence · Jina AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "自动充值/续费取决于已启用的账户设置或专属条款，须在账户核对。",
+        "en": "Auto-reload/renewal depends on enabled account settings or award-specific terms; verify in the account."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 65. Voyage AI 模型专属免费用量 / Voyage AI model-specific free allowance
+
+参与文本模型首次200M tokens，旧领域模型50M；多模态200M文本+150B pixels。 / Participating text models first 200M tokens, older domain models 50M; multimodal 200M text tokens plus 150B pixels.
+
+- Provider/source: Voyage AI
+- Category: trial
+- Observed/checked: 2026-10-04T17:57:14.019146+00:00
+- Billing: 后续按模型Tokens/pixels计费；表格与叙述模型名不一致处不猜覆盖。 / Subsequent usage billed by tokens/pixels; do not infer coverage where prose/model tables disagree.
+
+Conditions / 完整条件:
+
+- 每账号/模型免费量看pricing表，不能统一合并；rerank与新模型需核各自行。
+- Batch请求全部按折扣价付费，不使用免费token余额。
+- 组织/API按模型限流；Tier1需添加付款方式，但已获免费量继续适用；较高付费用量可升级速率。未绑卡用尽后的细节原文未明确。
+- 额度期限如原文未明确，以账户/授予记录为准；额度不可提现。
+- Per-account/model free allocations follow pricing rows; no universal pooling; rerank/new models have separate rows.
+- All Batch API tokens are billed at batch rates and do not use free token balances.
+- Organization/model API rate limits apply. Tier 1 requires a payment method while free tokens still apply; billed usage can raise limits. Post-exhaustion behavior without a card is not explicit.
+- Where expiry is unspecified, inspect account or award records; service credits are not withdrawable cash.
+
+Sources / 来源:
+
+- [Official evidence](https://docs.voyageai.com/docs/pricing) — SHA-256 `49f6b1eb99c00d6d0d3b9f398b2286f1c2066d04e3cde8360087efb17d25f516`
+- [Official evidence](https://docs.voyageai.com/docs/faq) — SHA-256 `9977548da8cbfe78726a3aeed24a2c8cc68fd4c6b12466992d24ec17d018dc0e`
+- [Official evidence](https://docs.voyageai.com/docs/rate-limits) — SHA-256 `1a621ca4749a73af01e88fc1e2af352c65998a04e5904297bd50486687bfcaa2`
+
+[Provider programme page / 提供方入口](https://dash.voyageai.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "voyage-model-token-trial",
+  "provider": "Voyage AI",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Voyage AI 模型专属免费用量",
+    "en": "Voyage AI model-specific free allowance"
+  },
+  "benefitText": {
+    "zh-CN": "参与文本模型首次200M tokens，旧领域模型50M；多模态200M文本+150B pixels。",
+    "en": "Participating text models first 200M tokens, older domain models 50M; multimodal 200M text tokens plus 150B pixels."
+  },
+  "conditions": {
+    "zh-CN": [
+      "每账号/模型免费量看pricing表，不能统一合并；rerank与新模型需核各自行。",
+      "Batch请求全部按折扣价付费，不使用免费token余额。",
+      "组织/API按模型限流；Tier1需添加付款方式，但已获免费量继续适用；较高付费用量可升级速率。未绑卡用尽后的细节原文未明确。",
+      "额度期限如原文未明确，以账户/授予记录为准；额度不可提现。"
+    ],
+    "en": [
+      "Per-account/model free allocations follow pricing rows; no universal pooling; rerank/new models have separate rows.",
+      "All Batch API tokens are billed at batch rates and do not use free token balances.",
+      "Organization/model API rate limits apply. Tier 1 requires a payment method while free tokens still apply; billed usage can raise limits. Post-exhaustion behavior without a card is not explicit.",
+      "Where expiry is unspecified, inspect account or award records; service credits are not withdrawable cash."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "后续按模型Tokens/pixels计费；表格与叙述模型名不一致处不猜覆盖。",
+    "en": "Subsequent usage billed by tokens/pixels; do not infer coverage where prose/model tables disagree."
+  },
+  "claimUrl": "https://dash.voyageai.com/",
+  "checkedAt": "2026-10-04T17:57:14.019146+00:00",
+  "evidence": [
+    {
+      "url": "https://docs.voyageai.com/docs/pricing",
+      "bodySha256": "49f6b1eb99c00d6d0d3b9f398b2286f1c2066d04e3cde8360087efb17d25f516",
+      "capturedAt": "2026-10-04T17:57:13.818035+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Voyage AI",
+        "en": "Official evidence · Voyage AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.voyageai.com/docs/faq",
+      "bodySha256": "9977548da8cbfe78726a3aeed24a2c8cc68fd4c6b12466992d24ec17d018dc0e",
+      "capturedAt": "2026-10-04T17:57:13.898525+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Voyage AI",
+        "en": "Official evidence · Voyage AI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.voyageai.com/docs/rate-limits",
+      "bodySha256": "1a621ca4749a73af01e88fc1e2af352c65998a04e5904297bd50486687bfcaa2",
+      "capturedAt": "2026-10-04T17:57:14.019146+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Voyage AI",
+        "en": "Official evidence · Voyage AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "特定模型、身份核验、账单层级或升级环节可能要求付款方式；不能推及全部免费用量。",
+        "en": "Some models, verification, billing tiers or upgrade steps require a payment method; this is not a universal free-scope requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 66. Tavily API月度免费层 / Tavily monthly free API tier
+
+1,000 API credits/月，不需信用卡；每月1日重置。 / 1,000 API credits/month, no card required, resets on the first of each month.
+
+- Provider/source: Tavily
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:57:14.431464+00:00
+- Billing: 用尽后停到下月重置或主动升级付费。 / Stops after exhaustion until reset or a chosen paid upgrade.
+
+Conditions / 完整条件:
+
+- Search/Extract/Crawl扣率不同，credit不是请求或Tokens。
+- 账号/API key，条款要求18岁或当地成年（较高者）。
+- Search/Extract/Crawl consume credits differently; credits are not universal requests or tokens.
+- Account/API key; terms require 18 or local legal adulthood, whichever is higher.
+
+Sources / 来源:
+
+- [Official evidence](https://www.tavily.com/pricing) — SHA-256 `4673314891f204551ea43389c4093e71ca74767cbfea839169f39a61a630c701`
+- [Official evidence](https://help.tavily.com/articles/8816424538-pricing) — SHA-256 `131e324f60acdfc37dbbb93b56ddd75f60473375afd46d91bf45b46b6c661d57`
+- [Official evidence](https://www.tavily.com/terms) — SHA-256 `46d6faa5af7c43a11230cdef2884f8e0ae2d56413bb60329f1d1107c65bdced8`
+
+[Provider programme page / 提供方入口](https://app.tavily.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "tavily-monthly-free-api",
+  "provider": "Tavily",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Tavily API月度免费层",
+    "en": "Tavily monthly free API tier"
+  },
+  "benefitText": {
+    "zh-CN": "1,000 API credits/月，不需信用卡；每月1日重置。",
+    "en": "1,000 API credits/month, no card required, resets on the first of each month."
+  },
+  "conditions": {
+    "zh-CN": [
+      "Search/Extract/Crawl扣率不同，credit不是请求或Tokens。",
+      "账号/API key，条款要求18岁或当地成年（较高者）。"
+    ],
+    "en": [
+      "Search/Extract/Crawl consume credits differently; credits are not universal requests or tokens.",
+      "Account/API key; terms require 18 or local legal adulthood, whichever is higher."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "用尽后停到下月重置或主动升级付费。",
+    "en": "Stops after exhaustion until reset or a chosen paid upgrade."
+  },
+  "claimUrl": "https://app.tavily.com/",
+  "checkedAt": "2026-10-04T17:57:14.431464+00:00",
+  "evidence": [
+    {
+      "url": "https://www.tavily.com/pricing",
+      "bodySha256": "4673314891f204551ea43389c4093e71ca74767cbfea839169f39a61a630c701",
+      "capturedAt": "2026-10-04T17:57:14.081660+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Tavily",
+        "en": "Official evidence · Tavily"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.tavily.com/articles/8816424538-pricing",
+      "bodySha256": "131e324f60acdfc37dbbb93b56ddd75f60473375afd46d91bf45b46b6c661d57",
+      "capturedAt": "2026-10-04T17:57:14.177015+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Tavily",
+        "en": "Official evidence · Tavily"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.tavily.com/terms",
+      "bodySha256": "46d6faa5af7c43a11230cdef2884f8e0ae2d56413bb60329f1d1107c65bdced8",
+      "capturedAt": "2026-10-04T17:57:14.431464+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Tavily",
+        "en": "Official evidence · Tavily"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 67. Tavily 学生Project试用 / Tavily student Project access
+
+验证学生后Project 4个月免费，每月4,000 API credits。 / Verified students get four free months of Project with 4,000 API credits per month.
+
+- Provider/source: Tavily
+- Category: student-research
+- Observed/checked: 2026-10-04T17:57:14.431464+00:00
+- Billing: Project是付费订阅；通用规则默认续费，须至少提前24小时取消，优惠券专属条款及实际续费金额在升级时核对。 / Project is paid and generally auto-renews; cancel at least 24 hours before renewal. Check coupon overrides and the actual renewal amount at upgrade.
+
+Conditions / 完整条件:
+
+- 用学校邮箱联系支持或提供学生证，验证后获得coupon并在Billing升级时填入。
+- 适用科研/课程/hackathon；通用条款18岁/当地成年要求仍适用。
+- 不把4个月扩展为全年；信用卡与coupon结束后的续费设置需在升级界面核对。
+- 通用订阅条款默认自动续费，取消至少在续费前24小时完成；优惠券特殊条款可覆盖，升级时核最终续费/取消规则。
+- Contact support with official student email or student ID; redeem coupon during Billing upgrade.
+- For research/coursework/hackathons; general 18/local-adulthood requirement still applies.
+- Four months, not a year; inspect card and post-coupon renewal settings at upgrade.
+- General subscription terms renew automatically unless cancelled at least 24 hours before renewal. Coupon-specific terms may override this; verify final renewal/cancellation settings at upgrade.
+
+Sources / 来源:
+
+- [Official evidence](https://help.tavily.com/articles/6606514713-student-account) — SHA-256 `e88c99881f22058c9ee756737e6bdff8a87d668c5fddc7f5cbe42c7e749e0d6c`
+- [Official evidence](https://help.tavily.com/articles/8816424538-pricing) — SHA-256 `131e324f60acdfc37dbbb93b56ddd75f60473375afd46d91bf45b46b6c661d57`
+- [Official evidence](https://www.tavily.com/terms) — SHA-256 `46d6faa5af7c43a11230cdef2884f8e0ae2d56413bb60329f1d1107c65bdced8`
+
+[Provider programme page / 提供方入口](https://app.tavily.com/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "tavily-student-project",
+  "provider": "Tavily",
+  "operatorKind": "platform",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "Tavily 学生Project试用",
+    "en": "Tavily student Project access"
+  },
+  "benefitText": {
+    "zh-CN": "验证学生后Project 4个月免费，每月4,000 API credits。",
+    "en": "Verified students get four free months of Project with 4,000 API credits per month."
+  },
+  "conditions": {
+    "zh-CN": [
+      "用学校邮箱联系支持或提供学生证，验证后获得coupon并在Billing升级时填入。",
+      "适用科研/课程/hackathon；通用条款18岁/当地成年要求仍适用。",
+      "不把4个月扩展为全年；信用卡与coupon结束后的续费设置需在升级界面核对。",
+      "通用订阅条款默认自动续费，取消至少在续费前24小时完成；优惠券特殊条款可覆盖，升级时核最终续费/取消规则。"
+    ],
+    "en": [
+      "Contact support with official student email or student ID; redeem coupon during Billing upgrade.",
+      "For research/coursework/hackathons; general 18/local-adulthood requirement still applies.",
+      "Four months, not a year; inspect card and post-coupon renewal settings at upgrade.",
+      "General subscription terms renew automatically unless cancelled at least 24 hours before renewal. Coupon-specific terms may override this; verify final renewal/cancellation settings at upgrade."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "Project是付费订阅；通用规则默认续费，须至少提前24小时取消，优惠券专属条款及实际续费金额在升级时核对。",
+    "en": "Project is paid and generally auto-renews; cancel at least 24 hours before renewal. Check coupon overrides and the actual renewal amount at upgrade."
+  },
+  "claimUrl": "https://app.tavily.com/",
+  "checkedAt": "2026-10-04T17:57:14.431464+00:00",
+  "evidence": [
+    {
+      "url": "https://help.tavily.com/articles/6606514713-student-account",
+      "bodySha256": "e88c99881f22058c9ee756737e6bdff8a87d668c5fddc7f5cbe42c7e749e0d6c",
+      "capturedAt": "2026-10-04T17:57:14.329477+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Tavily",
+        "en": "Official evidence · Tavily"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://help.tavily.com/articles/8816424538-pricing",
+      "bodySha256": "131e324f60acdfc37dbbb93b56ddd75f60473375afd46d91bf45b46b6c661d57",
+      "capturedAt": "2026-10-04T17:57:14.177015+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Tavily",
+        "en": "Official evidence · Tavily"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.tavily.com/terms",
+      "bodySha256": "46d6faa5af7c43a11230cdef2884f8e0ae2d56413bb60329f1d1107c65bdced8",
+      "capturedAt": "2026-10-04T17:57:14.431464+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Tavily",
+        "en": "Official evidence · Tavily"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "特定模型、身份核验、账单层级或升级环节可能要求付款方式；不能推及全部免费用量。",
+        "en": "Some models, verification, billing tiers or upgrade steps require a payment method; this is not a universal free-scope requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 68. Exa 搜索API月度额度 / Exa monthly search API credits
+
+注册免费余额$10，每月1日重置到$10；首team完成onboarding另一次$10。 / $10 free balance at signup, resets to $10 on first of month; first team earns one-time $10 for completed onboarding.
+
+- Provider/source: Exa
+- Category: free-tier
+- Observed/checked: 2026-10-04T17:57:14.526009+00:00
+- Billing: 扩大用量可购credits按请求扣费，免费余额按月重置。 / Purchase credits to scale with per-request charges; free balance resets monthly.
+
+Conditions / 完整条件:
+
+- 不需支付方式；search/content/answer等不同API按各自价格消耗。
+- 不是每月赠送$20，也不是免费余额无限累积；上游数据/provider收费按各自项。
+- 地区及额外身份限制如本轮原文未明，需核实际账户资格；免费层明确无需支付方式。
+- No payment method required; search/content/answer endpoints use their own rates.
+- Not $20 every month or unlimited accumulation; data/provider charges remain separate.
+- Regional/additional identity limits not stated here require an account check; the free tier explicitly requires no payment method.
+
+Sources / 来源:
+
+- [Official evidence](https://exa.ai/pricing) — SHA-256 `cc38e67ff603eeb99c0c71e3b3ac60be4acc9fc61f0079b10996867d9f81175a`
+- [Official evidence](https://docs.exa.ai/reference/pricing) — SHA-256 `316f97d7d12bce6ce65ccbf691e939709f28f3ee211e622aa5f6d7e48d1d6747`
+
+[Provider programme page / 提供方入口](https://dashboard.exa.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "exa-monthly-free-search",
+  "provider": "Exa",
+  "operatorKind": "platform",
+  "category": "free-tier",
+  "title": {
+    "zh-CN": "Exa 搜索API月度额度",
+    "en": "Exa monthly search API credits"
+  },
+  "benefitText": {
+    "zh-CN": "注册免费余额$10，每月1日重置到$10；首team完成onboarding另一次$10。",
+    "en": "$10 free balance at signup, resets to $10 on first of month; first team earns one-time $10 for completed onboarding."
+  },
+  "conditions": {
+    "zh-CN": [
+      "不需支付方式；search/content/answer等不同API按各自价格消耗。",
+      "不是每月赠送$20，也不是免费余额无限累积；上游数据/provider收费按各自项。",
+      "地区及额外身份限制如本轮原文未明，需核实际账户资格；免费层明确无需支付方式。"
+    ],
+    "en": [
+      "No payment method required; search/content/answer endpoints use their own rates.",
+      "Not $20 every month or unlimited accumulation; data/provider charges remain separate.",
+      "Regional/additional identity limits not stated here require an account check; the free tier explicitly requires no payment method."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "扩大用量可购credits按请求扣费，免费余额按月重置。",
+    "en": "Purchase credits to scale with per-request charges; free balance resets monthly."
+  },
+  "claimUrl": "https://dashboard.exa.ai/",
+  "checkedAt": "2026-10-04T17:57:14.526009+00:00",
+  "evidence": [
+    {
+      "url": "https://exa.ai/pricing",
+      "bodySha256": "cc38e67ff603eeb99c0c71e3b3ac60be4acc9fc61f0079b10996867d9f81175a",
+      "capturedAt": "2026-10-04T17:57:14.503069+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Exa",
+        "en": "Official evidence · Exa"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://docs.exa.ai/reference/pricing",
+      "bodySha256": "316f97d7d12bce6ce65ccbf691e939709f28f3ee211e622aa5f6d7e48d1d6747",
+      "capturedAt": "2026-10-04T17:57:14.526009+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Exa",
+        "en": "Official evidence · Exa"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "所核对条款明确本卡起步/免费范围无需付款方式；付费升级另算。",
+        "en": "Pinned terms explicitly allow the stated starter/free scope without a payment method; paid upgrades are separate."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "unknown"
+}
+```
+
+### 69. Stability API新账号试用 / Stability API initial credit
+
+新Developer Platform账号25免费credits，用于最初测试/评估。 / New Developer Platform accounts receive 25 credits for initial testing/evaluation.
+
+- Provider/source: Stability AI
+- Category: trial
+- Observed/checked: 2026-10-04T17:57:15.646217+00:00
+- Billing: 超试用额度需购API credits，付款/期限以平台账单为准。 / Buy API credits after trial; payment/expiry follow platform billing.
+
+Conditions / 完整条件:
+
+- 需要注册并建立API key，最多10个活动key不是每key再赠25。
+- credits按API不同操作消耗，不等于美元或25张图。
+- 额度期限如原文未明确，以账户/授予记录为准；额度不可提现。
+- 原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。
+- Register/create API key; up to ten active keys is not another 25-credit grant per key.
+- Credits vary by API operation; not dollars or a fixed 25-image count.
+- Where expiry is unspecified, inspect account or award records; service credits are not withdrawable cash.
+- Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise.
+
+Sources / 来源:
+
+- [Official evidence](https://kb.stability.ai/knowledge-base/where-can-i-find-my-api-key) — SHA-256 `eca90f7c816abfe1fdbd991350c5564e1e4d7372df020e400b125780acc75204`
+
+[Provider programme page / 提供方入口](https://platform.stability.ai/)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "stability-api-initial-credit",
+  "provider": "Stability AI",
+  "operatorKind": "vendor",
+  "category": "trial",
+  "title": {
+    "zh-CN": "Stability API新账号试用",
+    "en": "Stability API initial credit"
+  },
+  "benefitText": {
+    "zh-CN": "新Developer Platform账号25免费credits，用于最初测试/评估。",
+    "en": "New Developer Platform accounts receive 25 credits for initial testing/evaluation."
+  },
+  "conditions": {
+    "zh-CN": [
+      "需要注册并建立API key，最多10个活动key不是每key再赠25。",
+      "credits按API不同操作消耗，不等于美元或25张图。",
+      "额度期限如原文未明确，以账户/授予记录为准；额度不可提现。",
+      "原文未明确的绑卡、地区或额外身份条件以实际申领规则为准，不宣称全球免卡。"
+    ],
+    "en": [
+      "Register/create API key; up to ten active keys is not another 25-credit grant per key.",
+      "Credits vary by API operation; not dollars or a fixed 25-image count.",
+      "Where expiry is unspecified, inspect account or award records; service credits are not withdrawable cash.",
+      "Card, regional and additional identity requirements not explicit in these sources remain unspecified; no worldwide or card-free promise."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "超试用额度需购API credits，付款/期限以平台账单为准。",
+    "en": "Buy API credits after trial; payment/expiry follow platform billing."
+  },
+  "claimUrl": "https://platform.stability.ai/",
+  "checkedAt": "2026-10-04T17:57:15.646217+00:00",
+  "evidence": [
+    {
+      "url": "https://kb.stability.ai/knowledge-base/where-can-i-find-my-api-key",
+      "bodySha256": "eca90f7c816abfe1fdbd991350c5564e1e4d7372df020e400b125780acc75204",
+      "capturedAt": "2026-10-04T17:57:15.646217+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Stability AI",
+        "en": "Official evidence · Stability AI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 70. Claude 创业企业 API 额度（审批制） / Claude startup API credits (approval required)
+
+符合条件的创业企业可申请 Claude API 额度与优先速率限制；当前通用项目页未公布统一金额。 / Eligible startups can apply for Claude API credits and priority rate limits; no universal amount is stated on the current program page.
+
+- Provider/source: Anthropic
+- Category: startup-credit
+- Observed/checked: 2026-10-04T18:03:46.023742+00:00
+- Billing: 项目结束后自动按标准 API 价格计费；审批上限和社区入会均不是注册即送。 / Standard API pricing applies automatically after the program; approval and community membership are not automatic signup grants.
+
+Conditions / 完整条件:
+
+- 加入社区不等于获得额度；额度资格要求机构股权融资、公司成立不满4年且此前未领过 Anthropic 创业额度。
+- 需 Claude Console 账号、公司邮箱、网站与用途说明；合作VC或加速器可带来额外权益，最终由官方审批。
+- 仅第一方 Claude API，不适用 AWS Bedrock、Vertex AI 或其他第三方平台。
+- 规则排除中国、俄罗斯等列明地区及受法律限制申请者；完整地区清单以官方规则为准。
+- 金额、有效期以获批通知为准；可能要求资格声明、宣传授权及税务信息，项目可被调整或取消。
+- Joining the community does not grant credits: credit eligibility requires institutional equity funding, a company under four years old, and no previous Anthropic startup credits.
+- Provide a Claude Console account, company email, website and use case; partner VC/accelerator affiliation may unlock extras, subject to approval.
+- First-party Claude API only; excluded on AWS Bedrock, Vertex AI and other third-party platforms.
+- Rules exclude China, Russia and other listed regions and legally restricted applicants; consult the full official territory list.
+- Amount and expiry depend on the award; verification, publicity permissions and tax information may be required; the program may change or end.
+
+Sources / 来源:
+
+- [Official evidence](https://claude.com/programs/startups) — SHA-256 `cfd708cbcafb4f8262f87193db87990d2bb21ccc9d3b7f2ba6bde525ddb7776c`
+- [Official evidence](https://www.anthropic.com/startup-program-official-terms) — SHA-256 `33043a40ce4d9e7135bcc425b58c24be4d874aa5938f3e7b0227d890ec06636b`
+
+[Provider programme page / 提供方入口](https://claude.com/programs/startups)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "anthropic-startup-api-credit",
+  "provider": "Anthropic",
+  "operatorKind": "vendor",
+  "category": "startup-credit",
+  "title": {
+    "zh-CN": "Claude 创业企业 API 额度（审批制）",
+    "en": "Claude startup API credits (approval required)"
+  },
+  "benefitText": {
+    "zh-CN": "符合条件的创业企业可申请 Claude API 额度与优先速率限制；当前通用项目页未公布统一金额。",
+    "en": "Eligible startups can apply for Claude API credits and priority rate limits; no universal amount is stated on the current program page."
+  },
+  "conditions": {
+    "zh-CN": [
+      "加入社区不等于获得额度；额度资格要求机构股权融资、公司成立不满4年且此前未领过 Anthropic 创业额度。",
+      "需 Claude Console 账号、公司邮箱、网站与用途说明；合作VC或加速器可带来额外权益，最终由官方审批。",
+      "仅第一方 Claude API，不适用 AWS Bedrock、Vertex AI 或其他第三方平台。",
+      "规则排除中国、俄罗斯等列明地区及受法律限制申请者；完整地区清单以官方规则为准。",
+      "金额、有效期以获批通知为准；可能要求资格声明、宣传授权及税务信息，项目可被调整或取消。"
+    ],
+    "en": [
+      "Joining the community does not grant credits: credit eligibility requires institutional equity funding, a company under four years old, and no previous Anthropic startup credits.",
+      "Provide a Claude Console account, company email, website and use case; partner VC/accelerator affiliation may unlock extras, subject to approval.",
+      "First-party Claude API only; excluded on AWS Bedrock, Vertex AI and other third-party platforms.",
+      "Rules exclude China, Russia and other listed regions and legally restricted applicants; consult the full official territory list.",
+      "Amount and expiry depend on the award; verification, publicity permissions and tax information may be required; the program may change or end."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "项目结束后自动按标准 API 价格计费；审批上限和社区入会均不是注册即送。",
+    "en": "Standard API pricing applies automatically after the program; approval and community membership are not automatic signup grants."
+  },
+  "claimUrl": "https://claude.com/programs/startups",
+  "checkedAt": "2026-10-04T18:03:46.023742+00:00",
+  "evidence": [
+    {
+      "url": "https://claude.com/programs/startups",
+      "bodySha256": "cfd708cbcafb4f8262f87193db87990d2bb21ccc9d3b7f2ba6bde525ddb7776c",
+      "capturedAt": "2026-10-04T17:55:47.839004+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.anthropic.com/startup-program-official-terms",
+      "bodySha256": "33043a40ce4d9e7135bcc425b58c24be4d874aa5938f3e7b0227d890ec06636b",
+      "capturedAt": "2026-10-04T17:55:47.501995+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "required",
+      "note": {
+        "zh-CN": "超额、耗尽或优惠期后可能自动收费/转付费；必须核对预算及取消设置。",
+        "en": "Overages, depletion or the end of the benefit can trigger automatic billing/paid conversion; verify budgets and cancellation settings."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 71. AI 安全与对齐研究 API 额度 / AI safety and alignment researcher API credits
+
+获批项目通常获得 US$1,000 Claude API 额度；少数特殊项目可获更高额度。 / Approved projects normally receive US$1,000 in Claude API credits; exceptional projects may receive more.
+
+- Provider/source: Anthropic
+- Category: student-research
+- Observed/checked: 2026-10-04T18:03:46.023742+00:00
+- Billing: 须审批；用完后继续使用需另购额度，自动充值为账户可选设置。 / Approval required; further usage needs purchased credits after depletion. Auto-reload is an optional account setting.
+
+Conditions / 完整条件:
+
+- 限官方优先支持的 AI 安全与对齐研究；不是所有学生或所有研究方向通用资助。
+- 提交团队和研究主题申请；每月第一个周一审核，未获批申请通常不逐一回复。
+- 支持标准公开模型的 API，不适用 Claude 聊天网页、非公开模型或 Bedrock 精调。
+- 仅 Claude 正式支持的地区；仍须遵守使用政策。团队应统一组织账号申请和管理。
+- 有效期和具体使用限额原文未统一注明，以获批通知和账户为准。
+- For prioritized AI safety and alignment research, not a universal student or all-fields research grant.
+- Apply with team and research details; reviews run on the first Monday each month and unsuccessful applications generally receive no individual reply.
+- Standard public-model API use only; excluded on the Claude web app, nonpublic models and Bedrock fine-tuning.
+- Only officially supported regions; usage policies still apply. Teams should apply and manage credits through one organization account.
+- No universal expiry or award-specific usage limits are stated; check the award and account.
+
+Sources / 来源:
+
+- [Official evidence](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program) — SHA-256 `4b5697d7643ad1acace664f0e5f47ac8e770a58cf4dbb82a064a8263ee9eb23e`
+- [Official evidence](https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-api-usage) — SHA-256 `b28f369e29f5a6d476d3a70b4252fc51a7a9bf4b571f85a9c80ca9450ff1a42f`
+
+[Provider programme page / 提供方入口](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "anthropic-external-researcher-credit",
+  "provider": "Anthropic",
+  "operatorKind": "vendor",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "AI 安全与对齐研究 API 额度",
+    "en": "AI safety and alignment researcher API credits"
+  },
+  "benefitText": {
+    "zh-CN": "获批项目通常获得 US$1,000 Claude API 额度；少数特殊项目可获更高额度。",
+    "en": "Approved projects normally receive US$1,000 in Claude API credits; exceptional projects may receive more."
+  },
+  "conditions": {
+    "zh-CN": [
+      "限官方优先支持的 AI 安全与对齐研究；不是所有学生或所有研究方向通用资助。",
+      "提交团队和研究主题申请；每月第一个周一审核，未获批申请通常不逐一回复。",
+      "支持标准公开模型的 API，不适用 Claude 聊天网页、非公开模型或 Bedrock 精调。",
+      "仅 Claude 正式支持的地区；仍须遵守使用政策。团队应统一组织账号申请和管理。",
+      "有效期和具体使用限额原文未统一注明，以获批通知和账户为准。"
+    ],
+    "en": [
+      "For prioritized AI safety and alignment research, not a universal student or all-fields research grant.",
+      "Apply with team and research details; reviews run on the first Monday each month and unsuccessful applications generally receive no individual reply.",
+      "Standard public-model API use only; excluded on the Claude web app, nonpublic models and Bedrock fine-tuning.",
+      "Only officially supported regions; usage policies still apply. Teams should apply and manage credits through one organization account.",
+      "No universal expiry or award-specific usage limits are stated; check the award and account."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "须审批；用完后继续使用需另购额度，自动充值为账户可选设置。",
+    "en": "Approval required; further usage needs purchased credits after depletion. Auto-reload is an optional account setting."
+  },
+  "claimUrl": "https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program",
+  "checkedAt": "2026-10-04T18:03:46.023742+00:00",
+  "evidence": [
+    {
+      "url": "https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program",
+      "bodySha256": "4b5697d7643ad1acace664f0e5f47ac8e770a58cf4dbb82a064a8263ee9eb23e",
+      "capturedAt": "2026-10-04T17:55:48.105609+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-api-usage",
+      "bodySha256": "b28f369e29f5a6d476d3a70b4252fc51a7a9bf4b571f85a9c80ca9450ff1a42f",
+      "capturedAt": "2026-10-04T17:55:48.608896+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "自动充值/续费取决于已启用的账户设置或专属条款，须在账户核对。",
+        "en": "Auto-reload/renewal depends on enabled account settings or award-specific terms; verify in the account."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 72. AI for Science 科研额度（最高 US$50,000） / AI for Science research credits (up to US$50,000)
+
+高影响科研项目可申请最高 US$50,000 额度；不是人人领取，免费 Claude 科学家订阅与 API 额度不是同一权益。 / High-impact science projects may apply for up to US$50,000 in credits; not guaranteed, and free scientist subscriptions are a separate benefit from API credits.
+
+- Provider/source: Anthropic
+- Category: student-research
+- Observed/checked: 2026-10-04T18:03:46.023742+00:00
+- Billing: 审批制服务额度，不可当现金；超出获批产品或额度的使用不视为免费。 / Approval-based service credits, not cash; usage beyond the awarded offering or balance is not treated as free.
+
+Conditions / 完整条件:
+
+- 2026年8月扩展公告允许研究者申请，实际按科研贡献、项目影响与评审结果选定；原项目提供 API 额度。
+- 个人须年满18岁或当地成年年龄；机构或团队申请须有雇主/研究机构同意和原始研究提交权。
+- 中国等列明地区及受法律限制申请者被排除；完整地区规则见官方细则。
+- 接受科研与生物安全评审；获选通知须在5工作日内回复，必要声明与宣传授权可能须14日内完成。
+- 生物学与化学研究仍有模型限制；不保证所有模型均可调用，金额、可用产品及期限按官方核发结果。
+- 需参与研究调查与访谈，官方可保留分析访谈、公布匿名汇总结果；宣传与税务责任以规则为准。
+- The August 2026 expansion invites researchers to apply; selection depends on scientific contribution, impact and review. The original program provides API credits.
+- Individuals must be at least 18 or local majority age; affiliated applicants need institutional consent and rights to their original submission.
+- China and other listed territories and legally restricted applicants are excluded; consult the full official rules.
+- Scientific and biosecurity review applies; respond to selection within five business days; requested declarations/publicity releases may be due within 14 days.
+- Biology and chemistry retain model restrictions; all models are not guaranteed. Amount, covered offering and expiry depend on the award.
+- Participants join research surveys/interviews; transcripts may be retained/analyzed and anonymized aggregate findings published. Publicity and tax terms apply.
+
+Sources / 来源:
+
+- [Official evidence](https://www.anthropic.com/news/expanding-support-for-scientists) — SHA-256 `6296b7bb10a542a3ca3182db3fc0cef640730d6fbd7aeb28f3d5008f949b663c`
+- [Official evidence](https://www.anthropic.com/news/ai-for-science-program) — SHA-256 `c4d0f55e9b58588bd980fce4f46a26f3d2f148653db5663b480fe762b2bb315a`
+- [Official evidence](https://www.anthropic.com/ai-for-science-program-rules) — SHA-256 `c69619b6b73d353cdf6d6fde11cb4f7607bdd216cd2b46abee640f59017a689b`
+
+[Provider programme page / 提供方入口](https://www.anthropic.com/news/expanding-support-for-scientists)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "anthropic-ai-science-credit",
+  "provider": "Anthropic",
+  "operatorKind": "vendor",
+  "category": "student-research",
+  "title": {
+    "zh-CN": "AI for Science 科研额度（最高 US$50,000）",
+    "en": "AI for Science research credits (up to US$50,000)"
+  },
+  "benefitText": {
+    "zh-CN": "高影响科研项目可申请最高 US$50,000 额度；不是人人领取，免费 Claude 科学家订阅与 API 额度不是同一权益。",
+    "en": "High-impact science projects may apply for up to US$50,000 in credits; not guaranteed, and free scientist subscriptions are a separate benefit from API credits."
+  },
+  "conditions": {
+    "zh-CN": [
+      "2026年8月扩展公告允许研究者申请，实际按科研贡献、项目影响与评审结果选定；原项目提供 API 额度。",
+      "个人须年满18岁或当地成年年龄；机构或团队申请须有雇主/研究机构同意和原始研究提交权。",
+      "中国等列明地区及受法律限制申请者被排除；完整地区规则见官方细则。",
+      "接受科研与生物安全评审；获选通知须在5工作日内回复，必要声明与宣传授权可能须14日内完成。",
+      "生物学与化学研究仍有模型限制；不保证所有模型均可调用，金额、可用产品及期限按官方核发结果。",
+      "需参与研究调查与访谈，官方可保留分析访谈、公布匿名汇总结果；宣传与税务责任以规则为准。"
+    ],
+    "en": [
+      "The August 2026 expansion invites researchers to apply; selection depends on scientific contribution, impact and review. The original program provides API credits.",
+      "Individuals must be at least 18 or local majority age; affiliated applicants need institutional consent and rights to their original submission.",
+      "China and other listed territories and legally restricted applicants are excluded; consult the full official rules.",
+      "Scientific and biosecurity review applies; respond to selection within five business days; requested declarations/publicity releases may be due within 14 days.",
+      "Biology and chemistry retain model restrictions; all models are not guaranteed. Amount, covered offering and expiry depend on the award.",
+      "Participants join research surveys/interviews; transcripts may be retained/analyzed and anonymized aggregate findings published. Publicity and tax terms apply."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "审批制服务额度，不可当现金；超出获批产品或额度的使用不视为免费。",
+    "en": "Approval-based service credits, not cash; usage beyond the awarded offering or balance is not treated as free."
+  },
+  "claimUrl": "https://www.anthropic.com/news/expanding-support-for-scientists",
+  "checkedAt": "2026-10-04T18:03:46.023742+00:00",
+  "evidence": [
+    {
+      "url": "https://www.anthropic.com/news/expanding-support-for-scientists",
+      "bodySha256": "6296b7bb10a542a3ca3182db3fc0cef640730d6fbd7aeb28f3d5008f949b663c",
+      "capturedAt": "2026-10-04T17:55:47.638063+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.anthropic.com/news/ai-for-science-program",
+      "bodySha256": "c4d0f55e9b58588bd980fce4f46a26f3d2f148653db5663b480fe762b2bb315a",
+      "capturedAt": "2026-10-04T17:55:47.742479+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://www.anthropic.com/ai-for-science-program-rules",
+      "bodySha256": "c69619b6b73d353cdf6d6fde11cb4f7607bdd216cd2b46abee640f59017a689b",
+      "capturedAt": "2026-10-04T18:02:09.155917+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · Anthropic",
+        "en": "Official evidence · Anthropic"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+### 73. 开源维护者 API 额度扶持 / Open-source maintainer API credit support
+
+开源核心维护者可申请 API 额度用于项目维护工作流；US$100万是基金总规模，不是个人额度。 / Core open-source maintainers may apply for API credits for maintainer workflows; US$1 million is the fund size, not an individual award.
+
+- Provider/source: OpenAI
+- Category: developer-program
+- Observed/checked: 2026-10-04T18:03:46.023742+00:00
+- Billing: 须审批且 API 支持另核；未核发部分不承诺免费，原文未给每人固定金额。 / Approval and separate API review required; unawarded usage is not promised free and no fixed per-person amount is stated.
+
+Conditions / 完整条件:
+
+- 面向重要公共开源项目的核心维护者或维护团队，官方按项目使用、生态重要性和活跃维护等评估。
+- 需有效 ChatGPT 账号、准确项目及角色信息，可能要求维护权限和身份验证；申请不保证获批。
+- API 额度是可选额外权益，需单独审核；支持 PR 审查、维护自动化、发布等核心开源工作流，不是通用注册赠金。
+- 6个月 Pro、Codex Security 和 API 额度各自条件不同；不能把订阅权益等同 API 金额。
+- 金额、期限、激活窗按书面核发和兑换说明；个人不可转让、转售或交换，权益无现金价值，项目可随时调整。
+- For core maintainers of important public OSS projects; review considers usage, ecosystem importance and active maintenance.
+- A valid ChatGPT account and accurate project/role information are required; maintainer/identity checks may apply. Applying does not guarantee an award.
+- API credits are an optional additional benefit requiring separate review, for PR review, maintenance automation, releases and core OSS workflows; not a general signup grant.
+- Six-month Pro, Codex Security and API credits have separate conditions; subscription benefits are not API credit amounts.
+- Amount, duration and activation windows follow written award/redemption instructions; benefits are personal, nontransferable, not for resale/exchange and have no cash value; the program may change.
+
+Sources / 来源:
+
+- [Official evidence](https://developers.openai.com/community/codex-for-oss) — SHA-256 `f5d9295d1777e55ced1672be6c43b94fa6fb4446ede4ebe404b0fc9f254fdb04`
+- [Official evidence](https://learn.chatgpt.com/docs/codex-for-oss-terms) — SHA-256 `da425c2ca8adbcac46ea2b1415647f20d28de31537268579aa3d4f7cec853d98`
+
+[Provider programme page / 提供方入口](https://developers.openai.com/community/codex-for-oss)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "openai-oss-api-fund",
+  "provider": "OpenAI",
+  "operatorKind": "vendor",
+  "category": "developer-program",
+  "title": {
+    "zh-CN": "开源维护者 API 额度扶持",
+    "en": "Open-source maintainer API credit support"
+  },
+  "benefitText": {
+    "zh-CN": "开源核心维护者可申请 API 额度用于项目维护工作流；US$100万是基金总规模，不是个人额度。",
+    "en": "Core open-source maintainers may apply for API credits for maintainer workflows; US$1 million is the fund size, not an individual award."
+  },
+  "conditions": {
+    "zh-CN": [
+      "面向重要公共开源项目的核心维护者或维护团队，官方按项目使用、生态重要性和活跃维护等评估。",
+      "需有效 ChatGPT 账号、准确项目及角色信息，可能要求维护权限和身份验证；申请不保证获批。",
+      "API 额度是可选额外权益，需单独审核；支持 PR 审查、维护自动化、发布等核心开源工作流，不是通用注册赠金。",
+      "6个月 Pro、Codex Security 和 API 额度各自条件不同；不能把订阅权益等同 API 金额。",
+      "金额、期限、激活窗按书面核发和兑换说明；个人不可转让、转售或交换，权益无现金价值，项目可随时调整。"
+    ],
+    "en": [
+      "For core maintainers of important public OSS projects; review considers usage, ecosystem importance and active maintenance.",
+      "A valid ChatGPT account and accurate project/role information are required; maintainer/identity checks may apply. Applying does not guarantee an award.",
+      "API credits are an optional additional benefit requiring separate review, for PR review, maintenance automation, releases and core OSS workflows; not a general signup grant.",
+      "Six-month Pro, Codex Security and API credits have separate conditions; subscription benefits are not API credit amounts.",
+      "Amount, duration and activation windows follow written award/redemption instructions; benefits are personal, nontransferable, not for resale/exchange and have no cash value; the program may change."
+    ]
+  },
+  "billingText": {
+    "zh-CN": "须审批且 API 支持另核；未核发部分不承诺免费，原文未给每人固定金额。",
+    "en": "Approval and separate API review required; unawarded usage is not promised free and no fixed per-person amount is stated."
+  },
+  "claimUrl": "https://developers.openai.com/community/codex-for-oss",
+  "checkedAt": "2026-10-04T18:03:46.023742+00:00",
+  "evidence": [
+    {
+      "url": "https://developers.openai.com/community/codex-for-oss",
+      "bodySha256": "f5d9295d1777e55ced1672be6c43b94fa6fb4446ede4ebe404b0fc9f254fdb04",
+      "capturedAt": "2026-10-04T18:00:33.754966+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · OpenAI",
+        "en": "Official evidence · OpenAI"
+      },
+      "title": "Official evidence"
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/codex-for-oss-terms",
+      "bodySha256": "da425c2ca8adbcac46ea2b1415647f20d28de31537268579aa3d4f7cec853d98",
+      "capturedAt": "2026-10-04T18:02:08.868168+00:00",
+      "captureKind": "http-body",
+      "label": {
+        "zh-CN": "官方依据 · OpenAI",
+        "en": "Official evidence · OpenAI"
+      },
+      "title": "Official evidence"
+    }
+  ],
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "核验流程可能要求额外身份检查，是否适用于个人须在账户确认。",
+        "en": "Additional identity checks may apply in the verification/review process; confirm applicability in the account."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "required",
+      "note": {
+        "zh-CN": "需要申请、审核、资格验证或优惠券核发；申请不保证获批。",
+        "en": "Application, review, eligibility verification or a coupon award is required; applying does not guarantee acceptance."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "checked",
+  "activityEndAt": null,
+  "activityStatus": "account-specific"
+}
+```
+
+## Third-party mechanisms / 第三方公告机制 (34)
+
+### 1. 注册试用0.5额度
+
+新用户注册可以获得0.5额度试用
+
+- Provider/source: api.yunhe.one
+- Category: signup
+- Observed/checked: 2026-10-03T23:46:25.488Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 注册新用户；0.5原单位为额度，具体模型范围未明确
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.yunhe.one/api/status) — SHA-256 `072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "e834637a5383a9d1ad2412607c69f422b7562d990f745a0c93b4f22b50075a6a",
+  "sourceId": "api.yunhe.one",
+  "sourceDomain": "api.yunhe.one",
+  "category": "signup",
+  "title": "注册试用0.5额度",
+  "benefitText": "新用户注册可以获得0.5额度试用",
+  "conditions": [
+    "注册新用户；0.5原单位为额度，具体模型范围未明确",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:46:25.488Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "009b166cf0e62f5df03e5f95231b206407a606dbfe2fac5b090fb1cf5bf0c04b",
+      "snapshotId": "3ec82d7eb865f591f2b96ba40f9dbd0f96774ce964e8426c57637733b1e6e57f",
+      "sourceUrl": "https://api.yunhe.one/api/status",
+      "observedAt": "2026-10-03T23:46:25.488Z",
+      "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 12
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "bfdea97fd4f01340334ccb90c23f34d7d79a6789654a9df04b6c0c0219974c64",
+  "titleText": {
+    "zh-CN": "注册试用0.5额度",
+    "en": "0.5-credit signup trial"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "新用户注册可以获得0.5额度试用",
+    "en": "New users are offered 0.5 site credits."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "注册新用户；0.5原单位为额度，具体模型范围未明确",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "New users only; eligible models are unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 2. 受邀者前两次充值的20%/10%邀请奖励
+
+首次充值返20%，第二次充值返10%额度奖励
+
+- Provider/source: api.yunhe.one
+- Category: invite
+- Observed/checked: 2026-10-03T23:46:25.488Z
+- Requires payment: true
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 奖励给邀请人；每个受邀者最多两次；充值完成后一小时内到账；不再直接发邀请注册额度
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.yunhe.one/api/status) — SHA-256 `072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "d41538494e5dc8b010c31ed58438df9dcff4d845982856571f9f0a5fe657141b",
+  "sourceId": "api.yunhe.one",
+  "sourceDomain": "api.yunhe.one",
+  "category": "invite",
+  "title": "受邀者前两次充值的20%/10%邀请奖励",
+  "benefitText": "首次充值返20%，第二次充值返10%额度奖励",
+  "conditions": [
+    "奖励给邀请人；每个受邀者最多两次；充值完成后一小时内到账；不再直接发邀请注册额度",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:46:25.488Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "009b166cf0e62f5df03e5f95231b206407a606dbfe2fac5b090fb1cf5bf0c04b",
+      "snapshotId": "3ec82d7eb865f591f2b96ba40f9dbd0f96774ce964e8426c57637733b1e6e57f",
+      "sourceUrl": "https://api.yunhe.one/api/status",
+      "observedAt": "2026-10-03T23:46:25.488Z",
+      "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 12
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "bfdea97fd4f01340334ccb90c23f34d7d79a6789654a9df04b6c0c0219974c64",
+  "titleText": {
+    "zh-CN": "受邀者前两次充值的20%/10%邀请奖励",
+    "en": "Referral reward on the first two top-ups"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "首次充值返20%，第二次充值返10%额度奖励",
+    "en": "The referrer receives 20% on the first top-up and 10% on the second."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "奖励给邀请人；每个受邀者最多两次；充值完成后一小时内到账；不再直接发邀请注册额度",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "At most two rewards per referred user; posted within one hour after payment.",
+      "No immediate credit for referral signup under the new announcement.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 3. 旧试营业注册与邀请奖励
+
+三刀；邀请2刀；被邀请一刀
+
+- Provider/source: api.yunhe.one
+- Category: signup
+- Observed/checked: 2026-10-03T23:46:25.488Z
+- Requires payment: null
+- Declared status: conflicting
+- End: unknown
+
+Conditions / 完整条件:
+
+- 试营业期间；后续公告已改为0.5额度及充值返利
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.yunhe.one/api/status) — SHA-256 `072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf`
+- [Source statement](https://api.yunhe.one/api/status) — SHA-256 `072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "f02ed5195b7da34e83f27b2e0c5316ef63c35b9c458a55c9885b706baa11f005",
+  "sourceId": "api.yunhe.one",
+  "sourceDomain": "api.yunhe.one",
+  "category": "signup",
+  "title": "旧试营业注册与邀请奖励",
+  "benefitText": "三刀；邀请2刀；被邀请一刀",
+  "conditions": [
+    "试营业期间；后续公告已改为0.5额度及充值返利",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:46:25.488Z",
+  "endAt": null,
+  "declaredStatus": "conflicting",
+  "evidence": [
+    {
+      "documentId": "009b166cf0e62f5df03e5f95231b206407a606dbfe2fac5b090fb1cf5bf0c04b",
+      "snapshotId": "3ec82d7eb865f591f2b96ba40f9dbd0f96774ce964e8426c57637733b1e6e57f",
+      "sourceUrl": "https://api.yunhe.one/api/status",
+      "observedAt": "2026-10-03T23:46:25.488Z",
+      "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 15
+      }
+    },
+    {
+      "documentId": "009b166cf0e62f5df03e5f95231b206407a606dbfe2fac5b090fb1cf5bf0c04b",
+      "snapshotId": "3ec82d7eb865f591f2b96ba40f9dbd0f96774ce964e8426c57637733b1e6e57f",
+      "sourceUrl": "https://api.yunhe.one/api/status",
+      "observedAt": "2026-10-03T23:46:25.488Z",
+      "bodySha256": "072b9df33c73ec67efc3817f3d37c60c365dadb245dde600fbc3d6a9eed065bf",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 12
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "f02ed5195b7da34e83f27b2e0c5316ef63c35b9c458a55c9885b706baa11f005",
+  "titleText": {
+    "zh-CN": "旧试营业注册与邀请奖励",
+    "en": "Historical trial-opening signup and referral rewards"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "三刀；邀请2刀；被邀请一刀",
+    "en": "Historical labels: 3 “dao” for signup, 2 for referrer, 1 for referred user."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "试营业期间；后续公告已改为0.5额度及充值返利",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Historical trial-opening announcement conflicts with the later 0.5-credit/signup and top-up reward policy.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 4. 注册赠0.2元试用额度
+
+新用户注册即送0.2元试用额度
+
+- Provider/source: token.ithinkai.cn
+- Category: signup
+- Observed/checked: 2026-10-03T23:56:02.650Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 注册新用户
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://token.ithinkai.cn/api/status) — SHA-256 `46134277417709fa209e4ba9208fc152ffb5c7759d937bea7cb28610060730fa`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "1f2173da6457eb674387e2f19e958e789fbfbc388c1405b6ad4c1f036f09a700",
+  "sourceId": "token.ithinkai.cn",
+  "sourceDomain": "token.ithinkai.cn",
+  "category": "signup",
+  "title": "注册赠0.2元试用额度",
+  "benefitText": "新用户注册即送0.2元试用额度",
+  "conditions": [
+    "注册新用户",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:56:02.650Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "13a94c5a61efc2acdcf699e53440a6e0c3ceace47ee8a5cb0a657580b7951c4b",
+      "snapshotId": "87c6a6f69e618059f03f5e140c79b621a37d54c5838796ba7971f4abd0312729",
+      "sourceUrl": "https://token.ithinkai.cn/api/status",
+      "observedAt": "2026-10-03T23:56:02.650Z",
+      "bodySha256": "46134277417709fa209e4ba9208fc152ffb5c7759d937bea7cb28610060730fa",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 30
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "4c6f6bf8eabc838f64f4135aa87da1674f18419754b9cc7c516337fbc758fc81",
+  "titleText": {
+    "zh-CN": "注册赠0.2元试用额度",
+    "en": "0.2-yuan-labelled signup credit"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "新用户注册即送0.2元试用额度",
+    "en": "New users are offered 0.2 yuan-labelled trial credits."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "注册新用户",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "New users only; the source unit is retained, not treated as cash.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 5. 邀请注册双向赠0.2元额度
+
+邀请双方各赠0.2元额度
+
+- Provider/source: token.ithinkai.cn
+- Category: invite
+- Observed/checked: 2026-10-03T23:56:02.650Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 每邀请一名新用户注册；没有声明充值是领取条件
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://token.ithinkai.cn/api/status) — SHA-256 `46134277417709fa209e4ba9208fc152ffb5c7759d937bea7cb28610060730fa`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "12f04866fe4af97900f9952df14bd1af677b45c3f8064c05611bfa33c15b9808",
+  "sourceId": "token.ithinkai.cn",
+  "sourceDomain": "token.ithinkai.cn",
+  "category": "invite",
+  "title": "邀请注册双向赠0.2元额度",
+  "benefitText": "邀请双方各赠0.2元额度",
+  "conditions": [
+    "每邀请一名新用户注册；没有声明充值是领取条件",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:56:02.650Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "13a94c5a61efc2acdcf699e53440a6e0c3ceace47ee8a5cb0a657580b7951c4b",
+      "snapshotId": "87c6a6f69e618059f03f5e140c79b621a37d54c5838796ba7971f4abd0312729",
+      "sourceUrl": "https://token.ithinkai.cn/api/status",
+      "observedAt": "2026-10-03T23:56:02.650Z",
+      "bodySha256": "46134277417709fa209e4ba9208fc152ffb5c7759d937bea7cb28610060730fa",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 30
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "4c6f6bf8eabc838f64f4135aa87da1674f18419754b9cc7c516337fbc758fc81",
+  "titleText": {
+    "zh-CN": "邀请注册双向赠0.2元额度",
+    "en": "Two-sided 0.2-yuan-labelled referral credit"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "邀请双方各赠0.2元额度",
+    "en": "Both sides are offered 0.2 yuan-labelled credits."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "每邀请一名新用户注册；没有声明充值是领取条件",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "A new referred user must register; the statement does not specify a top-up prerequisite.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 6. 每日随机签到额度
+
+0.2＄–0.7＄的额度
+
+- Provider/source: callxyq.xyz
+- Category: checkin
+- Observed/checked: 2026-10-03T23:48:07.702Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 每日签到；随机金额；＄为来源额度标签，现金价值未核验
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://callxyq.xyz/api/status) — SHA-256 `8bb45a2988e6ad2580dd39c330bf9f3da099388a5d4497ddc9ea028f0b3a5ea7`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "fa4c61e8a414df8174c5c025654babd8f77575d4568b53c998ab44dcdbcd6827",
+  "sourceId": "callxyq.xyz",
+  "sourceDomain": "callxyq.xyz",
+  "category": "checkin",
+  "title": "每日随机签到额度",
+  "benefitText": "0.2＄–0.7＄的额度",
+  "conditions": [
+    "每日签到；随机金额；＄为来源额度标签，现金价值未核验",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:48:07.702Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "19fee09ea5867677f79e86567079d5e1b1ca9b6290c3adf1f6acb42f3cbadb15",
+      "snapshotId": "7ad3fa8d8fb22ee6afa41340eb7d73947bbedd212a922f587529d2bee4f5730b",
+      "sourceUrl": "https://callxyq.xyz/api/status",
+      "observedAt": "2026-10-03T23:48:07.702Z",
+      "bodySha256": "8bb45a2988e6ad2580dd39c330bf9f3da099388a5d4497ddc9ea028f0b3a5ea7",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 3
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "fa4c61e8a414df8174c5c025654babd8f77575d4568b53c998ab44dcdbcd6827",
+  "titleText": {
+    "zh-CN": "每日随机签到额度",
+    "en": "Daily random check-in credits"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "0.2＄–0.7＄的额度",
+    "en": "The stated daily range is 0.2＄–0.7＄ in site credits."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "每日签到；随机金额；＄为来源额度标签，现金价值未核验",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Daily check-in; random amount; ＄ is a source credit label with unverified cash value.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "random"
+}
+```
+
+### 7. 注册额度奖励
+
+1＄
+
+- Provider/source: callxyq.xyz
+- Category: signup
+- Observed/checked: 2026-10-03T23:48:07.702Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 新用户注册；原文邀请金额未完整给出，不补猜；＄现金价值未核验
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://callxyq.xyz/api/status) — SHA-256 `8bb45a2988e6ad2580dd39c330bf9f3da099388a5d4497ddc9ea028f0b3a5ea7`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "16e09909caa36999c716e638d37a75a14fde5a2701c1221658db32a905c145ea",
+  "sourceId": "callxyq.xyz",
+  "sourceDomain": "callxyq.xyz",
+  "category": "signup",
+  "title": "注册额度奖励",
+  "benefitText": "1＄",
+  "conditions": [
+    "新用户注册；原文邀请金额未完整给出，不补猜；＄现金价值未核验",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:48:07.702Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "19fee09ea5867677f79e86567079d5e1b1ca9b6290c3adf1f6acb42f3cbadb15",
+      "snapshotId": "7ad3fa8d8fb22ee6afa41340eb7d73947bbedd212a922f587529d2bee4f5730b",
+      "sourceUrl": "https://callxyq.xyz/api/status",
+      "observedAt": "2026-10-03T23:48:07.702Z",
+      "bodySha256": "8bb45a2988e6ad2580dd39c330bf9f3da099388a5d4497ddc9ea028f0b3a5ea7",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 4
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "16e09909caa36999c716e638d37a75a14fde5a2701c1221658db32a905c145ea",
+  "titleText": {
+    "zh-CN": "注册额度奖励",
+    "en": "Signup credit reward"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "1＄",
+    "en": "The stated reward is 1＄ in site credits."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "新用户注册；原文邀请金额未完整给出，不补猜；＄现金价值未核验",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "New users only; the incomplete referral amount is not reconstructed.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 8. QQ邮箱注册赠一元额度
+
+新用户注册得一元额度
+
+- Provider/source: api.jiushi.xin
+- Category: signup
+- Observed/checked: 2026-10-03T23:43:32.206Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 仅限QQ邮箱注册
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.jiushi.xin/api/status) — SHA-256 `b0c32f6002185ba430130f32cec267324fdbd121ce9edc5910ec1a294ca80092`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "41e9f015ca391e2b554bae4da45ed4b7a54bad6c52406b1fb53a9a39a60db561",
+  "sourceId": "api.jiushi.xin",
+  "sourceDomain": "api.jiushi.xin",
+  "category": "signup",
+  "title": "QQ邮箱注册赠一元额度",
+  "benefitText": "新用户注册得一元额度",
+  "conditions": [
+    "仅限QQ邮箱注册",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:43:32.206Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "04eb3e36fbb303a87998a3070d4b364521433555f843e442062c5df01c9836ef",
+      "snapshotId": "74d87611e242b2e20b4f06817e01461099a5c69c8875bf4a852f3db16484c563",
+      "sourceUrl": "https://api.jiushi.xin/api/status",
+      "observedAt": "2026-10-03T23:43:32.206Z",
+      "bodySha256": "b0c32f6002185ba430130f32cec267324fdbd121ce9edc5910ec1a294ca80092",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 65
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "5f3210305b556d0849ffd1345986cef4803b9fef528e2cc666d2411457ec254b",
+  "titleText": {
+    "zh-CN": "QQ邮箱注册赠一元额度",
+    "en": "QQ-email signup credit"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "新用户注册得一元额度",
+    "en": "One yuan-labelled credit is offered for new-user signup."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "仅限QQ邮箱注册",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "Registration using a QQ email address is required.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 9. QQ邮箱邀请注册双方各2元额度
+
+邀请双方各2元额度（原0.5）
+
+- Provider/source: api.jiushi.xin
+- Category: invite
+- Observed/checked: 2026-10-03T23:43:32.206Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 仅限QQ邮箱注册；需要有效邀请
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.jiushi.xin/api/status) — SHA-256 `b0c32f6002185ba430130f32cec267324fdbd121ce9edc5910ec1a294ca80092`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "d9237fb5cfc814f386dc0ef9b518df2e2a01ded4e76d9d0aca0ddd298e23950e",
+  "sourceId": "api.jiushi.xin",
+  "sourceDomain": "api.jiushi.xin",
+  "category": "invite",
+  "title": "QQ邮箱邀请注册双方各2元额度",
+  "benefitText": "邀请双方各2元额度（原0.5）",
+  "conditions": [
+    "仅限QQ邮箱注册；需要有效邀请",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:43:32.206Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "04eb3e36fbb303a87998a3070d4b364521433555f843e442062c5df01c9836ef",
+      "snapshotId": "74d87611e242b2e20b4f06817e01461099a5c69c8875bf4a852f3db16484c563",
+      "sourceUrl": "https://api.jiushi.xin/api/status",
+      "observedAt": "2026-10-03T23:43:32.206Z",
+      "bodySha256": "b0c32f6002185ba430130f32cec267324fdbd121ce9edc5910ec1a294ca80092",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 65
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "5f3210305b556d0849ffd1345986cef4803b9fef528e2cc666d2411457ec254b",
+  "titleText": {
+    "zh-CN": "QQ邮箱邀请注册双方各2元额度",
+    "en": "QQ-email two-sided referral credit"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "邀请双方各2元额度（原0.5）",
+    "en": "Both sides receive two yuan-labelled credits, increased from the earlier 0.5."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "仅限QQ邮箱注册；需要有效邀请",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "QQ email signup and a valid referral are required.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 10. QQ邮箱注册赠1刀余额
+
+新用户注册得1刀余额
+
+- Provider/source: open.selart.cc
+- Category: signup
+- Observed/checked: 2026-10-03T23:54:29.280Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 仅限QQ邮箱注册；刀为原文额度单位
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://open.selart.cc/api/status) — SHA-256 `b5d384044425df276733cf44c00593e59e56cc53f6ac57eed27cb99d041171dd`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "eddbae3c41284f3f30c723bb7ed1fb93a04e1f22094172eb0b97f72274056ce5",
+  "sourceId": "open.selart.cc",
+  "sourceDomain": "open.selart.cc",
+  "category": "signup",
+  "title": "QQ邮箱注册赠1刀余额",
+  "benefitText": "新用户注册得1刀余额",
+  "conditions": [
+    "仅限QQ邮箱注册；刀为原文额度单位",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:54:29.280Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "1c0e22461bf569d4684551433d030d0fdbe728164cf2282ca7e20cc3e5a232d8",
+      "snapshotId": "bd0ebae61f33954a125deede5e59e0582720141a8f542d5d81a55237fc8b0bf9",
+      "sourceUrl": "https://open.selart.cc/api/status",
+      "observedAt": "2026-10-03T23:54:29.280Z",
+      "bodySha256": "b5d384044425df276733cf44c00593e59e56cc53f6ac57eed27cb99d041171dd",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 31
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "73053e39e43bcecaf1576f870bdada193ff9f3d8dc24ad6ac5d332d95438b6fa",
+  "titleText": {
+    "zh-CN": "QQ邮箱注册赠1刀余额",
+    "en": "QQ-email signup balance"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "新用户注册得1刀余额",
+    "en": "New users are offered 1 “dao” balance."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "仅限QQ邮箱注册；刀为原文额度单位",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "QQ email signup is required; “dao” remains a source credit label.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityDeadline": {
+    "date": "2026-12-31",
+    "timezone": "unspecified",
+    "expiryUpperBound": "2027-01-01T12:00:00Z",
+    "interpretation": "Conservative latest possible end of the stated calendar date over UTC-12 through UTC+14; not a source-provided exact deadline or promise of availability."
+  },
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 11. 邀请人1刀、受邀者0.4刀余额
+
+邀请一人得1刀，受邀者得0.4刀
+
+- Provider/source: open.selart.cc
+- Category: invite
+- Observed/checked: 2026-10-03T23:54:29.280Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 仅限QQ邮箱注册；需有效邀请；刀不换算现金或Token
+- 公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://open.selart.cc/api/status) — SHA-256 `b5d384044425df276733cf44c00593e59e56cc53f6ac57eed27cb99d041171dd`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "fc5bc42526ce7d16837b54ea3a8671b3f4b3c3347685062dd19ebdae2b7f00c8",
+  "sourceId": "open.selart.cc",
+  "sourceDomain": "open.selart.cc",
+  "category": "invite",
+  "title": "邀请人1刀、受邀者0.4刀余额",
+  "benefitText": "邀请一人得1刀，受邀者得0.4刀",
+  "conditions": [
+    "仅限QQ邮箱注册；需有效邀请；刀不换算现金或Token",
+    "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:54:29.280Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "1c0e22461bf569d4684551433d030d0fdbe728164cf2282ca7e20cc3e5a232d8",
+      "snapshotId": "bd0ebae61f33954a125deede5e59e0582720141a8f542d5d81a55237fc8b0bf9",
+      "sourceUrl": "https://open.selart.cc/api/status",
+      "observedAt": "2026-10-03T23:54:29.280Z",
+      "bodySha256": "b5d384044425df276733cf44c00593e59e56cc53f6ac57eed27cb99d041171dd",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 31
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "73053e39e43bcecaf1576f870bdada193ff9f3d8dc24ad6ac5d332d95438b6fa",
+  "titleText": {
+    "zh-CN": "邀请人1刀、受邀者0.4刀余额",
+    "en": "1/0.4 “dao” referral balances"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "邀请一人得1刀，受邀者得0.4刀",
+    "en": "The referrer receives 1 “dao” and the referred user receives 0.4."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "仅限QQ邮箱注册；需有效邀请；刀不换算现金或Token",
+      "公开声明；领取及账号资格未核验；未列明期限保持未知；原单位不换算Token或现金"
+    ],
+    "en": [
+      "QQ email signup and a valid referral are required; no cash/token conversion is made.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 12. 旧aws-q限时免费体验
+
+原文称免费
+
+- Provider/source: bridge.pulseneko.com
+- Category: free-group
+- Observed/checked: 2026-10-03T23:47:58.162Z
+- Requires payment: null
+- Declared status: disabled
+- End: unknown
+
+Conditions / 完整条件:
+
+- 限时；新用户注册；后续公告已取消
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://bridge.pulseneko.com/api/status) — SHA-256 `9e33f1344a246006c69218802f30fff63a4199f396a18db9f20a429884e7df7c`
+- [Source statement](https://bridge.pulseneko.com/api/status) — SHA-256 `9e33f1344a246006c69218802f30fff63a4199f396a18db9f20a429884e7df7c`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "5bbd99346c4c80cec5646917e66c82c71e69ff8dd33c863606873339448603b2",
+  "sourceId": "bridge.pulseneko.com",
+  "sourceDomain": "bridge.pulseneko.com",
+  "category": "free-group",
+  "title": "旧aws-q限时免费体验",
+  "benefitText": "原文称免费",
+  "conditions": [
+    "限时；新用户注册；后续公告已取消",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:47:58.162Z",
+  "endAt": null,
+  "declaredStatus": "disabled",
+  "evidence": [
+    {
+      "documentId": "01947ff3982bc15a4a09658641b2a725c5d34504b2558ab8260292ab9cfba7fd",
+      "snapshotId": "987e2964dbb607c0e4885a9fedf37ab260810f9be81f01ec948d27190b733c88",
+      "sourceUrl": "https://bridge.pulseneko.com/api/status",
+      "observedAt": "2026-10-03T23:47:58.162Z",
+      "bodySha256": "9e33f1344a246006c69218802f30fff63a4199f396a18db9f20a429884e7df7c",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 10
+      }
+    },
+    {
+      "documentId": "01947ff3982bc15a4a09658641b2a725c5d34504b2558ab8260292ab9cfba7fd",
+      "snapshotId": "987e2964dbb607c0e4885a9fedf37ab260810f9be81f01ec948d27190b733c88",
+      "sourceUrl": "https://bridge.pulseneko.com/api/status",
+      "observedAt": "2026-10-03T23:47:58.162Z",
+      "bodySha256": "9e33f1344a246006c69218802f30fff63a4199f396a18db9f20a429884e7df7c",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 9
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "5bbd99346c4c80cec5646917e66c82c71e69ff8dd33c863606873339448603b2",
+  "titleText": {
+    "zh-CN": "旧aws-q限时免费体验",
+    "en": "Historical aws-q free trial"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "原文称免费",
+    "en": "The historical source described a free trial."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "限时；新用户注册；后续公告已取消",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Limited-time new-user trial; a later announcement cancelled it.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 13. 国庆礼包购买赠抽奖机会
+
+99元到账500 U，赠10抽
+
+- Provider/source: pipio.io
+- Category: topup
+- Observed/checked: 2026-10-03T23:54:28.591Z
+- Requires payment: true
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 限量500份，每账号最多10份；活动商品不返佣
+- 到账单位为U；需要实际购买；礼包订单不重复计入普通充值赠抽
+- 已持有抽奖机会须于2026年10月11日23:59:59北京时间前使用
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+- 购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放
+
+Sources / 来源:
+
+- [Source statement](https://pipio.io/api/status) — SHA-256 `e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f`
+
+[Provider programme page / 提供方入口](https://pipio.io/promotions/8)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "8de75e7c27014cc6766b3802ede445756c01ee35c153aa9abea037552f69de63",
+  "sourceId": "pipio.io",
+  "sourceDomain": "pipio.io",
+  "category": "topup",
+  "title": "国庆礼包购买赠抽奖机会",
+  "benefitText": "99元到账500 U，赠10抽",
+  "conditions": [
+    "限量500份，每账号最多10份；活动商品不返佣",
+    "到账单位为U；需要实际购买；礼包订单不重复计入普通充值赠抽",
+    "已持有抽奖机会须于2026年10月11日23:59:59北京时间前使用",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token",
+    "购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放"
+  ],
+  "claimUrl": "https://pipio.io/promotions/8",
+  "observedAt": "2026-10-03T23:54:28.591Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "020c9207cfe5d40f73c024879f426f88ac1b130636ad1d751433f04d89dfcb4c",
+      "snapshotId": "bfcab4b9e332982f12ef3eb15d997066968c83b3a5905ef58c406267ef1f88e0",
+      "sourceUrl": "https://pipio.io/api/status",
+      "observedAt": "2026-10-03T23:54:28.591Z",
+      "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "7f5014ccc90e88e5d321fdfe0ad363084e2d4a19c084bdf51b5767edeb52b4aa",
+  "deadlineText": "购买期：2026年9月29日—10月7日（北京时间）；原文未注明购买截止的具体时分秒",
+  "expiryUpperBound": "2026-10-07T16:00:00Z",
+  "titleText": {
+    "zh-CN": "国庆礼包购买赠抽奖机会",
+    "en": "Holiday bundle with draw entries"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "99元到账500 U，赠10抽",
+    "en": "A 99-yuan purchase credits 500 U and provides 10 draw entries."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "限量500份，每账号最多10份；活动商品不返佣",
+      "到账单位为U；需要实际购买；礼包订单不重复计入普通充值赠抽",
+      "已持有抽奖机会须于2026年10月11日23:59:59北京时间前使用",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token",
+      "购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放"
+    ],
+    "en": [
+      "Limited to 500 bundles and 10 per account; bundle purchases earn no referral commission.",
+      "Actual purchase required; bundle orders do not also earn ordinary top-up draw entries.",
+      "Owned draw entries must be used by 2026-10-11 23:59:59 Beijing time.",
+      "Purchasing ends on October 7 Beijing time; no exact time was stated. October 8 00:00 is only the latest possible end bound.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "random",
+  "deadlineLabel": {
+    "zh-CN": "购买期：2026年9月29日—10月7日（北京时间）；原文未注明购买截止的具体时分秒",
+    "en": "Purchase period: 2026-09-29 through October 7 Beijing time; exact cutoff time not stated."
+  }
+}
+```
+
+### 14. 国庆普通充值赠抽奖机会
+
+累计实付每满10元赠1抽
+
+- Provider/source: pipio.io
+- Category: topup
+- Observed/checked: 2026-10-03T23:54:28.591Z
+- Requires payment: true
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 仅活动期间普通充值；活动套餐不重复计入
+- 抽奖不是额外固定余额；所得抽奖机会须在北京时间10月11日23:59:59前使用
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+- 购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放
+
+Sources / 来源:
+
+- [Source statement](https://pipio.io/api/status) — SHA-256 `e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f`
+
+[Provider programme page / 提供方入口](https://pipio.io/promotions/8)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "ee1f43851942d3101917398c26ecf1cc83c62605cc2aa60f225dea01bdf7bd76",
+  "sourceId": "pipio.io",
+  "sourceDomain": "pipio.io",
+  "category": "topup",
+  "title": "国庆普通充值赠抽奖机会",
+  "benefitText": "累计实付每满10元赠1抽",
+  "conditions": [
+    "仅活动期间普通充值；活动套餐不重复计入",
+    "抽奖不是额外固定余额；所得抽奖机会须在北京时间10月11日23:59:59前使用",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token",
+    "购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放"
+  ],
+  "claimUrl": "https://pipio.io/promotions/8",
+  "observedAt": "2026-10-03T23:54:28.591Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "020c9207cfe5d40f73c024879f426f88ac1b130636ad1d751433f04d89dfcb4c",
+      "snapshotId": "bfcab4b9e332982f12ef3eb15d997066968c83b3a5905ef58c406267ef1f88e0",
+      "sourceUrl": "https://pipio.io/api/status",
+      "observedAt": "2026-10-03T23:54:28.591Z",
+      "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "7f5014ccc90e88e5d321fdfe0ad363084e2d4a19c084bdf51b5767edeb52b4aa",
+  "deadlineText": "购买期：2026年9月29日—10月7日（北京时间）；原文未注明购买截止的具体时分秒",
+  "expiryUpperBound": "2026-10-07T16:00:00Z",
+  "titleText": {
+    "zh-CN": "国庆普通充值赠抽奖机会",
+    "en": "Holiday top-up draw entries"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "累计实付每满10元赠1抽",
+    "en": "Each cumulative 10 yuan actually paid earns one draw entry."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "仅活动期间普通充值；活动套餐不重复计入",
+      "抽奖不是额外固定余额；所得抽奖机会须在北京时间10月11日23:59:59前使用",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token",
+      "购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放"
+    ],
+    "en": [
+      "Ordinary top-ups during the promotion only; activity bundles do not count again.",
+      "Draw entries are not a fixed extra balance; use by 2026-10-11 23:59:59 Beijing time.",
+      "Purchasing ends on October 7 Beijing time; no exact time was stated. October 8 00:00 is only the latest possible end bound.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "random",
+  "deadlineLabel": {
+    "zh-CN": "购买期：2026年9月29日—10月7日（北京时间）；原文未注明购买截止的具体时分秒",
+    "en": "Purchase period: 2026-09-29 through October 7 Beijing time; exact cutoff time not stated."
+  }
+}
+```
+
+### 15. 国庆抽抽有礼
+
+每抽都有余额，单次最高100 U
+
+- Provider/source: pipio.io
+- Category: other
+- Observed/checked: 2026-10-03T23:54:28.591Z
+- Requires payment: null
+- Declared status: announced
+- End: 2026-10-11T15:59:59Z
+
+Conditions / 完整条件:
+
+- 需持有本活动抽奖机会；余额随机，最高额不是保证值
+- 抽奖后自动到账；十连不额外赠票；购买或邀请取得机会分别受原活动条件限制
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+
+Sources / 来源:
+
+- [Source statement](https://pipio.io/api/status) — SHA-256 `e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f`
+
+[Provider programme page / 提供方入口](https://pipio.io/promotions/8)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "8ab9359d1604c596a1e110c1dfb9014c2162ebd3faba1a41e604c56bdeac5f7b",
+  "sourceId": "pipio.io",
+  "sourceDomain": "pipio.io",
+  "category": "other",
+  "title": "国庆抽抽有礼",
+  "benefitText": "每抽都有余额，单次最高100 U",
+  "conditions": [
+    "需持有本活动抽奖机会；余额随机，最高额不是保证值",
+    "抽奖后自动到账；十连不额外赠票；购买或邀请取得机会分别受原活动条件限制",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+  ],
+  "claimUrl": "https://pipio.io/promotions/8",
+  "observedAt": "2026-10-03T23:54:28.591Z",
+  "endAt": "2026-10-11T15:59:59Z",
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "020c9207cfe5d40f73c024879f426f88ac1b130636ad1d751433f04d89dfcb4c",
+      "snapshotId": "bfcab4b9e332982f12ef3eb15d997066968c83b3a5905ef58c406267ef1f88e0",
+      "sourceUrl": "https://pipio.io/api/status",
+      "observedAt": "2026-10-03T23:54:28.591Z",
+      "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "7f5014ccc90e88e5d321fdfe0ad363084e2d4a19c084bdf51b5767edeb52b4aa",
+  "deadlineText": "抽奖截止：2026年10月11日23:59:59（北京时间）",
+  "titleText": {
+    "zh-CN": "国庆抽抽有礼",
+    "en": "Holiday random-balance draw"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "每抽都有余额，单次最高100 U",
+    "en": "Every draw earns a balance reward; the stated maximum is 100 U."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "需持有本活动抽奖机会；余额随机，最高额不是保证值",
+      "抽奖后自动到账；十连不额外赠票；购买或邀请取得机会分别受原活动条件限制",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+    ],
+    "en": [
+      "An eligible event draw entry is required; rewards are random and the maximum is not guaranteed.",
+      "Posted after drawing; ten draws do not earn extra entries. Entries acquired by purchase/referral retain those separate conditions.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "抽奖凭证、充值或白名单等替代路径适用；不能简单标需付费或全无门槛。",
+        "en": "Draw-entry, top-up or whitelist alternatives apply; neither universally paid nor unconditional."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "random",
+  "deadlineLabel": {
+    "zh-CN": "抽奖截止：2026年10月11日23:59:59（北京时间）",
+    "en": "Draw cutoff: 2026-10-11 23:59:59 Beijing time."
+  }
+}
+```
+
+### 16. 国庆邀请购礼包双方各2抽
+
+双方各2抽；满3人再2抽、满10人再3抽
+
+- Provider/source: pipio.io
+- Category: invite
+- Observed/checked: 2026-10-03T23:54:28.591Z
+- Requires payment: true
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 好友经专属邀请链接注册并首次有效购买国庆礼包；付款满24小时且自动核验通过
+- 额外档位各一次；最多10个受邀人、共25抽；活动礼包不返佣
+- 获得的抽奖机会须于2026年10月11日23:59:59北京时间前使用
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+- 购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放
+
+Sources / 来源:
+
+- [Source statement](https://pipio.io/api/status) — SHA-256 `e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f`
+
+[Provider programme page / 提供方入口](https://pipio.io/promotions/8)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "a72e05d8f656a0965de0cafcb17c7ea6315b9e6eb201f3eeb70b890b641fe7d0",
+  "sourceId": "pipio.io",
+  "sourceDomain": "pipio.io",
+  "category": "invite",
+  "title": "国庆邀请购礼包双方各2抽",
+  "benefitText": "双方各2抽；满3人再2抽、满10人再3抽",
+  "conditions": [
+    "好友经专属邀请链接注册并首次有效购买国庆礼包；付款满24小时且自动核验通过",
+    "额外档位各一次；最多10个受邀人、共25抽；活动礼包不返佣",
+    "获得的抽奖机会须于2026年10月11日23:59:59北京时间前使用",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token",
+    "购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放"
+  ],
+  "claimUrl": "https://pipio.io/promotions/8",
+  "observedAt": "2026-10-03T23:54:28.591Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "020c9207cfe5d40f73c024879f426f88ac1b130636ad1d751433f04d89dfcb4c",
+      "snapshotId": "bfcab4b9e332982f12ef3eb15d997066968c83b3a5905ef58c406267ef1f88e0",
+      "sourceUrl": "https://pipio.io/api/status",
+      "observedAt": "2026-10-03T23:54:28.591Z",
+      "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "7f5014ccc90e88e5d321fdfe0ad363084e2d4a19c084bdf51b5767edeb52b4aa",
+  "deadlineText": "购买期：2026年9月29日—10月7日（北京时间）；原文未注明购买截止的具体时分秒",
+  "expiryUpperBound": "2026-10-07T16:00:00Z",
+  "titleText": {
+    "zh-CN": "国庆邀请购礼包双方各2抽",
+    "en": "Holiday bundle referral draw entries"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "双方各2抽；满3人再2抽、满10人再3抽",
+    "en": "Both sides earn two entries; three referrals add two, ten referrals add three."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "好友经专属邀请链接注册并首次有效购买国庆礼包；付款满24小时且自动核验通过",
+      "额外档位各一次；最多10个受邀人、共25抽；活动礼包不返佣",
+      "获得的抽奖机会须于2026年10月11日23:59:59北京时间前使用",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token",
+      "购买截止只明确北京时间10月7日；10月8日00:00后已超出声明购买期，这是最迟结束上界，不代表来源精确截止或保证此前开放"
+    ],
+    "en": [
+      "Friend registers through the unique link and makes a first valid holiday bundle purchase; payment must be at least 24 hours old and pass automatic checks.",
+      "Each milestone applies once; up to 10 referrals and 25 entries total; bundles earn no commission.",
+      "Use earned entries by 2026-10-11 23:59:59 Beijing time.",
+      "Purchasing ends on October 7 Beijing time; no exact time was stated. October 8 00:00 is only the latest possible end bound.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "random",
+  "deadlineLabel": {
+    "zh-CN": "购买期：2026年9月29日—10月7日（北京时间）；原文未注明购买截止的具体时分秒",
+    "en": "Purchase period: 2026-09-29 through October 7 Beijing time; exact cutoff time not stated."
+  }
+}
+```
+
+### 17. 旧双月庆幸运加码
+
+99元到账600 U；每单10抽；普通充值每满10元1抽
+
+- Provider/source: pipio.io
+- Category: topup
+- Observed/checked: 2026-10-03T23:54:28.591Z
+- Requires payment: true
+- Declared status: ended
+- End: 2026-09-20T15:59:59Z
+
+Conditions / 完整条件:
+
+- 套餐不重复计入；十连无额外赠送；奖励随机单次最高100 U
+- 截止/领取期限：2026-09-20 23:59:59北京时间
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://pipio.io/api/status) — SHA-256 `e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f`
+
+[Provider programme page / 提供方入口](https://pipio.io/lottery?campaign=6)
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "375348774df4846b2635f66009c3d80cefb2f5decdc48aed3cf09068691558b9",
+  "sourceId": "pipio.io",
+  "sourceDomain": "pipio.io",
+  "category": "topup",
+  "title": "旧双月庆幸运加码",
+  "benefitText": "99元到账600 U；每单10抽；普通充值每满10元1抽",
+  "conditions": [
+    "套餐不重复计入；十连无额外赠送；奖励随机单次最高100 U",
+    "截止/领取期限：2026-09-20 23:59:59北京时间",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": "https://pipio.io/lottery?campaign=6",
+  "observedAt": "2026-10-03T23:54:28.591Z",
+  "endAt": "2026-09-20T15:59:59Z",
+  "declaredStatus": "ended",
+  "evidence": [
+    {
+      "documentId": "020c9207cfe5d40f73c024879f426f88ac1b130636ad1d751433f04d89dfcb4c",
+      "snapshotId": "bfcab4b9e332982f12ef3eb15d997066968c83b3a5905ef58c406267ef1f88e0",
+      "sourceUrl": "https://pipio.io/api/status",
+      "observedAt": "2026-10-03T23:54:28.591Z",
+      "bodySha256": "e652305f11a6f255729ad080794c5f53ce4a851bd7d9384dcc732c018aaeac9f",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 1
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "375348774df4846b2635f66009c3d80cefb2f5decdc48aed3cf09068691558b9",
+  "deadlineText": "截止/领取期限：2026-09-20 23:59:59北京时间",
+  "titleText": {
+    "zh-CN": "旧双月庆幸运加码",
+    "en": "Historical two-month celebration draw"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "99元到账600 U；每单10抽；普通充值每满10元1抽",
+    "en": "99 yuan credited 600 U and 10 entries; ordinary top-ups earned one entry per 10 yuan."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "套餐不重复计入；十连无额外赠送；奖励随机单次最高100 U",
+      "截止/领取期限：2026-09-20 23:59:59北京时间",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Bundles did not count twice; ten draws earned no extra entry; random maximum was 100 U.",
+      "Historical deadline: 2026-09-20 23:59:59 Beijing time.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "random",
+  "deadlineLabel": {
+    "zh-CN": "截止/领取期限：2026-09-20 23:59:59北京时间",
+    "en": "Historical cutoff: 2026-09-20 23:59:59 Beijing time."
+  }
+}
+```
+
+### 18. 双节充值赠灵与专属机缘令
+
+单笔充值按档位赠3%—10%；累计充值获专属令
+
+- Provider/source: fanrenapi.com
+- Category: topup
+- Observed/checked: 2026-10-03T23:50:00.063Z
+- Requires payment: true
+- Declared status: announced
+- End: 2026-10-07T16:00:00Z
+
+Conditions / 完整条件:
+
+- 活动2026年9月16日00:00至10月8日00:00（北京时间）
+- 单笔档位：20/50/100/200/300/500/1000灵石分别赠3/4/5/8/8/9/10%；累计令1/2/4/8/10/15/25枚
+- 活动赠灵与宗门返利按成员档位10/8/6%叠加，铭牌赠灵另计
+- 宗门晋升须单笔200，第301位起300；晋升单按付款前身份返利，下一笔才用新身份
+- 累计满1000灵石最高档后重新累计；拆分不会重复补领；灵石单位未作现金或Token换算
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+
+Sources / 来源:
+
+- [Source statement](https://fanrenapi.com/api/status) — SHA-256 `70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "5a091c0e3e894dbf3efde0bf67d5d95387ec7f26b92273a7364043abb0abd9ac",
+  "sourceId": "fanrenapi.com",
+  "sourceDomain": "fanrenapi.com",
+  "category": "topup",
+  "title": "双节充值赠灵与专属机缘令",
+  "benefitText": "单笔充值按档位赠3%—10%；累计充值获专属令",
+  "conditions": [
+    "活动2026年9月16日00:00至10月8日00:00（北京时间）",
+    "单笔档位：20/50/100/200/300/500/1000灵石分别赠3/4/5/8/8/9/10%；累计令1/2/4/8/10/15/25枚",
+    "活动赠灵与宗门返利按成员档位10/8/6%叠加，铭牌赠灵另计",
+    "宗门晋升须单笔200，第301位起300；晋升单按付款前身份返利，下一笔才用新身份",
+    "累计满1000灵石最高档后重新累计；拆分不会重复补领；灵石单位未作现金或Token换算",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:50:00.063Z",
+  "endAt": "2026-10-07T16:00:00Z",
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "03dc6fce2bb99bbd07c706de177bb284d72abd0f5d47d73561e9b499e129f02c",
+      "snapshotId": "1ff28207812a42bd21b56702fc371199b2da9cb50dd4fbf07622986d8bf6fef8",
+      "sourceUrl": "https://fanrenapi.com/api/status",
+      "observedAt": "2026-10-03T23:50:00.063Z",
+      "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 1
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "46f312a25f28e34772ebba7ec37a6bcc264d9a0813df0107e0a4e755779a540f",
+  "deadlineText": "充值活动截至2026年10月8日00:00（北京时间）",
+  "titleText": {
+    "zh-CN": "双节充值赠灵与专属机缘令",
+    "en": "Holiday top-up bonus and event vouchers"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "单笔充值按档位赠3%—10%；累计充值获专属令",
+    "en": "A single top-up earns 3%–10% bonus credits; cumulative top-ups earn event vouchers."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "活动2026年9月16日00:00至10月8日00:00（北京时间）",
+      "单笔档位：20/50/100/200/300/500/1000灵石分别赠3/4/5/8/8/9/10%；累计令1/2/4/8/10/15/25枚",
+      "活动赠灵与宗门返利按成员档位10/8/6%叠加，铭牌赠灵另计",
+      "宗门晋升须单笔200，第301位起300；晋升单按付款前身份返利，下一笔才用新身份",
+      "累计满1000灵石最高档后重新累计；拆分不会重复补领；灵石单位未作现金或Token换算",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+    ],
+    "en": [
+      "2026-09-16 00:00 to 2026-10-08 00:00 Beijing time.",
+      "Single-payment credit tiers 20/50/100/200/300/500/1000 earn 3/4/5/8/8/9/10%; cumulative vouchers 1/2/4/8/10/15/25.",
+      "Event bonus stacks with membership rebates 10/8/6%; nameplate bonuses are separate.",
+      "Membership upgrade requires a single payment of 200 credits, or 300 from member position 301; the upgrading payment uses the prior status and the next payment uses the new status.",
+      "After reaching 1000 cumulative credits, accumulation restarts; splitting payments does not earn duplicate make-up rewards.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "stated",
+  "deadlineLabel": {
+    "zh-CN": "充值活动截至2026年10月8日00:00（北京时间）",
+    "en": "Top-up promotion ends: 2026-10-08 00:00 Beijing time."
+  }
+}
+```
+
+### 19. 9月25日专属令节礼（发放日已过）
+
+宗门成员及散修各1枚专属机缘令
+
+- Provider/source: fanrenapi.com
+- Category: other
+- Observed/checked: 2026-10-03T23:50:00.063Z
+- Requires payment: false
+- Declared status: ended
+- End: unknown
+
+Conditions / 完整条件:
+
+- 原发放日2026年9月25日；无需充值
+- 补领期限、逾期补领及当前账号是否已领取未说明，不能承诺现在可领
+- 节礼不计充值返利及入宗门槛；专属令只可用于双节秘境
+- 2026年10月15日00:00北京时间前未使用的令按1:1转历练令，不会作废
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+
+Sources / 来源:
+
+- [Source statement](https://fanrenapi.com/api/status) — SHA-256 `70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "d2b3109ecc2beb9b11842a17f113b5b95998128921ac68c853435d8f475a25ee",
+  "sourceId": "fanrenapi.com",
+  "sourceDomain": "fanrenapi.com",
+  "category": "other",
+  "title": "9月25日专属令节礼（发放日已过）",
+  "benefitText": "宗门成员及散修各1枚专属机缘令",
+  "conditions": [
+    "原发放日2026年9月25日；无需充值",
+    "补领期限、逾期补领及当前账号是否已领取未说明，不能承诺现在可领",
+    "节礼不计充值返利及入宗门槛；专属令只可用于双节秘境",
+    "2026年10月15日00:00北京时间前未使用的令按1:1转历练令，不会作废",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:50:00.063Z",
+  "endAt": null,
+  "declaredStatus": "ended",
+  "evidence": [
+    {
+      "documentId": "03dc6fce2bb99bbd07c706de177bb284d72abd0f5d47d73561e9b499e129f02c",
+      "snapshotId": "1ff28207812a42bd21b56702fc371199b2da9cb50dd4fbf07622986d8bf6fef8",
+      "sourceUrl": "https://fanrenapi.com/api/status",
+      "observedAt": "2026-10-03T23:50:00.063Z",
+      "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 1
+      }
+    }
+  ],
+  "requiresPayment": false,
+  "eventFamilyId": "46f312a25f28e34772ebba7ec37a6bcc264d9a0813df0107e0a4e755779a540f",
+  "deadlineText": "原发放日2026年9月25日已过；补领截止未提供",
+  "statusScope": "ORIGINAL_DISTRIBUTION_DATE_PASSED_REDEMPTION_OR_LATE_CLAIM_DEADLINE_UNKNOWN",
+  "titleText": {
+    "zh-CN": "9月25日专属令节礼（发放日已过）",
+    "en": "September 25 voucher gift: distribution passed"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "宗门成员及散修各1枚专属机缘令",
+    "en": "Members and nonmembers were each offered one event voucher."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "原发放日2026年9月25日；无需充值",
+      "补领期限、逾期补领及当前账号是否已领取未说明，不能承诺现在可领",
+      "节礼不计充值返利及入宗门槛；专属令只可用于双节秘境",
+      "2026年10月15日00:00北京时间前未使用的令按1:1转历练令，不会作废",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+    ],
+    "en": [
+      "Original distribution was September 25, 2026; no top-up required.",
+      "Late-claim deadline, availability and prior receipt are unspecified; current claimability is not promised.",
+      "Does not count toward top-up rebates or membership thresholds; voucher is for the holiday event only.",
+      "Vouchers unused before 2026-10-15 00:00 Beijing time convert 1:1 to regular training vouchers, rather than being voided.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "原赠礼明确无需充值；发放日已过，当前补领未知。",
+        "en": "The original gift explicitly needs no top-up; distribution has passed and late claim is unknown."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated",
+  "deadlineLabel": {
+    "zh-CN": "原发放日2026年9月25日已过；补领截止未提供",
+    "en": "Original September 25 distribution passed; late-claim cutoff not stated."
+  }
+}
+```
+
+### 20. 10月1日灵石节礼（发放日已过）
+
+宗门成员10.01灵石，散修3灵石
+
+- Provider/source: fanrenapi.com
+- Category: other
+- Observed/checked: 2026-10-03T23:50:00.063Z
+- Requires payment: false
+- Declared status: ended
+- End: unknown
+
+Conditions / 完整条件:
+
+- 原发放日2026年10月1日；无需充值
+- 活动期散修晋升宗门可补差7.01灵石，不重复发令；不计充值返利及入宗门槛
+- 领取/补领期限及当前是否可补领未说明，不承诺现在仍可领取
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+
+Sources / 来源:
+
+- [Source statement](https://fanrenapi.com/api/status) — SHA-256 `70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "33e6dc4d3ce264851d6057604389b263af616a5cca4ca120d4a2a62e8cbf4fa9",
+  "sourceId": "fanrenapi.com",
+  "sourceDomain": "fanrenapi.com",
+  "category": "other",
+  "title": "10月1日灵石节礼（发放日已过）",
+  "benefitText": "宗门成员10.01灵石，散修3灵石",
+  "conditions": [
+    "原发放日2026年10月1日；无需充值",
+    "活动期散修晋升宗门可补差7.01灵石，不重复发令；不计充值返利及入宗门槛",
+    "领取/补领期限及当前是否可补领未说明，不承诺现在仍可领取",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:50:00.063Z",
+  "endAt": null,
+  "declaredStatus": "ended",
+  "evidence": [
+    {
+      "documentId": "03dc6fce2bb99bbd07c706de177bb284d72abd0f5d47d73561e9b499e129f02c",
+      "snapshotId": "1ff28207812a42bd21b56702fc371199b2da9cb50dd4fbf07622986d8bf6fef8",
+      "sourceUrl": "https://fanrenapi.com/api/status",
+      "observedAt": "2026-10-03T23:50:00.063Z",
+      "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 1
+      }
+    }
+  ],
+  "requiresPayment": false,
+  "eventFamilyId": "46f312a25f28e34772ebba7ec37a6bcc264d9a0813df0107e0a4e755779a540f",
+  "deadlineText": "原发放日2026年10月1日已过；领取及补领截止未提供",
+  "statusScope": "ORIGINAL_DISTRIBUTION_DATE_PASSED_REDEMPTION_OR_LATE_CLAIM_DEADLINE_UNKNOWN",
+  "titleText": {
+    "zh-CN": "10月1日灵石节礼（发放日已过）",
+    "en": "October 1 credit gift: distribution passed"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "宗门成员10.01灵石，散修3灵石",
+    "en": "Members were offered 10.01 site credits and nonmembers 3."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "原发放日2026年10月1日；无需充值",
+      "活动期散修晋升宗门可补差7.01灵石，不重复发令；不计充值返利及入宗门槛",
+      "领取/补领期限及当前是否可补领未说明，不承诺现在仍可领取",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+    ],
+    "en": [
+      "Original distribution was October 1, 2026; no top-up required.",
+      "A membership upgrade during the event can earn a 7.01-credit difference, without another voucher; gifts do not count toward top-up rebates or membership thresholds.",
+      "Claim/make-up deadlines and current availability are unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "原赠礼明确无需充值；发放日已过，当前补领未知。",
+        "en": "The original gift explicitly needs no top-up; distribution has passed and late claim is unknown."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated",
+  "deadlineLabel": {
+    "zh-CN": "原发放日2026年10月1日已过；领取及补领截止未提供",
+    "en": "Original October 1 distribution passed; claim and late-claim cutoffs not stated."
+  }
+}
+```
+
+### 21. 双节月满山河活动秘境
+
+持专属令参与随机灵石抽奖
+
+- Provider/source: fanrenapi.com
+- Category: other
+- Observed/checked: 2026-10-03T23:50:00.063Z
+- Requires payment: null
+- Declared status: announced
+- End: 2026-10-07T16:00:00Z
+
+Conditions / 完整条件:
+
+- 每抽1枚专属机缘令；日常令、历练令及往期活动令不能使用；无保底
+- 初始概率1/7/22/30/22/18%对应50/20/7/3/1灵石及未中奖；实际受境界福缘和剩余库存影响
+- 源公告活动截至2026年10月8日00:00北京时间；专属令10月15日00:00前未用1:1转历练令
+- 奖品以站内结算记录为准；实际参与及资格未核验
+- 仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token
+
+Sources / 来源:
+
+- [Source statement](https://fanrenapi.com/api/status) — SHA-256 `70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "4c19fa1b26f2d9e9a3fcd30fd3de2830e41caec125cc6e2f28060c63bb3a5ae5",
+  "sourceId": "fanrenapi.com",
+  "sourceDomain": "fanrenapi.com",
+  "category": "other",
+  "title": "双节月满山河活动秘境",
+  "benefitText": "持专属令参与随机灵石抽奖",
+  "conditions": [
+    "每抽1枚专属机缘令；日常令、历练令及往期活动令不能使用；无保底",
+    "初始概率1/7/22/30/22/18%对应50/20/7/3/1灵石及未中奖；实际受境界福缘和剩余库存影响",
+    "源公告活动截至2026年10月8日00:00北京时间；专属令10月15日00:00前未用1:1转历练令",
+    "奖品以站内结算记录为准；实际参与及资格未核验",
+    "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:50:00.063Z",
+  "endAt": "2026-10-07T16:00:00Z",
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "03dc6fce2bb99bbd07c706de177bb284d72abd0f5d47d73561e9b499e129f02c",
+      "snapshotId": "1ff28207812a42bd21b56702fc371199b2da9cb50dd4fbf07622986d8bf6fef8",
+      "sourceUrl": "https://fanrenapi.com/api/status",
+      "observedAt": "2026-10-03T23:50:00.063Z",
+      "bodySha256": "70d797935329868c8b4e9821c5f78e17f3d18f0b5a2a314fafd5eec7a7398cad",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 1
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "46f312a25f28e34772ebba7ec37a6bcc264d9a0813df0107e0a4e755779a540f",
+  "deadlineText": "活动截至2026年10月8日00:00（北京时间）；未用专属令于10月15日00:00转换",
+  "titleText": {
+    "zh-CN": "双节月满山河活动秘境",
+    "en": "Holiday event-voucher random draw"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "持专属令参与随机灵石抽奖",
+    "en": "An event voucher permits a random site-credit draw."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "每抽1枚专属机缘令；日常令、历练令及往期活动令不能使用；无保底",
+      "初始概率1/7/22/30/22/18%对应50/20/7/3/1灵石及未中奖；实际受境界福缘和剩余库存影响",
+      "源公告活动截至2026年10月8日00:00北京时间；专属令10月15日00:00前未用1:1转历练令",
+      "奖品以站内结算记录为准；实际参与及资格未核验",
+      "仅为来源公开声明，领取及账号资格未核验；保留来源单位不换算现金或Token"
+    ],
+    "en": [
+      "One designated event voucher per draw; daily/training/old-event vouchers are excluded; no guaranteed prize.",
+      "Initial probabilities 1/7/22/30/22/18% correspond to 50/20/7/3/1 credits/no prize; actual outcomes depend on account luck level and remaining stock.",
+      "Draws end 2026-10-08 00:00 Beijing time; unused vouchers convert 1:1 to training vouchers on October 15 00:00.",
+      "Prizes follow site settlement records; actual participation is unverified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "抽奖凭证、充值或白名单等替代路径适用；不能简单标需付费或全无门槛。",
+        "en": "Draw-entry, top-up or whitelist alternatives apply; neither universally paid nor unconditional."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "random",
+  "deadlineLabel": {
+    "zh-CN": "活动截至2026年10月8日00:00（北京时间）；未用专属令于10月15日00:00转换",
+    "en": "Draws end 2026-10-08 00:00 Beijing time; unused vouchers convert on October 15 00:00."
+  }
+}
+```
+
+### 22. 使用邀请链接或邀请码的双向额度奖励
+
+被邀请人$10；邀请人$5
+
+- Provider/source: guxiaomo.site
+- Category: invite
+- Observed/checked: 2026-10-03T23:50:15.166Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 新用户单纯注册不送额度；邮箱验证码及人机验证；禁止注册机、别名邮箱刷奖；异常账号清理额度或封禁
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://guxiaomo.site/api/status) — SHA-256 `25bf3b1cad4f9c914edbcbdc4cb4241584606384a8f4dc09d133bd4a900a0032`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "2c933b53ab4e01957ae625c8dcd34ae3111d43092c8d79a7ae943f0fc6cd0af6",
+  "sourceId": "guxiaomo.site",
+  "sourceDomain": "guxiaomo.site",
+  "category": "invite",
+  "title": "使用邀请链接或邀请码的双向额度奖励",
+  "benefitText": "被邀请人$10；邀请人$5",
+  "conditions": [
+    "新用户单纯注册不送额度；邮箱验证码及人机验证；禁止注册机、别名邮箱刷奖；异常账号清理额度或封禁",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:50:15.166Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "063efca6be9711266de6563d25a0f41ef3c4ec3c2a7237f3f51f06b646e7f921",
+      "snapshotId": "2cae947b2406e4c7647527a13f7ff329047975af45521e164f54e4f2450e7486",
+      "sourceUrl": "https://guxiaomo.site/api/status",
+      "observedAt": "2026-10-03T23:50:15.166Z",
+      "bodySha256": "25bf3b1cad4f9c914edbcbdc4cb4241584606384a8f4dc09d133bd4a900a0032",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 1
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "2c933b53ab4e01957ae625c8dcd34ae3111d43092c8d79a7ae943f0fc6cd0af6",
+  "titleText": {
+    "zh-CN": "使用邀请链接或邀请码的双向额度奖励",
+    "en": "Two-sided referral-link credit"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "被邀请人$10；邀请人$5",
+    "en": "The referred user is offered $10 and the referrer $5 in source-labelled credits."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "新用户单纯注册不送额度；邮箱验证码及人机验证；禁止注册机、别名邮箱刷奖；异常账号清理额度或封禁",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Registration alone gives no credits; referral link/code, email code and anti-bot checks are required.",
+      "Registration bots and alias-email farming are prohibited; abnormal accounts can lose credits or be banned.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 23. 邀请好友充值激励
+
+好友首次充值加赠20%；邀请人每次充值10%奖励
+
+- Provider/source: weclawapi.com
+- Category: invite
+- Observed/checked: 2026-10-03T23:57:08.016Z
+- Requires payment: true
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 好友经邀请注册充值；首次充值须在钱包管理界面；10%原文声明永久有效但不证明持续兑现
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://weclawapi.com/api/status) — SHA-256 `8ec525a314729a1200a968e53a2ea23cad6d51179c4192a1de0525e20a7bfed4`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "0fe793f09cb10447d69b6b3e62a6bae81c9749fa03c0dfaa0eb8afb896ca3971",
+  "sourceId": "weclawapi.com",
+  "sourceDomain": "weclawapi.com",
+  "category": "invite",
+  "title": "邀请好友充值激励",
+  "benefitText": "好友首次充值加赠20%；邀请人每次充值10%奖励",
+  "conditions": [
+    "好友经邀请注册充值；首次充值须在钱包管理界面；10%原文声明永久有效但不证明持续兑现",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:57:08.016Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "1c4e39d2cdce2ede727cbafde0d701b5dafabbaffb7aefdb7b44eaf9a80bff1c",
+      "snapshotId": "a14437ea2d2359a054686afe7becce23b5e6efdea08c270ffb5af61f54dd0bb0",
+      "sourceUrl": "https://weclawapi.com/api/status",
+      "observedAt": "2026-10-03T23:57:08.016Z",
+      "bodySha256": "8ec525a314729a1200a968e53a2ea23cad6d51179c4192a1de0525e20a7bfed4",
+      "position": {
+        "fieldClaimOrdinal": 3,
+        "sourceField": "data.announcements",
+        "valueOrdinal": 10
+      }
+    }
+  ],
+  "requiresPayment": true,
+  "eventFamilyId": "0fe793f09cb10447d69b6b3e62a6bae81c9749fa03c0dfaa0eb8afb896ca3971",
+  "titleText": {
+    "zh-CN": "邀请好友充值激励",
+    "en": "Referred-user top-up reward"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "好友首次充值加赠20%；邀请人每次充值10%奖励",
+    "en": "The friend’s first top-up earns a 20% bonus; the referrer earns a stated 10% on each top-up."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "好友经邀请注册充值；首次充值须在钱包管理界面；10%原文声明永久有效但不证明持续兑现",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Friend must register through a referral and top up; the first top-up must use Wallet Management.",
+      "The source calls the 10% reward permanent; this does not verify continuing fulfillment.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "required",
+      "note": {
+        "zh-CN": "本活动要求实际充值/购买（邀请活动可能由受邀方付款），不是无消费注册奖励。",
+        "en": "Actual top-up/purchase is required, possibly by the referred party; not a no-spend signup reward."
+      }
+    },
+    "invite": {
+      "state": "required",
+      "note": {
+        "zh-CN": "奖励需要有效邀请关系，另有充值条件的须同时满足。",
+        "en": "A valid referral is required; any separate payment conditions also apply."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 24. 注册赠送额度用于接入测试
+
+金额及单位未提供
+
+- Provider/source: aheapi.com
+- Category: signup
+- Observed/checked: 2026-10-04T00:01:01.486Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 小规模测试；具体可用模型、价格和权益以控制台为准
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://aheapi.com/pricing) — SHA-256 `65b38fbe94cf6ba820c9d5128ab8f61546010c2a9ad0969cf33ca807364be43b`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "3d587e0681dd81fb3dfdb09ef9ccb407b330db98df0543b6dc966647520f237f",
+  "sourceId": "aheapi.com",
+  "sourceDomain": "aheapi.com",
+  "category": "signup",
+  "title": "注册赠送额度用于接入测试",
+  "benefitText": "金额及单位未提供",
+  "conditions": [
+    "小规模测试；具体可用模型、价格和权益以控制台为准",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-04T00:01:01.486Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "543eb77d6a9a514d397557d6a3145b9f44fdab68ab6523acd25c026b0af47c23",
+      "snapshotId": null,
+      "sourceUrl": "https://aheapi.com/pricing",
+      "observedAt": "2026-10-04T00:01:01.486Z",
+      "bodySha256": "65b38fbe94cf6ba820c9d5128ab8f61546010c2a9ad0969cf33ca807364be43b",
+      "position": {
+        "kind": "PINNED_PUBLIC_PAGE_VISIBLE_TEXT_EXCERPT"
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "3d587e0681dd81fb3dfdb09ef9ccb407b330db98df0543b6dc966647520f237f",
+  "titleText": {
+    "zh-CN": "注册赠送额度用于接入测试",
+    "en": "Signup credits for integration testing"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "金额及单位未提供",
+    "en": "A grant is stated without an amount or unit."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "小规模测试；具体可用模型、价格和权益以控制台为准",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Small-scale integration testing; eligible models, prices and benefits follow the console.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 25. 免费体验与¥1元礼金声明
+
+¥1元礼金
+
+- Provider/source: aispacestation.com.cn
+- Category: signup
+- Observed/checked: 2026-10-04T00:00:57.223Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 原文注册即可开始使用；领取步骤、余额适用范围和期限未提供
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://aispacestation.com.cn/) — SHA-256 `b885b979340277503472f9b42caad6709d28a9d0050f37f2fce8fde73c3cb516`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "7b2def694f85c9fe57a2c16e2d124c2f46aa68d732b3872f79f58cedccaf6edd",
+  "sourceId": "aispacestation.com.cn",
+  "sourceDomain": "aispacestation.com.cn",
+  "category": "signup",
+  "title": "免费体验与¥1元礼金声明",
+  "benefitText": "¥1元礼金",
+  "conditions": [
+    "原文注册即可开始使用；领取步骤、余额适用范围和期限未提供",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-04T00:00:57.223Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "d27d9c81a8ccc6528c783ec82138b1752c36bf06cced9bdbc875a0ba384f91a6",
+      "snapshotId": null,
+      "sourceUrl": "https://aispacestation.com.cn/",
+      "observedAt": "2026-10-04T00:00:57.223Z",
+      "bodySha256": "b885b979340277503472f9b42caad6709d28a9d0050f37f2fce8fde73c3cb516",
+      "position": {
+        "kind": "PINNED_PUBLIC_PAGE_VISIBLE_TEXT_EXCERPT"
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "7b2def694f85c9fe57a2c16e2d124c2f46aa68d732b3872f79f58cedccaf6edd",
+  "titleText": {
+    "zh-CN": "免费体验与¥1元礼金声明",
+    "en": "Free trial and ¥1-labelled credit"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "¥1元礼金",
+    "en": "The source states a ¥1-labelled gift."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "原文注册即可开始使用；领取步骤、余额适用范围和期限未提供",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Registration is stated as the start step; redemption steps, eligible balance scope and deadline are unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 26. 免信用卡注册及免费模型接入
+
+原文称免费模型
+
+- Provider/source: opper.ai
+- Category: other
+- Observed/checked: 2026-10-04T00:01:07.467Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 无需信用卡；免费模型可用于playground和API；premium须加卡且按量付费；不把全部模型/平台费声明为免费
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://opper.ai/pricing) — SHA-256 `6ffc94f63bb9aba1bbb221f32d93bb6a889a0a01d08fd7578bd735e002609aed`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "df8b22dfa199b59706b6f5a3d2bf97b453f0b2b3966db4939644ed9b7463ccb1",
+  "sourceId": "opper.ai",
+  "sourceDomain": "opper.ai",
+  "category": "other",
+  "title": "免信用卡注册及免费模型接入",
+  "benefitText": "原文称免费模型",
+  "conditions": [
+    "无需信用卡；免费模型可用于playground和API；premium须加卡且按量付费；不把全部模型/平台费声明为免费",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-04T00:01:07.467Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "8e3d81415ae49c6c43b894cc17d64a9c2666a7a87c9de485d9ac7020acfaabe9",
+      "snapshotId": null,
+      "sourceUrl": "https://opper.ai/pricing",
+      "observedAt": "2026-10-04T00:01:07.467Z",
+      "bodySha256": "6ffc94f63bb9aba1bbb221f32d93bb6a889a0a01d08fd7578bd735e002609aed",
+      "position": {
+        "kind": "PINNED_PUBLIC_PAGE_VISIBLE_TEXT_EXCERPT"
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "df8b22dfa199b59706b6f5a3d2bf97b453f0b2b3966db4939644ed9b7463ccb1",
+  "titleText": {
+    "zh-CN": "免信用卡注册及免费模型接入",
+    "en": "Card-free signup and free-model access"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "原文称免费模型",
+    "en": "The source describes free models for the playground and API."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "无需信用卡；免费模型可用于playground和API；premium须加卡且按量付费；不把全部模型/平台费声明为免费",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "No credit card for signup; premium models require a card and usage billing.",
+      "This does not make all models or platform fees free.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "not-required",
+      "note": {
+        "zh-CN": "公开起步注册明确无需信用卡；premium付费模型除外。",
+        "en": "Starter signup explicitly needs no credit card; premium paid models are separate."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 27. 两个GLM Flash模型的免费输入输出声明
+
+Free / Free（原文输入/输出列）
+
+- Provider/source: www.ohmygpt.com
+- Category: other
+- Observed/checked: 2026-10-04T00:01:09.695Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 原名glm-4.7-flash与glm-4.6v-flash；其他模型另收费；账户资格、限额和有效期限未提供
+- 领取期限未明确提供
+- 仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://www.ohmygpt.com/pricing) — SHA-256 `a68aaad4f97068f29936e1e2a88c4eb53cbf0ae03fc952a039c0f4af825a7ec1`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "594af6f82304a2a47b8ad5210732efa721fce856925d5808052a93260702fe1b",
+  "sourceId": "www.ohmygpt.com",
+  "sourceDomain": "www.ohmygpt.com",
+  "category": "other",
+  "title": "两个GLM Flash模型的免费输入输出声明",
+  "benefitText": "Free / Free（原文输入/输出列）",
+  "conditions": [
+    "原名glm-4.7-flash与glm-4.6v-flash；其他模型另收费；账户资格、限额和有效期限未提供",
+    "领取期限未明确提供",
+    "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-04T00:01:09.695Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": "de838498fea2b05e12a89ebb853b59d061204ce53acbf398c0369a1901919d93",
+      "snapshotId": null,
+      "sourceUrl": "https://www.ohmygpt.com/pricing",
+      "observedAt": "2026-10-04T00:01:09.695Z",
+      "bodySha256": "a68aaad4f97068f29936e1e2a88c4eb53cbf0ae03fc952a039c0f4af825a7ec1",
+      "position": {
+        "kind": "PINNED_PUBLIC_PAGE_VISIBLE_TEXT_EXCERPT"
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "594af6f82304a2a47b8ad5210732efa721fce856925d5808052a93260702fe1b",
+  "titleText": {
+    "zh-CN": "两个GLM Flash模型的免费输入输出声明",
+    "en": "Two GLM Flash models: free input/output statement"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "Free / Free（原文输入/输出列）",
+    "en": "The source labels input and output as Free / Free."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "原名glm-4.7-flash与glm-4.6v-flash；其他模型另收费；账户资格、限额和有效期限未提供",
+      "领取期限未明确提供",
+      "仅为公开声明，账号资格及实际领取未核验；额度或来源单位不换算为Token或现金"
+    ],
+    "en": [
+      "Exact names glm-4.7-flash and glm-4.6v-flash; other models have separate prices.",
+      "Account eligibility, limits and duration are unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 28. Claude福利A · 条件免扣费
+
+来源声明此分组免扣用户额度；实际可用资格未核验
+
+- Provider/source: api.dzzi.ai
+- Category: free-group
+- Observed/checked: 2026-10-03T23:42:40.701Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外
+- 该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验
+- 领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.dzzi.ai/api/pricing) — SHA-256 `18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "ddf2eb04f89953f1735c170bd2dfd9b035603dd8f97a433f336f399acc0a8ae4",
+  "sourceId": "api.dzzi.ai",
+  "sourceDomain": "api.dzzi.ai",
+  "category": "free-group",
+  "title": "Claude福利A · 条件免扣费",
+  "benefitText": "来源声明此分组免扣用户额度；实际可用资格未核验",
+  "conditions": [
+    "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+    "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+    "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:42:40.701Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "8711bf5f3d12c81777f67e0b743d53aed4de54f169e68b45456a1c1ec4dbe49c",
+      "sourceUrl": "https://api.dzzi.ai/api/pricing",
+      "observedAt": "2026-10-03T23:42:40.701Z",
+      "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+      "position": {
+        "parseRevisionId": "b966f309a83fc88d96f2783c9cb4ca0c5188332005f3b26c6990ebf17b387cc4",
+        "quoteOrdinal": 15,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "ddf2eb04f89953f1735c170bd2dfd9b035603dd8f97a433f336f399acc0a8ae4",
+  "titleText": {
+    "zh-CN": "Claude福利A · 条件免扣费",
+    "en": "Claude benefit A: conditional no credit deduction"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明此分组免扣用户额度；实际可用资格未核验",
+    "en": "This group is declared exempt from user-credit deduction; actual access is unverified."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+      "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+      "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+    ],
+    "en": [
+      "Cumulative top-up of 50 in an unspecified source unit OR whitelist access; administrators and a user’s own group have stated exceptions.",
+      "This is not unconditional free access for ordinary users.",
+      "Deadline and other unresolved billing/use conditions remain unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "抽奖凭证、充值或白名单等替代路径适用；不能简单标需付费或全无门槛。",
+        "en": "Draw-entry, top-up or whitelist alternatives apply; neither universally paid nor unconditional."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 29. Claude福利B · 条件免扣费
+
+来源声明此分组免扣用户额度；实际可用资格未核验
+
+- Provider/source: api.dzzi.ai
+- Category: free-group
+- Observed/checked: 2026-10-03T23:42:40.701Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外
+- 该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验
+- 领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.dzzi.ai/api/pricing) — SHA-256 `18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "73743d227e0656f27ecba0e3443bd61233d5ceb7ee797c31c472fbf0f95e1a9b",
+  "sourceId": "api.dzzi.ai",
+  "sourceDomain": "api.dzzi.ai",
+  "category": "free-group",
+  "title": "Claude福利B · 条件免扣费",
+  "benefitText": "来源声明此分组免扣用户额度；实际可用资格未核验",
+  "conditions": [
+    "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+    "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+    "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:42:40.701Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "8711bf5f3d12c81777f67e0b743d53aed4de54f169e68b45456a1c1ec4dbe49c",
+      "sourceUrl": "https://api.dzzi.ai/api/pricing",
+      "observedAt": "2026-10-03T23:42:40.701Z",
+      "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+      "position": {
+        "parseRevisionId": "b966f309a83fc88d96f2783c9cb4ca0c5188332005f3b26c6990ebf17b387cc4",
+        "quoteOrdinal": 24,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "73743d227e0656f27ecba0e3443bd61233d5ceb7ee797c31c472fbf0f95e1a9b",
+  "titleText": {
+    "zh-CN": "Claude福利B · 条件免扣费",
+    "en": "Claude benefit B: conditional no credit deduction"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明此分组免扣用户额度；实际可用资格未核验",
+    "en": "This group is declared exempt from user-credit deduction; actual access is unverified."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+      "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+      "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+    ],
+    "en": [
+      "Cumulative top-up of 50 in an unspecified source unit OR whitelist access; administrators and a user’s own group have stated exceptions.",
+      "This is not unconditional free access for ordinary users.",
+      "Deadline and other unresolved billing/use conditions remain unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "抽奖凭证、充值或白名单等替代路径适用；不能简单标需付费或全无门槛。",
+        "en": "Draw-entry, top-up or whitelist alternatives apply; neither universally paid nor unconditional."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 30. Claude福利A · 条件免扣费
+
+来源声明此分组免扣用户额度；实际可用资格未核验
+
+- Provider/source: api.dzzi.org
+- Category: free-group
+- Observed/checked: 2026-10-03T23:42:41.791Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外
+- 该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验
+- 领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.dzzi.org/api/pricing) — SHA-256 `18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "4a5cefd7adbbe10bf9298b2362d96e0bcd2cdf57627b3e957a23fab272af9b0f",
+  "sourceId": "api.dzzi.org",
+  "sourceDomain": "api.dzzi.org",
+  "category": "free-group",
+  "title": "Claude福利A · 条件免扣费",
+  "benefitText": "来源声明此分组免扣用户额度；实际可用资格未核验",
+  "conditions": [
+    "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+    "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+    "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:42:41.791Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "aedb6a19443d63dfa2232d0e43d26ad58232ad6492e7161e2adb5ecdea1f3f2f",
+      "sourceUrl": "https://api.dzzi.org/api/pricing",
+      "observedAt": "2026-10-03T23:42:41.791Z",
+      "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+      "position": {
+        "parseRevisionId": "9e384403c55fd76709f606a0db78e1ce8d5bec8fbd7f74a8e83895bfb3ca5f18",
+        "quoteOrdinal": 15,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "4a5cefd7adbbe10bf9298b2362d96e0bcd2cdf57627b3e957a23fab272af9b0f",
+  "titleText": {
+    "zh-CN": "Claude福利A · 条件免扣费",
+    "en": "Claude benefit A: conditional no credit deduction"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明此分组免扣用户额度；实际可用资格未核验",
+    "en": "This group is declared exempt from user-credit deduction; actual access is unverified."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+      "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+      "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+    ],
+    "en": [
+      "Cumulative top-up of 50 in an unspecified source unit OR whitelist access; administrators and a user’s own group have stated exceptions.",
+      "This is not unconditional free access for ordinary users.",
+      "Deadline and other unresolved billing/use conditions remain unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "抽奖凭证、充值或白名单等替代路径适用；不能简单标需付费或全无门槛。",
+        "en": "Draw-entry, top-up or whitelist alternatives apply; neither universally paid nor unconditional."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 31. Claude福利B · 条件免扣费
+
+来源声明此分组免扣用户额度；实际可用资格未核验
+
+- Provider/source: api.dzzi.org
+- Category: free-group
+- Observed/checked: 2026-10-03T23:42:41.791Z
+- Requires payment: null
+- Declared status: announced
+- End: unknown
+
+Conditions / 完整条件:
+
+- 累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外
+- 该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验
+- 领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金
+
+Sources / 来源:
+
+- [Source statement](https://api.dzzi.org/api/pricing) — SHA-256 `18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "6696afcd2c48852b804e9f4b33504eb1338cea7046791a67ae6496c9b9b2441c",
+  "sourceId": "api.dzzi.org",
+  "sourceDomain": "api.dzzi.org",
+  "category": "free-group",
+  "title": "Claude福利B · 条件免扣费",
+  "benefitText": "来源声明此分组免扣用户额度；实际可用资格未核验",
+  "conditions": [
+    "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+    "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+    "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:42:41.791Z",
+  "endAt": null,
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "aedb6a19443d63dfa2232d0e43d26ad58232ad6492e7161e2adb5ecdea1f3f2f",
+      "sourceUrl": "https://api.dzzi.org/api/pricing",
+      "observedAt": "2026-10-03T23:42:41.791Z",
+      "bodySha256": "18ff60651c764d8e7733509c4b2b3d5ab3ad96fc4fc344178bb314e769381c0b",
+      "position": {
+        "parseRevisionId": "9e384403c55fd76709f606a0db78e1ce8d5bec8fbd7f74a8e83895bfb3ca5f18",
+        "quoteOrdinal": 24,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "6696afcd2c48852b804e9f4b33504eb1338cea7046791a67ae6496c9b9b2441c",
+  "titleText": {
+    "zh-CN": "Claude福利B · 条件免扣费",
+    "en": "Claude benefit B: conditional no credit deduction"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明此分组免扣用户额度；实际可用资格未核验",
+    "en": "This group is declared exempt from user-credit deduction; actual access is unverified."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "累计充值达到50（原文单位未注明）或在白名单；管理员及用户自身所在组有来源声明的例外",
+      "该组公开声明免扣用户额度，不代表普通用户无门槛免费；实际账号资格未核验",
+      "领取期限未提供；其他未闭合计费及使用条件仍保留；不换算Token或现金"
+    ],
+    "en": [
+      "Cumulative top-up of 50 in an unspecified source unit OR whitelist access; administrators and a user’s own group have stated exceptions.",
+      "This is not unconditional free access for ordinary users.",
+      "Deadline and other unresolved billing/use conditions remain unspecified.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "conditional",
+      "note": {
+        "zh-CN": "抽奖凭证、充值或白名单等替代路径适用；不能简单标需付费或全无门槛。",
+        "en": "Draw-entry, top-up or whitelist alternatives apply; neither universally paid nor unconditional."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "unknown",
+  "rewardKind": "stated"
+}
+```
+
+### 32. 国庆福利 · 九折促销倍率
+
+来源声明九折倍率；适用组 Claude Code、CodeX
+
+- Provider/source: claudecn.ai
+- Category: discount
+- Observed/checked: 2026-10-03T23:48:26.893Z
+- Requires payment: null
+- Declared status: announced
+- End: 2026-10-07T15:59:59Z
+
+Conditions / 完整条件:
+
+- 适用组：Claude Code、CodeX
+- 已含九折优惠，不再次叠乘；到期使用原声明基础组倍率
+- 截止UTC（不含该时刻）：2026-10-07T15:59:59Z
+- 只展示来源优惠声明，实际账号资格及现金价值未核验
+
+Sources / 来源:
+
+- [Source statement](https://claudecn.ai/api/pricing) — SHA-256 `2c785308f4db80747f673bcb9e28d99247bc6a872f2ed27f561f64d3b6b4dbba`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "270159fab758c7f3fc1e13cd055843464c5a8236cb0753de330e26e8d6f22a49",
+  "sourceId": "claudecn.ai",
+  "sourceDomain": "claudecn.ai",
+  "category": "discount",
+  "title": "国庆福利 · 九折促销倍率",
+  "benefitText": "来源声明九折倍率；适用组 Claude Code、CodeX",
+  "conditions": [
+    "适用组：Claude Code、CodeX",
+    "已含九折优惠，不再次叠乘；到期使用原声明基础组倍率",
+    "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+    "只展示来源优惠声明，实际账号资格及现金价值未核验"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:48:26.893Z",
+  "endAt": "2026-10-07T15:59:59Z",
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "eaf10ef72c33601232e32247d879c50405760ba68346ec1f12414a51364ca931",
+      "sourceUrl": "https://claudecn.ai/api/pricing",
+      "observedAt": "2026-10-03T23:48:26.893Z",
+      "bodySha256": "2c785308f4db80747f673bcb9e28d99247bc6a872f2ed27f561f64d3b6b4dbba",
+      "position": {
+        "parseRevisionId": "96076d318193ed963403a9bbea716b3b9ebefb27550ba67a4b06a9f7b0682e57",
+        "quoteOrdinal": 26,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "270159fab758c7f3fc1e13cd055843464c5a8236cb0753de330e26e8d6f22a49",
+  "deadlineText": "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+  "titleText": {
+    "zh-CN": "国庆福利 · 九折促销倍率",
+    "en": "Holiday 10% promotional multiplier discount"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明九折倍率；适用组 Claude Code、CodeX",
+    "en": "The stated multiplier applies to Claude Code and CodeX groups."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "适用组：Claude Code、CodeX",
+      "已含九折优惠，不再次叠乘；到期使用原声明基础组倍率",
+      "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+      "只展示来源优惠声明，实际账号资格及现金价值未核验"
+    ],
+    "en": [
+      "The multiplier already includes 10% off; do not multiply the discount again. Use the originally stated base multiplier after expiry.",
+      "UTC cutoff, exclusive: 2026-10-07T15:59:59Z.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "stated",
+  "deadlineLabel": {
+    "zh-CN": "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+    "en": "UTC cutoff, exclusive: 2026-10-07T15:59:59Z."
+  }
+}
+```
+
+### 33. 国庆福利 · 九折促销倍率
+
+来源声明九折倍率；适用组 Claude Code、CodeX
+
+- Provider/source: claudecn.top
+- Category: discount
+- Observed/checked: 2026-10-03T23:48:27.872Z
+- Requires payment: null
+- Declared status: announced
+- End: 2026-10-07T15:59:59Z
+
+Conditions / 完整条件:
+
+- 适用组：Claude Code、CodeX
+- 已含九折优惠，不再次叠乘；到期使用原声明基础组倍率
+- 截止UTC（不含该时刻）：2026-10-07T15:59:59Z
+- 只展示来源优惠声明，实际账号资格及现金价值未核验
+
+Sources / 来源:
+
+- [Source statement](https://claudecn.top/api/pricing) — SHA-256 `2c785308f4db80747f673bcb9e28d99247bc6a872f2ed27f561f64d3b6b4dbba`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "3389595a8d48867244770aa680f950f3752a341e690a97d47b6ea4a44d737a98",
+  "sourceId": "claudecn.top",
+  "sourceDomain": "claudecn.top",
+  "category": "discount",
+  "title": "国庆福利 · 九折促销倍率",
+  "benefitText": "来源声明九折倍率；适用组 Claude Code、CodeX",
+  "conditions": [
+    "适用组：Claude Code、CodeX",
+    "已含九折优惠，不再次叠乘；到期使用原声明基础组倍率",
+    "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+    "只展示来源优惠声明，实际账号资格及现金价值未核验"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:48:27.872Z",
+  "endAt": "2026-10-07T15:59:59Z",
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "9a8cebf183e36f0bffb86f8050ad1a005877d6b952613249c44b7f8c9c28daa0",
+      "sourceUrl": "https://claudecn.top/api/pricing",
+      "observedAt": "2026-10-03T23:48:27.872Z",
+      "bodySha256": "2c785308f4db80747f673bcb9e28d99247bc6a872f2ed27f561f64d3b6b4dbba",
+      "position": {
+        "parseRevisionId": "f6e7d71eb648a1c27578133d50d0b451849ee0211a929969b89a93bf3b608395",
+        "quoteOrdinal": 26,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "3389595a8d48867244770aa680f950f3752a341e690a97d47b6ea4a44d737a98",
+  "deadlineText": "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+  "titleText": {
+    "zh-CN": "国庆福利 · 九折促销倍率",
+    "en": "Holiday 10% promotional multiplier discount"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明九折倍率；适用组 Claude Code、CodeX",
+    "en": "The stated multiplier applies to Claude Code and CodeX groups."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "适用组：Claude Code、CodeX",
+      "已含九折优惠，不再次叠乘；到期使用原声明基础组倍率",
+      "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+      "只展示来源优惠声明，实际账号资格及现金价值未核验"
+    ],
+    "en": [
+      "The multiplier already includes 10% off; do not multiply the discount again. Use the originally stated base multiplier after expiry.",
+      "UTC cutoff, exclusive: 2026-10-07T15:59:59Z.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "stated",
+  "deadlineLabel": {
+    "zh-CN": "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+    "en": "UTC cutoff, exclusive: 2026-10-07T15:59:59Z."
+  }
+}
+```
+
+### 34. 国庆福利 · 九折促销倍率
+
+来源声明九折倍率；适用组 Claude Code、CodeX
+
+- Provider/source: jp.claudecn.top
+- Category: discount
+- Observed/checked: 2026-10-03T23:50:58.843Z
+- Requires payment: null
+- Declared status: announced
+- End: 2026-10-07T15:59:59Z
+
+Conditions / 完整条件:
+
+- 适用组：Claude Code、CodeX
+- 已含九折优惠，不再次叠乘；到期使用原声明基础组倍率
+- 截止UTC（不含该时刻）：2026-10-07T15:59:59Z
+- 只展示来源优惠声明，实际账号资格及现金价值未核验
+
+Sources / 来源:
+
+- [Source statement](https://jp.claudecn.top/api/pricing) — SHA-256 `0e48f4a6ef2481d594fb34d4f80f68e774448b31c364b6971e7287b080f41c8a`
+
+Complete derived record / 衍生公开版全字段（含条件、摘要及证据）:
+
+```json
+{
+  "id": "844646c170d7e69fca1b9e1ce08bb7c28ad95f7a4d6dc83c682c8887a2c89876",
+  "sourceId": "jp.claudecn.top",
+  "sourceDomain": "jp.claudecn.top",
+  "category": "discount",
+  "title": "国庆福利 · 九折促销倍率",
+  "benefitText": "来源声明九折倍率；适用组 Claude Code、CodeX",
+  "conditions": [
+    "适用组：Claude Code、CodeX",
+    "已含九折优惠，不再次叠乘；到期使用原声明基础组倍率",
+    "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+    "只展示来源优惠声明，实际账号资格及现金价值未核验"
+  ],
+  "claimUrl": null,
+  "observedAt": "2026-10-03T23:50:58.843Z",
+  "endAt": "2026-10-07T15:59:59Z",
+  "declaredStatus": "announced",
+  "evidence": [
+    {
+      "documentId": null,
+      "snapshotId": "630008ef749308dbb77fa990a60f17395ee3efb6818ca6eb49b515398859ee67",
+      "sourceUrl": "https://jp.claudecn.top/api/pricing",
+      "observedAt": "2026-10-03T23:50:58.843Z",
+      "bodySha256": "0e48f4a6ef2481d594fb34d4f80f68e774448b31c364b6971e7287b080f41c8a",
+      "position": {
+        "parseRevisionId": "7bb7fb6ef29a3fd6f8899f1c08adc4beeb9bbc7e18fb629225095dfe5f8e0fa7",
+        "quoteOrdinal": 10,
+        "parsedPricingDeclarationOrdinal": 0
+      }
+    }
+  ],
+  "requiresPayment": null,
+  "eventFamilyId": "844646c170d7e69fca1b9e1ce08bb7c28ad95f7a4d6dc83c682c8887a2c89876",
+  "deadlineText": "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+  "titleText": {
+    "zh-CN": "国庆福利 · 九折促销倍率",
+    "en": "Holiday 10% promotional multiplier discount"
+  },
+  "benefitTextLocalized": {
+    "zh-CN": "来源声明九折倍率；适用组 Claude Code、CodeX",
+    "en": "The stated multiplier applies to Claude Code and CodeX groups."
+  },
+  "conditionsLocalized": {
+    "zh-CN": [
+      "适用组：Claude Code、CodeX",
+      "已含九折优惠，不再次叠乘；到期使用原声明基础组倍率",
+      "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+      "只展示来源优惠声明，实际账号资格及现金价值未核验"
+    ],
+    "en": [
+      "The multiplier already includes 10% off; do not multiply the discount again. Use the originally stated base multiplier after expiry.",
+      "UTC cutoff, exclusive: 2026-10-07T15:59:59Z.",
+      "Captured public statement only; eligibility/redemption is unverified. Source credits are not converted to API tokens or cash."
+    ]
+  },
+  "requirements": {
+    "card": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "identity": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "payment": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "invite": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "application": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    },
+    "renewal": {
+      "state": "unknown",
+      "note": {
+        "zh-CN": "已固定证据未明确此项，需向服务方核对；不是无需门槛。",
+        "en": "Pinned evidence does not establish this prerequisite; confirm with the provider. Unknown does not mean no requirement."
+      }
+    }
+  },
+  "personalEligibility": "unverified",
+  "documentStatus": "captured-statement",
+  "activityStatus": "deadline-stated",
+  "rewardKind": "stated",
+  "deadlineLabel": {
+    "zh-CN": "截止UTC（不含该时刻）：2026-10-07T15:59:59Z",
+    "en": "UTC cutoff, exclusive: 2026-10-07T15:59:59Z."
+  }
+}
+```
+
+## Search coverage / 检索覆盖
+
+```json
+{
+  "checkedAt": "2026-10-04T18:20:54.437675+00:00",
+  "methodologySha256": "9866302465886c932d22889afb5572a2ca697a3f44eef9e140d8ac6f399a2996",
+  "fixedProviderCount": 62,
+  "extensionProviderCount": 3,
+  "providers": [
+    {
+      "provider": "Alibaba Cloud",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Tencent Cloud",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Baidu Qianfan",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Volcengine Ark",
+      "scope": "fixed",
+      "status": "pending-evidence",
+      "note": {
+        "zh-CN": "免费额度与安心模式两页的资格/重开说明冲突，尚未发布此候选。",
+        "en": "Free-quota and safe-mode pages conflict on eligibility/re-enabling; this candidate remains unpublished."
+      }
+    },
+    {
+      "provider": "Zhipu BigModel",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Moonshot Kimi",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "DeepSeek",
+      "scope": "fixed",
+      "status": "no-confirmed-offer"
+    },
+    {
+      "provider": "SiliconFlow",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "ModelScope",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "MiniMax",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "StepFun",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "iFlytek Spark",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "SenseTime SenseNova",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Huawei Cloud",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Xiaomi MiMo",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "360 Zhinao",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Baichuan",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "InternLM",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "Groq",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Cerebras",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "SambaNova",
+      "scope": "fixed",
+      "status": "ended-or-paid-only"
+    },
+    {
+      "provider": "Together AI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Fireworks AI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Hugging Face",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Mistral AI",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Cohere",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "AI21",
+      "scope": "fixed",
+      "status": "no-confirmed-offer",
+      "note": {
+        "zh-CN": "已尝试多个入口，仅取得一份成功正文；未确认符合本目录范围的优惠。",
+        "en": "Multiple entrypoints attempted, one successful body obtained; no in-scope offer confirmed."
+      }
+    },
+    {
+      "provider": "NVIDIA",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "DeepInfra",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "Novita AI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Nebius",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Baseten",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Replicate",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "fal.ai",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "RunPod",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Lambda",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Friendli AI",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "Chutes",
+      "scope": "fixed",
+      "status": "ended-or-paid-only"
+    },
+    {
+      "provider": "Google Cloud",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Microsoft Azure",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "AWS",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Oracle Cloud",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "IBM Cloud",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "DigitalOcean",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "Cloudflare",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Modal",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Vercel",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Vultr",
+      "scope": "fixed",
+      "status": "pending-evidence",
+      "note": {
+        "zh-CN": "多入口请求仅一份成功正文，完整新用户额度条件仍待核。",
+        "en": "Only one successful body across attempts; complete new-user credit conditions remain pending."
+      }
+    },
+    {
+      "provider": "Deepgram",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "AssemblyAI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "ElevenLabs",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Speechmatics",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Cartesia",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Hume AI",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "Jina AI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Voyage AI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Tavily",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Exa",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "OpenRouter",
+      "scope": "fixed",
+      "status": "confirmed-existing"
+    },
+    {
+      "provider": "Black Forest Labs",
+      "scope": "fixed",
+      "status": "no-confirmed-offer"
+    },
+    {
+      "provider": "Stability AI",
+      "scope": "fixed",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "BytePlus",
+      "scope": "fixed",
+      "status": "pending-evidence"
+    },
+    {
+      "provider": "OpenAI",
+      "scope": "extension",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Anthropic",
+      "scope": "extension",
+      "status": "confirmed-new"
+    },
+    {
+      "provider": "Perplexity",
+      "scope": "extension",
+      "status": "pending-evidence",
+      "note": {
+        "zh-CN": "旧赠金搜索线索未取得可核现行正文，暂不发布金额。",
+        "en": "Old credit search leads lack verifiable current terms; no amount is published."
+      }
+    }
+  ],
+  "description": {
+    "zh-CN": "按预设62家平台逐项搜索，另查OpenAI、Anthropic、Perplexity；每家尝试价格/条款等至少两个不同入口，并做两轮缺口追查。正文未取得或条件冲突的保留待核；本目录不是全网穷尽，也不证明个人领取资格。",
+    "en": "Searched a fixed 62-provider list plus OpenAI, Anthropic and Perplexity; attempted at least two distinct pricing/terms entrypoints per provider and two gap followups. Missing bodies and conflicting terms remain pending. This is finite coverage, not a complete worldwide list or proof of personal eligibility."
+  }
+}
+```
+
+## Observation window / 观察窗口
+
+```json
+{
+  "first": "2026-10-03T23:42:40.701Z",
+  "last": "2026-10-04T00:01:09.695Z"
+}
+```

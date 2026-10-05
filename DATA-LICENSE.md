@@ -17,3 +17,5 @@ Future additions require a reviewed source/owner/date/rights manifest and
 complete eligibility conditions. Do not infer data rights from the software
 license. This is an independent catalogue hub, not a release of the full client
 or its private catalogue.
+
+The reviewed v3 factual compilation data/free-tokens-v3.json and CATALOGUE-v3.md follow the same boundary. data/RELEASE-v3.json pins this release and its original observation policy. Structured prerequisite notes are Grandet editorial facts, not supplier full text.

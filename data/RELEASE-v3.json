@@ -1,0 +1,28 @@
+{
+  "schema": "grandet.public-catalogue-release/v1",
+  "compiledAt": "2026-10-06",
+  "file": "data/free-tokens-v3.json",
+  "sha256": "15b3efb6554679cf808c76f35a2259b9d8eb62436ccf64d8598d4dda6b216053",
+  "bytes": 543897,
+  "officialRecords": 73,
+  "thirdPartyMechanismRecords": 34,
+  "structuredPrerequisites": 642,
+  "source": "Reviewed factual allowlist used by Grandet website; provider full statements/excerpts omitted",
+  "projection": {
+    "schema": "grandet.reviewed-free-token-facts/v1",
+    "sourceSha256": "a5990be035d1fb01c78fe336d9969591b36c48e961fc96d3520f60b99cac1653",
+    "originalCatalogueSha256": "ad5e4bea8d1f9728305372336808db740d0c42a810928f34fc796f30b0fa9052",
+    "personalVerificationPerformed": false,
+    "transformation": "Reviewed factual projection; vendor full statements and excerpts omitted. Structured prerequisites are explicit editorial decisions, with unknown retained."
+  },
+  "observationWindow": {
+    "first": "2026-10-03T23:42:40.701Z",
+    "last": "2026-10-04T00:01:09.695Z"
+  },
+  "observationPolicy": "Original observation dates retained; compilation is not a new observation",
+  "personalVerificationPerformed": false,
+  "websiteStatus": "DEPLOYMENT_IN_PROGRESS_NOT_YET_ACCEPTED",
+  "desktopReleaseStatus": "NOT_RELEASED",
+  "dataLicense": "No blanket data license; underlying sources retain rights",
+  "previousRelease": "data/MANIFEST.json"
+}

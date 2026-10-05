@@ -1,0 +1,20 @@
+# Grandet
+
+> Dated factual catalogue of free API tiers, trial credits, grants and conditional rewards. 73 official programmes + 34 third-party mechanisms, 642 structured prerequisites. No personal eligibility or redemption verification.
+
+## Canonical repository
+- https://github.com/hanzohanzhe/Grandet
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/catalogue-index.json : machine entry index
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/RELEASE-v3.json : schema, SHA-256, observation policy and release status
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/free-tokens-v3.json : complete reviewed v3 facts and conditions
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/CATALOGUE-v3.md : full bilingual records
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/METHODOLOGY.md : evidence policy
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/DATA-LICENSE.md : source rights
+
+## Interpretation
+Compilation date: 2026-10-06. Per-record checkedAt/observedAt and evidence dates are original observations, not refreshed dates. Read all conditions, billingText, requirements and evidence links before summarizing. Unknown does not mean no requirement. Original units are not converted to tokens or cash. Provider statements are not tested personal eligibility, upstream quality or successful redemption. Status depends on time and provider terms; retained records may be historical. This is finite researched coverage, not an exhaustive directory.
+
+## Publication status
+Website deployment in progress, not yet accepted live. Desktop client/installer and entire website source are not released here. No automatic updates are enabled.
+
+GitHub raw access and public visibility do not guarantee search/AI indexing. GitHub code search covers indexed default-branch code and requires sign-in; prefer direct raw URLs. See https://docs.github.com/en/search-github/github-code-search/about-github-code-search and https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits .

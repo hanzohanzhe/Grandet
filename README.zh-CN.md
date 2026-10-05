@@ -6,7 +6,7 @@
 
 “free tokens”只是发现入口。额度点、金额标签、优惠券和活动凭证保留原单位，不统一换成 Token 或现金。充值、邀请、实名、期限、抽奖、关闭与冲突公告全部保留。收录不代表人人可领、已领取或全网穷尽。
 
-汇编日期：**2026-10-05**。每条记录保留原观察日期；汇编日期不续原观察。本仓库保留固定初始审核事实导出，不会自动同步网站最新 v3 DTO；仓库与网站的发布版本可以不同。
+汇编日期：**2026-10-05**。每条记录保留原观察日期；汇编日期不续原观察。初始导出保持不变；2026-10-06另发布与网站安全事实目录一致的v3审核版本。后续仍需手动审核同步，仓库与网站版本可能不同。
 
 ## 本地运行
 
@@ -31,3 +31,7 @@ node scripts/serve.mjs
 新增工具与浏览器代码沿用 AGPL-3.0-only。此软件许可不覆盖供应商数据、引文和商标。现有 [数据许可边界](DATA-LICENSE.md) 保留；[数据清单](data/MANIFEST.json) 明确数据候选及逐项来源权利与公开范围，不虚构统一开放数据许可。公开网页可访问不等于已授权转载。
 
 This GitHub publication is derived from reviewed snapshot SHA-256 `581a6fcd246070d9a69eacdbbebe1630d734c67c3c168ccf3680fbdcf27f405b`; it is not byte-identical to the website DTO. 官方对象不变，第三方移除整段原文并保留结构化事实，未刷新观察时间。
+
+## Machine-readable release / 机器读取入口（2026-10-06）
+
+Latest reviewed facts: [v3 JSON](data/free-tokens-v3.json), [release/hash manifest](data/RELEASE-v3.json), [complete v3 Markdown](CATALOGUE-v3.md), [AI reading guide](llms.txt), and [machine index](catalogue-index.json). 107 cards retain their original conditions, evidence and observation dates; all 642 prerequisite fields are explicit. Unknown is not unconditional. The initial snapshot remains unchanged. Website deployment is in progress; desktop installers are not publicly released.

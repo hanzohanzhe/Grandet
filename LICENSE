@@ -11,8 +11,8 @@ This independent hub contains no desktop client, SDK, gateway, or Apache
 licensed source distribution. Its public-export-manifest.json enumerates
 this hub's actual files and their individual rights categories.
 
-The software license does not cover data/free-tokens.json, the factual
-catalogue CATALOGUE.md, source evidence references, vendor statements, or
+The software license does not cover data/free-tokens.json or data/free-tokens-v3.json, the factual
+catalogues CATALOGUE.md and CATALOGUE-v3.md, source evidence references, vendor statements, or
 trademarks. DATA-LICENSE.md and data/MANIFEST.json define the data boundary;
 TRADEMARKS.md defines the Grandet name boundary. No supplier rights are
 sublicensed by this software license. The data manifest records the public
