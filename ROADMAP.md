@@ -6,7 +6,7 @@
 - [ ] Accept sourced corrections and broader geographic/language coverage.
 - [ ] Add reviewed machine-readable eligibility and time-boundary validation without inventing missing conditions.
 - [ ] Review and release selected Grandet client/source modules under their actual licenses.
-- [ ] Finish production deployment, HTTPS and operational acceptance before describing grandet.ai as live.
+- [x] Complete production deployment, HTTPS and operational acceptance; see [current website status](WEBSITE-STATUS.json).
 - [ ] Enable recurring data updates only after production acceptance and explicit workflow review.
 
 Dates and milestones are not promises. No client binary is shipped here.

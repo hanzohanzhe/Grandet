@@ -16,7 +16,7 @@
   ],
   "website": {
     "url": "https://grandet.ai",
-    "status": "DEPLOYMENT_IN_PROGRESS_NOT_YET_ACCEPTED"
+    "statusManifest": "WEBSITE-STATUS.json"
   },
   "desktopReleaseStatus": "NOT_RELEASED"
 }

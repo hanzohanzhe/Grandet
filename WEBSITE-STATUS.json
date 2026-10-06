@@ -1,0 +1,10 @@
+{
+  "schema": "grandet.website-status/v1",
+  "url": "https://grandet.ai",
+  "status": "LIVE_ACCEPTED",
+  "desktopReleaseStatus": "NOT_RELEASED",
+  "automaticDataUpdatesEnabled": false,
+  "repositoryScope": "Catalogue tool and reviewed public facts; desktop client and full website source are not released here",
+  "catalogueRelease": "data/RELEASE-v3.json",
+  "catalogueReleaseStatusPolicy": "Prior release metadata retains its original publication-time status; this file describes current website status"
+}

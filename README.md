@@ -22,7 +22,7 @@ Open the address printed by the server. Search and filter the browser catalogue;
 
 ## Project status
 
-This initial repository contains catalogue source code and a reviewed public-data candidate. The Grandet desktop client and full website source are **not released in this repository**. grandet.ai has not passed live deployment acceptance; this README does not advertise a live service, downloadable client or automatic updates. No paid API calls are needed by these tools.
+This initial repository contains catalogue source code and a reviewed public-data candidate. The Grandet desktop client and full website source are **not released in this repository**. The public website is [grandet.ai](https://grandet.ai); see [current website status](WEBSITE-STATUS.json). Desktop installers are not publicly released, and automatic data updates remain disabled. No paid API calls are needed by these tools.
 
 ## Contribute
 
@@ -36,4 +36,4 @@ This GitHub publication is derived from reviewed snapshot SHA-256 `581a6fcd24607
 
 ## Machine-readable release / 机器读取入口（2026-10-06）
 
-Latest reviewed facts: [v3 JSON](data/free-tokens-v3.json), [release/hash manifest](data/RELEASE-v3.json), [complete v3 Markdown](CATALOGUE-v3.md), [AI reading guide](llms.txt), and [machine index](catalogue-index.json). 107 cards retain their original conditions, evidence and observation dates; all 642 prerequisite fields are explicit. Unknown is not unconditional. The initial snapshot remains unchanged. Website deployment is in progress; desktop installers are not publicly released.
+Latest reviewed facts: [v3 JSON](data/free-tokens-v3.json), [release/hash manifest](data/RELEASE-v3.json), [complete v3 Markdown](CATALOGUE-v3.md), [AI reading guide](llms.txt), and [machine index](catalogue-index.json). 107 cards retain their original conditions, evidence and observation dates; all 642 prerequisite fields are explicit. Unknown is not unconditional. The initial snapshot remains unchanged. Current website status: [WEBSITE-STATUS.json](WEBSITE-STATUS.json). Desktop installers are not publicly released.

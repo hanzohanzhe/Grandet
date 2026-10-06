@@ -22,7 +22,7 @@ node scripts/serve.mjs
 
 ## 当前状态
 
-这是目录工具与已审核公开数据候选的初始仓库。Grandet 桌面客户端和完整网站源码尚未在本仓库发布；grandet.ai 尚未通过正式部署验收。没有在线服务、客户端下载或自动更新已完成的承诺。本工具不调用付费 API。
+这是目录工具与已审核公开数据候选的初始仓库。Grandet 桌面客户端和完整网站源码尚未在本仓库发布；公开网站为 [grandet.ai](https://grandet.ai)，详见[当前网站状态](WEBSITE-STATUS.json)。桌面安装包尚未公开发布，数据自动更新仍未启用。本工具不调用付费 API。
 
 ## 参与与许可
 
@@ -34,4 +34,4 @@ This GitHub publication is derived from reviewed snapshot SHA-256 `581a6fcd24607
 
 ## Machine-readable release / 机器读取入口（2026-10-06）
 
-Latest reviewed facts: [v3 JSON](data/free-tokens-v3.json), [release/hash manifest](data/RELEASE-v3.json), [complete v3 Markdown](CATALOGUE-v3.md), [AI reading guide](llms.txt), and [machine index](catalogue-index.json). 107 cards retain their original conditions, evidence and observation dates; all 642 prerequisite fields are explicit. Unknown is not unconditional. The initial snapshot remains unchanged. Website deployment is in progress; desktop installers are not publicly released.
+Latest reviewed facts: [v3 JSON](data/free-tokens-v3.json), [release/hash manifest](data/RELEASE-v3.json), [complete v3 Markdown](CATALOGUE-v3.md), [AI reading guide](llms.txt), and [machine index](catalogue-index.json). 107 cards retain their original conditions, evidence and observation dates; all 642 prerequisite fields are explicit. Unknown is not unconditional. The initial snapshot remains unchanged. Current website status: [WEBSITE-STATUS.json](WEBSITE-STATUS.json). Desktop installers are not publicly released.

@@ -15,6 +15,6 @@
 Compilation date: 2026-10-06. Per-record checkedAt/observedAt and evidence dates are original observations, not refreshed dates. Read all conditions, billingText, requirements and evidence links before summarizing. Unknown does not mean no requirement. Original units are not converted to tokens or cash. Provider statements are not tested personal eligibility, upstream quality or successful redemption. Status depends on time and provider terms; retained records may be historical. This is finite researched coverage, not an exhaustive directory.
 
 ## Publication status
-Website deployment in progress, not yet accepted live. Desktop client/installer and entire website source are not released here. No automatic updates are enabled.
+Public website: https://grandet.ai . Current acceptance metadata: https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/WEBSITE-STATUS.json . Prior data release manifests retain their original publication-time status. Desktop client/installer and entire website source are not released here. No automatic updates are enabled.
 
 GitHub raw access and public visibility do not guarantee search/AI indexing. GitHub code search covers indexed default-branch code and requires sign-in; prefer direct raw URLs. See https://docs.github.com/en/search-github/github-code-search/about-github-code-search and https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits .
