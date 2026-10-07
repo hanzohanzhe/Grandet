@@ -1,39 +1,83 @@
-# Grandet — free API credits & offer catalogue
+# Grandet
 
-[中文说明](README.zh-CN.md) · [Complete catalogue / 完整目录](CATALOGUE.md) · [Methodology](METHODOLOGY.md)
+**Compare public AI API offers. Find free-credit opportunities. Check the conditions before choosing.**
 
-A small open-source catalogue tool and a dated research index of **73 official programmes + 34 third-party announcement mechanisms**. Explore free tiers, trial credits, startup grants, student/research programmes and conditional rewards with their source links and full conditions.
+[中文](README.zh-CN.md) · [Website](https://grandet.ai/) · [API price comparison](https://grandet.ai/leaderboard/) · [Free credits & offers](https://grandet.ai/free-tokens/) · [Product](https://grandet.ai/product/)
 
-“Free tokens” is a discovery label. Credits, quota points, coupons, money-labelled balances and activity vouchers retain their original units. Payment, invitations, identity checks, expiry, lotteries and disabled/conflicting announcements are preserved. Inclusion does not prove eligibility or successful redemption; this is not an exhaustive worldwide directory.
+Grandet helps developers explore AI API providers, their published prices and free-tier or credit programmes. The website brings those records together with source evidence and observation dates. This repository publishes a runnable catalogue tool and reviewed offer data that you can inspect, validate and reuse within the stated licensing boundaries.
 
-Compilation date: **2026-10-05**. Each record retains its original observation date; this compilation date does not renew observations. The initial export is preserved; the reviewed v3 release added on 2026-10-06 matches the website’s safe factual catalogue. Updates are reviewed manually; repository and website versions may differ.
+## Start here
 
-## Run locally
+| What you want to do | Where to go |
+| --- | --- |
+| Compare providers for a model | [Open the price comparison](https://grandet.ai/leaderboard/) and inspect each offer's units, conditions and evidence |
+| Find free tiers, trials or grants | [Browse offers online](https://grandet.ai/free-tokens/) or read the [complete v3 catalogue](CATALOGUE-v3.md) |
+| Explore the published data locally | Run the dependency-free tools below |
+| Build a reader or use an AI assistant | Start with the [repository index](catalogue-index.json) and the data entries below |
+| Correct an offer | Follow the [contribution guide](CONTRIBUTING.md) with a primary source and observation date |
 
-Requires Node.js 20+; no packages or installation needed.
+## Available today
+
+- **Live website:** model/provider price comparison, free-credit discovery and a Grandet product introduction at [grandet.ai](https://grandet.ai/).
+- **Public catalogue tools:** a local browser explorer, JSON validator, reproducible Markdown generator and tests. No API key or paid API call is needed.
+- **Reviewed offer snapshot:** **73 official programmes + 34 third-party announcement mechanisms**, with **642 structured prerequisite fields** covering application, payment, card, identity, invitation and renewal requirements. Free tiers, trial credits, startup grants and student/research opportunities are included.
+
+The **desktop client and installers are not publicly released**. The complete client and website source are not published in this repository. See [website and release status](WEBSITE-STATUS.json) and the [roadmap](ROADMAP.md).
+
+## Run the catalogue locally
+
+Requires **Git and Node.js 20+**. There are no third-party packages to install.
 
 ```sh
+git clone https://github.com/hanzohanzhe/Grandet.git
+cd Grandet
 node scripts/catalogue.mjs validate
-node scripts/catalogue.mjs generate
+node scripts/catalogue.mjs generate --check
+node scripts/validate-public.mjs
 node scripts/serve.mjs
 ```
 
-Open the address printed by the server. Search and filter the browser catalogue; expand any card for its complete JSON, including eligibility, payment, expiry, editorial facts and evidence. The Markdown catalogue retains every field of this derived publication. Vendor full statements/excerpts are omitted; factual summaries and all structured conditions remain. The server binds only to localhost. `generate --check` checks reproducible output without writing.
+Open **http://127.0.0.1:8787/**. Search and filter the catalogue, then expand a card to inspect its complete published JSON and source links. The server listens only on localhost; press `Ctrl+C` to stop it.
 
-## Project status
+The local browser and `catalogue.mjs` use the preserved **initial snapshot** in `data/free-tokens.json`. The separately reviewed **v3 snapshot** is available in [JSON](data/free-tokens-v3.json) and [Markdown](CATALOGUE-v3.md); `validate-public.mjs` checks that release. These commands validate local files and do not refresh offers or download the website's price database. `generate --check` does not write files; omit `--check` only when intentionally regenerating the initial Markdown catalogue.
 
-This initial repository contains catalogue source code and a reviewed public-data candidate. The Grandet desktop client and full website source are **not released in this repository**. The public website is [grandet.ai](https://grandet.ai); see [current website status](WEBSITE-STATUS.json). Desktop installers are not publicly released, and automatic data updates remain disabled. No paid API calls are needed by these tools.
+## Read the conditions, not just the headline
+
+“Free tokens” is a discovery label. Records preserve their original units: credits, quota points, coupons, money-labelled balances and activity vouchers are not automatically equivalent to tokens or cash. Payment, invitation, identity, expiry, lottery and renewal conditions remain visible, including disabled or conflicting announcements.
+
+Inclusion does not establish your eligibility, successful redemption, upstream authenticity or endpoint quality. **Unknown does not mean unrestricted.** The 107 records describe programmes and mechanisms, not 107 benefits guaranteed to be redeemable today; coverage is finite.
+
+The v3 release was compiled on **2026-10-06**. Each record retains its own original observation date; compilation and formatting do not refresh it. Updates require manual review, automatic refresh is disabled, and repository and website versions may differ. Read the [methodology](METHODOLOGY.md) and check the provider's current terms before acting.
+
+## Data for tools and AI assistants
+
+| Entry | Contents |
+| --- | --- |
+| [Repository index](catalogue-index.json) · [raw JSON](https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/catalogue-index.json) | Starting point for the public repository's data and documentation |
+| [v3 facts](data/free-tokens-v3.json) · [raw JSON](https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/free-tokens-v3.json) | All 107 reviewed records, full structured conditions, evidence and original dates |
+| [v3 release manifest](data/RELEASE-v3.json) | SHA-256, byte length, counts and observation policy |
+| [Complete v3 Markdown](CATALOGUE-v3.md) | Human-readable records with their complete published fields |
+| [AI reading guide](llms.txt) | Entry links and interpretation rules |
+| [Website AI index](https://grandet.ai/ai-index.json) · [website reading guide](https://grandet.ai/llms.txt) | Discovery entries for the website's published catalogue and data manifests |
+
+Keep units, dates, evidence and prerequisites with any extracted claim. Pin the release manifest when reproducibility matters. The website index links to further data; it is not one file containing the full price archive. Public machine-readable access does not guarantee search or AI indexing.
+
+The [initial JSON](data/free-tokens.json), [initial manifest](data/MANIFEST.json) and [initial Markdown](CATALOGUE.md) remain available. Earlier release metadata keeps its publication-time status; [WEBSITE-STATUS.json](WEBSITE-STATUS.json) records the subsequent website launch.
 
 ## Contribute
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Corrections need a primary source, observation date and full conditions. Do not submit account credentials, personal information or private captures. See [ROADMAP.md](ROADMAP.md) for upcoming work.
+Corrections, sourced new offers and improvements to the public tools are welcome. Include the record ID, primary public URL, observation date, original unit and complete eligibility, payment, renewal and expiry conditions. Distinguish the source's statement from your interpretation. Do not submit credentials, account records, personal data or private captures. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Rights
+Before proposing a change, run the three validation commands above and:
 
-New tool/browser code is **AGPL-3.0-only**, see [LICENSE](LICENSE). That license does not license provider datasets, quotations or trademarks. [DATA-LICENSE.md](DATA-LICENSE.md) preserves the existing exclusion policy; [data/MANIFEST.json](data/MANIFEST.json) records the data candidate and per-record source rights and publication scope. Public accessibility is not permission to redistribute. Vendor statements remain subject to their owners’ rights and terms. No blanket open-data license is asserted. See [TRADEMARKS.md](TRADEMARKS.md).
+```sh
+node --test tests/catalogue.test.mjs
+```
 
-This GitHub publication is derived from reviewed snapshot SHA-256 `581a6fcd246070d9a69eacdbbebe1630d734c67c3c168ccf3680fbdcf27f405b`; it is not byte-identical to the website DTO. 官方对象不变，第三方移除整段原文并保留结构化事实，未刷新观察时间。
+If Grandet helps your research, a **voluntary Star** makes this repository easier to find again and shows your support. No Star is required to use the public tools or read the data.
 
-## Machine-readable release / 机器读取入口（2026-10-06）
+## License and source rights
 
-Latest reviewed facts: [v3 JSON](data/free-tokens-v3.json), [release/hash manifest](data/RELEASE-v3.json), [complete v3 Markdown](CATALOGUE-v3.md), [AI reading guide](llms.txt), and [machine index](catalogue-index.json). 107 cards retain their original conditions, evidence and observation dates; all 642 prerequisite fields are explicit. Unknown is not unconditional. The initial snapshot remains unchanged. Current website status: [WEBSITE-STATUS.json](WEBSITE-STATUS.json). Desktop installers are not publicly released.
+The original public tool/browser code and Grandet-authored project documentation are licensed **AGPL-3.0-only** within the scope stated in [LICENSE](LICENSE).
+
+Provider datasets, source material and trademarks retain their own rights. The factual compilations carry **no blanket open-data license**. Provider full statements/excerpts, private captures and operational datasets are excluded; published source links and hashes do not grant redistribution rights. Read [DATA-LICENSE.md](DATA-LICENSE.md), the release manifests and [TRADEMARKS.md](TRADEMARKS.md) before redistributing material.
