@@ -24,23 +24,6 @@ Grandet helps developers explore AI API providers, their published prices and fr
 
 The **desktop client and installers are not publicly released**. The complete client and website source are not published in this repository. See [website and release status](WEBSITE-STATUS.json) and the [roadmap](ROADMAP.md).
 
-## API price-finder plugin — 0.2.1 candidate
-
-[Plugin instructions and complete Skill](plugins/grandet-api-price-finder/README.md) · [Claude marketplace](.claude-plugin/marketplace.json) · [Codex marketplace](.agents/plugins/marketplace.json)
-
-**V18 is live at grandet.ai.** Production HTTP endpoints and all four MCP tools passed verification on 2026-10-13 (releaseSet `8b1ff327dbbdc083927d0826df2990b855defcefe8ec8cfed63efa1c2799594b`). Claude Code, Codex, Cursor and Cherry Studio installation and natural triggering remain **NOT_RUN**. The 22 application entries describe inference configurations, not 22 accepted Skill hosts.
-
-This repository contains the complete plugin directory and both marketplace descriptors. The local Codex CLI 0.159.2 help supports the commands below; these installation commands have not been executed in this release.
-
-```sh
-codex plugin marketplace add hanzohanzhe/Grandet
-codex plugin add grandet-api-price-finder@grandet
-```
-
-Claude Code uses the repository's Claude marketplace. Cursor and Cherry Studio need their version's normal Skill/MCP import workflow; see the plugin instructions. A `git-subdir` marketplace is installable only after the full generated plugin exists in the published repository. Do not import the whole repository as a Skill.
-
-The intended anonymous MCP endpoint is `https://grandet.ai/mcp`; it queries the catalogue and is not a supplier inference Base URL. Prices retain their units, conditions and observation dates. The plugin does not handle keys, purchase credits or run paid supplier probes.
-
 ## Run the catalogue locally
 
 Requires **Git and Node.js 20+**. There are no third-party packages to install.
@@ -96,7 +79,5 @@ If Grandet helps your research, a **voluntary Star** makes this repository easie
 ## License and source rights
 
 The original public tool/browser code and Grandet-authored project documentation are licensed **AGPL-3.0-only** within the scope stated in [LICENSE](LICENSE).
-
-The separately identified price-finder plugin files and the two marketplace descriptors use Apache-2.0 within their own [plugin license](plugins/grandet-api-price-finder/LICENSE) and package manifest; this exception does not relicense the existing hub, website or data.
 
 Provider datasets, source material and trademarks retain their own rights. The factual compilations carry **no blanket open-data license**. Provider full statements/excerpts, private captures and operational datasets are excluded; published source links and hashes do not grant redistribution rights. Read [DATA-LICENSE.md](DATA-LICENSE.md), the release manifests and [TRADEMARKS.md](TRADEMARKS.md) before redistributing material.

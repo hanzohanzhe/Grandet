@@ -7,13 +7,9 @@ under the GNU Affero General Public License version 3 only
 (SPDX: AGPL-3.0-only). The complete license text is in
 LICENSES/AGPL-3.0-only.txt.
 
-This independent hub contains no desktop client, SDK, or gateway distribution.
-The separately scoped price-finder plugin in plugins/grandet-api-price-finder/
-and its .claude-plugin/marketplace.json and .agents/plugins/marketplace.json
-descriptors use Apache-2.0; see the plugin LICENSE and package-manifest.json.
-This exception covers only those selected files. Existing hub files retain
-their listed rights. public-export-manifest.json enumerates the actual files
-and their individual rights categories.
+This independent hub contains no desktop client, SDK, gateway, or Apache
+licensed source distribution. Its public-export-manifest.json enumerates
+this hub's actual files and their individual rights categories.
 
 The software license does not cover data/free-tokens.json or data/free-tokens-v3.json, the factual
 catalogues CATALOGUE.md and CATALOGUE-v3.md, source evidence references, vendor statements, or
