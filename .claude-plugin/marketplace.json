@@ -1,0 +1,15 @@
+{
+  "name": "grandet",
+  "owner": { "name": "Grandet contributors" },
+  "plugins": [
+    {
+      "name": "grandet-api-price-finder",
+      "description": "Find affordable model API providers with Grandet.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/hanzohanzhe/Grandet.git",
+        "path": "plugins/grandet-api-price-finder"
+      }
+    }
+  ]
+}

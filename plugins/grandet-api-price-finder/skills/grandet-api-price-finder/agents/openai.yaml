@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grandet API Price Finder"
+  short_description: "Find affordable model APIs for your workload"
+policy:
+  allow_implicit_invocation: true

@@ -24,6 +24,23 @@ Grandet 帮助开发者查找 AI API 服务商、公开报价和免费额度计�
 
 **桌面客户端及安装包尚未公开发布。** 本仓库也未发布完整客户端与网站源码。实际状态见 [网站与发布状态](WEBSITE-STATUS.json)，后续方向见 [路线图](ROADMAP.md)。
 
+## API 比价插件 — 0.2.1 候选
+
+[插件说明与完整 Skill](plugins/grandet-api-price-finder/README.md) · [Claude 市场入口](.claude-plugin/marketplace.json) · [Codex 市场入口](.agents/plugins/marketplace.json)
+
+**V18 后端已上线 grandet.ai。** 2026-10-13 已通过正式 HTTP 接口和全部四项 MCP 工具验收，releaseSet 为 `8b1ff327dbbdc083927d0826df2990b855defcefe8ec8cfed63efa1c2799594b`。Claude Code、Codex、Cursor、Cherry Studio 的安装与自然语言触发均为 **NOT_RUN**。22 个应用条目是推理接入定义，不等于22个已验收 Skill 宿主。
+
+本仓库包含完整插件目录及两个市场描述文件。本机 Codex CLI 0.159.2 帮助支持下列命令；本轮尚未执行安装验收。
+
+```sh
+codex plugin marketplace add hanzohanzhe/Grandet
+codex plugin add grandet-api-price-finder@grandet
+```
+
+Claude Code 使用仓库的 Claude 市场入口；Cursor、Cherry Studio 按各自版本的正常 Skill/MCP 导入流程操作，见插件说明。`git-subdir` 市场必须等完整生成目录实际存在于公开提交后才能安装，不要把整个仓库当作 Skill 导入。
+
+预定匿名 MCP 入口为 `https://grandet.ai/mcp`，用于查询目录，不是供应商推理 Base URL。价格仍保留单位、条件和观察时间；插件不处理密钥、不充值，也不调用供应商付费测试。
+
 ## 本地运行目录
 
 需要 **Git 和 Node.js 20+**，无需安装第三方依赖。
@@ -79,5 +96,7 @@ node --test tests/catalogue.test.mjs
 ## 许可与来源权利
 
 原创公开工具、浏览器代码及 Grandet 编写的项目文档，在 [LICENSE](LICENSE) 指定范围内使用 **AGPL-3.0-only**。
+
+单独列出的比价插件文件及两个市场描述使用其[插件许可](plugins/grandet-api-price-finder/LICENSE)与包清单限定的 Apache-2.0；该例外不重新许可已有目录工具、网站或数据。
 
 供应商数据、来源材料和商标保留各自权利；事实汇编**没有统一开放数据许可**。供应商整段原文与引文、私有采集正文和运行数据库不在公开内容内；来源链接及哈希也不授予转载权。再分发前请阅读 [DATA-LICENSE.md](DATA-LICENSE.md)、发布清单与 [TRADEMARKS.md](TRADEMARKS.md)。

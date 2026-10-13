@@ -121,8 +121,91 @@
     {
       "path": "WEBSITE-STATUS.json",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": ".agents/plugins/marketplace.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/.claude-plugin/plugin.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/.codex-plugin/plugin.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/.mcp.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/LICENSE",
+      "rights": "LICENSE_TEXT"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/README.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/package-manifest.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/SKILL.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/agents/openai.yaml",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/app-catalog.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/host-setup.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/http-fallback.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/response-format.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/workloads.md",
+      "rights": "Apache-2.0"
     }
   ],
   "codeLicense": "AGPL-3.0-only",
-  "dataPolicy": "SEPARATE_FACTUAL_COMPILATION_NO_SUPPLIER_SUBLICENSE"
+  "dataPolicy": "SEPARATE_FACTUAL_COMPILATION_NO_SUPPLIER_SUBLICENSE",
+  "componentLicenses": {
+    "priceFinderPlugin": {
+      "license": "Apache-2.0",
+      "paths": [
+        ".agents/plugins/marketplace.json",
+        ".claude-plugin/marketplace.json",
+        "plugins/grandet-api-price-finder/.claude-plugin/plugin.json",
+        "plugins/grandet-api-price-finder/.codex-plugin/plugin.json",
+        "plugins/grandet-api-price-finder/.mcp.json",
+        "plugins/grandet-api-price-finder/LICENSE",
+        "plugins/grandet-api-price-finder/README.md",
+        "plugins/grandet-api-price-finder/package-manifest.json",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/SKILL.md",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/agents/openai.yaml",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/app-catalog.md",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/host-setup.md",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/http-fallback.md",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/response-format.md",
+        "plugins/grandet-api-price-finder/skills/grandet-api-price-finder/references/workloads.md"
+      ],
+      "scope": "Selected plugin payload and marketplace descriptors only; no website,client or dataset license grant"
+    }
+  }
 }

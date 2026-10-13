@@ -1,0 +1,19 @@
+{
+  "schema": "grandet-price-finder-package/v1",
+  "name": "grandet-api-price-finder",
+  "version": "0.2.1",
+  "files": {
+    ".claude-plugin/plugin.json": "b78ab5209bd7ed8d33bd0a04597b1ad63521326478c043cc5b6a410f728118da",
+    ".codex-plugin/plugin.json": "be2d1db8c0817b6db0b07434b1aacfe075e342beacae0da089391d64b5e2faee",
+    ".mcp.json": "681c19ccc4e04516e8349e8746cb0cc4e23c49922ac1ed5f2580c83d307937d8",
+    "LICENSE": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+    "README.md": "ff7cfb58b61ee0134f9f5c5aeba76f1118826bc1889fb7eb5ce487f838541d8d",
+    "skills/grandet-api-price-finder/agents/openai.yaml": "15ab01c8ef497b3baf443172ef73f90980e4d2879652b518d0a7672162ed6f50",
+    "skills/grandet-api-price-finder/references/app-catalog.md": "92c2c07fbeb89cb9ba9d6d0dd05b810c65a25fc600331d22d7c0bc696557f5fe",
+    "skills/grandet-api-price-finder/references/host-setup.md": "19cf030ffbc099130db2fe80654e4feba974e8a1d35066f6c64f289eb2439ed2",
+    "skills/grandet-api-price-finder/references/http-fallback.md": "15aa33489a324cd5af388d7cf9f25b475035134d8e37f9e4d0c3d139788aaddf",
+    "skills/grandet-api-price-finder/references/response-format.md": "0b48d042033b64ef08325f8550b484c6598c09b038bd6d86980f4e4b5553bbd9",
+    "skills/grandet-api-price-finder/references/workloads.md": "5e27a46ca9d3b7c39e541f3c9982165412c6bc3fcf6e84d39e081d5e9ff37bc6",
+    "skills/grandet-api-price-finder/SKILL.md": "fdf0994170c3146fb4699669369b34de942eedca4baf6a42c3c0a480ccf4997f"
+  }
+}
