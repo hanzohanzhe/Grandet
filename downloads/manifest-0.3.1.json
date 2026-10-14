@@ -1,0 +1,62 @@
+{
+  "schema": "grandet.skill-downloads/v1",
+  "version": "0.3.1",
+  "status": "LOCAL_CANDIDATE_NOT_PUBLISHED",
+  "repository": "https://github.com/hanzohanzhe/Grandet",
+  "installation": "../INSTALL.md",
+  "license": "Apache-2.0",
+  "plannedTag": "skill-v0.3.1",
+  "files": [
+    {
+      "file": "grandet-api-price-finder-0.3.1.zip",
+      "bytes": 203085,
+      "sha256": "442d1b4bd839a37e083a38f24a7db340b1d27891d4ec6395eac9b09e8407c367",
+      "files": 28
+    },
+    {
+      "file": "grandet-api-price-finder-0.3.1.skill",
+      "bytes": 45162,
+      "sha256": "ea7065713db3003dcb7648272cd974b29adbc60686c51a4102045900ba0df4c4",
+      "files": 12
+    }
+  ],
+  "sourceFiles": {
+    "LICENSES/Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+    "docs/skills/INSTALL.md": "c3c12da8c0d9f703e6601c9a8ae89581b4abae27d01ce809badd3482ee1e41f1",
+    "docs/skills/QUICKSTART.md": "5f2d736a8898df3041abaa07efb5b635654f4c5f93f7edd85539d0f2626365ea",
+    "docs/skills/application-distribution.generated.json": "c96d672f208164c6680900391784297af77e3d0b8ef8b43873aec89b3d47d411",
+    "docs/skills/chat-adapters/grok-bot.md": "3d625aedf7b63211352df1a3ed95284fe4f722da6fd10e250d54fe4e22d3666c",
+    "docs/skills/chat-adapters/muse.md": "ad699da7819e4135a86d333cda248ed918b269a9afbae535cf7f966a49ba224e",
+    "docs/skills/chat-adapters/your-dot.md": "4e53fc72306f51b58137f0e533392fa0ee31190737486b5ebd016b4242e82b9d",
+    "docs/skills/installation-receipts.md": "298f681b466c50da974a21a998ebc80878e051ee77d246205e2177c7b1d77371",
+    "docs/skills/installation-routes.json": "54445baf0bda8c7f12a0825d441526482711ccbd0a993c71f2bb5e2e464c2b78",
+    "plugins/grandet-api-price-finder/.claude-plugin/plugin.json": "0b2725eb73179a8b049f48698dc63213ca104147029ed8acf98492d8470f147f",
+    "plugins/grandet-api-price-finder/.codex-plugin/plugin.json": "d2d699babc4599413029d80152f282f7c7c78584f94eace6ecb477faa8168377",
+    "plugins/grandet-api-price-finder/.mcp.json": "681c19ccc4e04516e8349e8746cb0cc4e23c49922ac1ed5f2580c83d307937d8",
+    "scripts/build-skill-archives.py": "1cfa473e0feaeb8242f3c61cd168213eef70435000d5903410aa701a7c45ed53",
+    "scripts/install-price-finder.mjs": "ba53af68e7cace0dee588409c2e42de3789f09faa627b2f87e3ecab5fead24a9",
+    "scripts/installation-receipts.mjs": "7a5cbf9389d236590a032eed2385ac069871a0f51b0e3e1b5f356466bce24ef6",
+    "scripts/package-price-finder.mjs": "b62e05b71e60107a3ab3d9231315a25f9d5e3b055288b02db6d434c98b502eac",
+    "scripts/register-skill-release.py": "1bd24a04d74abd51120758bb104c236d348eb6c583b74474035b7d2504436b7a",
+    "scripts/verify-installation.py": "7fcbba68ef432ab3b9441bbf4fc9d9e0b3dd2aa42b574e1321d3ac57b0661ff8",
+    "skills/grandet-api-price-finder/SKILL.md": "56f378dfc367082c4de0a45ed2fc909893475d1986045fbe1b48daf1012a27de",
+    "skills/grandet-api-price-finder/agents/openai.yaml": "4745a9ac4ec2242b13ceb22aab6e54982b8c55d03e087b28274e47b721fddc2d",
+    "skills/grandet-api-price-finder/references/app-catalog.md": "0f79b30d568635ef38ff0f482deb88d24d96c55bebe67ddae6091ba6d93c8035",
+    "skills/grandet-api-price-finder/references/entrypoints.md": "c019850e72aba08d0ce87f5efbb73c1007dd080aac49ccb666fa88e6c348af44",
+    "skills/grandet-api-price-finder/references/host-setup.md": "8e5f6e4904ff94a99066c6999d3e41e975a5cb6649571c2a4803bd5c4bee8043",
+    "skills/grandet-api-price-finder/references/http-fallback.md": "98bb31484d284dda8b72e1000bd4a6466d7e580ad726e5600b124602d73675d0",
+    "skills/grandet-api-price-finder/references/installation.md": "c82f328f2a6be763451d5ec94aaa69f5240b700fd8f23ae34995a0668458df97",
+    "skills/grandet-api-price-finder/references/quality-evidence.md": "50d40340733c479e63dd791eb4e8e2063038450f1c8058dee4f2a1682cfdf3c0",
+    "skills/grandet-api-price-finder/references/response-format.md": "c714eaa117d343e084366b2e88f230e41a3e00662f1377e602366579ffe31a2a",
+    "skills/grandet-api-price-finder/references/workloads.md": "f7ad8d3591010f80b124009eb68ed7938bba05a1db20d0dc49c50183432ad6e2",
+    "skills/grandet-api-price-finder/scripts/verify-installation.py": "7fcbba68ef432ab3b9441bbf4fc9d9e0b3dd2aa42b574e1321d3ac57b0661ff8"
+  },
+  "verification": {
+    "archiveRoundTrip": "PASS",
+    "packageHashes": "PASS",
+    "canonicalSkillFiles": 11,
+    "nativeArchiveIncludesLicense": true,
+    "allHostsNativeAcceptance": "NOT_COMPLETE",
+    "nativeAcceptance": "NOT_RUN"
+  }
+}

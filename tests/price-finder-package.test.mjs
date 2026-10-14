@@ -13,7 +13,7 @@ const script = join(root, 'scripts/package-price-finder.mjs');
 const run = (...args) => spawnSync(process.execPath, [script, ...args], { encoding: 'utf8', cwd: root });
 const adapters = ['grok-bot', 'your-dot', 'muse'];
 const commonPath = 'skills/grandet-api-price-finder';
-const fixturePaths = ['scripts/package-price-finder.mjs', 'scripts/install-price-finder.mjs', 'LICENSES/Apache-2.0.txt', 'docs/skills/QUICKSTART.md', 'docs/skills/INSTALL.md', 'docs/skills/application-distribution.generated.json', 'docs/skills/chat-adapters', commonPath, 'plugins/grandet-api-price-finder'];
+const fixturePaths = ['scripts/package-price-finder.mjs', 'scripts/installation-receipts.mjs','scripts/verify-installation.py','docs/skills/installation-receipts.md','docs/skills/installation-routes.json', 'scripts/install-price-finder.mjs', 'LICENSES/Apache-2.0.txt', 'docs/skills/QUICKSTART.md', 'docs/skills/INSTALL.md', 'docs/skills/application-distribution.generated.json', 'docs/skills/chat-adapters', commonPath, 'plugins/grandet-api-price-finder'];
 async function copySource(fixture) {
   for (const path of fixturePaths) {
     await mkdir(dirname(join(fixture, path)), { recursive: true });
@@ -54,7 +54,7 @@ test('a portable package contains one complete skill and working host manifest r
   for (const resource of manifests) {
     const manifest = JSON.parse(await readFile(join(out, receipt.resourceTargets[resource]), 'utf8'));
     assert.equal(manifest.name, 'grandet-api-price-finder');
-    assert.equal(manifest.version, '0.3.0');
+    assert.equal(manifest.version, '0.3.1');
     assert.equal(manifest.license, 'Apache-2.0');
     const skillDirectory = manifest.skills ?? './skills/';
     assert.ok((await readdir(resolve(out, skillDirectory))).includes('grandet-api-price-finder'));
@@ -89,7 +89,7 @@ test('the package includes only audited files with hashes matching every shipped
   assert.deepEqual(Object.keys(receipt.files).sort(), files);
   assert.equal(receipt.schema, 'grandet-price-finder-package/v1');
   for (const file of files) {
-    assert.ok(['LICENSE', 'README.md', 'INSTALL.md', 'application-distribution.json', 'install/chatgpt-editor.md', 'scripts/install-price-finder.mjs', ...adapters.map((app) => `adapters/${app}.md`), ...Object.values(receipt.resourceTargets)].includes(file) || /^skills\/grandet-api-price-finder\/(?:SKILL\.md|agents\/openai\.yaml|references\/[a-z-]+\.md)$/.test(file));
+    assert.ok(['LICENSE', 'README.md', 'INSTALL.md', 'application-distribution.json', 'install/chatgpt-editor.md', 'scripts/install-price-finder.mjs', 'scripts/installation-receipts.mjs','scripts/verify-installation.py','installation-receipts.md','installation-routes.json', ...adapters.map((app) => `adapters/${app}.md`), ...Object.values(receipt.resourceTargets)].includes(file) || /^skills\/grandet-api-price-finder\/(?:SKILL\.md|agents\/openai\.yaml|references\/[a-z-]+\.md|scripts\/verify-installation\.py)$/.test(file));
     assert.equal(createHash('sha256').update(await readFile(join(out, file))).digest('hex'), receipt.files[file]);
   }
 });
@@ -109,11 +109,11 @@ test('three chat onboarding documents embed the complete common instructions and
     const document = await readFile(join(out, target), 'utf8');
     const metadata = receipt.chatAdapters.find((entry) => entry.id === app);
     assert.equal(metadata.path, target);
-    assert.equal(metadata.version, '0.3.0');
+    assert.equal(metadata.version, '0.3.1');
     assert.equal(metadata.status, 'PUBLIC_PREVIEW');
     assert.equal(metadata.nativeUse, 'NOT_RUN');
     assert.ok(!Object.hasOwn(metadata, 'published'), 'Packaging does not decide publication status');
-    assert.match(document, /0\.3\.0/);
+    assert.match(document, /0\.3\.1/);
     assert.match(document, /PUBLIC_PREVIEW/);
     assert.doesNotMatch(document, /INTERNAL_CANDIDATE|未发布|Not published/);
     assert.match(document, /NOT_RUN/);
@@ -191,7 +191,7 @@ test('a persistent editor document contains the same common skill and all refere
   }
   const receipt = JSON.parse(await readFile(join(out, 'package-manifest.json'), 'utf8'));
   assert.equal(receipt.files['install/chatgpt-editor.md'], createHash('sha256').update(document).digest('hex'));
-  assert.equal(receipt.version, '0.3.0');
+  assert.equal(receipt.version, '0.3.1');
 });
 
 test('standalone generation rejects a local reference outside the common Skill before any package write', async (t) => {
@@ -271,6 +271,11 @@ test('source and exported installation documents resolve their local links in th
     const exported = await readFile(join(out, target), 'utf8');
     assert.equal(exported, original.replace(/\]\(\.\.\/\.\.\/skills\//g, '](skills/'));
   }
+});
+
+test('the repository INSTALL.md is the same page the package ships', async () => {
+  const source = await readFile(join(root, 'docs/skills/INSTALL.md'), 'utf8');
+  assert.equal(await readFile(join(root, 'INSTALL.md'), 'utf8'), source.replace(/\]\(\.\.\/\.\.\/skills\//g, '](skills/'));
 });
 
 test('source marketplaces never advertise an incomplete plugin template as installable', async () => {

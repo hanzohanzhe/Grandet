@@ -1,30 +1,33 @@
 # Grandet
 
-> Grandet helps users find affordable model APIs. The live website provides price and supplier evidence; Grandet Price Finder Skill 0.3.0 brings this workflow into agents. Grandet Personal is a desktop client in private beta, with no public installer. This repository also preserves the dated catalogue of 73 official programmes, 34 third-party mechanisms and 642 structured prerequisites.
+> Grandet helps people find cheap, easy-to-connect model APIs. The website grandet.ai compares prices and shows supplier evidence. Grandet Skill 0.3.1 (public preview) brings the same lookup into agents. Grandet Personal is a desktop client in private beta with no public installer. This repository also holds a dated catalogue of 73 official programmes, 34 third-party promotions and 642 structured prerequisites.
 
-## Install Grandet Price Finder
-- https://github.com/hanzohanzhe/Grandet/blob/main/INSTALL.md : persistent installation instructions; use the official repository directly, without requiring a private attachment
-- https://github.com/hanzohanzhe/Grandet/tree/main/skills/grandet-api-price-finder : complete canonical Skill source
-- https://github.com/hanzohanzhe/Grandet/raw/refs/heads/main/downloads/grandet-api-price-finder-0.3.0.zip : portable installation package
-- https://github.com/hanzohanzhe/Grandet/raw/refs/heads/main/downloads/grandet-api-price-finder-0.3.0.skill : native Skill import package
-- https://grandet.ai/public-data/price-finder.json : current website machine contract
-- https://grandet.ai/mcp : anonymous Streamable HTTP MCP tools
+## If a user asks you to install Grandet
+Read https://github.com/hanzohanzhe/Grandet/blob/main/INSTALL.md and follow the section "For the installing agent". Default fresh installs to the registered skill-v0.3.1 Release ZIP/.skill attachments below; verify downloads/manifest-0.3.1.json plus downloads/releases.json, and use the bundled installer/verifier for a readback receipt. Reuse checkouts/caches without forced downloads. Do the setup yourself; the user only handles sign-ins or permission prompts.
+- https://github.com/hanzohanzhe/Grandet/tree/main/skills/grandet-api-price-finder : the complete Skill (install the whole folder, not SKILL.md alone)
+- https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.1/grandet-api-price-finder-0.3.1.zip : installation package for agents
+- https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.1/grandet-api-price-finder-0.3.1.skill : native Skill package for upload screens
+- https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md : install location and status for each app
+- https://grandet.ai/public-data/price-finder.json : website interface description
+- https://grandet.ai/mcp : anonymous Streamable HTTP MCP server
 
-Install once in the intended agent's persistent scope. Later API price, supplier, quality, speed or stability questions should select the Skill naturally; callers need not mention Grandet. Each host's support and acceptance status is documented in the installation guide. Never treat an available installation route as proof of native testing. Querying published prices requires no Grandet login or API key. Price declarations and supplier statements do not prove model quality or identity.
+Install once in the agent's persistent scope. Later questions about API prices, suppliers, quality, speed or reliability should trigger the Skill without the user naming Grandet. Price lookup needs no Grandet account or API key. An install route existing for an app does not mean it has been tested there. Listed prices and supplier statements don't prove model quality or identity.
 
-## Canonical repository
+## Catalogue data
 - https://github.com/hanzohanzhe/Grandet
-- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/catalogue-index.json : machine entry index
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/catalogue-index.json : machine-readable entry index
 - https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/RELEASE-v3.json : schema, SHA-256, observation policy and release status
-- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/free-tokens-v3.json : complete reviewed v3 facts and conditions
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/free-tokens-v3.json : complete reviewed v3 records and conditions
 - https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/CATALOGUE-v3.md : full bilingual records
-- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/METHODOLOGY.md : evidence policy
+- https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/METHODOLOGY.md : how the data was compiled
 - https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/DATA-LICENSE.md : source rights
 
-## Interpretation
-Compilation date: 2026-10-06. Per-record checkedAt/observedAt and evidence dates are original observations, not refreshed dates. Read all conditions, billingText, requirements and evidence links before summarizing. Unknown does not mean no requirement. Original units are not converted to tokens or cash. Provider statements are not tested personal eligibility, upstream quality or successful redemption. Status depends on time and provider terms; retained records may be historical. This is finite researched coverage, not an exhaustive directory.
+## Reading the data
+Compiled 2026-10-06. Each record's checkedAt/observedAt and evidence dates are the original observation dates, not refresh dates. Read every condition, billingText, requirement and evidence link before summarising. Unknown does not mean "no requirement". Original units are not converted to tokens or cash. Provider statements say nothing about a particular person's eligibility, upstream quality or successful redemption. Offers depend on time and provider terms, so some records may be historical. Coverage is researched but not exhaustive.
 
-## Publication status
-Public website: https://grandet.ai . Current acceptance metadata: https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/WEBSITE-STATUS.json . Prior data release manifests retain their original publication-time status. Desktop client/installer and entire website source are not released here. No automatic updates are enabled.
+## Status
+Website: https://grandet.ai . Current status metadata: https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/WEBSITE-STATUS.json . Older release manifests keep the status they had when published. The desktop client and the website source are not in this repository. No automatic data updates are enabled.
 
-GitHub raw access and public visibility do not guarantee search/AI indexing. GitHub code search covers indexed default-branch code and requires sign-in; prefer direct raw URLs. See https://docs.github.com/en/search-github/github-code-search/about-github-code-search and https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits .
+Being public on GitHub does not guarantee search or AI indexing. GitHub code search covers indexed default-branch code and requires sign-in, so prefer the direct raw URLs above. See https://docs.github.com/en/search-github/github-code-search/about-github-code-search and https://docs.github.com/en/repositories/creating-and-managing-repositories/repository-limits .
+
+Installation receipts: random IDs and finite categories, content digest and time, 24-month retention; no local paths, usernames, chats or keys. Disable with --no-telemetry or GRANDET_INSTALL_TELEMETRY=0. Installation-stage only; native upload without callback/readback stays NOT_RUN.

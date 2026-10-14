@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 # Model choice and name recovery across follow-up questions
 
-Version: **0.3.0**. Updated on **2026-10-14**. This document distinguishes the completed fixed-model regression from the new model-name recovery regression. A successful HTTP response or package test alone does not establish conversational correctness.
+Version: **0.3.1**. Updated on **2026-10-14**. This document distinguishes the completed fixed-model regression from the new model-name recovery regression. A successful HTTP response or package test alone does not establish conversational correctness.
 
 ## Current name-recovery behavior
 

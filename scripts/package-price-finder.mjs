@@ -19,6 +19,11 @@ const inputs = [
   ['docs/skills/QUICKSTART.md', 'README.md'],
   ['docs/skills/INSTALL.md', 'INSTALL.md'],
   ['scripts/install-price-finder.mjs', 'scripts/install-price-finder.mjs'],
+  ['scripts/installation-receipts.mjs','scripts/installation-receipts.mjs'],
+  ['scripts/verify-installation.py','scripts/verify-installation.py'],
+  ['scripts/verify-installation.py',`${skillPath}/scripts/verify-installation.py`],
+  ['docs/skills/installation-receipts.md','installation-receipts.md'],
+  ['docs/skills/installation-routes.json','installation-routes.json'],
   [distributionPath, 'application-distribution.json'],
   ...['SKILL.md', 'agents/openai.yaml', 'references/workloads.md', 'references/http-fallback.md', 'references/response-format.md', 'references/host-setup.md', 'references/app-catalog.md', 'references/entrypoints.md'].map((path) => [`${skillPath}/${path}`, `${skillPath}/${path}`]),
 ];

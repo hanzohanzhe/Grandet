@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - run: python3 tests/installation-receipts.test.py
       - run: node --test tests/*.test.mjs
       - run: node scripts/catalogue.mjs generate --check
       - run: node scripts/validate-public.mjs

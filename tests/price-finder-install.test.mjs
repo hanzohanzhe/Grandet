@@ -7,6 +7,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
+process.env.GRANDET_INSTALL_TELEMETRY = '0'; // Unit tests never send production receipts.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const script = join(root, 'scripts/install-price-finder.mjs');
 const source = join(root, 'skills/grandet-api-price-finder');
@@ -27,6 +28,7 @@ async function tree(directory, prefix = '') {
   const result = {};
   for (const entry of await readdir(join(directory, prefix), { withFileTypes: true })) {
     const path = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.name === '.grandet-install-state') continue;
     if (entry.isDirectory()) Object.assign(result, await tree(directory, path));
     else result[path] = (await readFile(join(directory, path))).toString('base64');
   }
@@ -36,7 +38,7 @@ async function absent(path) { await assert.rejects(stat(path), { code: 'ENOENT' 
 
 test('lists only documented local copy routes and does not present cloud products as file installs', () => {
   const result = json(run('--list'));
-  assert.equal(result.productVersion, '0.3.0');
+  assert.equal(result.productVersion, '0.3.1');
   for (const app of ['codex', 'claude-code', 'cursor', 'opencode', 'gemini-cli', 'cline', 'roo-code', 'kilo-code', 'windsurf', 'continue', 'hermes', 'openclaw', 'trae-cn', 'trae-intl']) {
     assert.ok(result.applications.some((entry) => entry.id === app), app);
   }
@@ -52,7 +54,7 @@ test('one install copies the complete common Skill and preserves other skills an
   await writeFile(join(home, 'settings.json'), '{"keep":"unchanged"}');
   const result = json(run('--app', 'codex', '--home', home));
   assert.equal(result.status, 'INSTALLED');
-  assert.equal(result.productVersion, '0.3.0');
+  assert.equal(result.productVersion, '0.3.1');
   assert.equal(result.destination, join(home, '.agents/skills', skillName));
   assert.deepEqual(await tree(result.destination), await tree(source));
   for (const path of ['SKILL.md', 'agents/openai.yaml', 'references/app-catalog.md', 'references/entrypoints.md', 'references/host-setup.md', 'references/http-fallback.md', 'references/response-format.md', 'references/workloads.md']) {
