@@ -8,14 +8,14 @@
   "files": [
     {
       "file": "grandet-api-price-finder-0.3.0.zip",
-      "bytes": 198429,
-      "sha256": "682c19db158ca65b6ed2ddee010232fd5f2e1a5e975d8cee172a5bf5d8153e8a",
+      "bytes": 202364,
+      "sha256": "2168b49519cffeb1a2b97fc925b1f0129c6047aee667abdea4e3a489c59f87e4",
       "files": 23
     },
     {
       "file": "grandet-api-price-finder-0.3.0.skill",
-      "bytes": 42611,
-      "sha256": "45fe64bdd2ce90c0f622b484f3bc33c1a9e573e17b6a37aa67bbefa89e6146ec",
+      "bytes": 43395,
+      "sha256": "75da4aefb798aeea478d50eb470e39a54eb9345eb54d9b02832b1dc3556b85b1",
       "files": 11
     }
   ],
@@ -32,7 +32,7 @@
     "plugins/grandet-api-price-finder/.mcp.json": "681c19ccc4e04516e8349e8746cb0cc4e23c49922ac1ed5f2580c83d307937d8",
     "scripts/install-price-finder.mjs": "ebbf3a69c72a5cd7200f7ee3befdaef41b57aa5a75492c206fc890910fe4519c",
     "scripts/package-price-finder.mjs": "0de192ebb4e045b6258f435b4264053e58819e431c603d7debc10f66d97792aa",
-    "skills/grandet-api-price-finder/SKILL.md": "be5b0df52eb295a89fabfdf42573d090c0a0328b0ac018987c524fdefca8e3a8",
+    "skills/grandet-api-price-finder/SKILL.md": "c70204d2adfec3b2d28fc68f311d3906e17af3d12798851c6a94be1d494bf60f",
     "skills/grandet-api-price-finder/agents/openai.yaml": "4745a9ac4ec2242b13ceb22aab6e54982b8c55d03e087b28274e47b721fddc2d",
     "skills/grandet-api-price-finder/references/app-catalog.md": "0f79b30d568635ef38ff0f482deb88d24d96c55bebe67ddae6091ba6d93c8035",
     "skills/grandet-api-price-finder/references/entrypoints.md": "c019850e72aba08d0ce87f5efbb73c1007dd080aac49ccb666fa88e6c348af44",
@@ -40,7 +40,7 @@
     "skills/grandet-api-price-finder/references/http-fallback.md": "20d19fd7980a07da34b6ecb1c0c5666c078947a997933275eb9edef7b4aa3d0e",
     "skills/grandet-api-price-finder/references/installation.md": "46f64209157a936c89206880eef7b72400c8cae413ff6cef98ce1158b51487d0",
     "skills/grandet-api-price-finder/references/quality-evidence.md": "50d40340733c479e63dd791eb4e8e2063038450f1c8058dee4f2a1682cfdf3c0",
-    "skills/grandet-api-price-finder/references/response-format.md": "db795d6abdf17d71f2efd5e798b8386cd19c60a81db6e425679555b1bc03ecdb",
+    "skills/grandet-api-price-finder/references/response-format.md": "a112496be3023d3ba5717de3ab9ec63d83f24aa76888229bb48482b3f8ee3406",
     "skills/grandet-api-price-finder/references/workloads.md": "f7ad8d3591010f80b124009eb68ed7938bba05a1db20d0dc49c50183432ad6e2"
   },
   "verification": {
