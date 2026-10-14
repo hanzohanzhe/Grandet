@@ -1,75 +1,152 @@
-# Install Grandet / 安装 Grandet
+# 安装 Grandet / Install Grandet
 
-**给执行安装的 Agent。用户只需说“帮我安装 Grandet”或“Install Grandet for me”。** 完成范围内的安装操作，不把命令、目录研究或运行时安装交回用户。产品版本固定 **0.3.0**；这是公开试用版，各宿主原生验收按实际记录分别判断。
-
-**For the installing agent.** The user's installation request authorizes the routine setup below. Complete it in the current application's actual runtime; do not turn the user into the installer. Version **0.3.0** is a public trial; native acceptance remains specific to each tested host and artifact.
-
-## 1. 找到正确的安装材料 / Locate the installation source
-
-优先使用当前对话已经明确的 [Grandet 官方 GitHub](https://github.com/hanzohanzhe/Grandet) 链接、该仓库当前安装说明所指向的完整安装包，或用户提供的对应官方包。用户给出明确官方 GitHub 链接时直接使用，不要求官网再次背书，不索取私测包，也不等待无链接自动发现测试。
-
-只有“帮我安装 Grandet”而没有材料时，自行读取这个官方仓库的当前安装说明。官网可作为辅助发现入口，不是前置条件。仅在当前工具确实无法取得完整材料时，说明实际缺项并给一个具体补齐动作；不要把“我没找到”说成官方尚未发布，不猜撤下的旧路径。
-
-将材料放入当前任务工作目录，读取安装说明并使用同一提交的完整文件。生成包包含 `package-manifest.json` 时逐文件核对；从源码安装时固定同一 Git 提交，取得整个 `skills/grandet-api-price-finder/` 及其引用，不要求源码目录提供构建产物 manifest。固定版本 0.3.0 不能代替内容身份。`plugins/grandet-api-price-finder/` 可能只是打包模板，不得把缺少共同 Skill 的模板目录当安装完成。
-
-本包的共同 Skill 位于 [skills/grandet-api-price-finder/](../../skills/grandet-api-price-finder/SKILL.md)，所有支持文件必须一起保存。有现成完整包就直接使用，不让用户构建源码。没有 Node 仍按第 4 节用已有文件工具安装；账号型宿主按第 5 节实际可用的持久入口操作。
-
-Prefer an explicit [official Grandet GitHub link](https://github.com/hanzohanzhe/Grandet), the complete package linked by that repository's current installation instructions, or the corresponding official package already supplied by the user. An explicit official GitHub source is sufficient: do not require a second website endorsement, a private test package or completion of a separate discovery test. When only the installation request is given, consult that official repository yourself; the website is an optional discovery aid.
-
-Read the instructions in the task workspace. Verify a generated package against its manifest when present. For source installation, pin one commit and obtain the complete `skills/grandet-api-price-finder/` tree and references; do not require a generated manifest to exist in the source tree. A plugin-template directory without the complete Skill is insufficient. If the current tools cannot retrieve the material, describe that concrete gap and one next action rather than asserting that no public package exists. Use the existing complete package or file tools; do not ask the user to build it or install Node.
-
-## 2. 识别真正运行的应用 / Identify the actual runtime
-
-优先服务当前 **Codex、Cursor、Claude Code 等 Agent**。利用本对话已有的宿主身份、工具、系统和工作环境，选择[一次安装指南](../../skills/grandet-api-price-finder/references/installation.md)中的对应入口。识别的是执行 Agent 的环境：Windows 原生、WSL、SSH、云运行器各有自己的用户目录，不要把本地前端所在电脑当成远端运行目录。
-
-本地路线优先用户级安装，避免每个项目重装。只选当前应用，不自动向所有应用复制。TRAE 根据已有版本信息区分中国版与国际版；Continue、Hermes、OpenClaw 使用当前实际运行目录和已设置的覆盖值。不要猜未确定的 profile、云端目录或 GUI 菜单。遇到无法自行查明、且会改变安装目标的信息，最多问一个具体问题。
-
-Use the host identity, available tools and runtime facts already present. Prefer the current Codex, Cursor, Claude Code or other local agent's documented user-level installation. Native Windows, WSL, SSH and cloud runners have separate homes. Select one application and its actual edition/runtime, not every supported app. Consult the bundled guide for account or cloud entrypoints. Ask only for a genuinely unresolved fact that determines the installation target.
-
-## 3. 有 Node 就运行现成安装器 / Use the bundled installer when available
-
-在包根目录，用当前环境已有的 Node 执行：
+**你不需要读这一页。** 把这句话发给你的 Agent 就行：
 
 ```text
-node scripts/install-price-finder.mjs --list
-node scripts/install-price-finder.mjs --app <实际应用ID>
+帮我安装 Grandet：https://github.com/hanzohanzhe/Grandet
 ```
 
-`<实际应用ID>` 由 Agent 从已有宿主信息选择，例如 `codex`、`cursor`、`claude-code`。`trae-cn`、`trae-intl` 是安装时的版本选择，网站业务查询仍沿用其应用目录身份。若脚本不在当前工作目录，使用实际解压目录的绝对路径；无需让用户寻找目录。
+**You don't need to read this page.** Paste this into your agent:
 
-安装器默认使用真实运行用户的 home，一次只处理这个 Skill；它会核对完整文件、复用相同内容、检查该应用的已知同名别名，并在更新时完整保留旧目录备份。`--home` 是隔离测试目录选项，不能用来假装已经安装到真实账号。`--platform` 跨平台演练只能 `--dry-run`；计划成功不算安装成功。
+```text
+Install Grandet for me: https://github.com/hanzohanzhe/Grandet
+```
 
-若返回 `REUSED`，继续核实该路径对当前应用确实可见。Cursor 复用共享别名只证明本机路线；Cloud Agent 只同步 `~/.cursor/skills`，仍需实际的私有同步步骤。不同内容或多份副本的冲突须查明现有用途，不能删除别的应用正在使用的副本。需要迁移时先保留可恢复副本，再按用户授权范围完成，只保留已选作用域内的一份。
+这一页是给执行安装的 Agent 看的，后面附有手动安装方法。 / This page is for the agent doing the installation. Manual steps for people are at the end.
 
-If Node is already available, run the bundled script from the package root, choosing the current application's ID yourself. Inspect the resulting action and actual destination. `UNCHANGED` and `REUSED` are valid file outcomes, not proof of host discovery. Test-root or cross-platform dry runs do not install into the real runtime. Preserve the script's alias-conflict and backup behavior; do not treat a shared local Cursor copy as ready for cloud sync.
+- [For the installing agent](#for-the-installing-agent)
+- [手动安装](#手动安装)
+- [Manual installation](#manual-installation)
 
-## 4. 没有 Node 也由 Agent 完成 / Complete the copy without requiring Node
+Grandet API Price Finder **0.3.0**, public preview.
 
-没有 Node 时，用自己已有的文件工具按指南完成等价操作；**不要求用户为了这个 Skill 安装 Node 或研究路径**：
+## For the installing agent
 
-1. 确认包内整个 `skills/grandet-api-price-finder` 文件夹及其本地引用齐全，目标为当前应用的官方用户级 Skills 目录。
-2. 只检查该应用明确支持的同名发现路径。已有完整同内容副本则复用，不再复制第二份；不同副本先明确其用途，保留其它 Skill 和现有设置。
-3. 更新已有目标时，把原目录完整保存在技能发现目录之外、同一运行文件系统内的可恢复备份，再放入完整新目录。保留 `SKILL.md`、`references/`、`agents/` 和包内其它随附文件；不只复制首页，不跟随符号链接到别处写入。
-4. 回读目标文件，逐文件核对内容或 SHA-256，并检查相对引用。保持宿主自动调用可用；需要原生的保存/启用动作时，在当前授权范围内完成。
+The user has asked you to install Grandet. Do the whole setup yourself. Don't hand commands, folder paths or Node installation back to the user. Stop only for something only they can do (sign in, approve a permission, press a button in the app): name that one step, then carry on.
 
-If Node is unavailable, use your existing filesystem tools. Copy the entire Skill to the documented user-level root, reuse an identical existing copy, and preserve old content outside discovery before updating. Keep every support file and verify the installed bytes and local references afterward. Do not require the user to install Node, locate folders, or assemble commands. Do not modify provider keys, model routing or unrelated application settings.
+### 1. Get the files
 
-## 5. 账号和云端入口作为补充 / Account and cloud entrypoints
+For a fresh installation, use the **skill-v0.3.0-build.20261014 Release attachments** linked below (public product version **0.3.0**, build `grandet-skill-0.3.0-build.20261014`). The ZIP is an agent installation kit; `.skill` is the native import archive. Both contain the receipt-aware Node installer, receipt module, Python verifier and build manifest. Check `downloads/manifest.json` and the post-upload `downloads/releases.json`. This build has new contents and distinct immutable assets; the earlier `skill-v0.3.0` release remains historical. Do not use a generic latest release or GitHub Source code ZIP. Existing complete copies remain usable without downloading for statistics; old installations are not backfilled.
 
-用户当前就在 ChatGPT、Claude 网页、Grok Bot、Your dot、Muse 或其它账号型入口时，按[一次安装指南](../../skills/grandet-api-price-finder/references/installation.md)及包内对应适配说明保存并启用完整 Skill。首次给 Agent 安装材料不等于持久安装；后续对话不应再附文件。没有该入口的实际保存或权限能力，就记录该入口尚未完成，不把本机安装成功推及云端，也不阻塞其它已具备条件的 Agent 路线。
+You need the complete `grandet-api-price-finder` folder: `SKILL.md`, `references/` and `agents/`. `SKILL.md` alone is not enough.
 
-优先复用已有匿名 Grandet MCP 或 HTTP 读取能力。仅连接 MCP 不算 Skill 已保存；原生 Skill 已保存也不证明当前模式可以查价。不要为“安装成功”扩大权限、购买服务或修改供应商配置。需要本人登录、原生授权或不可自动完成的点击时，只给用户**一个具体下一步**，完成后接着做，不让用户重走整套说明。
+- If a usable package, checkout or cached copy is already present, reuse it without re-downloading. In this repository or the extracted ZIP, the folder is at [`skills/grandet-api-price-finder/`](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/SKILL.md).
+- Otherwise download and extract the [installation ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261014/grandet-api-price-finder-0.3.0.zip) from this repository.
 
-Use account-native persistence when the current host is a web or cloud assistant. Follow its actual importer, enabled Skill, Agent binding or documented private-sync route. These supplement the primary agent installation route. Existing MCP or HTTP access can supply the data tools; adding a tool alone is not installing the Skill. If one real login, permission or manual UI action is required, state that one concrete next step and then resume. An unavailable web entrypoint does not block independent local-agent installation.
+If the package has a `package-manifest.json`, check the file hashes against it. A checkout doesn't have one and doesn't need one. The `plugins/` directory holds metadata templates only; it is not an installable Skill.
 
-## 6. 验证后简短交付 / Verify and report briefly
+### 2. Pick the install location
 
-**安装时完成连接与权限预检。** 复用已有 MCP 或 HTTP 读取工具，通过一次正常只读工具调用或轻量 GET（如 `https://grandet.ai/public-data/price-finder.json`）验证匿名访问；不需要供应商 Key，也不另发统计请求。所需的原生保存、启用或 `grandet.ai` 读取许可在安装阶段具体请求，并核实它覆盖哪个账号、Agent 或新会话；不关闭全局安全设置或扩展到所有站点。一次 shell/工具执行成功不代表以后永久获准。宿主强制逐次许可时，明确记为尚未满足无缝使用，不能改规则绕过；没有可用 HTTP/MCP 时，只给一个与实际入口对应的补齐动作，不把仅保存文件说成可用安装已完成。 / **Check access during installation:** reuse an available MCP/HTTP reader for one ordinary anonymous read, without a supplier key or separate tracking call. Obtain any required native save, enablement or Grandet-domain permission now and verify its account/Agent/session scope. A successful one-off command is not permanent permission. Preserve global protections; mandatory per-call approval remains an unmet seamless-use condition. If no reader is available, give one concrete setup action and leave usable-install acceptance incomplete.
+Install for the agent you are running in, at user level so it works in every project. Install for that one app only, not for every app on the machine. Use the home directory of the runtime that actually runs you: native Windows (`%USERPROFILE%`), WSL, SSH hosts and cloud runners each have their own.
 
-按[共同安装指南](../../skills/grandet-api-price-finder/references/installation.md)的“安装/更新核验”完成回读：完整正文、当前发现描述和启用状态必须一致；已有原生身份原位更新，必要的描述同步不留作可选问题。无法核实的项目仍未验收。区分“文件已安装”“宿主已发现”“新会话自然触发并查价成功”，没有证据的环节不能口头报成功。
+| Agent | Installer ID | User skill folder |
+|---|---|---|
+| Codex | `codex` | `~/.agents/skills/` |
+| Claude Code | `claude-code` | `~/.claude/skills/` |
+| Cursor | `cursor` | `~/.cursor/skills/` |
 
-安装完成后提示用户另开新会话直接说自己的 API 需求。能够代为验收时，关闭安装对话后在干净会话提问，**不附文件、不提 Grandet、不指定工具或 Skill**；观察实际加载、当前数据查询和有出处的推荐，再在重启后复验。继续要求附件就是持久安装未通过，应修复安装范围或绑定。
+The installed file ends up at `<skill folder>/grandet-api-price-finder/SKILL.md`.
 
-给用户的交付保持短，例如：“已装到 Codex 的用户级 Skills。新开会话直接问你要找的 API 即可。”只有验收确实做到的部分才写完成；新会话测试尚未执行就如实说明，附一个有用的测试问法，不把内部命令和校验过程塞给用户。
+For any other app, look it up in the [per-app guide](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md). It covers OpenCode, Gemini CLI, Windsurf, Cline, Roo Code, Kilo Code, Continue, TRAE, Hermes and OpenClaw, as well as account-based apps such as ChatGPT, Claude on the web, Cursor Cloud Agent, Cherry Studio, Chatbox, WorkBuddy, Grok Bot, Your dot and Muse. Ask the user only if something you cannot find out yourself changes the target (for example, which TRAE edition they use).
 
-Follow the common guide's installation and update checks: verify the complete saved body, current discovery description and enabled state, updating the existing native identity in place. Description synchronization is required, not an optional follow-up. Unverified steps remain incomplete. Report file installation, host discovery and fresh-session business success separately. A clean-session acceptance prompt must contain no attachment, Grandet name or manual tool selection. Confirm actual current data and a useful sourced recommendation; repeat after restart where possible. Keep the user-facing completion message short and limited to what was observed.
+### 3. Install
+
+**Local agents, with Node available.** Run the included installer directly from the extracted ZIP root. No separate helper download is needed:
+
+```sh
+node scripts/install-price-finder.mjs --app <installer-id> --receipt-source release_zip
+```
+
+The installed source defaults to the complete bundled `skills/grandet-api-price-finder` folder. Use `--source <complete-existing-folder>` to reuse a checkout or cache. In an extracted `.skill`, run from its `grandet-api-price-finder` root; the same included installer uses that native root as its default source.
+
+`--list` shows every ID and folder. The script copies the complete folder, leaves an identical existing copy alone (`UNCHANGED` / `REUSED`), and backs up a different older copy outside the skills folder before replacing it. `--home` and `--platform` are for tests and dry runs only; they don't install for the real user.
+
+**Local agents, without Node.** Use the included Python 3 verifier: `python3 scripts/verify-installation.py --source skills/grandet-api-price-finder --destination <actual-persistent-skill-folder> --host <host-id> --scope user --receipt-source release_zip`. In an extracted `.skill` root, use `--source .` and `--receipt-source release_skill`. It installs and reads back the complete tree. If neither runtime is available, use your file tools and retain the receipt coverage gap:
+
+1. Check the app's skill folder (and any alias folder listed in the per-app guide) for an existing `grandet-api-price-finder`. If it is identical, keep it. If it differs, move it somewhere outside every skills folder as a backup.
+2. Copy the complete folder into the skill folder. Don't follow symlinks out of it. Keep exactly one active copy.
+3. Leave other skills, model settings and provider keys untouched.
+
+**Web, account and cloud apps.** Use the app's own Skills manager to save and enable the Skill once. Upload the [`.skill` file](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261014/grandet-api-price-finder-0.3.0.skill) (rename a copy to `.zip` if only ZIP is accepted). Don't upload the larger installation ZIP: it is an agent kit, not a native skill package. A file attached to a chat message is not an installation, and files copied to a local machine don't reach a cloud agent. If a Grandet Skill is already saved, update it in place instead of adding a second one. The per-app guide lists the menu path for each app.
+
+### Installation receipt and privacy
+
+Before running the included receipt-aware installer, explain briefly: installation statistics receive random IDs, operation, version, content hash, source/host/scope categories, verification and time, retained 24 months. No path, username, account, chat or key is sent. `--no-telemetry` or `GRANDET_INSTALL_TELEMETRY=0` disables sending; offline installation still works. The installer retains a private crash-recovery journal and outbox; a later `--flush` sends pending receipts without reinstalling. Only installation-stage commands send receipts. Manual copies and readable native imports can run the included Python verifier on the saved folder; unavailable callbacks/readback remain unverified. [Full receipt contract](https://github.com/hanzohanzhe/Grandet/blob/main/docs/skills/installation-receipts.md).
+
+### 4. Check it works
+
+1. Read back the installed `SKILL.md` and confirm `references/` and `agents/` are complete.
+2. On apps with a separate description field, make sure it matches the `description` in the current `SKILL.md` frontmatter, and that the Skill is enabled.
+3. Make one anonymous read of `https://grandet.ai/public-data/price-finder.json`, via the Grandet MCP server (`https://grandet.ai/mcp`) or a plain HTTP GET. No account or key is needed. If the app asks permission to reach `grandet.ai`, get it now rather than at the user's first question. Don't switch off global safety settings to do so.
+
+Adding the MCP server alone does not install the Skill; saving the Skill alone does not prove the app can reach Grandet. Both checks matter.
+
+### 5. Tell the user
+
+Keep it to two lines: where it is installed, and what to ask next. For example:
+
+> Installed in Codex's user skills. Open a new conversation and ask something like "find me a cheap Sonnet 4.6 API for coding, one pick and one backup".
+
+If you can, verify in a clean new conversation: no attachment, no mention of Grandet, no manual skill selection. If that conversation asks for the file again, the install did not persist; fix the location or the binding, and don't ask the user to keep uploading. If you couldn't run this check, say it hasn't been tested yet. Report only what you actually saw.
+
+## 手动安装
+
+适合想自己动手的人，或者 Agent 装不了的应用。
+
+**Codex、Claude Code、Cursor 这类本地 Agent**
+
+1. 下载[安装 ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261014/grandet-api-price-finder-0.3.0.zip) 并解压。
+2. 把里面的 `skills/grandet-api-price-finder` 整个文件夹复制到对应目录：
+   - Codex：`~/.agents/skills/`
+   - Claude Code：`~/.claude/skills/`
+   - Cursor：`~/.cursor/skills/`
+   - 其他应用见[各应用安装位置](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md)。
+   - Windows 上 `~` 指 `C:\Users\你的用户名`。
+3. 重启应用，或者新开一个对话。
+
+装了 Node 的话，第 2 步也可以在解压目录里运行 `node scripts/install-price-finder.mjs --app codex`（把 `codex` 换成你的应用，`--list` 能看到全部）。
+
+**ChatGPT、Claude 网页版这类上传技能的应用**
+
+1. 下载 [`.skill` 文件](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261014/grandet-api-price-finder-0.3.0.skill)。
+2. 在应用的技能页面上传并启用：
+   - ChatGPT：[Skills](https://chatgpt.com/skills) → Add skill → Upload from computer
+   - Claude 网页版：Customize → Skills → + → Create skill → Upload a skill
+   - 其他应用见[各应用安装位置](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md)。
+
+   只能选 `.zip` 的话，把 `.skill` 改名成 `.zip` 再传。不要上传那个大的安装 ZIP，那是给 Agent 用的。
+
+本构建 `grandet-skill-0.3.0-build.20261014` 的 ZIP 和 .skill 均内置回执安装器和 Python 验证器，无需另取工具。安装不要求开启回执；旧安装不补算，也不要求重下或重装。
+
+**确认装好了**：新开对话，不发文件、不提 Grandet，问一句“帮我找便宜的 Sonnet 4.6 API，写代码用，推荐一家再给个备选”。如果它让你再发一次文件，说明没有装好，检查文件夹位置，或者技能有没有启用。
+
+## Manual installation
+
+For people who prefer to do it themselves, or apps an agent can't install into.
+
+**Local agents such as Codex, Claude Code and Cursor**
+
+1. Download the [installation ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261014/grandet-api-price-finder-0.3.0.zip) and extract it.
+2. Copy the whole `skills/grandet-api-price-finder` folder into your app's skill folder:
+   - Codex: `~/.agents/skills/`
+   - Claude Code: `~/.claude/skills/`
+   - Cursor: `~/.cursor/skills/`
+   - Other apps: see the [per-app guide](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md).
+   - On Windows, `~` is `C:\Users\<your name>`.
+3. Restart the app or open a new conversation.
+
+With Node installed, you can do step 2 by running `node scripts/install-price-finder.mjs --app codex` in the extracted folder (replace `codex` with your app; `--list` shows them all).
+
+**Apps where you upload a skill, such as ChatGPT and Claude on the web**
+
+1. Download the [`.skill` file](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261014/grandet-api-price-finder-0.3.0.skill).
+2. Upload and enable it in the app's skills page:
+   - ChatGPT: [Skills](https://chatgpt.com/skills) → Add skill → Upload from computer
+   - Claude on the web: Customize → Skills → + → Create skill → Upload a skill
+   - Other apps: see the [per-app guide](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md).
+
+   If the app only accepts `.zip`, rename the `.skill` file to `.zip`. Don't upload the larger installation ZIP; that one is for agents.
+
+This 0.3.0 build (`grandet-skill-0.3.0-build.20261014`) includes receipt-aware installation tools in both archives. No separate helper is needed. Receipts are optional; older installs are not backfilled and do not need to reinstall.
+
+**Check it worked**: open a new conversation and, without attaching anything or mentioning Grandet, ask "Find me a cheap Sonnet 4.6 API for coding, one pick and one backup." If it asks for the file again, the install didn't stick: check the folder location, or whether the skill is enabled.

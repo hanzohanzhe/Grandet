@@ -1,53 +1,65 @@
 {
   "schema": "grandet.skill-downloads/v1",
   "version": "0.3.0",
-  "status": "PUBLIC_PREVIEW",
+  "buildId": "grandet-skill-0.3.0-build.20261014",
+  "status": "LOCAL_CANDIDATE_NOT_PUBLISHED",
   "repository": "https://github.com/hanzohanzhe/Grandet",
   "installation": "../INSTALL.md",
   "license": "Apache-2.0",
+  "plannedTag": "skill-v0.3.0-build.20261014",
+  "receiptSupport": "INCLUDED",
   "files": [
     {
       "file": "grandet-api-price-finder-0.3.0.zip",
-      "bytes": 202364,
-      "sha256": "2168b49519cffeb1a2b97fc925b1f0129c6047aee667abdea4e3a489c59f87e4",
-      "files": 23
+      "bytes": 199717,
+      "sha256": "418f672c19ce4308096af23b5165257f6ab0093b81154a11ebd649ff1947314d",
+      "files": 28
     },
     {
       "file": "grandet-api-price-finder-0.3.0.skill",
-      "bytes": 43395,
-      "sha256": "75da4aefb798aeea478d50eb470e39a54eb9345eb54d9b02832b1dc3556b85b1",
-      "files": 11
+      "bytes": 69154,
+      "sha256": "0d3833577130796b1f080b1ed7a847627f2ca8fa056d484aa7032f3b13891723",
+      "files": 19
     }
   ],
   "sourceFiles": {
     "LICENSES/Apache-2.0.txt": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-    "docs/skills/INSTALL.md": "eaafcc18964a0d2c2b080b556bcea992eec4ac72ed2e6af5f166bfdbf0c115bd",
-    "docs/skills/QUICKSTART.md": "80c9560c6c9bade4976d0ae0c810fb56be894b702424b3f5a03c51f68f8f7579",
+    "docs/skills/INSTALL.md": "14028ca345b0cd94494c8c131e60370046b476059f1e5b7cee1ce65d9c6547bd",
+    "docs/skills/QUICKSTART.md": "4047bc4a4af32b79561c0955949bddec541d74d5a90fb7392a5699888e23e344",
     "docs/skills/application-distribution.generated.json": "c96d672f208164c6680900391784297af77e3d0b8ef8b43873aec89b3d47d411",
-    "docs/skills/chat-adapters/grok-bot.md": "5625ecf97479aa03a559af4572a8b4e192d7891a2789fba6e40eac92fbc76c2c",
-    "docs/skills/chat-adapters/muse.md": "d11e6faf757139ec1b65c32aa088e06e67fbc00bc74ed229df3dd4751d8c5ea2",
-    "docs/skills/chat-adapters/your-dot.md": "a8eca8c8a779a94d6e0fbbd59150e2f4b81d064f65fe8e3b78403205d37c3577",
+    "docs/skills/chat-adapters/grok-bot.md": "b797c3d02d7c6b152e748acc5c5aa851b2f7ecb9bf6f2cad5f19aebbc411786a",
+    "docs/skills/chat-adapters/muse.md": "85b6d5961d33214c97073f9e203c50770301f2e2b92108e87a34c5ef7008a5e1",
+    "docs/skills/chat-adapters/your-dot.md": "d2aa3727b4e16c5f94c4e99ca538299559fa697da8acd1aa835ff1fa2b13dcc1",
+    "docs/skills/installation-receipts.md": "ad523cc27e769ffc282a18ac68bcaf664ec9a49192d9393107eb1db9a71c3ba4",
+    "docs/skills/installation-routes.json": "af3331457d74c177f0b63b5f0cf610fa1cc3068f89b81a8c96f6cc37765b4eb4",
     "plugins/grandet-api-price-finder/.claude-plugin/plugin.json": "6ca6e6313ed374cd3ffefcdb988f37d0c1c6584f06b6436faa6046ddca035580",
     "plugins/grandet-api-price-finder/.codex-plugin/plugin.json": "6fd748d588a5fdb6550a08fc3737b09a22ca18a5dda4276fd5ea245cfaf8dccd",
     "plugins/grandet-api-price-finder/.mcp.json": "681c19ccc4e04516e8349e8746cb0cc4e23c49922ac1ed5f2580c83d307937d8",
-    "scripts/install-price-finder.mjs": "ebbf3a69c72a5cd7200f7ee3befdaef41b57aa5a75492c206fc890910fe4519c",
-    "scripts/package-price-finder.mjs": "0de192ebb4e045b6258f435b4264053e58819e431c603d7debc10f66d97792aa",
-    "skills/grandet-api-price-finder/SKILL.md": "c70204d2adfec3b2d28fc68f311d3906e17af3d12798851c6a94be1d494bf60f",
+    "scripts/build-skill-archives.py": "372c472d0af7590bf3e12c6badafd74d54c42a233f8265fb68968259834020db",
+    "scripts/install-price-finder.mjs": "47c29acc09bbd072b2fb8336735848e9d99843ccb90a9ffdec54b4ef0e3281ab",
+    "scripts/installation-receipts-source-build.json": "e2688893b9c4c1e30c432dc207dc1bb7e893f82992f62b60cb3e9f0415f5d4b8",
+    "scripts/installation-receipts.mjs": "7a5cbf9389d236590a032eed2385ac069871a0f51b0e3e1b5f356466bce24ef6",
+    "scripts/package-price-finder.mjs": "b1ca8d2ac80706e92fde60a58f9f8ccc88bed1027bc542f81472a95108ac8ae8",
+    "scripts/register-skill-release.py": "66cd35130951435856e664ea0850e13bc40d893c8e27470c0b964cdb0f7f3b1f",
+    "scripts/verify-installation.py": "2f3d1036721c2387f494ec97f4d660ea6cccb63bbb8c5b851cbb4c8f64d27b6c",
+    "skills/grandet-api-price-finder/SKILL.md": "f0042ea1a490c380f5b16bf83b5df5f90f2f973d097dc8e9079eec2af072071b",
     "skills/grandet-api-price-finder/agents/openai.yaml": "4745a9ac4ec2242b13ceb22aab6e54982b8c55d03e087b28274e47b721fddc2d",
     "skills/grandet-api-price-finder/references/app-catalog.md": "0f79b30d568635ef38ff0f482deb88d24d96c55bebe67ddae6091ba6d93c8035",
     "skills/grandet-api-price-finder/references/entrypoints.md": "c019850e72aba08d0ce87f5efbb73c1007dd080aac49ccb666fa88e6c348af44",
     "skills/grandet-api-price-finder/references/host-setup.md": "8e5f6e4904ff94a99066c6999d3e41e975a5cb6649571c2a4803bd5c4bee8043",
     "skills/grandet-api-price-finder/references/http-fallback.md": "20d19fd7980a07da34b6ecb1c0c5666c078947a997933275eb9edef7b4aa3d0e",
-    "skills/grandet-api-price-finder/references/installation.md": "46f64209157a936c89206880eef7b72400c8cae413ff6cef98ce1158b51487d0",
+    "skills/grandet-api-price-finder/references/installation.md": "b8534271c914200c684bba403746e7067071a4dccc851acf725d7bc3dba3c959",
     "skills/grandet-api-price-finder/references/quality-evidence.md": "50d40340733c479e63dd791eb4e8e2063038450f1c8058dee4f2a1682cfdf3c0",
-    "skills/grandet-api-price-finder/references/response-format.md": "a112496be3023d3ba5717de3ab9ec63d83f24aa76888229bb48482b3f8ee3406",
+    "skills/grandet-api-price-finder/references/response-format.md": "c714eaa117d343e084366b2e88f230e41a3e00662f1377e602366579ffe31a2a",
     "skills/grandet-api-price-finder/references/workloads.md": "f7ad8d3591010f80b124009eb68ed7938bba05a1db20d0dc49c50183432ad6e2"
   },
   "verification": {
     "archiveRoundTrip": "PASS",
     "packageHashes": "PASS",
-    "canonicalSkillFiles": 10,
     "nativeArchiveIncludesLicense": true,
-    "allHostsNativeAcceptance": "NOT_COMPLETE"
-  }
+    "allHostsNativeAcceptance": "NOT_COMPLETE",
+    "nativeAcceptance": "NOT_RUN",
+    "historicalInstallationsBackfilled": false
+  },
+  "reproducibility": "sourceFiles pins exclude generated archives and this manifest; post-upload registry independently binds actual source commit and asset IDs"
 }

@@ -6,9 +6,13 @@ import { homedir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { openReceipt, digest, notice, sources } from './installation-receipts.mjs';
+
 const productVersion = '0.3.0';
+const sourceBuild = 'grandet-skill-0.3.0-build.20261014';
 const skillName = 'grandet-api-price-finder';
-const defaultSource = resolve(dirname(fileURLToPath(import.meta.url)), '../skills', skillName);
+const scriptRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const defaultSource = await lstat(join(scriptRoot, 'SKILL.md')).then(() => scriptRoot, () => join(scriptRoot, 'skills', skillName));
 const platforms = ['win32', 'linux', 'darwin'];
 // Installation destinations only. Runtime model/app identities remain the website's contract.
 // Verified 2026-10-13 against the official Skills documentation for the named applications.
@@ -84,9 +88,9 @@ function argumentsFor(argv) {
   const options = {};
   for (let index = 0; index < argv.length; index++) {
     const flag = argv[index];
-    if (!['--app', '--dry-run', '--home', '--source', '--platform', '--list'].includes(flag)) fail('INVALID_ARGUMENT', usage);
+    if (!['--app', '--dry-run', '--home', '--source', '--platform', '--list', '--no-telemetry', '--receipt-source', '--receipt-endpoint', '--flush', '--operation'].includes(flag)) fail('INVALID_ARGUMENT', usage);
     if (Object.hasOwn(options, flag)) fail('DUPLICATE_OPTION', flag);
-    if (['--dry-run', '--list'].includes(flag)) options[flag] = true;
+    if (['--dry-run', '--list', '--no-telemetry', '--flush'].includes(flag)) options[flag] = true;
     else {
       const value = argv[++index];
       if (!value || value.startsWith('--')) fail('MISSING_ARGUMENT', flag);
@@ -119,7 +123,7 @@ async function main() {
   const platform = options['--platform'] ?? process.platform;
   if (!platforms.includes(platform)) fail('UNSUPPORTED_PLATFORM', platform);
   if (options['--list']) {
-    return { productVersion, nativeAcceptance: 'NOT_RUN', applications: routes.map((route) => ({ id: route.id, catalogAppId: route.catalogAppId ?? route.id, userRoot: route.id === 'hermes' && platform === 'win32' ? '%LOCALAPPDATA%/hermes/skills (HERMES_HOME overrides)' : `~/${route.root}`, scope: route.scope, documentedAliases: (route.aliases ?? []).map((path) => `~/${path}`) })) };
+    return { productVersion, sourceBuild, nativeAcceptance: 'NOT_RUN', applications: routes.map((route) => ({ id: route.id, catalogAppId: route.catalogAppId ?? route.id, userRoot: route.id === 'hermes' && platform === 'win32' ? '%LOCALAPPDATA%/hermes/skills (HERMES_HOME overrides)' : `~/${route.root}`, scope: route.scope, documentedAliases: (route.aliases ?? []).map((path) => `~/${path}`) })) };
   }
   const route = routes.find((item) => item.id === options['--app']);
   if (!route) fail('UNSUPPORTED_APP', options['--app'] ?? usage);
@@ -138,6 +142,17 @@ async function main() {
   validateSource(payload, source);
   await rejectLinks(home);
   await rejectLinks(backups);
+  if (!sources.includes(options['--receipt-source'] ?? 'unknown')) fail('INVALID_RECEIPT_SOURCE');
+  if (options['--operation'] && !['repair','reinstall','bind','sync','enable'].includes(options['--operation'])) fail('INVALID_OPERATION');
+  let receipt;
+  if (!options['--dry-run']) {
+    process.stderr.write(notice + '\n');
+    const found=[];for(const path of [destination,...aliases]) {await rejectLinks(path);if(await entry(path))found.push(path);}
+    if(found.length>1)fail('MULTIPLE_SKILL_COPIES');
+    receipt = await openReceipt(found[0] ?? destination, {disabled:Boolean(options['--no-telemetry']),test:Boolean(options['--home']),url:options['--receipt-endpoint']});
+    try { await receipt.recover(readTree); } catch(error) { await receipt.close(); throw error; }
+  }
+  try {
   const installed = [];
   for (const path of [destination, ...aliases]) {
     await rejectLinks(path);
@@ -148,14 +163,30 @@ async function main() {
   const identical = existing && same(existing.files, payload);
   if (existing && existing.path !== destination && !identical) fail('ALIAS_CONTENT_CONFLICT', existing.path);
   const action = identical ? (existing.path === destination ? 'UNCHANGED' : 'REUSED') : existing ? 'UPDATED' : 'INSTALLED';
-  const report = { productVersion, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, source, destination: identical ? existing.path : destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, backup: null, files: payload.size, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']), nextStep: 'Start a fresh session and ask an ordinary API-price question without an attachment, Skill selection or the Grandet name. File installation alone does not verify activation or network access.' };
+  const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, source, destination: identical ? existing.path : destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, backup: null, files: payload.size, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']), nextStep: 'Start a fresh session and ask an ordinary API-price question without an attachment, Skill selection or the Grandet name. File installation alone does not verify activation or network access.' };
   if (route.id === 'cursor') {
     report.cloudSyncStatus = report.destination === destination ? 'REQUIRES_PRIVATE_SYNC' : 'ALIAS_REUSED_LOCAL_ONLY';
     report.nextStep += report.destination === destination
       ? ' Cloud Agents additionally require the private Sync Skills step in Cursor settings.'
       : ' The reused alias is available to local Cursor; Cloud Agents sync only ~/.cursor/skills. Resolve a single-copy migration before cloud sync rather than creating a duplicate.';
   }
-  if (options['--dry-run'] || identical) return report;
+  const version = payload.get('SKILL.md').toString('utf8').match(/Package version:\s*`([^`]+)`/)?.[1];
+  const content = digest(payload);
+  report.contentSha256 = content;
+  if (options['--dry-run']) return report;
+  // Shared aliases use the state of their actual persistent directory.
+  if (identical && existing.path !== destination) { await receipt.close(); receipt=await openReceipt(existing.path,{disabled:Boolean(options['--no-telemetry']),test:Boolean(options['--home']),url:options['--receipt-endpoint']});await receipt.recover(readTree); }
+  if (options['--flush']) { report.status='FLUSHED';report.receipt=await receipt.flush();return report; }
+  if (identical && options['--operation'] && !['reinstall'].includes(options['--operation'])) {
+    if(!['bind','sync','enable'].includes(options['--operation'])) fail('REPAIR_REQUIRES_CHANGED_OR_MISSING_FILES');
+  }
+  if (identical && existing.path!==destination && options['--operation']==='reinstall') fail('ALIAS_REINSTALL_USE_VERIFIER_AT_ACTUAL_DESTINATION');
+  if (identical && options['--operation']!=='reinstall') {
+    if (!same(payload,await readTree(existing.path))) fail('TARGET_READBACK_MISMATCH');
+    const operation=options['--operation'] ?? (receipt.state.installation_id?'reuse':'existing_seen');
+    const j=await receipt.prepare({destination:existing.path,operation,content,version,source:options['--receipt-source'],host:route.catalogAppId??route.id});
+    await receipt.complete(j);report.receipt=await receipt.flush();return report;
+  }
   const transaction = join(backups, `${route.id}-${Date.now()}-${randomUUID()}`);
   const stage = join(transaction, 'new-skill');
   const backup = join(transaction, skillName);
@@ -170,6 +201,9 @@ async function main() {
   const current = await entry(destination);
   if (Boolean(current) !== Boolean(existing) || (current && !same(existing.files, await readTree(destination)))) fail('DESTINATION_CHANGED', `Prepared files retained at ${stage}`);
   await mkdir(discovery, { recursive: true });
+  const operation=options['--operation'] ?? (!existing ? (receipt.state.installation_id?'reinstall':'install') : receipt.state.digest===content?'repair':'update');
+  const journal=await receipt.prepare({destination,stage,backup:existing?backup:null,previous_content:existing?digest(existing.files):null,operation,content,version,source:options['--receipt-source'],host:route.catalogAppId??route.id});
+  if (options['--home'] && process.env.GRANDET_INSTALL_CRASH_BEFORE_MOVE==='1') process.exit(86);
   if (existing) {
     await rename(destination, backup);
     report.backup = backup;
@@ -179,8 +213,16 @@ async function main() {
     if (existing && !(await entry(destination))) await rename(backup, destination);
     fail('INSTALL_MOVE_FAILED', `${error.code}; prepared files retained at ${stage}`);
   }
+  if (options['--home'] && process.env.GRANDET_INSTALL_CRASH_AFTER_WRITE==='1') process.exit(86);
+  if(!same(payload,await readTree(destination))) fail('TARGET_READBACK_MISMATCH');
+  await receipt.complete(journal);
+  report.receipt=await receipt.flush();
   if (!existing) await rmdir(transaction); // Only our now-empty transaction directory.
   report.contentSha256 = createHash('sha256').update([...payload].sort(([a], [b]) => a.localeCompare(b)).map(([path, bytes]) => `${path}\0${createHash('sha256').update(bytes).digest('hex')}\n`).join('')).digest('hex');
   return report;
+  } catch(error) {
+    if(receipt)await receipt.failure({content:digest(payload),version:payload.get('SKILL.md').toString('utf8').match(/Package version:\s*`([^`]+)`/)?.[1],source:options['--receipt-source'],host:route.catalogAppId??route.id}).catch(()=>{});
+    throw error;
+  } finally { await receipt?.close(); }
 }
 main().then((result) => process.stdout.write(`${JSON.stringify(result, null, 2)}\n`)).catch((error) => { process.stderr.write(`${error.message}\n`); process.exitCode = 1; });

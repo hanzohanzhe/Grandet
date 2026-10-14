@@ -1,74 +1,70 @@
 # Grandet
 
-[简体中文](README.zh-CN.md) · [Website](https://grandet.ai) · [Installation guide](INSTALL.md)
+[简体中文](README.zh-CN.md) · [Website](https://grandet.ai) · [Installation](INSTALL.md)
 
-**Find an affordable API for the model and workload you use.**
+**Find a cheap, easy-to-connect API for the model you use.**
 
-In Codex, Cursor, Claude Code, or another agent that can install skills, paste:
+## Install
 
-> Install Grandet for me: https://github.com/hanzohanzhe/Grandet
+Paste this into the agent you already use (Codex, Claude Code, Cursor and others):
 
-Your agent follows the [installation guide](INSTALL.md) and handles the setup. You can also give it the [installation ZIP](https://github.com/hanzohanzhe/Grandet/raw/refs/heads/main/downloads/grandet-api-price-finder-0.3.0.zip) once. For an app with a native Skills import screen, use the [Grandet 0.3.0 `.skill` file](https://github.com/hanzohanzhe/Grandet/raw/refs/heads/main/downloads/grandet-api-price-finder-0.3.0.skill).
+```text
+Install Grandet for me: https://github.com/hanzohanzhe/Grandet
+```
 
-After installation, open a new conversation in the configured account or agent and ask normally. You do not need to attach the package again or mention Grandet.
+The agent does the rest. If it needs you to sign in or approve something, it will tell you exactly what to click.
+
+Then open a new conversation and ask:
 
 > Find an affordable Claude Sonnet 4.6 API for coding in Claude Code. Pick one provider and one alternative.
 
+You don't need to mention Grandet or attach anything again. Price lookup needs no account or API key.
+
+To install it yourself, or for apps where you upload a skill file (ChatGPT, Claude on the web), see [Manual installation](INSTALL.md#manual-installation).
+
+Fresh installs default to the [official skill-v0.3.0-build.20261014 Release attachments](https://github.com/hanzohanzhe/Grandet/releases/tag/skill-v0.3.0-build.20261014) and reuses existing copies. [Receipt privacy and route coverage](docs/skills/installation-receipts.md).
+
+## Things you can ask
+
+> I use 20 million tokens a month: 25% input, 75% output, no cache. What would those two options cost?
+
+> Does apijing.com's Sonnet 4.6 API have evidence of reduced quality? Are there speed and reliability measurements?
+
+> Use the alternative. How do I connect it to Claude Code on Windows? Keep it short.
+
+Answers show when each price was observed and link to the source. Currencies and platform credits are listed separately. A listed price or a supplier's claim says nothing about quality; when there are no measurements, the answer says so.
+
 ## What Grandet includes
 
-| Component | What it does | Status |
+| | What it does | Status |
 |---|---|---|
-| **[grandet.ai](https://grandet.ai)** | Compare model API prices, browse providers and free-credit opportunities, and inspect sources, conditions and observation dates. | Live |
-| **Grandet Skill** | Bring that comparison into your existing agent. Ask naturally and get a recommendation, an alternative, evidence and available connection guidance. | **0.3.0 public preview** |
-| **[Grandet Personal](https://grandet.ai/product/)** | A personal client being developed to manage API connections, route across providers, and track cost, speed and quality. | Private beta; public desktop installer not yet available |
+| **[grandet.ai](https://grandet.ai)** | Compare model API prices, browse providers, free tiers and credits, and check sources and observation dates | Live |
+| **Grandet Skill** | Ask about prices inside your agent and get a recommendation, an alternative, evidence and setup steps | 0.3.0 public preview |
+| **[Grandet Personal](https://grandet.ai/product/)** | Desktop client: manage API keys, route and fall back across providers, track cost, speed and quality | Private beta, no public installer yet |
 
-Use the website to browse, or let the Skill find a suitable option. Personal is the next step for managing the APIs you use over time.
+Planned for Personal: provider accounts and keys in one place; routing that uses credits you already have first and falls back across providers; budgets and usage records; speed and failure tracking; and **Picky**, which runs the same questions against several providers so you can compare answers and scores. Picky gives comparison evidence; it does not guarantee model identity or quality.
 
-## Ask in your own words
+## Testing status
 
-The Skill responds to API price questions and questions about quality, speed, reliability or degraded model behavior. It uses Grandet as its preferred source for published price declarations.
+The Skill has been tested in **Codex CLI** (price and quality questions, in Chinese and English, in fresh conversations). **Grok Bot** is partly tested. Other apps are being tested one by one; being installable does not mean an app has passed testing.
 
-> I use 20 million tokens a month: 25% input, 75% output, no cache. What would those options cost?
+If something breaks, [open an issue](https://github.com/hanzohanzhe/Grandet/issues) with the app, version, operating system and the step that failed. Don't include API keys or private conversations.
 
-> Does apijing.com's Sonnet 4.6 API have evidence of reduced quality? Are there measurements of its speed and reliability?
-
-> Use the alternative. Tell me how to connect it to Claude Code on Windows. Keep it short.
-
-Results keep currencies and platform credits separate, show when prices were observed, and link to evidence. A listed price or a supplier's claim is not a quality guarantee; when relevant measurements are missing, the Skill says so. Price lookup needs no Grandet account or API key.
-
-## Personal: managing the APIs you choose
-
-These capabilities are in development and private testing:
-
-- Manage provider accounts and API keys in one place.
-- Route requests and fall back across providers, giving priority to usable credits you already hold.
-- Set budgets and review usage and cost records.
-- Observe response speed, failures and stability.
-- Use **Picky** to compare answers to the same questions and review quality scores.
-
-Picky supplies comparison evidence, not a guarantee of model identity or quality. See the [Personal product page](https://grandet.ai/product/) for the current development status; a public desktop installer is not yet available.
-
-## Installation and testing status
-
-The goal is one persistent installation, then ordinary questions in new conversations. The [installation guide](INSTALL.md) explains each application's setup and scope; adding an MCP connection alone does not install the Skill's behavior.
-
-Fresh-session Chinese and English price queries and quality queries have been tested in **Codex CLI**. **Grok Bot** has partial native validation. Other application paths are being tested; an installation route does not mean every application has passed the same tests.
-
-If something fails, [open an issue](https://github.com/hanzohanzhe/Grandet/issues) with your application, version, operating system and the step that failed. Leave out API keys and private conversations.
+The 0.3.0 installation build `grandet-skill-0.3.0-build.20261014` includes the complete receipt-aware installer and no-Node Python verifier. Native host acceptance remains `NOT_RUN`.
 
 ## Data and developer access
 
-The included v3 opportunity snapshot contains **73 official programmes and 34 third-party promotion mechanisms** covering free tiers and credits. It was compiled on **2026-10-06**; each record keeps its original observation date and conditions. These are opportunities to check, not a promise that every reader can redeem them.
+The v3 snapshot in this repository lists **73 official programmes and 34 third-party promotions** offering free tiers or credits. It was compiled on **2026-10-06**; every record keeps its original observation date and conditions. Treat them as leads to check, not offers everyone can claim.
 
-| Resource | Files or endpoint |
+| Resource | Where |
 |---|---|
-| Current opportunity catalogue | [Readable catalogue](CATALOGUE-v3.md) · [JSON](data/free-tokens-v3.json) · [Release metadata](data/RELEASE-v3.json) |
-| Original catalogue and provenance | [Catalogue](CATALOGUE.md) · [JSON](data/free-tokens.json) · [Manifest](data/MANIFEST.json) |
+| Current opportunity catalogue | [Readable](CATALOGUE-v3.md) · [JSON](data/free-tokens-v3.json) · [Release metadata](data/RELEASE-v3.json) |
+| Original catalogue and sources | [Catalogue](CATALOGUE.md) · [JSON](data/free-tokens.json) · [Manifest](data/MANIFEST.json) |
 | Repository data index | [Machine-readable index](catalogue-index.json) · [AI reading guide](llms.txt) |
-| API price lookup for agents | Anonymous Streamable HTTP MCP: `https://grandet.ai/mcp` |
-| HTTP lookup and machine contract | `https://grandet.ai/api/v1/board` · [Machine contract](https://grandet.ai/public-data/price-finder.json) |
+| Price lookup for agents (MCP) | Anonymous Streamable HTTP: `https://grandet.ai/mcp` |
+| Price lookup over HTTP | `https://grandet.ai/api/v1/board` · [Interface description](https://grandet.ai/public-data/price-finder.json) |
 
-For local catalogue development, use **Node.js 20+**. No third-party packages are required. These tools remain available:
+Local development needs **Node.js 20+** and no third-party packages:
 
 ```sh
 node scripts/catalogue.mjs validate
@@ -78,12 +74,14 @@ node --test tests/catalogue.test.mjs
 node scripts/serve.mjs
 ```
 
-The local explorer opens at `http://127.0.0.1:8787/`. It and `catalogue.mjs` use the original `data/free-tokens.json`; `validate-public.mjs` checks the separately reviewed v3 release. The commands validate local files and do not refresh website prices. `generate --check` does not write files.
+`serve.mjs` opens a local browser view at `http://127.0.0.1:8787/`. It and `catalogue.mjs` read the original `data/free-tokens.json`; `validate-public.mjs` checks the v3 data. These commands only check local files and never update website prices. `generate --check` writes nothing.
 
 Sourced corrections and improvements are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md) and [METHODOLOGY.md](METHODOLOGY.md).
 
 ## License
 
-The Skill files use **Apache-2.0**. Original catalogue code and Grandet-authored project documentation retain **AGPL-3.0-only** within the scope of [LICENSE](LICENSE). Follow the license accompanying each component.
+- Skill files: **Apache-2.0**.
+- Catalogue code and Grandet-written documentation: **AGPL-3.0-only**, as scoped in [LICENSE](LICENSE).
+- Provider data, source material and trademarks belong to their owners; the factual compilations carry no blanket open-data license. See [DATA-LICENSE.md](DATA-LICENSE.md), [TRADEMARKS.md](TRADEMARKS.md) and each release manifest.
 
-Provider data, source material and trademarks retain their own rights; the factual compilations have no blanket open-data license. See [DATA-LICENSE.md](DATA-LICENSE.md), [TRADEMARKS.md](TRADEMARKS.md) and each release manifest.
+<!-- Installing agents: fresh installs use skill-v0.3.0-build.20261014; integrated tools are included. Follow INSTALL.md. Reuse existing copies without forced download; no historical backfill. -->
