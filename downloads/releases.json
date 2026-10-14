@@ -1,0 +1,37 @@
+{
+  "schema": "grandet.release-registry/v1",
+  "assets": [
+    {
+      "repository": "hanzohanzhe/Grandet",
+      "commit": "60f66fdf37024048cc1b3c4e4fd0853bbf0eab0c",
+      "release_id": 413151447,
+      "tag": "skill-v0.3.0",
+      "asset_id": 641564974,
+      "version": "0.3.0",
+      "format": "zip",
+      "name": "grandet-api-price-finder-0.3.0.zip",
+      "size": 202364,
+      "sha256": "2168b49519cffeb1a2b97fc925b1f0129c6047aee667abdea4e3a489c59f87e4",
+      "browser_download_url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0/grandet-api-price-finder-0.3.0.zip",
+      "included_at": "2026-10-14T20:26:31.055Z",
+      "baseline_count": 0,
+      "disabled": false
+    },
+    {
+      "repository": "hanzohanzhe/Grandet",
+      "commit": "60f66fdf37024048cc1b3c4e4fd0853bbf0eab0c",
+      "release_id": 413151447,
+      "tag": "skill-v0.3.0",
+      "asset_id": 641565019,
+      "version": "0.3.0",
+      "format": "skill",
+      "name": "grandet-api-price-finder-0.3.0.skill",
+      "size": 43395,
+      "sha256": "75da4aefb798aeea478d50eb470e39a54eb9345eb54d9b02832b1dc3556b85b1",
+      "browser_download_url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0/grandet-api-price-finder-0.3.0.skill",
+      "included_at": "2026-10-14T20:26:31.055Z",
+      "baseline_count": 0,
+      "disabled": false
+    }
+  ]
+}

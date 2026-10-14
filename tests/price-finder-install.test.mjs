@@ -7,6 +7,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
+process.env.GRANDET_INSTALL_TELEMETRY = '0'; // Unit tests never send production receipts.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const script = join(root, 'scripts/install-price-finder.mjs');
 const source = join(root, 'skills/grandet-api-price-finder');
@@ -27,6 +28,7 @@ async function tree(directory, prefix = '') {
   const result = {};
   for (const entry of await readdir(join(directory, prefix), { withFileTypes: true })) {
     const path = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.name === '.grandet-install-state') continue;
     if (entry.isDirectory()) Object.assign(result, await tree(directory, path));
     else result[path] = (await readFile(join(directory, path))).toString('base64');
   }

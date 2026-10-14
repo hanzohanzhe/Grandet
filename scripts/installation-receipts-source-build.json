@@ -1,0 +1,17 @@
+{
+  "schema": "grandet.receipt-helper-source/v1",
+  "sourceBuild": "grandet-installation-receipts-source-20261014.1",
+  "compatibleSkillVersions": [
+    "0.3.0"
+  ],
+  "sourceOnly": true,
+  "originalReleaseArchivesModified": false,
+  "includedInOriginal030Archives": false,
+  "nativeAcceptance": "NOT_RUN",
+  "integrationStatus": "LOCAL_VALIDATED_NOT_WEBSITE_CERTIFIED",
+  "files": {
+    "scripts/install-price-finder.mjs": "bb1ebc0b6d564634a9abf088e68b9fbff2bdab9acc711e7a0583c0c948123ffe",
+    "scripts/installation-receipts.mjs": "7a5cbf9389d236590a032eed2385ac069871a0f51b0e3e1b5f356466bce24ef6",
+    "scripts/verify-installation.py": "e034182b05b8c0d01f5c65a64c17677f7497e611b506617f16883e69cc53fb71"
+  }
+}

@@ -1,9 +1,34 @@
 # Contributing / 贡献
 
-Use the correction or new-offer issue template. Include the record ID, primary public source, when you observed it, original unit, eligibility, payment/card/identity requirements, expiry, renewal and limitations. Separate a factual source statement from your interpretation. Do not replace unknown values with guesses or strip paid conditions to make an offer look free.
+## Data corrections and new offers
 
-Code contributions use AGPL-3.0-only. Data submissions must name the owner and the permission/license basis; submitting a public URL does not grant rights to its page. Do not submit credentials, account records, personal data, private page captures or database files. Contributors should have the right to contribute their own work; no contributor license agreement is required by this initial hub.
+Open an issue with the **correction** or **new offer** template and include:
 
-Run `node scripts/catalogue.mjs validate` and `node scripts/catalogue.mjs generate --check` before proposing changes. Update the data hash/counts manifest intentionally with reviewed snapshots. Negative validation tests: `node --test tests/catalogue.test.mjs`.
+- the record ID (for corrections);
+- a primary public source and when you checked it;
+- the original unit (tokens, credits, dollars …);
+- every condition: eligibility, payment card, identity checks, expiry, renewal and other limits.
 
-中文：提交记录ID、主来源、观察时间、原单位及全部资格/付费/续费/期限限制。未知不猜；不得删除门槛。数据需说明权利人及许可依据，不提交私有正文或账号资料。新增源码沿用AGPL-3.0-only。
+Keep what the source says separate from your own reading of it. Leave unknown values unknown rather than guessing, and don't drop paid conditions to make an offer look free.
+
+Data you submit must name its owner and the basis for using it; a public URL doesn't grant rights to the page. Never submit credentials, account records, personal data, private page captures or database files.
+
+## Code
+
+Code contributions are licensed AGPL-3.0-only (Skill files: Apache-2.0). You need the right to contribute what you submit; there is no contributor licence agreement.
+
+Before opening a pull request, run:
+
+```sh
+node scripts/catalogue.mjs validate
+node scripts/catalogue.mjs generate --check
+node --test tests/*.test.mjs
+```
+
+Update the data manifest's hashes and counts only on purpose, together with a reviewed snapshot.
+
+## 中文
+
+**更正和新增活动**：用 Issue 模板提交，写明记录 ID、主要来源、查看时间、原始单位，以及全部领取条件（资格、绑卡、实名、有效期、续费等）。来源原话和你的理解分开写；不知道的就写不知道，不要删掉付费门槛。数据要说明权利人和使用依据，不要提交账号、密码、个人信息或私有页面内容。
+
+**代码**：采用 AGPL-3.0-only（Skill 文件为 Apache-2.0），无需签署 CLA。提交前运行上面三条命令。

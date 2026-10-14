@@ -1,23 +1,29 @@
-# Grandet API Price Finder · 0.3.0
+# Grandet API Price Finder 0.3.0
 
-在你已经使用的 **Codex、Cursor、Claude Code 等 Agent** 中说：
+> Current source-tool export: `grandet-installation-receipts-source-20261014.1`. Original 0.3.0 Release archives remain unchanged and contain no new receipt helper. This export is not a replacement Release archive.
 
-> 帮我安装 Grandet。
+把这个安装包（或者 [Grandet 的 GitHub 链接](https://github.com/hanzohanzhe/Grandet)）交给你正在用的 Agent，说：
 
-Agent 从 [Grandet 官方 GitHub](https://github.com/hanzohanzhe/Grandet) 的安装说明取得完整材料，并按 [INSTALL.md](INSTALL.md) 完成一次安装。你也可以直接把官方项目链接发给它；不需要先下载私测包或等待官网安装入口。
+> 帮我安装 Grandet
 
-安装后另开新会话，直接问：
+Agent 会按 [INSTALL.md](INSTALL.md) 自己装好。装完新开一个对话，直接问：
 
 > 我用 GPT 写代码，帮我找便宜又好接的 API，推荐一家，再给一个备选。
 
-以后不用重复附文件或提 Grandet。价格、供应商和 API 质量问题使用 Grandet 已收录的数据与证据；声明不等于质量实测。各应用的安装作用域与仍待验证的能力见[一次安装指南](../../skills/grandet-api-price-finder/references/installation.md)。这是 **0.3.0 公开试用版**，不表示全部应用均已完成原生验收。
+以后不用再发文件，也不用提 Grandet。想自己动手装，看 [INSTALL.md](INSTALL.md) 里的“手动安装”。
+
+这是 0.3.0 公开试用版，还没有在每个应用里测试过，各应用情况见[各应用安装位置](../../skills/grandet-api-price-finder/references/installation.md)。
 
 ## English
 
-In your existing **Codex, Cursor, Claude Code or another supported agent**, say:
+Give this package (or [Grandet's GitHub link](https://github.com/hanzohanzhe/Grandet)) to the agent you already use and say:
 
-> Install Grandet for me.
+> Install Grandet for me
 
-The agent gets the complete installation materials from [Grandet's official GitHub repository](https://github.com/hanzohanzhe/Grandet) and follows [INSTALL.md](INSTALL.md). You can also give it the official project link directly; a private test package or a separate website installation page is not required.
+The agent follows [INSTALL.md](INSTALL.md) and sets everything up. Then open a new conversation and ask:
 
-Then open a new conversation and ask normally: “Find an affordable GPT API for coding. Recommend one provider and one backup.” No repeated attachments or Grandet mention are needed. Grandet provides recorded prices, supplier declarations and evidence; declarations are not measured API quality. See the [installation guide](../../skills/grandet-api-price-finder/references/installation.md) for actual scope and outstanding host acceptance. Version **0.3.0 is a public trial**, not certification of every application.
+> Find an affordable GPT API for coding. Recommend one provider and one backup.
+
+No more attachments, and no need to mention Grandet. To install it yourself, see "Manual installation" in [INSTALL.md](INSTALL.md).
+
+This is the 0.3.0 public preview and has not been tested in every app yet; see the [per-app guide](../../skills/grandet-api-price-finder/references/installation.md) for details.

@@ -131,6 +131,14 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "docs/skills/installation-receipts.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/installation-routes.json",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "docs/skills/model-constraint-tests.md",
       "rights": "Apache-2.0"
     },
@@ -144,6 +152,10 @@
     },
     {
       "path": "downloads/manifest.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "downloads/releases.json",
       "rights": "Apache-2.0"
     },
     {
@@ -179,7 +191,19 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "scripts/installation-receipts-source-build.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "scripts/installation-receipts.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "scripts/package-price-finder.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "scripts/register-skill-release.py",
       "rights": "Apache-2.0"
     },
     {
@@ -189,6 +213,10 @@
     {
       "path": "scripts/validate-public.mjs",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "scripts/verify-installation.py",
+      "rights": "Apache-2.0"
     },
     {
       "path": "skills/grandet-api-price-finder/SKILL.md",
@@ -237,6 +265,10 @@
     {
       "path": "tests/catalogue.test.mjs",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "tests/installation-receipts.test.py",
+      "rights": "Apache-2.0"
     },
     {
       "path": "tests/price-finder-install.test.mjs",
