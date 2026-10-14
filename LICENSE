@@ -1,4 +1,4 @@
-Grandet public catalogue hub — license scope
+Grandet public repository — license scope
 
 The original catalogue tool and browser code in scripts/, tests/, app.mjs,
 index.html and style.css, and Grandet-authored project documentation and
@@ -7,9 +7,16 @@ under the GNU Affero General Public License version 3 only
 (SPDX: AGPL-3.0-only). The complete license text is in
 LICENSES/AGPL-3.0-only.txt.
 
-This independent hub contains no desktop client, SDK, gateway, or Apache
-licensed source distribution. Its public-export-manifest.json enumerates
-this hub's actual files and their individual rights categories.
+Grandet Price Finder Skill source, installation scripts, packaging scripts,
+plugin templates, Skill tests and documentation, and the Skill download
+archives explicitly marked Apache-2.0 in public-export-manifest.json are
+licensed under the Apache License, Version 2.0. The complete license text is
+in LICENSES/Apache-2.0.txt. This exception does not relicense the catalogue
+tool, original project documentation or factual compilation.
+
+This repository contains no Grandet Personal desktop installer or complete
+website source distribution. public-export-manifest.json enumerates the
+public files and their individual rights categories.
 
 The software license does not cover data/free-tokens.json or data/free-tokens-v3.json, the factual
 catalogues CATALOGUE.md and CATALOGUE-v3.md, source evidence references, vendor statements, or

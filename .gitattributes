@@ -1,0 +1,4 @@
+# Keep hashed catalogue and Skill sources identical on Windows and Unix.
+* text=auto eol=lf
+*.zip binary
+*.skill binary

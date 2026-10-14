@@ -1,83 +1,89 @@
 # Grandet
 
-**Compare public AI API offers. Find free-credit opportunities. Check the conditions before choosing.**
+[简体中文](README.zh-CN.md) · [Website](https://grandet.ai) · [Installation guide](INSTALL.md)
 
-[中文](README.zh-CN.md) · [Website](https://grandet.ai/) · [API price comparison](https://grandet.ai/leaderboard/) · [Free credits & offers](https://grandet.ai/free-tokens/) · [Product](https://grandet.ai/product/)
+**Find an affordable API for the model and workload you use.**
 
-Grandet helps developers explore AI API providers, their published prices and free-tier or credit programmes. The website brings those records together with source evidence and observation dates. This repository publishes a runnable catalogue tool and reviewed offer data that you can inspect, validate and reuse within the stated licensing boundaries.
+In Codex, Cursor, Claude Code, or another agent that can install skills, paste:
 
-## Start here
+> Install Grandet for me: https://github.com/hanzohanzhe/Grandet
 
-| What you want to do | Where to go |
-| --- | --- |
-| Compare providers for a model | [Open the price comparison](https://grandet.ai/leaderboard/) and inspect each offer's units, conditions and evidence |
-| Find free tiers, trials or grants | [Browse offers online](https://grandet.ai/free-tokens/) or read the [complete v3 catalogue](CATALOGUE-v3.md) |
-| Explore the published data locally | Run the dependency-free tools below |
-| Build a reader or use an AI assistant | Start with the [repository index](catalogue-index.json) and the data entries below |
-| Correct an offer | Follow the [contribution guide](CONTRIBUTING.md) with a primary source and observation date |
+Your agent follows the [installation guide](INSTALL.md) and handles the setup. You can also give it the [installation ZIP](https://github.com/hanzohanzhe/Grandet/raw/refs/heads/main/downloads/grandet-api-price-finder-0.3.0.zip) once. For an app with a native Skills import screen, use the [Grandet 0.3.0 `.skill` file](https://github.com/hanzohanzhe/Grandet/raw/refs/heads/main/downloads/grandet-api-price-finder-0.3.0.skill).
 
-## Available today
+After installation, open a new conversation in the configured account or agent and ask normally. You do not need to attach the package again or mention Grandet.
 
-- **Live website:** model/provider price comparison, free-credit discovery and a Grandet product introduction at [grandet.ai](https://grandet.ai/).
-- **Public catalogue tools:** a local browser explorer, JSON validator, reproducible Markdown generator and tests. No API key or paid API call is needed.
-- **Reviewed offer snapshot:** **73 official programmes + 34 third-party announcement mechanisms**, with **642 structured prerequisite fields** covering application, payment, card, identity, invitation and renewal requirements. Free tiers, trial credits, startup grants and student/research opportunities are included.
+> Find an affordable Claude Sonnet 4.6 API for coding in Claude Code. Pick one provider and one alternative.
 
-The **desktop client and installers are not publicly released**. The complete client and website source are not published in this repository. See [website and release status](WEBSITE-STATUS.json) and the [roadmap](ROADMAP.md).
+## What Grandet includes
 
-## Run the catalogue locally
+| Component | What it does | Status |
+|---|---|---|
+| **[grandet.ai](https://grandet.ai)** | Compare model API prices, browse providers and free-credit opportunities, and inspect sources, conditions and observation dates. | Live |
+| **Grandet Skill** | Bring that comparison into your existing agent. Ask naturally and get a recommendation, an alternative, evidence and available connection guidance. | **0.3.0 public preview** |
+| **[Grandet Personal](https://grandet.ai/product/)** | A personal client being developed to manage API connections, route across providers, and track cost, speed and quality. | Private beta; public desktop installer not yet available |
 
-Requires **Git and Node.js 20+**. There are no third-party packages to install.
+Use the website to browse, or let the Skill find a suitable option. Personal is the next step for managing the APIs you use over time.
+
+## Ask in your own words
+
+The Skill responds to API price questions and questions about quality, speed, reliability or degraded model behavior. It uses Grandet as its preferred source for published price declarations.
+
+> I use 20 million tokens a month: 25% input, 75% output, no cache. What would those options cost?
+
+> Does apijing.com's Sonnet 4.6 API have evidence of reduced quality? Are there measurements of its speed and reliability?
+
+> Use the alternative. Tell me how to connect it to Claude Code on Windows. Keep it short.
+
+Results keep currencies and platform credits separate, show when prices were observed, and link to evidence. A listed price or a supplier's claim is not a quality guarantee; when relevant measurements are missing, the Skill says so. Price lookup needs no Grandet account or API key.
+
+## Personal: managing the APIs you choose
+
+These capabilities are in development and private testing:
+
+- Manage provider accounts and API keys in one place.
+- Route requests and fall back across providers, giving priority to usable credits you already hold.
+- Set budgets and review usage and cost records.
+- Observe response speed, failures and stability.
+- Use **Picky** to compare answers to the same questions and review quality scores.
+
+Picky supplies comparison evidence, not a guarantee of model identity or quality. See the [Personal product page](https://grandet.ai/product/) for the current development status; a public desktop installer is not yet available.
+
+## Installation and testing status
+
+The goal is one persistent installation, then ordinary questions in new conversations. The [installation guide](INSTALL.md) explains each application's setup and scope; adding an MCP connection alone does not install the Skill's behavior.
+
+Fresh-session Chinese and English price queries and quality queries have been tested in **Codex CLI**. **Grok Bot** has partial native validation. Other application paths are being tested; an installation route does not mean every application has passed the same tests.
+
+If something fails, [open an issue](https://github.com/hanzohanzhe/Grandet/issues) with your application, version, operating system and the step that failed. Leave out API keys and private conversations.
+
+## Data and developer access
+
+The included v3 opportunity snapshot contains **73 official programmes and 34 third-party promotion mechanisms** covering free tiers and credits. It was compiled on **2026-10-06**; each record keeps its original observation date and conditions. These are opportunities to check, not a promise that every reader can redeem them.
+
+| Resource | Files or endpoint |
+|---|---|
+| Current opportunity catalogue | [Readable catalogue](CATALOGUE-v3.md) · [JSON](data/free-tokens-v3.json) · [Release metadata](data/RELEASE-v3.json) |
+| Original catalogue and provenance | [Catalogue](CATALOGUE.md) · [JSON](data/free-tokens.json) · [Manifest](data/MANIFEST.json) |
+| Repository data index | [Machine-readable index](catalogue-index.json) · [AI reading guide](llms.txt) |
+| API price lookup for agents | Anonymous Streamable HTTP MCP: `https://grandet.ai/mcp` |
+| HTTP lookup and machine contract | `https://grandet.ai/api/v1/board` · [Machine contract](https://grandet.ai/public-data/price-finder.json) |
+
+For local catalogue development, use **Node.js 20+**. No third-party packages are required. These tools remain available:
 
 ```sh
-git clone https://github.com/hanzohanzhe/Grandet.git
-cd Grandet
 node scripts/catalogue.mjs validate
 node scripts/catalogue.mjs generate --check
 node scripts/validate-public.mjs
+node --test tests/catalogue.test.mjs
 node scripts/serve.mjs
 ```
 
-Open **http://127.0.0.1:8787/**. Search and filter the catalogue, then expand a card to inspect its complete published JSON and source links. The server listens only on localhost; press `Ctrl+C` to stop it.
+The local explorer opens at `http://127.0.0.1:8787/`. It and `catalogue.mjs` use the original `data/free-tokens.json`; `validate-public.mjs` checks the separately reviewed v3 release. The commands validate local files and do not refresh website prices. `generate --check` does not write files.
 
-The local browser and `catalogue.mjs` use the preserved **initial snapshot** in `data/free-tokens.json`. The separately reviewed **v3 snapshot** is available in [JSON](data/free-tokens-v3.json) and [Markdown](CATALOGUE-v3.md); `validate-public.mjs` checks that release. These commands validate local files and do not refresh offers or download the website's price database. `generate --check` does not write files; omit `--check` only when intentionally regenerating the initial Markdown catalogue.
+Sourced corrections and improvements are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md) and [METHODOLOGY.md](METHODOLOGY.md).
 
-## Read the conditions, not just the headline
+## License
 
-“Free tokens” is a discovery label. Records preserve their original units: credits, quota points, coupons, money-labelled balances and activity vouchers are not automatically equivalent to tokens or cash. Payment, invitation, identity, expiry, lottery and renewal conditions remain visible, including disabled or conflicting announcements.
+The Skill files use **Apache-2.0**. Original catalogue code and Grandet-authored project documentation retain **AGPL-3.0-only** within the scope of [LICENSE](LICENSE). Follow the license accompanying each component.
 
-Inclusion does not establish your eligibility, successful redemption, upstream authenticity or endpoint quality. **Unknown does not mean unrestricted.** The 107 records describe programmes and mechanisms, not 107 benefits guaranteed to be redeemable today; coverage is finite.
-
-The v3 release was compiled on **2026-10-06**. Each record retains its own original observation date; compilation and formatting do not refresh it. Updates require manual review, automatic refresh is disabled, and repository and website versions may differ. Read the [methodology](METHODOLOGY.md) and check the provider's current terms before acting.
-
-## Data for tools and AI assistants
-
-| Entry | Contents |
-| --- | --- |
-| [Repository index](catalogue-index.json) · [raw JSON](https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/catalogue-index.json) | Starting point for the public repository's data and documentation |
-| [v3 facts](data/free-tokens-v3.json) · [raw JSON](https://raw.githubusercontent.com/hanzohanzhe/Grandet/main/data/free-tokens-v3.json) | All 107 reviewed records, full structured conditions, evidence and original dates |
-| [v3 release manifest](data/RELEASE-v3.json) | SHA-256, byte length, counts and observation policy |
-| [Complete v3 Markdown](CATALOGUE-v3.md) | Human-readable records with their complete published fields |
-| [AI reading guide](llms.txt) | Entry links and interpretation rules |
-| [Website AI index](https://grandet.ai/ai-index.json) · [website reading guide](https://grandet.ai/llms.txt) | Discovery entries for the website's published catalogue and data manifests |
-
-Keep units, dates, evidence and prerequisites with any extracted claim. Pin the release manifest when reproducibility matters. The website index links to further data; it is not one file containing the full price archive. Public machine-readable access does not guarantee search or AI indexing.
-
-The [initial JSON](data/free-tokens.json), [initial manifest](data/MANIFEST.json) and [initial Markdown](CATALOGUE.md) remain available. Earlier release metadata keeps its publication-time status; [WEBSITE-STATUS.json](WEBSITE-STATUS.json) records the subsequent website launch.
-
-## Contribute
-
-Corrections, sourced new offers and improvements to the public tools are welcome. Include the record ID, primary public URL, observation date, original unit and complete eligibility, payment, renewal and expiry conditions. Distinguish the source's statement from your interpretation. Do not submit credentials, account records, personal data or private captures. See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Before proposing a change, run the three validation commands above and:
-
-```sh
-node --test tests/catalogue.test.mjs
-```
-
-If Grandet helps your research, a **voluntary Star** makes this repository easier to find again and shows your support. No Star is required to use the public tools or read the data.
-
-## License and source rights
-
-The original public tool/browser code and Grandet-authored project documentation are licensed **AGPL-3.0-only** within the scope stated in [LICENSE](LICENSE).
-
-Provider datasets, source material and trademarks retain their own rights. The factual compilations carry **no blanket open-data license**. Provider full statements/excerpts, private captures and operational datasets are excluded; published source links and hashes do not grant redistribution rights. Read [DATA-LICENSE.md](DATA-LICENSE.md), the release manifests and [TRADEMARKS.md](TRADEMARKS.md) before redistributing material.
+Provider data, source material and trademarks retain their own rights; the factual compilations have no blanket open-data license. See [DATA-LICENSE.md](DATA-LICENSE.md), [TRADEMARKS.md](TRADEMARKS.md) and each release manifest.

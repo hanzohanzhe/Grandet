@@ -1,4 +1,4 @@
-name: Validate public catalogue
+name: Validate public catalogue and Skill
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
@@ -11,7 +11,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
-      - run: node --test tests/catalogue.test.mjs
+          node-version: '24'
+      - run: node --test tests/*.test.mjs
       - run: node scripts/catalogue.mjs generate --check
       - run: node scripts/validate-public.mjs

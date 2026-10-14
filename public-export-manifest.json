@@ -3,6 +3,10 @@
   "snapshotPolicy": "INDEPENDENT_REVIEWED_TREE_NO_GIT_HISTORY",
   "files": [
     {
+      "path": ".gitattributes",
+      "rights": "AGPL-3.0-only"
+    },
+    {
       "path": ".github/ISSUE_TEMPLATE/correction.md",
       "rights": "AGPL-3.0-only"
     },
@@ -11,8 +15,16 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": ".github/workflows/catalogue.yml",
+      "rights": "AGPL-3.0-only"
+    },
+    {
       "path": ".gitignore",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "CATALOGUE-v3.md",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
     },
     {
       "path": "CATALOGUE.md",
@@ -27,11 +39,19 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": "INSTALL.md",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "LICENSE",
       "rights": "AGPL-3.0-only"
     },
     {
       "path": "LICENSES/AGPL-3.0-only.txt",
+      "rights": "LICENSE_TEXT"
+    },
+    {
+      "path": "LICENSES/Apache-2.0.txt",
       "rights": "LICENSE_TEXT"
     },
     {
@@ -55,7 +75,15 @@
       "rights": "TRADEMARK_POLICY"
     },
     {
+      "path": "WEBSITE-STATUS.json",
+      "rights": "AGPL-3.0-only"
+    },
+    {
       "path": "app.mjs",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "catalogue-index.json",
       "rights": "AGPL-3.0-only"
     },
     {
@@ -63,12 +91,76 @@
       "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
     },
     {
+      "path": "data/RELEASE-v3.json",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+    },
+    {
+      "path": "data/free-tokens-v3.json",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+    },
+    {
       "path": "data/free-tokens.json",
       "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
     },
     {
+      "path": "docs/skills/INSTALL.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/QUICKSTART.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/README.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/application-distribution.generated.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/chat-adapters/grok-bot.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/chat-adapters/muse.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "docs/skills/chat-adapters/your-dot.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "downloads/grandet-api-price-finder-0.3.0.skill",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "downloads/grandet-api-price-finder-0.3.0.zip",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "downloads/manifest.json",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "index.html",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "llms.txt",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/.claude-plugin/plugin.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/.codex-plugin/plugin.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "plugins/grandet-api-price-finder/.mcp.json",
+      "rights": "Apache-2.0"
     },
     {
       "path": "public-export-manifest.json",
@@ -79,8 +171,60 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": "scripts/install-price-finder.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "scripts/package-price-finder.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "scripts/serve.mjs",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "scripts/validate-public.mjs",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/SKILL.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/agents/openai.yaml",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/app-catalog.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/entrypoints.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/host-setup.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/http-fallback.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/installation.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/quality-evidence.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/response-format.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "skills/grandet-api-price-finder/references/workloads.md",
+      "rights": "Apache-2.0"
     },
     {
       "path": "style.css",
@@ -91,36 +235,16 @@
       "rights": "AGPL-3.0-only"
     },
     {
-      "path": "data/free-tokens-v3.json",
-      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+      "path": "tests/price-finder-install.test.mjs",
+      "rights": "Apache-2.0"
     },
     {
-      "path": "data/RELEASE-v3.json",
-      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+      "path": "tests/price-finder-package.test.mjs",
+      "rights": "Apache-2.0"
     },
     {
-      "path": "CATALOGUE-v3.md",
-      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
-    },
-    {
-      "path": "llms.txt",
-      "rights": "AGPL-3.0-only"
-    },
-    {
-      "path": "catalogue-index.json",
-      "rights": "AGPL-3.0-only"
-    },
-    {
-      "path": "scripts/validate-public.mjs",
-      "rights": "AGPL-3.0-only"
-    },
-    {
-      "path": ".github/workflows/catalogue.yml",
-      "rights": "AGPL-3.0-only"
-    },
-    {
-      "path": "WEBSITE-STATUS.json",
-      "rights": "AGPL-3.0-only"
+      "path": "tests/public-skill-downloads.test.mjs",
+      "rights": "Apache-2.0"
     }
   ],
   "codeLicense": "AGPL-3.0-only",

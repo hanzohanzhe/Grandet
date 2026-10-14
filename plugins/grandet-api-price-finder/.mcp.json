@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "grandet": {
+      "type": "http",
+      "url": "https://grandet.ai/mcp"
+    }
+  }
+}

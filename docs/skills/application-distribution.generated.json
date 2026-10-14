@@ -1,0 +1,159 @@
+{
+  "schema": "grandet.price-finder-distribution/v1",
+  "skillDirectory": "skills/grandet-api-price-finder",
+  "service": {
+    "mcpUrl": "https://grandet.ai/mcp",
+    "mcpTransport": "STREAMABLE_HTTP"
+  },
+  "summary": {
+    "applicationCount": 16,
+    "templateCount": 6,
+    "profileCount": 29
+  },
+  "entries": [
+    {
+      "appId": "claude-code",
+      "appName": "Claude Code",
+      "id": "skill-plugin",
+      "mode": "SKILL_PLUGIN",
+      "status": "DOCUMENTED",
+      "validation": "NOT_RUN",
+      "documentation": [
+        "https://code.claude.com/docs/en/plugin-marketplaces",
+        "https://code.claude.com/docs/en/plugins-reference"
+      ],
+      "installation": {
+        "en": "Use a complete generated plugin through a Claude Code plugin entrypoint after that route has passed installation acceptance. The source template and its repository marketplace reference are not an installable release; this route is still awaiting a real installation test.",
+        "zhCN": "完整生成包应通过 Claude Code 插件入口安装，待该入口完成实装验收后再提供给用户。源码模板及指向模板的仓库 marketplace 条目不是可安装版本；此路线仍待真实安装验证。"
+      },
+      "resources": {
+        "packageManifests": [
+          "plugins/grandet-api-price-finder/.claude-plugin/plugin.json"
+        ],
+        "skillDirectory": "skills/grandet-api-price-finder",
+        "mcpConfiguration": "plugins/grandet-api-price-finder/.mcp.json"
+      }
+    },
+    {
+      "appId": "codex",
+      "appName": "Codex",
+      "id": "skill-plugin",
+      "mode": "SKILL_PLUGIN",
+      "status": "DOCUMENTED",
+      "validation": "NOT_RUN",
+      "documentation": [
+        "https://developers.openai.com/plugins/build/plugins"
+      ],
+      "installation": {
+        "en": "Use a complete generated plugin through a Codex plugin entrypoint after that route has passed installation acceptance. The source template and its repository marketplace reference are not an installable release; this route is still awaiting a real installation test.",
+        "zhCN": "完整生成包应通过 Codex 插件入口安装，待该入口完成实装验收后再提供给用户。源码模板及指向模板的仓库 marketplace 条目不是可安装版本；此路线仍待真实安装验证。"
+      },
+      "resources": {
+        "packageManifests": [
+          "plugins/grandet-api-price-finder/.codex-plugin/plugin.json"
+        ],
+        "skillDirectory": "skills/grandet-api-price-finder",
+        "mcpConfiguration": "plugins/grandet-api-price-finder/.mcp.json"
+      }
+    },
+    {
+      "appId": "cursor",
+      "appName": "Cursor",
+      "id": "skill-directory",
+      "mode": "SKILL_DIRECTORY",
+      "status": "DOCUMENTED",
+      "validation": "NOT_RUN",
+      "documentation": [
+        "https://prod.cursor.com/docs/skills"
+      ],
+      "installation": {
+        "en": "Copy the complete Skill folder into project .cursor/skills/ or .agents/skills/, then start a new Agent chat. If that session can read webpages or make HTTP requests, the Skill uses its HTTP fallback directly; a separate MCP connection is optional.",
+        "zhCN": "将完整 Skill 文件夹放入项目 .cursor/skills/ 或 .agents/skills/，再新建 Agent 会话。该会话能读取网页或发起 HTTP 请求时，Skill 可直接使用 HTTP fallback；MCP 连接可选。"
+      },
+      "resources": {
+        "packageManifests": [],
+        "skillDirectory": "skills/grandet-api-price-finder",
+        "mcpConfiguration": null
+      }
+    },
+    {
+      "appId": "cursor",
+      "appName": "Cursor",
+      "id": "http-mcp",
+      "mode": "MCP_HTTP",
+      "status": "DOCUMENTED",
+      "validation": "NOT_RUN",
+      "documentation": [
+        "https://prod.cursor.com/docs/mcp/install-links"
+      ],
+      "installation": {
+        "en": "Add the Streamable HTTP MCP URL using Cursor MCP settings or a verified install link. MCP tools alone do not install the Skill.",
+        "zhCN": "在 Cursor MCP 设置或经验证的安装链接中添加 Streamable HTTP MCP 地址；添加工具本身不会安装 Skill。"
+      },
+      "resources": {
+        "packageManifests": [],
+        "skillDirectory": null,
+        "mcpConfiguration": "plugins/grandet-api-price-finder/.mcp.json"
+      }
+    },
+    {
+      "appId": "cherry-studio",
+      "appName": "Cherry Studio",
+      "id": "skill-directory",
+      "mode": "SKILL_DIRECTORY",
+      "status": "DOCUMENTED",
+      "validation": "NOT_RUN",
+      "documentation": [
+        "https://www.cherryai.com/docs/en/advanced-basic/extensions/skills/"
+      ],
+      "installation": {
+        "en": "Import the complete Skill folder or ZIP using Settings → Skills, then start a new agent/session. If that session can read webpages or make HTTP requests, the Skill uses its HTTP fallback directly; a separate MCP connection is optional. Confirm the installed version and session capabilities during acceptance.",
+        "zhCN": "通过设置 → Skills 导入完整 Skill 文件夹或 ZIP，再新建 agent/会话。该会话能读取网页或发起 HTTP 请求时，Skill 可直接使用 HTTP fallback；MCP 连接可选。验收时核实所装版本和会话能力。"
+      },
+      "resources": {
+        "packageManifests": [],
+        "skillDirectory": "skills/grandet-api-price-finder",
+        "mcpConfiguration": null
+      }
+    },
+    {
+      "appId": "cherry-studio",
+      "appName": "Cherry Studio",
+      "id": "http-mcp",
+      "mode": "MCP_HTTP",
+      "status": "DOCUMENTED",
+      "validation": "NOT_RUN",
+      "documentation": [
+        "https://www.cherryai.com/docs/en/advanced-basic/extensions/mcp/"
+      ],
+      "installation": {
+        "en": "In Settings → MCP → Add, use the Streamable HTTP URL and enable it for the active agent/session. MCP tools alone do not install the Skill.",
+        "zhCN": "在设置 → MCP → 添加中使用 Streamable HTTP 地址，并对当前 agent/会话启用；添加工具本身不会安装 Skill。"
+      },
+      "resources": {
+        "packageManifests": [],
+        "skillDirectory": null,
+        "mcpConfiguration": "plugins/grandet-api-price-finder/.mcp.json"
+      }
+    }
+  ],
+  "unknownApplicationIds": [
+    "opencode",
+    "gemini-cli",
+    "windsurf",
+    "cline",
+    "hermes",
+    "openclaw",
+    "workbuddy",
+    "trae",
+    "kilo-code",
+    "continue",
+    "roo-code",
+    "chatbox"
+  ],
+  "generatedFrom": [
+    "lib/control-plane/integrations/client-adapter-registry.ts",
+    "lib/control-plane/integrations/common-client-guides.ts",
+    "lib/control-plane/integrations/client-application-metadata.ts"
+  ]
+}

@@ -4,7 +4,10 @@
   "status": "LIVE_ACCEPTED",
   "desktopReleaseStatus": "NOT_RELEASED",
   "automaticDataUpdatesEnabled": false,
-  "repositoryScope": "Catalogue tool and reviewed public facts; desktop client and full website source are not released here",
+  "repositoryScope": "Grandet Price Finder Skill 0.3.0 public trial, installation materials, catalogue tool and reviewed public facts; desktop client and full website source are not released here",
+  "skillVersion": "0.3.0",
+  "skillReleaseStatus": "PUBLIC_PREVIEW",
+  "skillInstallation": "INSTALL.md",
   "catalogueRelease": "data/RELEASE-v3.json",
   "catalogueReleaseStatusPolicy": "Prior release metadata retains its original publication-time status; this file describes current website status"
 }

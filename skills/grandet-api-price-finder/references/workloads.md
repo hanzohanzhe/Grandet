@@ -1,0 +1,28 @@
+# Workload and target app
+
+Use declared information already in the conversation. Do not ask for history or require token calculations before helping. Target selection follows explicit `targetApp`, then explicitly supplied legacy `client`, then generic defaults. `host` is attribution only and never selects the target, protocol or preset. When the user explicitly wants to use the API in the current app, send that app as `targetApp`; when no destination is stated, omit it and make a generic lookup. Omit missing metadata without asking.
+
+The querying computer's OS is not necessarily the target computer's OS, especially for cloud bots and cross-app requests. If only the source OS is known, omit `os`; do not ask just to fill it. A cloud bot's current model is not evidence of the model the user wants to buy.
+
+Read [the generated app catalogue](app-catalog.md) only when identifying an app or checking its inference profiles. Use `grandet_list_apps(app=...)` when available and current capability details are needed. Do not copy a separate hard-coded application/protocol matrix into the response.
+
+| Known requirement | Query choice |
+|---|---|
+| Target app is known | Send its known app ID as `targetApp`; preserve the source app in `host`. A safe known ID can remain a target even when absent from the current catalogue |
+| User named an actual inference profile | Send that catalogue `targetProfile` with an explicit target; do not substitute an MCP/runtime profile |
+| User specified a protocol | Send the exact supported endpoint value; preserve the user's configuration |
+| Target has several inference protocols | Omit profile/protocol unless explicitly chosen; let the server compare its supported set |
+| Long answers dominate | Use `mix=long_output` |
+| No usage ratios or special workload given | Let the target's server preset apply; unknown context uses chat |
+
+Endpoint filter values are `openai`, `openai-response` (singular), `anthropic` and `gemini`; profile IDs such as `openai-responses` are a different namespace. A declaration is not proof of real inference execution. A new target/profile protocol conflict returns an actionable error; never remove the target to bypass it. Old `client` plus an explicit protocol can remain a compatibility override, but `EXPLICIT_PROTOCOL_UNVERIFIED_APP_ROUTE` must not be described as verified app compatibility.
+
+Missing inference evidence, including current Cursor/Windsurf definitions or an unlisted safe app ID, allows `PRICE_ONLY_UNVERIFIED_APP_ROUTE`: keep the target, give the server's price choice and state briefly that app setup is unverified. Do not ask the user to supply a protocol just to repair our catalogue gap. If the user already specified a protocol, send it; `EXPLICIT_PROTOCOL_UNVERIFIED_APP_ROUTE` and a null profileId still mean generic protocol guidance, not native integration. Known platform incompatibility and explicit profile/protocol conflicts remain actionable constraints; never remove the target or OS to bypass them. None of these conditions call for webpage fallback.
+
+Initial presets are chat 75/0/25, coding 20/70/10, and long_output 35/0/65 for uncached input/cache read/output. These are comparison scenarios, not measured behavior. Coding proportions require later calibration; never claim to have observed a 70% cache rate. The server's returned mix is authoritative.
+
+For explicit proportions, both MCP and HTTP use the string `mix=in:20,cacheRead:70,out:10`. The server also supports a `cacheWrite` bucket, defaulting to zero when omitted. Input, cache read, cache write and output are mutually exclusive token buckets; if the user says input includes cached tokens, subtract cache only when the figures share a denominator. Otherwise use the suitable preset and label the assumption, or ask one essential question if the answer changes compatibility. Preserve `scope.mixOrigin` (`PRESET` or `USER_DECLARED`) and `scope.preset`; neither claims measured history.
+
+Keep absolute token counts local. Under the supported linear per-token comparison, proportions determine ordering; monthly tokens can explain scale only when every needed rate and unit is known. Never extrapolate a credit rate into cash spending, or ignore fixed fees, request charges and tiers that the result does not cover.
+
+Do not infer model identity from a marketing nickname when the resolver returns multiple variants. A short clarification such as “Which exact model/version?” is appropriate; a long supplier preference form is not.
