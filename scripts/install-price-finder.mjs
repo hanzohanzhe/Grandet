@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: Apache-2.0
-import { createHash, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import { lstat, mkdir, readFile, readdir, rename, rmdir, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { openReceipt, digest, notice, sources } from './installation-receipts.mjs';
 
 const productVersion = '0.3.0';
-const sourceBuild = 'grandet-skill-0.3.0-build.20261015b';
+const sourceBuild = 'grandet-skill-0.3.0-build.20261015c';
 const skillName = 'grandet-api-price-finder';
 const scriptRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const defaultSource = await lstat(join(scriptRoot, 'SKILL.md')).then(() => scriptRoot, () => join(scriptRoot, 'skills', skillName));
@@ -218,7 +218,7 @@ async function main() {
   await receipt.complete(journal);
   report.receipt=await receipt.flush();
   if (!existing) await rmdir(transaction); // Only our now-empty transaction directory.
-  report.contentSha256 = createHash('sha256').update([...payload].sort(([a], [b]) => a.localeCompare(b)).map(([path, bytes]) => `${path}\0${createHash('sha256').update(bytes).digest('hex')}\n`).join('')).digest('hex');
+  report.contentSha256 = content; // Same canonical digest as the installation receipt.
   return report;
   } catch(error) {
     if(receipt)await receipt.failure({content:digest(payload),version:payload.get('SKILL.md').toString('utf8').match(/Package version:\s*`([^`]+)`/)?.[1],source:options['--receipt-source'],host:route.catalogAppId??route.id}).catch(()=>{});

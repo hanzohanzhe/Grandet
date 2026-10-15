@@ -4,7 +4,7 @@
 import argparse,hashlib,json,zipfile
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
-root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261015b';tag='skill-v0.3.0-build.20261015b'
+root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261015c';tag='skill-v0.3.0-build.20261015c'
 package=json.loads((a.package/'package-manifest.json').read_text())
 if package['version']!=version or package['sourceBuild']!=build or package['releasePackage'] is not True:raise ValueError('WRONG_PACKAGE_BUILD')
 a.out.mkdir(parents=True,exist_ok=True)
