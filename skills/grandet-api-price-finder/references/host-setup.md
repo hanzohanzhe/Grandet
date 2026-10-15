@@ -5,23 +5,24 @@ Goal: the user's app calls the chosen site with the chosen model. You prepare an
 ## 1. Collect the facts from the chosen row
 
 - **Site**: `sourceId` (for example `apijing.com`).
-- **Group**: `plan`. On New API sites the price depends on the token's group, so the user must pick this group when creating the token.
-- **Model name**: `modelName`, exactly as written.
-- **Protocols**: `endpointTypes` (`openai`, `openai-response`, `anthropic`, `gemini`).
-- **Target app**: the app the user named. If none, ask once: "接到哪个应用？"
-- The row's `integration` card gives the app's documented configuration format and docs link.
+- **Group**: `integration.tokenGroup`, or `plan` when it is null. On New API sites the price depends on the token's group, so the user must pick this group when creating the token.
+- **Model name**: `integration.model` (or `modelName`), exactly as written.
+- **Protocols**: `endpointTypes` (`openai`, `openai-response`, `anthropic`, `gemini`); `integration.endpointType` is the one Grandet matched to the target app.
+- **Target app**: the app the user named. If none, ask once: "接到哪个应用？" and query again with that `targetApp`, so the row's `integration` card fits that app.
+- The row's `integration` card gives the app's documented `configurationFormat`, `configurationPath`, `docsUrl` and `steps`. In `view=compact`, the row carries `integration.card`, an index into the top-level `integrationCards`; that card's `stepsTemplate` has `{{model}}` and `{{tokenGroup}}` to replace with the row's literal values.
 
 Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`. If the row does not offer it, say so and offer the next row that does.
 
 ## 2. Find the API address
 
-The site's own declaration comes first:
+Grandet records the address each site declares and returns it on the row:
 
-- Read `https://<site>/api/status` (read-only GET). On New API sites, `data.server_address` is the address the site declares.
-- Use it only if it is `https` and on the same domain as the site. If it is on another domain, show it and ask the user to confirm. If it is `http`, `localhost` or missing, use `https://<site>`.
-- Call this the **origin**. OpenAI-format clients use `<origin>/v1`. Anthropic and Gemini clients use `<origin>` and add their own paths.
+- `integration.baseUrlMode=BASE`: use `integration.baseUrl` as the **origin**. It is https and on the site's own domain.
+- `SUGGESTION`: the declared address is on another domain. Show it and ask the user to confirm it against the site's own docs before using it.
+- `INFO_ONLY`: the declared address is not https. Do not use it; use `https://<site>`.
+- `NONE` (or no `baseUrl` field on an older service): read `https://<site>/api/status` (read-only GET). On New API sites, `data.server_address` is the declared address. Apply the same rules: https on the same domain is the origin; another domain needs the user's confirmation; `http`, `localhost` or missing means `https://<site>`.
 
-Do not take an address from a homepage, a group description or a notice.
+OpenAI-format clients use `<origin>/v1`. Anthropic and Gemini clients use `<origin>` and add their own paths. Do not take an address from a homepage, a group description or a notice.
 
 ## 3. What the user does on the site
 
@@ -29,7 +30,7 @@ Tell the user exactly these three steps, then wait:
 
 1. 注册或登录 `https://<site>`。
 2. 充值（站点的门槛提示见查价结果）。
-3. 新建令牌（API Key）时，分组选「<plan>」。
+3. 新建令牌（API Key）时，分组选「<group>」。
 
 ## 4. The user stores the key locally
 
@@ -136,7 +137,7 @@ $k=Get-Content -Raw "$HOME\.grandet\keys\<site>"; $r=Invoke-RestMethod -Uri '<or
 ```
 
 - 200 and the model is listed: tell the user to restart the app (or open a new terminal) and try one message.
-- 401 or 403: the key is wrong or has no balance. Model missing: the token is probably in another group; ask the user to check the group is「<plan>」.
+- 401 or 403: the key is wrong or has no balance. Model missing: the token is probably in another group; ask the user to check the group is「<group>」.
 - A real request costs credit. Send one short request only if the user agrees, and only after the free check passes.
 - A group locked to one client (for example "仅限 CC") may still reject other apps on a real request; only connect it to that client.
 

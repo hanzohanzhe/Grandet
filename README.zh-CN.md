@@ -73,7 +73,8 @@
 | 仓库数据索引 | [机器可读索引](catalogue-index.json) · [给 AI 的阅读入口](llms.txt) |
 | Agent 查价（MCP） | 匿名 Streamable HTTP：`https://grandet.ai/mcp` |
 | HTTP 查价 | `https://grandet.ai/api/v1/board` · [接口说明](https://grandet.ai/public-data/price-finder.json) |
-| 中转站黑话表 | [Skill 内置版](skills/grandet-api-price-finder/references/glossary.md) |
+| HTTP 查免费额度 | `https://grandet.ai/api/v1/free-credits?q=gemini` |
+| 中转站黑话表 | [Skill 内置版](skills/grandet-api-price-finder/references/glossary.md) · [在线版](https://grandet.ai/public-data/relay-glossary.json) |
 
 本地开发需要 **Node.js 20+**，不依赖第三方包：
 

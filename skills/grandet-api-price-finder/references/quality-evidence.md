@@ -27,6 +27,6 @@ Use external search only to resolve an unclear supplier identity, or when the us
 
 State numerical test results only when an actually readable original report supports the model, route, date and denominator being discussed. If only a search title or excerpt is available, say it is a **search excerpt / 搜索摘要、原报告未核实**; normally omit its numbers from the short answer. Do not present it as a verified test, infer unshown details, or apply a cross-model score or sample count to the requested model.
 
-For price plus quality, keep the server's recommended choice and alternative, then add the applicable declaration or evidence gap in one short sentence. Do not turn that price choice into a quality ranking or silently replace the server's decision.
+For price plus quality, keep the server's lowest listed rows (`listings.lowest`), then add the applicable declaration or evidence gap in one short sentence. Do not turn that price choice into a quality ranking or silently replace the server's decision.
 
 When useful, suggest a small comparison with the same tasks and model settings, recording answer quality, failures and latency, as a next step. A suggestion is not a completed test or authorization to install a client, change routing, use keys or make paid supplier calls. No extra tracking request is sent; these remain ordinary catalogue/evidence queries under the existing statistics contract.

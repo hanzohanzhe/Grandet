@@ -5,7 +5,7 @@ Generated from Grandet relay glossary 1.0.0-draft (catalogue collected 2026-10-1
 How to use it:
 
 - A site labels a group for two reasons only: to state a usage constraint (top-up threshold, client-only, do-not-select, unavailable, banned uses) or to boast about quality or supply. Do not assume good faith. Constraints change how a group is shown; boasts are for understanding the user only and are never repeated.
-- Explain a term only from this list and say how sure it is: 文档 = framework docs or source code, 社区 = community posts, 目录 = only seen in Grandet's catalogue, 未核实 = no source. For a term not listed, say you do not know or look it up and cite the source.
+- Explain a term only from this list and say how sure it is: 文档 = framework docs or source code, 社区 = community posts, 目录 = only seen in Grandet's catalogue, 未核实 = no source. For a term not listed, look it up once with `grandet_glossary` (the latest published version); if it is not there either, say you do not know or look it up elsewhere and cite the source.
 - 上游来源词 (官key, 官转, 逆向, Kiro, 号池 …) are the site's own claims. If the user asks to filter by them ("只要官key"), filter by the site's label and say it is unverified.
 
 ## 站点与框架

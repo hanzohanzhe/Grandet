@@ -73,7 +73,8 @@ Please [open an issue](https://github.com/hanzohanzhe/Grandet/issues) if somethi
 | Repository data index | [Machine-readable index](catalogue-index.json) · [Reading guide for AI](llms.txt) |
 | Agent price lookup (MCP) | Anonymous Streamable HTTP: `https://grandet.ai/mcp` |
 | HTTP price lookup | `https://grandet.ai/api/v1/board` · [API description](https://grandet.ai/public-data/price-finder.json) |
-| Relay jargon glossary | [Built into the Skill](skills/grandet-api-price-finder/references/glossary.md) |
+| HTTP free-credit lookup | `https://grandet.ai/api/v1/free-credits?q=gemini` |
+| Relay jargon glossary | [Built into the Skill](skills/grandet-api-price-finder/references/glossary.md) · [Online](https://grandet.ai/public-data/relay-glossary.json) |
 
 Local development needs **Node.js 20+** and no third-party packages:
 
