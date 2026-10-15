@@ -89,7 +89,7 @@ test('the package includes only audited files with hashes matching every shipped
   assert.deepEqual(Object.keys(receipt.files).sort(), files);
   assert.equal(receipt.schema, 'grandet-price-finder-package/v1');
   for (const file of files) {
-    assert.ok(['LICENSE', 'README.md', 'INSTALL.md', 'application-distribution.json', 'install/chatgpt-editor.md', 'scripts/install-price-finder.mjs', 'scripts/installation-receipts.mjs','scripts/installation-receipts-source-build.json','scripts/verify-installation.py','installation-receipts.md','installation-routes.json','installation-receipts-source-build.json', ...adapters.map((app) => `adapters/${app}.md`), ...Object.values(receipt.resourceTargets)].includes(file) || /^skills\/grandet-api-price-finder\/(?:SKILL\.md|agents\/openai\.yaml|references\/[a-z-]+\.md|scripts\/verify-installation\.py)$/.test(file));
+    assert.ok(['LICENSE', 'README.md', 'INSTALL.md', 'application-distribution.json', 'install/chatgpt-editor.md', 'scripts/install-price-finder.mjs', 'scripts/installation-receipts.mjs','scripts/installation-receipts-source-build.json','scripts/verify-installation.py','installation-receipts.md','installation-routes.json','installation-receipts-source-build.json', ...adapters.map((app) => `adapters/${app}.md`), ...Object.values(receipt.resourceTargets)].includes(file) || /^skills\/grandet-api-price-finder\/(?:SKILL\.md|agents\/openai\.yaml|references\/[a-z-]+\.md|scripts\/verify-installation\.py|scripts\/connect(?:-mcp)?\.mjs)$/.test(file));
     assert.equal(createHash('sha256').update(await readFile(join(out, file))).digest('hex'), receipt.files[file]);
   }
 });

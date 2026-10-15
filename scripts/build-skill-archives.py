@@ -4,7 +4,7 @@
 import argparse,hashlib,json,zipfile
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
-root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261015c';tag='skill-v0.3.0-build.20261015c'
+root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261015d';tag='skill-v0.3.0-build.20261015d'
 package=json.loads((a.package/'package-manifest.json').read_text())
 if package['version']!=version or package['sourceBuild']!=build or package['releasePackage'] is not True:raise ValueError('WRONG_PACKAGE_BUILD')
 a.out.mkdir(parents=True,exist_ok=True)
@@ -34,7 +34,7 @@ paths.update(str(f.relative_to(root)) for f in (root/'skills/grandet-api-price-f
 paths.update(['LICENSES/Apache-2.0.txt','docs/skills/QUICKSTART.md','docs/skills/INSTALL.md','docs/skills/installation-receipts.md','docs/skills/installation-routes.json','scripts/install-price-finder.mjs','scripts/installation-receipts.mjs','scripts/verify-installation.py','docs/skills/application-distribution.generated.json'])
 paths.update(str(f.relative_to(root)) for f in (root/'docs/skills/chat-adapters').glob('*.md'))
 paths.update(str(f.relative_to(root)) for f in (root/'plugins/grandet-api-price-finder').rglob('*') if f.is_file())
-manifest={'schema':'grandet.skill-downloads/v1','version':version,'buildId':build,'status':'LOCAL_CANDIDATE_NOT_PUBLISHED','repository':'https://github.com/hanzohanzhe/Grandet','installation':'../INSTALL.md','license':'Apache-2.0','plannedTag':tag,'receiptSupport':'INCLUDED','files':records,'sourceFiles':{n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in sorted(paths)},'verification':{'archiveRoundTrip':'PASS','packageHashes':'PASS','nativeArchiveIncludesLicense':True,'allHostsNativeAcceptance':'NOT_COMPLETE','nativeAcceptance':'NOT_RUN','historicalInstallationsBackfilled':False},'reproducibility':'sourceFiles pins exclude generated archives and this manifest; post-upload registry independently binds actual source commit and asset IDs'}
+manifest={'schema':'grandet.skill-downloads/v1','version':version,'buildId':build,'status':'RELEASE_BUILD','repository':'https://github.com/hanzohanzhe/Grandet','installation':'../INSTALL.md','license':'Apache-2.0','plannedTag':tag,'receiptSupport':'INCLUDED','files':records,'sourceFiles':{n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in sorted(paths)},'verification':{'archiveRoundTrip':'PASS','packageHashes':'PASS','nativeArchiveIncludesLicense':True,'allHostsNativeAcceptance':'NOT_COMPLETE','nativeAcceptance':'NOT_RUN','historicalInstallationsBackfilled':False},'reproducibility':'sourceFiles pins exclude generated archives and this manifest; post-upload registry independently binds actual source commit and asset IDs'}
 output=a.out/'manifest.json'
 with output.open('x') as f:f.write(json.dumps(manifest,indent=2)+'\n')
 print(json.dumps({'files':records,'manifestSha256':hashlib.sha256(output.read_bytes()).hexdigest()}))

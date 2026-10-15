@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { openReceipt, digest, notice, sources } from './installation-receipts.mjs';
 
 const productVersion = '0.3.0';
-const sourceBuild = 'grandet-skill-0.3.0-build.20261015c';
+const sourceBuild = 'grandet-skill-0.3.0-build.20261015d';
 const skillName = 'grandet-api-price-finder';
 const scriptRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const defaultSource = await lstat(join(scriptRoot, 'SKILL.md')).then(() => scriptRoot, () => join(scriptRoot, 'skills', skillName));

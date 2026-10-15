@@ -1,14 +1,14 @@
 # Installation receipts
 
-The integrated installation build `grandet-skill-0.3.0-build.20261015c` for Grandet **0.3.0** sends a small receipt during installation or an explicit later installation verification/flush. Ordinary price questions send no extra tracking request. A receipt is a client report, not a person, account or independent proof of use.
+The integrated installation build `grandet-skill-0.3.0-build.20261015d` for Grandet **0.3.0** sends a small receipt during installation or an explicit later installation verification/flush. Ordinary price questions send no extra tracking request. A receipt is a client report, not a person, account or independent proof of use.
 
-The request contains only random installation/event UUIDs, event revision, operation, Skill version, file-content SHA-256, known source category, host/scope categories, verification level, occurrence time and test classification. The server adds receipt time. It collects no local path, username, account, chat, query, key, device fingerprint or installer stdout. Raw records are retained for 24 months; later archive policy is separate.
+The request contains only random installation/event UUIDs, event revision, operation, Skill version, file-content SHA-256, known source category, host/scope categories, verification level, occurrence time and a test flag that is always false. The server adds receipt time. It collects no local path, username, account, chat, query, key, device fingerprint or installer stdout. Raw records are retained for 24 months; later archive policy is separate.
 
 Disable sending with `--no-telemetry` or `GRANDET_INSTALL_TELEMETRY=0`. Installation and readback still work offline or with reporting blocked. Disabling also clears this installation's unsent queue. Do not download again to repair statistics. Deleting local receipt state loses its continuity; it does not prove a fresh installation.
 
 ## Local file installation
 
-The `skill-v0.3.0-build.20261015c` ZIP includes the complete Skill, receipt-aware Node installer, receipt module, Python verifier and build manifest. The `.skill` includes these same tools inside its one native Skill root. From the extracted ZIP use `node scripts/install-price-finder.mjs --app codex --receipt-source release_zip`. Without Node, use the bundled Python 3 tool:
+The `skill-v0.3.0-build.20261015d` ZIP includes the complete Skill, receipt-aware Node installer, receipt module, Python verifier and build manifest. The `.skill` includes these same tools inside its one native Skill root. From the extracted ZIP use `node scripts/install-price-finder.mjs --app codex --receipt-source release_zip`. Without Node, use the bundled Python 3 tool:
 
 ```sh
 python3 scripts/verify-installation.py --source skills/grandet-api-price-finder --destination <actual-persistent-skill-folder> --host codex --scope user --receipt-source release_zip
@@ -30,7 +30,7 @@ There are at most three attempts per queued event and ten events per invocation,
 
 `files_verified` confirms local bytes only. `host_accepted` and `session_triggered` require real host evidence. A later explicit Python `--verification host_accepted --host-confirmed` or `--verification session_triggered --host-confirmed` raises the last transaction's revision, retaining its ID, operation and occurrence time. Never use those switches based on file-copy success. All package `nativeAcceptance` values remain `NOT_RUN` until separately recorded host tests. Native save, enabling, binding, network reachability and natural new-session trigger are different checks.
 
-The public endpoint is `POST https://grandet.ai/api/community/v1/installation-events`. An alternate endpoint is allowed only for `--test-mode` (Python) or isolated `--home` (Node), and only on loopback HTTP. Test receipts are marked and excluded. Never test against production. Detailed events and exports are OWNER-only. Public download counts, received install receipts and recorded successful price lookups are separate metrics.
+The public endpoint is `POST https://grandet.ai/api/community/v1/installation-events`. An alternate endpoint is allowed only for `--test-mode` (Python) or isolated `--home` (Node), and only on loopback HTTP. Every receipt counts, test installations included; nothing is marked as a test. Never test against production. Detailed events and exports are OWNER-only. Public download counts, received install receipts and recorded successful price lookups are separate metrics.
 
 ## Native editors and cloud assistants
 
@@ -38,4 +38,4 @@ ChatGPT/Claude import, text editors, Grok Bot, Your dot, Muse, Cursor Cloud priv
 
 ## Artifact and version boundary
 
-The product/API version remains 0.3.0. Content build `grandet-skill-0.3.0-build.20261015c` uses distinct immutable assets under `skill-v0.3.0-build.20261015c`; its manifest records the new bytes and integrated tools. The earlier `skill-v0.3.0` assets and Git history remain historical and are not replaced. Counting begins with this build’s newly registered assets and actual receipts, with no historical installation backfill or forced reinstall. A local file check does not certify native host acceptance.
+The product/API version remains 0.3.0. Content build `grandet-skill-0.3.0-build.20261015d` uses distinct immutable assets under `skill-v0.3.0-build.20261015d`; its manifest records the new bytes and integrated tools. The earlier `skill-v0.3.0` assets and Git history remain historical and are not replaced. Counting begins with this build’s newly registered assets and actual receipts, with no historical installation backfill or forced reinstall. A local file check does not certify native host acceptance.

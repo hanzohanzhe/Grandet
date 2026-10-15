@@ -26,11 +26,11 @@ class PackagedReceipts(unittest.TestCase):
      source=extracted if ext=='zip' else extracted/'grandet-api-price-finder'
      for n in ['scripts/install-price-finder.mjs','scripts/installation-receipts.mjs','scripts/verify-installation.py','installation-receipts-source-build.json','INSTALL.md']:
       self.assertTrue((source/n).is_file(),n)
-     manifest=json.loads((source/'package-manifest.json').read_text());self.assertEqual(manifest['version'],'0.3.0');self.assertEqual(manifest['sourceBuild'],'grandet-skill-0.3.0-build.20261015c');self.assertTrue(manifest['releasePackage'])
+     manifest=json.loads((source/'package-manifest.json').read_text());self.assertEqual(manifest['version'],'0.3.0');self.assertEqual(manifest['sourceBuild'],'grandet-skill-0.3.0-build.20261015d');self.assertTrue(manifest['releasePackage'])
      for n,h in manifest['files'].items():self.assertEqual(hashlib.sha256((source/n).read_bytes()).hexdigest(),h,n)
      home=base/(ext+'-node-home');r=run(['node','scripts/install-price-finder.mjs','--app','codex','--home',str(home),'--receipt-source','release_'+ext,'--receipt-endpoint',url],source)
-     self.assertEqual(r['productVersion'],'0.3.0');self.assertEqual(r['sourceBuild'],'grandet-skill-0.3.0-build.20261015c');self.assertEqual(r['nativeAcceptance'],'NOT_RUN')
-     event=events[-1];self.assertEqual(event['operation'],'install');self.assertEqual(event['verification'],'files_verified');self.assertTrue(event['test_mode']);self.assertEqual(event['content_sha256'],digest(home/'.agents/skills/grandet-api-price-finder'))
+     self.assertEqual(r['productVersion'],'0.3.0');self.assertEqual(r['sourceBuild'],'grandet-skill-0.3.0-build.20261015d');self.assertEqual(r['nativeAcceptance'],'NOT_RUN')
+     event=events[-1];self.assertEqual(event['operation'],'install');self.assertEqual(event['verification'],'files_verified');self.assertFalse(event['test_mode']);self.assertEqual(event['exclusion_reason'],'none');self.assertEqual(event['content_sha256'],digest(home/'.agents/skills/grandet-api-price-finder'))
      target=base/(ext+'-python-home')/'skills/grandet-api-price-finder';pySource='skills/grandet-api-price-finder' if ext=='zip' else '.'
      run(['python3','scripts/verify-installation.py','--source',pySource,'--destination',str(target),'--host','codex','--scope','user','--receipt-source','release_'+ext,'--test-mode','--receipt-endpoint',url],source)
      self.assertEqual(events[-1]['operation'],'install');self.assertEqual(events[-1]['content_sha256'],event['content_sha256']);self.assertEqual(events[-1]['content_sha256'],digest(target))

@@ -7,16 +7,16 @@ p=argparse.ArgumentParser();p.add_argument('--release-json',type=Path,required=T
 root=Path(__file__).resolve().parents[1];manifest_bytes=(root/'downloads/manifest.json').read_bytes()
 m=json.loads(manifest_bytes);r=json.loads(a.release_json.read_text())
 if not re.fullmatch(r'[a-f0-9]{40}',a.commit):raise ValueError('FIXED_SOURCE_COMMIT_REQUIRED')
-if m.get('version')!='0.3.0' or m.get('buildId')!='grandet-skill-0.3.0-build.20261015c':raise ValueError('WRONG_BUILD')
+if m.get('version')!='0.3.0' or m.get('buildId')!='grandet-skill-0.3.0-build.20261015d':raise ValueError('WRONG_BUILD')
 if r.get('draft') is not False:raise ValueError('PUBLIC_BUILD_RELEASE_REQUIRED')
-if r.get('tag_name')!='skill-v0.3.0-build.20261015c' or type(r.get('id')) is not int:raise ValueError('RELEASE_IDENTITY_MISMATCH')
+if r.get('tag_name')!='skill-v0.3.0-build.20261015d' or type(r.get('id')) is not int:raise ValueError('RELEASE_IDENTITY_MISMATCH')
 if not re.fullmatch(r'\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?Z',a.included_at):raise ValueError('UTC_INCLUSION_TIME_REQUIRED')
 assets=[]
 for file in m['files']:
     matches=[x for x in r.get('assets',[]) if x.get('name')==file['file']]
     if len(matches)!=1:raise ValueError('MISSING_OR_DUPLICATE_RELEASE_ASSET')
     x=matches[0];url=x.get('browser_download_url','')
-    if type(x.get('id')) is not int or x.get('size')!=file['bytes'] or url!='https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261015c/'+file['file']:raise ValueError('ASSET_METADATA_MISMATCH')
+    if type(x.get('id')) is not int or x.get('size')!=file['bytes'] or url!='https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261015d/'+file['file']:raise ValueError('ASSET_METADATA_MISMATCH')
     if x.get('digest') not in [None,'sha256:'+file['sha256']]:raise ValueError('GITHUB_DIGEST_MISMATCH')
     if type(x.get('download_count')) is not int or x['download_count']<0:raise ValueError('BASELINE_COUNT_REQUIRED')
     b=(root/'downloads'/file['file']).read_bytes()

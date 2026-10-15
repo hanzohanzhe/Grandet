@@ -36,7 +36,7 @@ No need to mention Grandet or attach files again. Price lookups need no account 
 4. It checks the key, group and model name without spending credit.
 5. Say "undo" to restore the previous setup.
 
-Step-by-step changes following each app's official documentation are written for Codex, Claude Code, OpenCode, Kilo Code, Continue and Gemini CLI. Other apps get a field card and their documentation link. In a cloud chat, it can only hand you the command and configuration to run yourself.
+For Codex, Claude Code, OpenCode, Kilo Code, Continue and Gemini CLI, the Skill's own connect program (`scripts/connect.mjs`, also usable as a local MCP server) makes the change the same way every time. Other apps get a field card and their documentation link. In a cloud chat, it can only hand you the command and configuration to run yourself.
 
 ## Try asking
 

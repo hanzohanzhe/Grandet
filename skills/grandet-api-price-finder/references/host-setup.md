@@ -32,7 +32,42 @@ Tell the user exactly these three steps, then wait:
 2. 充值（站点的门槛提示见查价结果）。
 3. 新建令牌（API Key）时，分组选「<group>」。
 
-## 4. The user stores the key locally
+## Use the connect executor (preferred)
+
+This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). It previews, backs up, writes, checks for free and undoes the connection for **Codex, Claude Code, OpenCode, Kilo Code, Continue and Gemini CLI**. Use it instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these six, or the executor stops with a code that says to edit by hand.
+
+Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs"`. Fill the values from the row (section 1) and the address rules (section 2). Pass values exactly; quote ones that contain spaces or non-ASCII text.
+
+1. **Preview**, then show the user the diff and notes, and the three steps on the site (section 3):
+   `CONNECT preview --app <codex|claude-code|opencode|kilo-code|continue|gemini-cli> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"`
+   - `baseUrlMode=SUGGESTION`: ask the user to confirm the address first, then add `--confirmed-other-domain`.
+   - The output ends with `plan-hash <hash>`; keep it.
+2. **Apply** only after the user agrees: the same options with `apply --yes --plan-hash <hash>`. It backs up the file next to it, writes, and reads it back. If the target app is the app you are running in, run step 4 first and say the change takes effect after a restart.
+3. **The user stores the key.** Ask them to run this in their own terminal, where typing is hidden and the key stays on their computer:
+   `CONNECT key --app <app> --site <sourceId>`
+   Never run it yourself with a key, never pass a key as an argument, and never ask for the key in chat.
+4. **Free check:** `CONNECT verify --app <app> --site <sourceId> --base-url <origin> --model <model>`. It lists the models the key can use, without spending credit.
+   - `MODEL_LISTED`: ready. Tell the user to restart the app (or open a new terminal) and try one message.
+   - `MODEL_NOT_LISTED`: the key works but the token is probably in another group; ask the user to check the group is「<group>」.
+   - `KEY_REJECTED`: wrong key, expired, or no balance.
+   - A real request costs credit: send one short request only if the user agrees, after this check passes.
+5. **Undo:** `CONNECT restore` undoes the latest connection from its backups (`--app <app>` for a specific app). Add `--delete-key` only if the user wants the stored key removed.
+
+When it stops with a code:
+
+| Code | What to do |
+|---|---|
+| `PROTOCOL_NOT_SUPPORTED_BY_APP` | The offer does not speak the protocol the app needs; offer the next row that does |
+| `BASE_URL_OTHER_DOMAIN` | Ask the user to confirm the address, then add `--confirmed-other-domain` |
+| `BASE_URL_NOT_HTTPS` | Use `https://<site>` |
+| `COMMENTS_PRESENT`, `COMPLEX_TOML`, `COMPLEX_YAML`, `INVALID_JSON` | The file cannot be rewritten safely; use the manual steps below for this app |
+| `PLAN_CHANGED` | The file changed since the preview; preview again |
+| `CHANGED_SINCE_APPLY` | The user edited the file after Grandet wrote it; ask before adding `--force` to restore |
+| `KEY_NOT_STORED`, `NOT_CONNECTED_YET` | Do the steps in order: apply, then the user stores the key, then verify |
+
+If the app can use MCP but you cannot run commands, the same executor runs as a local MCP server: `node "<folder of this SKILL.md>/scripts/connect-mcp.mjs"` (stdio). Its tools are `grandet_connect_preview`, `grandet_connect_apply` (pass `confirmed: true` only after the user agrees, plus the preview `planHash`), `grandet_connect_verify` and `grandet_connect_restore`. Adding it to the app's MCP settings is a one-time step for the user. The key is still stored by the user with the `key` command above.
+
+## 4. The user stores the key locally (manual)
 
 The key is kept in a file only the user can read and exported as an environment variable. The user runs one command in their own terminal; it does not show the key while typing. Name the variable `GRANDET_<SITE>_KEY`, with the site in upper case and every non-letter or digit replaced by `_` (for example `GRANDET_APIJING_COM_KEY`). Replace `<site>`, `<VAR>` and the profile file (`~/.zshrc` for zsh, `~/.bashrc` for bash) before showing the command.
 
@@ -50,7 +85,7 @@ $d="$HOME\.grandet\keys"; New-Item -ItemType Directory -Force $d | Out-Null; $s=
 
 New terminals and newly started apps see the variable. Ask the user to say "好了" when done.
 
-## 5. Write the configuration
+## 5. Write the configuration (manual)
 
 For every file: read the current content, show the user the exact lines you will add or change, copy the file to `<file>.grandet-backup-<YYYYMMDD-HHMMSS>`, and write only after the user confirms. Keep every other setting. Use a provider ID made from the site (for example `apijing`). On Windows, `~` is `%USERPROFILE%`.
 

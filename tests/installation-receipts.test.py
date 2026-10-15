@@ -37,7 +37,7 @@ class Receipts(unittest.TestCase):
     def test_sources_and_no_leaked_fields(self):
         for source in ['release_zip','release_skill','source','checkout','raw','cache','local','unknown']:
             self.node('--receipt-source',source)
-            e=self.events[-1];self.assertEqual(set(e),KEYS);self.assertEqual(e['source'],source);self.assertEqual(e['verification'],'files_verified');self.assertTrue(e['test_mode']);self.assertNotIn(str(self.home),json.dumps(e))
+            e=self.events[-1];self.assertEqual(set(e),KEYS);self.assertEqual(e['source'],source);self.assertEqual(e['verification'],'files_verified');self.assertFalse(e['test_mode']);self.assertEqual(e['exclusion_reason'],'none');self.assertNotIn(str(self.home),json.dumps(e))
         self.assertEqual(self.events[0]['operation'],'install');self.assertTrue(all(e['operation']=='reuse' for e in self.events[1:]));self.assertEqual(len({e['installation_id'] for e in self.events}),1)
     def test_alias_shared_installation_id(self):
         self.node();first=self.events[-1]
@@ -89,7 +89,7 @@ class Receipts(unittest.TestCase):
         self.node('--dry-run');self.assertFalse(self.home.exists());self.assertEqual(self.events,[])
         bad=Path(self.temp.name)/'bad';shutil.copytree(SOURCE,bad);(bad/'references/workloads.md').unlink();r=self.node('--source',str(bad),success=False);self.assertNotEqual(r.returncode,0);self.assertEqual(self.events,[])
     def test_source_build_is_030_compatible_and_rejects_candidate_version(self):
-        result=self.node();self.assertEqual(result['productVersion'],'0.3.0');self.assertEqual(result['sourceBuild'],'grandet-skill-0.3.0-build.20261015c');self.assertEqual(self.events[-1]['skill_version'],'0.3.0')
+        result=self.node();self.assertEqual(result['productVersion'],'0.3.0');self.assertEqual(result['sourceBuild'],'grandet-skill-0.3.0-build.20261015d');self.assertEqual(self.events[-1]['skill_version'],'0.3.0')
         wrong=Path(self.temp.name)/'candidate';shutil.copytree(SOURCE,wrong);(wrong/'SKILL.md').write_text((wrong/'SKILL.md').read_text().replace('Package version: `0.3.0`','Package version: `0.3.1`'))
         before=len(self.events);result=self.node('--source',str(wrong),success=False);self.assertNotEqual(result.returncode,0);self.assertEqual(len(self.events),before)
     def test_reported_digest_matches_receipt_digest(self):

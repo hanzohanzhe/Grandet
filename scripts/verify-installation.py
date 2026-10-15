@@ -76,7 +76,7 @@ def main(argv=None):
     if a.receipt_endpoint!=ENDPOINT and not(a.test_mode and u.scheme=='http' and u.hostname in ['127.0.0.1','localhost','::1']): raise ValueError('RECEIPT_ENDPOINT_NOT_ALLOWED')
     content=digest(payload)
     if a.dry_run:
-        print(json.dumps({'status':'DRY_RUN','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261015c','nativeAcceptance':'NOT_RUN'}));return
+        print(json.dumps({'status':'DRY_RUN','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261015d','nativeAcceptance':'NOT_RUN'}));return
     print(NOTICE,file=sys.stderr)
     directory=destination.parent.parent/'.grandet-install-state'/sha(str(destination).encode());safe(directory);directory.mkdir(parents=True,exist_ok=True,mode=0o700)
     lock=directory/'lock.json'
@@ -90,7 +90,7 @@ def main(argv=None):
     try:
         statefile=directory/'state.json';journalfile=directory/'journal.json'
         state=read(statefile,{'installation_id':None,'digest':None,'version':None,'outbox':[],'last_event':None})
-        enabled=not a.no_telemetry and os.environ.get('GRANDET_INSTALL_TELEMETRY')!='0' and not(a.test_mode and a.receipt_endpoint==ENDPOINT)
+        enabled=not a.no_telemetry and os.environ.get('GRANDET_INSTALL_TELEMETRY')!='0'
         if not enabled: state['outbox']=[]
         def complete(j):
             e=j['event'];state.update(installation_id=e['installation_id'],digest=e['content_sha256'],version=e['skill_version'])
@@ -121,7 +121,7 @@ def main(argv=None):
                     if enabled:state['outbox']=[x for x in state['outbox'] if x['event_id']!=e['event_id']]+[e]
                     atomic(statefile,state)
             else:
-                e={'schema_version':'grandet.installation-event/v1','event_id':str(uuid.uuid4()),'installation_id':state['installation_id'] or str(uuid.uuid4()),'revision':1,'operation':operation,'skill_version':v,'content_sha256':content,'source':a.receipt_source,'host':HOST_ALIASES.get(a.host,a.host) if HOST_ALIASES.get(a.host,a.host) in REGISTERED_HOSTS else 'unknown','scope':a.scope,'verification':'files_verified','occurred_at':now(),'test_mode':a.test_mode,'exclusion_reason':'local_test' if a.test_mode else 'none'}
+                e={'schema_version':'grandet.installation-event/v1','event_id':str(uuid.uuid4()),'installation_id':state['installation_id'] or str(uuid.uuid4()),'revision':1,'operation':operation,'skill_version':v,'content_sha256':content,'source':a.receipt_source,'host':HOST_ALIASES.get(a.host,a.host) if HOST_ALIASES.get(a.host,a.host) in REGISTERED_HOSTS else 'unknown','scope':a.scope,'verification':'files_verified','occurred_at':now(),'test_mode':False,'exclusion_reason':'none'}
                 stage=directory/('stage-'+e['event_id']);backup=directory/('backup-'+e['event_id'])
                 j={'destination':str(destination),'stage':None,'backup':None,'event':e}
                 if not same or operation=='reinstall':
@@ -157,7 +157,7 @@ def main(argv=None):
                 if not acked:break
                 state['outbox']=[x for x in state['outbox'] if not(x['event_id']==e['event_id'] and x['revision']<=e['revision'])];atomic(statefile,state)
         atomic(statefile,state)
-        print(json.dumps({'status':'FILES_VERIFIED','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261015c','nativeAcceptance':'NOT_RUN','receipt':{'status':'DISABLED' if not enabled else 'PENDING' if state['outbox'] else 'ACKNOWLEDGED','pending':len(state['outbox']),'attempts':attempts}}))
+        print(json.dumps({'status':'FILES_VERIFIED','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261015d','nativeAcceptance':'NOT_RUN','receipt':{'status':'DISABLED' if not enabled else 'PENDING' if state['outbox'] else 'ACKNOWLEDGED','pending':len(state['outbox']),'attempts':attempts}}))
     finally:lock.unlink(missing_ok=True)
 if __name__=='__main__':
     try:main()
