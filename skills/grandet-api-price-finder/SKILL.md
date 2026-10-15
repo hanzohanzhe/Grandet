@@ -44,4 +44,4 @@ If you cannot edit files on the user's computer (for example a cloud chat), give
 - Which apps and protocols Grandet knows: [app catalogue](references/app-catalog.md) and [entry points](references/entrypoints.md). A listing is not a tested installation.
 - Installing this Skill: [installation](references/installation.md).
 
-Installation build: `grandet-skill-0.3.0-build.20261014` (product/API 0.3.0). Native acceptance: NOT_RUN.
+Installation build: `grandet-skill-0.3.0-build.20261015` (product/API 0.3.0). Native acceptance: NOT_RUN.

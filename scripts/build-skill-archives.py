@@ -4,7 +4,7 @@
 import argparse,hashlib,json,zipfile
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
-root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261014';tag='skill-v0.3.0-build.20261014'
+root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261015';tag='skill-v0.3.0-build.20261015'
 package=json.loads((a.package/'package-manifest.json').read_text())
 if package['version']!=version or package['sourceBuild']!=build or package['releasePackage'] is not True:raise ValueError('WRONG_PACKAGE_BUILD')
 a.out.mkdir(parents=True,exist_ok=True)
@@ -23,7 +23,7 @@ for ext,files in [('zip',entries),('skill',[('grandet-api-price-finder/'+n,b) fo
     output=a.out/f'grandet-api-price-finder-{version}.{ext}'
     with zipfile.ZipFile(output,'x',zipfile.ZIP_DEFLATED) as z:
         for arc,body in files:
-            info=zipfile.ZipInfo(arc,date_time=(2026,10,14,0,0,0));info.create_system=0;info.external_attr=0o100644<<16;info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,body)
+            info=zipfile.ZipInfo(arc,date_time=(2026,10,15,0,0,0));info.create_system=0;info.external_attr=0o100644<<16;info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,body)
     with zipfile.ZipFile(output) as z:
         if z.testzip():raise ValueError('BAD_ARCHIVE')
         for arc,body in files:
