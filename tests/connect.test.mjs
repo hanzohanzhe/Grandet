@@ -42,6 +42,31 @@ test('codex: preview, apply, key, restore keep other settings byte-exact', async
   await assert.rejects(restore({ home: h }), { code: 'NOTHING_TO_RESTORE' });
 });
 
+test('codex key and undo: a profile Grandet created is removed, others come back byte-exact, re-running key keeps one line', async () => {
+  const fresh = await home(); const opts = base(fresh, 'codex');
+  await apply({ ...opts, yes: true });
+  await storeKey(opts, KEY);
+  assert.equal(await read(join(fresh, '.profile')), `export GRANDET_APIJING_COM_KEY="$(cat '${join(fresh, '.grandet/keys/apijing.com')}')"  # grandet:apijing.com\n`);
+  await storeKey(opts, KEY);
+  assert.equal((await read(join(fresh, '.profile'))).split('\n').filter((l) => l.includes('grandet:apijing.com')).length, 1);
+  await restore({ home: fresh });
+  await assert.rejects(stat(join(fresh, '.profile')), 'a profile file created by Grandet is removed');
+  await assert.rejects(stat(join(fresh, '.codex/config.toml')));
+  const kept = await home(); await writeFile(join(kept, '.bashrc'), 'alias ll="ls -l"');
+  const o2 = base(kept, 'codex');
+  await apply({ ...o2, yes: true }); await storeKey(o2, KEY);
+  await writeFile(join(kept, '.zshrc'), '# zsh\n');
+  await restore({ home: kept });
+  assert.equal(await read(join(kept, '.bashrc')), 'alias ll="ls -l"', 'no trailing newline added or left behind');
+  assert.equal(await read(join(kept, '.zshrc')), '# zsh\n');
+});
+
+test('preview gives the exact key command with this script path', async () => {
+  const h = await home(); const p = publicPlan(await plan(base(h, 'opencode', { protocol: 'openai' })));
+  assert.equal(p.keyCommand, `node "${script}" key --app opencode --site apijing.com --home "${h}"`);
+  assert.ok(p.steps.some((x) => x.includes(p.keyCommand)));
+});
+
 test('codex refuses protocols it cannot use and multi-line TOML', async () => {
   const h = await home();
   await assert.rejects(plan(base(h, 'codex', { protocol: 'anthropic' })), { code: 'PROTOCOL_NOT_SUPPORTED_BY_APP' });
@@ -197,7 +222,9 @@ test('MCP: lists four tools and previews without writing', async () => {
   send({ jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'grandet_connect_preview', arguments: { app: 'codex', site: 'apijing.com', baseUrl: 'https://apijing.com', model: 'gpt-6.1-sol', home: h } } });
   const r = await wait(3); assert.equal(r.result.isError, false); assert.match(r.result.content[0].text, /model_provider/);
   send({ jsonrpc: '2.0', id: 4, method: 'tools/call', params: { name: 'grandet_connect_apply', arguments: { app: 'codex', site: 'apijing.com', model: 'gpt-6.1-sol', home: h } } });
-  assert.equal((await wait(4)).result.isError, true, 'apply without confirmed=true is refused');
+  const refused = await wait(4);
+  assert.equal(refused.result.isError, true, 'apply without confirmed=true is refused');
+  assert.match(refused.result.content[0].text, /confirmed: true/); assert.doesNotMatch(refused.result.content[0].text, /--yes/);
   await assert.rejects(stat(join(h, '.codex/config.toml')));
   child.stdin.end(); child.kill();
 });

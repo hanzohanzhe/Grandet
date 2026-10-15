@@ -8,11 +8,12 @@ import { execFileSync } from 'node:child_process';
 import { copyFile, mkdir, readFile, rename, rm, stat, writeFile, chmod } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { dirname, join, resolve, isAbsolute } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const VERSION = '0.3.0';
 const PLACEHOLDER = 'GRANDET_KEY_PLACEHOLDER';
 const PROTOCOLS = ['openai', 'openai-response', 'anthropic', 'gemini'];
+const SELF = fileURLToPath(import.meta.url);
 
 export const APPS = {
   codex: { name: 'Codex', protocols: ['openai-response'], file: (h, env) => join(env.CODEX_HOME || join(h, '.codex'), 'config.toml'), format: 'toml' },
@@ -226,11 +227,12 @@ export async function plan(input) {
   const changes = before === after ? [] : [{ path: file, action: before === null ? 'create' : 'modify', beforeSha: before === null ? null : sha(before), afterSha: sha(after), diff: redactKeys(lineDiff(before, after)), content: after }];
   const steps = [];
   if (o.group) steps.push(`On ${o.site}, create the token in group 「${o.group}」.`);
-  steps.push(`Store the key: node "<skill folder>/scripts/connect.mjs" key --app ${o.app} --site ${o.site}`);
+  const keyCommand = `node "${SELF}" key --app ${o.app} --site ${o.site}${o.home === resolve(homedir()) ? '' : ` --home "${o.home}"`}`;
+  steps.push(`The user stores the key in their own terminal: ${keyCommand}`);
   if (o.app === 'gemini-cli') notes.push('Gemini CLI reads ~/.env only when the working folder and its parents have no .env of their own');
   if (o.app === 'codex' && o.platform !== 'win32') notes.push('Codex reads the key from an environment variable; open a new terminal after storing the key');
   const planHash = sha(JSON.stringify({ app: o.app, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, changes: changes.map(({ path, beforeSha, afterSha }) => ({ path, beforeSha, afterSha })) }));
-  return { o, changes, notes, steps, planHash };
+  return { o, changes, notes, steps, planHash, keyCommand };
 }
 function keepExistingKey(before, after, o) {
   // Re-applying keeps a key already filled in by `key`.
@@ -241,9 +243,9 @@ function keepExistingKey(before, after, o) {
   const m = keyLine && keyLine.match(/(?:apiKey:\s*|GEMINI_API_KEY=)(\S+)/);
   return m && m[1] !== PLACEHOLDER ? after.replace(PLACEHOLDER, m[1]) : after;
 }
-export const publicPlan = ({ o, changes, notes, steps, planHash }) => ({
+export const publicPlan = ({ o, changes, notes, steps, planHash, keyCommand }) => ({
   app: o.app, appName: APPS[o.app].name, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, group: o.group, planHash,
-  changes: changes.map(({ path, action, diff }) => ({ path, action, diff })), notes, steps, keyPath: o.keyPath,
+  changes: changes.map(({ path, action, diff }) => ({ path, action, diff })), notes, steps, keyCommand, keyPath: o.keyPath,
 });
 
 // ---------- state ----------
@@ -260,8 +262,9 @@ const stamp = () => new Date().toISOString().replace(/[-:]/g, '').replace('T', '
 
 export async function apply(input) {
   const p = await plan(input);
-  if (!input.yes) fail('CONFIRMATION_REQUIRED', 'Show the preview to the user and pass --yes only after they agree');
-  if (input.planHash && input.planHash !== p.planHash) fail('PLAN_CHANGED', 'The file changed since the preview; preview again');
+  const mcp = input.via === 'mcp';
+  if (!input.yes) fail('CONFIRMATION_REQUIRED', mcp ? 'Show the preview to the user; call grandet_connect_apply again with confirmed: true and the preview planHash only after they agree' : 'Show the preview to the user and pass --yes --plan-hash <hash from preview> only after they agree');
+  if (input.planHash && input.planHash !== p.planHash) fail('PLAN_CHANGED', mcp ? 'The file changed since the preview; call grandet_connect_preview again' : 'The file changed since the preview; preview again');
   const state = await loadState(p.o.home);
   const record = { id: randomUUID(), at: new Date().toISOString(), app: p.o.app, site: p.o.site, variable: p.o.variable, platform: p.o.platform, files: [], restoredAt: null };
   for (const c of p.changes) {
@@ -317,12 +320,28 @@ export async function storeKey(input, keyText) {
       const chosen = [];
       for (const f of targets) if (await exists(join(o.home, f)) || (shell === 'zsh' && f === '.zshrc') || (shell === 'bash' && f === '.bashrc')) chosen.push(f);
       if (!chosen.length) chosen.push('.profile');
+      // Record exactly what was appended so undo can restore the file byte for byte
+      // (and remove a profile file that Grandet created).
+      const state = await loadState(o.home);
+      state.keyEdits = state.keyEdits || [];
       for (const f of chosen) {
-        const path = join(o.home, f); const text = (await readText(path)) ?? '';
-        const kept = text.split('\n').filter((l) => !l.endsWith(`# grandet:${o.site}`));
-        await atomicWrite(path, `${kept.join('\n').replace(/\n*$/, '\n')}${line}\n`);
+        const path = join(o.home, f); const text = await readText(path);
+        const lines = (text ?? '').split('\n');
+        const at = lines.findIndex((l) => l.endsWith(`# grandet:${o.site}`));
+        const record = state.keyEdits.find((e) => e.site === o.site && e.path === path);
+        if (at >= 0) {
+          lines[at] = line;
+          await atomicWrite(path, lines.join('\n'));
+          if (record) record.line = line;
+        } else {
+          const separator = text !== null && text !== '' && !text.endsWith('\n');
+          await atomicWrite(path, `${text ?? ''}${separator ? '\n' : ''}${line}\n`);
+          state.keyEdits = state.keyEdits.filter((e) => e !== record);
+          state.keyEdits.push({ site: o.site, path, existed: text !== null, separator, line });
+        }
         done.push(`Added ${o.variable} to ~/${f}`);
       }
+      await saveState(o.home, state);
     }
   }
   if (o.app === 'claude-code' && o.platform === 'win32') { setWindowsUserEnv('ANTHROPIC_AUTH_TOKEN', o.keyPath); done.push('User environment variable ANTHROPIC_AUTH_TOKEN set'); }
@@ -380,9 +399,26 @@ export async function restore(input) {
     else { await rm(f.path, { force: true }); results.push({ path: f.path, action: 'removed' }); }
   }
   const platform = record.platform || process.platform;
-  if (platform !== 'win32') for (const name of PROFILE_FILES) {
-    const path = join(home, name); const text = await readText(path);
-    if (text && text.includes(`# grandet:${record.site}`)) { await atomicWrite(path, text.split('\n').filter((l) => !l.endsWith(`# grandet:${record.site}`)).join('\n')); results.push({ path, action: 'profile-line-removed' }); }
+  if (platform !== 'win32') {
+    const edits = (state.keyEdits || []).filter((e) => e.site === record.site);
+    for (const e of edits) {
+      const text = await readText(e.path);
+      const segment = `${e.separator ? '\n' : ''}${e.line}\n`;
+      if (text === null || !text.endsWith(segment)) continue;
+      const prefix = text.slice(0, text.length - segment.length);
+      if (!e.existed && prefix === '') { await rm(e.path, { force: true }); results.push({ path: e.path, action: 'profile-removed' }); }
+      else { await atomicWrite(e.path, prefix); results.push({ path: e.path, action: 'profile-line-removed' }); }
+    }
+    // Fallback when the user edited the profile after the key was stored.
+    for (const name of PROFILE_FILES) {
+      const path = join(home, name); const text = await readText(path);
+      if (!text || !text.includes(`# grandet:${record.site}`)) continue;
+      const kept = text.split('\n').filter((l) => !l.endsWith(`# grandet:${record.site}`)).join('\n');
+      const created = edits.some((e) => e.path === path && !e.existed);
+      if (created && kept.trim() === '') { await rm(path, { force: true }); results.push({ path, action: 'profile-removed' }); }
+      else { await atomicWrite(path, kept); results.push({ path, action: 'profile-line-removed' }); }
+    }
+    state.keyEdits = (state.keyEdits || []).filter((e) => e.site !== record.site);
   }
   if (platform === 'win32' && input.home === undefined) {
     if (record.app === 'codex') setWindowsUserEnv(record.variable, null);

@@ -43,9 +43,7 @@ Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs
    - `baseUrlMode=SUGGESTION`: ask the user to confirm the address first, then add `--confirmed-other-domain`.
    - The output ends with `plan-hash <hash>`; keep it.
 2. **Apply** only after the user agrees: the same options with `apply --yes --plan-hash <hash>`. It backs up the file next to it, writes, and reads it back. If the target app is the app you are running in, run step 4 first and say the change takes effect after a restart.
-3. **The user stores the key.** Ask them to run this in their own terminal, where typing is hidden and the key stays on their computer:
-   `CONNECT key --app <app> --site <sourceId>`
-   Never run it yourself with a key, never pass a key as an argument, and never ask for the key in chat.
+3. **The user stores the key.** Preview and apply print the exact command (the `Next: The user stores the key…` line; `keyCommand` in `--json` and MCP output), with this Skill's real path filled in. Always give the user that command unchanged, in its own code block, and ask them to run it in their own terminal, where typing is hidden and the key stays on their computer. Never answer with only "store the key locally". Never run it yourself with a key, never pass a key as an argument, and never ask for the key in chat.
 4. **Free check:** `CONNECT verify --app <app> --site <sourceId> --base-url <origin> --model <model>`. It lists the models the key can use, without spending credit.
    - `MODEL_LISTED`: ready. Tell the user to restart the app (or open a new terminal) and try one message.
    - `MODEL_NOT_LISTED`: the key works but the token is probably in another group; ask the user to check the group is「<group>」.

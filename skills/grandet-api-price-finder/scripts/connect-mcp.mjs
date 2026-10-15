@@ -26,7 +26,7 @@ async function call(name, args = {}) {
   if (args.home !== undefined && (typeof args.home !== 'string' || !args.home.startsWith('/') && !/^[A-Za-z]:[\\/]/.test(args.home))) throw Object.assign(new Error('home must be absolute'), { code: 'HOME_MUST_BE_ABSOLUTE' });
   switch (name) {
     case 'grandet_connect_preview': return publicPlan(await plan(args));
-    case 'grandet_connect_apply': return apply({ ...args, yes: args.confirmed === true });
+    case 'grandet_connect_apply': return apply({ ...args, yes: args.confirmed === true, via: 'mcp' });
     case 'grandet_connect_verify': return verify(args);
     case 'grandet_connect_restore': return restore(args);
     default: throw Object.assign(new Error(`Unknown tool ${name}`), { code: 'UNKNOWN_TOOL' });

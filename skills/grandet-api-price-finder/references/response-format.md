@@ -16,6 +16,8 @@ Short, in the user's language. Name the model first so the choice stays visible.
   - `listing.hint`: a ready-made hint of at most 50 characters, written from the site's own text. Show it as it is.
   - `listing.kind` on hinted rows: `gate`, `test`, `limited` (限时价) or `vip-price`.
 
+With `view=compact` over MCP, the short text block lists the lowest rows but may not mark old quotes or show the gated and reference groups. Always read `listings` and each row's `freshness` from the structured content, not only the text block.
+
 The server has already applied the rules: groups not offered to users are hidden, client-only groups are folded unless the target app is that client, and boasts never appear in hints. Do not re-sort, re-filter or write your own hints.
 
 If a board has no `listings` (an older service), fall back to `recommended`, `alternative` and `cheapest`, and map `riskSignals` as below.
