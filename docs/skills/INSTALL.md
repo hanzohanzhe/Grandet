@@ -85,7 +85,7 @@ Adding the MCP server alone does not install the Skill; saving the Skill alone d
 
 Keep it to two lines: where it is installed, and what to ask next. For example:
 
-> Installed in Codex's user skills. Open a new conversation and ask something like "find me a cheap Sonnet 4.6 API for coding, one pick and one backup".
+> Installed in Codex's user skills. Open a new conversation and ask something like "find me the cheapest Sonnet 4.6 API for coding".
 
 If you can, verify in a clean new conversation: no attachment, no mention of Grandet, no manual skill selection. If that conversation asks for the file again, the install did not persist; fix the location or the binding, and don't ask the user to keep uploading. If you couldn't run this check, say it hasn't been tested yet. Report only what you actually saw.
 
@@ -118,7 +118,7 @@ If you can, verify in a clean new conversation: no attachment, no mention of Gra
 
 本构建 `grandet-skill-0.3.0-build.20261014` 的 ZIP 和 .skill 均内置回执安装器和 Python 验证器，无需另取工具。安装不要求开启回执；旧安装不补算，也不要求重下或重装。
 
-**确认装好了**：新开对话，不发文件、不提 Grandet，问一句“帮我找便宜的 Sonnet 4.6 API，写代码用，推荐一家再给个备选”。如果它让你再发一次文件，说明没有装好，检查文件夹位置，或者技能有没有启用。
+**确认装好了**：新开对话，不发文件、不提 Grandet，问一句“帮我找最便宜的 Sonnet 4.6 API，写代码用”。如果它让你再发一次文件，说明没有装好，检查文件夹位置，或者技能有没有启用。
 
 ## Manual installation
 
@@ -149,4 +149,4 @@ With Node installed, you can do step 2 by running `node scripts/install-price-fi
 
 This 0.3.0 build (`grandet-skill-0.3.0-build.20261014`) includes receipt-aware installation tools in both archives. No separate helper is needed. Receipts are optional; older installs are not backfilled and do not need to reinstall.
 
-**Check it worked**: open a new conversation and, without attaching anything or mentioning Grandet, ask "Find me a cheap Sonnet 4.6 API for coding, one pick and one backup." If it asks for the file again, the install didn't stick: check the folder location, or whether the skill is enabled.
+**Check it worked**: open a new conversation and, without attaching anything or mentioning Grandet, ask "Find me the cheapest Sonnet 4.6 API for coding." If it asks for the file again, the install didn't stick: check the folder location, or whether the skill is enabled.

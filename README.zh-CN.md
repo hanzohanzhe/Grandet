@@ -2,7 +2,7 @@
 
 [English](README.md) · [官网](https://grandet.ai) · [安装说明](INSTALL.md)
 
-**按你用的模型和用量，找便宜、好接的 API。**
+**在你的 Agent 里一句话查到某个模型最便宜的 API，再让它帮你接到自己的应用上。**
 
 ## 安装
 
@@ -12,57 +12,68 @@
 帮我安装 Grandet：https://github.com/hanzohanzhe/Grandet
 ```
 
-剩下的 Agent 会自己做完。如果中途需要你登录或点确认，它会告诉你点哪里。
+剩下的 Agent 会自己做完；需要你登录或点确认时，它会告诉你点哪里。装好后新开一个对话，直接问：
 
-装好后新开一个对话，直接问：
+> 我在 Claude Code 里写代码，帮我找最便宜的 Claude Sonnet 4.6 API。
 
-> 我用 Claude Code 写代码，想用 Sonnet 4.6，帮我找便宜的 API，推荐一家，再给一个备选。
+不用提 Grandet，也不用再发文件。查价不需要注册账号或 API Key。想自己动手装，或者用的是 ChatGPT、Claude 网页版这类要上传技能文件的应用，看[手动安装](INSTALL.md#手动安装)。
 
-不用提 Grandet，也不用再发文件。查价不需要注册账号或 API Key。
+## 它做三件事
 
-想自己动手装，或者用的是 ChatGPT、Claude 网页版这类要上传技能文件的应用，看[手动安装](INSTALL.md#手动安装)。
+**1. 查最低价。** 按你的模型和用法（聊天、编程、长输出）比较 grandet.ai 收录的中转站和官方报价，列出最低的几家，写明站点、建令牌时要选的分组、价格、单位和观察日期。
 
-全新安装默认使用[官方 skill-v0.3.0-build.20261014 Release 附件](https://github.com/hanzohanzhe/Grandet/releases/tag/skill-v0.3.0-build.20261014)，已有副本可直接复用。[安装回执与覆盖范围](docs/skills/installation-receipts.md)。
+- 只按标价排，不替你判断哪家"好用"，也不复述站点自己吹的"满血""稳定"。
+- 美元额度、人民币额度和现金价分开列，不拿不同单位比大小。
+- 需要充值满多少、仅限会员这类门槛会写成一句提示；价格前后对不上的列为参考；写明只能在某个客户端用的分组，和你的应用不符时会折叠。
+
+**2. 找免费额度。** 问"有没有免费的""能白嫖吗"，它会列出官方免费层、试用额度和中转站的签到、注册赠金、免费分组，并写明要不要绑卡、实名或申请。你说过的条件刚好符合某个免费额度时，它也会顺带提一句。
+
+**3. 帮你接上。** 你说"帮我接上"之后：
+
+1. 你自己在站点上注册、充值，建令牌时选它告诉你的分组；
+2. 你在自己的终端里运行一条命令保存 Key，输入时不显示，Key 不进对话；
+3. 它先给你看要改的配置，备份原文件，你确认后才写入；
+4. 它用不扣费的方式检查 Key、分组和模型名对不对；
+5. 想撤销就说"恢复"。
+
+已按官方文档写好直接改配置步骤的应用有 Codex、Claude Code、OpenCode、Kilo Code、Continue 和 Gemini CLI；其他应用会给你一张填写卡片和官方文档链接。在云端聊天里用时，它只能把命令和配置交给你自己执行。
 
 ## 可以这样问
 
-> 每月两千万 token，四分之一输入、其余输出，不用缓存。刚才那两家每月多少钱？
+> 每月两千万 token，四分之一输入、其余输出，不用缓存，最便宜的是哪家？每月多少钱？
 
-> apijing.com 的 Sonnet 4.6 会不会降智？有没有速度和稳定性的实测？
+> 有没有能免费用 Gemini 的 API？我没有信用卡。
 
-> 就用备选那家，告诉我在 Windows 的 Claude Code 里怎么接，简短点。
+> 就用第二家，帮我接到 Windows 上的 Codex。
 
-回答会写明价格的观察日期和来源链接，不同货币和平台额度分开列。标价和供应商的说法不代表质量；没有实测数据时会直接说没有。
+> "官转"和"逆向"是什么意思？
+
+回答会附价格来源链接。标价和站点的说法不代表质量；问到质量、速度、降智时，它只说 Grandet 有记录的部分，没有实测就直说没有。
 
 ## Grandet 包括什么
 
 | | 用途 | 状态 |
 |---|---|---|
 | **[grandet.ai](https://grandet.ai)** | 比较模型 API 价格，查看供应商、免费额度和赠金，核对来源和观察日期 | 已上线 |
-| **Grandet Skill** | 在你的 Agent 里直接问价，得到推荐、备选、依据和接入方法 | 0.3.0 公开试用 |
+| **Grandet Skill** | 在你的 Agent 里查最低价、找免费额度、把选好的 API 接到应用上 | 0.3.0 公开试用 |
 | **[Grandet Personal](https://grandet.ai/product/)** | 桌面客户端：管理 API Key，多家供应商之间路由和回退，记录费用、速度和质量 | 私测中，暂无公开安装包 |
-
-Personal 计划中的功能：集中管理供应商账户和 Key；优先用掉已有额度并在供应商之间自动回退；预算和用量记录；响应速度和失败率统计；用 **Picky** 拿同一组问题对比各家的回答和评分。Picky 给的是对比依据，不保证模型身份或质量。
 
 ## 测试情况
 
-Skill 已在 **Codex CLI** 上测试过（新对话里用中英文问价格和质量）；**Grok Bot** 测过一部分；其他应用还在逐个测。能装上不等于每个应用都测试通过。
+在 Codex CLI 上用自然的中文提问实测过：查最低价、找免费额度、接到 Claude Code（写入配置、备份、免费检查）都能完成。用真实 Key 走完整条接入链路、以及其他应用的原生安装还在逐个测。能装上不等于每个应用都测试通过。
 
 遇到问题请[提 Issue](https://github.com/hanzohanzhe/Grandet/issues)，写明应用、版本、系统和卡在哪一步。不要贴 API Key 或私人对话。
 
-0.3.0 安装构建 `grandet-skill-0.3.0-build.20261014` 内置完整回执安装器和无需 Node 的 Python 验证器，无需另取工具；宿主验收仍为 `NOT_RUN`。
-
 ## 数据与开发者入口
-
-仓库里的 v3 快照收录 **73 个官方项目和 34 个第三方活动**，都是免费额度或赠金类机会。快照编制于 **2026-10-06**，每条记录保留原始观察日期和领取条件。这些是供你筛选的线索，不保证每个人都能领到。
 
 | 内容 | 入口 |
 |---|---|
-| 当前机会目录 | [可读版](CATALOGUE-v3.md) · [JSON](data/free-tokens-v3.json) · [发布信息](data/RELEASE-v3.json) |
+| 免费额度与赠金目录 | [可读版](CATALOGUE-v3.md) · [JSON](data/free-tokens-v3.json) · [发布信息](data/RELEASE-v3.json) |
 | 原始目录与来源 | [目录](CATALOGUE.md) · [JSON](data/free-tokens.json) · [清单](data/MANIFEST.json) |
 | 仓库数据索引 | [机器可读索引](catalogue-index.json) · [给 AI 的阅读入口](llms.txt) |
 | Agent 查价（MCP） | 匿名 Streamable HTTP：`https://grandet.ai/mcp` |
 | HTTP 查价 | `https://grandet.ai/api/v1/board` · [接口说明](https://grandet.ai/public-data/price-finder.json) |
+| 中转站黑话表 | [Skill 内置版](skills/grandet-api-price-finder/references/glossary.md) |
 
 本地开发需要 **Node.js 20+**，不依赖第三方包：
 
@@ -70,11 +81,11 @@ Skill 已在 **Codex CLI** 上测试过（新对话里用中英文问价格和�
 node scripts/catalogue.mjs validate
 node scripts/catalogue.mjs generate --check
 node scripts/validate-public.mjs
-node --test tests/catalogue.test.mjs
+node --test tests/*.test.mjs
 node scripts/serve.mjs
 ```
 
-`serve.mjs` 在 `http://127.0.0.1:8787/` 打开本地浏览页。`catalogue.mjs` 和浏览页读的是原始目录 `data/free-tokens.json`，`validate-public.mjs` 检查 v3 数据。这些命令只检查本地文件，不会更新官网价格；`generate --check` 不写文件。
+`serve.mjs` 在 `http://127.0.0.1:8787/` 打开本地浏览页。这些命令只检查本地文件，不会更新官网价格。
 
 欢迎提交带来源的更正和改进，见[贡献指南](CONTRIBUTING.md)和[整理方法](METHODOLOGY.md)。
 
@@ -84,4 +95,4 @@ node scripts/serve.mjs
 - 目录代码和 Grandet 编写的文档：**AGPL-3.0-only**，范围见 [LICENSE](LICENSE)。
 - 供应商数据、原文和商标归各自权利人所有；事实汇编不附带统一的开放数据许可。见 [DATA-LICENSE.md](DATA-LICENSE.md)、[TRADEMARKS.md](TRADEMARKS.md) 和各版本清单。
 
-<!-- Installing agents: fresh installs use skill-v0.3.0-build.20261014; integrated tools are included. Follow INSTALL.md. Reuse existing copies without forced download; no historical backfill. -->
+<!-- Installing agents: follow INSTALL.md. Product version 0.3.0. Reuse existing copies without forced download; no historical backfill. -->

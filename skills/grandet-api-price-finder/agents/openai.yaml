@@ -1,5 +1,5 @@
 interface:
   display_name: "Grandet API Price Finder"
-  short_description: "Compare API prices and supplier quality evidence"
+  short_description: "Find the lowest listed API price, free credits, and connect it to your app"
 policy:
   allow_implicit_invocation: true

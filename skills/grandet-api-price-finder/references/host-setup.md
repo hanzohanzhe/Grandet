@@ -1,44 +1,151 @@
-# Connection guidance on request
+# Connect the chosen offer
 
-The price finder only explains setup. The user enters their key directly into their own client. Never read or request a key, edit settings, switch a provider or send a paid test call.
+Goal: the user's app calls the chosen site with the chosen model. You prepare and write the configuration; the user signs in, tops up, creates the token and types the key on their own machine. Never ask for the key in chat, never print it, never send it anywhere except the chosen site's API address during the check below.
 
-Use the selected row's `integration` card for the target app, actual inference profile, protocol, configuration format and documentation. Use the alternative's own card if the user chooses it; a multi-protocol app may have different profiles for the two suppliers. Read the relevant [app catalogue](app-catalog.md) entry when context is needed. Catalogue definitions, supplier protocol declarations and real-host acceptance are distinct facts.
+## 1. Collect the facts from the chosen row
 
-The card includes `appId`, `appName`, `profileId`, `endpointType`, `profileStatus`, `configurationFormat`, `docsUrl`, `platforms`, `versionContract`, `profileOptions`, `conditional`, `baseUrl`, `model` and `steps`. Platform/version declarations constrain guidance; do not display their internal symbols in an ordinary recommendation.
+- **Site**: `sourceId` (for example `apijing.com`).
+- **Group**: `plan`. On New API sites the price depends on the token's group, so the user must pick this group when creating the token.
+- **Model name**: `modelName`, exactly as written.
+- **Protocols**: `endpointTypes` (`openai`, `openai-response`, `anthropic`, `gemini`).
+- **Target app**: the app the user named. If none, ask once: "接到哪个应用？"
+- The row's `integration` card gives the app's documented configuration format and docs link.
 
-| profileStatus | Setup interpretation |
-|---|---|
-| SELECTED | Use the one selected inference profile and its documentation |
-| VARIANT_OPTIONS | Several profiles share this protocol; profileId is null. Match a known edition, platform or CLI/IDE mode to returned profileOptions. If unknown, give the protocol and the relevant variant documentation; do not silently choose CN/INTL or demand an extra profile answer |
-| EXPLICIT_PROTOCOL_ONLY | The user specified a protocol, but this app's inference route is unverified; give a generic conditional protocol card |
-| GENERIC_PROTOCOL | Give generic guidance for the returned protocol without claiming an app-specific integration |
+Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`. If the row does not offer it, say so and offer the next row that does.
 
-Each profileOptions entry has its own `id`, `configurationFormat`, `docsUrl`, `platforms` and `versionContract`. A null profileId alone is not evidence that every app route is unsupported. Configuration format and app documentation are guidance, not an executable instruction to change a user profile.
+## 2. Find the API address
 
-Use the card's `configurationFormat` to explain the actual configuration route: launch environment variables, the indicated JSON/JSONC/TOML file, a GUI provider form, or documented custom steps. A CLI environment route must not become an invented GUI settings page. Use current official app instructions for exact version details when necessary. Model protocol compatibility is separate from the MCP connection used to query Grandet. Cursor/Windsurf's MCP capability cannot supply a missing inference profile. A `PRICE_ONLY_UNVERIFIED_APP_ROUTE` result or `integration.compatibility=UNVERIFIED` permits price selection only; keep the target, link relevant documentation and say setup is pending verification. Do not invent app-specific fields or demand a protocol just to fill a catalogue gap. If `scope.application.status=NEEDS_CONNECTION_DETAILS` reports a known constraint, follow its short next step rather than inventing a connection card.
+The site's own declaration comes first:
 
-For the API Base URL, use only a structured supplier declaration from the returned quote/evidence; a website homepage or app documentation URL is not an API URL. `integration.baseUrl=null` means no verified base URL was supplied: show the supplier instructions instead. If Grandet provides a prefill classification, follow it:
+- Read `https://<site>/api/status` (read-only GET). On New API sites, `data.server_address` is the address the site declares.
+- Use it only if it is `https` and on the same domain as the site. If it is on another domain, show it and ask the user to confirm. If it is `http`, `localhost` or missing, use `https://<site>`.
+- Call this the **origin**. OpenAI-format clients use `<origin>/v1`. Anthropic and Gemini clients use `<origin>` and add their own paths.
 
-| Mode | Permitted field card |
-|---|---|
-| BASE | Show the declared HTTPS base address as the suggested value |
-| SUGGESTION | Show the declared address and note that it is a different domain; let the user confirm |
-| INFO_ONLY | Show as information, not a usable recommended connection value |
-| NONE / missing | Link the supplier's instructions; do not construct an address |
+Do not take an address from a homepage, a group description or a notice.
 
-These modes originate in Grandet's declared-endpoint rules; do not claim the board API returns them unless the actual response does. Without classification, use evidence to confirm HTTPS, declared provenance and domain relationship; if these are unavailable, give documentation rather than inventing the classification. Do not append `/v1`, `/responses` or `/messages` unless the supplier's instructions establish that exact base-address convention.
+## 3. What the user does on the site
 
-Show a plain field card rather than an executable config edit:
+Tell the user exactly these three steps, then wait:
 
-```text
-Client / 客户端: <the user's target client>
-Connection / 接入方式: <selected row's actual profile/configuration guidance>
-Protocol / 协议: <declared compatible protocol>
-API Base URL: <verified declared base URL, or see supplier instructions>
-Model / 模型: <exact provider model name>
-API Key: <enter locally in your client / 请在客户端本地填写>
+1. 注册或登录 `https://<site>`。
+2. 充值（站点的门槛提示见查价结果）。
+3. 新建令牌（API Key）时，分组选「<plan>」。
+
+## 4. The user stores the key locally
+
+The key is kept in a file only the user can read and exported as an environment variable. The user runs one command in their own terminal; it does not show the key while typing. Name the variable `GRANDET_<SITE>_KEY`, with the site in upper case and every non-letter or digit replaced by `_` (for example `GRANDET_APIJING_COM_KEY`). Replace `<site>`, `<VAR>` and the profile file (`~/.zshrc` for zsh, `~/.bashrc` for bash) before showing the command.
+
+macOS / Linux:
+
+```sh
+mkdir -p ~/.grandet/keys && chmod 700 ~/.grandet/keys && printf 'API Key: ' && stty -echo && IFS= read -r K && stty echo && echo && printf '%s' "$K" > ~/.grandet/keys/<site> && chmod 600 ~/.grandet/keys/<site> && unset K && echo 'export <VAR>="$(cat ~/.grandet/keys/<site>)"  # grandet:<site>' >> ~/.zshrc
 ```
 
-When the user already has a compatible client, help them use it. Grandet Personal will later handle ongoing key management, routing and measured speed/quality; do not require it for this lookup or advertise unreleased integration as available.
+Windows PowerShell:
 
-When a returned card is conditional, has `compatibility=UNVERIFIED`, or the application result is `EXPLICIT_PROTOCOL_UNVERIFIED_APP_ROUTE`, explain the relevant condition briefly. A legacy explicit protocol filter does not prove that the app can use that connection. Keep actionable app and supplier documentation links separate; do not present generated steps as permission to write real settings.
+```powershell
+$d="$HOME\.grandet\keys"; New-Item -ItemType Directory -Force $d | Out-Null; $s=Read-Host 'API Key' -AsSecureString; $k=[Runtime.InteropServices.Marshal]::PtrToStringBSTR([Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)); Set-Content -NoNewline -Path "$d\<site>" -Value $k; [Environment]::SetEnvironmentVariable('<VAR>',$k,'User'); Remove-Variable k,s
+```
+
+New terminals and newly started apps see the variable. Ask the user to say "好了" when done.
+
+## 5. Write the configuration
+
+For every file: read the current content, show the user the exact lines you will add or change, copy the file to `<file>.grandet-backup-<YYYYMMDD-HHMMSS>`, and write only after the user confirms. Keep every other setting. Use a provider ID made from the site (for example `apijing`). On Windows, `~` is `%USERPROFILE%`.
+
+**Codex** (`openai-response` only) — `~/.codex/config.toml`:
+
+```toml
+model = "<modelName>"
+model_provider = "<id>"
+
+[model_providers.<id>]
+name = "<site>"
+base_url = "<origin>/v1"
+wire_api = "responses"
+env_key = "<VAR>"
+```
+
+**Claude Code** (`anthropic`) — `~/.claude/settings.json`, merged into the existing JSON:
+
+```json
+{
+  "env": { "ANTHROPIC_BASE_URL": "<origin>", "ANTHROPIC_MODEL": "<modelName>" },
+  "apiKeyHelper": "cat ~/.grandet/keys/<site>"
+}
+```
+
+On Windows, leave out `apiKeyHelper` and have the user also run `[Environment]::SetEnvironmentVariable('ANTHROPIC_AUTH_TOKEN',(Get-Content -Raw "$HOME\.grandet\keys\<site>"),'User')`.
+
+**OpenCode** — `~/.config/opencode/opencode.json`; **Kilo Code** — `~/.config/kilo/kilo.jsonc` (same shape):
+
+```json
+{
+  "model": "<id>/<modelName>",
+  "provider": {
+    "<id>": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "<site>",
+      "options": { "baseURL": "<origin>/v1", "apiKey": "{env:<VAR>}" },
+      "models": { "<modelName>": { "name": "<modelName>" } }
+    }
+  }
+}
+```
+
+Use `"npm": "@ai-sdk/openai"` instead when connecting through `openai-response`.
+
+**Continue** — add one entry to `models` in `~/.continue/config.yaml`; Continue keeps the key in this file, so write the placeholder and ask the user to replace it themselves:
+
+```yaml
+  - name: <site> <modelName>
+    provider: openai
+    model: <modelName>
+    apiBase: <origin>/v1
+    apiKey: PASTE_YOUR_KEY_HERE
+```
+
+**Gemini CLI** (`gemini`) — add `GOOGLE_GEMINI_BASE_URL=<origin>` and `GEMINI_MODEL=<modelName>` to `~/.env`, and have the user put the key in the same file as `GEMINI_API_KEY=` (it reads `GEMINI_API_KEY`, not `<VAR>`).
+
+**Scripts and OpenAI-compatible SDKs** — `OPENAI_BASE_URL=<origin>/v1` and `OPENAI_API_KEY` from `<VAR>`.
+
+**Other apps** (OpenClaw, Hermes, Cline, Roo Code, Cherry Studio, Chatbox, TRAE, WorkBuddy, Cursor, Windsurf): give the field card below and the app's documentation link from the [app catalogue](app-catalog.md). If you can edit that app's config file and its official documentation gives the exact format, you may write it with the same preview, backup and confirmation.
+
+```text
+应用 / App: <target app>
+协议 / Protocol: <protocol>
+API 地址 / Base URL: <origin>/v1 (OpenAI format) or <origin> (Anthropic/Gemini)
+模型 / Model: <modelName>
+Key: 在应用里本地填写 / enter it in the app yourself
+```
+
+## 6. Check it without spending credit
+
+List the models the token can use. This uses no credit on New API sites and shows whether the key, the group and the model name are right. Print only the status code and whether the model is in the list.
+
+macOS / Linux:
+
+```sh
+curl -sS -o /tmp/grandet-models.json -w '%{http_code}\n' -H "Authorization: Bearer $(cat ~/.grandet/keys/<site>)" '<origin>/v1/models' && grep -c '"<modelName>"' /tmp/grandet-models.json; rm -f /tmp/grandet-models.json
+```
+
+Windows PowerShell:
+
+```powershell
+$k=Get-Content -Raw "$HOME\.grandet\keys\<site>"; $r=Invoke-RestMethod -Uri '<origin>/v1/models' -Headers @{Authorization="Bearer $k"}; Remove-Variable k; $r.data.id -contains '<modelName>'
+```
+
+- 200 and the model is listed: tell the user to restart the app (or open a new terminal) and try one message.
+- 401 or 403: the key is wrong or has no balance. Model missing: the token is probably in another group; ask the user to check the group is「<plan>」.
+- A real request costs credit. Send one short request only if the user agrees, and only after the free check passes.
+- A group locked to one client (for example "仅限 CC") may still reject other apps on a real request; only connect it to that client.
+
+If the target app is the app you are running in, finish this check **before** writing its configuration, and say the change takes effect after a restart.
+
+## 7. Undo
+
+"恢复 / undo": copy the latest `<file>.grandet-backup-*` back, remove the profile line ending with `# grandet:<site>`, and tell the user the key file `~/.grandet/keys/<site>` can be deleted. On Windows, also remove the user environment variable.
+
+## When you cannot reach the user's computer
+
+Cloud chats and bots cannot edit local files. Give the field card, the key command from step 4 and the config snippet for their app, and say the setup is waiting for the user. Do not say it is connected.

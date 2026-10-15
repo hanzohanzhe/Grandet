@@ -79,9 +79,9 @@ These names identify installation surfaces only. They don't add website `targetA
 
 After installing, close the installation conversation and open an ordinary new one in the same scope. Without attaching a file, naming Grandet, typing a command or picking the Skill, ask:
 
-> 帮我找适合写代码的便宜 GPT API，给我一个推荐和一个备选。
+> 帮我找写代码用的最便宜的 GPT API。
 
-> Find a cheap API provider for Claude Sonnet 4.6 for coding. Give me one recommendation and one backup.
+> Find the cheapest API for Claude Sonnet 4.6 for coding.
 
 Check that the app loads the saved Skill, reads current Grandet data and gives a useful answer with sources. Then restart the app and try again in another new conversation. Record "installed", "triggered by itself" and "lookup worked" as three separate results.
 
