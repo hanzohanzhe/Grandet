@@ -7,206 +7,207 @@ How to use it:
 - A site labels a group for two reasons only: to state a usage constraint (top-up threshold, client-only, do-not-select, unavailable, banned uses) or to boast about quality or supply. Do not assume good faith. Constraints change how a group is shown; boasts are for understanding the user only and are never repeated.
 - Explain a term only from this list and say how sure it is: 文档 = framework docs or source code, 社区 = community posts, 目录 = only seen in Grandet's catalogue, 未核实 = no source. For a term not listed, look it up once with `grandet_glossary` (the latest published version); if it is not there either, say you do not know or look it up elsewhere and cite the source.
 - 上游来源词 (官key, 官转, 逆向, Kiro, 号池 …) are the site's own claims. If the user asks to filter by them ("只要官key"), filter by the site's label and say it is unverified.
+- English: the English column is the English glossary (grandet.relay-glossary-en/v1, joined by term id). In an English conversation, explain a term with it, but always quote the site's original group name and labels; the English text is an explanation, not a name to select on the site.
 
-## 站点与框架
+## 站点与框架 / Sites and frameworks
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 中转站（中转、API 中转） | 转售上游模型 API 调用的第三方站点，用户充值后用站点发的 Key 调用 | 只用于理解，不展示 | 社区 |
-| New API（new-api、newapi） | 基于 One API 二开的开源 AI 网关，常用来搭中转站，按模型倍率×分组倍率扣额度 | 只用于理解，不展示 | 文档 |
-| One API（one-api、oneapi） | New API 所基于的开源网关，按分组×模型×补全倍率扣额度，令牌不能选分组 | 只用于理解，不展示 | 文档 |
-| sub2api | 开源网关，把 Claude/OpenAI 等订阅账号的额度做成 API Key 分发，按分组倍率计费 | 只用于理解，不展示 | 文档 |
-| 令牌（token、API Key） | 站点发给用户的 API Key；New API 可给令牌指定分组，按该分组倍率计费；另一用法：样本“官方令牌”指上游官方账号/Key 的凭证，不是本站发的令牌（CORPUS_OBSERVED） | 只用于理解，不展示 | 文档 |
-| 分组（group） | 站内一组渠道及其倍率；请求走所用分组的渠道，并按该分组倍率计费 | 只用于理解，不展示 | 文档 |
-| 默认分组（default） | New API 新用户默认所在的 default 分组；令牌不选分组时按用户分组计费 | 只用于理解，不展示 | 文档 |
-| 模型广场 | 站内展示可用模型、价格、计费方式和分组倍率的页面（New API 路径 /pricing） | 只用于理解，不展示 | 文档 |
-| 站长（群主、管理员） | 中转站的经营者，部分分组需找其开通 | 只用于理解，不展示 | 目录 |
-| 模型映射（映射） | 站点把请求里的模型名换成另一个上游模型名再转发，实际调用的模型可能不同；另一用法：列表说某模型“是映射/为映射”时，常指这个名字背后实际是别的模型，需自行判断（CORPUS_OBSERVED） | 只用于理解，不展示 | 文档 |
-| 上游 | 中转站实际调用的供应方 | 只用于理解，不展示 | 目录 |
-| 协议（oai协议、anthropic协议、gemini协议、openai格式） | 接口格式，如 OpenAI、Anthropic、Gemini；决定客户端怎么接 | 只用于理解，不展示 | 目录 |
-| 野鸡站 | 口语（贬义），指不知名的小中转站；Grandet 不按这个说法分类，也不据此排序 | 只用于理解，不展示 | 社区 |
-| 套壳（套壳站） | 两种用法：把别家的模型或 API 包一层当自家产品卖；或中转站直接转卖另一家中转站的 API，只换了界面 | 只用于理解，不展示 | 社区 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 中转站（中转、API 中转） | 转售上游模型 API 调用的第三方站点，用户充值后用站点发的 Key 调用 | **relay site**: A third-party site that resells calls to upstream model APIs; users top up credit and make calls with a key the site issues. | 只用于理解，不展示 | 社区 |
+| New API（new-api、newapi） | 基于 One API 二开的开源 AI 网关，常用来搭中转站，按模型倍率×分组倍率扣额度 | **New API**: An open-source AI gateway built on a fork of One API, commonly used to run relay sites; it deducts credit by model rate multiplier × group rate multiplier. | 只用于理解，不展示 | 文档 |
+| One API（one-api、oneapi） | New API 所基于的开源网关，按分组×模型×补全倍率扣额度，令牌不能选分组 | **One API**: The open-source gateway that New API is based on; it deducts credit by group × model × completion multipliers, and tokens (API keys) cannot choose a group. | 只用于理解，不展示 | 文档 |
+| sub2api | 开源网关，把 Claude/OpenAI 等订阅账号的额度做成 API Key 分发，按分组倍率计费 | **sub2api**: An open-source gateway that turns the usage quota of subscription accounts such as Claude/OpenAI into API keys for distribution, billed by group rate multiplier. | 只用于理解，不展示 | 文档 |
+| 令牌（token、API Key） | 站点发给用户的 API Key；New API 可给令牌指定分组，按该分组倍率计费；另一用法：样本“官方令牌”指上游官方账号/Key 的凭证，不是本站发的令牌（CORPUS_OBSERVED） | **token (API key)**: The API key a site issues to a user; New API can assign a token to a group, and it is billed at that group's rate multiplier.; also: In samples, "official token" means the credential of an upstream official account/key, not a token issued by this site (CORPUS_OBSERVED). | 只用于理解，不展示 | 文档 |
+| 分组（group） | 站内一组渠道及其倍率；请求走所用分组的渠道，并按该分组倍率计费 | **group**: A set of channels within a site, with its own rate multiplier; requests go through the channels of the group used and are billed at that group's multiplier. | 只用于理解，不展示 | 文档 |
+| 默认分组（default） | New API 新用户默认所在的 default 分组；令牌不选分组时按用户分组计费 | **default group**: The `default` group that new users are placed in on New API; when a token has no group selected, it is billed by the user's group. | 只用于理解，不展示 | 文档 |
+| 模型广场 | 站内展示可用模型、价格、计费方式和分组倍率的页面（New API 路径 /pricing） | **model plaza (pricing page)**: The site page that shows available models, prices, billing methods and group rate multipliers (New API path /pricing). | 只用于理解，不展示 | 文档 |
+| 站长（群主、管理员） | 中转站的经营者，部分分组需找其开通 | **site owner**: The operator of a relay site; some groups require contacting them to be enabled. | 只用于理解，不展示 | 目录 |
+| 模型映射（映射） | 站点把请求里的模型名换成另一个上游模型名再转发，实际调用的模型可能不同；另一用法：列表说某模型“是映射/为映射”时，常指这个名字背后实际是别的模型，需自行判断（CORPUS_OBSERVED） | **model mapping**: The site replaces the model name in a request with another upstream model name before forwarding it, so the model actually called may differ.; also: When a listing says a model "is mapped", it often means another model is actually behind that name; users need to judge for themselves (CORPUS_OBSERVED). | 只用于理解，不展示 | 文档 |
+| 上游 | 中转站实际调用的供应方 | **upstream**: The supplier that a relay site actually calls. | 只用于理解，不展示 | 目录 |
+| 协议（oai协议、anthropic协议、gemini协议、openai格式） | 接口格式，如 OpenAI、Anthropic、Gemini；决定客户端怎么接 | **protocol (API format)**: The interface format, such as OpenAI, Anthropic or Gemini; it determines how a client connects. | 只用于理解，不展示 | 目录 |
+| 野鸡站 | 口语（贬义），指不知名的小中转站；Grandet 不按这个说法分类，也不据此排序 | **Fly-by-night site**: colloquial and derogatory, a little-known small relay; Grandet does not classify or rank by this label | 只用于理解，不展示 | 社区 |
+| 套壳（套壳站） | 两种用法：把别家的模型或 API 包一层当自家产品卖；或中转站直接转卖另一家中转站的 API，只换了界面 | **Wrapper (套壳)**: two uses: another company's model or API repackaged as one's own product; or a relay reselling another relay's API behind a new interface | 只用于理解，不展示 | 社区 |
 
-## 计费与价格
+## 计费与价格 / Billing and prices
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 额度（余额、quota） | 站内余额的记账单位；New API 默认 50 万额度=1 美元，调用按倍率扣减；另一用法：上游订阅账号的用量上限，如 Claude/ChatGPT 套餐的 5 小时或每周额度（CORPUS_OBSERVED） | 只用于理解，不展示 | 文档 |
-| 倍率（分组倍率、模型倍率） | 计费乘数。New API 扣额度=(输入+输出×补全倍率)×模型倍率×分组倍率；另一用法：社区也把充值比例叫“充值倍率”，并用“X 倍率”泛指相对官方价的折扣（COMMUNITY_USAGE） | 影响价格计算 | 文档 |
-| 补全倍率（输出倍率） | 输出 token 单价相对输入单价的倍数，计费时输出量先乘它 | 影响价格计算 | 文档 |
-| 缓存倍率（缓存价） | 缓存命中的输入 token 相对普通输入单价的倍数；New API 未设置时按 1 计 | 影响价格计算 | 文档 |
-| 缓存（高缓、缓存命中、带缓存、无缓存、cache） | 上游提示词缓存；命中部分按低价计。高缓=命中率高，无缓=不按缓存计价 | 只用于理解，不展示 | 社区 |
-| 1:1（一比一、1元=1刀、1元1刀、一刀） | 两种用法：充值 1 元得 1 美元额度；或倍率为 1，按官方价计费；另一用法：倍率为 1、即按官方价计费（COMMUNITY_USAGE）；“一刀”单说时也可只指 1 美元额度（见“刀”） | 影响价格计算 | 社区 |
-| 高倍率/低倍率分组（高倍率、低倍率） | 分组倍率高或低的分组；同一模型下，低倍率分组的额度价更低；另一用法：说的是充值倍率时意思相反，高倍率指 1 元换到的额度多 | 影响价格计算 | 社区 |
-| 刀（美刀） | 美元的俗称，常指 1 美元额度 | 影响价格计算 | 目录 |
-| 落地价（落地） | 把分组倍率和充值折算相乘后，相对官方价的实际倍数或花费 | 影响价格计算 | 目录 |
-| 按次计费（按次、按次收费） | 每次请求收固定费用，与 token 多少无关 | 影响价格计算 | 目录 |
-| 按量计费（按量） | 按 token 用量计费 | 影响价格计算 | 目录 |
-| 按秒计费（按秒） | 按生成时长计费，多见于视频模型 | 影响价格计算 | 目录 |
-| 正价（正价号、正价号池） | 两种用法：官方原价（不打折）；或按官方价正常付费开通的订阅号/官方 Key；另一用法：按官方价付费开通的上游账号（正价号），与日抛号、低价号相对 | 只用于理解，不展示 | 社区 |
-| 原价（官方价、官方原价） | 与官方定价相同的价格 | 只用于理解，不展示 | 目录 |
-| 特价（特惠、优惠、折扣、低价、便宜） | 站点标的打折价格，本身不构成门槛 | 正常列出 | 目录 |
-| 限时（限时特价、限时特惠、活动） | 站点写明是限时价格 | 列出并附站点写明的条件 | 目录 |
-| 充值 | 用现金购买站内额度 | 只用于理解，不展示 | 目录 |
-| 套餐（包月、日卡、月卡） | 固定价格买一段时间或一定量的用量 | 只用于理解，不展示 | 目录 |
-| 跑量（量大、量大管饱） | 站点自述供货量大，或大用量可以议价 | 只用于理解，不展示 | 目录 |
-| VIP 用户价（vip折后、svip免费、普通用户Nx） | 站内 VIP 用户另有价格；列出的倍率按普通用户价理解 | 列出并附站点写明的条件 | 目录 |
-| 价格存疑（倍率为0但写明单价、占位倍率、实际倍率不同） | 标价倍率与站点自己写的价格对不上，按参考列出，不当作准确价格 | 列为参考：倍率为 0 但写明单价、倍率 ≥100、站点写的实际倍率与标价不同，三种情况列为参考 | 目录 |
-| 实际倍率（综合倍率、实际综合倍率、充值倍率） | 把充值折扣算进去后的倍率；站点写的数与标价倍率不同时，实际花费按它算 | 影响价格计算 | 目录 |
-| 按张（一张、每张、/张） | 图片模型按生成张数计费，如 0.1/张 | 影响价格计算 | 目录 |
-| 超分（超分4k） | 图片先按较低分辨率生成再放大，区别于原生 4K | 只用于理解，不展示 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 额度（余额、quota） | 站内余额的记账单位；New API 默认 50 万额度=1 美元，调用按倍率扣减；另一用法：上游订阅账号的用量上限，如 Claude/ChatGPT 套餐的 5 小时或每周额度（CORPUS_OBSERVED） | **credit**: The accounting unit for a site balance; by default New API counts 500,000 credit units as US$1, and calls deduct it according to rate multipliers.; also: The usage cap of an upstream subscription account, such as the 5-hour or weekly quota of a Claude/ChatGPT plan (CORPUS_OBSERVED). | 只用于理解，不展示 | 文档 |
+| 倍率（分组倍率、模型倍率） | 计费乘数。New API 扣额度=(输入+输出×补全倍率)×模型倍率×分组倍率；另一用法：社区也把充值比例叫“充值倍率”，并用“X 倍率”泛指相对官方价的折扣（COMMUNITY_USAGE） | **rate multiplier**: Billing multiplier. In New API, credit deducted = (input + output × completion multiplier) × model multiplier × group multiplier.; also: The community also calls the top-up ratio the "top-up multiplier", and uses "X multiplier" loosely for a discount relative to the official price (COMMUNITY_USAGE). | 影响价格计算 | 文档 |
+| 补全倍率（输出倍率） | 输出 token 单价相对输入单价的倍数，计费时输出量先乘它 | **completion multiplier**: The ratio of the output token unit price to the input unit price; output volume is multiplied by it first when billing. | 影响价格计算 | 文档 |
+| 缓存倍率（缓存价） | 缓存命中的输入 token 相对普通输入单价的倍数；New API 未设置时按 1 计 | **cache multiplier**: The ratio of the cache-hit input token price to the normal input price; New API counts it as 1 when it is not set. | 影响价格计算 | 文档 |
+| 缓存（高缓、缓存命中、带缓存、无缓存、cache） | 上游提示词缓存；命中部分按低价计。高缓=命中率高，无缓=不按缓存计价 | **cache**: Upstream prompt caching; the portion that hits the cache is billed at a lower price. "High cache" means a high hit rate; "no cache" means cache hits are not billed at a cache price. | 只用于理解，不展示 | 社区 |
+| 1:1（一比一、1元=1刀、1元1刀、一刀） | 两种用法：充值 1 元得 1 美元额度；或倍率为 1，按官方价计费；另一用法：倍率为 1、即按官方价计费（COMMUNITY_USAGE）；“一刀”单说时也可只指 1 美元额度（见“刀”） | **1:1**: Two uses: topping up 1 yuan gives US$1 of credit; or a rate multiplier of 1, billed at the official price.; also: A rate multiplier of 1, i.e. billed at the official price (COMMUNITY_USAGE).; said alone, 一刀 can mean just one dollar of credit (see 刀) | 影响价格计算 | 社区 |
+| 高倍率/低倍率分组（高倍率、低倍率） | 分组倍率高或低的分组；同一模型下，低倍率分组的额度价更低；另一用法：说的是充值倍率时意思相反，高倍率指 1 元换到的额度多 | **High- or low-multiplier group**: a group with a high or low group multiplier; for the same model the low-multiplier group has the lower credit price; also: when the multiplier means the top-up rate the sense flips, and high means one yuan buys more credit | 影响价格计算 | 社区 |
+| 刀（美刀） | 美元的俗称，常指 1 美元额度 | **dao (US dollar)**: Dao is slang for the US dollar; it often means US$1 of credit. | 影响价格计算 | 目录 |
+| 落地价（落地） | 把分组倍率和充值折算相乘后，相对官方价的实际倍数或花费 | **landed price**: The actual multiple of the official price, or the actual cost, after multiplying the group rate multiplier by the top-up conversion. | 影响价格计算 | 目录 |
+| 按次计费（按次、按次收费） | 每次请求收固定费用，与 token 多少无关 | **per-request billing**: A fixed fee per request, regardless of the number of tokens. | 影响价格计算 | 目录 |
+| 按量计费（按量） | 按 token 用量计费 | **usage-based billing**: Billed by token usage. | 影响价格计算 | 目录 |
+| 按秒计费（按秒） | 按生成时长计费，多见于视频模型 | **per-second billing**: Billed by generation duration; mostly seen with video models. | 影响价格计算 | 目录 |
+| 正价（正价号、正价号池） | 两种用法：官方原价（不打折）；或按官方价正常付费开通的订阅号/官方 Key；另一用法：按官方价付费开通的上游账号（正价号），与日抛号、低价号相对 | **full price**: Two uses: the official list price (not discounted); or a subscription account/official key opened by paying the normal official price.; also: An upstream account opened by paying the official price (full-price account), as opposed to disposable daily accounts and low-price accounts. | 只用于理解，不展示 | 社区 |
+| 原价（官方价、官方原价） | 与官方定价相同的价格 | **official price**: A price equal to the official pricing. | 只用于理解，不展示 | 目录 |
+| 特价（特惠、优惠、折扣、低价、便宜） | 站点标的打折价格，本身不构成门槛 | **special price**: A discounted price labeled by the site; by itself it is not an access requirement. | 正常列出 | 目录 |
+| 限时（限时特价、限时特惠、活动） | 站点写明是限时价格 | **limited-time**: The site states that this is a limited-time price. | 列出并附站点写明的条件 | 目录 |
+| 充值 | 用现金购买站内额度 | **top-up**: Buying site credit with cash. | 只用于理解，不展示 | 目录 |
+| 套餐（包月、日卡、月卡） | 固定价格买一段时间或一定量的用量 | **plan (package)**: A fixed price for a period of time or a set amount of usage. | 只用于理解，不展示 | 目录 |
+| 跑量（量大、量大管饱） | 站点自述供货量大，或大用量可以议价 | **high volume**: The site says it has a large supply, or that heavy users can negotiate the price. | 只用于理解，不展示 | 目录 |
+| VIP 用户价（vip折后、svip免费、普通用户Nx） | 站内 VIP 用户另有价格；列出的倍率按普通用户价理解 | **VIP user price**: In-site VIP users get a separate price; read the listed multiplier as the regular-user price. | 列出并附站点写明的条件 | 目录 |
+| 价格存疑（倍率为0但写明单价、占位倍率、实际倍率不同） | 标价倍率与站点自己写的价格对不上，按参考列出，不当作准确价格 | **questionable price**: The listed multiplier does not match the price the site itself states; it is listed as a reference, not as an accurate price. Handling note: Three cases are listed as reference: a multiplier of 0 with a stated unit price, a multiplier ≥100, or an actual multiplier stated by the site that differs from the listed one. | 列为参考：倍率为 0 但写明单价、倍率 ≥100、站点写的实际倍率与标价不同，三种情况列为参考 | 目录 |
+| 实际倍率（综合倍率、实际综合倍率、充值倍率） | 把充值折扣算进去后的倍率；站点写的数与标价倍率不同时，实际花费按它算 | **effective multiplier**: The multiplier after the top-up discount is factored in; when the number the site states differs from the listed multiplier, actual cost is calculated with it. | 影响价格计算 | 目录 |
+| 按张（一张、每张、/张） | 图片模型按生成张数计费，如 0.1/张 | **per image**: Image models billed by the number of images generated, e.g. 0.1/image. | 影响价格计算 | 目录 |
+| 超分（超分4k） | 图片先按较低分辨率生成再放大，区别于原生 4K | **upscaled**: Images generated at a lower resolution and then enlarged, as opposed to native 4K. | 只用于理解，不展示 | 目录 |
 
-## 上游来源
+## 上游来源 / Upstream sources
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 临期号（临期） | 用快到续费期的订阅账号（如 ChatGPT Team）供货的号池 | 只用于理解，不展示 | 社区 |
-| 拼车（拼车号、合租） | 几个人合买一个订阅账号（如 Claude Max、ChatGPT Pro）分摊费用、共用额度；站点也用它指多人共用同一上游账号的分组 | 只用于理解，不展示 | 社区 |
-| 官方（官方直连、官渠、官方渠道、纯官、原厂） | 站点自述货源走厂商或云平台的官方 API 或官方订阅号；也常只当“官方价”参照；另一用法：①价格参照：“官方正价8折”“官方0.36x”“比官方便宜”“official -85.7%”只拿官方定价作比较，不说明货源（粗算约 130/1012 组只在价格或官方客户端语境出现“官方”）；②客户端限制：“只能官方cli”“仅在claude官方客户端中使用”；③“官方max号池”“官方订阅20x”指真实订阅账号，不是官方 API。 | 正常列出 | 社区 |
-| 官key（官方key、gpt官key） | 站点自述用厂商或云平台（如 Azure、AWS）开出的官方 API Key 供货；另一用法：变体“官号”≠官key：语料 27 组/15 站多指官方订阅账号（“claude max20 官号”“Grok Heavy 官号｜grok heavy 号池”“GPT Pro 官号｜gpt pro 号池”），与号池/订阅同义。 | 正常列出 | 社区 |
-| 官转（官转渠道、官转直连） | 站点自称“官方渠道转发”：多指转发官方 API，也有站把 Max 订阅号池或云渠道叫官转；另一用法：语料可证的另一用法：把订阅号池也叫官转——api.aabao.top“Claude官转｜max渠道”、api.ccode.vip“CC 官转 MAX-t｜official repost max pool”、aifastgo.cn“cc官转满血号池”、new.yihubang.top“cc-max 官转”；也用于云和聚合平台——aokapi.com“aws官转”、nxaiapp.com“azure 官转 openai”、qinzhiai.com“openrouter官转”。 | 正常列出 | 社区 |
-| 逆向（逆向渠道、reverse） | 不走官方 API，模拟网页版、订阅账号或 IDE 客户端的私有接口转成 API；另一用法：①用途限制：“禁止逆向、渗透、蒸馏”“允许逆向破限”“逆向安全学习研究”指软件逆向/安全类请求，不是货源（语料 17 组/10 站）；②各站范围不同：Kiro、反重力、awsq，甚至“Claude Bedrock 逆向”（v2ex 广告帖）都被叫逆向。 | 正常列出 | 社区 |
-| 反代（反向代理） | 代理订阅账号或客户端（如 Kiro、Cursor）的内部接口对外出售 API，常与逆向混用；另一用法：通用网络义“反向代理”：只是转发某个接口（如语料“gpt-azure-反代”）。语料还有“官key非反代”“api直转· 不是反代”，与官方直转对举。 | 正常列出 | 社区 |
-| 2api（grok2api、kiro2api） | “2”读作 to：把订阅、网页或 IDE 产品转成 API 的工具或渠道，如 kiro2api | 只用于理解，不展示 | 社区 |
-| Kiro（kiro、krio、kiropower、claude-kiro、cc-kiro） | 用亚马逊 AWS 旗下 Kiro 编程工具的账号额度转成的调用，多为 Claude 模型；另一用法：“aws”“cc-aws”“awsq/aws-q”也常指 Kiro 或 Amazon Q 渠道（含 aws 的分组中 48 组同时提 kiro、19 组提 aws-q）；kiropower=Kiro Power 档（$200/月）；“kiro企业号”=Kiro 企业版（IAM Identity Center/IdC）账号；krio 为常见错拼。 | 正常列出 | 社区 |
-| 反重力（antigravity、anti） | 用谷歌 Antigravity 开发平台的账号额度转成的调用，有 Gemini 也有 Claude；另一用法：anti 在语料中基本都指 Antigravity（40 组只写 anti 不写反重力，如 anti-cc、gemini-anti）；“ant”有歧义（“claude-ant-订阅计费”可能指 Anthropic），不建议加为变体。“antigravity ultra/pro混合号池”里的 ultra/pro 指 Google AI 订阅档。 | 正常列出 | 社区 |
-| IDE 渠道（cursor、windsurf、copilot、trae） | 用 Cursor、Windsurf、GitHub Copilot 等编程工具的订阅额度转成的调用；另一用法：wf=Windsurf（如“cc-wf｜claudecode windsurf”）；变体 trae（字节跳动 TRAE IDE）在列表里但不在匹配规则中，语料仅 2 组；“workbuddy反代”属同类但未收录；api.shiro.uno“Grok满血 0.1x｜cursor pro满血”是 Cursor 来源的 Grok。 | 正常列出 | 社区 |
-| Gemini CLI 渠道（gemini cli、gemini-cli、gcli） | 用 Gemini CLI 登录的谷歌账号（含企业授权）额度转成的 Gemini 调用；另一用法：客户端限制：“Gemini CLI专用/专属”“仅用于 gemini cli,不可用于通用对话”“可用于gemini cli”说的是只能/可在 Gemini CLI 客户端里用（9 组/7 站），货源可能另有来源（api.duckcoding.ai“Gemini CLI专用-Antigravity｜reverse antigravity”）。“cli企业号池”指 Code Assist 企业授权账号。 | 正常列出 | 社区 |
-| 号池（账号池、混池、混合号池、订阅号池、pool） | 把一批账号（有时是 API Key）集中轮流调用来供货，多为订阅账号；另一用法：“key池”“t1key池”“openai官Key池”指 API Key 池而不是账号；“混池/混合号池”指不同档位或来源混在一起（“plus、team、pro 混池”“ccmax-官key-awsb-顶级混池”）。 | 正常列出 | 社区 |
-| 订阅（订阅号、订阅号池） | 上游是 ChatGPT、Claude、Grok、Kiro 等按月订阅账号的用量额度；另一用法：站点自己的包月套餐：“订阅计费”“订阅套餐默认分组”“月卡订阅”“订阅走7折分组”说的是本站计费方式，不是货源（语料 38/176 组，11 站）。 | 正常列出 | 社区 |
-| Max 号（max、ccmax、claudemax、max20、max20x） | Claude Max 订阅号作上游；5x/20x 为相对 Pro 的用量档（$100/$200）；另一用法：单独的“max”常不是 Claude Max：qwen-max、站点档名（“国产模型Max”“GPT模型Max”）、Kiro Pro Max、Copilot Max、“思考等级调max”“max质量”。命中 max 规则却无 Claude 模型的分组有 45 组，另有含 Claude 模型的 Kiro“Pro Max”等。 | 正常列出 | 文档 |
-| Plus/Pro/Team 号（plus、pro、team、pro20x、gptpro） | ChatGPT Plus、Pro、Business 等订阅号作上游，多用于 Codex；另一用法：plus/pro/team 也常是别家档位或站点档名：Claude Team（“claudemax 20x、claude team”）、Kiro Pro+（“CC Kiro Plus”）、Grok“super/plus/heavy”、qwen plus、“国产模型Plus”（命中规则但无 GPT 模型的分组 30 组）；“pro20x”在社区指 $200 档 Pro（未在官方页逐字确认）；“k12”指教育号。 | 正常列出 | 文档 |
-| SuperGrok/Heavy（supergrok、grok heavy、heavy） | xAI 的 Grok 订阅号作上游，分 SuperGrok 和 SuperGrok Heavy 两档；另一用法：heavy 也可指 Grok Heavy 模型/模式（grok2api 中 grok-chat-heavy 要求 Heavy 档账号），不一定单指账号档；oai2api“grok heavy 正价”的“正价”是价格说法。 | 正常列出 | 文档 |
-| AWS / Bedrock（aws、bedrock、awsb） | AWS 上游：多指 Bedrock（awsb）；也有站把 Kiro、Amazon Q 渠道叫 aws；另一用法：aws 也指 Kiro/Amazon Q Developer 渠道：含 aws 的 454 组中 48 组同时写 kiro（如“claude kiro-aws”“kiro aws企业渠道”），19 组写 aws-q/awsq；只有 222 组明确写 bedrock 或 awsb。另有“Claude Platform on AWS”路线，语料暂未出现。 | 正常列出 | 社区 |
-| Azure（azure、az） | 上游是微软 Azure 云上的模型，多为 OpenAI，也有 Claude | 正常列出 | 目录 |
-| Vertex / AI Studio（vertex、gcp、aistudio） | 上游是谷歌云 Vertex AI 或 AI Studio | 正常列出 | 目录 |
-| 国内云平台（火山、百炼、阿里云、智谱） | 上游是火山引擎、阿里云百炼等国内平台 | 正常列出 | 目录 |
-| OpenRouter（openrouter、or） | 上游是 OpenRouter 聚合平台 | 正常列出 | 目录 |
-| 企业号（企业号池） | 企业号指厂商企业/团队版账号（如 Kiro 企业版）；“企业专线”多是站方线路自述；另一用法：“企业专线/企业线路/企业渠道”（不含“企业号”的 37 组/34 站）多是面向企业客户的线路自述（高并发、开票、“网安企业渠道”），不指明货源。 | 正常列出 | 社区 |
-| 自建/自营（自建、自营、自部署、自己号池） | 站点自述自己维护的上游或部署 | 正常列出 | 目录 |
-| 三方（第三方） | 上游来自其他中转或第三方平台；另一用法：“第三方客户端 / 第三方工具”指应用，不是上游来源；作上游筛选时排除 | 正常列出 | 目录 |
-| 聚合/混合（聚合、混合、mix、auto、全模型自动） | 多个上游混在一起，按情况自动分配 | 正常列出 | 目录 |
-| 兜底/备用（兜底、备用） | 主渠道不可用时使用的备选渠道 | 正常列出 | 目录 |
-| 毛子渠道（毛子） | 口语（带贬义）称俄罗斯人；站点借指与俄罗斯有关的货源，具体来源未说明 | 只用于理解，不展示 | 目录 |
-| 独享/专线（独享、专线、独立通道、企业专线、企业线路） | 站点自述的专用线路或独享账号，是否独占无法核实 | 正常列出 | 目录 |
-| 官号（官方号、官方账号） | 站点自述上游是厂商的官方订阅账号（如 Max 20x、Grok Heavy、GPT Pro） | 正常列出 | 目录 |
-| 渠道（线路、通道） | 站点对一路上游来源的叫法；一个分组可能混用多个渠道 | 只用于理解，不展示 | 目录 |
-| 直连（官方直连、官key直连） | 站点自述直接调用上游、不经其他中转 | 只用于理解，不展示 | 目录 |
-| Adobe 渠道（adobe、adb） | 站点自述经 Adobe Firefly 等产品转出的图片模型调用 | 只用于理解，不展示 | 社区 |
-| T1/T3（t1、t3、tier、t5速率） | 上游 API 账号的用量等级，如 Gemini API 的 Tier 1 / Tier 3 | 只用于理解，不展示 | 目录 |
-| 速刷（速刷池、速刷号） | 站点对频繁补充、更换账号的号池的叫法 | 只用于理解，不展示 | 目录 |
-| 补号（补量） | 站点给号池补充新账号 | 只用于理解，不展示 | 目录 |
-| K12 号（k12、教育号） | OpenAI 给美国中小学教师的免费 ChatGPT 教师版账号，被用作上游 | 只用于理解，不展示 | 社区 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 临期号（临期） | 用快到续费期的订阅账号（如 ChatGPT Team）供货的号池 | **near-expiry accounts**: An account pool supplied with subscription accounts that are close to their renewal date (e.g. ChatGPT Team). | 只用于理解，不展示 | 社区 |
+| 拼车（拼车号、合租） | 几个人合买一个订阅账号（如 Claude Max、ChatGPT Pro）分摊费用、共用额度；站点也用它指多人共用同一上游账号的分组 | **Carpool (拼车)**: several people share one subscription account (such as Claude Max or ChatGPT Pro), splitting cost and quota; sites also use it for groups where several users share one upstream account | 只用于理解，不展示 | 社区 |
+| 官方（官方直连、官渠、官方渠道、纯官、原厂） | 站点自述货源走厂商或云平台的官方 API 或官方订阅号；也常只当“官方价”参照；另一用法：①价格参照：“官方正价8折”“官方0.36x”“比官方便宜”“official -85.7%”只拿官方定价作比较，不说明货源（粗算约 130/1012 组只在价格或官方客户端语境出现“官方”）；②客户端限制：“只能官方cli”“仅在claude官方客户端中使用”；③“官方max号池”“官方订阅20x”指真实订阅账号，不是官方 API。 | **official**: The site claims its supply goes through the official API or official subscription accounts of the vendor or a cloud platform; the word is also often used only as an "official price" reference.; also: (1) Price reference: "80% of official full price", "official 0.36x", "cheaper than official" and "official -85.7%" only use official pricing for comparison and say nothing about supply (by rough count, about 130/1012 groups mention "official" only in a price or official-client context); (2) client restriction: "official CLI only", "only usable in the official Claude client"; (3) "official max account pool" and "official subscription 20x" mean real subscription accounts, not the official API. | 正常列出 | 社区 |
+| 官key（官方key、gpt官key） | 站点自述用厂商或云平台（如 Azure、AWS）开出的官方 API Key 供货；另一用法：变体“官号”≠官key：语料 27 组/15 站多指官方订阅账号（“claude max20 官号”“Grok Heavy 官号｜grok heavy 号池”“GPT Pro 官号｜gpt pro 号池”），与号池/订阅同义。 | **official key**: The site claims supply comes from official API keys issued by the vendor or a cloud platform (e.g. Azure, AWS).; also: The variant guanhao (official account) is not the same as an official key: in the corpus (27 groups / 15 sites) it mostly means official subscription accounts ("claude max20 official account", "Grok Heavy official account \| grok heavy account pool", "GPT Pro official account \| gpt pro account pool"), synonymous with account pool/subscription. | 正常列出 | 社区 |
+| 官转（官转渠道、官转直连） | 站点自称“官方渠道转发”：多指转发官方 API，也有站把 Max 订阅号池或云渠道叫官转；另一用法：语料可证的另一用法：把订阅号池也叫官转——api.aabao.top“Claude官转｜max渠道”、api.ccode.vip“CC 官转 MAX-t｜official repost max pool”、aifastgo.cn“cc官转满血号池”、new.yihubang.top“cc-max 官转”；也用于云和聚合平台——aokapi.com“aws官转”、nxaiapp.com“azure 官转 openai”、qinzhiai.com“openrouter官转”。 | **official relay**: The site claims "forwarding through official channels": mostly forwarding the official API, but some sites also call a Max subscription account pool or a cloud channel an official relay.; also: Another use the corpus confirms is calling a subscription account pool an official relay: api.aabao.top "Claude official relay \| max channel", api.ccode.vip "CC official relay MAX-t \| official repost max pool", aifastgo.cn "cc official relay full-strength account pool", new.yihubang.top "cc-max official relay"; it is also used for cloud and aggregator platforms: aokapi.com "aws official relay", nxaiapp.com "azure official relay openai", qinzhiai.com "openrouter official relay". | 正常列出 | 社区 |
+| 逆向（逆向渠道、reverse） | 不走官方 API，模拟网页版、订阅账号或 IDE 客户端的私有接口转成 API；另一用法：①用途限制：“禁止逆向、渗透、蒸馏”“允许逆向破限”“逆向安全学习研究”指软件逆向/安全类请求，不是货源（语料 17 组/10 站）；②各站范围不同：Kiro、反重力、awsq，甚至“Claude Bedrock 逆向”（v2ex 广告帖）都被叫逆向。 | **reverse-engineered**: Not using the official API; it emulates the private interfaces of the web app, subscription accounts or IDE clients and turns them into an API.; also: (1) Usage restriction: "no reverse engineering, penetration or distillation", "reverse engineering and jailbreaking allowed" and "reverse engineering for security learning and research" refer to software reverse-engineering/security requests, not supply (17 groups / 10 sites in the corpus); (2) the scope differs by site: Kiro, Antigravity, awsq, and even "Claude Bedrock reverse" (a v2ex ad post) are all called reverse. | 正常列出 | 社区 |
+| 反代（反向代理） | 代理订阅账号或客户端（如 Kiro、Cursor）的内部接口对外出售 API，常与逆向混用；另一用法：通用网络义“反向代理”：只是转发某个接口（如语料“gpt-azure-反代”）。语料还有“官key非反代”“api直转· 不是反代”，与官方直转对举。 | **reverse proxy**: Proxying the internal interfaces of subscription accounts or clients (e.g. Kiro, Cursor) and selling them as an API; often used interchangeably with reverse-engineered.; also: The general networking sense of "reverse proxy": just forwarding some interface (e.g. "gpt-azure-reverse-proxy" in the corpus). The corpus also has "official key, not reverse proxy" and "direct API relay, not a reverse proxy", contrasted with direct official relay. | 正常列出 | 社区 |
+| 2api（grok2api、kiro2api） | “2”读作 to：把订阅、网页或 IDE 产品转成 API 的工具或渠道，如 kiro2api | **2api**: The "2" is read as "to": a tool or channel that turns a subscription, web or IDE product into an API, e.g. kiro2api. | 只用于理解，不展示 | 社区 |
+| Kiro（kiro、krio、kiropower、claude-kiro、cc-kiro） | 用亚马逊 AWS 旗下 Kiro 编程工具的账号额度转成的调用，多为 Claude 模型；另一用法：“aws”“cc-aws”“awsq/aws-q”也常指 Kiro 或 Amazon Q 渠道（含 aws 的分组中 48 组同时提 kiro、19 组提 aws-q）；kiropower=Kiro Power 档（$200/月）；“kiro企业号”=Kiro 企业版（IAM Identity Center/IdC）账号；krio 为常见错拼。 | **Kiro**: Calls converted from the account quota of Kiro, a coding tool from Amazon AWS; mostly Claude models.; also: "aws", "cc-aws" and "awsq/aws-q" also often mean Kiro or Amazon Q channels (among groups containing aws, 48 also mention kiro and 19 mention aws-q); kiropower = Kiro Power tier ($200/month); "kiro enterprise account" = a Kiro Enterprise (IAM Identity Center/IdC) account; krio is a common misspelling. | 正常列出 | 社区 |
+| 反重力（antigravity、anti） | 用谷歌 Antigravity 开发平台的账号额度转成的调用，有 Gemini 也有 Claude；另一用法：anti 在语料中基本都指 Antigravity（40 组只写 anti 不写反重力，如 anti-cc、gemini-anti）；“ant”有歧义（“claude-ant-订阅计费”可能指 Anthropic），不建议加为变体。“antigravity ultra/pro混合号池”里的 ultra/pro 指 Google AI 订阅档。 | **Antigravity**: Calls converted from the account quota of Google's Antigravity development platform; includes both Gemini and Claude.; also: In the corpus, anti almost always means Antigravity (40 groups write only anti and not fanzhongli, e.g. anti-cc, gemini-anti); "ant" is ambiguous ("claude-ant-subscription billing" may mean Anthropic), so adding it as a variant is not recommended. In "antigravity ultra/pro mixed account pool", ultra/pro refer to Google AI subscription tiers. | 正常列出 | 社区 |
+| IDE 渠道（cursor、windsurf、copilot、trae） | 用 Cursor、Windsurf、GitHub Copilot 等编程工具的订阅额度转成的调用；另一用法：wf=Windsurf（如“cc-wf｜claudecode windsurf”）；变体 trae（字节跳动 TRAE IDE）在列表里但不在匹配规则中，语料仅 2 组；“workbuddy反代”属同类但未收录；api.shiro.uno“Grok满血 0.1x｜cursor pro满血”是 Cursor 来源的 Grok。 | **IDE channel**: Calls converted from the subscription quota of coding tools such as Cursor, Windsurf and GitHub Copilot.; also: wf = Windsurf (e.g. "cc-wf \| claudecode windsurf"); the variant trae (ByteDance's TRAE IDE) is in the list but not in the matching rules, with only 2 groups in the corpus; "workbuddy reverse proxy" is the same kind but not included; api.shiro.uno "Grok full-strength 0.1x \| cursor pro full-strength" is Grok sourced from Cursor. | 正常列出 | 社区 |
+| Gemini CLI 渠道（gemini cli、gemini-cli、gcli） | 用 Gemini CLI 登录的谷歌账号（含企业授权）额度转成的 Gemini 调用；另一用法：客户端限制：“Gemini CLI专用/专属”“仅用于 gemini cli,不可用于通用对话”“可用于gemini cli”说的是只能/可在 Gemini CLI 客户端里用（9 组/7 站），货源可能另有来源（api.duckcoding.ai“Gemini CLI专用-Antigravity｜reverse antigravity”）。“cli企业号池”指 Code Assist 企业授权账号。 | **Gemini CLI channel**: Gemini calls converted from the quota of Google accounts (including enterprise licenses) logged in through Gemini CLI.; also: Client restriction: "Gemini CLI only/exclusive", "only for gemini cli, not for general chat" and "usable in gemini cli" mean it can only, or can, be used in the Gemini CLI client (9 groups / 7 sites); the supply may come from elsewhere (api.duckcoding.ai "Gemini CLI only-Antigravity \| reverse antigravity"). "cli enterprise account pool" means Code Assist enterprise-licensed accounts. | 正常列出 | 社区 |
+| 号池（账号池、混池、混合号池、订阅号池、pool） | 把一批账号（有时是 API Key）集中轮流调用来供货，多为订阅账号；另一用法：“key池”“t1key池”“openai官Key池”指 API Key 池而不是账号；“混池/混合号池”指不同档位或来源混在一起（“plus、team、pro 混池”“ccmax-官key-awsb-顶级混池”）。 | **account pool**: Supplying calls by pooling a batch of accounts (sometimes API keys) and calling them in rotation; mostly subscription accounts.; also: "key pool", "t1key pool" and "openai official key pool" mean pools of API keys, not accounts; "mixed pool/mixed account pool" means different tiers or sources mixed together ("plus, team, pro mixed pool", "ccmax-official key-awsb-top-tier mixed pool"). | 正常列出 | 社区 |
+| 订阅（订阅号、订阅号池） | 上游是 ChatGPT、Claude、Grok、Kiro 等按月订阅账号的用量额度；另一用法：站点自己的包月套餐：“订阅计费”“订阅套餐默认分组”“月卡订阅”“订阅走7折分组”说的是本站计费方式，不是货源（语料 38/176 组，11 站）。 | **subscription**: The upstream is the usage quota of monthly subscription accounts such as ChatGPT, Claude, Grok or Kiro.; also: The site's own monthly plans: "subscription billing", "subscription plan default group", "monthly card subscription" and "subscriptions use the 70%-price group" refer to this site's billing method, not supply (38/176 groups, 11 sites in the corpus). | 正常列出 | 社区 |
+| Max 号（max、ccmax、claudemax、max20、max20x） | Claude Max 订阅号作上游；5x/20x 为相对 Pro 的用量档（$100/$200）；另一用法：单独的“max”常不是 Claude Max：qwen-max、站点档名（“国产模型Max”“GPT模型Max”）、Kiro Pro Max、Copilot Max、“思考等级调max”“max质量”。命中 max 规则却无 Claude 模型的分组有 45 组，另有含 Claude 模型的 Kiro“Pro Max”等。 | **Max account**: Claude Max subscription accounts used as upstream; 5x/20x are usage tiers relative to Pro ($100/$200).; also: A standalone "max" is often not Claude Max: qwen-max, site tier names ("Chinese models Max", "GPT models Max"), Kiro Pro Max, Copilot Max, "set thinking level to max", "max quality". 45 groups match the max rule but have no Claude model, and there are others, such as Kiro "Pro Max", that do contain Claude models. | 正常列出 | 文档 |
+| Plus/Pro/Team 号（plus、pro、team、pro20x、gptpro） | ChatGPT Plus、Pro、Business 等订阅号作上游，多用于 Codex；另一用法：plus/pro/team 也常是别家档位或站点档名：Claude Team（“claudemax 20x、claude team”）、Kiro Pro+（“CC Kiro Plus”）、Grok“super/plus/heavy”、qwen plus、“国产模型Plus”（命中规则但无 GPT 模型的分组 30 组）；“pro20x”在社区指 $200 档 Pro（未在官方页逐字确认）；“k12”指教育号。 | **Plus/Pro/Team account**: ChatGPT Plus, Pro, Business and other subscription accounts used as upstream; mostly used for Codex.; also: plus/pro/team are also often other vendors' tiers or site tier names: Claude Team ("claudemax 20x, claude team"), Kiro Pro+ ("CC Kiro Plus"), Grok "super/plus/heavy", qwen plus, "Chinese models Plus" (30 groups match the rule but have no GPT model); in the community "pro20x" means the $200 Pro tier (not confirmed word for word on the official page); "k12" means education accounts. | 正常列出 | 文档 |
+| SuperGrok/Heavy（supergrok、grok heavy、heavy） | xAI 的 Grok 订阅号作上游，分 SuperGrok 和 SuperGrok Heavy 两档；另一用法：heavy 也可指 Grok Heavy 模型/模式（grok2api 中 grok-chat-heavy 要求 Heavy 档账号），不一定单指账号档；oai2api“grok heavy 正价”的“正价”是价格说法。 | **SuperGrok/Heavy**: xAI Grok subscription accounts used as upstream, in two tiers: SuperGrok and SuperGrok Heavy.; also: heavy can also mean the Grok Heavy model/mode (in grok2api, grok-chat-heavy requires a Heavy-tier account), so it does not necessarily mean only the account tier; in oai2api "grok heavy full price", "full price" is a pricing phrase. | 正常列出 | 文档 |
+| AWS / Bedrock（aws、bedrock、awsb） | AWS 上游：多指 Bedrock（awsb）；也有站把 Kiro、Amazon Q 渠道叫 aws；另一用法：aws 也指 Kiro/Amazon Q Developer 渠道：含 aws 的 454 组中 48 组同时写 kiro（如“claude kiro-aws”“kiro aws企业渠道”），19 组写 aws-q/awsq；只有 222 组明确写 bedrock 或 awsb。另有“Claude Platform on AWS”路线，语料暂未出现。 | **AWS / Bedrock**: AWS upstream: mostly Bedrock (awsb); some sites also call Kiro and Amazon Q channels aws.; also: aws also refers to Kiro/Amazon Q Developer channels: of 454 groups containing aws, 48 also write kiro (e.g. "claude kiro-aws", "kiro aws enterprise channel") and 19 write aws-q/awsq; only 222 explicitly write bedrock or awsb. There is also a "Claude Platform on AWS" route, not yet seen in the corpus. | 正常列出 | 社区 |
+| Azure（azure、az） | 上游是微软 Azure 云上的模型，多为 OpenAI，也有 Claude | **Azure**: The upstream is models on Microsoft's Azure cloud; mostly OpenAI, with some Claude. | 正常列出 | 目录 |
+| Vertex / AI Studio（vertex、gcp、aistudio） | 上游是谷歌云 Vertex AI 或 AI Studio | **Vertex / AI Studio**: The upstream is Google Cloud Vertex AI or AI Studio. | 正常列出 | 目录 |
+| 国内云平台（火山、百炼、阿里云、智谱） | 上游是火山引擎、阿里云百炼等国内平台 | **Chinese cloud platform**: The upstream is a platform in China, such as Volcano Engine or Alibaba Cloud Bailian. | 正常列出 | 目录 |
+| OpenRouter（openrouter、or） | 上游是 OpenRouter 聚合平台 | **OpenRouter**: The upstream is the OpenRouter aggregation platform. | 正常列出 | 目录 |
+| 企业号（企业号池） | 企业号指厂商企业/团队版账号（如 Kiro 企业版）；“企业专线”多是站方线路自述；另一用法：“企业专线/企业线路/企业渠道”（不含“企业号”的 37 组/34 站）多是面向企业客户的线路自述（高并发、开票、“网安企业渠道”），不指明货源。 | **enterprise account**: An enterprise account means a vendor's enterprise/team edition account (e.g. Kiro Enterprise); "enterprise dedicated line" is mostly the site's own description of its line.; also: "Enterprise dedicated line/enterprise line/enterprise channel" (37 groups / 34 sites that do not say "enterprise account") are mostly the sites' own descriptions of lines aimed at business customers (high concurrency, invoicing, "cybersecurity enterprise channel") and do not specify the supply. | 正常列出 | 社区 |
+| 自建/自营（自建、自营、自部署、自己号池） | 站点自述自己维护的上游或部署 | **self-built/self-operated**: The site claims an upstream or deployment that it maintains itself. | 正常列出 | 目录 |
+| 三方（第三方） | 上游来自其他中转或第三方平台；另一用法：“第三方客户端 / 第三方工具”指应用，不是上游来源；作上游筛选时排除 | **third-party**: The upstream comes from other relays or third-party platforms.; also: "Third-party client / third-party tool" refers to apps, not upstream sources; it is excluded when filtering by upstream. | 正常列出 | 目录 |
+| 聚合/混合（聚合、混合、mix、auto、全模型自动） | 多个上游混在一起，按情况自动分配 | **aggregated/mixed**: Multiple upstreams mixed together and allocated automatically depending on conditions. | 正常列出 | 目录 |
+| 兜底/备用（兜底、备用） | 主渠道不可用时使用的备选渠道 | **fallback/backup**: A backup channel used when the main channel is unavailable. | 正常列出 | 目录 |
+| 毛子渠道（毛子） | 口语（带贬义）称俄罗斯人；站点借指与俄罗斯有关的货源，具体来源未说明 | **Maozi (Russian) channel**: A colloquial (derogatory) term for Russians; sites use it for supply related to Russia, without stating the actual source. | 只用于理解，不展示 | 目录 |
+| 独享/专线（独享、专线、独立通道、企业专线、企业线路） | 站点自述的专用线路或独享账号，是否独占无法核实 | **dedicated/exclusive line**: A dedicated line or exclusive account as claimed by the site; whether it is really exclusive cannot be verified. | 正常列出 | 目录 |
+| 官号（官方号、官方账号） | 站点自述上游是厂商的官方订阅账号（如 Max 20x、Grok Heavy、GPT Pro） | **official account**: The site claims the upstream is the vendor's official subscription accounts (e.g. Max 20x, Grok Heavy, GPT Pro). | 正常列出 | 目录 |
+| 渠道（线路、通道） | 站点对一路上游来源的叫法；一个分组可能混用多个渠道 | **channel**: The site's term for one upstream source; a group may mix several channels. | 只用于理解，不展示 | 目录 |
+| 直连（官方直连、官key直连） | 站点自述直接调用上游、不经其他中转 | **direct connection**: The site claims it calls the upstream directly, without going through other relays. | 只用于理解，不展示 | 目录 |
+| Adobe 渠道（adobe、adb） | 站点自述经 Adobe Firefly 等产品转出的图片模型调用 | **Adobe channel**: Image model calls that the site claims are converted from Adobe Firefly and similar products. | 只用于理解，不展示 | 社区 |
+| T1/T3（t1、t3、tier、t5速率） | 上游 API 账号的用量等级，如 Gemini API 的 Tier 1 / Tier 3 | **T1/T3**: The usage tier of an upstream API account, e.g. Gemini API Tier 1 / Tier 3. | 只用于理解，不展示 | 目录 |
+| 速刷（速刷池、速刷号） | 站点对频繁补充、更换账号的号池的叫法 | **fast-cycling pool**: The site's term for an account pool whose accounts are frequently replenished and replaced. | 只用于理解，不展示 | 目录 |
+| 补号（补量） | 站点给号池补充新账号 | **account replenishment**: The site adds new accounts to its account pool. | 只用于理解，不展示 | 目录 |
+| K12 号（k12、教育号） | OpenAI 给美国中小学教师的免费 ChatGPT 教师版账号，被用作上游 | **K12 account**: The free ChatGPT for Teachers accounts that OpenAI gives US K-12 teachers, used as upstream. | 只用于理解，不展示 | 社区 |
 
-## 商业门槛
+## 商业门槛 / Access requirements
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 充值门槛（充值满、累计充值、单笔充值） | 累计或单笔充值达到一定金额才能用 | 列出并附站点写明的条件 | 目录 |
-| 邀请制（邀请、非邀勿选） | 只对受邀用户开放 | 列出并附站点写明的条件 | 目录 |
-| 会员专享（VIP专享、会员通道） | 开通会员后才能用；另一用法：“会员号 / 会员渠道”指上游是订阅会员账号；“会员 N 折”是站内会员价，见“VIP 用户价” | 列出并附站点写明的条件 | 目录 |
-| 白名单（开白） | 需站点把你加入白名单 | 列出并附站点写明的条件 | 目录 |
-| 卡类专用（日卡专用、月卡专用、包月专用） | 买了日卡、月卡等套餐才能用 | 列出并附站点写明的条件 | 目录 |
-| 找站长开通（找群主切换） | 需联系站长手动开通 | 列出并附站点写明的条件 | 目录 |
-| 仅限特定用户（企业用户专用、普通用户勿选、大客户专享、代理专属、不对个人用户开放） | 站点写明只对企业、大客户或代理开放 | 列出并附站点写明的条件 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 充值门槛（充值满、累计充值、单笔充值） | 累计或单笔充值达到一定金额才能用 | **top-up threshold**: Usable only after cumulative or single top-ups reach a certain amount. | 列出并附站点写明的条件 | 目录 |
+| 邀请制（邀请、非邀勿选） | 只对受邀用户开放 | **invite-only**: Open only to invited users. | 列出并附站点写明的条件 | 目录 |
+| 会员专享（VIP专享、会员通道） | 开通会员后才能用；另一用法：“会员号 / 会员渠道”指上游是订阅会员账号；“会员 N 折”是站内会员价，见“VIP 用户价” | **members only**: Usable only after buying a membership.; also: "Member account / member channel" means the upstream is subscription member accounts; a member discount label (members pay N tenths of the listed price, e.g. 80%) is an in-site member price, see "VIP user price". | 列出并附站点写明的条件 | 目录 |
+| 白名单（开白） | 需站点把你加入白名单 | **whitelist**: Requires the site to add you to its whitelist. | 列出并附站点写明的条件 | 目录 |
+| 卡类专用（日卡专用、月卡专用、包月专用） | 买了日卡、月卡等套餐才能用 | **pass holders only**: Usable only after buying a plan such as a day pass or monthly pass. | 列出并附站点写明的条件 | 目录 |
+| 找站长开通（找群主切换） | 需联系站长手动开通 | **ask site owner to enable**: Requires contacting the site owner to enable it manually. | 列出并附站点写明的条件 | 目录 |
+| 仅限特定用户（企业用户专用、普通用户勿选、大客户专享、代理专属、不对个人用户开放） | 站点写明只对企业、大客户或代理开放 | **specific users only**: The site states it is open only to businesses, large customers or resellers. | 列出并附站点写明的条件 | 目录 |
 
-## 档位名
+## 档位名 / Tier names
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| VIP/SVIP（vip、svip、ssvip、vvip） | 多数只是分组或档位名；描述写明充值门槛、仅限VIP或包月卡时才算门槛；另一用法：(1) VIP 作为用户等级：描述写"vip折后x2.55""普通用户2x,svip1.8x""svip免费"，表示站内 VIP 用户另有价格，列出的倍率是普通用户价；(2) 白标模板里 vip/svip/ssvip/vvip 表示渠道类型而不是用户等级：bltcy.ai、comfly.org、t8star.org、apilio.ai、kg-api.cloud 等 8 站统一为 vip=逆向按量、vvip=逆向按次、svip=纯azure、ssvip=纯openai。 | 正常列出：通常只是名字；写明充值、仅限 VIP、包月等条件时按门槛提示 | 目录 |
-| 企业（企业级、enterprise） | 多为稳定高端档位标签或上游企业账号类型；写明仅限企业用户时才算限制；另一用法："企业版/企业池/enterprise/business"常指上游号源（如 ChatGPT 企业/团队账号、Gemini 企业版），而不是要求买家是企业 | 正常列出：通常只是档位或上游账号类型；写明“仅限企业用户 / 普通用户勿选”时按门槛提示 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| VIP/SVIP（vip、svip、ssvip、vvip） | 多数只是分组或档位名；描述写明充值门槛、仅限VIP或包月卡时才算门槛；另一用法：(1) VIP 作为用户等级：描述写"vip折后x2.55""普通用户2x,svip1.8x""svip免费"，表示站内 VIP 用户另有价格，列出的倍率是普通用户价；(2) 白标模板里 vip/svip/ssvip/vvip 表示渠道类型而不是用户等级：bltcy.ai、comfly.org、t8star.org、apilio.ai、kg-api.cloud 等 8 站统一为 vip=逆向按量、vvip=逆向按次、svip=纯azure、ssvip=纯openai。 | **VIP/SVIP**: Mostly just a group or tier name; it only counts as an access requirement when the description states a top-up threshold, VIP-only access or a monthly pass.; also: (1) VIP as a user level: descriptions such as "vip after discount x2.55", "regular users 2x, svip1.8x" and "free for svip" mean in-site VIP users get a separate price and the listed multiplier is the regular-user price; (2) in white-label templates, vip/svip/ssvip/vvip denote channel types, not user levels: 8 sites including bltcy.ai, comfly.org, t8star.org, apilio.ai and kg-api.cloud uniformly use vip = reverse-engineered usage-based, vvip = reverse-engineered per-request, svip = pure Azure, ssvip = pure OpenAI. Handling note: Usually just a name; show an access-requirement note when top-up, VIP-only, monthly-pass or similar conditions are stated. | 正常列出：通常只是名字；写明充值、仅限 VIP、包月等条件时按门槛提示 | 目录 |
+| 企业（企业级、enterprise） | 多为稳定高端档位标签或上游企业账号类型；写明仅限企业用户时才算限制；另一用法："企业版/企业池/enterprise/business"常指上游号源（如 ChatGPT 企业/团队账号、Gemini 企业版），而不是要求买家是企业 | **enterprise**: Mostly a label for a stable premium tier or an upstream enterprise account type; it only counts as a restriction when it states enterprise users only.; also: "Enterprise edition/enterprise pool/enterprise/business" often refer to the upstream account source (e.g. ChatGPT Enterprise/Team accounts, Gemini Enterprise), not a requirement that the buyer be a business. Handling note: Usually just a tier or upstream account type; show an access-requirement note when it states "enterprise users only / regular users, do not select". | 正常列出：通常只是档位或上游账号类型；写明“仅限企业用户 / 普通用户勿选”时按门槛提示 | 目录 |
 
-## 限定客户端
+## 限定客户端 / Client-restricted
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 仅限 Claude Code（仅限CC、CC专用、仅支持Claude Code、限制客户端、不可外接） | 分组只接受 Claude Code 官方客户端的请求，其他应用会被拒绝或转到别的分组；另一用法：“CC专用/在CC中使用”有时只表示该组提供能接入 Claude Code 的接口格式（如 GPT、DeepSeek、GLM、Grok 转成 Claude 协议），不是客户端锁 | 目标应用不是claude-code或未知时折叠 | 文档 |
-| 仅限 Codex（codex专用、仅限codex、在codex中使用） | 只允许在 Codex 里调用 | 目标应用不是codex或未知时折叠 | 目录 |
-| 酒馆专用（SillyTavern） | 站点标明专供 SillyTavern（酒馆）角色扮演使用的分组；多为用途声明 | 目标应用不是sillytavern或未知时折叠 | 社区 |
-| 不限客户端（不限制客户端、可外接、全端可用、支持所有客户端） | 站点写明可在任何客户端里用 | 正常列出 | 目录 |
-| 外接（可外接、不可外接） | 在号池对应的官方客户端（如 Claude Code、Codex）之外的应用或直接 API 里调用；另一用法：“外接渠道/外接供应商/外接的/外接XX号池”：该组上游接自外部供应商、非站点自营（如 qiuqiutoken「外接供应商」、jucodex「[外接]-codex 外接渠道」、api.sqface.sbs「外接的,不保智商」、everygpt「外接grokheavy号池」） | 只用于理解，不展示 | 社区 |
-| 龙虾专用（OpenClaw 专用） | 只给 OpenClaw 使用的分组 | 目标应用不是openclaw或未知时折叠 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 仅限 Claude Code（仅限CC、CC专用、仅支持Claude Code、限制客户端、不可外接） | 分组只接受 Claude Code 官方客户端的请求，其他应用会被拒绝或转到别的分组；另一用法：“CC专用/在CC中使用”有时只表示该组提供能接入 Claude Code 的接口格式（如 GPT、DeepSeek、GLM、Grok 转成 Claude 协议），不是客户端锁 | **Claude Code only**: The group only accepts requests from the official Claude Code client; other apps are rejected or routed to another group.; also: "CC only / use in CC" sometimes only means the group offers an interface format that can connect to Claude Code (e.g. GPT, DeepSeek, GLM or Grok converted to the Claude protocol), not a client lock. | 目标应用不是claude-code或未知时折叠 | 文档 |
+| 仅限 Codex（codex专用、仅限codex、在codex中使用） | 只允许在 Codex 里调用 | **Codex only**: Can only be called from Codex. | 目标应用不是codex或未知时折叠 | 目录 |
+| 酒馆专用（SillyTavern） | 站点标明专供 SillyTavern（酒馆）角色扮演使用的分组；多为用途声明 | **SillyTavern only**: A group the site marks as intended for SillyTavern ("the tavern") role-play; mostly a statement of intended use. | 目标应用不是sillytavern或未知时折叠 | 社区 |
+| 不限客户端（不限制客户端、可外接、全端可用、支持所有客户端） | 站点写明可在任何客户端里用 | **any client**: The site states it can be used in any client. | 正常列出 | 目录 |
+| 外接（可外接、不可外接） | 在号池对应的官方客户端（如 Claude Code、Codex）之外的应用或直接 API 里调用；另一用法：“外接渠道/外接供应商/外接的/外接XX号池”：该组上游接自外部供应商、非站点自营（如 qiuqiutoken「外接供应商」、jucodex「[外接]-codex 外接渠道」、api.sqface.sbs「外接的,不保智商」、everygpt「外接grokheavy号池」） | **external use**: Calling from apps other than the official client that matches the account pool (e.g. Claude Code, Codex), or directly through the API.; also: "External channel/external supplier/externally connected/external XX account pool": the group's upstream is connected from an outside supplier and not run by the site itself (e.g. qiuqiutoken "external supplier", jucodex "[external]-codex external channel", api.sqface.sbs "externally connected, intelligence not guaranteed", everygpt "external grokheavy account pool"). | 只用于理解，不展示 | 社区 |
+| 龙虾专用（OpenClaw 专用） | 只给 OpenClaw 使用的分组 | **OpenClaw only**: A group for use with OpenClaw only. | 目标应用不是openclaw或未知时折叠 | 目录 |
 
-## 使用条款
+## 使用条款 / Usage terms
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 透传 | 把客户端请求原样转给上游，不改写参数、不加注入内容 | 只用于理解，不展示 | 文档 |
-| 不退（不退款） | 充值或购买后不退款 | 只用于理解，不展示 | 目录 |
-| 蒸馏（可蒸馏、禁止蒸馏、不可蒸馏） | 用模型输出批量生成数据去训练其他模型；站点常写明可否蒸馏；另一用法：一般语境的“蒸馏版/蒸馏模型”指由大模型蒸馏出的小模型（如 DeepSeek-R1 蒸馏版）；本语料未见此用法 | 只用于理解，不展示 | 社区 |
-| 破限（破甲、禁止破限） | 用提示词或预设绕过模型的安全限制与拒答；破甲与破限同义 | 只用于理解，不展示 | 社区 |
-| 酒馆（SillyTavern） | SillyTavern（角色扮演聊天前端）的中文俗称；站点常写支持或禁止 | 只用于理解，不展示 | 社区 |
-| NSFW（nsfw） | 成人内容；站点写是否允许 | 只用于理解，不展示 | 目录 |
-| 并发（高并发、rpm、tps、限速、限流） | 同时请求数或每分钟请求数的限制 | 只用于理解，不展示 | 目录 |
-| 高并发分组（高并发渠道、高并发线路） | 站点写明并发或速率上限更高的分组，常比同模型的普通分组贵；上限是站点自述 | 正常列出 | 社区 |
-| 封号（防封） | 账号被封禁：多指站点封禁违规用户，也指上游官方账号被封；另一用法：站点封禁违反规则（蒸馏、破限、色情等）的用户账号，常附“余额不退” | 只用于理解，不展示 | 社区 |
-| 工具调用（function call） | 是否支持函数和工具调用 | 只用于理解，不展示 | 目录 |
-| 思考（thinking、带思考、无思考） | 是否支持推理（思考）模式 | 只用于理解，不展示 | 目录 |
-| 上下文（1m、百万上下文） | 一次能处理的最大 token 数 | 只用于理解，不展示 | 目录 |
-| 高峰（高峰期、低峰、闲时、峰谷） | 高峰时段可能限流，部分站点分时计价 | 只用于理解，不展示 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 透传 | 把客户端请求原样转给上游，不改写参数、不加注入内容 | **passthrough**: Forwarding the client request to the upstream as-is, without rewriting parameters or adding injected content. | 只用于理解，不展示 | 文档 |
+| 不退（不退款） | 充值或购买后不退款 | **no refunds**: No refund after topping up or purchasing. | 只用于理解，不展示 | 目录 |
+| 蒸馏（可蒸馏、禁止蒸馏、不可蒸馏） | 用模型输出批量生成数据去训练其他模型；站点常写明可否蒸馏；另一用法：一般语境的“蒸馏版/蒸馏模型”指由大模型蒸馏出的小模型（如 DeepSeek-R1 蒸馏版）；本语料未见此用法 | **distillation**: Using model outputs to generate data in bulk for training other models; sites often state whether distillation is allowed.; also: In general contexts, "distilled version/distilled model" means a small model distilled from a large one (e.g. the DeepSeek-R1 distilled versions); this use is not seen in this corpus. | 只用于理解，不展示 | 社区 |
+| 破限（破甲、禁止破限） | 用提示词或预设绕过模型的安全限制与拒答；破甲与破限同义 | **jailbreak**: Using prompts or presets to bypass a model's safety restrictions and refusals; pojia (break the armor) means the same as poxian. | 只用于理解，不展示 | 社区 |
+| 酒馆（SillyTavern） | SillyTavern（角色扮演聊天前端）的中文俗称；站点常写支持或禁止 | **SillyTavern ("tavern")**: The Chinese nickname for SillyTavern (a role-play chat frontend); sites often state whether it is supported or banned. | 只用于理解，不展示 | 社区 |
+| NSFW（nsfw） | 成人内容；站点写是否允许 | **NSFW**: Adult content; sites state whether it is allowed. | 只用于理解，不展示 | 目录 |
+| 并发（高并发、rpm、tps、限速、限流） | 同时请求数或每分钟请求数的限制 | **concurrency**: Limits on simultaneous requests or requests per minute. | 只用于理解，不展示 | 目录 |
+| 高并发分组（高并发渠道、高并发线路） | 站点写明并发或速率上限更高的分组，常比同模型的普通分组贵；上限是站点自述 | **High-concurrency group**: a group the site says allows more concurrent requests or a higher rate limit, often pricier than the normal group for the same model; the limit is the site's own claim | 正常列出 | 社区 |
+| 封号（防封） | 账号被封禁：多指站点封禁违规用户，也指上游官方账号被封；另一用法：站点封禁违反规则（蒸馏、破限、色情等）的用户账号，常附“余额不退” | **account ban**: An account being banned: mostly the site banning users who break its rules, but also upstream official accounts being banned.; also: The site bans user accounts that break its rules (distillation, jailbreaking, pornography, etc.), often with "balance not refunded". | 只用于理解，不展示 | 社区 |
+| 工具调用（function call） | 是否支持函数和工具调用 | **tool calling**: Whether function and tool calling is supported. | 只用于理解，不展示 | 目录 |
+| 思考（thinking、带思考、无思考） | 是否支持推理（思考）模式 | **thinking**: Whether reasoning (thinking) mode is supported. | 只用于理解，不展示 | 目录 |
+| 上下文（1m、百万上下文） | 一次能处理的最大 token 数 | **context**: The maximum number of tokens that can be processed at once. | 只用于理解，不展示 | 目录 |
+| 高峰（高峰期、低峰、闲时、峰谷） | 高峰时段可能限流，部分站点分时计价 | **peak hours**: Rate limits may apply during peak hours; some sites price by time of day. | 只用于理解，不展示 | 目录 |
 
-## 站点自称质量
+## 站点自称质量 / Site quality claims
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 华强北 | 比喻非官方号池的仿制渠道（多为 Kiro 等逆向来源），自称效果接近官方 | 只用于理解，不展示 | 社区 |
-| 注入（0注入、微注入、有注入、提示词） | 站点转发时在请求里额外加入的提示词（如伪装客户端、防封）；0注入指不加；另一用法：Kiro 等逆向渠道里“官方注入”指上游客户端自带的系统提示词（toumingx「kiro 个人通道 | 官方注入」）；安全领域的 prompt injection 攻击含义在语料中未见 | 只用于理解，不展示 | 文档 |
-| 满血（满血版、官方满血） | 站点自称模型能力完整、没有被削减；另一用法：纯血与满血不是一回事：纯血讲来源纯（全官方订阅、无逆向/低档号混入，如“纯血pro号池”），满血讲能力完整 | 只用于理解，不展示 | 社区 |
-| 降智（不降智、智商、高智商） | 模型表现变差，常被怀疑换成低档模型或上游账号被降级 | 只用于理解，不展示 | 社区 |
-| 残血（残血版） | 满血的反面：说模型被削减，如上下文变短、思考被关、换成量化版或低档模型；多为用户的怀疑或对别家的说法 | 只用于理解，不展示 | 社区 |
-| 量化版（量化、量化模型） | 开源模型的权重量化版本：用更低精度（如 FP8、INT4）存权重来降成本，效果可能略降；不是蒸馏（蒸馏是另训一个小模型） | 只用于理解，不展示 | 社区 |
-| 掺水（注水、掺假） | 在所称模型或号池里混入更便宜的模型或低档账号；另一用法：“掺”也用于账号档位：“pro号池不掺free”“纯pro号池,不掺”指不混入低档账号；fapi.leileihog「掺了nvdia」指混入其他来源模型 | 只用于理解，不展示 | 社区 |
-| 检测满分（检测站满分、CT满分、鹈鹕测试、满分） | 站点自称在第三方真伪检测站（如 cctest、禾维）或鹈鹕测试中得高分 | 只用于理解，不展示 | 社区 |
-| 稳定（超稳、高可用、不稳定、保证可用、波动） | 站点对可用性的自述 | 只用于理解，不展示 | 目录 |
-| 速度（极速、高速、速度快、首字、延迟） | 站点对响应速度的自述 | 只用于理解，不展示 | 目录 |
-| 优质（高质量、顶级、最强、保真） | 站点对质量的自述 | 只用于理解，不展示 | 目录 |
-| 拉闸（随时拉闸） | 渠道停用或断供；“随时拉闸”指可能随时停，“暂时拉闸”指当前已停；另一用法：“官方拉闸才拉闸”（1rr.top）指上游官方断供；vibelearning「不拉闸」是反面自称 | 只用于理解，不展示 | 目录 |
-| 保速不保质（只保稳定不保智商） | 站点说明只保证能用，不保证效果 | 只用于理解，不展示 | 目录 |
-| 纯血（纯血号池） | 站点自称号池全是官方正版账号、没有混入其他来源 | 只用于理解，不展示 | 目录 |
-| 原生（原生4k、官方原生） | 两种用法：图片按原生分辨率生成（对比超分）；或自称未经改动的官方模型 | 只用于理解，不展示 | 目录 |
-| 企业充值Xw（企业充值30w、企业50w） | 站点对上游来源和可靠程度的自夸说法，不是购买门槛 | 只用于理解，不展示 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 华强北 | 比喻非官方号池的仿制渠道（多为 Kiro 等逆向来源），自称效果接近官方 | **Huaqiangbei (knock-off)**: A metaphor for imitation channels built on unofficial account pools (mostly reverse-engineered sources such as Kiro); the site claims results close to official. | 只用于理解，不展示 | 社区 |
+| 注入（0注入、微注入、有注入、提示词） | 站点转发时在请求里额外加入的提示词（如伪装客户端、防封）；0注入指不加；另一用法：Kiro 等逆向渠道里“官方注入”指上游客户端自带的系统提示词（toumingx「kiro 个人通道 \| 官方注入」）；安全领域的 prompt injection 攻击含义在语料中未见 | **injection**: Extra prompts the site adds to requests when forwarding them (e.g. to disguise the client or avoid bans); "0 injection" (zero injection) means none are added.; also: In reverse-engineered channels such as Kiro, "official injection" means the system prompt built into the upstream client (toumingx "kiro personal channel \| official injection"); the security sense of a prompt injection attack is not seen in the corpus. | 只用于理解，不展示 | 文档 |
+| 满血（满血版、官方满血） | 站点自称模型能力完整、没有被削减；另一用法：纯血与满血不是一回事：纯血讲来源纯（全官方订阅、无逆向/低档号混入，如“纯血pro号池”），满血讲能力完整 | **full-strength**: The site claims the model's capability is complete and has not been cut down.; also: Pure-blood and full-strength are not the same thing: pure-blood is about a pure source (all official subscriptions, with no reverse-engineered or low-tier accounts mixed in, e.g. "pure-blood pro account pool"), while full-strength is about complete capability. | 只用于理解，不展示 | 社区 |
+| 降智（不降智、智商、高智商） | 模型表现变差，常被怀疑换成低档模型或上游账号被降级 | **dumbed down**: The model performs worse, often suspected of being swapped for a lower-tier model or of the upstream account being downgraded. | 只用于理解，不展示 | 社区 |
+| 残血（残血版） | 满血的反面：说模型被削减，如上下文变短、思考被关、换成量化版或低档模型；多为用户的怀疑或对别家的说法 | **Cut-down (残血)**: the opposite of 满血: says the model was cut down, such as a shorter context, thinking turned off, or a quantised or lower-tier model; mostly a user's suspicion or a claim about another site | 只用于理解，不展示 | 社区 |
+| 量化版（量化、量化模型） | 开源模型的权重量化版本：用更低精度（如 FP8、INT4）存权重来降成本，效果可能略降；不是蒸馏（蒸馏是另训一个小模型） | **Quantised version**: an open-weight model stored at lower precision (such as FP8 or INT4) to cut cost, possibly slightly weaker; not distillation, which trains a separate smaller model | 只用于理解，不展示 | 社区 |
+| 掺水（注水、掺假） | 在所称模型或号池里混入更便宜的模型或低档账号；另一用法：“掺”也用于账号档位：“pro号池不掺free”“纯pro号池,不掺”指不混入低档账号；fapi.leileihog「掺了nvdia」指混入其他来源模型 | **watered down**: Mixing cheaper models or low-tier accounts into the claimed model or account pool.; also: "Mixed in" is also used for account tiers: "pro account pool, no free mixed in" and "pure pro account pool, unmixed" mean no low-tier accounts are mixed in; fapi.leileihog "nvdia mixed in" means models from another source are mixed in. | 只用于理解，不展示 | 社区 |
+| 检测满分（检测站满分、CT满分、鹈鹕测试、满分） | 站点自称在第三方真伪检测站（如 cctest、禾维）或鹈鹕测试中得高分 | **full score on checks**: The site claims high scores on third-party authenticity check sites (e.g. cctest, Hewei) or on the pelican test. | 只用于理解，不展示 | 社区 |
+| 稳定（超稳、高可用、不稳定、保证可用、波动） | 站点对可用性的自述 | **stable**: The site's own description of availability. | 只用于理解，不展示 | 目录 |
+| 速度（极速、高速、速度快、首字、延迟） | 站点对响应速度的自述 | **speed**: The site's own description of response speed. | 只用于理解，不展示 | 目录 |
+| 优质（高质量、顶级、最强、保真） | 站点对质量的自述 | **premium quality**: The site's own description of quality. | 只用于理解，不展示 | 目录 |
+| 拉闸（随时拉闸） | 渠道停用或断供；“随时拉闸”指可能随时停，“暂时拉闸”指当前已停；另一用法：“官方拉闸才拉闸”（1rr.top）指上游官方断供；vibelearning「不拉闸」是反面自称 | **cut off**: A channel being stopped or its supply being cut; "may be cut off at any time" means it may stop at any moment, and "temporarily cut off" means it is currently stopped.; also: "Cut off only when official cuts off" (1rr.top) refers to the upstream official supply stopping; vibelearning "no cutoff" is the opposite claim. | 只用于理解，不展示 | 目录 |
+| 保速不保质（只保稳定不保智商） | 站点说明只保证能用，不保证效果 | **speed, not quality, guaranteed**: The site states it only guarantees that it works, not the quality of results. | 只用于理解，不展示 | 目录 |
+| 纯血（纯血号池） | 站点自称号池全是官方正版账号、没有混入其他来源 | **pure-blood (all official)**: The site claims its account pool is entirely genuine official accounts, with no other sources mixed in. | 只用于理解，不展示 | 目录 |
+| 原生（原生4k、官方原生） | 两种用法：图片按原生分辨率生成（对比超分）；或自称未经改动的官方模型 | **native**: Two uses: images generated at native resolution (as opposed to upscaling); or a claim to be an unmodified official model. | 只用于理解，不展示 | 目录 |
+| 企业充值Xw（企业充值30w、企业50w） | 站点对上游来源和可靠程度的自夸说法，不是购买门槛 | **enterprise top-up Xw**: The site's boast about its upstream source and reliability, not an access requirement. | 只用于理解，不展示 | 目录 |
 
-## 免费赠金
+## 免费赠金 / Free credit
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 公益站（公益） | 站长免费或极低价开放的中转站或分组，额度多靠注册、签到或兑换码领取，常限量且可能随时调整；另一用法："公益"也被用作低价分组的营销标签（如"半公益""超低价格公益模型"），并非免费 | 算免费赠金（倍率为 0 时） | 社区 |
-| 免费（free、0倍率、零倍率） | 不扣额度即可调用；另一用法：“free号 / free逆 / free池 / free账号”指上游是免费档账号，不是免费赠金（R16） | 算免费赠金（倍率为 0 时） | 目录 |
-| 福利（福利分组、迎新、新人） | 站点标为福利的免费或低价分组 | 算免费赠金（倍率为 0 时） | 目录 |
-| 签到（每日签到） | 在站内每天签到一次领取少量额度，可用于免费调用；额度由站长设定；另一用法：论坛签到：linux.do、nodeseek、v2ex 等论坛也有每日签到（v2ex 签到领铜币），送的是论坛积分而非 API 额度；用户说"签到"时需看是哪个站 | 算免费赠金（倍率为 0 时） | 文档 |
-| 试用（体验、每日免费） | 供新用户试用的免费额度或分组；另一用法：“试用号”指上游是试用账号，不是给用户的试用额度 | 算免费赠金（倍率为 0 时） | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 公益站（公益） | 站长免费或极低价开放的中转站或分组，额度多靠注册、签到或兑换码领取，常限量且可能随时调整；另一用法："公益"也被用作低价分组的营销标签（如"半公益""超低价格公益模型"），并非免费 | **Gongyi (public-welfare) site**: A relay site or group that the site owner opens for free or at a very low price; credit is mostly claimed through sign-up, daily check-in or redemption codes, is often limited, and may change at any time.; also: "Gongyi" is also used as a marketing label for low-priced groups (e.g. "semi-gongyi", "ultra-low-price gongyi models"); these are not free. | 算免费赠金（倍率为 0 时） | 社区 |
+| 免费（free、0倍率、零倍率） | 不扣额度即可调用；另一用法：“free号 / free逆 / free池 / free账号”指上游是免费档账号，不是免费赠金（R16） | **free**: Can be called without deducting credit.; also: "free account / free reverse (reverse-engineered free-tier accounts) / free pool / free accounts" mean the upstream is free-tier accounts, not free credit (R16). | 算免费赠金（倍率为 0 时） | 目录 |
+| 福利（福利分组、迎新、新人） | 站点标为福利的免费或低价分组 | **perk**: A free or low-priced group that the site labels as a perk. | 算免费赠金（倍率为 0 时） | 目录 |
+| 签到（每日签到） | 在站内每天签到一次领取少量额度，可用于免费调用；额度由站长设定；另一用法：论坛签到：linux.do、nodeseek、v2ex 等论坛也有每日签到（v2ex 签到领铜币），送的是论坛积分而非 API 额度；用户说"签到"时需看是哪个站 | **daily check-in**: Checking in on the site once a day to claim a small amount of credit, which can be used for free calls; the amount is set by the site owner.; also: Forum check-in: forums such as linux.do, nodeseek and v2ex also have daily check-ins (a v2ex check-in gives copper coins), which give forum points rather than API credit; when a user says "check-in", check which site is meant. | 算免费赠金（倍率为 0 时） | 文档 |
+| 试用（体验、每日免费） | 供新用户试用的免费额度或分组；另一用法：“试用号”指上游是试用账号，不是给用户的试用额度 | **trial**: Free credit or a group for new users to try out.; also: "Trial account" means the upstream is trial accounts, not trial credit for users. | 算免费赠金（倍率为 0 时） | 目录 |
 
-## 不对外提供
+## 不对外提供 / Not offered publicly
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| 调试分组（调试、报错调试、仅用于返回报错） | 只用来查看报错或模型名，不用于正常调用 | 不展示 | 目录 |
-| 仅展示/勿选（仅展示、展示用、勿选、不要选、请勿选择） | 站点说明不要选这个分组 | 不展示 | 目录 |
-| 停用（弃用、下线、维护中、失效） | 分组已停用、维护中或已关闭 | 不展示 | 目录 |
-| 内部/自用（内部、自用、公司内部） | 只给站点内部或站长自己用 | 不展示 | 目录 |
-| 测试分组（测试、test） | 多为站长自测或调试分组，不对用户开放；描述为可售商品或开放试用的另作处理；另一用法："测试"常指评测或买家自测：测试满分、cctest 100分、过鹈鹕测试、自行测试、先测试后使用、适合开发测试 | 不展示：内部、调试、只有测试二字的不展示；开放给用户的测试渠道列出并提示；名叫 test 的正常商品照常列出 | 目录 |
-| 不可用（近期不可用、暂时无货、已拉闸、逐步撤销、某日关闭） | 站点写明分组现在不可用或即将撤销 | 不展示：“近期不可用”“暂时无货”“已拉闸”“逐步撤销”、写明早于采集日的关闭日期 | 目录 |
-| 个人专属分组（无限卡-用户名） | 按客户单独开的分组，不对其他人出售 | 不展示 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| 调试分组（调试、报错调试、仅用于返回报错） | 只用来查看报错或模型名，不用于正常调用 | **debug group**: Used only to see error messages or model names, not for normal calls. | 不展示 | 目录 |
+| 仅展示/勿选（仅展示、展示用、勿选、不要选、请勿选择） | 站点说明不要选这个分组 | **display only/do not select**: The site says not to select this group. | 不展示 | 目录 |
+| 停用（弃用、下线、维护中、失效） | 分组已停用、维护中或已关闭 | **discontinued**: The group has been discontinued, is under maintenance or has been closed. | 不展示 | 目录 |
+| 内部/自用（内部、自用、公司内部） | 只给站点内部或站长自己用 | **internal/personal use**: Only for the site's internal use or the site owner's own use. | 不展示 | 目录 |
+| 测试分组（测试、test） | 多为站长自测或调试分组，不对用户开放；描述为可售商品或开放试用的另作处理；另一用法："测试"常指评测或买家自测：测试满分、cctest 100分、过鹈鹕测试、自行测试、先测试后使用、适合开发测试 | **test group**: Mostly groups for the site owner's own testing or debugging, not open to users; groups described as products for sale or open trials are handled separately.; also: "Test" often refers to evaluation or buyer self-testing: full score on tests, cctest 100 points, passed the pelican test, test it yourself, test before use, suitable for development testing. Handling note: Internal groups, debug groups and groups named only with the Chinese word for "test" are not shown; test channels open to users are listed with a note; normal products named test are listed as usual. | 不展示：内部、调试、只有测试二字的不展示；开放给用户的测试渠道列出并提示；名叫 test 的正常商品照常列出 | 目录 |
+| 不可用（近期不可用、暂时无货、已拉闸、逐步撤销、某日关闭） | 站点写明分组现在不可用或即将撤销 | **unavailable**: The site states the group is currently unavailable or about to be withdrawn. Handling note: "Recently unavailable", "temporarily out of stock", "already cut off", "being phased out", or a stated closing date earlier than the collection date. | 不展示：“近期不可用”“暂时无货”“已拉闸”“逐步撤销”、写明早于采集日的关闭日期 | 目录 |
+| 个人专属分组（无限卡-用户名） | 按客户单独开的分组，不对其他人出售 | **per-customer group**: A group opened for a single customer, not sold to anyone else. | 不展示 | 目录 |
 
-## 别称与错拼
+## 别称与错拼 / Nicknames and misspellings
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| CC（cc、claude code、claudecode） | Claude Code 的简称；也常指 Claude 系列 | 只用于理解，不展示 | 目录 |
-| 国模（国产模型、国产） | 国内厂商的模型，如 DeepSeek、GLM、Kimi、Qwen | 只用于理解，不展示 | 目录 |
-| 生图（画图、绘图、出图、image） | 图片生成模型 | 只用于理解，不展示 | 目录 |
-| 香蕉（大香蕉、nano banana、banana） | 谷歌 Gemini 原生生图模型 Nano Banana 系列的俗称；大香蕉有时专指 Pro 版；另一用法："大香蕉"有两种用法：单独叫"大香蕉"的组（api.kpzhu.com、us.ai.easyart.cc、ai.zhongygod.com"Nanobanana Pro生图|google大香蕉"）只有 gemini-3-pro-image-preview；supertoken.cc 写明【大香蕉】=gemini-3-pro-image、【小香蕉】=gemini-3.1-flash-image；但 dawcode.*（4 站）、claude360.xyz、sparkcode.top 等的"大香蕉"组同时放 2.5 flash/3.1 flash/3 pro，是指整个系列。"香蕉2"=Nano Banana 2，"香蕉pro"=Nano Banana Pro，"香蕉2.1"=Nano Banana 2.1，"nb"=Nano Banana 缩写。此项只来自目录观察。 | 只用于理解，不展示 | 社区 |
-| 龙虾（小龙虾） | 开源智能体 OpenClaw 的俗称，因其龙虾图标得名；养龙虾指部署使用它 | 只用于理解，不展示：写明“龙虾专用 / OpenClaw 专用”的分组按目标应用折叠 | 社区 |
-| 爱马仕（养马、hermes） | 开源智能体 Hermes Agent 的俗称；养马指部署使用它 | 只用于理解，不展示 | 社区 |
-| 肥波 / F5（肥波、f5、fb5、fable5） | Claude Fable 系列模型的俗称，F5 指 Fable 5 | 只用于理解，不展示 | 目录 |
-| 常见错拼（gork、cluade、krio） | grok、claude、kiro 的错拼 | 只用于理解，不展示 | 目录 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| CC（cc、claude code、claudecode） | Claude Code 的简称；也常指 Claude 系列 | **CC**: Short for Claude Code; also often means the Claude series. | 只用于理解，不展示 | 目录 |
+| 国模（国产模型、国产） | 国内厂商的模型，如 DeepSeek、GLM、Kimi、Qwen | **Chinese models**: Models from Chinese vendors, such as DeepSeek, GLM, Kimi and Qwen. | 只用于理解，不展示 | 目录 |
+| 生图（画图、绘图、出图、image） | 图片生成模型 | **image generation**: Image generation models. | 只用于理解，不展示 | 目录 |
+| 香蕉（大香蕉、nano banana、banana） | 谷歌 Gemini 原生生图模型 Nano Banana 系列的俗称；大香蕉有时专指 Pro 版；另一用法："大香蕉"有两种用法：单独叫"大香蕉"的组（api.kpzhu.com、us.ai.easyart.cc、ai.zhongygod.com"Nanobanana Pro生图\|google大香蕉"）只有 gemini-3-pro-image-preview；supertoken.cc 写明【大香蕉】=gemini-3-pro-image、【小香蕉】=gemini-3.1-flash-image；但 dawcode.*（4 站）、claude360.xyz、sparkcode.top 等的"大香蕉"组同时放 2.5 flash/3.1 flash/3 pro，是指整个系列。"香蕉2"=Nano Banana 2，"香蕉pro"=Nano Banana Pro，"香蕉2.1"=Nano Banana 2.1，"nb"=Nano Banana 缩写。此项只来自目录观察。 | **Banana (Nano Banana)**: Nickname for Nano Banana, Google's native Gemini image generation model series; "big banana" sometimes means the Pro version specifically.; also: "Big banana" has two uses: groups named just "big banana" (api.kpzhu.com, us.ai.easyart.cc, ai.zhongygod.com "Nanobanana Pro image generation \| google big banana") contain only gemini-3-pro-image-preview; supertoken.cc states [big banana] = gemini-3-pro-image and [small banana] = gemini-3.1-flash-image; but the "big banana" groups on dawcode.* (4 sites), claude360.xyz, sparkcode.top and others contain 2.5 flash/3.1 flash/3 pro together, meaning the whole series. "banana 2" = Nano Banana 2, "banana pro" = Nano Banana Pro, "banana 2.1" = Nano Banana 2.1, "nb" = abbreviation of Nano Banana. This entry comes only from catalog observation. | 只用于理解，不展示 | 社区 |
+| 龙虾（小龙虾） | 开源智能体 OpenClaw 的俗称，因其龙虾图标得名；养龙虾指部署使用它 | **Lobster (OpenClaw)**: Nickname for the open-source agent OpenClaw, named after its lobster icon; "raising lobsters" means deploying and using it. Handling note: Groups that state "lobster only / OpenClaw only" are folded by target app. | 只用于理解，不展示：写明“龙虾专用 / OpenClaw 专用”的分组按目标应用折叠 | 社区 |
+| 爱马仕（养马、hermes） | 开源智能体 Hermes Agent 的俗称；养马指部署使用它 | **Hermes (Hermes Agent)**: Nickname for the open-source agent Hermes Agent; "raising horses" means deploying and using it. | 只用于理解，不展示 | 社区 |
+| 肥波 / F5（肥波、f5、fb5、fable5） | Claude Fable 系列模型的俗称，F5 指 Fable 5 | **Feibo / F5 (Fable)**: Nickname for the Claude Fable model series; F5 means Fable 5. | 只用于理解，不展示 | 目录 |
+| 常见错拼（gork、cluade、krio） | grok、claude、kiro 的错拼 | **common misspellings**: Misspellings of grok, claude and kiro. | 只用于理解，不展示 | 目录 |
 
-## Grandet 原因码
+## Grandet 原因码 / Grandet reason codes
 
-| 词 | 意思 | 处理 | 依据 |
-|---|---|---|---|
-| SOURCE_UPDATE_HELD_PENDING_REVIEW_PREVIOUS_DATA | `coverage.excluded` 里的计数：这个站有一批报价更新在等 Grandet 复核，复核前相关报价不参与排序（按代码名理解） | 只用于理解，不展示 | 未核实 |
-| CACHE_PRICE_UNKNOWN | `coverage.excluded` 里的计数：报价没标缓存命中价；用量含缓存读取（如编程预设）时不参与排序 | 回答里加一行“另有 N 条没标缓存价，未参与排序” | 未核实 |
-| OTHER_BILLING_UNIT | `coverage.excluded` 里的计数：按张、按次、按秒等非 token 单位计价的报价，不进按 token 的排序 | 用户问按张或按次价格时，说有 N 条，并给榜单网页链接；API 没有按张的 view，不要试别的路径 | 未核实 |
-| REVIEW_FLAG | 行的 `riskSignals`：Grandet 复核时把这条报价标为价格存疑 | 列为参考，理由写“Grandet 复核时标记为价格存疑” | 未核实 |
+| 词 | 意思 | English | 处理 | 依据 |
+|---|---|---|---|---|
+| SOURCE_UPDATE_HELD_PENDING_REVIEW_PREVIOUS_DATA | `coverage.excluded` 里的计数：这个站有一批报价更新在等 Grandet 复核，复核前相关报价不参与排序（按代码名理解） | **Source update held for review**: a count in `coverage.excluded`: a batch of this site's price updates awaits Grandet review, and the affected quotes are not ranked until then (read from the code name) | 只用于理解，不展示 | 未核实 |
+| CACHE_PRICE_UNKNOWN | `coverage.excluded` 里的计数：报价没标缓存命中价；用量含缓存读取（如编程预设）时不参与排序 | **Cache price unknown**: a count in `coverage.excluded`: the quote has no cache-hit price, so it is not ranked when the mix includes cache reads (such as the coding preset) Handling note: add one line saying N more quotes have no cache price and were not ranked. | 回答里加一行“另有 N 条没标缓存价，未参与排序” | 未核实 |
+| OTHER_BILLING_UNIT | `coverage.excluded` 里的计数：按张、按次、按秒等非 token 单位计价的报价，不进按 token 的排序 | **Other billing unit**: a count in `coverage.excluded`: quotes priced per image, per request, per second or another non-token unit, kept out of the per-token ranking Handling note: when the user asks for per-image or per-request prices, say there are N and give the board web page link; the API has no per-image view, so do not try other paths. | 用户问按张或按次价格时，说有 N 条，并给榜单网页链接；API 没有按张的 view，不要试别的路径 | 未核实 |
+| REVIEW_FLAG | 行的 `riskSignals`：Grandet 复核时把这条报价标为价格存疑 | **Review flag**: a row's `riskSignals`: Grandet's review marked this quote as a questionable price Handling note: list it as a reference price, reason: flagged by Grandet review as a questionable price. | 列为参考，理由写“Grandet 复核时标记为价格存疑” | 未核实 |
