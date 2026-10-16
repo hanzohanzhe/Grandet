@@ -132,3 +132,8 @@ test('E2: emphasis inside a phrase does not hide that the user runs the commands
   const r = checkAnswer('E2', answer).results.find((x) => x.id === 'notClaimedConnected');
   assert.equal(r.status, 'PASS', r.detail);
 });
+
+test('the free check may be named in different words', () => {
+  for (const a of ["I'll run the free connection check", 'It checks for free whether the key works', '用免费检查确认 Key']) assert.equal(CHECKS.freeCheckNamed(a).pass, true, a);
+  assert.equal(CHECKS.freeCheckNamed('Restart the app.').pass, false);
+});

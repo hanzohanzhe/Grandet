@@ -109,7 +109,7 @@ export const CHECKS = {
     return { pass: ok, detail: ok ? 'gives the executor key step' : 'missing the key command the user runs' };
   },
   freeCheckNamed: (a) => {
-    const ok = has(a, /免费[^\n]{0,8}检查|不扣(费|额度|钱)|不花(钱|额度)|不消耗额度|without spending|free (model[- ]list )?check|no credit|doesn't spend|does not spend/i);
+    const ok = has(a, /免费[^\n]{0,8}检查|不扣(费|额度|钱)|不花(钱|额度)|不消耗额度|without spending|free (model[- ]list |connection |key )?check|check(s|ed)? (it )?(for free|without spending)|no credit|doesn't spend|does not spend/i);
     return { pass: ok, detail: ok ? 'names the free check' : 'does not say the check is free' };
   },
   paidTestSeparated: (a) => {
