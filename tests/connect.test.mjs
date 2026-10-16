@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, writeFile, stat, readdir } from 'node:fs/promises';
+import { chmod, mkdtemp, mkdir, readFile, writeFile, stat, readdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createServer } from 'node:http';
@@ -14,6 +14,8 @@ const home = () => mkdtemp(join(tmpdir(), 'grandet-connect-'));
 const base = (h, app, extra = {}) => ({ app, site: 'apijing.com', baseUrl: 'https://apijing.com', model: 'claude-sonnet-4-6', group: 'claudecode带缓存', home: h, platform: 'linux', ...extra });
 const read = async (p) => (await readFile(p)).toString('utf8');
 const KEY = 'sk-test-0123456789abcdef';
+const POSIX = process.platform !== 'win32';
+const mode = async (p) => (await stat(p)).mode & 0o777;
 
 test('codex: preview, apply, key, restore keep other settings byte-exact', async () => {
   const h = await home(); await mkdir(join(h, '.codex'), { recursive: true });
@@ -127,6 +129,7 @@ test('continue: inserts first model, key fills placeholder, undo is byte-exact',
   assert.match(y, /models:\n  # grandet:apijing\.com begin\n  - name: "apijing\.com deepseek-v4"\n    provider: openai\n    model: "deepseek-v4"\n    apiBase: "https:\/\/apijing\.com\/v1"\n    apiKey: GRANDET_KEY_PLACEHOLDER\n  # grandet:apijing\.com end\n  - name: Local/);
   await storeKey(opts, KEY);
   assert.match(await read(join(h, '.continue/config.yaml')), new RegExp(`apiKey: ${KEY}`));
+  if (POSIX) assert.equal(await mode(join(h, '.continue/config.yaml')), 0o600, 'a config holding the key is readable by its owner only');
   const again = publicPlan(await plan(opts));
   assert.equal(again.changes.length, 0, 're-applying keeps the stored key');
   await restore({ home: h });
@@ -141,8 +144,27 @@ test('gemini-cli: dotenv block, key, undo', async () => {
   await storeKey(opts, KEY);
   const e = await read(join(h, '.env'));
   assert.match(e, /^OTHER=1\n\n# grandet:apijing\.com begin\nGOOGLE_GEMINI_BASE_URL=https:\/\/apijing\.com\nGEMINI_MODEL=gemini-3\.8-flash\nGEMINI_API_KEY=sk-test/);
+  if (POSIX) assert.equal(await mode(join(h, '.env')), 0o600, 'a config holding the key is readable by its owner only');
   await restore({ home: h });
   assert.equal(await read(join(h, '.env')), 'OTHER=1\n');
+});
+
+test('apply, key and undo keep the permissions of a locked-down config', { skip: !POSIX && 'POSIX modes only' }, async () => {
+  const h = await home(); await writeFile(join(h, '.env'), 'OTHER_SECRET=1\n'); await chmod(join(h, '.env'), 0o600);
+  const opts = base(h, 'gemini-cli', { protocol: 'gemini', model: 'gemini-3.8-flash' });
+  await apply({ ...opts, yes: true });
+  assert.equal(await mode(join(h, '.env')), 0o600, 'apply does not widen it');
+  await storeKey(opts, KEY);
+  assert.equal(await mode(join(h, '.env')), 0o600);
+  await restore({ home: h });
+  assert.equal(await mode(join(h, '.env')), 0o600, 'undo does not widen it');
+  const c = await home(); await mkdir(join(c, '.continue'), { recursive: true });
+  await writeFile(join(c, '.continue/config.yaml'), 'name: Mine\nversion: 1.0.0\nschema: v1\nmodels:\n  - name: Local\n    provider: ollama\n    model: llama\n'); await chmod(join(c, '.continue/config.yaml'), 0o644);
+  const co = base(c, 'continue', { protocol: 'openai', model: 'deepseek-v4' });
+  await apply({ ...co, yes: true }); await storeKey(co, KEY);
+  assert.equal(await mode(join(c, '.continue/config.yaml')), 0o600);
+  await restore({ home: c });
+  assert.equal(await mode(join(c, '.continue/config.yaml')), 0o644, 'undo puts back the mode the user had');
 });
 
 test('claude-code preview hides an existing token in the diff', async () => {
