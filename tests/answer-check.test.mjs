@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { CHECKS, cases, checkAnswer } from '../scripts/check-answer.mjs';
-import { boardRequest } from '../scripts/run-answer-evals.mjs';
+import { boardRequest, boardResponse } from '../scripts/run-answer-evals.mjs';
 
 const row = (sourceId, plan, blended, extra = {}) => ({ sourceId, plan, blended, unit: 'USD_CREDIT', providerCategory: 'RELAY', observedAt: '2026-10-10T07:00:00Z', freshness: 'FRESH', riskSignals: [], reviewReasons: [], listing: { action: 'LIST' }, ...extra });
 const cash = (vendor, providerCategory, extra = {}) => ({ vendor, providerCategory, currency: 'USD', unit: 'PER_MILLION_TOKENS', input: '3', output: '15', observedAt: '2026-10-16T01:39:42Z', priceKind: 'STANDARD', conditions: [], ...extra });
@@ -107,15 +107,20 @@ test('asking for the key in chat fails', () => {
   assert.equal(CHECKS.noKeyRequestInChat('运行预览打印的 key 命令存 Key').pass, true);
 });
 
-test('the runner finds the board request the agent made', () => {
-  const curl = `/bin/bash -lc "curl --fail-with-body --silent --get 'https://grandet.ai/api/v1/board' --user-agent 'x' --data-urlencode 'model=Claude Sonnet 4.6' --data-urlencode 'mix=coding' --data-urlencode 'skillBuild=b'" in /w`;
-  const found = boardRequest(`noise\n${curl}\nmore`);
+test('the runner finds the board request the agent ran, not examples it read', () => {
+  const curl = `/bin/bash -lc "curl --fail-with-body --silent --get 'https://grandet.ai/api/v1/board' --user-agent 'x' --data-urlencode 'model=Claude Sonnet 5.5' --data-urlencode 'mix=coding' --data-urlencode 'skillBuild=b'" in /w`;
+  const docs = "curl --get 'https://grandet.ai/api/v1/board' --data-urlencode 'model=anthropic/claude-sonnet-4-6'\n{\"tool\":\"grandet_find_cheapest_api\",\"arguments\":{\"model\":\"example-model\"}}";
+  const found = boardRequest(`exec\n/bin/bash -lc "sed -n 1,80p references/http-fallback.md" in /w\n succeeded in 0ms:\n${docs}\nexec\n${curl}\n succeeded in 2288ms:\n{"schema":"grandet.board/v1"}`);
   assert.equal(found.from, 'CURL_COMMAND');
-  assert.deepEqual(Object.fromEntries(found.params), { model: 'Claude Sonnet 4.6', mix: 'coding', skillBuild: 'b' });
-  assert.equal(boardRequest('fetch https://grandet.ai/api/v1/board?model=gpt-5.4&view=compact done').from, 'URL');
+  assert.deepEqual(Object.fromEntries(found.params), { model: 'Claude Sonnet 5.5', mix: 'coding', skillBuild: 'b' });
+  assert.equal(boardRequest(`exec\nnode fetch.mjs https://grandet.ai/api/v1/board?model=gpt-5.4&view=compact\n exited 0 in 5ms:`).from, 'URL');
   const mcp = boardRequest('tool grandet.grandet_find_cheapest_api({"model":"gpt-5.4","limit":10})');
   assert.deepEqual([mcp.from, mcp.params.get('limit')], ['MCP_ARGUMENTS', '10']);
-  assert.equal(boardRequest('nothing here'), null);
+  assert.equal(boardRequest(docs), null, 'text the agent only read is not a request');
+  const script = `exec\n/bin/bash -lc "python3 - <<'PY'\np={'model':'Claude Sonnet 4.6','mix':'coding','limit':10}\nu='https://grandet.ai/api/v1/board?'+urllib.parse.urlencode(p)\nPY" in /w\n succeeded in 1864ms:\n{"schema": "grandet.board/v1", "boards": [{"unit": "USD_CREDIT"}]}`;
+  assert.deepEqual(Object.fromEntries(boardRequest(script).params), { model: 'Claude Sonnet 4.6', mix: 'coding', limit: '10' });
+  assert.deepEqual(boardResponse(script).boards, [{ unit: 'USD_CREDIT' }], 'the printed response is the data the answer used');
+  assert.equal(boardResponse(`exec\ncat x\n succeeded in 0ms:\n{"schema": "grandet.board/v1", "boards": [`), null, 'an incomplete response is not used');
 });
 
 test('every case has automation turns', () => {

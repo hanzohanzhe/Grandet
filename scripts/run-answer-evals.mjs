@@ -8,8 +8,9 @@
 // key is used and nothing is paid. The case folders are fixed (~/.cache/grandet-answer-evals/<case>) and emptied
 // before each run, because Codex records every folder it runs in as a project in its own config.
 //
-// After the last turn, the first board request the agent made is replayed once (a public GET without the statistics
-// parameters), so the checks see the same data the answer used. Results: <out>/results.json and <out>/summary.md.
+// After the last turn, the checks read the first complete board response the agent printed, which is the data its
+// answer used. When the transcript has none, the first board request the agent made is replayed once (a public GET
+// without the statistics parameters). Results: <out>/results.json and <out>/summary.md.
 // Exit code 0 = every run check passed, 1 = a check failed or a run did not finish, 2 = usage error.
 import { spawnSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -52,26 +53,58 @@ function installSkill(skill, workspace) {
   return build ? build[1] : null;
 }
 
-/** The first board request in a Codex transcript: curl --data-urlencode pairs, or the MCP tool's JSON arguments. */
+/** Commands the agent ran, from a Codex transcript: the lines after `exec` up to `succeeded in` / `exited`, plus the first output line; and MCP tool call lines. */
+function commandsRun(log) {
+  const lines = log.split('\n'), commands = [];
+  for (let i = 0; i < lines.length; i++) {
+    const tool = lines[i].match(/^tool\s+\S*grandet_find_cheapest_api\((\{.*\})\)/);
+    if (tool) { commands.push({ mcp: tool[1] }); continue; }
+    if (lines[i].trim() !== 'exec') continue;
+    const block = [];
+    for (i++; i < lines.length && !/^\s*(succeeded|exited|failed)\b.*\bin \d+ms/.test(lines[i]); i++) block.push(lines[i]);
+    commands.push({ text: block.join('\n'), output: lines[i + 1] ?? '' });
+  }
+  return commands;
+}
+
+/** The first complete board response a command the agent ran printed (the data its answer used), or null. */
+export function boardResponse(log) {
+  for (const c of commandsRun(log)) {
+    if (!c.output?.includes('grandet.board/v1')) continue;
+    try { const board = JSON.parse(c.output); if (board?.schema === 'grandet.board/v1' && Array.isArray(board.boards)) return board; } catch { /* not complete */ }
+  }
+  return null;
+}
+
+const SCRIPT_KEYS = 'model|name|mix|host|targetApp|targetProfile|lang|limit|view|currency|channel|plans|endpointType|os|client';
+/**
+ * The first board request the agent actually made: a command it ran, read as curl --data-urlencode pairs, a board
+ * URL, or the parameter literals of a script that builds the board URL; or an MCP tool call line. Text the agent only
+ * read, such as the Skill's own examples, is ignored.
+ */
 export function boardRequest(log) {
-  for (const line of log.split('\n')) {
-    if (!line.includes('api/v1/board')) continue;
-    const pairs = [...line.matchAll(/--data-urlencode\s+(?:\\?['"])([^'"\\]+)(?:\\?['"])/g)].map((m) => m[1]);
+  const commands = commandsRun(log);
+  for (const c of commands) {
+    if (c.mcp) {
+      try {
+        const params = new URLSearchParams();
+        for (const [key, value] of Object.entries(JSON.parse(c.mcp))) params.append(key, String(value));
+        return { params, from: 'MCP_ARGUMENTS' };
+      } catch { continue; }
+    }
+    if (!c.text.includes('api/v1/board')) continue;
+    const pairs = [...c.text.matchAll(/--data-urlencode\s+(?:\\?['"])([^'"\\]+)(?:\\?['"])/g)].map((m) => m[1]);
     if (pairs.length) {
       const params = new URLSearchParams();
       for (const pair of pairs) { const i = pair.indexOf('='); if (i > 0) params.append(pair.slice(0, i), pair.slice(i + 1)); }
       if (params.has('model') || params.has('name')) return { params, from: 'CURL_COMMAND' };
     }
-    const url = line.match(/https:\/\/grandet\.ai\/api\/v1\/board\?[^\s'"\\)]+/);
+    const url = c.text.match(/https:\/\/grandet\.ai\/api\/v1\/board\?[^\s'"\\)]+/);
     if (url) return { params: new URL(url[0]).searchParams, from: 'URL' };
-  }
-  const tool = log.match(/grandet_find_cheapest_api[^{]{0,80}(\{[^{}]*\})/);
-  if (tool) {
-    try {
-      const params = new URLSearchParams();
-      for (const [key, value] of Object.entries(JSON.parse(tool[1]))) params.append(key, String(value));
-      return { params, from: 'MCP_ARGUMENTS' };
-    } catch { /* fall through */ }
+    const literals = [...c.text.matchAll(new RegExp(`(['"])(${SCRIPT_KEYS})\\1\\s*:\\s*(?:(['"])(.*?)\\3|(\\d+))`, 'g'))];
+    if (literals.some((m) => m[2] === 'model' || m[2] === 'name')) {
+      return { params: new URLSearchParams(literals.map((m) => [m[2], m[4] ?? m[5]])), from: 'SCRIPT_PARAMS' };
+    }
   }
   return null;
 }
@@ -101,7 +134,7 @@ async function main() {
   mkdirSync(out, { recursive: true });
   const codex = opt.codex || process.env.CODEX_BIN || DEFAULT_CODEX;
   const wanted = opt.cases ? new Set(opt.cases.split(',')) : null;
-  const flags = ['-s', 'workspace-write', '-c', 'sandbox_workspace_write.network_access=true', ...(opt.model ? ['-m', opt.model] : [])];
+  const baseFlags = ['-c', 'sandbox_workspace_write.network_access=true', ...(opt.model ? ['-m', opt.model] : [])];
   const results = [];
   for (const c of cases.cases.filter((x) => (!wanted || wanted.has(x.id)) && x.automation)) {
     const base = join(homedir(), '.cache', 'grandet-answer-evals', c.id);
@@ -112,6 +145,8 @@ async function main() {
     const build = installSkill(resolve(opt.skill), workspace);
     const caseOut = join(out, c.id); mkdirSync(caseOut);
     const log = join(caseOut, 'codex.log'), answerFile = join(caseOut, 'answer.txt');
+    // The empty test HOME is writable too, so the connect executor can write the app's config there.
+    const flags = ['-s', 'workspace-write', ...baseFlags, '-c', `sandbox_workspace_write.writable_roots=${JSON.stringify([home])}`];
     let session = null, finished = true;
     for (const [index, prompt] of c.automation.turns.entries()) {
       const args = index === 0
@@ -123,15 +158,17 @@ async function main() {
       if (done.status !== 0 || (index === 0 && !session)) { finished = false; break; }
     }
     const answer = existsSync(answerFile) ? readFileSync(answerFile, 'utf8') : '';
-    let board = null, replay = null;
+    let board = boardResponse(readFileSync(log, 'utf8')), replay = board ? { url: null, used: 'COMMAND_OUTPUT' } : null;
     const request = boardRequest(readFileSync(log, 'utf8'));
-    if (request) {
+    if (board) writeFileSync(join(caseOut, 'board.json'), `${JSON.stringify(board)}\n`);
+    else if (request) {
       try { replay = await replayBoard(request); board = replay.board; writeFileSync(join(caseOut, 'board.json'), `${JSON.stringify(board)}\n`); }
       catch (error) { replay = { error: String(error.message || error) }; }
     }
     const check = answer ? checkAnswer(c.id, answer, board) : null;
     results.push({ case: c.id, covers: c.covers, skillBuild: build, simulated: c.automation.simulated ?? null, finished,
       session, boardRequest: request ? { from: request.from, url: replay?.url ?? null, error: replay?.error ?? null } : null,
+      boardSource: board ? (replay?.used ?? 'REPLAY') : null,
       status: !finished || !check ? 'NOT_FINISHED' : check.status, results: check?.results ?? [] });
     console.log(`${c.id}: ${results.at(-1).status}`);
   }
