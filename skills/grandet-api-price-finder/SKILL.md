@@ -13,7 +13,7 @@ This Skill does three things with grandet.ai: find the **lowest listed price** f
 ## Always
 
 - **Requests.**
-  - Send `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016c` and the known `host`/`targetApp` only where they are accepted: every MCP tool except `grandet_glossary`, and HTTP `/api/v1/board`, `/api/v1/free-credits`, `/api/v1/models` and `/api/v1/prices`. Never send them to `grandet_glossary`, `/api/v1/glossary`, `/api/v1/providers`, `/api/v1/catalog-version` or `/api/grandet/page`; those return 400. `/api/v1/models` and `/api/v1/prices` also reject `lang`.
+  - Send `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016d` and the known `host`/`targetApp` only where they are accepted: every MCP tool except `grandet_glossary`, and HTTP `/api/v1/board`, `/api/v1/free-credits`, `/api/v1/models` and `/api/v1/prices`. Never send them to `grandet_glossary`, `/api/v1/glossary`, `/api/v1/providers`, `/api/v1/catalog-version` or `/api/grandet/page`; those return 400. `/api/v1/models` and `/api/v1/prices` also reject `lang`.
   - Every HTTP request carries a User-Agent such as `grandet-skill/0.3.0 (<host>)`. In Python set it explicitly; never rely on a library's default.
   - On a network error (connection reset, timeout, HTTP 5xx) or a 403 whose body is `error code: 1010`, send the same request once more (with the User-Agent above). If it still fails, say what could not be read and give the matching grandet.ai page; never answer as if the data were empty.
 - **Keep the user's model.** The model and generation the user chose stay fixed across follow-ups ("cheaper", "another one", "connect it"). Change it only when the user asks or says any model is fine. If nothing matches, say so; never fill the gap with another model.
@@ -26,7 +26,7 @@ This Skill does three things with grandet.ai: find the **lowest listed price** f
 ## 1. Lowest price
 
 1. Pass the user's model name as `model` directly; the server resolves a unique match (`resolvedFrom.model`) and you keep that ID for follow-ups. If it returns `NEEDS_CLARIFICATION`, ask "你指的是 X 还是 Y？" with its candidates when `resolution.totalCandidates` is 1 or 2; when there are more, ask which exact model and version the user means. Never switch generation silently. `grandet_resolve_model` remains available when you only need the ID.
-2. Call `grandet_find_cheapest_api` once with `model`, `lang` (`zh-CN` or `en`), `limit=10`, `view=compact`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016c`, the known `host` (the app you run in) and, when the user named where the API will be used (including "here"), `targetApp`. Add `mix` only for a stated workload ([workloads](references/workloads.md)); add `endpointType` only if the user named a protocol. Ask nothing else up front.
+2. Call `grandet_find_cheapest_api` once with `model`, `lang` (`zh-CN` or `en`), `limit=10`, `view=compact`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016d`, the known `host` (the app you run in) and, when the user named where the API will be used (including "here"), `targetApp`. Add `mix` only for a stated workload ([workloads](references/workloads.md)); add `endpointType` only if the user named a protocol. Ask nothing else up front.
 3. If MCP is unavailable, use the read-only HTTP request in [HTTP fallback](references/http-fallback.md) with the same parameters. If that also fails, give `https://grandet.ai/` with the model to search and say the current price could not be checked.
 4. Present the result as in [response format](references/response-format.md), reading each board's `listings`: the lowest prices, lower prices with a stated condition, prices to treat as a reference (each with site, price, unit and reason), folded client-only groups; then the official and inference-provider cash prices from `official` and `listings.inference`; then one short question: whether to connect it.
 
@@ -48,4 +48,4 @@ If you cannot edit files on the user's computer (for example a cloud chat), give
 - Which apps and protocols Grandet knows: [app catalogue](references/app-catalog.md) and [entry points](references/entrypoints.md). A listing is not a tested installation.
 - Installing this Skill: [installation](references/installation.md).
 
-Installation build: `grandet-skill-0.3.0-build.20261016c` (product/API 0.3.0). Native acceptance: NOT_RUN.
+Installation build: `grandet-skill-0.3.0-build.20261016d` (product/API 0.3.0). Native acceptance: NOT_RUN.

@@ -93,9 +93,9 @@ Local apps: from the extracted package, run `node scripts/install-price-finder.m
 
 Account, web and cloud apps: delete or disable the Skill in the Skills manager where it was saved. A local uninstall does not change a copy already synced to Cursor Cloud Agents.
 
-Use the current files from [Grandet's GitHub repository](https://github.com/hanzohanzhe/Grandet). New installations default to the registered **skill-v0.3.0-build.20261016c Release ZIP or .skill attachment**; reuse complete existing checkouts and caches without re-downloading. Exact contents are identified by commit and SHA-256.
+Use the current files from [Grandet's GitHub repository](https://github.com/hanzohanzhe/Grandet). New installations default to the registered **skill-v0.3.0-build.20261016d Release ZIP or .skill attachment**; reuse complete existing checkouts and caches without re-downloading. Exact contents are identified by commit and SHA-256.
 
 ## Included receipt tools
 
 
-Product/API version is 0.3.0; content build `grandet-skill-0.3.0-build.20261016c`. The `skill-v0.3.0-build.20261016c` ZIP and .skill include receipt-aware installers and a Python verifier. Follow the bundled INSTALL.md, with no additional helper download. Native importing does not execute a receipt callback automatically: absent readable saved files or a host callback, retain NOT_RUN. Existing older installs need no forced download/reinstall and are not backfilled.
+Product/API version is 0.3.0; content build `grandet-skill-0.3.0-build.20261016d`. The `skill-v0.3.0-build.20261016d` ZIP and .skill include receipt-aware installers and a Python verifier. Follow the bundled INSTALL.md, with no additional helper download. Native importing does not execute a receipt callback automatically: absent readable saved files or a host callback, retain NOT_RUN. Existing older installs need no forced download/reinstall and are not backfilled.

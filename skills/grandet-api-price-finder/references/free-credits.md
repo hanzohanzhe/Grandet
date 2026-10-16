@@ -19,7 +19,7 @@ Call `grandet_find_free_credits` once with:
 - `q`: the model family or provider the user cares about (`gemini`, `claude`, `deepseek` …). It matches provider, title, benefit text and the models a free group covers. Leave it out to list everything.
 - `kind=all`, so official and relay offers both come back. Use `official` or `relay` only when the user asked for one kind.
 - `userCanMeet`: `no_card` when the user said they have no card, `student` when they said they are a student, otherwise leave it out. `no_card` keeps only offers that **state** no card is needed; when it returns nothing, query again without it and mark each offer "是否需绑卡未写明".
-- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016c`, and the known `host`/`targetApp`.
+- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016d`, and the known `host`/`targetApp`.
 
 Without MCP, send the same parameters to `GET https://grandet.ai/api/v1/free-credits` (see [HTTP fallback](http-fallback.md)). If both fail, give the web page instead: `https://grandet.ai/zh-CN/free-tokens/` (English: `https://grandet.ai/free-tokens/`), with `?q=<word>` to filter.
 
