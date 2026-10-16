@@ -89,6 +89,16 @@ Keep it to two lines: where it is installed, and what to ask next. For example:
 
 If you can, verify in a clean new conversation: no attachment, no mention of Grandet, no manual skill selection. If that conversation asks for the file again, the install did not persist; fix the location or the binding, and don't ask the user to keep uploading. If you couldn't run this check, say it hasn't been tested yet. Report only what you actually saw.
 
+### Uninstall
+
+If the user asks to remove Grandet from a local agent, run the included installer with the same installer ID:
+
+```sh
+node scripts/install-price-finder.mjs --app <installer-id> --uninstall
+```
+
+It moves that app's `grandet-api-price-finder` folder, including a legacy copy such as `~/.codex/skills/`, into `.grandet-skill-backups` beside the skills folder, where an update keeps the previous copy. Nothing is deleted. `--dry-run` shows what would move. If the copy sits in another app's own folder (for example Cursor reusing `~/.agents/skills/`), it changes nothing and names the app to uninstall with; the report also lists other apps that read the removed folder. Uninstalling sends no receipt; local receipt state stays, so a later install continues the same installation ID. To undo, move the backup folder back or install again. Without Node, move the folder out of every skills folder yourself. For web, account and cloud apps, remove or disable the Skill in the app's Skills manager.
+
 ## 手动安装
 
 适合想自己动手的人，或者 Agent 装不了的应用。
@@ -120,6 +130,8 @@ If you can, verify in a clean new conversation: no attachment, no mention of Gra
 
 **确认装好了**：新开对话，不发文件、不提 Grandet，问一句“帮我找最便宜的 Sonnet 4.6 API，写代码用”。如果它让你再发一次文件，说明没有装好，检查文件夹位置，或者技能有没有启用。
 
+**卸载**：装了 Node 的话，在解压目录里运行 `node scripts/install-price-finder.mjs --app codex --uninstall`（把 `codex` 换成你的应用）。它把 `grandet-api-price-finder` 文件夹移到技能目录旁边的 `.grandet-skill-backups` 里，不会删除，想恢复就把它移回去。没有 Node 的话，自己把这个文件夹移出技能目录。上传技能的应用，在应用的技能页面删除或停用。
+
 ## Manual installation
 
 For people who prefer to do it themselves, or apps an agent can't install into.
@@ -150,3 +162,5 @@ With Node installed, you can do step 2 by running `node scripts/install-price-fi
 This 0.3.0 build (`grandet-skill-0.3.0-build.20261016c`) includes receipt-aware installation tools in both archives. No separate helper is needed. Receipts are optional; older installs are not backfilled and do not need to reinstall.
 
 **Check it worked**: open a new conversation and, without attaching anything or mentioning Grandet, ask "Find me the cheapest Sonnet 4.6 API for coding." If it asks for the file again, the install didn't stick: check the folder location, or whether the skill is enabled.
+
+**Uninstall**: with Node installed, run `node scripts/install-price-finder.mjs --app codex --uninstall` in the extracted folder (replace `codex` with your app). It moves the `grandet-api-price-finder` folder into `.grandet-skill-backups` next to the skills folder instead of deleting it; move it back to restore. Without Node, move the folder out of the skills folder yourself. In apps where you uploaded the skill, delete or disable it on the app's skills page.

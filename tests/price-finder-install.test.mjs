@@ -65,6 +65,31 @@ test('one install copies the complete common Skill and preserves other skills an
   assert.equal(result.nativeAcceptance, 'NOT_RUN');
 });
 
+test('receipt state is flushed through a writable handle, as native Windows requires', async (t) => {
+  const { temporary, home } = await fixture(t);
+  // Windows FlushFileBuffers needs write access: emulate its EPERM for read-only handles on every platform.
+  const guard = join(temporary, 'windows-fsync.cjs');
+  await writeFile(guard, `
+    const fsp = require('node:fs/promises');
+    const {syncBuiltinESMExports} = require('node:module');
+    const open = fsp.open;
+    fsp.open = async function(path, flags = 'r', ...rest) {
+      const handle = await open.call(this, path, flags, ...rest);
+      if (typeof flags === 'string' ? !/[wa+]/.test(flags) : (flags & 3) === 0) {
+        handle.sync = async () => { throw Object.assign(new Error('EPERM: operation not permitted, fsync (read-only handle)'), {code: 'EPERM'}); };
+      }
+      return handle;
+    };
+    syncBuiltinESMExports();
+  `);
+  const result = json(spawnSync(process.execPath, ['--require', guard, script, '--app', 'codex', '--home', home, '--no-telemetry'], { encoding: 'utf8', cwd: root }));
+  assert.equal(result.status, 'INSTALLED');
+  const states = join(home, '.agents/.grandet-install-state');
+  const [state] = await readdir(states);
+  assert.deepEqual((await readdir(join(states, state))).sort(), ['state.json']);
+  assert.equal(JSON.parse(await readFile(join(states, state, 'state.json'), 'utf8')).digest, result.contentSha256);
+});
+
 test('an identical second install performs no writes or backup creation', async (t) => {
   const { home } = await fixture(t);
   const first = json(run('--app', 'cursor', '--home', home));
@@ -232,6 +257,84 @@ test('a custom runtime keeps update staging and backups beside its discovery roo
   assert.ok(result.backup.startsWith(join(runtime, '.grandet-skill-backups')));
   assert.equal(await readFile(join(result.backup, 'keep.txt'), 'utf8'), 'recover me');
   assert.deepEqual(await tree(result.destination), await tree(source));
+});
+
+test('uninstall moves the Skill out of discovery like an update backup, and a reinstall continues the installation', async (t) => {
+  const { home } = await fixture(t);
+  const unrelated = join(home, '.agents/skills/other-skill');
+  await mkdir(unrelated, { recursive: true });
+  await writeFile(join(unrelated, 'SKILL.md'), 'other skill');
+  const first = json(run('--app', 'codex', '--home', home));
+  await writeFile(join(first.destination, 'my-notes.txt'), 'retain my notes');
+  const old = await tree(first.destination);
+  const before = await tree(home);
+  const planned = json(run('--app', 'codex', '--home', home, '--uninstall', '--dry-run'));
+  assert.equal(planned.status, 'DRY_RUN');
+  assert.equal(planned.plannedAction, 'UNINSTALLED');
+  assert.deepEqual(await tree(home), before);
+  const result = json(run('--app', 'codex', '--home', home, '--uninstall'));
+  assert.equal(result.status, 'UNINSTALLED');
+  assert.equal(result.receiptSent, false);
+  assert.deepEqual(result.removed.map((item) => item.path), [first.destination]);
+  assert.ok(result.removed[0].sharedWith.includes('opencode'));
+  await absent(first.destination);
+  assert.ok(result.backup.startsWith(join(home, '.agents/.grandet-skill-backups') + sep));
+  assert.deepEqual(await tree(result.backup), old);
+  assert.equal(await readFile(join(unrelated, 'SKILL.md'), 'utf8'), 'other skill');
+  const again = json(run('--app', 'codex', '--home', home, '--uninstall'));
+  assert.equal(again.status, 'NOT_INSTALLED');
+  assert.deepEqual(again.removed, []);
+  assert.equal(json(run('--app', 'codex', '--home', home)).status, 'INSTALLED');
+  const states = join(home, '.agents/.grandet-install-state');
+  const [state] = await readdir(states);
+  const { last_event: event } = JSON.parse(await readFile(join(states, state, 'state.json'), 'utf8'));
+  assert.equal(event.operation, 'reinstall');
+});
+
+test('uninstall removes every copy the app owns but leaves another app folder to that app', async (t) => {
+  const { home } = await fixture(t);
+  const primary = join(home, '.agents/skills', skillName);
+  const legacy = join(home, '.codex/skills', skillName);
+  await cp(source, primary, { recursive: true });
+  await cp(source, legacy, { recursive: true });
+  const before = await tree(home);
+  const refused = run('--app', 'cursor', '--home', home, '--uninstall');
+  assert.notEqual(refused.status, 0);
+  assert.match(refused.stderr, /SKILL_FOLDER_OF_OTHER_APP: .*codex, opencode; uninstall with --app codex/);
+  assert.deepEqual(await tree(home), before);
+  const result = json(run('--app', 'codex', '--home', home, '--uninstall'));
+  assert.deepEqual(result.removed.map((item) => item.path), [primary, legacy]);
+  await absent(primary);
+  await absent(legacy);
+  for (const item of result.removed) assert.deepEqual(await tree(item.backup), await tree(source));
+});
+
+test('a failed uninstall puts every moved copy back', async (t) => {
+  const { temporary, home } = await fixture(t);
+  const primary = join(home, '.agents/skills', skillName);
+  const legacy = join(home, '.codex/skills', skillName);
+  await cp(source, primary, { recursive: true });
+  await cp(source, legacy, { recursive: true });
+  const outside = join(temporary, 'outside');
+  await mkdir(outside);
+  await symlink(outside, join(legacy, 'linked'), 'junction');
+  const before = await tree(primary);
+  const result = run('--app', 'codex', '--home', home, '--uninstall');
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /SYMLINK_NOT_ALLOWED/);
+  assert.deepEqual(await tree(primary), before);
+  assert.deepEqual(await readdir(join(home, '.agents/.grandet-skill-backups')), []);
+  assert.ok(await stat(join(legacy, 'SKILL.md')));
+});
+
+test('uninstall rejects installation-only options', async (t) => {
+  const { home } = await fixture(t);
+  for (const args of [['--source', source], ['--flush'], ['--operation', 'repair'], ['--receipt-source', 'release_zip']]) {
+    const result = run('--app', 'codex', '--home', home, '--uninstall', ...args);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /INVALID_ARGUMENT/);
+  }
+  await absent(home);
 });
 
 test('dry run plans a single app without creating a home, settings, directories or backups', async (t) => {

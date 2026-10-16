@@ -68,6 +68,17 @@ class Receipts(unittest.TestCase):
         changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_text((changed/'SKILL.md').read_text()+'\nUpdate\n')
         r=self.node('--source',str(changed),env={'GRANDET_INSTALL_CRASH_BEFORE_MOVE':'1'},success=False);self.assertEqual(r.returncode,86)
         journal=json.loads(next(self.home.rglob('journal.json')).read_text());self.py('--source',str(changed),'--flush');self.assertEqual(self.events[-1],journal['event']);self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual(self.events[-1]['installation_id'],old['installation_id'])
+    def test_deep_home_python_staging_fits_windows_path_limit(self):
+        # Native Windows without long-path support rejects paths over 259 characters; staging must fit wherever the receipt state fits.
+        base=Path(self.temp.name);pad=170-len(str(base))-41
+        if pad<1:self.skipTest('temporary directory too deep')
+        self.home=base/('h'*pad);self.dest=self.home/'.agents/skills/grandet-api-price-finder';self.assertEqual(len(str(self.dest)),170)
+        self.py('--source',str(SOURCE))
+        changed=base/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_bytes((SOURCE/'SKILL.md').read_bytes()+b'\nUpdate\n')
+        self.py('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual((self.dest/'SKILL.md').read_bytes(),(changed/'SKILL.md').read_bytes())
+        # Stage and backup folders share one depth; the kept backup shows it.
+        backups=[p.parent for p in self.home.rglob('SKILL.md') if self.dest not in p.parents];self.assertEqual(len(backups),1)
+        self.assertEqual((backups[0]/'SKILL.md').read_bytes(),(SOURCE/'SKILL.md').read_bytes());self.assertLessEqual(max(len(str(p)) for p in backups[0].rglob('*')),259)
     def test_python_crash_node_recovery(self):
         r=self.py('--source',str(SOURCE),env={'GRANDET_INSTALL_CRASH_AFTER_WRITE':'1'},success=False);self.assertEqual(r.returncode,86);journal=json.loads(next(self.home.rglob('journal.json')).read_text());self.node('--flush');self.assertEqual(self.events[0],journal['event'])
     def test_update_same_version_repair_reinstall_and_actions(self):

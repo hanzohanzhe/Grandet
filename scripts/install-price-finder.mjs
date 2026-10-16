@@ -33,7 +33,7 @@ const routes = [
   { id: 'trae-intl', catalogAppId: 'trae', root: '.trae/skills', scope: 'TRAE International local user' },
 ];
 const required = ['SKILL.md', 'agents/openai.yaml', 'references/app-catalog.md', 'references/entrypoints.md', 'references/host-setup.md', 'references/http-fallback.md', 'references/response-format.md', 'references/workloads.md'];
-const usage = 'Usage: node install-price-finder.mjs --app <id> [--dry-run] [--home <explicit-test-root>] [--source <complete-skill-folder>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --list';
+const usage = 'Usage: node install-price-finder.mjs --app <id> [--dry-run] [--home <explicit-test-root>] [--source <complete-skill-folder>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --app <id> --uninstall [--dry-run] [--home <explicit-test-root>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --list';
 function fail(code, detail = '') { throw new Error(`${code}${detail ? `: ${detail}` : ''}`); }
 function inside(parent, child) {
   const rel = relative(parent, child);
@@ -88,9 +88,9 @@ function argumentsFor(argv) {
   const options = {};
   for (let index = 0; index < argv.length; index++) {
     const flag = argv[index];
-    if (!['--app', '--dry-run', '--home', '--source', '--platform', '--list', '--no-telemetry', '--receipt-source', '--receipt-endpoint', '--flush', '--operation'].includes(flag)) fail('INVALID_ARGUMENT', usage);
+    if (!['--app', '--dry-run', '--home', '--source', '--platform', '--list', '--no-telemetry', '--receipt-source', '--receipt-endpoint', '--flush', '--operation', '--uninstall'].includes(flag)) fail('INVALID_ARGUMENT', usage);
     if (Object.hasOwn(options, flag)) fail('DUPLICATE_OPTION', flag);
-    if (['--dry-run', '--list', '--no-telemetry', '--flush'].includes(flag)) options[flag] = true;
+    if (['--dry-run', '--list', '--no-telemetry', '--flush', '--uninstall'].includes(flag)) options[flag] = true;
     else {
       const value = argv[++index];
       if (!value || value.startsWith('--')) fail('MISSING_ARGUMENT', flag);
@@ -98,6 +98,7 @@ function argumentsFor(argv) {
     }
   }
   if (options['--list'] && options['--app']) fail('INVALID_ARGUMENT', 'Choose --list or one --app');
+  if (options['--uninstall'] && ['--list', '--source', '--operation', '--flush', '--receipt-source', '--receipt-endpoint'].some((flag) => options[flag])) fail('INVALID_ARGUMENT', `--uninstall takes only --app, --dry-run, --home, --platform and --no-telemetry\n${usage}`);
   return options;
 }
 function destinationRoot(route, home, platform, explicitHome) {
@@ -118,6 +119,51 @@ function destinationRoot(route, home, platform, explicitHome) {
   }
   return join(home, route.root);
 }
+async function uninstall(options, route, { platform, home, destination, backups }) {
+  await rejectLinks(home);
+  await rejectLinks(backups);
+  const found = [];
+  for (const [path, alias] of [[destination, null], ...(route.aliases ?? []).map((root) => [join(home, root, skillName), root])]) {
+    await rejectLinks(path);
+    if (!(await entry(path))) continue;
+    // Another app's own folder stays that app's to uninstall; leaving it would keep the Skill visible here anyway.
+    const owners = alias ? routes.filter((item) => item.root === alias).map((item) => item.id) : [];
+    if (owners.length) fail('SKILL_FOLDER_OF_OTHER_APP', `${path} belongs to ${owners.join(', ')}; uninstall with --app ${owners[0]}`);
+    const sharedWith = routes.filter((item) => item.id !== route.id && [item.root, ...(item.aliases ?? [])].some((root) => join(home, root, skillName) === path)).map((item) => item.id);
+    found.push({ path, backup: null, sharedWith });
+  }
+  const action = found.length ? 'UNINSTALLED' : 'NOT_INSTALLED';
+  const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, removed: found, backup: null, receiptSent: false, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']) };
+  const shared = [...new Set(found.flatMap((item) => item.sharedWith))];
+  report.nextStep = found.length
+    ? `Moved out of skill discovery, not deleted: to restore, move the backup folder back or install again. Start a fresh session to confirm the Skill no longer loads.${shared.length ? ` The same folder also served ${shared.join(', ')}.` : ''} Uninstall sends no receipt and keeps local receipt state, so a later install continues the same installation ID.`
+    : 'No Grandet Skill folder was found for this app; nothing changed.';
+  if (route.id === 'cursor' && found.length) report.nextStep += ' Copies already synced to Cursor Cloud Agents are not changed by a local uninstall.';
+  if (options['--dry-run'] || !found.length) return report;
+  const moved = [];
+  try {
+    for (const item of found) {
+      const receipt = await openReceipt(item.path, { disabled: Boolean(options['--no-telemetry']), test: Boolean(options['--home']) });
+      try {
+        await receipt.recover(readTree); // Finish or roll back an interrupted install before moving.
+        await readTree(item.path);
+        // Same layout as an update backup: outside all skill-discovery directories, moved intact.
+        const transaction = join(backups, `${route.id}-${Date.now()}-${randomUUID()}`);
+        await mkdir(transaction, { recursive: true });
+        try { await rename(item.path, join(transaction, skillName)); }
+        catch (error) { await rmdir(transaction); fail('UNINSTALL_MOVE_FAILED', `${error.code}; ${item.path} left in place`); }
+        item.backup = join(transaction, skillName);
+        moved.push(item);
+      } finally { await receipt.close(); }
+    }
+  } catch (error) {
+    // All or nothing: put earlier copies back, as a failed update restores its backup.
+    for (const item of moved.reverse()) if (!(await entry(item.path))) { await rename(item.backup, item.path); await rmdir(dirname(item.backup)); }
+    throw error;
+  }
+  report.backup = found[0].backup;
+  return report;
+}
 async function main() {
   const options = argumentsFor(process.argv.slice(2));
   const platform = options['--platform'] ?? process.platform;
@@ -136,6 +182,7 @@ async function main() {
   const aliases = (route.aliases ?? []).map((path) => join(home, path, skillName));
   // A sibling of discovery stays on the runtime volume, including redirected app homes.
   const backups = join(dirname(discovery), '.grandet-skill-backups');
+  if (options['--uninstall']) return uninstall(options, route, { platform, home, destination, backups });
   if ([destination, ...aliases, backups].some((path) => inside(source, path) || inside(path, source))) fail('OVERLAPPING_PATHS');
   await rejectLinks(source);
   const payload = await readTree(source);

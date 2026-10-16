@@ -45,7 +45,7 @@ def version(files):
     return m[1]
 def atomic(path,data):
     safe(path); path.parent.mkdir(parents=True,exist_ok=True,mode=0o700)
-    temp=path.with_name(path.name+'.'+str(uuid.uuid4())+'.tmp')
+    temp=path.with_name(path.name+'.'+uuid.uuid4().hex[:8]+'.tmp')
     fd=os.open(temp,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w') as f: json.dump(data,f,indent=2); f.write('\n'); f.flush(); os.fsync(f.fileno())
     os.replace(temp,path)
@@ -122,7 +122,8 @@ def main(argv=None):
                     atomic(statefile,state)
             else:
                 e={'schema_version':'grandet.installation-event/v1','event_id':str(uuid.uuid4()),'installation_id':state['installation_id'] or str(uuid.uuid4()),'revision':1,'operation':operation,'skill_version':v,'content_sha256':content,'source':a.receipt_source,'host':HOST_ALIASES.get(a.host,a.host) if HOST_ALIASES.get(a.host,a.host) in REGISTERED_HOSTS else 'unknown','scope':a.scope,'verification':'files_verified','occurred_at':now(),'test_mode':False,'exclusion_reason':'none'}
-                stage=directory/('stage-'+e['event_id']);backup=directory/('backup-'+e['event_id'])
+                # Short names beside the hashed state folder keep staged files within the Windows 260-character path limit.
+                stage=directory.parent/('stage-'+e['event_id'][:8]);backup=directory.parent/('backup-'+e['event_id'][:8])
                 j={'destination':str(destination),'stage':None,'backup':None,'event':e}
                 if not same or operation=='reinstall':
                     stage.mkdir()
