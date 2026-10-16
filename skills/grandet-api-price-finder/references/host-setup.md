@@ -41,6 +41,7 @@ Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs
 1. **Preview**, then show the user the diff and notes, and the three steps on the site (section 3):
    `CONNECT preview --app <codex|claude-code|opencode|kilo-code|continue|gemini-cli|hermes|openclaw> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"`
    - `baseUrlMode=SUGGESTION`: ask the user to confirm the address first, then add `--confirmed-other-domain`.
+   - Codex, OpenCode and Kilo Code have one default model. When a note says `Will change the default model from X to Y` (or `Will set Y as the default model`; `defaultModel` in `--json` and MCP output), tell the user that in one line.
    - The output ends with `plan-hash <hash>`; keep it.
 2. **Apply** only after the user agrees: the same options with `apply --yes --plan-hash <hash>`. It backs up the file next to it, writes, and reads it back. If the target app is the app you are running in, run step 4 first and say the change takes effect after a restart.
 3. **The user stores the key.** Preview and apply print the exact command (the `Next: The user stores the key…` line; `keyCommand` in `--json` and MCP output), with this Skill's real path filled in. Always give the user that command unchanged, in its own code block, and ask them to run it in their own terminal, where typing is hidden and the key stays on their computer. Never answer with only "store the key locally". Never run it yourself with a key, never pass a key as an argument, and never ask for the key in chat.
@@ -49,7 +50,7 @@ Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs
    - `MODEL_NOT_LISTED`: the key works but the token is probably in another group; ask the user to check the group is「<group>」.
    - `KEY_REJECTED`: wrong key, expired, or no balance.
    - Never call the free check a working connection. A real request costs credit: send one short request only if the user agrees, after this check passes.
-5. **Undo:** `CONNECT restore` undoes the latest connection from its backups (`--app <app>` for a specific app). Add `--delete-key` only if the user wants the stored key removed.
+5. **Undo:** `CONNECT restore` undoes the latest connection from its backups (`--app <app>` for a specific app), including the old default model, and prints `Default model back to X`. Add `--delete-key` only if the user wants the stored key removed.
 
 When it stops with a code:
 
@@ -113,16 +114,17 @@ env_key = "<VAR>"
 
 On Windows, leave out `apiKeyHelper` and have the user also run `[Environment]::SetEnvironmentVariable('ANTHROPIC_AUTH_TOKEN',(Get-Content -Raw "$HOME\.grandet\keys\<site>"),'User')`.
 
-**OpenCode** — `~/.config/opencode/opencode.json`; **Kilo Code** — `~/.config/kilo/kilo.jsonc` (same shape):
+**OpenCode** — `~/.config/opencode/opencode.jsonc` if it exists, otherwise `opencode.json`; **Kilo Code** — `~/.config/kilo/kilo.jsonc` (or an existing `kilo.json`), same shape. The key stays in the Grandet key file, read through `{file:…}` with its full path, so the config never holds it. `model` makes this the default model: tell the user, and say undo restores the old one.
 
 ```json
 {
-  "model": "<id>/<modelName>",
+  "$schema": "https://opencode.ai/config.json",
+  "model": "grandet-<site>/<modelName>",
   "provider": {
-    "<id>": {
+    "grandet-<site>": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "<site>",
-      "options": { "baseURL": "<origin>/v1", "apiKey": "{env:<VAR>}" },
+      "name": "<site> (Grandet)",
+      "options": { "baseURL": "<origin>/v1", "apiKey": "{file:<home>/.grandet/keys/<site>}" },
       "models": { "<modelName>": { "name": "<modelName>" } }
     }
   }
