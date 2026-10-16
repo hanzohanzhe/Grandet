@@ -2,8 +2,9 @@
 // Stage a Skill release for ClawHub and Tencent SkillHub. Both registries get the complete installation kit
 // from the release's pinned .skill archive (Skill, installer, receipt module, Python verifier, INSTALL.md,
 // package-manifest.json), so people who cannot reach GitHub, notably in mainland China, download everything
-// from the registry. SkillHub receives the kit byte-for-byte; ClawHub, which publishes every Skill as MIT-0,
-// receives it without the Apache license line and LICENSE file and with its runtime metadata added.
+// from the registry. SkillHub receives every file byte-for-byte, with files that have no extension (LICENSE)
+// renamed to .txt because SkillHub refuses them. ClawHub, which publishes every Skill as MIT-0, receives the
+// kit without the Apache license line and LICENSE file and with its runtime metadata added.
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
@@ -114,6 +115,12 @@ export function chinaLinkMismatches(files, registryVersion) {
   return wrong;
 }
 
+// SkillHub's upload rejects files without an extension ("不允许的文件类型: LICENSE"), so they get .txt there.
+export function skillhubName(name) {
+  const base = name.split('/').pop();
+  return base.includes('.') ? name : `${name}.txt`;
+}
+
 const sha256 = (b) => createHash('sha256').update(b).digest('hex');
 
 async function exists(p) {
@@ -153,7 +160,7 @@ export async function stage({ root = ROOT, tag, out }) {
 
   if (await exists(out) && (await readdir(out)).length) throw new Error(`OUTPUT_NOT_EMPTY: ${out}`);
   const targets = {
-    skillhub: { dir: join(out, 'skillhub', SLUG), files: kit },
+    skillhub: { dir: join(out, 'skillhub', SLUG), files: new Map([...kit].map(([name, b]) => [skillhubName(name), b])) },
     clawhub: { dir: join(out, 'clawhub', SLUG), files: new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b])) },
   };
   for (const { dir, files } of Object.values(targets)) {

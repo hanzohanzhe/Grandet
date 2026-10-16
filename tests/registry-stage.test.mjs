@@ -51,7 +51,10 @@ test('SkillHub gets the complete .skill kit byte-for-byte; ClawHub differs only 
     const r = await stage({ out });
     const kit = await releaseArchive();
     for (const name of ['SKILL.md', 'INSTALL.md', 'LICENSE', 'package-manifest.json', 'scripts/install-price-finder.mjs', 'scripts/installation-receipts.mjs', 'scripts/verify-installation.py', 'scripts/connect.mjs']) assert.ok(kit.has(name), name);
-    assert.deepEqual(await readTree(r.skillhub.dir), kit);
+    // SkillHub refuses files without an extension, so LICENSE travels as LICENSE.txt with the same bytes.
+    const hubTree = await readTree(r.skillhub.dir);
+    assert.deepEqual(hubTree, new Map([...kit].map(([n, b]) => [n === 'LICENSE' ? 'LICENSE.txt' : n, b])));
+    for (const name of hubTree.keys()) assert.match(name.split('/').pop(), /\./, `SkillHub would refuse ${name}`);
 
     const claw = await readTree(r.clawhub.dir);
     assert.deepEqual([...claw.keys()].sort(), [...kit.keys()].filter((n) => n !== 'LICENSE').sort());

@@ -31,7 +31,7 @@ Until a secret exists, a release run skips that registry with a warning; a manua
 
 `scripts/stage-registry-skill.mjs` takes the release's `downloads/grandet-api-price-finder-0.3.0.skill`, checks its size and SHA-256 against `downloads/manifest.json`, and unpacks it. `tests/registry-stage.test.mjs` checks both copies.
 
-- SkillHub: the kit byte-for-byte, so every file matches its hash in `package-manifest.json`. Its CLI reads `slug`, `displayName` and `summary` from the `metadata` block of `SKILL.md`; the version comes from the release tag. `SKILL.md` must not carry `tags`, which SkillHub turns into version pointers.
+- SkillHub: the kit byte-for-byte, so every file matches its hash in `package-manifest.json`. SkillHub refuses files without an extension, so `LICENSE` is uploaded as `LICENSE.txt` (same bytes). Its CLI reads `slug`, `displayName` and `summary` from the `metadata` block of `SKILL.md`; the version comes from the release tag. `SKILL.md` must not carry `tags`, which SkillHub turns into version pointers.
 - ClawHub: the same kit without `LICENSE` and without the `license:` line in `SKILL.md`, because ClawHub publishes every Skill under MIT-0 and refuses other license terms. It adds `metadata.openclaw` (homepage; needs `curl` or `node`).
 
 Registry version numbers: the product version stays `0.3.0`; each build becomes a distinct, ordered SemVer.
