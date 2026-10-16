@@ -57,9 +57,10 @@ curl --fail-with-body --silent --show-error --max-time 20 --get 'https://grandet
 import json,sys
 d=json.load(sys.stdin);cards=d.get("integrationCards") or []
 print("scope",json.dumps({k:d.get("scope",{}).get(k) for k in ("mix","preset","application")},ensure_ascii=False))
+print("excluded",json.dumps((d.get("coverage") or {}).get("excluded")))
 for b in d.get("boards",[]):
     L=b.get("listings") or {}
-    print("==",b["unit"],b["basis"],b["status"],"folded",L.get("folded"))
+    print("==",b["unit"],b["basis"],b["status"],"folded",L.get("folded"),"boardUrl",((L.get("lowest") or [{}])[0]).get("boardUrl"))
     for k in ("lowest","gated","reference"):
         for r in L.get(k) or []:
             i=r.get("integration") or {};c=cards[i["card"]] if isinstance(i.get("card"),int) and i["card"]<len(cards) else i
@@ -82,7 +83,7 @@ import json,sys
 d=json.load(sys.stdin);print("total",d["total"],"pages",d["pages"],d.get("coverage"))
 for o in d["offers"]:
     req={k:v.get("state") for k,v in (o.get("requirements") or {}).items()}
-    print(o["kind"],o.get("declaration") or "","|",o["provider"],"|",o.get("plan") or "","|",o["title"],"|",o.get("benefitText","")[:80],"|",req,"|",(o.get("deadline") or {}).get("endAt"),o.get("claimUrl"))
+    print(o["kind"],o.get("declaration") or "","|",o["provider"],"|",o.get("plan") or "","|",o["title"],"|",o.get("benefitText","")[:80],"|",req,"|",json.dumps(o.get("deadline")),o.get("claimUrl"),"|",(o.get("modelNames") or [])[:8])
 '
 ```
 
