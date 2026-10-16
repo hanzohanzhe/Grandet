@@ -84,7 +84,8 @@ jobs:
           cp "$RUNNER_TEMP/stage.json" "$RUNNER_TEMP/registry/stage.json"
           echo "version=$(jq -r .registryVersion "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
           echo "changelog=$(jq -r .changelog "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
-          jq '{tag, build, registryVersion, bodySha256}' "$RUNNER_TEMP/stage.json"
+          jq '{tag, build, registryVersion, archive, chinaDownload}' "$RUNNER_TEMP/stage.json"
+          { echo "### Staged kit"; echo "Mainland China download once SkillHub approves it: $(jq -r .chinaDownload "$RUNNER_TEMP/stage.json")"; } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: registry-stage

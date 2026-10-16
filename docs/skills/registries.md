@@ -1,8 +1,18 @@
 # ClawHub and SkillHub / 同步到 ClawHub 和腾讯 SkillHub
 
-Each published `skill-v*` release uploads the same Skill folder to [ClawHub](https://clawhub.ai) and [Tencent SkillHub](https://skillhub.cn) through `.github/workflows/skill-registries.yml`. GitHub stays the source: the website, `download.md` and both registries all point back to the release.
+Each published `skill-v*` release uploads the complete installation kit to [ClawHub](https://clawhub.ai) and [Tencent SkillHub](https://skillhub.cn) through `.github/workflows/skill-registries.yml`. GitHub stays the source; the registries carry the same files, so nobody needs GitHub to install.
 
-每次发布 `skill-v*` release，工作流会把同一个 Skill 文件夹上传到 ClawHub 和腾讯 SkillHub。GitHub 仍是唯一来源。
+每次发布 `skill-v*` release，工作流会把完整安装包（和 GitHub 上的 `.skill` 一样：Skill、安装器、回执模块、Python 验证器、INSTALL.md、package-manifest.json）上传到 ClawHub 和腾讯 SkillHub。GitHub 仍是唯一来源；中国大陆用户从 SkillHub 就能拿到全部文件，不需要访问 GitHub。
+
+## Mainland China download / 国内下载地址
+
+```text
+https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=<registry version>
+```
+
+No account is needed; SkillHub redirects to Tencent COS. The archive holds the `.skill` contents with the files at its root, plus SkillHub's own `_meta.json`: extract it into a folder named `grandet-api-price-finder` and use it as an extracted `.skill` root. `INSTALL.md`, `references/installation.md`, `references/host-setup.md`, `llms.txt` and `README.zh-CN.md` link to it, pinned to the current build. A version still in SkillHub review returns 404.
+
+不用注册，链接会跳到腾讯云 COS。压缩包里是 `.skill` 的内容（文件在根目录），外加 SkillHub 自己的 `_meta.json`。
 
 ## One-time setup / 一次性设置
 
@@ -19,25 +29,26 @@ Until a secret exists, a release run skips that registry with a warning; a manua
 
 ## What gets uploaded / 上传的内容
 
-The job copies `skills/grandet-api-price-finder/` and rewrites only the `SKILL.md` front matter. The body and every other file stay byte-identical; `tests/registry-stage.test.mjs` checks this.
+`scripts/stage-registry-skill.mjs` takes the release's `downloads/grandet-api-price-finder-0.3.0.skill`, checks its size and SHA-256 against `downloads/manifest.json`, and unpacks it. `tests/registry-stage.test.mjs` checks both copies.
 
-- ClawHub: adds `version` and `metadata.openclaw` (homepage; needs `curl` or `node`). The `license` line is dropped because ClawHub publishes every Skill under MIT-0 and refuses other license terms.
-- SkillHub: adds `slug`, `displayName`, `version`, `summary`, `tags`, `license: Apache-2.0` and `homepage` as flat lines, which is what its CLI reads.
+- SkillHub: the kit byte-for-byte, so every file matches its hash in `package-manifest.json`. Its CLI reads `slug`, `displayName` and `summary` from the `metadata` block of `SKILL.md`; the version comes from the release tag. `SKILL.md` must not carry `tags`, which SkillHub turns into version pointers.
+- ClawHub: the same kit without `LICENSE` and without the `license:` line in `SKILL.md`, because ClawHub publishes every Skill under MIT-0 and refuses other license terms. It adds `metadata.openclaw` (homepage; needs `curl` or `node`).
 
 Registry version numbers: the product version stays `0.3.0`; each build becomes a distinct, ordered SemVer.
 
 | Release tag | Registry version |
 |---|---|
 | `skill-v0.3.0-build.20261016` | `0.3.0-build.20261016.0` |
-| `skill-v0.3.0-build.20261016b` | `0.3.0-build.20261016.2` |
 | `skill-v0.3.0-build.20261016c` | `0.3.0-build.20261016.3` |
+| `skill-v0.3.0-build.20261016d` | `0.3.0-build.20261016.4` |
+| `skill-v0.3.0-build.20261016e` | `0.3.0-build.20261016.5` |
 
-The release tag must match the `Installation build` line in `SKILL.md`, or the run stops before uploading. The staging script is taken from the branch the workflow runs on and the Skill from the tag, so a release tagged before this workflow existed (such as `skill-v0.3.0-build.20261016c`) can be published with a manual run.
+The run stops before uploading if the release tag does not match the `Installation build` line in `SKILL.md`, if the archive does not match its pin, or if any China download link in the kit names another registry version. **When you cut a new build, update that version in the China links too** (`tests/registry-stage.test.mjs` fails until you do).
 
 ## Timing / 多久生效
 
 - ClawHub holds each upload until its automated security checks pass, then lists it.
-- SkillHub runs an automated security scan (about 60 minutes) and may send a version to manual review. The first upload under this slug also stops SkillHub from mirroring the ClawHub copy.
+- SkillHub runs an automated security scan (about 60 minutes) and may send a version to manual review; until then its China link returns 404. The first upload under this slug also stopped SkillHub from mirroring the ClawHub copy.
 - Installed copies do not update themselves. ClawHub users run `clawhub update grandet-api-price-finder`.
 
 ## Running it by hand / 手动运行
