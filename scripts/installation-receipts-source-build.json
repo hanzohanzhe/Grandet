@@ -12,7 +12,7 @@
   "files": {
     "scripts/install-price-finder.mjs": "a20daca36fdbe0fd9b2748681be2e8233be5fd57c3d1da865151b9d8175dbbee",
     "scripts/installation-receipts.mjs": "4b93679e501800e26da71a16dcf6b3420dc8a391fb85c6e5cf4add9ce589d68e",
-    "scripts/verify-installation.py": "9680a0de5cad07e792098dae9009e048eb9f2633b2b1b1b13dcf93fba74efcb4"
+    "scripts/verify-installation.py": "75f5c106704e9aba178849c36c752434c298c3ac10c115b6ee64ceafa01159a6"
   },
   "version": "0.3.0",
   "releaseBuild": true,

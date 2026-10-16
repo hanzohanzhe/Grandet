@@ -50,6 +50,19 @@ def atomic(path,data):
     with os.fdopen(fd,'w') as f: json.dump(data,f,indent=2); f.write('\n'); f.flush(); os.fsync(f.fileno())
     os.replace(temp,path)
 def read(path,default=None): return json.loads(path.read_text()) if path.exists() else default
+def alive(pid):
+    # Signal 0 is CTRL_C_EVENT on Windows, so query the process there instead of signalling it.
+    if os.name!='nt':
+        try: os.kill(pid,0)
+        except ProcessLookupError: return False
+        except PermissionError: pass
+        return True
+    import ctypes; from ctypes import wintypes
+    k=ctypes.WinDLL('kernel32',use_last_error=True);k.OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD];k.OpenProcess.restype=wintypes.HANDLE;k.GetExitCodeProcess.argtypes=[wintypes.HANDLE,ctypes.POINTER(wintypes.DWORD)];k.CloseHandle.argtypes=[wintypes.HANDLE]
+    h=k.OpenProcess(0x1000,False,pid) # PROCESS_QUERY_LIMITED_INFORMATION
+    if not h: return ctypes.get_last_error()==5 # ERROR_ACCESS_DENIED: the process exists but belongs to someone else
+    try: code=wintypes.DWORD(); return not k.GetExitCodeProcess(h,ctypes.byref(code)) or code.value==259 # STILL_ACTIVE
+    finally: k.CloseHandle(h)
 def now():
     from datetime import datetime,timezone
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00','Z')
@@ -81,10 +94,8 @@ def main(argv=None):
     directory=destination.parent.parent/'.grandet-install-state'/sha(str(destination).encode());safe(directory);directory.mkdir(parents=True,exist_ok=True,mode=0o700)
     lock=directory/'lock.json'
     if lock.exists():
-        old=read(lock)
-        try: os.kill(old['pid'],0)
-        except ProcessLookupError: lock.unlink()
-        else: raise ValueError('INSTALLATION_LOCKED')
+        if alive(read(lock)['pid']): raise ValueError('INSTALLATION_LOCKED')
+        lock.unlink()
     fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w') as f: json.dump({'pid':os.getpid()},f)
     try:

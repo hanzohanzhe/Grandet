@@ -33,7 +33,7 @@ class Receipts(unittest.TestCase):
         r=subprocess.run(['python3',str(ROOT/'scripts/verify-installation.py'),'--destination',str(self.dest),'--host','codex','--scope','user','--test-mode','--receipt-endpoint',self.url,*args],capture_output=True,text=True,env={**os.environ,**(env or {})})
         if success:self.assertEqual(r.returncode,0,r.stderr);return json.loads(r.stdout)
         return r
-    def state(self):return json.loads(next(self.home.rglob('state.json')).read_text())
+    def state(self):return json.loads(next(self.home.rglob('state.json')).read_text(encoding='utf-8'))
     def test_sources_and_no_leaked_fields(self):
         for source in ['release_zip','release_skill','source','checkout','raw','cache','local','unknown']:
             self.node('--receipt-source',source)
@@ -62,12 +62,12 @@ class Receipts(unittest.TestCase):
         e=self.events[0];type(self).mode='ok';self.node('--flush');self.assertEqual(self.events[-1],e);self.assertEqual(len(self.unique),1);self.node('--flush');self.assertEqual(len(self.unique),1)
     def test_crash_after_write_recovers_original_event(self):
         r=self.node(env={'GRANDET_INSTALL_CRASH_AFTER_WRITE':'1'},success=False);self.assertEqual(r.returncode,86);self.assertTrue(self.dest.exists());self.assertEqual(self.events,[])
-        journal=json.loads(next(self.home.rglob('journal.json')).read_text());self.node('--flush');self.assertEqual(len(self.events),1);self.assertEqual(self.events[0],journal['event']);self.assertFalse(list(self.home.rglob('journal.json')))
+        journal=json.loads(next(self.home.rglob('journal.json')).read_text(encoding='utf-8'));self.node('--flush');self.assertEqual(len(self.events),1);self.assertEqual(self.events[0],journal['event']);self.assertFalse(list(self.home.rglob('journal.json')))
     def test_update_crash_before_move_resumes_without_counting_install(self):
         self.node();old=self.events[-1]
-        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_text((changed/'SKILL.md').read_text()+'\nUpdate\n')
+        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_bytes((changed/'SKILL.md').read_bytes()+b'\nUpdate\n')
         r=self.node('--source',str(changed),env={'GRANDET_INSTALL_CRASH_BEFORE_MOVE':'1'},success=False);self.assertEqual(r.returncode,86)
-        journal=json.loads(next(self.home.rglob('journal.json')).read_text());self.py('--source',str(changed),'--flush');self.assertEqual(self.events[-1],journal['event']);self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual(self.events[-1]['installation_id'],old['installation_id'])
+        journal=json.loads(next(self.home.rglob('journal.json')).read_text(encoding='utf-8'));self.py('--source',str(changed),'--flush');self.assertEqual(self.events[-1],journal['event']);self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual(self.events[-1]['installation_id'],old['installation_id'])
     def test_deep_home_python_staging_fits_windows_path_limit(self):
         # Native Windows without long-path support rejects paths over 259 characters; staging must fit wherever the receipt state fits.
         base=Path(self.temp.name);pad=170-len(str(base))-41
@@ -80,12 +80,12 @@ class Receipts(unittest.TestCase):
         backups=[p.parent for p in self.home.rglob('SKILL.md') if self.dest not in p.parents];self.assertEqual(len(backups),1)
         self.assertEqual((backups[0]/'SKILL.md').read_bytes(),(SOURCE/'SKILL.md').read_bytes());self.assertLessEqual(max(len(str(p)) for p in backups[0].rglob('*')),259)
     def test_python_crash_node_recovery(self):
-        r=self.py('--source',str(SOURCE),env={'GRANDET_INSTALL_CRASH_AFTER_WRITE':'1'},success=False);self.assertEqual(r.returncode,86);journal=json.loads(next(self.home.rglob('journal.json')).read_text());self.node('--flush');self.assertEqual(self.events[0],journal['event'])
+        r=self.py('--source',str(SOURCE),env={'GRANDET_INSTALL_CRASH_AFTER_WRITE':'1'},success=False);self.assertEqual(r.returncode,86);journal=json.loads(next(self.home.rglob('journal.json')).read_text(encoding='utf-8'));self.node('--flush');self.assertEqual(self.events[0],journal['event'])
     def test_update_same_version_repair_reinstall_and_actions(self):
         self.node();first=self.events[-1]
-        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_text((changed/'SKILL.md').read_text()+'\nNew content\n')
+        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_bytes((changed/'SKILL.md').read_bytes()+b'\nNew content\n')
         self.node('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual(self.events[-1]['skill_version'],first['skill_version']);self.assertNotEqual(self.events[-1]['content_sha256'],first['content_sha256'])
-        (self.dest/'SKILL.md').write_text('damaged');self.node('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'repair')
+        (self.dest/'SKILL.md').write_bytes(b'damaged');self.node('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'repair')
         self.py('--source',str(changed),'--operation','reinstall');self.assertEqual(self.events[-1]['operation'],'reinstall')
         for op in ['bind','sync','enable']:self.py('--operation',op);self.assertEqual(self.events[-1]['operation'],op)
         self.assertTrue(all(e['installation_id']==first['installation_id'] for e in self.events))
@@ -101,7 +101,7 @@ class Receipts(unittest.TestCase):
         bad=Path(self.temp.name)/'bad';shutil.copytree(SOURCE,bad);(bad/'references/workloads.md').unlink();r=self.node('--source',str(bad),success=False);self.assertNotEqual(r.returncode,0);self.assertEqual(self.events,[])
     def test_source_build_is_030_compatible_and_rejects_candidate_version(self):
         result=self.node();self.assertEqual(result['productVersion'],'0.3.0');self.assertEqual(result['sourceBuild'],'grandet-skill-0.3.0-build.20261016c');self.assertEqual(self.events[-1]['skill_version'],'0.3.0')
-        wrong=Path(self.temp.name)/'candidate';shutil.copytree(SOURCE,wrong);(wrong/'SKILL.md').write_text((wrong/'SKILL.md').read_text().replace('Package version: `0.3.0`','Package version: `0.3.1`'))
+        wrong=Path(self.temp.name)/'candidate';shutil.copytree(SOURCE,wrong);(wrong/'SKILL.md').write_bytes((wrong/'SKILL.md').read_bytes().replace(b'Package version: `0.3.0`',b'Package version: `0.3.1`'))
         before=len(self.events);result=self.node('--source',str(wrong),success=False);self.assertNotEqual(result.returncode,0);self.assertEqual(len(self.events),before)
     def test_reported_digest_matches_receipt_digest(self):
         result=self.node();self.assertEqual(result['contentSha256'],self.events[-1]['content_sha256'])
