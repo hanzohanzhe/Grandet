@@ -1,0 +1,173 @@
+name: Publish Skill to ClawHub and SkillHub
+# A published skill-v* release uploads the same Skill folder to ClawHub and Tencent SkillHub.
+# See docs/skills/registries.md for the two secrets and what each registry does with an upload.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag, e.g. skill-v0.3.0-build.20261016c
+        required: true
+        type: string
+      dry_run:
+        description: Check only, publish nothing
+        required: false
+        type: boolean
+        default: true
+      targets:
+        description: Registries to process
+        required: false
+        type: choice
+        options: [both, clawhub, skillhub]
+        default: both
+permissions:
+  contents: read
+concurrency:
+  group: skill-registries
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+env:
+  CLAWHUB_CLI: clawhub@0.23.3
+  SKILLHUB_KIT_URL: https://skillhub-1388575217.cos.ap-guangzhou.myqcloud.com/install/latest.tar.gz
+  SKILLHUB_HOST: https://api.skillhub.cn
+jobs:
+  stage:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'skill-v')
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.input.outputs.tag }}
+      dry_run: ${{ steps.input.outputs.dry_run }}
+      targets: ${{ steps.input.outputs.targets }}
+      required: ${{ steps.input.outputs.required }}
+      version: ${{ steps.stage.outputs.version }}
+      changelog: ${{ steps.stage.outputs.changelog }}
+    steps:
+      - id: input
+        env:
+          EVENT: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+          INPUT_DRY_RUN: ${{ inputs.dry_run }}
+          INPUT_TARGETS: ${{ inputs.targets }}
+        run: |
+          if [[ "$EVENT" == release ]]; then
+            tag="$RELEASE_TAG"; dry=false; targets=both; required=false
+          else
+            tag="$INPUT_TAG"; dry="$INPUT_DRY_RUN"; targets="$INPUT_TARGETS"; required=true
+          fi
+          if [[ ! "$tag" =~ ^skill-v[0-9]+\.[0-9]+\.[0-9]+-build\.[0-9]{8}[a-z]?$ ]]; then
+            echo "::error::Not a Skill build tag: $tag"; exit 1
+          fi
+          { echo "tag=$tag"; echo "dry_run=$dry"; echo "targets=$targets"; echo "required=$required"; } >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ steps.input.outputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - id: stage
+        env:
+          TAG: ${{ steps.input.outputs.tag }}
+        run: |
+          node scripts/stage-registry-skill.mjs --tag "$TAG" --out "$RUNNER_TEMP/registry" > "$RUNNER_TEMP/stage.json"
+          cp "$RUNNER_TEMP/stage.json" "$RUNNER_TEMP/registry/stage.json"
+          echo "version=$(jq -r .registryVersion "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
+          echo "changelog=$(jq -r .changelog "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
+          jq '{tag, build, registryVersion, bodySha256}' "$RUNNER_TEMP/stage.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: registry-stage
+          path: ${{ runner.temp }}/registry
+          if-no-files-found: error
+          retention-days: 30
+
+  clawhub:
+    needs: stage
+    if: needs.stage.outputs.targets != 'skillhub'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: registry-stage
+          path: ${{ runner.temp }}/registry
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - env:
+          CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
+          DRY_RUN: ${{ needs.stage.outputs.dry_run }}
+          REQUIRED: ${{ needs.stage.outputs.required }}
+          VERSION: ${{ needs.stage.outputs.version }}
+          CHANGELOG: ${{ needs.stage.outputs.changelog }}
+        run: |
+          dir="$RUNNER_TEMP/registry/clawhub/grandet-api-price-finder"
+          stage="$RUNNER_TEMP/registry/stage.json"
+          flags=()
+          if [[ "$DRY_RUN" == true ]]; then
+            flags+=(--dry-run)
+          elif [[ -z "$CLAWHUB_TOKEN" ]]; then
+            if [[ "$REQUIRED" == true ]]; then echo "::error::CLAWHUB_TOKEN secret is not set."; exit 1; fi
+            echo "::warning::CLAWHUB_TOKEN secret is not set; ClawHub was skipped for this release."; exit 0
+          else
+            export CLAWHUB_CONFIG_PATH="$RUNNER_TEMP/clawhub-config.json"
+            umask 077
+            jq -n --arg token "$CLAWHUB_TOKEN" '{registry: "https://clawhub.ai", token: $token}' > "$CLAWHUB_CONFIG_PATH"
+          fi
+          npx --yes "$CLAWHUB_CLI" skill publish "$dir" \
+            --slug "$(jq -r .slug "$stage")" \
+            --name "$(jq -r .clawhub.name "$stage")" \
+            --version "$VERSION" \
+            --changelog "$CHANGELOG" \
+            --categories "$(jq -r .clawhub.categories "$stage")" \
+            --topics "$(jq -r .clawhub.topics "$stage")" \
+            --no-input --json "${flags[@]}" | tee "$RUNNER_TEMP/clawhub-result.json"
+          { echo "### ClawHub"; echo '```json'; cat "$RUNNER_TEMP/clawhub-result.json"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+  skillhub:
+    needs: stage
+    if: needs.stage.outputs.targets != 'clawhub'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: registry-stage
+          path: ${{ runner.temp }}/registry
+      - name: Fetch the SkillHub CLI
+        env:
+          KIT_SHA256: ${{ vars.SKILLHUB_KIT_SHA256 }}
+        run: |
+          kit="$RUNNER_TEMP/skillhub-kit"
+          mkdir -p "$kit"
+          curl -fsSL --max-time 60 "$SKILLHUB_KIT_URL" -o "$kit/latest.tar.gz"
+          actual="$(sha256sum "$kit/latest.tar.gz" | cut -d' ' -f1)"
+          echo "SkillHub kit sha256: $actual"
+          if [[ -n "$KIT_SHA256" && "$actual" != "$KIT_SHA256" ]]; then
+            echo "::error::SkillHub kit changed (expected $KIT_SHA256). Review it, then update the SKILLHUB_KIT_SHA256 variable."; exit 1
+          fi
+          tar -xzf "$kit/latest.tar.gz" -C "$kit"
+          python3 -c 'import json,sys; print("SkillHub CLI", json.load(open(sys.argv[1]))["version"])' "$kit/cli/version.json"
+      - env:
+          SKILLHUB_TOKEN: ${{ secrets.SKILLHUB_TOKEN }}
+          DRY_RUN: ${{ needs.stage.outputs.dry_run }}
+          REQUIRED: ${{ needs.stage.outputs.required }}
+          VERSION: ${{ needs.stage.outputs.version }}
+          CHANGELOG: ${{ needs.stage.outputs.changelog }}
+        run: |
+          dir="$RUNNER_TEMP/registry/skillhub/grandet-api-price-finder"
+          flags=()
+          if [[ "$DRY_RUN" == true ]]; then
+            flags+=(--dry-run)
+            unset SKILLHUB_TOKEN
+          elif [[ -z "$SKILLHUB_TOKEN" ]]; then
+            if [[ "$REQUIRED" == true ]]; then echo "::error::SKILLHUB_TOKEN secret is not set."; exit 1; fi
+            echo "::warning::SKILLHUB_TOKEN secret is not set; SkillHub was skipped for this release."; exit 0
+          fi
+          # The CLI reads SKILLHUB_TOKEN from the environment, so the token never appears in argv.
+          python3 -E -s "$RUNNER_TEMP/skillhub-kit/cli/skills_store_cli.py" publish "$dir" \
+            --host "$SKILLHUB_HOST" --version "$VERSION" --changelog "$CHANGELOG" \
+            --json "${flags[@]}" | tee "$RUNNER_TEMP/skillhub-result.json"
+          { echo "### SkillHub"; echo '```json'; cat "$RUNNER_TEMP/skillhub-result.json"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

@@ -19,6 +19,10 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": ".github/workflows/skill-registries.yml",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": ".gitignore",
       "rights": "AGPL-3.0-only"
     },
@@ -143,6 +147,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "docs/skills/registries.md",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "downloads/grandet-api-price-finder-0.3.0.skill",
       "rights": "Apache-2.0"
     },
@@ -225,6 +233,10 @@
     {
       "path": "scripts/serve.mjs",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "scripts/stage-registry-skill.mjs",
+      "rights": "Apache-2.0"
     },
     {
       "path": "scripts/validate-public.mjs",
@@ -324,6 +336,10 @@
     },
     {
       "path": "tests/public-skill-downloads.test.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/registry-stage.test.mjs",
       "rights": "Apache-2.0"
     }
   ],
