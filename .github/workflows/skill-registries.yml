@@ -21,6 +21,11 @@ on:
         type: choice
         options: [both, clawhub, skillhub]
         default: both
+      clawhub_revision:
+        description: ClawHub only. Republish this build to ClawHub as <version>.N, because ClawHub never replaces a version (needs targets=clawhub)
+        required: false
+        type: string
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -44,6 +49,8 @@ jobs:
       required: ${{ steps.input.outputs.required }}
       version: ${{ steps.stage.outputs.version }}
       changelog: ${{ steps.stage.outputs.changelog }}
+      clawhub_version: ${{ steps.stage.outputs.clawhub_version }}
+      clawhub_changelog: ${{ steps.stage.outputs.clawhub_changelog }}
     steps:
       - id: input
         env:
@@ -52,16 +59,21 @@ jobs:
           INPUT_TAG: ${{ inputs.tag }}
           INPUT_DRY_RUN: ${{ inputs.dry_run }}
           INPUT_TARGETS: ${{ inputs.targets }}
+          INPUT_CLAWHUB_REVISION: ${{ inputs.clawhub_revision }}
         run: |
           if [[ "$EVENT" == release ]]; then
-            tag="$RELEASE_TAG"; dry=false; targets=both; required=false
+            tag="$RELEASE_TAG"; dry=false; targets=both; required=false; revision=
           else
-            tag="$INPUT_TAG"; dry="$INPUT_DRY_RUN"; targets="$INPUT_TARGETS"; required=true
+            tag="$INPUT_TAG"; dry="$INPUT_DRY_RUN"; targets="$INPUT_TARGETS"; required=true; revision="$INPUT_CLAWHUB_REVISION"
           fi
           if [[ ! "$tag" =~ ^skill-v[0-9]+\.[0-9]+\.[0-9]+-build\.[0-9]{8}[a-z]?$ ]]; then
             echo "::error::Not a Skill build tag: $tag"; exit 1
           fi
-          { echo "tag=$tag"; echo "dry_run=$dry"; echo "targets=$targets"; echo "required=$required"; } >> "$GITHUB_OUTPUT"
+          # A revision only republishes an existing build to ClawHub; SkillHub already has that build's version.
+          if [[ -n "$revision" && "$targets" != clawhub ]]; then
+            echo "::error::clawhub_revision republishes a build to ClawHub only; set targets=clawhub."; exit 1
+          fi
+          { echo "tag=$tag"; echo "dry_run=$dry"; echo "targets=$targets"; echo "required=$required"; echo "clawhub_revision=$revision"; } >> "$GITHUB_OUTPUT"
       # The staging script comes from this workflow's commit; the Skill comes from the release tag,
       # so releases tagged before this workflow existed can still be published by hand.
       - uses: actions/checkout@v4
@@ -79,12 +91,17 @@ jobs:
       - id: stage
         env:
           TAG: ${{ steps.input.outputs.tag }}
+          CLAWHUB_REVISION: ${{ steps.input.outputs.clawhub_revision }}
         run: |
-          node tools/scripts/stage-registry-skill.mjs --root release --tag "$TAG" --out "$RUNNER_TEMP/registry" > "$RUNNER_TEMP/stage.json"
+          revision=()
+          if [[ -n "$CLAWHUB_REVISION" ]]; then revision=(--clawhub-revision "$CLAWHUB_REVISION"); fi
+          node tools/scripts/stage-registry-skill.mjs --root release --tag "$TAG" --out "$RUNNER_TEMP/registry" "${revision[@]}" > "$RUNNER_TEMP/stage.json"
           cp "$RUNNER_TEMP/stage.json" "$RUNNER_TEMP/registry/stage.json"
           echo "version=$(jq -r .registryVersion "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
           echo "changelog=$(jq -r .changelog "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
-          jq '{tag, build, registryVersion, archive, chinaDownload}' "$RUNNER_TEMP/stage.json"
+          echo "clawhub_version=$(jq -r .clawhub.version "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
+          echo "clawhub_changelog=$(jq -r .clawhub.changelog "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
+          jq '{tag, build, registryVersion, clawhubVersion: .clawhub.version, archive, chinaDownload}' "$RUNNER_TEMP/stage.json"
           { echo "### Staged kit"; echo "Mainland China download once SkillHub approves it: $(jq -r .chinaDownload "$RUNNER_TEMP/stage.json")"; } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
@@ -109,8 +126,8 @@ jobs:
           CLAWHUB_TOKEN: ${{ secrets.CLAWHUB_TOKEN }}
           DRY_RUN: ${{ needs.stage.outputs.dry_run }}
           REQUIRED: ${{ needs.stage.outputs.required }}
-          VERSION: ${{ needs.stage.outputs.version }}
-          CHANGELOG: ${{ needs.stage.outputs.changelog }}
+          VERSION: ${{ needs.stage.outputs.clawhub_version }}
+          CHANGELOG: ${{ needs.stage.outputs.clawhub_changelog }}
           CLAWHUB_OWNER: hanzohanzhe
         run: |
           dir="$RUNNER_TEMP/registry/clawhub/grandet-api-price-finder"
