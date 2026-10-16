@@ -218,14 +218,14 @@ Cloud chats, web apps and bots cannot edit the user's files: a cloud computer's 
 macOS / Linux:
 
 ```sh
-mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016b/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
+mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016c/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
 node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
 ```
 
 Windows PowerShell:
 
 ```powershell
-$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016b/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
+$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016c/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
 node "$HOME\.grandet\grandet-api-price-finder\scripts\connect.mjs" preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
 ```
 
