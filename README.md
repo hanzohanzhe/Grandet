@@ -52,15 +52,13 @@ Answers include a link to the price sources. Listed prices and suppliers' claims
 
 ## What Grandet includes
 
-| | What it does | Status |
-|---|---|---|
-| **[grandet.ai](https://grandet.ai)** | Compare model API prices, browse suppliers, free credit and promotions, and check sources and observation dates | Live |
-| **Grandet Skill** | Find the lowest price, find free credit and connect the chosen API from inside your agent | 0.3.0 public preview |
-| **[Grandet Personal](https://grandet.ai/product/)** | Desktop app for managing API keys, routing and fallback across suppliers, and tracking cost, speed and quality | Private testing, no public download yet |
+| | What it does |
+|---|---|
+| **[grandet.ai](https://grandet.ai)** | Compare model API prices across official APIs, inference providers and relays; browse suppliers, free credit and promotions; check sources and observation dates |
+| **Grandet Skill** | Find the lowest price, find free credit and connect the chosen API from inside your agent |
+| **[MCP server](https://grandet.ai/mcp)** | The same price and free-credit lookup for any MCP client, anonymous and without a key |
 
-## Testing
-
-Tested in Codex CLI with plain Chinese requests: finding the lowest price, finding free credit, and connecting to Claude Code (writing the configuration, backing it up and running the free check) all complete. A full connection with a real key, and native installation in the other apps, are still being tested one by one. Installing successfully is not the same as every app having passed testing.
+## Feedback
 
 Please [open an issue](https://github.com/hanzohanzhe/Grandet/issues) if something goes wrong, with the app, version, system and the step where it stopped. Don't paste API keys or private conversations.
 

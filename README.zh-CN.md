@@ -52,15 +52,13 @@ Codex、Claude Code、OpenCode、Kilo Code、Continue 和 Gemini CLI 由 Skill �
 
 ## Grandet 包括什么
 
-| | 用途 | 状态 |
-|---|---|---|
-| **[grandet.ai](https://grandet.ai)** | 比较模型 API 价格，查看供应商、免费额度和赠金，核对来源和观察日期 | 已上线 |
-| **Grandet Skill** | 在你的 Agent 里查最低价、找免费额度、把选好的 API 接到应用上 | 0.3.0 公开试用 |
-| **[Grandet Personal](https://grandet.ai/product/)** | 桌面客户端：管理 API Key，多家供应商之间路由和回退，记录费用、速度和质量 | 私测中，暂无公开安装包 |
+| | 用途 |
+|---|---|
+| **[grandet.ai](https://grandet.ai)** | 比较模型 API 价格，官方、推理服务商和中转站分开；查看供应商、免费额度和赠金，核对来源和观察日期 |
+| **Grandet Skill** | 在你的 Agent 里查最低价、找免费额度、把选好的 API 接到应用上 |
+| **[MCP 服务](https://grandet.ai/mcp)** | 同样的查价和免费额度查询，任何 MCP 客户端都能用，匿名、无需 Key |
 
-## 测试情况
-
-在 Codex CLI 上用自然的中文提问实测过：查最低价、找免费额度、接到 Claude Code（写入配置、备份、免费检查）都能完成。用真实 Key 走完整条接入链路、以及其他应用的原生安装还在逐个测。能装上不等于每个应用都测试通过。
+## 反馈
 
 遇到问题请[提 Issue](https://github.com/hanzohanzhe/Grandet/issues)，写明应用、版本、系统和卡在哪一步。不要贴 API Key 或私人对话。
 
