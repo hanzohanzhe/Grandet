@@ -56,6 +56,8 @@ Copy the complete folder once into the folder in the second column, so the resul
 
 Several apps share `~/.agents/skills/`. Pick one route and keep one copy instead of installing the same Skill everywhere. Local files are not account sync: for cloud agents, install on the actual runtime or use the account route below.
 
+**Hermes.** Hermes reads skills from `$HERMES_HOME/skills/`, and a profile (`hermes -p <name>`) sets `HERMES_HOME` to that profile's folder, also inside its terminal. So when `HERMES_HOME` is set (PowerShell: `$env:HERMES_HOME`), install into `$HERMES_HOME/skills/grandet-api-price-finder/`; only when it is empty use the default `~/.hermes/skills/` (native Windows: `%LOCALAPPDATA%\hermes\skills\`). A copy in the default folder is not seen by a profile. Prefer the bundled installer, which follows `HERMES_HOME` by itself: `node scripts/install-price-finder.mjs --app hermes` from the extracted kit (`--dry-run` prints the destination). Then run `hermes skills list` (with the same profile) and check that `grandet-api-price-finder` is listed. `hermes skills install` and `hermes skills uninstall` are for Hermes hub skills, not for a copied folder.
+
 ## Account, web and cloud apps
 
 Save and enable the complete Skill once in the app's Skills manager. Later conversations should have it without attachments. Where a Skill is bound to one Agent, it covers new chats with that Agent only.
@@ -89,7 +91,23 @@ If the new conversation asks for the file again, the install did not persist. Fi
 
 ## Uninstalling
 
-Local apps: from the extracted package, run `node scripts/install-price-finder.mjs --app <installer-id> --uninstall` (`--dry-run` previews it). It moves this app's `grandet-api-price-finder` folder, and any copy in the app's own legacy folder, into `.grandet-skill-backups` beside the skill folder, where an update keeps the old copy. Nothing is deleted; move the backup back to restore. A copy in another app's own folder (for example `~/.agents/skills/` when uninstalling Cursor or Gemini CLI) is left alone and the installer names the app to uninstall with. Several apps share `~/.agents/skills/`, so removing the copy there removes it for all of them. Without Node, move the folder out of every skill folder by hand. Uninstalling sends no receipt and keeps local receipt state.
+There is no uninstall command in the installed Skill, and the apps have none for a copied Skill folder (`hermes skills uninstall` only removes Hermes hub skills). Uninstalling means taking the `grandet-api-price-finder` folder out of every skill folder the app reads (the table under "Local apps"), then checking in a new session that the Skill is gone. Moving it into `.grandet-skill-backups` beside the skill folder keeps a copy to restore; delete it instead only if the user wants it gone for good.
+
+Hermes on macOS or Linux (uses `HERMES_HOME` when set, as for installing):
+
+```sh
+H="${HERMES_HOME:-$HOME/.hermes}"; mkdir -p "$H/.grandet-skill-backups" && mv "$H/skills/grandet-api-price-finder" "$H/.grandet-skill-backups/"
+```
+
+Hermes on Windows PowerShell:
+
+```powershell
+$H = if ($env:HERMES_HOME) { $env:HERMES_HOME } else { "$env:LOCALAPPDATA\hermes" }; New-Item -ItemType Directory -Force "$H\.grandet-skill-backups" | Out-Null; Move-Item "$H\skills\grandet-api-price-finder" "$H\.grandet-skill-backups\"
+```
+
+Then `hermes skills list` must no longer show `grandet-api-price-finder`. If the backup folder already holds an older copy, move or rename that one first. For another app, use the same two steps with its folder from the table, for example `~/.claude/skills/` (Claude Code) or `~/.agents/skills/` (Codex, OpenCode).
+
+With the extracted kit at hand, the installer does this for you: `node scripts/install-price-finder.mjs --app <installer-id> --uninstall` (`--dry-run` previews it). It moves this app's `grandet-api-price-finder` folder, and any copy in the app's own legacy folder, into `.grandet-skill-backups` beside the skill folder, where an update keeps the old copy. Nothing is deleted; move the backup back to restore. A copy in another app's own folder (for example `~/.agents/skills/` when uninstalling Cursor or Gemini CLI) is left alone and the installer names the app to uninstall with. Several apps share `~/.agents/skills/`, so removing the copy there removes it for all of them. Without Node, move the folder out of every skill folder by hand. Uninstalling sends no receipt and keeps local receipt state.
 
 Account, web and cloud apps: delete or disable the Skill in the Skills manager where it was saved. A local uninstall does not change a copy already synced to Cursor Cloud Agents.
 

@@ -94,12 +94,13 @@ export function boardRequest(log) {
     }
     if (!c.text.includes('api/v1/board')) continue;
     const pairs = [...c.text.matchAll(/--data-urlencode\s+(?:\\?['"])([^'"\\]+)(?:\\?['"])/g)].map((m) => m[1]);
+    const url = c.text.match(/https:\/\/grandet\.ai\/api\/v1\/board\?[^\s'"\\)]+/);
     if (pairs.length) {
-      const params = new URLSearchParams();
+      // curl -G appends the --data-urlencode pairs to any query the URL already has, as the Skill's own command does.
+      const params = new URLSearchParams(url ? new URL(url[0]).search : '');
       for (const pair of pairs) { const i = pair.indexOf('='); if (i > 0) params.append(pair.slice(0, i), pair.slice(i + 1)); }
       if (params.has('model') || params.has('name')) return { params, from: 'CURL_COMMAND' };
     }
-    const url = c.text.match(/https:\/\/grandet\.ai\/api\/v1\/board\?[^\s'"\\)]+/);
     if (url) return { params: new URL(url[0]).searchParams, from: 'URL' };
     const literals = [...c.text.matchAll(new RegExp(`(['"])(${SCRIPT_KEYS})\\1\\s*:\\s*(?:(['"])(.*?)\\3|(\\d+))`, 'g'))];
     if (literals.some((m) => m[2] === 'model' || m[2] === 'name')) {

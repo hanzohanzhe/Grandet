@@ -341,6 +341,10 @@
     {
       "path": "tests/registry-stage.test.mjs",
       "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/skill-weak-hosts.test.mjs",
+      "rights": "Apache-2.0"
     }
   ],
   "codeLicense": "AGPL-3.0-only",
