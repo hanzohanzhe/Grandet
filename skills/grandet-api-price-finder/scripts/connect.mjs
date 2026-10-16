@@ -25,8 +25,11 @@ export const APPS = {
   hermes: { name: 'Hermes', protocols: ['openai', 'openai-response', 'anthropic'], format: 'hermes-yaml',
     file: (h, env, platform) => join(env.HERMES_HOME || (platform === 'win32' ? join(env.LOCALAPPDATA || join(h, 'AppData', 'Local'), 'hermes') : join(h, '.hermes')), 'config.yaml') },
   openclaw: { name: 'OpenClaw', protocols: ['openai', 'anthropic'], file: (h, env) => env.OPENCLAW_CONFIG_PATH || join(h, '.openclaw', 'openclaw.json'), format: 'openclaw-json' },
+  workbuddy: { name: 'WorkBuddy', protocols: ['openai', 'openai-response'], file: (h) => join(h, '.codebuddy', 'models.json'), format: 'codebuddy-json' },
 };
-const ALIASES = { kilo: 'kilo-code', claude: 'claude-code', gemini: 'gemini-cli' };
+const ALIASES = { kilo: 'kilo-code', claude: 'claude-code', gemini: 'gemini-cli', codebuddy: 'workbuddy' };
+// Formats that keep the key inside the config file: a new file is created readable by the user only.
+const KEY_IN_FILE = new Set(['continue-yaml', 'dotenv', 'codebuddy-json']);
 
 export class ConnectError extends Error {
   constructor(code, message) { super(message || code); this.code = code; }
@@ -301,6 +304,33 @@ function editOpenclaw(text, o) {
   return `${JSON.stringify(obj, null, 2)}\n`;
 }
 
+// WorkBuddy (https://www.workbuddy.ai/docs/cli/models): ~/.codebuddy/models.json, shared with the CodeBuddy CLI and
+// reloaded on change. Grandet's entry is the one whose vendor is "<site> (Grandet)". The key is written into the file
+// by the key command (the desktop app's support for ${VAR} references is not documented). A model the user already
+// configured under the same id is refused, not overwritten. availableModels, when present, gets the model added;
+// it is never created, because a new list would hide every other model.
+const codebuddyVendor = (site) => `${site} (Grandet)`;
+function editCodebuddy(text, o) {
+  let obj = {};
+  if (text !== null && text.trim() !== '') {
+    const { json, comment } = stripJsonc(text);
+    if (comment) fail('COMMENTS_PRESENT', 'models.json has comments that a rewrite would drop; edit it by hand with the snippet');
+    try { obj = JSON.parse(json); } catch { fail('INVALID_JSON', 'models.json is not valid JSON; edit it by hand with the snippet'); }
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) fail('INVALID_JSON');
+  }
+  if (obj.models !== undefined && !Array.isArray(obj.models)) fail('INVALID_JSON', 'models in models.json is not a list; edit it by hand with the snippet');
+  const mine = (m) => m && typeof m === 'object' && m.vendor === codebuddyVendor(o.site);
+  const models = obj.models || [], kept = models.filter((m) => !mine(m));
+  if (kept.some((m) => m && m.id === o.model)) fail('MODEL_ALREADY_CONFIGURED', `models.json already has a model "${o.model}" that Grandet did not write; edit it by hand with the snippet`);
+  const stored = models.find((m) => mine(m) && typeof m.apiKey === 'string' && m.apiKey);
+  const entry = { id: o.model, name: `${o.model} (${o.site})`, vendor: codebuddyVendor(o.site), apiKey: stored ? stored.apiKey : PLACEHOLDER,
+    url: o.protocol === 'openai-response' ? `${o.origin}/v1` : `${o.origin}/v1/chat/completions`,
+    ...(o.protocol === 'openai-response' ? { api: 'openai-responses' } : {}), supportsToolCall: true };
+  obj.models = [...kept, entry];
+  if (Array.isArray(obj.availableModels) && !obj.availableModels.includes(o.model)) obj.availableModels = [...obj.availableModels, o.model];
+  return `${JSON.stringify(obj, null, 2)}\n`;
+}
+
 // ---------- plan ----------
 function lineDiff(before, after) {
   const a = (before ?? '').split('\n'), b = after.split('\n');
@@ -324,7 +354,16 @@ const redactKeys = (text) => text.split('\n').map((line) => (!/^[+-] /.test(line
     ? all : `${quote}${name}${quote}${separator}${hidden(value)}`))
   .replace(KEY_SHAPED, '<hidden>'))).join('\n');
 // Embedded keys (Continue, Gemini CLI) are compared as the placeholder, so storing a key is not a user edit.
-const keyNeutral = (text) => text.replace(/^(\s*(?:apiKey:\s*|GEMINI_API_KEY=))\S+$/gm, `$1${PLACEHOLDER}`);
+const keyNeutral = (text, app, site) => {
+  if (app && APPS[app]?.format === 'codebuddy-json') {
+    try {
+      const obj = JSON.parse(text);
+      for (const m of Array.isArray(obj?.models) ? obj.models : []) if (m && m.vendor === codebuddyVendor(site)) m.apiKey = PLACEHOLDER;
+      return `${JSON.stringify(obj, null, 2)}\n`;
+    } catch { return text; }
+  }
+  return text.replace(/^(\s*(?:apiKey:\s*|GEMINI_API_KEY=))\S+$/gm, `$1${PLACEHOLDER}`);
+};
 
 // Codex and OpenCode/Kilo have one top-level default model, which apply replaces: the preview says so, and undo
 // reports the default the restored file sets.
@@ -356,6 +395,7 @@ export async function plan(input) {
     case 'dotenv': after = editDotenv(before, o); break;
     case 'hermes-yaml': ({ text: after, notes } = editHermes(before, o)); break;
     case 'openclaw-json': after = editOpenclaw(before, o); break;
+    case 'codebuddy-json': after = editCodebuddy(before, o); break;
   }
   if (APPS[o.app].format === 'continue-yaml' && before !== null) after = keepExistingKey(before, after, o);
   if (APPS[o.app].format === 'dotenv' && before !== null) after = keepExistingKey(before, after, o);
@@ -370,6 +410,7 @@ export async function plan(input) {
   if (o.app === 'gemini-cli') notes.push('Gemini CLI reads ~/.env only when the working folder and its parents have no .env of their own');
   if (o.app === 'codex' && o.platform !== 'win32') notes.push('Codex reads the key from an environment variable; open a new terminal after storing the key');
   if (o.app === 'hermes') notes.push(o.platform === 'win32' ? 'Hermes reads the key from a user environment variable; restart Hermes after storing the key' : 'Hermes reads the key file through key_cmd; restart Hermes after storing the key');
+  if (o.app === 'workbuddy') notes.push('WorkBuddy and the CodeBuddy CLI read ~/.codebuddy/models.json and reload it; the key command writes the key into that file (readable by you only). Not yet tested in the WorkBuddy app');
   if (o.app === 'openclaw') notes.push(`OpenClaw reads the key from ${o.keyPath} (a file SecretRef); restart the OpenClaw gateway after storing the key`);
   const planHash = sha(JSON.stringify({ app: o.app, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, changes: changes.map(({ path, beforeSha, afterSha }) => ({ path, beforeSha, afterSha })) }));
   return { o, changes, notes, steps, planHash, keyCommand, defaultModel };
@@ -415,9 +456,9 @@ export async function apply(input) {
   for (const c of p.changes) {
     let backup = null;
     if (c.action === 'modify') { backup = `${c.path}.grandet-backup-${stamp()}`; let n = 1; while (await exists(backup)) backup = `${c.path}.grandet-backup-${stamp()}-${n++}`; await copyFile(c.path, backup); }
-    await atomicWrite(c.path, c.content);
+    await atomicWrite(c.path, c.content, c.action === 'create' && KEY_IN_FILE.has(APPS[p.o.app].format) ? 0o600 : undefined);
     if (sha((await readFile(c.path)).toString('utf8')) !== c.afterSha) fail('READBACK_MISMATCH', c.path);
-    record.files.push({ path: c.path, existed: c.action === 'modify', backup, writtenSha: sha(keyNeutral(c.content)) });
+    record.files.push({ path: c.path, existed: c.action === 'modify', backup, writtenSha: sha(keyNeutral(c.content, p.o.app, p.o.site)) });
   }
   if (record.files.length) { state.changes.push(record); await saveState(p.o.home, state); }
   return { ...publicPlan(p), applied: record.files.length > 0, changeId: record.files.length ? record.id : null, backups: record.files.map((f) => f.backup).filter(Boolean), unchanged: record.files.length === 0 };
@@ -491,6 +532,17 @@ export async function storeKey(input, keyText) {
   }
   if (o.app === 'claude-code' && o.platform === 'win32') { setWindowsUserEnv('ANTHROPIC_AUTH_TOKEN', o.keyPath); done.push('User environment variable ANTHROPIC_AUTH_TOKEN set'); }
   if (o.app === 'hermes' && o.platform === 'win32') { setWindowsUserEnv(o.variable, o.keyPath); done.push(`User environment variable ${o.variable} set`); }
+  if (o.app === 'workbuddy') {
+    const file = await resolveFile(o.app, o.home, o.env, o.platform);
+    const text = await readText(file);
+    let obj = null;
+    try { obj = text === null ? null : JSON.parse(text); } catch { obj = null; }
+    const entries = (Array.isArray(obj?.models) ? obj.models : []).filter((m) => m && m.vendor === codebuddyVendor(o.site));
+    if (!entries.length) fail('NOT_CONNECTED_YET', 'Apply the connection first, then store the key');
+    for (const m of entries) m.apiKey = key;
+    await atomicWrite(file, `${JSON.stringify(obj, null, 2)}\n`);
+    done.push(`Key written into ${file}`);
+  }
   if (o.app === 'continue' || o.app === 'gemini-cli') {
     const file = await resolveFile(o.app, o.home, o.env, o.platform);
     const text = await readText(file);
@@ -539,7 +591,7 @@ export async function restore(input) {
   const results = [];
   for (const f of record.files) {
     const current = await readText(f.path);
-    if (current !== null && sha(keyNeutral(current)) !== f.writtenSha && !input.force) fail('CHANGED_SINCE_APPLY', `${f.path} changed after Grandet wrote it; pass --force to restore anyway`);
+    if (current !== null && sha(keyNeutral(current, record.app, record.site)) !== f.writtenSha && !input.force) fail('CHANGED_SINCE_APPLY', `${f.path} changed after Grandet wrote it; pass --force to restore anyway`);
   }
   for (const f of record.files) {
     if (f.existed) { await copyFile(f.backup, f.path); results.push({ path: f.path, action: 'restored', from: f.backup }); }

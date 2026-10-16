@@ -54,7 +54,7 @@ Tools: `grandet_find_cheapest_api`, `grandet_find_free_credits`, `grandet_resolv
 4. It checks the key, group and model name without spending credit.
 5. Say "undo" to restore the previous setup.
 
-For Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes and OpenClaw, the Skill's own connect program (`scripts/connect.mjs`, also usable as a local MCP server) makes the change the same way every time. Other apps get a field card and their documentation link. In a cloud chat, it can only hand you the command and configuration to run yourself.
+For Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes, OpenClaw and WorkBuddy, the Skill's own connect program (`scripts/connect.mjs`, also usable as a local MCP server) makes the change the same way every time. Other apps get a field card and their documentation link. In a cloud chat, it can only hand you the command and configuration to run yourself.
 
 ## Try asking
 
