@@ -4,7 +4,8 @@
 // package-manifest.json), so people who cannot reach GitHub, notably in mainland China, download everything
 // from the registry. SkillHub receives every file byte-for-byte, with files that have no extension (LICENSE)
 // renamed to .txt because SkillHub refuses them. ClawHub, which publishes every Skill as MIT-0, receives the
-// kit without the Apache license line and LICENSE file and with its runtime metadata added.
+// kit without the Apache license line and LICENSE file, with its runtime metadata and a statement of what the
+// Skill changes on the user's computer added to SKILL.md, and with a package-manifest.json that lists its own files.
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
@@ -91,15 +92,46 @@ export function splitSkill(text) {
   return { front: m[1], top, metadata, body: text.slice(m[0].length) };
 }
 
+// ClawHub's security review asks whether a Skill's persistent effects are stated up front. The kit can change
+// which model API the user's apps call and can install itself for later conversations, so its ClawHub copy
+// says so before the first instruction section. A SKILL.md that already has this heading is left as it is.
+export const CHANGES_HEADING = '## What this Skill changes on your computer';
+export const CHANGES = `${CHANGES_HEADING}
+
+Price, free-credit and quality lookups only read from grandet.ai. Two optional parts of this package write to the user's computer, and only when the user asks for them:
+
+- **Connecting an offer changes which model API an app uses.** \`scripts/connect.mjs\` edits the chosen app's model-provider settings, so later sessions of that app send their requests, and spend credit, at the chosen site: Codex \`~/.codex/config.toml\`, Claude Code \`~/.claude/settings.json\`, OpenCode \`~/.config/opencode/opencode.json(c)\`, Kilo Code \`~/.config/kilo/kilo.json(c)\`, Continue \`~/.continue/config.yaml\`, Gemini CLI \`~/.env\`, Hermes \`~/.hermes/config.yaml\` (Windows: \`%LOCALAPPDATA%\\hermes\\config.yaml\`), OpenClaw \`~/.openclaw/openclaw.json\`. It shows the exact change first and writes only after the user confirms, keeps a backup next to each file (\`<file>.grandet-backup-<time>\`) and records the change in \`~/.grandet/connect/state.json\`. The key the user types is stored in \`~/.grandet/keys/<site>\`; for Codex it is also exported from the shell profile (\`~/.zshrc\`, \`~/.bashrc\` or \`~/.profile\`) or, on Windows, set as a user environment variable. \`connect.mjs restore\` (the user says "恢复" or "undo") puts every file back.
+- **Installing makes this Skill load in later conversations.** \`scripts/install-price-finder.mjs\` and \`scripts/verify-installation.py\` copy the Skill into an app's user-level skill folder (for example \`~/.agents/skills\` or \`~/.claude/skills\`) and send an installation receipt to grandet.ai with random IDs, the version and the content hash, never paths, accounts, chats or keys ([installation receipts](installation-receipts.md)). \`--no-telemetry\` or \`GRANDET_INSTALL_TELEMETRY=0\` turns the receipt off; \`--uninstall\` removes the Skill.
+
+\`package-manifest.json\` lists the SHA-256 of every file in this copy.
+
+`;
+
 // ClawHub publishes every Skill as MIT-0 and refuses other license terms, and reads runtime needs from
-// metadata.openclaw. Its copy drops the license line and adds that block; everything else is unchanged.
+// metadata.openclaw. Its copy drops the license line, adds that block and the statement above; the rest of
+// the body is unchanged.
 export function clawhubSkill(text) {
   const { front, body } = splitSkill(text);
   const lines = front.split(/\r?\n/).filter((line) => line.trim() && !/^license:/.test(line));
   const at = lines.indexOf('metadata:');
   if (at < 0 || lines.slice(at + 1).some((line) => !line.startsWith('  '))) throw new Error('SKILL_METADATA_MUST_BE_LAST');
   const openclaw = ['  openclaw:', `    homepage: ${HOMEPAGE}`, '    requires:', '      anyBins:', '        - curl', '        - node'];
-  return ['---', ...lines, ...openclaw, '---', ''].join('\n') + body;
+  let stated = body;
+  if (!body.includes(CHANGES_HEADING)) {
+    const section = body.search(/^## /m);
+    if (section < 0) throw new Error('SKILL_SECTION_MISSING');
+    stated = body.slice(0, section) + CHANGES + body.slice(section);
+  }
+  return ['---', ...lines, ...openclaw, '---', ''].join('\n') + stated;
+}
+
+// The kit's package-manifest.json pins the release's files, and INSTALL.md tells people to check a package
+// against it. A registry copy whose files differ gets a manifest of its own files, keeps every other field,
+// and records the release manifest it was derived from, so the copy passes its own check.
+export function registryManifest(release, files, registry, changes) {
+  const hashes = Object.fromEntries([...files.keys()].filter((name) => name !== 'package-manifest.json').sort().map((name) => [name, sha256(files.get(name))]));
+  const manifest = { ...JSON.parse(release.toString('utf8')), files: hashes, registryCopy: { registry, releaseManifestSha256: sha256(release), changes } };
+  return Buffer.from(`${JSON.stringify(manifest, null, 2)}\n`);
 }
 
 // Every China download link in the kit must name this build's registry version; a stale one would hand
@@ -127,7 +159,15 @@ async function exists(p) {
   try { await stat(p); return true; } catch { return false; }
 }
 
-export async function stage({ root = ROOT, tag, out }) {
+// ClawHub never replaces a published version. Republishing the same build there with a corrected copy takes a
+// revision N, which becomes <registry version>.N: above the build's own version and below the next build's.
+export function clawhubVersion(registryVersion, revision) {
+  if (revision === undefined || revision === '') return registryVersion;
+  if (!/^[1-9]\d{0,3}$/.test(String(revision))) throw new Error(`CLAWHUB_REVISION_INVALID: ${revision}`);
+  return `${registryVersion}.${revision}`;
+}
+
+export async function stage({ root = ROOT, tag, out, clawhubRevision }) {
   const manifest = JSON.parse(await readFile(join(root, 'downloads/manifest.json'), 'utf8'));
   const entry = manifest.files.find((f) => f.file.endsWith('.skill'));
   if (!entry) throw new Error('SKILL_ARCHIVE_NOT_IN_MANIFEST');
@@ -157,11 +197,19 @@ export async function stage({ root = ROOT, tag, out }) {
   if (release.build !== fromSkill.build) throw new Error(`TAG_BUILD_MISMATCH: tag ${release.build}, SKILL.md ${fromSkill.build}`);
   const wrong = chinaLinkMismatches(kit, release.registryVersion);
   if (wrong.length) throw new Error(`CHINA_DOWNLOAD_VERSION_MISMATCH: ${wrong.join(', ')} (build is ${release.registryVersion})`);
+  const releaseManifest = kit.get('package-manifest.json');
+  if (!releaseManifest) throw new Error('PACKAGE_MANIFEST_MISSING');
+  const clawVersion = clawhubVersion(release.registryVersion, clawhubRevision);
 
   if (await exists(out) && (await readdir(out)).length) throw new Error(`OUTPUT_NOT_EMPTY: ${out}`);
+  const claw = new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b]));
+  claw.set('package-manifest.json', registryManifest(releaseManifest, claw, 'clawhub', [
+    'LICENSE omitted: ClawHub publishes every Skill under MIT-0',
+    `SKILL.md: license line removed; metadata.openclaw${body.includes(CHANGES_HEADING) ? '' : ' and "What this Skill changes on your computer"'} added`,
+  ]));
   const targets = {
     skillhub: { dir: join(out, 'skillhub', SLUG), files: new Map([...kit].map(([name, b]) => [skillhubName(name), b])) },
-    clawhub: { dir: join(out, 'clawhub', SLUG), files: new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b])) },
+    clawhub: { dir: join(out, 'clawhub', SLUG), files: claw },
   };
   for (const { dir, files } of Object.values(targets)) {
     for (const [name, bytes] of files) {
@@ -169,6 +217,7 @@ export async function stage({ root = ROOT, tag, out }) {
       await writeFile(join(dir, name), bytes, { flag: 'wx' });
     }
   }
+  const changelog = `Grandet Skill ${release.product}, build ${release.build}: the complete installation kit. Source: https://github.com/hanzohanzhe/Grandet/releases/tag/${release.tag}`;
   return {
     schema: 'grandet.registry-stage/v2',
     slug: SLUG,
@@ -178,8 +227,14 @@ export async function stage({ root = ROOT, tag, out }) {
     registryVersion: release.registryVersion,
     archive: { file: entry.file, sha256: entry.sha256, files: kit.size },
     chinaDownload: CHINA_DOWNLOAD + release.registryVersion,
-    changelog: `Grandet Skill ${release.product}, build ${release.build}: the complete installation kit. Source: https://github.com/hanzohanzhe/Grandet/releases/tag/${release.tag}`,
-    clawhub: { dir: targets.clawhub.dir, files: targets.clawhub.files.size, ...LISTING.clawhub },
+    changelog,
+    clawhub: {
+      dir: targets.clawhub.dir,
+      files: targets.clawhub.files.size,
+      version: clawVersion,
+      changelog: clawVersion === release.registryVersion ? changelog : `${changelog} ClawHub revision ${clawhubRevision} of the same build, restaged with the current staging script.`,
+      ...LISTING.clawhub,
+    },
     skillhub: { dir: targets.skillhub.dir, files: kit.size },
   };
 }
@@ -189,11 +244,11 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const opt = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : undefined; };
   const out = opt('--out');
   if (!out) {
-    console.error('usage: node scripts/stage-registry-skill.mjs --out <empty dir> [--tag skill-v0.3.0-build.YYYYMMDDx] [--root <checkout of that tag>]');
+    console.error('usage: node scripts/stage-registry-skill.mjs --out <empty dir> [--tag skill-v0.3.0-build.YYYYMMDDx] [--root <checkout of that tag>] [--clawhub-revision N]');
     process.exit(2);
   }
   // --root lets a newer copy of this script stage an older release checkout that predates it.
   const root = opt('--root') ? resolve(opt('--root')) : ROOT;
-  const result = await stage({ root, tag: opt('--tag'), out: resolve(out) });
+  const result = await stage({ root, tag: opt('--tag'), out: resolve(out), clawhubRevision: opt('--clawhub-revision') });
   console.log(JSON.stringify(result, null, 2));
 }
