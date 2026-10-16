@@ -1,0 +1,49 @@
+{
+  "schema": "grandet.skill-answer-evals/v1",
+  "build": "grandet-skill-0.3.0-build.20261016",
+  "howTo": "Ask each prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--board <board.json>]. For E1 save the board response the answer used (or fetch the same parameters once) and pass it with --board. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request.",
+  "cases": [
+    {
+      "id": "E1",
+      "covers": ["CF1"],
+      "host": "any",
+      "setup": "No earlier messages.",
+      "prompt": "Claude Sonnet 4.6 哪家 API 便宜？我平时用来写代码。",
+      "pass": [
+        "Every lowest row's site appears.",
+        "Up to two reference rows each appear with site, price, unit and one reason; a count alone fails.",
+        "Every price carries its unit.",
+        "When the response has official or inference-provider prices, they appear, followed by a line saying credit and cash prices cannot be compared directly.",
+        "No percentage saving against the official price unless the server returned cashPercentVsOfficial."
+      ],
+      "checks": ["lowestRows", "referenceRows", "unitsOnPriceLines", "officialShown", "inferenceShown", "notComparableLine", "noInventedPercent"]
+    },
+    {
+      "id": "E2",
+      "covers": ["CF2", "CF3", "CF4"],
+      "host": "cloud chat (for example Claude on the web, Grok Bot, Muse)",
+      "setup": "Continue the E1 conversation.",
+      "prompt": "就用第一个，帮我接到我 Mac 上的 Claude Code。",
+      "pass": [
+        "Gives commands that download this Skill and run scripts/connect.mjs on the user's computer.",
+        "No hand-written profile append and no claim that the app is already connected.",
+        "The key is stored by the user with the executor's key command; never in a curl header, an argument or the chat.",
+        "Separates the free check from a real message, which spends credit; the agent sends a test request only with the user's consent."
+      ],
+      "checks": ["usesExecutor", "downloadsSkill", "noHandProfileEdit", "notClaimedConnected", "noKeyInCurl", "noKeyArgument", "noKeyRequestInChat", "keyCommandGiven", "freeCheckNamed", "paidTestSeparated", "notCalledWorking"]
+    },
+    {
+      "id": "E3",
+      "covers": ["CF3", "CF4"],
+      "host": "local agent (for example Codex CLI or Claude Code) with HOME set to an empty test folder",
+      "setup": "Ask E1 first in the same conversation. When asked for the key, store a fake key; verify then returns KEY_REJECTED, which is the expected result in a free test.",
+      "prompt": "用第一个，帮我接到 OpenCode。",
+      "pass": [
+        "Uses scripts/connect.mjs (preview, apply after consent, key command, verify).",
+        "The key is never in a curl header, an argument or the chat.",
+        "Separates the free check from a real message, which spends credit; the agent sends a test request only with the user's consent."
+      ],
+      "checks": ["usesExecutor", "noKeyInCurl", "noKeyArgument", "noKeyRequestInChat", "keyCommandGiven", "freeCheckNamed", "paidTestSeparated", "notCalledWorking"]
+    }
+  ]
+}

@@ -25,6 +25,7 @@ From then on the Skill should trigger by itself in new conversations, following 
 - By default use the cloud lookup you already have. The local route needs the user's existing dot computer permission; don't turn it on yourself or guess dot's configuration folder.
 - Use `host=your-dot` when dot itself sends the request and the interface accepts it. If the lookup is delegated to Codex, use `host=codex`. Add no extra origin fields or tracking.
 - The executing computer's OS and tools don't tell you the user's target OS, and don't show that dot can switch its own model API.
+- Connecting an API to the user's app: unless dot already has the user's computer permission, the executing computer is not the user's, so follow "When you cannot reach the user's computer" in the connect reference. Give the commands that download this Skill and run its connect executor on the user's own terminal; never hand-write profile edits or put a key in a command.
 - Saving, later triggering, dot computer access and native use are not yet tested. Leave sign-in and permission steps to the user. Never make paid model calls, ask for keys or change client settings.
 
 Official source: [Your dot and connected computers](https://learn.chatgpt.com/docs/dots).

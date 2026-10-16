@@ -1,6 +1,6 @@
 # Grandet API Price Finder 0.3.0
 
-> Grandet Skill **0.3.0**, build `grandet-skill-0.3.0-build.20261015e`. This self-contained installation kit includes the Node installer, receipt module and Python verifier. Run the included tools using INSTALL.md; no separate helper download. Native host acceptance: NOT_RUN.
+> Grandet Skill **0.3.0**, build `grandet-skill-0.3.0-build.20261016`. This self-contained installation kit includes the Node installer, receipt module and Python verifier. Run the included tools using INSTALL.md; no separate helper download. Native host acceptance: NOT_RUN.
 
 把这个安装包（或者 [Grandet 的 GitHub 链接](https://github.com/hanzohanzhe/Grandet)）交给你正在用的 Agent，说：
 

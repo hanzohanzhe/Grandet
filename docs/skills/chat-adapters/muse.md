@@ -25,6 +25,7 @@ From then on the Skill should trigger by itself in new conversations, following 
 - Keep this workflow private. Submitting to the public connector directory is a separate approval process.
 - Use `host=muse` only when Muse itself sends the request and the interface accepts it. The cloud VM's OS is not the user's target OS.
 - Connecting a service doesn't show that Muse can switch its own model API; only a returned inference profile can show that.
+- Connecting an API to the user's app: this host's computer is not the user's, so follow "When you cannot reach the user's computer" in the connect reference. Give the commands that download this Skill and run its connect executor on the user's own terminal; never hand-write profile edits or put a key in a command.
 - Never make paid model calls, ask for supplier keys, change supplier settings or add tracking calls.
 - Creating the private workflow or connector, persistence and native lookups still need testing in a real account.
 

@@ -24,6 +24,7 @@ From then on the Skill should trigger by itself in new conversations, following 
 - Grok Bot runs on a persistent cloud computer. This is not a Cursor IDE `.cursor/skills` install; don't assume a ZIP importer or a dedicated MCP settings screen.
 - Price lookup needs no new connector and no Grandet key. Use `host=grok-bot` when Grok Bot itself sends the request and the interface accepts it. The cloud computer's OS is not the user's target OS.
 - This Skill doesn't show that Grok Bot can switch its own model API; only a returned inference profile can show that.
+- Connecting an API to the user's app: this host's computer is not the user's, so follow "When you cannot reach the user's computer" in the connect reference. Give the commands that download this Skill and run its connect executor on the user's own terminal; never hand-write profile edits or put a key in a command.
 - Saving, later triggering and native use still need testing in a real account. At a sign-in or permission step, hand that step to the user and continue afterwards. Never make paid model calls, ask for supplier keys or change routing.
 
 Official source: [Grok Bot work and private Skills](https://cursor.com/cn/docs/grok-bot/work).

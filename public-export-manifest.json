@@ -159,6 +159,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "evals/answer-quality.json",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "index.html",
       "rights": "AGPL-3.0-only"
     },
@@ -189,6 +193,10 @@
     {
       "path": "scripts/catalogue.mjs",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "scripts/check-answer.mjs",
+      "rights": "Apache-2.0"
     },
     {
       "path": "scripts/install-price-finder.mjs",
@@ -281,6 +289,10 @@
     {
       "path": "style.css",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "tests/answer-check.test.mjs",
+      "rights": "Apache-2.0"
     },
     {
       "path": "tests/catalogue.test.mjs",

@@ -141,18 +141,18 @@ async function main() {
   for (const adapter of chatAdapters) {
     const template = await readSource(adapter.source);
     const sources = Object.fromEntries([adapter.source, ...embeddedSources].map((source) => [source, hash(source === adapter.source ? template : sourceBytes.get(source))]));
-    const document = `> Integrated installation build: grandet-skill-0.3.0-build.20261015e; Receipt-aware tools are included. Product version: ${manifest.version}. PUBLIC_PREVIEW / 公开试用。Native use / 原生使用: NOT_RUN. Packaging does not certify native installation or register an application-catalogue entry / 打包不证明原生安装通过，也不登记应用目录入口。\n\n${template.toString('utf8').trim()}\n\n---\n\n## Shared Skill and references / 共同 Skill 与参考资料\n\nThe following content is generated from the single common Skill source. Local links point to embedded source sections. Source SHA-256 values are recorded in package-manifest.json.\n\n下文从唯一共同 Skill 源文件生成；本地链接指向本文内嵌的源文件段落，源文件 SHA-256 记录在 package-manifest.json。\n\n${commonDocument}`;
+    const document = `> Integrated installation build: grandet-skill-0.3.0-build.20261016; Receipt-aware tools are included. Product version: ${manifest.version}. PUBLIC_PREVIEW / 公开试用。Native use / 原生使用: NOT_RUN. Packaging does not certify native installation or register an application-catalogue entry / 打包不证明原生安装通过，也不登记应用目录入口。\n\n${template.toString('utf8').trim()}\n\n---\n\n## Shared Skill and references / 共同 Skill 与参考资料\n\nThe following content is generated from the single common Skill source. Local links point to embedded source sections. Source SHA-256 values are recorded in package-manifest.json.\n\n下文从唯一共同 Skill 源文件生成；本地链接指向本文内嵌的源文件段落，源文件 SHA-256 记录在 package-manifest.json。\n\n${commonDocument}`;
     payload.push([adapter.path, Buffer.from(document)]);
-    adapterMetadata.push({id: adapter.id, path: adapter.path, version: manifest.version, status: 'PUBLIC_PREVIEW', sourceBuild: 'grandet-skill-0.3.0-build.20261015e', releasePackage: true, nativeUse: 'NOT_RUN', sources});
+    adapterMetadata.push({id: adapter.id, path: adapter.path, version: manifest.version, status: 'PUBLIC_PREVIEW', sourceBuild: 'grandet-skill-0.3.0-build.20261016', releasePackage: true, nativeUse: 'NOT_RUN', sources});
   }
   const hashes = Object.fromEntries(payload.toSorted(([a], [b]) => a.localeCompare(b, 'en')).map(([path, bytes]) => [path, hash(bytes)]));
-  payload.push(['package-manifest.json', Buffer.from(`${JSON.stringify({schema: 'grandet-price-finder-package/v1', name: manifest.name, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261015e', releasePackage: true, distributionManifest: 'application-distribution.json', resourceTargets, chatAdapters: adapterMetadata, files: hashes}, null, 2)}\n`)]);
+  payload.push(['package-manifest.json', Buffer.from(`${JSON.stringify({schema: 'grandet-price-finder-package/v1', name: manifest.name, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261016', releasePackage: true, distributionManifest: 'application-distribution.json', resourceTargets, chatAdapters: adapterMetadata, files: hashes}, null, 2)}\n`)]);
   await mkdir(dirname(out), { recursive: true });
   await mkdir(out); // Atomic refusal of an existing target, including races.
   for (const [path, bytes] of payload) {
     await mkdir(dirname(join(out, path)), { recursive: true });
     await writeFile(join(out, path), bytes, { flag: 'wx' });
   }
-  process.stdout.write(`${JSON.stringify({ directory: out, files: payload.length, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261015e', releasePackage: true, installed: false, published: false })}\n`);
+  process.stdout.write(`${JSON.stringify({ directory: out, files: payload.length, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261016', releasePackage: true, installed: false, published: false })}\n`);
 }
 main().catch((error) => { process.stderr.write(`${error.message}\n`); process.exitCode = 1; });

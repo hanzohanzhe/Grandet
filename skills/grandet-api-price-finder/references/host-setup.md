@@ -45,10 +45,10 @@ Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs
 2. **Apply** only after the user agrees: the same options with `apply --yes --plan-hash <hash>`. It backs up the file next to it, writes, and reads it back. If the target app is the app you are running in, run step 4 first and say the change takes effect after a restart.
 3. **The user stores the key.** Preview and apply print the exact command (the `Next: The user stores the key…` line; `keyCommand` in `--json` and MCP output), with this Skill's real path filled in. Always give the user that command unchanged, in its own code block, and ask them to run it in their own terminal, where typing is hidden and the key stays on their computer. Never answer with only "store the key locally". Never run it yourself with a key, never pass a key as an argument, and never ask for the key in chat.
 4. **Free check:** `CONNECT verify --app <app> --site <sourceId> --base-url <origin> --model <model>`. It lists the models the key can use, without spending credit.
-   - `MODEL_LISTED`: ready. Tell the user to restart the app (or open a new terminal) and try one message.
+   - `MODEL_LISTED`: the free check passed: the key, the group and the model name match. Tell the user to restart the app (or open a new terminal). Say separately that the first real message spends a little credit, and that you send a test request only if they agree.
    - `MODEL_NOT_LISTED`: the key works but the token is probably in another group; ask the user to check the group is「<group>」.
    - `KEY_REJECTED`: wrong key, expired, or no balance.
-   - A real request costs credit: send one short request only if the user agrees, after this check passes.
+   - Never call the free check a working connection. A real request costs credit: send one short request only if the user agrees, after this check passes.
 5. **Undo:** `CONNECT restore` undoes the latest connection from its backups (`--app <app>` for a specific app). Add `--delete-key` only if the user wants the stored key removed.
 
 When it stops with a code:
@@ -72,8 +72,10 @@ The key is kept in a file only the user can read and exported as an environment 
 macOS / Linux:
 
 ```sh
-mkdir -p ~/.grandet/keys && chmod 700 ~/.grandet/keys && printf 'API Key: ' && stty -echo && IFS= read -r K && stty echo && echo && printf '%s' "$K" > ~/.grandet/keys/<site> && chmod 600 ~/.grandet/keys/<site> && unset K && echo 'export <VAR>="$(cat ~/.grandet/keys/<site>)"  # grandet:<site>' >> ~/.zshrc
+mkdir -p ~/.grandet/keys && chmod 700 ~/.grandet/keys && printf 'API Key: ' && IFS= read -rs K && echo && (umask 077; printf '%s' "$K" > ~/.grandet/keys/<site>) && chmod 600 ~/.grandet/keys/<site> && unset K && echo 'export <VAR>="$(cat ~/.grandet/keys/<site>)"  # grandet:<site>' >> ~/.zshrc
 ```
+
+`read -rs` hides the typing in bash and zsh and needs no terminal reset. Before giving this command, note whether the profile file already exists, so undo can put it back exactly.
 
 Windows PowerShell:
 
@@ -160,8 +162,10 @@ List the models the token can use. This uses no credit on New API sites and show
 macOS / Linux:
 
 ```sh
-curl -sS -o /tmp/grandet-models.json -w '%{http_code}\n' -H "Authorization: Bearer $(cat ~/.grandet/keys/<site>)" '<origin>/v1/models' && grep -c '"<modelName>"' /tmp/grandet-models.json; rm -f /tmp/grandet-models.json
+f=$(mktemp) && printf 'header = "Authorization: Bearer %s"\n' "$(cat ~/.grandet/keys/<site>)" | curl -sS -K - -o "$f" -w '%{http_code}\n' '<origin>/v1/models'; python3 -c 'import json,sys; print(sys.argv[2] in [m.get("id") for m in json.load(open(sys.argv[1])).get("data", [])])' "$f" '<modelName>'; rm -f "$f"
 ```
+
+The key goes to curl through standard input, so it never appears in the command line or the process list. Never write a key into a curl argument, a URL or a command you show in chat.
 
 Windows PowerShell:
 
@@ -169,7 +173,7 @@ Windows PowerShell:
 $k=Get-Content -Raw "$HOME\.grandet\keys\<site>"; $r=Invoke-RestMethod -Uri '<origin>/v1/models' -Headers @{Authorization="Bearer $k"}; Remove-Variable k; $r.data.id -contains '<modelName>'
 ```
 
-- 200 and the model is listed: tell the user to restart the app (or open a new terminal) and try one message.
+- 200 and the model is listed: the free check passed. Tell the user to restart the app (or open a new terminal), and say separately that the first real message spends a little credit.
 - 401 or 403: the key is wrong or has no balance. Model missing: the token is probably in another group; ask the user to check the group is「<group>」.
 - A real request costs credit. Send one short request only if the user agrees, and only after the free check passes.
 - A group locked to one client (for example "仅限 CC") may still reject other apps on a real request; only connect it to that client.
@@ -178,8 +182,31 @@ If the target app is the app you are running in, finish this check **before** wr
 
 ## 7. Undo
 
-"恢复 / undo": copy the latest `<file>.grandet-backup-*` back, remove the profile line ending with `# grandet:<site>`, and tell the user the key file `~/.grandet/keys/<site>` can be deleted. On Windows, also remove the user environment variable.
+"恢复 / undo": prefer `CONNECT restore`, which puts every file back byte for byte. By hand: copy the latest `<file>.grandet-backup-*` back; if a file did not exist before, delete it; remove the profile line ending with `# grandet:<site>` (or delete the profile if Grandet created it); and tell the user the key file `~/.grandet/keys/<site>` can be deleted. On Windows, also remove the user environment variable. If a backup could not be made, say so before writing, never after.
 
 ## When you cannot reach the user's computer
 
-Cloud chats and bots cannot edit local files. Give the field card, the key command from step 4 and the config snippet for their app, and say the setup is waiting for the user. Do not say it is connected.
+Cloud chats, web apps and bots cannot edit the user's files: a cloud computer's home folder is not the user's. Do not hand-write profile edits or `curl` commands with the key. Instead give the user these commands to run in their own terminal. They download this Skill and use the same connect executor, so the preview, backup, hidden key input, free check and exact undo all work. Fill in the values from the chosen row, as in "Use the connect executor" above. Needs Node 18 or later; if the user has no Node, give the field card below and the app's documentation link.
+
+macOS / Linux:
+
+```sh
+mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
+node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
+```
+
+Windows PowerShell:
+
+```powershell
+$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
+node "$HOME\.grandet\grandet-api-price-finder\scripts\connect.mjs" preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
+```
+
+Then tell the user, in order:
+
+1. Read the change the preview shows. To write it, run the same command with `apply --yes --plan-hash <the plan-hash the preview printed>` in place of `preview`.
+2. Run the key command the preview printed (the `Next: The user stores the key…` line). Typing is hidden and the key stays on their computer.
+3. Run the same command with `verify` in place of `preview`. It checks for free; `MODEL_LISTED` means the key, group and model name match. The first real message spends credit.
+4. To undo, run `node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs restore`.
+
+For an app the executor does not support, give the field card from section 5 and the app's documentation link. Say the setup is waiting for the user. Do not say it is connected.
