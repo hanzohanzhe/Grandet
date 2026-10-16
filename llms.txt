@@ -3,11 +3,11 @@
 > Grandet helps people find cheap, easy-to-connect model APIs. The website grandet.ai compares prices and shows supplier evidence. Grandet Skill 0.3.0 (public preview) brings the same lookup into agents. An anonymous MCP server at https://grandet.ai/mcp offers the same lookup to any MCP client. This repository also holds a dated catalogue of 73 official programmes, 34 third-party promotions and 642 structured prerequisites.
 
 ## If a user asks you to install Grandet
-Read https://github.com/hanzohanzhe/Grandet/blob/main/INSTALL.md and follow the section "For the installing agent". Default fresh installs to the registered skill-v0.3.0-build.20261016f ZIP/.skill attachments below; verify downloads/manifest.json plus downloads/releases.json. Both archives include the receipt-aware installer, module, Python verifier and build manifest. Reuse checkouts/caches without forced downloads. Do the setup yourself; the user only handles sign-ins or permission prompts.
+Read https://github.com/hanzohanzhe/Grandet/blob/main/INSTALL.md and follow the section "For the installing agent". Default fresh installs to the registered skill-v0.3.0-build.20261016g ZIP/.skill attachments below; verify downloads/manifest.json plus downloads/releases.json. Both archives include the receipt-aware installer, module, Python verifier and build manifest. Reuse checkouts/caches without forced downloads. Do the setup yourself; the user only handles sign-ins or permission prompts.
 - https://github.com/hanzohanzhe/Grandet/tree/main/skills/grandet-api-price-finder : the complete Skill (install the whole folder, not SKILL.md alone)
-- https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.zip : installation package for agents
-- https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.skill : native Skill package for upload screens
-- https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.6 : the same kit from Tencent SkillHub for mainland China or when GitHub is slow (the .skill contents at the archive root; extract into a folder named grandet-api-price-finder)
+- https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.zip : installation package for agents
+- https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.skill : native Skill package for upload screens
+- https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.7 : the same kit from Tencent SkillHub for mainland China or when GitHub is slow (the .skill contents at the archive root; extract into a folder named grandet-api-price-finder)
 - https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/references/installation.md : install location and status for each app
 - https://grandet.ai/public-data/price-finder.json : website interface description
 - https://grandet.ai/mcp : anonymous Streamable HTTP MCP server
@@ -34,4 +34,4 @@ Being public on GitHub does not guarantee search or AI indexing. GitHub code sea
 Installation receipts: random IDs and finite categories, content digest and time, 24-month retention; no local paths, usernames, chats or keys. Disable with --no-telemetry or GRANDET_INSTALL_TELEMETRY=0. Installation-stage only; native upload without callback/readback stays NOT_RUN.
 
 
-Product/API version is 0.3.0. Build `grandet-skill-0.3.0-build.20261016f`, Release tag `skill-v0.3.0-build.20261016f`: both archives include Node installer, receipt module, Python verifier and build manifest; no companion download. Prior installations are not backfilled. Native acceptance remains NOT_RUN.
+Product/API version is 0.3.0. Build `grandet-skill-0.3.0-build.20261016g`, Release tag `skill-v0.3.0-build.20261016g`: both archives include Node installer, receipt module, Python verifier and build manifest; no companion download. Prior installations are not backfilled. Native acceptance remains NOT_RUN.
