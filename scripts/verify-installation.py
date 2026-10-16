@@ -89,7 +89,7 @@ def main(argv=None):
     if a.receipt_endpoint!=ENDPOINT and not(a.test_mode and u.scheme=='http' and u.hostname in ['127.0.0.1','localhost','::1']): raise ValueError('RECEIPT_ENDPOINT_NOT_ALLOWED')
     content=digest(payload)
     if a.dry_run:
-        print(json.dumps({'status':'DRY_RUN','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016d','nativeAcceptance':'NOT_RUN'}));return
+        print(json.dumps({'status':'DRY_RUN','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016e','nativeAcceptance':'NOT_RUN'}));return
     print(NOTICE,file=sys.stderr)
     directory=destination.parent.parent/'.grandet-install-state'/sha(str(destination).encode());safe(directory);directory.mkdir(parents=True,exist_ok=True,mode=0o700)
     lock=directory/'lock.json'
@@ -169,7 +169,7 @@ def main(argv=None):
                 if not acked:break
                 state['outbox']=[x for x in state['outbox'] if not(x['event_id']==e['event_id'] and x['revision']<=e['revision'])];atomic(statefile,state)
         atomic(statefile,state)
-        print(json.dumps({'status':'FILES_VERIFIED','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016d','nativeAcceptance':'NOT_RUN','receipt':{'status':'DISABLED' if not enabled else 'PENDING' if state['outbox'] else 'ACKNOWLEDGED','pending':len(state['outbox']),'attempts':attempts}}))
+        print(json.dumps({'status':'FILES_VERIFIED','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016e','nativeAcceptance':'NOT_RUN','receipt':{'status':'DISABLED' if not enabled else 'PENDING' if state['outbox'] else 'ACKNOWLEDGED','pending':len(state['outbox']),'attempts':attempts}}))
     finally:lock.unlink(missing_ok=True)
 if __name__=='__main__':
     try:main()

@@ -1,26 +1,24 @@
 // SPDX-License-Identifier: Apache-2.0
-// Stage the GitHub Skill folder for ClawHub and Tencent SkillHub. The source folder is never edited:
-// each registry gets a copy whose SKILL.md front matter is rewritten and whose body stays byte-identical.
+// Stage a Skill release for ClawHub and Tencent SkillHub. Both registries get the complete installation kit
+// from the release's pinned .skill archive (Skill, installer, receipt module, Python verifier, INSTALL.md,
+// package-manifest.json), so people who cannot reach GitHub, notably in mainland China, download everything
+// from the registry. SkillHub receives the kit byte-for-byte; ClawHub, which publishes every Skill as MIT-0,
+// receives it without the Apache license line and LICENSE file and with its runtime metadata added.
 import { createHash } from 'node:crypto';
-import { cp, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { inflateRawSync } from 'node:zlib';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-export const SKILL_DIR = 'skills/grandet-api-price-finder';
 export const SLUG = 'grandet-api-price-finder';
 export const HOMEPAGE = 'https://grandet.ai';
+export const CHINA_DOWNLOAD = `https://api.skillhub.cn/api/v1/download?slug=${SLUG}&version=`;
 export const LISTING = {
   clawhub: {
     name: 'Grandet API Price Finder',
     categories: 'integrations,finance,research',
     topics: 'llm-api,price-comparison,api-relay,free-credits,model-pricing',
-  },
-  skillhub: {
-    displayName: 'Grandet API 比价',
-    summary: '找模型 API 和中转站的最低标价与免费额度，并把选好的 API 接到你的应用里',
-    tags: ['api', 'llm', '比价', '中转站', '免费额度'],
-    license: 'Apache-2.0',
   },
 };
 
@@ -52,61 +50,68 @@ export function parseBuild(build) {
   return versionFrom(m[1], m[2], m[3]);
 }
 
+// Reads the archives written by scripts/build-skill-archives.py (stored or deflated, no ZIP64).
+export function readZip(buffer) {
+  const eocd = buffer.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
+  if (eocd < 0) throw new Error('ZIP_END_RECORD_MISSING');
+  const count = buffer.readUInt16LE(eocd + 10);
+  const files = new Map();
+  for (let i = 0, p = buffer.readUInt32LE(eocd + 16); i < count; i++) {
+    if (buffer.readUInt32LE(p) !== 0x02014b50) throw new Error('ZIP_CENTRAL_HEADER_INVALID');
+    const method = buffer.readUInt16LE(p + 10), size = buffer.readUInt32LE(p + 20), length = buffer.readUInt32LE(p + 24);
+    const nameLength = buffer.readUInt16LE(p + 28), extra = buffer.readUInt16LE(p + 30), comment = buffer.readUInt16LE(p + 32);
+    const local = buffer.readUInt32LE(p + 42);
+    const name = buffer.toString('utf8', p + 46, p + 46 + nameLength);
+    p += 46 + nameLength + extra + comment;
+    if (name.endsWith('/')) continue;
+    if (name.startsWith('/') || name.split('/').includes('..') || name.includes('\\')) throw new Error(`ZIP_PATH_UNSAFE: ${name}`);
+    const start = local + 30 + buffer.readUInt16LE(local + 26) + buffer.readUInt16LE(local + 28);
+    const raw = buffer.subarray(start, start + size);
+    const body = method === 8 ? inflateRawSync(raw) : method === 0 ? Buffer.from(raw) : null;
+    if (!body || body.length !== length) throw new Error(`ZIP_ENTRY_UNREADABLE: ${name}`);
+    files.set(name, body);
+  }
+  return files;
+}
+
 export function splitSkill(text) {
   const m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/.exec(text);
   if (!m) throw new Error('SKILL_FRONT_MATTER_MISSING');
-  const fields = {};
+  const top = {}, metadata = {};
+  let inMetadata = false;
   for (const line of m[1].split(/\r?\n/)) {
     if (!line.trim()) continue;
-    const kv = /^([A-Za-z][\w-]*):\s?(.*)$/.exec(line);
-    if (!kv) throw new Error(`SKILL_FRONT_MATTER_NOT_FLAT: ${line}`);
-    fields[kv[1]] = kv[2];
+    const kv = /^( *)([A-Za-z][\w-]*):\s?(.*)$/.exec(line);
+    if (!kv) throw new Error(`SKILL_FRONT_MATTER_UNSUPPORTED: ${line}`);
+    if (kv[1].length === 0) { top[kv[2]] = kv[3]; inMetadata = kv[2] === 'metadata'; }
+    else if (inMetadata && kv[1].length === 2) metadata[kv[2]] = kv[3];
+    else throw new Error(`SKILL_FRONT_MATTER_TOO_DEEP: ${line}`);
   }
-  for (const key of ['name', 'description']) if (!fields[key]) throw new Error(`SKILL_FRONT_MATTER_FIELD_MISSING: ${key}`);
-  return { fields, body: text.slice(m[0].length) };
+  return { front: m[1], top, metadata, body: text.slice(m[0].length) };
 }
 
-// The registries read different front matter: ClawHub parses full YAML; SkillHub's CLI reads only flat
-// `key: value` and `key: [a, b]` lines. Strings are JSON-quoted, which YAML reads as double-quoted scalars.
-const q = (s) => JSON.stringify(s);
-
-export function clawhubFrontMatter(fields, version) {
-  return [
-    '---',
-    `name: ${fields.name}`,
-    `description: ${q(fields.description)}`,
-    `version: ${version}`,
-    'metadata:',
-    '  openclaw:',
-    `    homepage: ${HOMEPAGE}`,
-    '    requires:',
-    '      anyBins:',
-    '        - curl',
-    '        - node',
-    '---',
-    '',
-  ].join('\n');
+// ClawHub publishes every Skill as MIT-0 and refuses other license terms, and reads runtime needs from
+// metadata.openclaw. Its copy drops the license line and adds that block; everything else is unchanged.
+export function clawhubSkill(text) {
+  const { front, body } = splitSkill(text);
+  const lines = front.split(/\r?\n/).filter((line) => line.trim() && !/^license:/.test(line));
+  const at = lines.indexOf('metadata:');
+  if (at < 0 || lines.slice(at + 1).some((line) => !line.startsWith('  '))) throw new Error('SKILL_METADATA_MUST_BE_LAST');
+  const openclaw = ['  openclaw:', `    homepage: ${HOMEPAGE}`, '    requires:', '      anyBins:', '        - curl', '        - node'];
+  return ['---', ...lines, ...openclaw, '---', ''].join('\n') + body;
 }
 
-export function skillhubFrontMatter(fields, version) {
-  const { displayName, summary, tags, license } = LISTING.skillhub;
-  for (const s of [fields.description, displayName, summary, ...tags]) {
-    if (/["\\]/.test(s)) throw new Error('SKILLHUB_VALUE_NEEDS_ESCAPING');
+// Every China download link in the kit must name this build's registry version; a stale one would hand
+// mainland users an older build, or a 404 once that version is gone.
+export function chinaLinkMismatches(files, registryVersion) {
+  const wrong = [];
+  for (const [name, bytes] of files) {
+    if (!/\.(md|txt|json)$/.test(name)) continue;
+    for (const m of bytes.toString('utf8').matchAll(/api\.skillhub\.cn\/api\/v1\/download\?slug=grandet-api-price-finder&version=([0-9A-Za-z.+-]+)/g)) {
+      if (m[1] !== registryVersion) wrong.push(`${name}: ${m[1]}`);
+    }
   }
-  return [
-    '---',
-    `name: ${fields.name}`,
-    `slug: ${SLUG}`,
-    `displayName: ${displayName}`,
-    `version: ${version}`,
-    `summary: ${summary}`,
-    `description: ${q(fields.description)}`,
-    `tags: [${tags.join(', ')}]`,
-    `license: ${license}`,
-    `homepage: ${HOMEPAGE}`,
-    '---',
-    '',
-  ].join('\n');
+  return wrong;
 }
 
 const sha256 = (b) => createHash('sha256').update(b).digest('hex');
@@ -116,39 +121,59 @@ async function exists(p) {
 }
 
 export async function stage({ root = ROOT, tag, out }) {
-  const source = join(root, SKILL_DIR);
-  const text = await readFile(join(source, 'SKILL.md'), 'utf8');
-  const { fields, body } = splitSkill(text);
-  if (fields.name !== SLUG) throw new Error(`SKILL_NAME_MISMATCH: ${fields.name}`);
+  const manifest = JSON.parse(await readFile(join(root, 'downloads/manifest.json'), 'utf8'));
+  const entry = manifest.files.find((f) => f.file.endsWith('.skill'));
+  if (!entry) throw new Error('SKILL_ARCHIVE_NOT_IN_MANIFEST');
+  const archive = await readFile(join(root, 'downloads', entry.file));
+  if (archive.length !== entry.bytes || sha256(archive) !== entry.sha256) throw new Error(`SKILL_ARCHIVE_PIN_MISMATCH: ${entry.file}`);
+
+  const kit = new Map();
+  for (const [name, body] of readZip(archive)) {
+    if (!name.startsWith(`${SLUG}/`)) throw new Error(`SKILL_ARCHIVE_ROOT_UNEXPECTED: ${name}`);
+    kit.set(name.slice(SLUG.length + 1), body);
+  }
+  const text = kit.get('SKILL.md')?.toString('utf8');
+  if (!text) throw new Error('SKILL_MD_MISSING');
+  const { top, metadata, body } = splitSkill(text);
+  if (top.name !== SLUG) throw new Error(`SKILL_NAME_MISMATCH: ${top.name}`);
+  // SkillHub's CLI reads these keys at any indent, so they live under metadata where other hosts accept them.
+  if (metadata.slug !== SLUG || !metadata.displayName || !metadata.summary) throw new Error('SKILLHUB_METADATA_MISSING');
+  if ('tags' in top || 'tags' in metadata) throw new Error('SKILLHUB_TAGS_NOT_ALLOWED'); // SkillHub treats tags as version pointers.
+
   const installed = /Installation build: `([^`]+)`/.exec(body);
   if (!installed) throw new Error('INSTALLATION_BUILD_LINE_MISSING');
   const fromSkill = parseBuild(installed[1]);
+  if (manifest.buildId !== fromSkill.build) throw new Error(`MANIFEST_BUILD_MISMATCH: ${manifest.buildId}`);
   const package_ = /Package version: `([^`]+)`/.exec(body);
   if (!package_ || package_[1] !== fromSkill.product) throw new Error('PACKAGE_VERSION_MISMATCH');
   const release = tag ? parseTag(tag) : fromSkill;
   if (release.build !== fromSkill.build) throw new Error(`TAG_BUILD_MISMATCH: tag ${release.build}, SKILL.md ${fromSkill.build}`);
+  const wrong = chinaLinkMismatches(kit, release.registryVersion);
+  if (wrong.length) throw new Error(`CHINA_DOWNLOAD_VERSION_MISMATCH: ${wrong.join(', ')} (build is ${release.registryVersion})`);
 
   if (await exists(out) && (await readdir(out)).length) throw new Error(`OUTPUT_NOT_EMPTY: ${out}`);
   const targets = {
-    clawhub: { dir: join(out, 'clawhub', SLUG), front: clawhubFrontMatter(fields, release.registryVersion) },
-    skillhub: { dir: join(out, 'skillhub', SLUG), front: skillhubFrontMatter(fields, release.registryVersion) },
+    skillhub: { dir: join(out, 'skillhub', SLUG), files: kit },
+    clawhub: { dir: join(out, 'clawhub', SLUG), files: new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b])) },
   };
-  for (const { dir, front } of Object.values(targets)) {
-    await mkdir(dirname(dir), { recursive: true });
-    await cp(source, dir, { recursive: true });
-    await writeFile(join(dir, 'SKILL.md'), front + body);
+  for (const { dir, files } of Object.values(targets)) {
+    for (const [name, bytes] of files) {
+      await mkdir(dirname(join(dir, name)), { recursive: true });
+      await writeFile(join(dir, name), bytes, { flag: 'wx' });
+    }
   }
   return {
-    schema: 'grandet.registry-stage/v1',
+    schema: 'grandet.registry-stage/v2',
     slug: SLUG,
     tag: release.tag,
     build: release.build,
     productVersion: release.product,
     registryVersion: release.registryVersion,
-    bodySha256: sha256(body),
-    changelog: `Grandet Skill ${release.product}, build ${release.build}. Source: https://github.com/hanzohanzhe/Grandet/releases/tag/${release.tag}`,
-    clawhub: { dir: targets.clawhub.dir, ...LISTING.clawhub },
-    skillhub: { dir: targets.skillhub.dir },
+    archive: { file: entry.file, sha256: entry.sha256, files: kit.size },
+    chinaDownload: CHINA_DOWNLOAD + release.registryVersion,
+    changelog: `Grandet Skill ${release.product}, build ${release.build}: the complete installation kit. Source: https://github.com/hanzohanzhe/Grandet/releases/tag/${release.tag}`,
+    clawhub: { dir: targets.clawhub.dir, files: targets.clawhub.files.size, ...LISTING.clawhub },
+    skillhub: { dir: targets.skillhub.dir, files: kit.size },
   };
 }
 

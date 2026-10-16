@@ -18,6 +18,8 @@
 
 不用提 Grandet，也不用再发文件。查价不需要注册账号或 API Key。想自己动手装，或者用的是 ChatGPT、Claude 网页版这类要上传技能文件的应用，看[手动安装](INSTALL.md#手动安装)。
 
+GitHub 下载慢或打不开？同一个安装包也在[腾讯 SkillHub](https://skillhub.cn/skills/grandet-api-price-finder) 上，不用注册就能下载；Agent 下载 GitHub 失败时会自动改用它。
+
 ## 它做三件事
 
 **1. 查最低价。** 按你的模型和用法（聊天、编程、长输出）比较 grandet.ai 收录的中转站和官方报价，列出最低的几家，写明站点、建令牌时要选的分组、价格、单位和观察日期。
