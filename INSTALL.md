@@ -26,13 +26,13 @@ The user has asked you to install Grandet. Both install sentences lead here: the
 
 ### 1. Get the files
 
-For a fresh installation, use the **skill-v0.3.0-build.20261016f Release attachments** linked below (public product version **0.3.0**, build `grandet-skill-0.3.0-build.20261016f`). The ZIP is an agent installation kit; `.skill` is the native import archive. Both contain the receipt-aware Node installer, receipt module, Python verifier and build manifest. Check `downloads/manifest.json` and the post-upload `downloads/releases.json`. This build has new contents and distinct immutable assets; the earlier `skill-v0.3.0` and `skill-v0.3.0-build.20261014` releases remain historical. Do not use a generic latest release or GitHub Source code ZIP. Existing complete copies remain usable without downloading for statistics; old installations are not backfilled.
+For a fresh installation, use the **skill-v0.3.0-build.20261016g Release attachments** linked below (public product version **0.3.0**, build `grandet-skill-0.3.0-build.20261016g`). The ZIP is an agent installation kit; `.skill` is the native import archive. Both contain the receipt-aware Node installer, receipt module, Python verifier and build manifest. Check `downloads/manifest.json` and the post-upload `downloads/releases.json`. This build has new contents and distinct immutable assets; the earlier `skill-v0.3.0` and `skill-v0.3.0-build.20261014` releases remain historical. Do not use a generic latest release or GitHub Source code ZIP. Existing complete copies remain usable without downloading for statistics; old installations are not backfilled.
 
 You need the complete `grandet-api-price-finder` folder: `SKILL.md`, `references/` and `agents/`. `SKILL.md` alone is not enough.
 
 - If a usable package, checkout or cached copy is already present, reuse it without re-downloading. In this repository or the extracted ZIP, the folder is at [`skills/grandet-api-price-finder/`](https://github.com/hanzohanzhe/Grandet/blob/main/skills/grandet-api-price-finder/SKILL.md).
-- Otherwise download and extract the [installation ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.zip) from this repository.
-- **Mainland China, or when the GitHub download is slow or fails:** download the same kit from Tencent SkillHub instead, no account needed: [SkillHub download](https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.6). It holds the `.skill` contents with the files at the archive root (plus SkillHub's own `_meta.json`). Extract it into a new folder named `grandet-api-price-finder` and use that folder as an extracted `.skill` root below, with `--receipt-source release_skill`. A 404 means SkillHub is still reviewing this build; then use GitHub.
+- Otherwise download and extract the [installation ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.zip) from this repository.
+- **Mainland China, or when the GitHub download is slow or fails:** download the same kit from Tencent SkillHub instead, no account needed: [SkillHub download](https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.7). It holds the `.skill` contents with the files at the archive root (plus SkillHub's own `_meta.json`). Extract it into a new folder named `grandet-api-price-finder` and use that folder as an extracted `.skill` root below, with `--receipt-source release_skill`. A 404 means SkillHub is still reviewing this build; then use GitHub.
 
 If the package has a `package-manifest.json`, check the file hashes against it. A checkout doesn't have one and doesn't need one. The `plugins/` directory holds metadata templates only; it is not an installable Skill.
 
@@ -68,7 +68,7 @@ The installed source defaults to the complete bundled `skills/grandet-api-price-
 2. Copy the complete folder into the skill folder. Don't follow symlinks out of it. Keep exactly one active copy.
 3. Leave other skills, model settings and provider keys untouched.
 
-**Web, account and cloud apps.** Use the app's own Skills manager to save and enable the Skill once. Upload the [`.skill` file](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.skill) (rename a copy to `.zip` if only ZIP is accepted). From the SkillHub download, zip the extracted `grandet-api-price-finder` folder and upload that. Don't upload the larger installation ZIP: it is an agent kit, not a native skill package. A file attached to a chat message is not an installation, and files copied to a local machine don't reach a cloud agent. If a Grandet Skill is already saved, update it in place instead of adding a second one. The per-app guide lists the menu path for each app.
+**Web, account and cloud apps.** Use the app's own Skills manager to save and enable the Skill once. Upload the [`.skill` file](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.skill) (rename a copy to `.zip` if only ZIP is accepted). From the SkillHub download, zip the extracted `grandet-api-price-finder` folder and upload that. Don't upload the larger installation ZIP: it is an agent kit, not a native skill package. A file attached to a chat message is not an installation, and files copied to a local machine don't reach a cloud agent. If a Grandet Skill is already saved, update it in place instead of adding a second one. The per-app guide lists the menu path for each app.
 
 ### Installation receipt and privacy
 
@@ -104,7 +104,7 @@ It moves that app's `grandet-api-price-finder` folder, including a legacy copy s
 
 适合想自己动手的人，或者 Agent 装不了的应用。
 
-**GitHub 下载慢或打不开（中国大陆常见）**：改从腾讯 SkillHub 下载同一个安装包，不用注册：[SkillHub 下载](https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.6)（页面：[skillhub.cn/skills/grandet-api-price-finder](https://skillhub.cn/skills/grandet-api-price-finder)）。解压到一个新建的 `grandet-api-price-finder` 文件夹，这个文件夹本身就是完整的技能：
+**GitHub 下载慢或打不开（中国大陆常见）**：改从腾讯 SkillHub 下载同一个安装包，不用注册：[SkillHub 下载](https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.7)（页面：[skillhub.cn/skills/grandet-api-price-finder](https://skillhub.cn/skills/grandet-api-price-finder)）。解压到一个新建的 `grandet-api-price-finder` 文件夹，这个文件夹本身就是完整的技能：
 
 - 本地 Agent：把整个文件夹复制到下面对应的技能目录；装了 Node 的话，也可以在这个文件夹里运行 `node scripts/install-price-finder.mjs --app codex`（把 `codex` 换成你的应用）。
 - 上传技能的应用：把这个文件夹压缩成 zip 再上传。
@@ -112,7 +112,7 @@ It moves that app's `grandet-api-price-finder` folder, including a legacy copy s
 
 **Codex、Claude Code、Cursor 这类本地 Agent**
 
-1. 下载[安装 ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.zip) 并解压。
+1. 下载[安装 ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.zip) 并解压。
 2. 把里面的 `skills/grandet-api-price-finder` 整个文件夹复制到对应目录：
    - Codex：`~/.agents/skills/`
    - Claude Code：`~/.claude/skills/`
@@ -125,7 +125,7 @@ It moves that app's `grandet-api-price-finder` folder, including a legacy copy s
 
 **ChatGPT、Claude 网页版这类上传技能的应用**
 
-1. 下载 [`.skill` 文件](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.skill)。
+1. 下载 [`.skill` 文件](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.skill)。
 2. 在应用的技能页面上传并启用：
    - ChatGPT：[Skills](https://chatgpt.com/skills) → Add skill → Upload from computer
    - Claude 网页版：Customize → Skills → + → Create skill → Upload a skill
@@ -133,7 +133,7 @@ It moves that app's `grandet-api-price-finder` folder, including a legacy copy s
 
    只能选 `.zip` 的话，把 `.skill` 改名成 `.zip` 再传。不要上传那个大的安装 ZIP，那是给 Agent 用的。
 
-本构建 `grandet-skill-0.3.0-build.20261016f` 的 ZIP 和 .skill 均内置回执安装器和 Python 验证器，无需另取工具。安装不要求开启回执；旧安装不补算，也不要求重下或重装。
+本构建 `grandet-skill-0.3.0-build.20261016g` 的 ZIP 和 .skill 均内置回执安装器和 Python 验证器，无需另取工具。安装不要求开启回执；旧安装不补算，也不要求重下或重装。
 
 **确认装好了**：新开对话，不发文件、不提 Grandet，问一句“帮我找最便宜的 Sonnet 4.6 API，写代码用”。如果它让你再发一次文件，说明没有装好，检查文件夹位置，或者技能有没有启用。
 
@@ -143,11 +143,11 @@ It moves that app's `grandet-api-price-finder` folder, including a legacy copy s
 
 For people who prefer to do it themselves, or apps an agent can't install into.
 
-**GitHub slow or unreachable (common in mainland China)**: download the same kit from Tencent SkillHub, no account needed: [SkillHub download](https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.6) (page: [skillhub.cn/skills/grandet-api-price-finder](https://skillhub.cn/skills/grandet-api-price-finder)). Extract it into a new folder named `grandet-api-price-finder`; that folder is the complete Skill. For a local agent, copy the whole folder into the skill folder listed below, or run `node scripts/install-price-finder.mjs --app codex` inside it. For apps where you upload a skill, zip that folder and upload it. A 404 means SkillHub is still reviewing this build; use the GitHub links below.
+**GitHub slow or unreachable (common in mainland China)**: download the same kit from Tencent SkillHub, no account needed: [SkillHub download](https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.7) (page: [skillhub.cn/skills/grandet-api-price-finder](https://skillhub.cn/skills/grandet-api-price-finder)). Extract it into a new folder named `grandet-api-price-finder`; that folder is the complete Skill. For a local agent, copy the whole folder into the skill folder listed below, or run `node scripts/install-price-finder.mjs --app codex` inside it. For apps where you upload a skill, zip that folder and upload it. A 404 means SkillHub is still reviewing this build; use the GitHub links below.
 
 **Local agents such as Codex, Claude Code and Cursor**
 
-1. Download the [installation ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.zip) and extract it.
+1. Download the [installation ZIP](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.zip) and extract it.
 2. Copy the whole `skills/grandet-api-price-finder` folder into your app's skill folder:
    - Codex: `~/.agents/skills/`
    - Claude Code: `~/.claude/skills/`
@@ -160,7 +160,7 @@ With Node installed, you can do step 2 by running `node scripts/install-price-fi
 
 **Apps where you upload a skill, such as ChatGPT and Claude on the web**
 
-1. Download the [`.skill` file](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.skill).
+1. Download the [`.skill` file](https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016g/grandet-api-price-finder-0.3.0.skill).
 2. Upload and enable it in the app's skills page:
    - ChatGPT: [Skills](https://chatgpt.com/skills) → Add skill → Upload from computer
    - Claude on the web: Customize → Skills → + → Create skill → Upload a skill
@@ -168,7 +168,7 @@ With Node installed, you can do step 2 by running `node scripts/install-price-fi
 
    If the app only accepts `.zip`, rename the `.skill` file to `.zip`. Don't upload the larger installation ZIP; that one is for agents.
 
-This 0.3.0 build (`grandet-skill-0.3.0-build.20261016f`) includes receipt-aware installation tools in both archives. No separate helper is needed. Receipts are optional; older installs are not backfilled and do not need to reinstall.
+This 0.3.0 build (`grandet-skill-0.3.0-build.20261016g`) includes receipt-aware installation tools in both archives. No separate helper is needed. Receipts are optional; older installs are not backfilled and do not need to reinstall.
 
 **Check it worked**: open a new conversation and, without attaching anything or mentioning Grandet, ask "Find me the cheapest Sonnet 4.6 API for coding." If it asks for the file again, the install didn't stick: check the folder location, or whether the skill is enabled.
 

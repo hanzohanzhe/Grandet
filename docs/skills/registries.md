@@ -49,6 +49,7 @@ Registry version numbers: the product version stays `0.3.0`; each build becomes 
 | `skill-v0.3.0-build.20261016d` | `0.3.0-build.20261016.4` |
 | `skill-v0.3.0-build.20261016e` | `0.3.0-build.20261016.5` |
 | `skill-v0.3.0-build.20261016f` | `0.3.0-build.20261016.6` |
+| `skill-v0.3.0-build.20261016g` | `0.3.0-build.20261016.7` |
 
 The run stops before uploading if the release tag does not match the `Installation build` line in `SKILL.md`, if the archive does not match its pin, or if any China download link in the kit names another registry version. **When you cut a new build, update that version in the China links too** (`tests/registry-stage.test.mjs` fails until you do).
 
