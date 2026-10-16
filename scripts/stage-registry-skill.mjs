@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-// Stage a Skill release for ClawHub and Tencent SkillHub. Both registries get the complete installation kit
-// from the release's pinned .skill archive (Skill, installer, receipt module, Python verifier, INSTALL.md,
-// package-manifest.json), so people who cannot reach GitHub, notably in mainland China, download everything
-// from the registry. SkillHub receives every file byte-for-byte, with files that have no extension (LICENSE)
-// renamed to .txt because SkillHub refuses them. ClawHub, which publishes every Skill as MIT-0, receives the
-// kit without the Apache license line and LICENSE file and with its runtime metadata added.
+// Stage a Skill release for ClawHub and Tencent SkillHub. GitHub, SkillHub and ClawHub ship the same Skill: both
+// registries get the complete installation kit from the release's pinned .skill archive (Skill, installer,
+// receipt module, Python verifier, INSTALL.md, package-manifest.json), so people who cannot reach GitHub,
+// notably in mainland China, download everything from the registry. A copy differs from the release only where
+// its registry requires it. SkillHub refuses files without an extension, so LICENSE becomes LICENSE.txt.
+// ClawHub publishes every Skill as MIT-0, so its copy has no Apache license line or LICENSE file, and its
+// SKILL.md carries ClawHub's runtime metadata. Each copy's package-manifest.json lists that copy's own files.
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
@@ -102,6 +103,15 @@ export function clawhubSkill(text) {
   return ['---', ...lines, ...openclaw, '---', ''].join('\n') + body;
 }
 
+// The kit's package-manifest.json pins the release's files, and INSTALL.md tells people to check a package
+// against it. Each registry copy gets a manifest of its own files, keeps every other field, and records the
+// release manifest it came from and what its registry required, so every copy passes its own check.
+export function registryManifest(release, files, registry, changes) {
+  const hashes = Object.fromEntries([...files.keys()].filter((name) => name !== 'package-manifest.json').sort().map((name) => [name, sha256(files.get(name))]));
+  const manifest = { ...JSON.parse(release.toString('utf8')), files: hashes, registryCopy: { registry, releaseManifestSha256: sha256(release), changes } };
+  return Buffer.from(`${JSON.stringify(manifest, null, 2)}\n`);
+}
+
 // Every China download link in the kit must name this build's registry version; a stale one would hand
 // mainland users an older build, or a 404 once that version is gone.
 export function chinaLinkMismatches(files, registryVersion) {
@@ -127,7 +137,15 @@ async function exists(p) {
   try { await stat(p); return true; } catch { return false; }
 }
 
-export async function stage({ root = ROOT, tag, out }) {
+// ClawHub never replaces a published version. Republishing the same build there with a corrected copy takes a
+// revision N, which becomes <registry version>.N: above the build's own version and below the next build's.
+export function clawhubVersion(registryVersion, revision) {
+  if (revision === undefined || revision === '') return registryVersion;
+  if (!/^[1-9]\d{0,3}$/.test(String(revision))) throw new Error(`CLAWHUB_REVISION_INVALID: ${revision}`);
+  return `${registryVersion}.${revision}`;
+}
+
+export async function stage({ root = ROOT, tag, out, clawhubRevision }) {
   const manifest = JSON.parse(await readFile(join(root, 'downloads/manifest.json'), 'utf8'));
   const entry = manifest.files.find((f) => f.file.endsWith('.skill'));
   if (!entry) throw new Error('SKILL_ARCHIVE_NOT_IN_MANIFEST');
@@ -157,11 +175,23 @@ export async function stage({ root = ROOT, tag, out }) {
   if (release.build !== fromSkill.build) throw new Error(`TAG_BUILD_MISMATCH: tag ${release.build}, SKILL.md ${fromSkill.build}`);
   const wrong = chinaLinkMismatches(kit, release.registryVersion);
   if (wrong.length) throw new Error(`CHINA_DOWNLOAD_VERSION_MISMATCH: ${wrong.join(', ')} (build is ${release.registryVersion})`);
+  const releaseManifest = kit.get('package-manifest.json');
+  if (!releaseManifest) throw new Error('PACKAGE_MANIFEST_MISSING');
+  const clawVersion = clawhubVersion(release.registryVersion, clawhubRevision);
 
   if (await exists(out) && (await readdir(out)).length) throw new Error(`OUTPUT_NOT_EMPTY: ${out}`);
+  const claw = new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b]));
+  claw.set('package-manifest.json', registryManifest(releaseManifest, claw, 'clawhub', [
+    'LICENSE omitted and SKILL.md license line removed: ClawHub publishes every Skill under MIT-0',
+    'SKILL.md: metadata.openclaw added',
+  ]));
+  const hub = new Map([...kit].map(([name, b]) => [skillhubName(name), b]));
+  hub.set('package-manifest.json', registryManifest(releaseManifest, hub, 'skillhub', [...kit.keys()]
+    .filter((name) => skillhubName(name) !== name)
+    .map((name) => `${name} uploaded as ${skillhubName(name)}: SkillHub refuses files without an extension`)));
   const targets = {
-    skillhub: { dir: join(out, 'skillhub', SLUG), files: new Map([...kit].map(([name, b]) => [skillhubName(name), b])) },
-    clawhub: { dir: join(out, 'clawhub', SLUG), files: new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b])) },
+    skillhub: { dir: join(out, 'skillhub', SLUG), files: hub },
+    clawhub: { dir: join(out, 'clawhub', SLUG), files: claw },
   };
   for (const { dir, files } of Object.values(targets)) {
     for (const [name, bytes] of files) {
@@ -169,6 +199,7 @@ export async function stage({ root = ROOT, tag, out }) {
       await writeFile(join(dir, name), bytes, { flag: 'wx' });
     }
   }
+  const changelog = `Grandet Skill ${release.product}, build ${release.build}: the complete installation kit. Source: https://github.com/hanzohanzhe/Grandet/releases/tag/${release.tag}`;
   return {
     schema: 'grandet.registry-stage/v2',
     slug: SLUG,
@@ -178,9 +209,15 @@ export async function stage({ root = ROOT, tag, out }) {
     registryVersion: release.registryVersion,
     archive: { file: entry.file, sha256: entry.sha256, files: kit.size },
     chinaDownload: CHINA_DOWNLOAD + release.registryVersion,
-    changelog: `Grandet Skill ${release.product}, build ${release.build}: the complete installation kit. Source: https://github.com/hanzohanzhe/Grandet/releases/tag/${release.tag}`,
-    clawhub: { dir: targets.clawhub.dir, files: targets.clawhub.files.size, ...LISTING.clawhub },
-    skillhub: { dir: targets.skillhub.dir, files: kit.size },
+    changelog,
+    clawhub: {
+      dir: targets.clawhub.dir,
+      files: targets.clawhub.files.size,
+      version: clawVersion,
+      changelog: clawVersion === release.registryVersion ? changelog : `${changelog} ClawHub revision ${clawhubRevision} of the same build, restaged with the current staging script.`,
+      ...LISTING.clawhub,
+    },
+    skillhub: { dir: targets.skillhub.dir, files: targets.skillhub.files.size },
   };
 }
 
@@ -189,11 +226,11 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const opt = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : undefined; };
   const out = opt('--out');
   if (!out) {
-    console.error('usage: node scripts/stage-registry-skill.mjs --out <empty dir> [--tag skill-v0.3.0-build.YYYYMMDDx] [--root <checkout of that tag>]');
+    console.error('usage: node scripts/stage-registry-skill.mjs --out <empty dir> [--tag skill-v0.3.0-build.YYYYMMDDx] [--root <checkout of that tag>] [--clawhub-revision N]');
     process.exit(2);
   }
   // --root lets a newer copy of this script stage an older release checkout that predates it.
   const root = opt('--root') ? resolve(opt('--root')) : ROOT;
-  const result = await stage({ root, tag: opt('--tag'), out: resolve(out) });
+  const result = await stage({ root, tag: opt('--tag'), out: resolve(out), clawhubRevision: opt('--clawhub-revision') });
   console.log(JSON.stringify(result, null, 2));
 }

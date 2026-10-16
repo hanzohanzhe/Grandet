@@ -31,8 +31,14 @@ Until a secret exists, a release run skips that registry with a warning; a manua
 
 `scripts/stage-registry-skill.mjs` takes the release's `downloads/grandet-api-price-finder-0.3.0.skill`, checks its size and SHA-256 against `downloads/manifest.json`, and unpacks it. `tests/registry-stage.test.mjs` checks both copies.
 
-- SkillHub: the kit byte-for-byte, so every file matches its hash in `package-manifest.json`. SkillHub refuses files without an extension, so `LICENSE` is uploaded as `LICENSE.txt` (same bytes). Its CLI reads `slug`, `displayName` and `summary` from the `metadata` block of `SKILL.md`; the version comes from the release tag. `SKILL.md` must not carry `tags`, which SkillHub turns into version pointers.
-- ClawHub: the same kit without `LICENSE` and without the `license:` line in `SKILL.md`, because ClawHub publishes every Skill under MIT-0 and refuses other license terms. It adds `metadata.openclaw` (homepage; needs `curl` or `node`).
+GitHub, SkillHub and ClawHub ship the same Skill. A registry copy differs from the GitHub `.skill` only where that registry requires it:
+
+- SkillHub: every file has the release's bytes. SkillHub refuses files without an extension, so `LICENSE` is uploaded as `LICENSE.txt`. Its CLI reads `slug`, `displayName` and `summary` from the `metadata` block of `SKILL.md`; the version comes from the release tag. `SKILL.md` must not carry `tags`, which SkillHub turns into version pointers.
+- ClawHub: no `LICENSE` and no `license:` line in `SKILL.md`, because ClawHub publishes every Skill under MIT-0 and refuses other license terms. `SKILL.md` gains `metadata.openclaw` (homepage; needs `curl` or `node`). The Skill's text and every other file have the release's bytes.
+
+Each copy's `package-manifest.json` lists that copy's own files and hashes. It keeps every other release field and adds `registryCopy`, which names the release manifest's SHA-256 and what the registry required. `INSTALL.md` tells people to check a package against its manifest. A copy that kept the release manifest failed that check, and ClawHub's scan marked build 20261016e (`0.3.0-build.20261016.5`) suspicious for exactly this mismatch.
+
+Anything else the Skill says, such as what it changes on the user's computer, belongs in the source `SKILL.md`, so that all three places get it in the same build.
 
 Registry version numbers: the product version stays `0.3.0`; each build becomes a distinct, ordered SemVer.
 
@@ -54,3 +60,5 @@ The run stops before uploading if the release tag does not match the `Installati
 ## Running it by hand / 手动运行
 
 Actions → **Publish Skill to ClawHub and SkillHub** → Run workflow, with the release tag. `dry_run` is on by default: it validates both uploads without publishing and needs no token. The workflow only runs for releases created by a person or a personal token; releases created with the default `GITHUB_TOKEN` do not start workflows.
+
+ClawHub never replaces a published version. To republish a build's ClawHub copy after a staging fix, run with `targets=clawhub` and `clawhub_revision=N`: the upload becomes `<registry version>.N` (for example `0.3.0-build.20261016.5.1`), which ClawHub orders after the build's own version and before the next build's. SkillHub and the GitHub release are untouched, and the run refuses a revision with any other target.

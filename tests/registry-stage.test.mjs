@@ -4,7 +4,8 @@ import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
-import { ROOT, SLUG, chinaLinkMismatches, parseBuild, parseTag, readZip, splitSkill, stage } from '../scripts/stage-registry-skill.mjs';
+import { createHash } from 'node:crypto';
+import { ROOT, SLUG, chinaLinkMismatches, clawhubVersion, parseBuild, parseTag, readZip, splitSkill, stage } from '../scripts/stage-registry-skill.mjs';
 
 // SemVer 2.0 precedence for the prerelease part, enough to check registry ordering.
 const cmpPre = (a, b) => {
@@ -45,24 +46,60 @@ test('release tags map to ordered registry versions', () => {
   assert.throws(() => parseTag('v0.3.0'), /UNSUPPORTED_RELEASE_TAG/);
 });
 
-test('SkillHub gets the complete .skill kit byte-for-byte; ClawHub differs only in its license terms', async () => {
+test('a ClawHub revision of a build sorts after that build and before the next one', () => {
+  const [e, f] = ['20261016e', '20261016f'].map((b) => parseTag(`skill-v0.3.0-build.${b}`).registryVersion);
+  assert.equal(clawhubVersion(e), e);
+  assert.equal(clawhubVersion(e, ''), e);
+  assert.equal(clawhubVersion(e, '1'), '0.3.0-build.20261016.5.1');
+  assert.ok(cmpPre(e, clawhubVersion(e, 1)) < 0 && cmpPre(clawhubVersion(e, 1), clawhubVersion(e, 2)) < 0 && cmpPre(clawhubVersion(e, 2), f) < 0);
+  assert.match(clawhubVersion(e, 12), SKILLHUB_SEMVER);
+  for (const bad of ['0', '01', '-1', '1.2', 'a', '99999']) assert.throws(() => clawhubVersion(e, bad), /CLAWHUB_REVISION_INVALID/, bad);
+});
+
+test('GitHub, SkillHub and ClawHub ship the same Skill; each copy differs only where its registry requires and passes its own manifest', async () => {
   const out = await mkdtemp(join(tmpdir(), 'grandet-registry-'));
   try {
     const r = await stage({ out });
     const kit = await releaseArchive();
     for (const name of ['SKILL.md', 'INSTALL.md', 'LICENSE', 'package-manifest.json', 'scripts/install-price-finder.mjs', 'scripts/installation-receipts.mjs', 'scripts/verify-installation.py', 'scripts/connect.mjs']) assert.ok(kit.has(name), name);
-    // SkillHub refuses files without an extension, so LICENSE travels as LICENSE.txt with the same bytes.
-    const hubTree = await readTree(r.skillhub.dir);
-    assert.deepEqual(hubTree, new Map([...kit].map(([n, b]) => [n === 'LICENSE' ? 'LICENSE.txt' : n, b])));
-    for (const name of hubTree.keys()) assert.match(name.split('/').pop(), /\./, `SkillHub would refuse ${name}`);
+    // INSTALL.md tells people to check a package against its package-manifest.json, so every copy must pass:
+    // the manifest lists exactly that copy's files, keeps every other release field and names the release manifest.
+    const sha = (b) => createHash('sha256').update(b).digest('hex');
+    const { files: _release, ...releaseRest } = JSON.parse(kit.get('package-manifest.json').toString('utf8'));
+    const ownManifest = (tree, registry) => {
+      const { files, registryCopy, ...rest } = JSON.parse(tree.get('package-manifest.json').toString('utf8'));
+      assert.deepEqual(files, Object.fromEntries([...tree].filter(([n]) => n !== 'package-manifest.json').map(([n, b]) => [n, sha(b)])), registry);
+      assert.deepEqual(Object.keys(files), Object.keys(files).toSorted(), registry);
+      assert.deepEqual(rest, releaseRest, registry);
+      assert.equal(registryCopy.registry, registry);
+      assert.equal(registryCopy.releaseManifestSha256, sha(kit.get('package-manifest.json')));
+      return registryCopy.changes;
+    };
 
+    // SkillHub refuses files without an extension, so LICENSE travels as LICENSE.txt; every file keeps its bytes.
+    const hubTree = await readTree(r.skillhub.dir);
+    const hubExpected = new Map([...kit].map(([n, b]) => [n === 'LICENSE' ? 'LICENSE.txt' : n, b]));
+    assert.deepEqual([...hubTree.keys()].sort(), [...hubExpected.keys()].sort());
+    for (const [name, bytes] of hubTree) if (name !== 'package-manifest.json') assert.deepEqual(bytes, hubExpected.get(name), name);
+    for (const name of hubTree.keys()) assert.match(name.split('/').pop(), /\./, `SkillHub would refuse ${name}`);
+    assert.deepEqual(ownManifest(hubTree, 'skillhub'), ['LICENSE uploaded as LICENSE.txt: SkillHub refuses files without an extension']);
+    assert.equal(r.skillhub.files, hubTree.size);
+
+    // ClawHub publishes every Skill as MIT-0: no LICENSE, no license line, plus its runtime metadata. The Skill
+    // body and every other file are the release's.
     const claw = await readTree(r.clawhub.dir);
     assert.deepEqual([...claw.keys()].sort(), [...kit.keys()].filter((n) => n !== 'LICENSE').sort());
-    for (const [name, bytes] of claw) if (name !== 'SKILL.md') assert.deepEqual(bytes, kit.get(name), name);
+    for (const [name, bytes] of claw) if (name !== 'SKILL.md' && name !== 'package-manifest.json') assert.deepEqual(bytes, kit.get(name), name);
     const original = kit.get('SKILL.md').toString('utf8'), clawSkill = claw.get('SKILL.md').toString('utf8');
+    // splitSkill reads only the source's two-level front matter; ClawHub's metadata.openclaw goes deeper.
+    const front = (text) => text.slice(4, text.indexOf('\n---\n')).split('\n');
     assert.equal(clawSkill.slice(clawSkill.indexOf('\n---\n') + 5), splitSkill(original).body);
-    assert.doesNotMatch(clawSkill.split('\n---\n')[0], /^license:/m, 'ClawHub publishes every Skill as MIT-0');
-    assert.match(clawSkill, /^ {2}openclaw:\n {4}homepage: https:\/\/grandet\.ai\n {4}requires:\n {6}anyBins:\n/m);
+    const openclaw = ['  openclaw:', '    homepage: https://grandet.ai', '    requires:', '      anyBins:', '        - curl', '        - node'];
+    assert.deepEqual(front(clawSkill), [...front(original).filter((l) => !/^license:/.test(l)), ...openclaw]);
+    assert.equal(ownManifest(claw, 'clawhub').length, 2);
+    assert.equal(r.clawhub.files, claw.size);
+    assert.equal(r.clawhub.version, r.registryVersion);
+    assert.equal(r.clawhub.changelog, r.changelog);
 
     const hub = skillhubFrontMatter(original);
     assert.equal(hub.slug, SLUG);
@@ -91,6 +128,10 @@ test('a changed archive, another build tag or a non-empty output folder is refus
     await assert.rejects(stage({ out: join(tmp, 'a'), tag: 'skill-v0.3.0-build.20000101' }), /TAG_BUILD_MISMATCH/);
     await stage({ out: join(tmp, 'b') });
     await assert.rejects(stage({ out: join(tmp, 'b') }), /OUTPUT_NOT_EMPTY/);
+    await assert.rejects(stage({ out: join(tmp, 'd'), clawhubRevision: '0' }), /CLAWHUB_REVISION_INVALID/);
+    const revised = await stage({ out: join(tmp, 'e'), clawhubRevision: '1' });
+    assert.equal(revised.clawhub.version, `${revised.registryVersion}.1`);
+    assert.match(revised.clawhub.changelog, /ClawHub revision 1 of the same build/);
     await cp(join(ROOT, 'downloads'), join(tmp, 'root', 'downloads'), { recursive: true });
     const manifestPath = join(tmp, 'root', 'downloads', 'manifest.json');
     const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
