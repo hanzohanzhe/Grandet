@@ -145,6 +145,94 @@ test('gemini-cli: dotenv block, key, undo', async () => {
   assert.equal(await read(join(h, '.env')), 'OTHER=1\n');
 });
 
+test('claude-code preview hides an existing token in the diff', async () => {
+  const h = await home(); await mkdir(join(h, '.claude'), { recursive: true });
+  await writeFile(join(h, '.claude/settings.json'), `${JSON.stringify({ env: { ANTHROPIC_AUTH_TOKEN: KEY, ANTHROPIC_BASE_URL: 'https://old.example' } }, null, 2)}\n`);
+  const preview = publicPlan(await plan(base(h, 'claude-code', { protocol: 'anthropic' })));
+  assert.doesNotMatch(JSON.stringify(preview), new RegExp(KEY));
+  assert.match(preview.changes[0].diff, /"ANTHROPIC_AUTH_TOKEN": "<hidden>"/);
+  const one = await home(); await mkdir(join(one, '.config/opencode'), { recursive: true });
+  await writeFile(join(one, '.config/opencode/opencode.json'), JSON.stringify({ provider: { x: { options: { apiKey: KEY, headers: { Authorization: `Bearer ${KEY}` } } } } }));
+  const minified = publicPlan(await plan(base(one, 'opencode', { protocol: 'openai' })));
+  assert.doesNotMatch(JSON.stringify(minified), new RegExp(KEY), 'a key inside a one-line JSON file is hidden too');
+  assert.match(minified.changes[0].diff, /"apiKey": "\{file:/, 'the Grandet file reference stays visible');
+});
+
+test('hermes: named provider with key_cmd, other settings kept, undo is byte-exact', async () => {
+  const h = await home(); await mkdir(join(h, '.hermes'), { recursive: true });
+  const original = 'model:\n  default: old-model\n  provider: custom\n  base_url: http://localhost:8000/v1\n  api_key: sk-old-9999\nproviders:\n  local:\n    api: http://localhost:8080/v1\nagent:\n  max_turns: 40\n';
+  await writeFile(join(h, '.hermes/config.yaml'), original);
+  const opts = base(h, 'hermes', { protocol: 'openai' });
+  const preview = publicPlan(await plan(opts));
+  assert.doesNotMatch(JSON.stringify(preview), /sk-old-9999/);
+  assert.ok(preview.notes.some((n) => /model\.base_url, model\.api_key/.test(n)));
+  await apply({ ...opts, yes: true, planHash: preview.planHash });
+  const text = await read(join(h, '.hermes/config.yaml'));
+  const keyFile = join(h, '.grandet/keys/apijing.com');
+  assert.equal(text, `model:\n  default: "claude-sonnet-4-6"\n  provider: "custom:grandet-apijing-com"\nproviders:\n  # grandet:apijing.com begin\n  grandet-apijing-com:\n    api: "https://apijing.com/v1"\n    key_cmd: "cat '${keyFile}'"\n    transport: chat_completions\n    default_model: "claude-sonnet-4-6"\n  # grandet:apijing.com end\n  local:\n    api: http://localhost:8080/v1\nagent:\n  max_turns: 40\n`);
+  assert.equal((await apply({ ...opts, yes: true })).unchanged, true);
+  await storeKey(opts, KEY);
+  assert.doesNotMatch(await read(join(h, '.hermes/config.yaml')), new RegExp(KEY));
+  await restore({ home: h });
+  assert.equal(await read(join(h, '.hermes/config.yaml')), original);
+});
+
+test('hermes: new file, anthropic and responses transports, Windows key_env, refuses complex YAML', async () => {
+  const h = await home();
+  await apply({ ...base(h, 'hermes', { protocol: 'anthropic' }), yes: true });
+  const text = await read(join(h, '.hermes/config.yaml'));
+  assert.match(text, /api: "https:\/\/apijing\.com"\n/); assert.match(text, /transport: anthropic_messages/);
+  assert.match(text, /^model:\n  default: "claude-sonnet-4-6"\n  provider: "custom:grandet-apijing-com"\n$/m);
+  assert.match(publicPlan(await plan(base(h, 'hermes', { protocol: 'openai-response' }))).changes[0].diff, /transport: codex_responses/);
+  const w = await home();
+  const win = publicPlan(await plan(base(w, 'hermes', { platform: 'win32' })));
+  assert.equal(win.changes[0].path, join(w, 'AppData', 'Local', 'hermes', 'config.yaml'));
+  assert.match(win.changes[0].diff, /key_env: GRANDET_APIJING_COM_KEY/);
+  await assert.rejects(plan(base(h, 'hermes', { protocol: 'gemini' })), { code: 'PROTOCOL_NOT_SUPPORTED_BY_APP' });
+  for (const bad of ['providers: {local: {api: x}}\n', 'model:\n\tdefault: x\n', 'model:\n  default: >\n    long\n', 'providers:\n  grandet-apijing-com:\n    api: mine\n', 'model: [a, b]\n']) {
+    const c = await home(); await mkdir(join(c, '.hermes'), { recursive: true }); await writeFile(join(c, '.hermes/config.yaml'), bad);
+    await assert.rejects(plan(base(c, 'hermes')), { code: 'COMPLEX_YAML' }, bad);
+  }
+  const one = await home(); await mkdir(join(one, '.hermes'), { recursive: true }); await writeFile(join(one, '.hermes/config.yaml'), 'model: gpt-5\n');
+  assert.match(await (async () => { await apply({ ...base(one, 'hermes'), yes: true }); return read(join(one, '.hermes/config.yaml')); })(), /^model:\n  default: "claude-sonnet-4-6"\n  provider: "custom:grandet-apijing-com"$/m);
+});
+
+test('openclaw: provider with a file SecretRef, key never in openclaw.json, undo is byte-exact', async () => {
+  const h = await home(); await mkdir(join(h, '.openclaw'), { recursive: true });
+  const original = `${JSON.stringify({ gateway: { port: 18789 }, agents: { defaults: { workspace: '~/w', model: { primary: 'openai/gpt-6', fallbacks: ['x/y'] } } }, models: { providers: { moonshot: { baseUrl: 'https://api.moonshot.ai/v1', apiKey: 'sk-moon-1111', api: 'openai-completions', models: [] } } } }, null, 2)}\n`;
+  await writeFile(join(h, '.openclaw/openclaw.json'), original);
+  const opts = base(h, 'openclaw', { protocol: 'openai' });
+  const preview = publicPlan(await plan(opts));
+  assert.doesNotMatch(JSON.stringify(preview), /sk-moon-1111/);
+  await apply({ ...opts, yes: true, planHash: preview.planHash });
+  const cfg = JSON.parse(await read(join(h, '.openclaw/openclaw.json')));
+  const keyFile = join(h, '.grandet/keys/apijing.com');
+  assert.deepEqual(cfg.secrets.providers['grandet-apijing-com'], { source: 'file', path: keyFile, mode: 'singleValue' });
+  assert.deepEqual(cfg.models.providers['grandet-apijing-com'], { baseUrl: 'https://apijing.com/v1', apiKey: { source: 'file', provider: 'grandet-apijing-com', id: 'value' }, api: 'openai-completions', models: [{ id: 'claude-sonnet-4-6', name: 'claude-sonnet-4-6' }] });
+  assert.equal(cfg.models.mode, 'merge'); assert.equal(cfg.models.providers.moonshot.apiKey, 'sk-moon-1111');
+  assert.deepEqual(cfg.agents.defaults.model, { primary: 'grandet-apijing-com/claude-sonnet-4-6', fallbacks: ['x/y'] });
+  assert.equal(cfg.agents.defaults.workspace, '~/w'); assert.equal(cfg.gateway.port, 18789);
+  await storeKey(opts, KEY);
+  assert.doesNotMatch(await read(join(h, '.openclaw/openclaw.json')), new RegExp(KEY));
+  assert.equal(await read(keyFile), KEY);
+  assert.equal((await apply({ ...opts, yes: true })).unchanged, true);
+  await restore({ home: h });
+  assert.equal(await read(join(h, '.openclaw/openclaw.json')), original);
+});
+
+test('openclaw: anthropic proxy, JSON5 and comments are refused', async () => {
+  const h = await home();
+  await apply({ ...base(h, 'openclaw', { protocol: 'anthropic' }), yes: true });
+  const cfg = JSON.parse(await read(join(h, '.openclaw/openclaw.json')));
+  assert.equal(cfg.models.providers['grandet-apijing-com'].api, 'anthropic-messages');
+  assert.equal(cfg.models.providers['grandet-apijing-com'].baseUrl, 'https://apijing.com');
+  for (const [bad, code] of [['{ models: { mode: "merge" } }\n', 'INVALID_JSON'], ['{\n  // mine\n  "a": 1\n}\n', 'COMMENTS_PRESENT']]) {
+    const c = await home(); await mkdir(join(c, '.openclaw'), { recursive: true }); await writeFile(join(c, '.openclaw/openclaw.json'), bad);
+    await assert.rejects(plan(base(c, 'openclaw')), { code }, bad);
+  }
+  await assert.rejects(plan(base(h, 'openclaw', { protocol: 'openai-response' })), { code: 'PROTOCOL_NOT_SUPPORTED_BY_APP' });
+});
+
 test('address guard: other domain needs confirmation, http only on loopback, /v1 is stripped', async () => {
   const h = await home();
   await assert.rejects(plan(base(h, 'codex', { baseUrl: 'https://api.other.com' })), { code: 'BASE_URL_OTHER_DOMAIN' });

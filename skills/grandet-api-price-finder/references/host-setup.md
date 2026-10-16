@@ -11,7 +11,7 @@ Goal: the user's app calls the chosen site with the chosen model. You prepare an
 - **Target app**: the app the user named. If none, ask once: "接到哪个应用？" and query again with that `targetApp`, so the row's `integration` card fits that app.
 - The row's `integration` card gives the app's documented `configurationFormat`, `configurationPath`, `docsUrl` and `steps`. In `view=compact`, the row carries `integration.card`, an index into the top-level `integrationCards`; that card's `stepsTemplate` has `{{model}}` and `{{tokenGroup}}` to replace with the row's literal values.
 
-Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`. If the row does not offer it, say so and offer the next row that does.
+Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`; Hermes takes `openai`, `openai-response` or `anthropic`; OpenClaw takes `openai` or `anthropic`. If the row does not offer it, say so and offer the next row that does.
 
 ## 2. Find the API address
 
@@ -34,12 +34,12 @@ Tell the user exactly these three steps, then wait:
 
 ## Use the connect executor (preferred)
 
-This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). It previews, backs up, writes, checks for free and undoes the connection for **Codex, Claude Code, OpenCode, Kilo Code, Continue and Gemini CLI**. Use it instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these six, or the executor stops with a code that says to edit by hand.
+This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). It previews, backs up, writes, checks for free and undoes the connection for **Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes and OpenClaw**. Use it instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these eight, or the executor stops with a code that says to edit by hand.
 
 Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs"`. Fill the values from the row (section 1) and the address rules (section 2). Pass values exactly; quote ones that contain spaces or non-ASCII text.
 
 1. **Preview**, then show the user the diff and notes, and the three steps on the site (section 3):
-   `CONNECT preview --app <codex|claude-code|opencode|kilo-code|continue|gemini-cli> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"`
+   `CONNECT preview --app <codex|claude-code|opencode|kilo-code|continue|gemini-cli|hermes|openclaw> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"`
    - `baseUrlMode=SUGGESTION`: ask the user to confirm the address first, then add `--confirmed-other-domain`.
    - The output ends with `plan-hash <hash>`; keep it.
 2. **Apply** only after the user agrees: the same options with `apply --yes --plan-hash <hash>`. It backs up the file next to it, writes, and reads it back. If the target app is the app you are running in, run step 4 first and say the change takes effect after a restart.
@@ -143,9 +143,36 @@ Use `"npm": "@ai-sdk/openai"` instead when connecting through `openai-response`.
 
 **Gemini CLI** (`gemini`) — add `GOOGLE_GEMINI_BASE_URL=<origin>` and `GEMINI_MODEL=<modelName>` to `~/.env`, and have the user put the key in the same file as `GEMINI_API_KEY=` (it reads `GEMINI_API_KEY`, not `<VAR>`).
 
+**Hermes** — `~/.hermes/config.yaml` (`$HERMES_HOME` if set; `%LOCALAPPDATA%\hermes` on Windows). Add a named provider and point `model` at it; remove `base_url`, `api_key`, `key_env` and `key_cmd` from `model` so the named provider is used. `transport` is `chat_completions` for `openai`, `codex_responses` for `openai-response`, `anthropic_messages` for `anthropic` (then `api: <origin>`). Write the full path of the key file. On Windows use `key_env: <VAR>` instead of `key_cmd`. Restart Hermes afterwards.
+
+```yaml
+providers:
+  grandet-<site>:
+    api: <origin>/v1
+    key_cmd: "cat '<home>/.grandet/keys/<site>'"
+    transport: chat_completions
+    default_model: <modelName>
+model:
+  default: <modelName>
+  provider: custom:grandet-<site>
+```
+
+**OpenClaw** — `~/.openclaw/openclaw.json` (`$OPENCLAW_CONFIG_PATH` if set). The key stays in the Grandet key file and OpenClaw reads it through a file SecretRef, so the file never holds the key. Use `api: anthropic-messages` and `baseUrl: <origin>` for `anthropic`. Write the full path of the key file. Restart the OpenClaw gateway afterwards (`openclaw gateway restart`).
+
+```json
+{
+  "secrets": { "providers": { "grandet-<site>": { "source": "file", "path": "<home>/.grandet/keys/<site>", "mode": "singleValue" } } },
+  "models": { "mode": "merge", "providers": { "grandet-<site>": {
+    "baseUrl": "<origin>/v1", "api": "openai-completions",
+    "apiKey": { "source": "file", "provider": "grandet-<site>", "id": "value" },
+    "models": [{ "id": "<modelName>", "name": "<modelName>" }] } } },
+  "agents": { "defaults": { "model": { "primary": "grandet-<site>/<modelName>" } } }
+}
+```
+
 **Scripts and OpenAI-compatible SDKs** — `OPENAI_BASE_URL=<origin>/v1` and `OPENAI_API_KEY` from `<VAR>`.
 
-**Other apps** (OpenClaw, Hermes, Cline, Roo Code, Cherry Studio, Chatbox, TRAE, WorkBuddy, Cursor, Windsurf): give the field card below and the app's documentation link from the [app catalogue](app-catalog.md). If you can edit that app's config file and its official documentation gives the exact format, you may write it with the same preview, backup and confirmation.
+**Other apps** (Cline, Roo Code, Cherry Studio, Chatbox, TRAE, WorkBuddy, Cursor, Windsurf): give the field card below and the app's documentation link from the [app catalogue](app-catalog.md). If you can edit that app's config file and its official documentation gives the exact format, you may write it with the same preview, backup and confirmation.
 
 ```text
 应用 / App: <target app>

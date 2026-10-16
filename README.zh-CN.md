@@ -36,7 +36,7 @@
 4. 它用不扣费的方式检查 Key、分组和模型名对不对；
 5. 想撤销就说"恢复"。
 
-Codex、Claude Code、OpenCode、Kilo Code、Continue 和 Gemini CLI 由 Skill 自带的接入程序（`scripts/connect.mjs`，也能作为本机 MCP 使用）改配置，每一步都一样；其他应用会给你一张填写卡片和官方文档链接。在云端聊天里用时，它只能把命令和配置交给你自己执行。
+Codex、Claude Code、OpenCode、Kilo Code、Continue、Gemini CLI、Hermes 和 OpenClaw 由 Skill 自带的接入程序（`scripts/connect.mjs`，也能作为本机 MCP 使用）改配置，每一步都一样；其他应用会给你一张填写卡片和官方文档链接。在云端聊天里用时，它只能把命令和配置交给你自己执行。
 
 ## 可以这样问
 

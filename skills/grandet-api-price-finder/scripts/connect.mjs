@@ -22,6 +22,9 @@ export const APPS = {
   'kilo-code': { name: 'Kilo Code', protocols: ['openai', 'openai-response'], file: (h, env) => jsoncPath(join(env.XDG_CONFIG_HOME || join(h, '.config'), 'kilo'), 'kilo', 'jsonc'), format: 'opencode-json' },
   continue: { name: 'Continue', protocols: ['openai'], file: (h) => join(h, '.continue', 'config.yaml'), format: 'continue-yaml' },
   'gemini-cli': { name: 'Gemini CLI', protocols: ['gemini'], file: (h) => join(h, '.env'), format: 'dotenv' },
+  hermes: { name: 'Hermes', protocols: ['openai', 'openai-response', 'anthropic'], format: 'hermes-yaml',
+    file: (h, env, platform) => join(env.HERMES_HOME || (platform === 'win32' ? join(env.LOCALAPPDATA || join(h, 'AppData', 'Local'), 'hermes') : join(h, '.hermes')), 'config.yaml') },
+  openclaw: { name: 'OpenClaw', protocols: ['openai', 'anthropic'], file: (h, env) => env.OPENCLAW_CONFIG_PATH || join(h, '.openclaw', 'openclaw.json'), format: 'openclaw-json' },
 };
 const ALIASES = { kilo: 'kilo-code', claude: 'claude-code', gemini: 'gemini-cli' };
 
@@ -37,12 +40,14 @@ function jsoncPath(dir, base, preferred = 'json') {
   // Resolved synchronously later by resolveFile(); placeholder keeps APPS simple.
   return { dir, base, preferred };
 }
-async function resolveFile(app, home, env) {
-  const target = APPS[app].file(home, env);
+async function resolveFile(app, home, env, platform = process.platform) {
+  const target = APPS[app].file(home, env, platform);
   if (typeof target === 'string') return target;
   for (const ext of ['jsonc', 'json']) { const p = join(target.dir, `${target.base}.${ext}`); if (await exists(p)) return p; }
   return join(target.dir, `${target.base}.${target.preferred}`);
 }
+
+const idFor = (site) => `grandet-${site.replace(/[^a-z0-9]+/g, '-')}`;
 
 // ---------- inputs ----------
 export function normalise(input) {
@@ -68,7 +73,7 @@ export function normalise(input) {
   if (!/^[A-Za-z0-9][A-Za-z0-9._:/@+\-[\]]{0,159}$/.test(model)) fail('INVALID_MODEL', 'Use the exact modelName from the row');
   o.model = model;
   o.group = o.group ? String(o.group).slice(0, 200) : null;
-  o.id = `grandet-${site.replace(/[^a-z0-9]+/g, '-')}`;
+  o.id = idFor(site);
   o.variable = `GRANDET_${site.toUpperCase().replace(/[^A-Z0-9]+/g, '_')}_KEY`;
   o.home = resolve(o.home || homedir());
   o.platform = o.platform || process.platform;
@@ -198,6 +203,104 @@ function editDotenv(text, o) {
   return [...lines, ...(lines.length ? [''] : []), ...block].join('\n') + '\n';
 }
 
+
+// Hermes (https://hermes-agent.nousresearch.com/docs/integrations/providers): a named custom provider under
+// `providers:` and `model.provider: custom:<name>`. Only plain block YAML is rewritten; anything else is refused.
+const HERMES_TRANSPORT = { openai: 'chat_completions', 'openai-response': 'codex_responses', anthropic: 'anthropic_messages' };
+const HERMES_DROPPED = ['base_url', 'url', 'api', 'api_key', 'key_env', 'key_cmd'];
+function hermesEntry(o, indent) {
+  const q = JSON.stringify;
+  const api = o.protocol === 'anthropic' ? o.origin : `${o.origin}/v1`;
+  const key = o.platform === 'win32' ? `${indent}  key_env: ${o.variable}` : `${indent}  key_cmd: ${q(`cat '${o.keyPath.replace(/'/g, "'\\''")}'`)}`;
+  return [`${indent}${marker(o, 'begin')}`, `${indent}${o.id}:`, `${indent}  api: ${q(api)}`, key,
+    `${indent}  transport: ${HERMES_TRANSPORT[o.protocol]}`, `${indent}  default_model: ${q(o.model)}`, `${indent}${marker(o, 'end')}`];
+}
+const isTopKey = (line, key) => new RegExp(`^${key}\\s*:`).test(line);
+function blockEnd(lines, i) {
+  let e = i + 1;
+  while (e < lines.length && (lines[e].trim() === '' || /^\s/.test(lines[e]) || lines[e].startsWith('#'))) e++;
+  return e;
+}
+function editHermes(text, o) {
+  const q = JSON.stringify, provider = `custom:${o.id}`, notes = [];
+  const modelLines = (indent) => [`${indent}default: ${q(o.model)}`, `${indent}provider: ${q(provider)}`];
+  if (text === null || text.trim() === '') return { text: ['providers:', ...hermesEntry(o, '  '), 'model:', ...modelLines('  ')].join('\n') + '\n', notes };
+  if (/\t/.test(text)) fail('COMPLEX_YAML', 'config.yaml uses tabs; edit it by hand with the snippet');
+  if (/^(?:---|\.\.\.)\s*$/m.test(text.replace(/^---[ \t]*\n/, ''))) fail('COMPLEX_YAML', 'config.yaml has several YAML documents; edit it by hand with the snippet');
+  let { lines } = removeBlock(text.replace(/\r\n/g, '\n').replace(/\n$/, '').split('\n'), o);
+  const p = lines.findIndex((l) => isTopKey(l, 'providers'));
+  if (p < 0) lines = [...lines, 'providers:', ...hermesEntry(o, '  ')];
+  else {
+    if (!/^providers\s*:\s*(?:\{\s*\})?\s*(?:#.*)?$/.test(lines[p])) fail('COMPLEX_YAML', 'providers is not a plain mapping; edit it by hand with the snippet');
+    lines[p] = 'providers:';
+    const end = blockEnd(lines, p), children = lines.slice(p + 1, end);
+    if (children.some((l) => new RegExp(`^\\s+["']?${o.id}["']?\\s*:`).test(l))) fail('COMPLEX_YAML', `providers.${o.id} already exists outside a Grandet block; edit it by hand`);
+    const first = children.find((l) => l.trim() && !l.trim().startsWith('#'));
+    lines.splice(p + 1, 0, ...hermesEntry(o, first ? first.match(/^(\s*)/)[1] || '  ' : '  '));
+  }
+  const m = lines.findIndex((l) => isTopKey(l, 'model'));
+  if (m < 0) return { text: [...lines, 'model:', ...modelLines('  ')].join('\n') + '\n', notes };
+  const end = blockEnd(lines, m), children = lines.slice(m + 1, end);
+  if (!/^model\s*:\s*(?:#.*)?$/.test(lines[m])) {
+    if (/^model\s*:\s*[[{|>&*!]/.test(lines[m]) || children.some((l) => l.trim() && !l.trim().startsWith('#'))) fail('COMPLEX_YAML', 'model is not a plain mapping; edit it by hand with the snippet');
+    lines.splice(m, 1, 'model:', ...modelLines('  '));
+    notes.push('Replaced the one-line model setting; undo restores it');
+    return { text: lines.join('\n') + '\n', notes };
+  }
+  const first = children.find((l) => l.trim() && !l.trim().startsWith('#'));
+  const indent = first ? first.match(/^(\s*)/)[1] : '  ';
+  if (!indent) fail('COMPLEX_YAML', 'model is not a plain mapping; edit it by hand with the snippet');
+  const out = [], dropped = [];
+  let wroteDefault = false, wroteProvider = false;
+  for (let k = 0; k < children.length; k++) {
+    const line = children[k], km = line.match(new RegExp(`^${indent}([A-Za-z_][\\w-]*)\\s*:(.*)$`));
+    if (!km) {
+      if (line.trim() && !line.trim().startsWith('#') && !line.startsWith(`${indent} `)) fail('COMPLEX_YAML', 'model has an unexpected layout; edit it by hand with the snippet');
+      out.push(line); continue;
+    }
+    const key = km[1];
+    const touched = ['default', 'model', 'provider', ...HERMES_DROPPED].includes(key);
+    if (touched && children[k + 1] !== undefined && children[k + 1].startsWith(`${indent} `) && children[k + 1].trim()) fail('COMPLEX_YAML', `model.${key} spans several lines; edit it by hand with the snippet`);
+    if (touched && /^\s*[|>&*!]/.test(km[2])) fail('COMPLEX_YAML', `model.${key} uses a YAML feature this tool does not rewrite; edit it by hand`);
+    if (key === 'default' || key === 'model') {
+      if (!wroteDefault) { out.push(`${indent}default: ${q(o.model)}`); wroteDefault = true; } else dropped.push(key);
+    } else if (key === 'provider') { out.push(`${indent}provider: ${q(provider)}`); wroteProvider = true; }
+    else if (HERMES_DROPPED.includes(key)) dropped.push(key);
+    else out.push(line);
+  }
+  if (!wroteDefault) out.push(`${indent}default: ${q(o.model)}`);
+  if (!wroteProvider) out.push(`${indent}provider: ${q(provider)}`);
+  lines.splice(m + 1, children.length, ...out);
+  if (dropped.length) notes.push(`Removed model.${dropped.join(', model.')} so the new provider is used; undo restores them`);
+  return { text: lines.join('\n') + '\n', notes };
+}
+
+// OpenClaw (https://docs.openclaw.ai/concepts/model-providers/custom-providers): models.providers.<id> and
+// agents.defaults.model.primary. The key stays in the Grandet key file, referenced through a file SecretRef
+// (https://docs.openclaw.ai/gateway/secrets/secretref-contract), so openclaw.json never holds it.
+// Plain JSON only; JSON5 (comments, unquoted keys) is refused, not rewritten.
+const OPENCLAW_API = { openai: 'openai-completions', anthropic: 'anthropic-messages' };
+function editOpenclaw(text, o) {
+  let obj = {};
+  if (text !== null && text.trim() !== '') {
+    const { json, comment } = stripJsonc(text);
+    if (comment) fail('COMMENTS_PRESENT', 'openclaw.json has comments that a rewrite would drop; edit it by hand with the snippet');
+    try { obj = JSON.parse(json); } catch { fail('INVALID_JSON', 'openclaw.json is not plain JSON (JSON5 cannot be rewritten safely); edit it by hand with the snippet'); }
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) fail('INVALID_JSON');
+  }
+  const plain = (v) => (v && typeof v === 'object' && !Array.isArray(v) ? v : {});
+  const secrets = plain(obj.secrets), secretProviders = plain(secrets.providers);
+  secretProviders[o.id] = { source: 'file', path: o.keyPath, mode: 'singleValue' };
+  obj.secrets = { ...secrets, providers: secretProviders };
+  const models = plain(obj.models), providers = plain(models.providers);
+  providers[o.id] = { baseUrl: o.protocol === 'anthropic' ? o.origin : `${o.origin}/v1`, apiKey: { source: 'file', provider: o.id, id: 'value' },
+    api: OPENCLAW_API[o.protocol], models: [{ id: o.model, name: o.model }] };
+  obj.models = { ...models, mode: models.mode || 'merge', providers };
+  const agents = plain(obj.agents), defaults = plain(agents.defaults);
+  obj.agents = { ...agents, defaults: { ...defaults, model: { ...plain(defaults.model), primary: `${o.id}/${o.model}` } } };
+  return `${JSON.stringify(obj, null, 2)}\n`;
+}
+
 // ---------- plan ----------
 function lineDiff(before, after) {
   const a = (before ?? '').split('\n'), b = after.split('\n');
@@ -206,13 +309,26 @@ function lineDiff(before, after) {
   const removed = before === null ? [] : a.slice(p, a.length - s), added = b.slice(p, b.length - s);
   return [`@@ line ${p + 1}`, ...removed.map((l) => `- ${l}`), ...added.map((l) => `+ ${l}`)].join('\n');
 }
-const redactKeys = (text) => text.replace(/^([+-] \s*(?:apiKey|GEMINI_API_KEY)\s*[:=]\s*)(?!GRANDET_KEY_PLACEHOLDER)\S+/gm, '$1<hidden>');
+// In every changed line, a value whose field name looks like a secret shows <hidden>, and so does anything shaped
+// like a common API key: the preview goes to the agent and the user, and a removed or neighbouring key (for example
+// an old ANTHROPIC_AUTH_TOKEN, or a key inside a one-line JSON file) must not appear. References (env vars, files,
+// key commands) and Grandet's own placeholder stay visible.
+const SECRET_NAME = /(?:api[_-]?key|apikey|auth[_-]?token|access[_-]?token|secret|password|passwd|bearer|authorization|^token$|_token$)/i;
+const REFERENCE_NAME = /^(?:env_key|key_env|key_cmd|apiKeyHelper)$/i;
+const REFERENCE_VALUE = /GRANDET_KEY_PLACEHOLDER|\{file:|\{env:|\$\{|^["']?cat\s/;
+const SECRET_PAIR = /(["']?)([A-Za-z0-9_.-]+)\1(\s*[:=]\s*)("(?:[^"\\]|\\.)*"|'[^']*'|[^\s,{}[\]][^\s,}\]]*)/g;
+const KEY_SHAPED = /\b(?:sk-[A-Za-z0-9_-]{12,}|AIza[0-9A-Za-z_-]{20,}|xai-[A-Za-z0-9_-]{20,}|gsk_[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,})/g;
+const hidden = (value) => (value.startsWith('"') ? '"<hidden>"' : value.startsWith("'") ? "'<hidden>'" : '<hidden>');
+const redactKeys = (text) => text.split('\n').map((line) => (!/^[+-] /.test(line) ? line : line
+  .replace(SECRET_PAIR, (all, quote, name, separator, value) => (!SECRET_NAME.test(name) || REFERENCE_NAME.test(name) || REFERENCE_VALUE.test(value)
+    ? all : `${quote}${name}${quote}${separator}${hidden(value)}`))
+  .replace(KEY_SHAPED, '<hidden>'))).join('\n');
 // Embedded keys (Continue, Gemini CLI) are compared as the placeholder, so storing a key is not a user edit.
 const keyNeutral = (text) => text.replace(/^(\s*(?:apiKey:\s*|GEMINI_API_KEY=))\S+$/gm, `$1${PLACEHOLDER}`);
 
 export async function plan(input) {
   const o = normalise(input);
-  const file = await resolveFile(o.app, o.home, o.env);
+  const file = await resolveFile(o.app, o.home, o.env, o.platform);
   const before = await readText(file);
   let after, notes = [];
   switch (APPS[o.app].format) {
@@ -221,6 +337,8 @@ export async function plan(input) {
     case 'opencode-json': after = editOpencode(before, o); break;
     case 'continue-yaml': after = editContinue(before, o); break;
     case 'dotenv': after = editDotenv(before, o); break;
+    case 'hermes-yaml': ({ text: after, notes } = editHermes(before, o)); break;
+    case 'openclaw-json': after = editOpenclaw(before, o); break;
   }
   if (APPS[o.app].format === 'continue-yaml' && before !== null) after = keepExistingKey(before, after, o);
   if (APPS[o.app].format === 'dotenv' && before !== null) after = keepExistingKey(before, after, o);
@@ -231,6 +349,8 @@ export async function plan(input) {
   steps.push(`The user stores the key in their own terminal: ${keyCommand}`);
   if (o.app === 'gemini-cli') notes.push('Gemini CLI reads ~/.env only when the working folder and its parents have no .env of their own');
   if (o.app === 'codex' && o.platform !== 'win32') notes.push('Codex reads the key from an environment variable; open a new terminal after storing the key');
+  if (o.app === 'hermes') notes.push(o.platform === 'win32' ? 'Hermes reads the key from a user environment variable; restart Hermes after storing the key' : 'Hermes reads the key file through key_cmd; restart Hermes after storing the key');
+  if (o.app === 'openclaw') notes.push(`OpenClaw reads the key from ${o.keyPath} (a file SecretRef); restart the OpenClaw gateway after storing the key`);
   const planHash = sha(JSON.stringify({ app: o.app, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, changes: changes.map(({ path, beforeSha, afterSha }) => ({ path, beforeSha, afterSha })) }));
   return { o, changes, notes, steps, planHash, keyCommand };
 }
@@ -345,8 +465,9 @@ export async function storeKey(input, keyText) {
     }
   }
   if (o.app === 'claude-code' && o.platform === 'win32') { setWindowsUserEnv('ANTHROPIC_AUTH_TOKEN', o.keyPath); done.push('User environment variable ANTHROPIC_AUTH_TOKEN set'); }
+  if (o.app === 'hermes' && o.platform === 'win32') { setWindowsUserEnv(o.variable, o.keyPath); done.push(`User environment variable ${o.variable} set`); }
   if (o.app === 'continue' || o.app === 'gemini-cli') {
-    const file = await resolveFile(o.app, o.home, o.env);
+    const file = await resolveFile(o.app, o.home, o.env, o.platform);
     const text = await readText(file);
     const block = text && text.split('\n').findIndex((l) => l.trim() === marker(o, 'begin'));
     if (text === null || block < 0) fail('NOT_CONNECTED_YET', 'Apply the connection first, then store the key');
@@ -423,6 +544,7 @@ export async function restore(input) {
   if (platform === 'win32' && input.home === undefined) {
     if (record.app === 'codex') setWindowsUserEnv(record.variable, null);
     if (record.app === 'claude-code') setWindowsUserEnv('ANTHROPIC_AUTH_TOKEN', null);
+    if (record.app === 'hermes') setWindowsUserEnv(record.variable, null);
   }
   const keyPath = join(home, '.grandet', 'keys', record.site);
   if (input.deleteKey) { await rm(keyPath, { force: true }); results.push({ path: keyPath, action: 'key-deleted' }); }
