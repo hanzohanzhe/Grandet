@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, readdir, rm, stat } from 'node:fs/promises';
+import { cp, mkdtemp, readFile, readdir, rm, stat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -62,6 +62,17 @@ test('staged copies keep the Skill body and files, and only rewrite front matter
     for (const key of ['slug', 'displayName', 'version', 'summary', 'license']) assert.ok(hub.some((l) => l.startsWith(`${key}: `)), key);
   } finally {
     await rm(out, { recursive: true, force: true });
+  }
+});
+
+test('an older release checkout can be staged from another root', async () => {
+  const tmp = await mkdtemp(join(tmpdir(), 'grandet-registry-'));
+  try {
+    await cp(join(ROOT, SKILL_DIR), join(tmp, 'release', SKILL_DIR), { recursive: true });
+    const r = await stage({ root: join(tmp, 'release'), out: join(tmp, 'out') });
+    assert.equal(r.bodySha256, (await stage({ out: join(tmp, 'out2') })).bodySha256);
+  } finally {
+    await rm(tmp, { recursive: true, force: true });
   }
 });
 

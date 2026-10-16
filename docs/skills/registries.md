@@ -32,7 +32,7 @@ Registry version numbers: the product version stays `0.3.0`; each build becomes 
 | `skill-v0.3.0-build.20261016b` | `0.3.0-build.20261016.2` |
 | `skill-v0.3.0-build.20261016c` | `0.3.0-build.20261016.3` |
 
-The release tag must match the `Installation build` line in `SKILL.md`, or the run stops before uploading.
+The release tag must match the `Installation build` line in `SKILL.md`, or the run stops before uploading. The staging script is taken from the branch the workflow runs on and the Skill from the tag, so a release tagged before this workflow existed (such as `skill-v0.3.0-build.20261016c`) can be published with a manual run.
 
 ## Timing / 多久生效
 

@@ -157,9 +157,11 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const opt = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : undefined; };
   const out = opt('--out');
   if (!out) {
-    console.error('usage: node scripts/stage-registry-skill.mjs --out <empty dir> [--tag skill-v0.3.0-build.YYYYMMDDx]');
+    console.error('usage: node scripts/stage-registry-skill.mjs --out <empty dir> [--tag skill-v0.3.0-build.YYYYMMDDx] [--root <checkout of that tag>]');
     process.exit(2);
   }
-  const result = await stage({ tag: opt('--tag'), out: resolve(out) });
+  // --root lets a newer copy of this script stage an older release checkout that predates it.
+  const root = opt('--root') ? resolve(opt('--root')) : ROOT;
+  const result = await stage({ root, tag: opt('--tag'), out: resolve(out) });
   console.log(JSON.stringify(result, null, 2));
 }

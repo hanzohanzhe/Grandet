@@ -62,9 +62,16 @@ jobs:
             echo "::error::Not a Skill build tag: $tag"; exit 1
           fi
           { echo "tag=$tag"; echo "dry_run=$dry"; echo "targets=$targets"; echo "required=$required"; } >> "$GITHUB_OUTPUT"
+      # The staging script comes from this workflow's commit; the Skill comes from the release tag,
+      # so releases tagged before this workflow existed can still be published by hand.
+      - uses: actions/checkout@v4
+        with:
+          path: tools
+          persist-credentials: false
       - uses: actions/checkout@v4
         with:
           ref: refs/tags/${{ steps.input.outputs.tag }}
+          path: release
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -73,7 +80,7 @@ jobs:
         env:
           TAG: ${{ steps.input.outputs.tag }}
         run: |
-          node scripts/stage-registry-skill.mjs --tag "$TAG" --out "$RUNNER_TEMP/registry" > "$RUNNER_TEMP/stage.json"
+          node tools/scripts/stage-registry-skill.mjs --root release --tag "$TAG" --out "$RUNNER_TEMP/registry" > "$RUNNER_TEMP/stage.json"
           cp "$RUNNER_TEMP/stage.json" "$RUNNER_TEMP/registry/stage.json"
           echo "version=$(jq -r .registryVersion "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
           echo "changelog=$(jq -r .changelog "$RUNNER_TEMP/stage.json")" >> "$GITHUB_OUTPUT"
