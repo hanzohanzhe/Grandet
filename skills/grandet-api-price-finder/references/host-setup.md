@@ -220,25 +220,25 @@ Cloud chats, web apps and bots cannot edit the user's files: a cloud computer's 
 macOS / Linux:
 
 ```sh
-mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016e/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
+mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
 node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
 ```
 
 Windows PowerShell:
 
 ```powershell
-$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016e/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
+$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261016f/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
 node "$HOME\.grandet\grandet-api-price-finder\scripts\connect.mjs" preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
 ```
 
 If the user is in mainland China, or the GitHub download fails, give this first line instead. It downloads the same kit from Tencent SkillHub, whose archive has no top folder, so it extracts into the folder itself; the `node` line stays the same.
 
 ```sh
-mkdir -p ~/.grandet/grandet-api-price-finder && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.5' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet/grandet-api-price-finder || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet/grandet-api-price-finder)
+mkdir -p ~/.grandet/grandet-api-price-finder && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.6' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet/grandet-api-price-finder || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet/grandet-api-price-finder)
 ```
 
 ```powershell
-$g="$HOME\.grandet"; New-Item -ItemType Directory -Force "$g\grandet-api-price-finder" | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.5'; Expand-Archive -Force "$g\grandet-skill.zip" "$g\grandet-api-price-finder"
+$g="$HOME\.grandet"; New-Item -ItemType Directory -Force "$g\grandet-api-price-finder" | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.6'; Expand-Archive -Force "$g\grandet-skill.zip" "$g\grandet-api-price-finder"
 ```
 
 Then tell the user, in order:
