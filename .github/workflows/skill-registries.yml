@@ -31,6 +31,7 @@ defaults:
     shell: bash
 env:
   CLAWHUB_CLI: clawhub@0.23.3
+  CLAWHUB_OWNER: hanzohanzhe
   SKILLHUB_KIT_URL: https://skillhub-1388575217.cos.ap-guangzhou.myqcloud.com/install/latest.tar.gz
   SKILLHUB_HOST: https://api.skillhub.cn
 jobs:
@@ -96,6 +97,7 @@ jobs:
     needs: stage
     if: needs.stage.outputs.targets != 'skillhub'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -113,6 +115,9 @@ jobs:
         run: |
           dir="$RUNNER_TEMP/registry/clawhub/grandet-api-price-finder"
           stage="$RUNNER_TEMP/registry/stage.json"
+          slug="$(jq -r .slug "$stage")"
+          result="$RUNNER_TEMP/clawhub-result.json"
+          errors="$RUNNER_TEMP/clawhub-errors.txt"
           flags=()
           if [[ "$DRY_RUN" == true ]]; then
             flags+=(--dry-run)
@@ -124,15 +129,55 @@ jobs:
             umask 077
             jq -n --arg token "$CLAWHUB_TOKEN" '{registry: "https://clawhub.ai", token: $token}' > "$CLAWHUB_CONFIG_PATH"
           fi
+          status=0
           npx --yes "$CLAWHUB_CLI" skill publish "$dir" \
-            --slug "$(jq -r .slug "$stage")" \
+            --slug "$slug" \
             --name "$(jq -r .clawhub.name "$stage")" \
             --version "$VERSION" \
             --changelog "$CHANGELOG" \
             --categories "$(jq -r .clawhub.categories "$stage")" \
             --topics "$(jq -r .clawhub.topics "$stage")" \
-            --no-input --json "${flags[@]}" | tee "$RUNNER_TEMP/clawhub-result.json"
-          { echo "### ClawHub"; echo '```json'; cat "$RUNNER_TEMP/clawhub-result.json"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            --no-input --json "${flags[@]}" > "$result" 2> "$errors" || status=$?
+          cat "$result"
+          cat "$errors" >&2
+          if (( status != 0 )); then
+            # The CLI retries rate-limited requests. When a retry repeats an upload that already went through, ClawHub
+            # answers "Version ... already exists". Accept that only if ClawHub serves exactly this version, with the
+            # staged files, under our account. Any other failure still fails the job.
+            if [[ "$DRY_RUN" == true ]] || ! grep -qF "Error: Version $VERSION already exists." "$errors"; then exit "$status"; fi
+            api="https://clawhub.ai/api/v1/skills/$slug"
+            existing="$RUNNER_TEMP/clawhub-existing.json"
+            # A new version returns 404 here until ClawHub's security checks publish it, which takes several minutes.
+            for attempt in $(seq 1 40); do
+              code="$(curl -sS --max-time 30 -o "$existing" -w '%{http_code}' "$api/versions/$VERSION?ownerHandle=$CLAWHUB_OWNER" || true)"
+              if [[ "$code" == 200 ]]; then break; fi
+              if [[ ! "$code" =~ ^(000|404|429|5[0-9][0-9])$ ]]; then
+                echo "::error::ClawHub returned HTTP $code for $slug@$VERSION: $(head -c 300 "$existing" 2>/dev/null)"; exit 1
+              fi
+              echo "ClawHub: $slug@$VERSION is not public yet (HTTP $code, attempt $attempt/40)."
+              sleep 30
+            done
+            if [[ "$code" != 200 ]]; then
+              echo "::error::ClawHub says $VERSION already exists, but it is still not public under @$CLAWHUB_OWNER after 20 minutes."; exit 1
+            fi
+            jq -e --arg slug "$slug" --arg version "$VERSION" '.skill.slug == $slug and .version.version == $version' "$existing" > /dev/null \
+              || { echo "::error::ClawHub answered with another skill or version than $slug@$VERSION."; exit 1; }
+            curl -fsS --retry 5 --max-time 30 "$api?ownerHandle=$CLAWHUB_OWNER" | jq -e --arg owner "$CLAWHUB_OWNER" '.owner.handle == $owner' > /dev/null \
+              || { echo "::error::$slug on ClawHub is not owned by @$CLAWHUB_OWNER."; exit 1; }
+            # ClawHub adds a generated skill-card.md; every other file must match the staged folder byte for byte.
+            jq -r '.version.files[] | select(.path | ascii_downcase != "skill-card.md") | "\(.sha256)  \(.path)"' "$existing" \
+              | LC_ALL=C sort > "$RUNNER_TEMP/clawhub-remote.txt"
+            (cd "$dir" && find . -type f ! -path '*/.*' -printf '%P\n' | while IFS= read -r f; do
+              echo "$(sha256sum < "$f" | cut -d' ' -f1)  $f"
+            done) | LC_ALL=C sort > "$RUNNER_TEMP/clawhub-local.txt"
+            diff "$RUNNER_TEMP/clawhub-local.txt" "$RUNNER_TEMP/clawhub-remote.txt" \
+              || { echo "::error::ClawHub already has $slug@$VERSION, but its files differ from this release."; exit 1; }
+            jq -n --arg slug "$slug" --arg version "$VERSION" --arg owner "$CLAWHUB_OWNER" \
+              --argjson files "$(wc -l < "$RUNNER_TEMP/clawhub-local.txt")" \
+              '{ok: true, status: "already-published", slug: $slug, version: $version, owner: $owner, fileCount: $files}' > "$result"
+            echo "::notice::ClawHub already had $slug@$VERSION under @$CLAWHUB_OWNER with identical files; the duplicate-upload error was accepted."
+          fi
+          { echo "### ClawHub"; echo '```json'; cat "$result"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
   skillhub:
     needs: stage

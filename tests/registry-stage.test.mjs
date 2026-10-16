@@ -59,7 +59,9 @@ test('staged copies keep the Skill body and files, and only rewrite front matter
     assert.match(claw, /^ {4}requires:$/m);
     const hub = (await readFile(join(r.skillhub.dir, 'SKILL.md'), 'utf8')).split('\n---\n')[0].split('\n').slice(1);
     for (const line of hub) assert.match(line, /^[A-Za-z]\w*: \S/, `SkillHub reads flat lines only: ${line}`);
-    for (const key of ['slug', 'displayName', 'version', 'summary', 'license']) assert.ok(hub.some((l) => l.startsWith(`${key}: `)), key);
+    // No `tags`: SkillHub's publish API would turn each one into a distribution tag pointing at this version.
+    assert.deepEqual(hub.map((l) => l.slice(0, l.indexOf(':'))),
+      ['name', 'slug', 'displayName', 'version', 'summary', 'description', 'license', 'homepage']);
   } finally {
     await rm(out, { recursive: true, force: true });
   }

@@ -22,7 +22,7 @@ Until a secret exists, a release run skips that registry with a warning; a manua
 The job copies `skills/grandet-api-price-finder/` and rewrites only the `SKILL.md` front matter. The body and every other file stay byte-identical; `tests/registry-stage.test.mjs` checks this.
 
 - ClawHub: adds `version` and `metadata.openclaw` (homepage; needs `curl` or `node`). The `license` line is dropped because ClawHub publishes every Skill under MIT-0 and refuses other license terms.
-- SkillHub: adds `slug`, `displayName`, `version`, `summary`, `tags`, `license: Apache-2.0` and `homepage` as flat lines, which is what its CLI reads.
+- SkillHub: adds `slug`, `displayName`, `version`, `summary`, `license: Apache-2.0` and `homepage` as flat lines, which is what its CLI reads. There is deliberately no `tags` line: SkillHub's publish API treats front-matter tags as distribution tags (like `latest`) and points each one at the uploaded version, so they would not work as search keywords.
 
 Registry version numbers: the product version stays `0.3.0`; each build becomes a distinct, ordered SemVer.
 
@@ -37,6 +37,7 @@ The release tag must match the `Installation build` line in `SKILL.md`, or the r
 ## Timing / 多久生效
 
 - ClawHub holds each upload until its automated security checks pass, then lists it.
+- If ClawHub rate-limits the upload, its CLI retries. A retry can repeat an upload that already went through, and ClawHub then answers `Version … already exists`. The job accepts that answer only after the ClawHub API shows this exact version under `hanzohanzhe`, with the same files as the staged folder. Because a new version stays hidden until the security checks pass, the job waits up to 20 minutes for it. Any other error fails the job.
 - SkillHub runs an automated security scan (about 60 minutes) and may send a version to manual review. The first upload under this slug also stops SkillHub from mirroring the ClawHub copy.
 - Installed copies do not update themselves. ClawHub users run `clawhub update grandet-api-price-finder`.
 
