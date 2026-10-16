@@ -46,7 +46,7 @@ For each offer, one line:
 - who offers it and what it gives (their words, shortened);
 - the conditions marked required (for example "需绑卡、需实名"); unknown ones as "条件未写明";
 - every usage limit the offer's own `conditions` state, such as only for one client, a daily or hourly cap, slower at peak times, or only some models (for example "仅限 rp-hub、每日 240 次、高峰限速"). Never drop a stated limit to shorten the line, and never call a stated limit "未写明";
-- for a relay free group, the group name to choose: 「<plan>」;
+- for a relay free group, the group name to choose: 「<plan>」; in English, add `planEn` in parentheses when the service returns it, and keep 「<plan>」 as the name to select;
 - "截止 <date>" / "ends <date>" only from `deadline.statedDate` or `deadline.statedText`; for a relay free group's `deadline.endAt`, "记录有效期至 <date>" / "record valid until <date>"; and the claim link (`claimUrl`, or the site for a relay).
 
 Keep each line's hint within 50 characters; a line with several stated limits may run longer rather than lose one. Then filter by what the user has told you about themselves.
