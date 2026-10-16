@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { CHECKS, cases, checkAnswer } from '../scripts/check-answer.mjs';
+import { boardRequest } from '../scripts/run-answer-evals.mjs';
 
 const row = (sourceId, plan, blended, extra = {}) => ({ sourceId, plan, blended, unit: 'USD_CREDIT', providerCategory: 'RELAY', observedAt: '2026-10-10T07:00:00Z', freshness: 'FRESH', riskSignals: [], reviewReasons: [], listing: { action: 'LIST' }, ...extra });
 const cash = (vendor, providerCategory, extra = {}) => ({ vendor, providerCategory, currency: 'USD', unit: 'PER_MILLION_TOKENS', input: '3', output: '15', observedAt: '2026-10-16T01:39:42Z', priceKind: 'STANDARD', conditions: [], ...extra });
@@ -104,4 +105,25 @@ test('asking for the key in chat fails', () => {
   assert.equal(CHECKS.noKeyRequestInChat('把你的 API Key 发给我').pass, false);
   assert.equal(CHECKS.noKeyRequestInChat('Please paste your API key here').pass, false);
   assert.equal(CHECKS.noKeyRequestInChat('运行预览打印的 key 命令存 Key').pass, true);
+});
+
+test('the runner finds the board request the agent made', () => {
+  const curl = `/bin/bash -lc "curl --fail-with-body --silent --get 'https://grandet.ai/api/v1/board' --user-agent 'x' --data-urlencode 'model=Claude Sonnet 4.6' --data-urlencode 'mix=coding' --data-urlencode 'skillBuild=b'" in /w`;
+  const found = boardRequest(`noise\n${curl}\nmore`);
+  assert.equal(found.from, 'CURL_COMMAND');
+  assert.deepEqual(Object.fromEntries(found.params), { model: 'Claude Sonnet 4.6', mix: 'coding', skillBuild: 'b' });
+  assert.equal(boardRequest('fetch https://grandet.ai/api/v1/board?model=gpt-5.4&view=compact done').from, 'URL');
+  const mcp = boardRequest('tool grandet.grandet_find_cheapest_api({"model":"gpt-5.4","limit":10})');
+  assert.deepEqual([mcp.from, mcp.params.get('limit')], ['MCP_ARGUMENTS', '10']);
+  assert.equal(boardRequest('nothing here'), null);
+});
+
+test('every case has automation turns', () => {
+  for (const c of cases.cases) assert.ok(c.automation?.turns?.length >= 1, c.id);
+});
+
+test('E2: emphasis inside a phrase does not hide that the user runs the commands', () => {
+  const answer = '就用 oojj.top。你需要回到 **Mac 的终端**执行下面步骤；目前尚未连接。\nnode ~/.grandet/grandet-api-price-finder/scripts/connect.mjs key --app claude-code --site oojj.top';
+  const r = checkAnswer('E2', answer).results.find((x) => x.id === 'notClaimedConnected');
+  assert.equal(r.status, 'PASS', r.detail);
 });

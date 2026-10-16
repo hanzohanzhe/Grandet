@@ -219,6 +219,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "scripts/run-answer-evals.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "scripts/serve.mjs",
       "rights": "AGPL-3.0-only"
     },

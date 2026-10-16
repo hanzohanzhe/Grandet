@@ -89,7 +89,7 @@ export const CHECKS = {
   },
   notClaimedConnected: (a) => {
     const claimed = a.match(/(已经?接好了?|已连接|接入完成|已完成接入|connected successfully|is now connected|setup is complete)/i);
-    const waiting = has(a, /(等你|等待你|你来运行|你运行|在你(自己)?的(电脑|终端|Mac)|自己的终端|在 ?Mac ?(上|终端)|尚未接[通好]|还没接[通好]|运行后|waiting for you|on your (own )?(computer|terminal|Mac)|in your (own )?terminal|run (these|this|the following)|not connected yet)/i);
+    const waiting = has(a, /(等你|等待你|你来运行|你运行|在你(自己)?的(电脑|终端|Mac)|自己的终端|在 ?Mac ?(上|终端)|尚未接[通好]|还没接[通好]|尚未连接|还没连接|运行后|waiting for you|on your (own )?(computer|terminal|Mac)|in your (own )?terminal|run (these|this|the following)|not connected yet)/i);
     return { pass: !claimed && waiting, detail: claimed ? `claims it is connected: "${claimed[0]}"` : waiting ? 'says the user runs the commands' : 'does not say the user runs the commands on their computer' };
   },
   noKeyInCurl: (a) => {
@@ -127,8 +127,10 @@ export const CHECKS = {
 export function checkAnswer(caseId, answer, board = null) {
   const c = cases.cases.find((x) => x.id === caseId);
   if (!c) throw new Error(`unknown case ${caseId}`);
+  // Bold and italic markers can split a phrase ("回到 **Mac 的终端**"); the checks read the text without them.
+  const text = answer.replace(/\*\*|__/g, '');
   const results = c.checks.map((id) => {
-    const r = CHECKS[id](answer, board);
+    const r = CHECKS[id](text, board);
     return r === null ? { id, status: 'NOT_RUN', detail: 'needs --board' } : { id, status: r.pass ? 'PASS' : 'FAIL', detail: r.detail };
   });
   const failed = results.filter((r) => r.status === 'FAIL').length;
