@@ -326,6 +326,23 @@ const redactKeys = (text) => text.split('\n').map((line) => (!/^[+-] /.test(line
 // Embedded keys (Continue, Gemini CLI) are compared as the placeholder, so storing a key is not a user edit.
 const keyNeutral = (text) => text.replace(/^(\s*(?:apiKey:\s*|GEMINI_API_KEY=))\S+$/gm, `$1${PLACEHOLDER}`);
 
+// Codex and OpenCode/Kilo have one top-level default model, which apply replaces: the preview says so, and undo
+// reports the default the restored file sets.
+const DEFAULT_MODEL_FORMATS = ['toml', 'opencode-json'];
+const TOML_VALUE = String.raw`\s*=\s*(?:"((?:[^"\\]|\\.)*)"|'([^']*)'|([^\s#]+))`;
+function readDefaultModel(format, text) {
+  if (!DEFAULT_MODEL_FORMATS.includes(format) || text === null || text.trim() === '') return null;
+  if (format === 'opencode-json') {
+    try { const v = JSON.parse(stripJsonc(text).json).model; return typeof v === 'string' && v ? v : null; } catch { return null; }
+  }
+  const lines = text.replace(/\r\n/g, '\n').split('\n');
+  const first = lines.findIndex((l) => /^\s*\[/.test(l));
+  const top = first < 0 ? lines : lines.slice(0, first);
+  const get = (key) => { const re = new RegExp(`^\\s*${key}${TOML_VALUE}`); for (const l of top) { const m = l.match(re); if (m) return m[1] ?? m[2] ?? m[3]; } return null; };
+  const model = get('model'), provider = get('model_provider');
+  return model ? (provider ? `${model} (${provider})` : model) : null;
+}
+
 export async function plan(input) {
   const o = normalise(input);
   const file = await resolveFile(o.app, o.home, o.env, o.platform);
@@ -343,6 +360,9 @@ export async function plan(input) {
   if (APPS[o.app].format === 'continue-yaml' && before !== null) after = keepExistingKey(before, after, o);
   if (APPS[o.app].format === 'dotenv' && before !== null) after = keepExistingKey(before, after, o);
   const changes = before === after ? [] : [{ path: file, action: before === null ? 'create' : 'modify', beforeSha: before === null ? null : sha(before), afterSha: sha(after), diff: redactKeys(lineDiff(before, after)), content: after }];
+  const format = APPS[o.app].format, from = readDefaultModel(format, before), to = readDefaultModel(format, after);
+  const defaultModel = changes.length && to && from !== to ? { path: file, from, to } : null;
+  if (defaultModel) notes.unshift(from ? `Will change the default model from ${from} to ${to}; undo restores ${from}` : `Will set ${to} as the default model; undo removes it`);
   const steps = [];
   if (o.group) steps.push(`On ${o.site}, create the token in group 「${o.group}」.`);
   const keyCommand = `node "${SELF}" key --app ${o.app} --site ${o.site}${o.home === resolve(homedir()) ? '' : ` --home "${o.home}"`}`;
@@ -352,7 +372,7 @@ export async function plan(input) {
   if (o.app === 'hermes') notes.push(o.platform === 'win32' ? 'Hermes reads the key from a user environment variable; restart Hermes after storing the key' : 'Hermes reads the key file through key_cmd; restart Hermes after storing the key');
   if (o.app === 'openclaw') notes.push(`OpenClaw reads the key from ${o.keyPath} (a file SecretRef); restart the OpenClaw gateway after storing the key`);
   const planHash = sha(JSON.stringify({ app: o.app, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, changes: changes.map(({ path, beforeSha, afterSha }) => ({ path, beforeSha, afterSha })) }));
-  return { o, changes, notes, steps, planHash, keyCommand };
+  return { o, changes, notes, steps, planHash, keyCommand, defaultModel };
 }
 function keepExistingKey(before, after, o) {
   // Re-applying keeps a key already filled in by `key`.
@@ -363,9 +383,10 @@ function keepExistingKey(before, after, o) {
   const m = keyLine && keyLine.match(/(?:apiKey:\s*|GEMINI_API_KEY=)(\S+)/);
   return m && m[1] !== PLACEHOLDER ? after.replace(PLACEHOLDER, m[1]) : after;
 }
-export const publicPlan = ({ o, changes, notes, steps, planHash, keyCommand }) => ({
+export const publicPlan = ({ o, changes, notes, steps, planHash, keyCommand, defaultModel }) => ({
   app: o.app, appName: APPS[o.app].name, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, group: o.group, planHash,
   changes: changes.map(({ path, action, diff }) => ({ path, action, diff })), notes, steps, keyCommand, keyPath: o.keyPath,
+  defaultModel: defaultModel ? { from: defaultModel.from, to: defaultModel.to } : null,
 });
 
 // ---------- state ----------
@@ -386,7 +407,7 @@ export async function apply(input) {
   if (!input.yes) fail('CONFIRMATION_REQUIRED', mcp ? 'Show the preview to the user; call grandet_connect_apply again with confirmed: true and the preview planHash only after they agree' : 'Show the preview to the user and pass --yes --plan-hash <hash from preview> only after they agree');
   if (input.planHash && input.planHash !== p.planHash) fail('PLAN_CHANGED', mcp ? 'The file changed since the preview; call grandet_connect_preview again' : 'The file changed since the preview; preview again');
   const state = await loadState(p.o.home);
-  const record = { id: randomUUID(), at: new Date().toISOString(), app: p.o.app, site: p.o.site, variable: p.o.variable, platform: p.o.platform, files: [], restoredAt: null };
+  const record = { id: randomUUID(), at: new Date().toISOString(), app: p.o.app, site: p.o.site, variable: p.o.variable, platform: p.o.platform, files: [], defaultModel: p.defaultModel, restoredAt: null };
   for (const c of p.changes) {
     let backup = null;
     if (c.action === 'modify') { backup = `${c.path}.grandet-backup-${stamp()}`; let n = 1; while (await exists(backup)) backup = `${c.path}.grandet-backup-${stamp()}-${n++}`; await copyFile(c.path, backup); }
@@ -519,6 +540,11 @@ export async function restore(input) {
     if (f.existed) { await copyFile(f.backup, f.path); results.push({ path: f.path, action: 'restored', from: f.backup }); }
     else { await rm(f.path, { force: true }); results.push({ path: f.path, action: 'removed' }); }
   }
+  if (record.defaultModel) {
+    // Read back what the restored file sets, so the report is what the app will use (null = the app's own default).
+    const { path } = record.defaultModel;
+    results.push({ path, action: 'default-model-restored', model: readDefaultModel(APPS[record.app].format, await readText(path)) });
+  }
   const platform = record.platform || process.platform;
   if (platform !== 'win32') {
     const edits = (state.keyEdits || []).filter((e) => e.site === record.site);
@@ -584,7 +610,7 @@ function human(command, r) {
   }
   if (command === 'verify') return `${r.ok ? 'OK' : 'FAILED'} (${r.status ?? 'no response'}): ${r.message}`;
   if (command === 'key') return [...r.done, 'The key was not shown. Go back to the assistant and say it is done.'].join('\n');
-  if (command === 'restore') return [`Undone: ${r.app} · ${r.site}`, ...r.results.map((x) => `${x.action} ${x.path}`), ...(r.keyKept ? [`The stored key is kept at ${r.keyKept}; delete it if you no longer need it.`] : [])].join('\n');
+  if (command === 'restore') return [`Undone: ${r.app} · ${r.site}`, ...r.results.map((x) => (x.action === 'default-model-restored' ? `Default model back to ${x.model ?? "the app's own default"}` : `${x.action} ${x.path}`)), ...(r.keyKept ? [`The stored key is kept at ${r.keyKept}; delete it if you no longer need it.`] : [])].join('\n');
   return JSON.stringify(r, null, 2);
 }
 async function main(argv) {

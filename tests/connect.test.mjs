@@ -295,6 +295,33 @@ test('CLI: preview, apply with plan hash, key from stdin, restore; the key never
   assert.match((await run(['bogus-flag-test', '--nope'])).err, /UNKNOWN_ARGUMENT/);
 });
 
+test('codex and opencode: preview says the default model changes, undo brings the old default back', async () => {
+  const h = await home(); await mkdir(join(h, '.codex'), { recursive: true });
+  await writeFile(join(h, '.codex/config.toml'), 'model = "gpt-6"\n');
+  const opts = base(h, 'codex', { protocol: 'openai-response' });
+  const p = publicPlan(await plan(opts));
+  assert.deepEqual(p.defaultModel, { from: 'gpt-6', to: 'claude-sonnet-4-6 (grandet-apijing-com)' });
+  assert.equal(p.notes[0], 'Will change the default model from gpt-6 to claude-sonnet-4-6 (grandet-apijing-com); undo restores gpt-6');
+  await apply({ ...opts, yes: true, planHash: p.planHash });
+  assert.equal((await apply({ ...opts, yes: true })).defaultModel, null, 'a second apply changes nothing');
+  const undo = await restore({ home: h });
+  assert.equal(undo.results.find((r) => r.action === 'default-model-restored').model, 'gpt-6');
+  assert.equal(await read(join(h, '.codex/config.toml')), 'model = "gpt-6"\n');
+
+  const o = await home(); const oc = base(o, 'opencode', { protocol: 'openai' });
+  assert.equal(publicPlan(await plan(oc)).notes[0], 'Will set grandet-apijing-com/claude-sonnet-4-6 as the default model; undo removes it');
+  await mkdir(join(o, '.config/opencode'), { recursive: true });
+  await writeFile(join(o, '.config/opencode/opencode.jsonc'), '{"model":"anthropic/claude-haiku-4-5"}\n');
+  const p2 = publicPlan(await plan(oc));
+  assert.equal(p2.changes[0].path, join(o, '.config/opencode/opencode.jsonc'));
+  assert.deepEqual(p2.defaultModel, { from: 'anthropic/claude-haiku-4-5', to: 'grandet-apijing-com/claude-sonnet-4-6' });
+  await apply({ ...oc, yes: true });
+  const cli = await run(['restore', '--home', o]);
+  assert.equal(cli.code, 0, cli.err); assert.match(cli.out, /^Default model back to anthropic\/claude-haiku-4-5$/m);
+  assert.equal(await read(join(o, '.config/opencode/opencode.jsonc')), '{"model":"anthropic/claude-haiku-4-5"}\n');
+  assert.equal(publicPlan(await plan(base(o, 'claude-code'))).defaultModel, null, 'only Codex, OpenCode and Kilo Code report it');
+});
+
 test('MCP: lists four tools and previews without writing', async () => {
   const h = await home();
   const child = spawn(process.execPath, [mcp], { stdio: ['pipe', 'pipe', 'pipe'] });
