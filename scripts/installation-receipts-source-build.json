@@ -1,6 +1,6 @@
 {
   "schema": "grandet.receipt-helper-source/v1",
-  "sourceBuild": "grandet-skill-0.3.0-build.20261016d",
+  "sourceBuild": "grandet-skill-0.3.0-build.20261016e",
   "compatibleSkillVersions": [
     "0.3.0"
   ],
@@ -10,12 +10,12 @@
   "nativeAcceptance": "NOT_RUN",
   "integrationStatus": "LOCAL_VALIDATED_NOT_WEBSITE_CERTIFIED",
   "files": {
-    "scripts/install-price-finder.mjs": "af8f06af99e60dc14d2c9234424267b8cd512a1e66747dcad7401f02aca3c371",
+    "scripts/install-price-finder.mjs": "64258bd223b9ae183be95ae5baa4299e6fa091e0c3f45cf7b610a6e7dd651265",
     "scripts/installation-receipts.mjs": "4b93679e501800e26da71a16dcf6b3420dc8a391fb85c6e5cf4add9ce589d68e",
-    "scripts/verify-installation.py": "e92e9a263036b2beff430dbd224e2e862ceb1eef17eb898c0dd03fe23d865f4b"
+    "scripts/verify-installation.py": "be7fe60fe999685c74123e6a4e86370cc0bb6167d0d7ca9688d4cf14fea7e9f4"
   },
   "version": "0.3.0",
   "releaseBuild": true,
-  "plannedTag": "skill-v0.3.0-build.20261016d",
+  "plannedTag": "skill-v0.3.0-build.20261016e",
   "receiptSupport": "INCLUDED"
 }
