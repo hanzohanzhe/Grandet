@@ -31,7 +31,6 @@ defaults:
     shell: bash
 env:
   CLAWHUB_CLI: clawhub@0.23.3
-  CLAWHUB_OWNER: hanzohanzhe
   SKILLHUB_KIT_URL: https://skillhub-1388575217.cos.ap-guangzhou.myqcloud.com/install/latest.tar.gz
   SKILLHUB_HOST: https://api.skillhub.cn
 jobs:
@@ -97,7 +96,6 @@ jobs:
     needs: stage
     if: needs.stage.outputs.targets != 'skillhub'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -112,6 +110,7 @@ jobs:
           REQUIRED: ${{ needs.stage.outputs.required }}
           VERSION: ${{ needs.stage.outputs.version }}
           CHANGELOG: ${{ needs.stage.outputs.changelog }}
+          CLAWHUB_OWNER: hanzohanzhe
         run: |
           dir="$RUNNER_TEMP/registry/clawhub/grandet-api-price-finder"
           stage="$RUNNER_TEMP/registry/stage.json"

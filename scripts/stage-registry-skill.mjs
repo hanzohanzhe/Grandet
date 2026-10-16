@@ -19,6 +19,7 @@ export const LISTING = {
   skillhub: {
     displayName: 'Grandet API 比价',
     summary: '找模型 API 和中转站的最低标价与免费额度，并把选好的 API 接到你的应用里',
+    tags: ['api', 'llm', '比价', '中转站', '免费额度'],
     license: 'Apache-2.0',
   },
 };
@@ -67,8 +68,6 @@ export function splitSkill(text) {
 
 // The registries read different front matter: ClawHub parses full YAML; SkillHub's CLI reads only flat
 // `key: value` and `key: [a, b]` lines. Strings are JSON-quoted, which YAML reads as double-quoted scalars.
-// SkillHub gets no `tags` line: its publish API turns front-matter tags into distribution tags (like `latest`)
-// that each point at the uploaded version, not into search keywords.
 const q = (s) => JSON.stringify(s);
 
 export function clawhubFrontMatter(fields, version) {
@@ -90,8 +89,8 @@ export function clawhubFrontMatter(fields, version) {
 }
 
 export function skillhubFrontMatter(fields, version) {
-  const { displayName, summary, license } = LISTING.skillhub;
-  for (const s of [fields.description, displayName, summary]) {
+  const { displayName, summary, tags, license } = LISTING.skillhub;
+  for (const s of [fields.description, displayName, summary, ...tags]) {
     if (/["\\]/.test(s)) throw new Error('SKILLHUB_VALUE_NEEDS_ESCAPING');
   }
   return [
@@ -102,6 +101,7 @@ export function skillhubFrontMatter(fields, version) {
     `version: ${version}`,
     `summary: ${summary}`,
     `description: ${q(fields.description)}`,
+    `tags: [${tags.join(', ')}]`,
     `license: ${license}`,
     `homepage: ${HOMEPAGE}`,
     '---',
