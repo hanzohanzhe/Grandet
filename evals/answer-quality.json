@@ -1,6 +1,6 @@
 {
   "schema": "grandet.skill-answer-evals/v1",
-  "build": "grandet-skill-0.3.0-build.20261016g",
+  "build": "grandet-skill-0.3.0-build.20261016h",
   "howTo": "Ask each prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--board <board.json>]. For E1 save the board response the answer used (or fetch the same parameters once) and pass it with --board. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request. scripts/run-answer-evals.mjs runs every case automatically with the local Codex CLI in empty test folders, replays the board request the agent made and checks each final answer.",
   "cases": [
     {
