@@ -15,6 +15,13 @@ Package version: `0.3.0`. Reply in the user's language and keep answers short.
 
 This Skill does three things with grandet.ai: find the **lowest listed price** for the user's model, point to **free credits** when they apply, and **connect** the chosen offer to the user's app.
 
+## What this Skill changes on your computer
+
+Price, free-credit and quality lookups only read from grandet.ai and change nothing on the computer; when this Skill loads on its own, that is all it does. Two optional parts write to the computer. Run them only when the user asked for them in this conversation, and write only after the user confirms the change you showed:
+
+- **Connecting an offer changes which model API an app uses.** `scripts/connect.mjs` edits that app's model-provider settings and can change its default model, so the app's later sessions send their requests, and spend credit, at the chosen site: Codex `~/.codex/config.toml`, Claude Code `~/.claude/settings.json`, OpenCode `~/.config/opencode/opencode.json(c)`, Kilo Code `~/.config/kilo/kilo.json(c)`, Continue `~/.continue/config.yaml`, Gemini CLI `~/.env`, Hermes `~/.hermes/config.yaml` (Windows: `%LOCALAPPDATA%\hermes\config.yaml`), OpenClaw `~/.openclaw/openclaw.json`. It keeps a backup next to each file and records the change in `~/.grandet/connect/state.json`. The key the user types goes to `~/.grandet/keys/<site>`, readable by the user only. Continue and Gemini CLI also hold it in their config file, which then becomes readable by the user only. Codex gets a shell-profile line that reads the key file; on Windows, Codex, Claude Code and Hermes get a user environment variable. `connect.mjs restore` (the user says "恢复" or "undo") puts every file back as it was.
+- **Installing makes this Skill load in later conversations.** `scripts/install-price-finder.mjs` and `scripts/verify-installation.py` copy the Skill into an app's user-level skill folder (for example `~/.agents/skills` or `~/.claude/skills`) and send an installation receipt to grandet.ai with random IDs, the version and the content hash, never paths, accounts, chats or keys. `--no-telemetry` or `GRANDET_INSTALL_TELEMETRY=0` turns the receipt off; `--uninstall` removes the Skill ([installation](references/installation.md)).
+
 ## Always
 
 - **Requests.**

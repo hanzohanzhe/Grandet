@@ -393,10 +393,14 @@ export const publicPlan = ({ o, changes, notes, steps, planHash, keyCommand, def
 const statePath = (home) => join(home, '.grandet', 'connect', 'state.json');
 async function loadState(home) { const t = await readText(statePath(home)); return t ? JSON.parse(t) : { schema: 'grandet.connect-state/v1', changes: [] }; }
 async function saveState(home, state) { await atomicWrite(statePath(home), `${JSON.stringify(state, null, 2)}\n`); }
+// The replacement keeps the permissions of the file it replaces unless a mode is given, so a config the user
+// locked down (chmod 600) stays locked. writeFile's mode is filtered by the umask, so it is set explicitly.
 async function atomicWrite(path, text, mode) {
   await mkdir(dirname(path), { recursive: true });
+  const keep = mode ?? await stat(path).then((s) => s.mode & 0o777, () => undefined);
   const tmp = `${path}.grandet-tmp-${process.pid}-${randomUUID().slice(0, 8)}`;
-  await writeFile(tmp, text, mode ? { mode } : undefined);
+  await writeFile(tmp, text, keep ? { mode: keep } : undefined);
+  if (keep) await chmod(tmp, keep).catch(() => {});
   await rename(tmp, path);
 }
 const stamp = () => new Date().toISOString().replace(/[-:]/g, '').replace('T', '-').slice(0, 15);
@@ -494,8 +498,9 @@ export async function storeKey(input, keyText) {
     if (text === null || block < 0) fail('NOT_CONNECTED_YET', 'Apply the connection first, then store the key');
     const lines = text.split('\n');
     for (let i = block; i < lines.length && lines[i].trim() !== marker(o, 'end'); i++) lines[i] = lines[i].replace(/(apiKey:\s*|GEMINI_API_KEY=)\S*$/, `$1${key}`);
-    await atomicWrite(file, lines.join('\n'));
-    done.push(`Key written into ${file}`);
+    // The file now holds the key, so only its owner may read it, as with the key file; undo restores the old mode.
+    await atomicWrite(file, lines.join('\n'), 0o600);
+    done.push(`Key written into ${file} (readable by you only)`);
   }
   return { saved: true, app: o.app, site: o.site, done };
 }
