@@ -102,11 +102,13 @@ test('Hermes installs follow HERMES_HOME and are checked with hermes skills list
   for (const words of ['$HERMES_HOME/skills/grandet-api-price-finder/', 'only when it is empty use the default', '--app hermes', 'hermes skills list']) assert.ok(hermes.includes(words), words);
 });
 
-test('credit rows are compared within one unit or converted at the site rate the answer states', async () => {
+test('credit rows are compared within one board and never converted by the agent', async () => {
   const rule = body.slice(body.indexOf('**Credit is not cash.**'), body.indexOf('## 2. Free credits'));
-  for (const words of ['`USD_CREDIT` and `CNY_CREDIT`', 'compare numbers only within one board', 'https://<sourceId>/api/status', '`data.price` is the CNY paid for 1 USD of credit', 'Say in the answer that you converted']) {
+  for (const words of ['`USD_CREDIT` and `CNY_CREDIT`', 'compare numbers only within one board', 'Never rank, add or convert numbers across boards', "never look up a site's own pages", 'until Grandet converts them']) {
     assert.ok(rule.includes(words), words);
   }
+  // Price lookups only read from grandet.ai; a relay's own pages carry operator-written text and are no rate source.
   const format = await read('references/response-format.md');
-  assert.doesNotMatch(format, /never convert credit into cash\./, 'response format allows the stated-rate conversion');
+  for (const text of [body, format]) assert.doesNotMatch(text, /<sourceId>\/api\/status/);
+  assert.match(format, /never convert credit into cash\./);
 });

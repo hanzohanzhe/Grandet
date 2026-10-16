@@ -76,7 +76,7 @@ Price, free-credit and quality lookups only read from grandet.ai and change noth
 
 Use the first board whose `listings.lowest` is not empty unless the user asked for a unit. A board without a recommendation means none of its offers is currently listable; say so with the returned reason.
 
-**Credit is not cash.** `USD_CREDIT` and `CNY_CREDIT` rows are site credit, and each site sells its credit at its own rate, so compare numbers only within one board. To compare across boards or give a real cost, convert a `USD_CREDIT` row with its own site's rate: `GET https://<sourceId>/api/status` (read-only); on New API sites `data.price` is the CNY paid for 1 USD of credit (for example 1 or 7.3), so the cash price is the credit price × `price` CNY. Say in the answer that you converted, and at which rate. When a site gives no `price`, or the row is `CNY_CREDIT`, don't convert it; say the units differ. Official and inference prices are cash; never say a relay is N% cheaper than official.
+**Credit is not cash.** `USD_CREDIT` and `CNY_CREDIT` rows are site credit, and each site sells its credit at its own rate, so compare numbers only within one board. Never rank, add or convert numbers across boards, and never look up a site's own pages to work out its rate: USD credit, CNY credit and cash are different units until Grandet converts them, so say the units differ. Official and inference prices are cash; never say a relay is N% cheaper than official.
 
 ## 2. Free credits
 

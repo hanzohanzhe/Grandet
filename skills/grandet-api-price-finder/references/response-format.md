@@ -42,12 +42,12 @@ Check that the returned model and target app match the request before answering.
 5. **未参与排序 / Not ranked**, from `coverage.excluded`, at most one line each:
    - `CACHE_PRICE_UNKNOWN` above 0 and `scope.mix.cacheRead` above 0: "另有 N 条没标缓存价，未参与排序。" / "N more quotes list no cache price and were not ranked."
    - `OTHER_BILLING_UNIT` above 0 and the user asked for a per-image or per-request price: "另有 N 条按张或按次计价的报价，不在按 token 的排序里：" plus the board link (item 8) with `&view=declarations` added.
-6. Other boards: at most one line, such as "人民币额度另有一档，最低 X；单位不同，不能直接比较。" Compare them only after converting with each site's own rate, as in "Credit is not cash" in the [Skill](../SKILL.md), and say so: "按各站充值价换算：relay-a.example 1 美元额度＝7.3 元，约 3.65 元／百万总 token（示例）".
+6. Other boards: at most one line, such as "人民币额度另有一档，最低 X；单位不同，不能直接比较。"
 7. **官方价与推理服务商 / Official and inference prices** (cash), only when `official` or `listings.inference` has entries:
    - 官方价: vendor, input and output prices with currency, for example "官方价（现金）：Anthropic 输入 3 / 输出 15 美元／百万 token，10 月 16 日观察". When several entries differ only in cache conditions, show the first and mention cache prices only if the user asked about caching.
    - 推理服务商: each entry the same way; add "（聚合平台）" for an aggregator; add "输入比官方低 N%" / "输出比官方高 N%" only from `cashPercentVsOfficial`.
    - Then one line: "中转站是额度价，和官方、推理服务商的现金价单位不同，不能直接相比。"
-   - Never compute a percentage yourself, never say a relay is N% cheaper than official, and never convert credit into cash except with that site's own `/api/status` rate, stated in the answer. If the user asked for the official price and `official` is empty, say Grandet has not recorded it for this model.
+   - Never compute a percentage yourself, never say a relay is N% cheaper than official, and never convert credit into cash. If the user asked for the official price and `official` is empty, say Grandet has not recorded it for this model.
 8. **链接 / Link**: the first `lowest` row's `boardUrl`, copied exactly, as "报价出处：<boardUrl>" / "Price sources: <boardUrl>". You may drop `utm_*` parameters; keep every other one (`model`, `currency`, `share` …). Every answer that gives lowest prices includes it.
 9. One question, in the user's language: "要帮你接到 <app> 吗？" / "Want me to connect it to <app>?" (if the app is unknown: "要接到哪个应用？" / "Which app should I connect it to?").
 10. Optional last line: one free-credit mention when it applies ([free credits](free-credits.md)), then any relevant unexpired `notices`, once per notice ID.
