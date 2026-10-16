@@ -1,6 +1,6 @@
 {
   "schema": "grandet.skill-answer-evals/v1",
-  "build": "grandet-skill-0.3.0-build.20261016",
+  "build": "grandet-skill-0.3.0-build.20261016b",
   "howTo": "Ask each prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--board <board.json>]. For E1 save the board response the answer used (or fetch the same parameters once) and pass it with --board. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request.",
   "cases": [
     {

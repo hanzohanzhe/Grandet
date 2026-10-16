@@ -9,7 +9,7 @@
 把这句话发给你正在用的 Agent（Codex、Claude Code、Cursor 等）：
 
 ```text
-帮我安装 Grandet：https://github.com/hanzohanzhe/Grandet
+帮我安装 Grandet Skill：https://grandet.ai/download.md
 ```
 
 剩下的 Agent 会自己做完；需要你登录或点确认时，它会告诉你点哪里。装好后新开一个对话，直接问：

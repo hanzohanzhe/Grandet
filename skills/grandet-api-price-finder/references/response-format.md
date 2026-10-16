@@ -72,6 +72,7 @@ Labels: credit boards say "额度价，非现金" / "credit price, not cash"; ca
 ## Special results
 
 - `status=NO_ELIGIBLE_RECOMMENDATION` on every board: "这组条件下暂时没有可列出的报价：<returned reason>。" plus the link. Do not switch model or search outside Grandet.
+- No board has `lowest` rows but a board has `reference` rows (for example every quote is older than the freshness limit): say there is no current listed price, then list up to two `reference` rows with their observation dates and "（报价较旧）". Do not present them as the lowest price.
 - `scope.application.status=PRICE_ONLY_UNVERIFIED_APP_ROUTE`: give the prices and add "接入这个应用的方式 Grandet 还没核实。"
 - `scope.application.status=NEEDS_CONNECTION_DETAILS`: say the returned `nextStep` in the user's language.
 - `NEEDS_CLARIFICATION` with candidates: ask "你指的是 X 还是 Y？" and wait.

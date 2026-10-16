@@ -9,7 +9,7 @@
 Paste this into the agent you already use (Codex, Claude Code, Cursor and others):
 
 ```text
-Install Grandet for me: https://github.com/hanzohanzhe/Grandet
+Install Grandet Skill for me: https://grandet.ai/download.md
 ```
 
 The agent does the rest. If it needs you to sign in or approve something, it tells you exactly what to click. Then open a new conversation and ask:
