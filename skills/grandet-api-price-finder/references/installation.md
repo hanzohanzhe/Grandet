@@ -87,9 +87,15 @@ Check that the app loads the saved Skill, reads current Grandet data and gives a
 
 If the new conversation asks for the file again, the install did not persist. Fix the location or binding; don't tell the user to keep uploading. Account, runtime or mode limits stay recorded as pending or blocked until they are resolved.
 
-Use the current files from [Grandet's GitHub repository](https://github.com/hanzohanzhe/Grandet). New installations default to the registered **skill-v0.3.0-build.20261016c Release ZIP or .skill attachment**; reuse complete existing checkouts and caches without re-downloading. Exact contents are identified by commit and SHA-256.
+## Uninstalling
+
+Local apps: from the extracted package, run `node scripts/install-price-finder.mjs --app <installer-id> --uninstall` (`--dry-run` previews it). It moves this app's `grandet-api-price-finder` folder, and any copy in the app's own legacy folder, into `.grandet-skill-backups` beside the skill folder, where an update keeps the old copy. Nothing is deleted; move the backup back to restore. A copy in another app's own folder (for example `~/.agents/skills/` when uninstalling Cursor or Gemini CLI) is left alone and the installer names the app to uninstall with. Several apps share `~/.agents/skills/`, so removing the copy there removes it for all of them. Without Node, move the folder out of every skill folder by hand. Uninstalling sends no receipt and keeps local receipt state.
+
+Account, web and cloud apps: delete or disable the Skill in the Skills manager where it was saved. A local uninstall does not change a copy already synced to Cursor Cloud Agents.
+
+Use the current files from [Grandet's GitHub repository](https://github.com/hanzohanzhe/Grandet). New installations default to the registered **skill-v0.3.0-build.20261016d Release ZIP or .skill attachment**; reuse complete existing checkouts and caches without re-downloading. Exact contents are identified by commit and SHA-256.
 
 ## Included receipt tools
 
 
-Product/API version is 0.3.0; content build `grandet-skill-0.3.0-build.20261016c`. The `skill-v0.3.0-build.20261016c` ZIP and .skill include receipt-aware installers and a Python verifier. Follow the bundled INSTALL.md, with no additional helper download. Native importing does not execute a receipt callback automatically: absent readable saved files or a host callback, retain NOT_RUN. Existing older installs need no forced download/reinstall and are not backfilled.
+Product/API version is 0.3.0; content build `grandet-skill-0.3.0-build.20261016d`. The `skill-v0.3.0-build.20261016d` ZIP and .skill include receipt-aware installers and a Python verifier. Follow the bundled INSTALL.md, with no additional helper download. Native importing does not execute a receipt callback automatically: absent readable saved files or a host callback, retain NOT_RUN. Existing older installs need no forced download/reinstall and are not backfilled.

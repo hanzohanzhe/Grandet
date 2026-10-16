@@ -45,11 +45,24 @@ def version(files):
     return m[1]
 def atomic(path,data):
     safe(path); path.parent.mkdir(parents=True,exist_ok=True,mode=0o700)
-    temp=path.with_name(path.name+'.'+str(uuid.uuid4())+'.tmp')
+    temp=path.with_name(path.name+'.'+uuid.uuid4().hex[:8]+'.tmp')
     fd=os.open(temp,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w') as f: json.dump(data,f,indent=2); f.write('\n'); f.flush(); os.fsync(f.fileno())
     os.replace(temp,path)
 def read(path,default=None): return json.loads(path.read_text()) if path.exists() else default
+def alive(pid):
+    # Signal 0 is CTRL_C_EVENT on Windows, so query the process there instead of signalling it.
+    if os.name!='nt':
+        try: os.kill(pid,0)
+        except ProcessLookupError: return False
+        except PermissionError: pass
+        return True
+    import ctypes; from ctypes import wintypes
+    k=ctypes.WinDLL('kernel32',use_last_error=True);k.OpenProcess.argtypes=[wintypes.DWORD,wintypes.BOOL,wintypes.DWORD];k.OpenProcess.restype=wintypes.HANDLE;k.GetExitCodeProcess.argtypes=[wintypes.HANDLE,ctypes.POINTER(wintypes.DWORD)];k.CloseHandle.argtypes=[wintypes.HANDLE]
+    h=k.OpenProcess(0x1000,False,pid) # PROCESS_QUERY_LIMITED_INFORMATION
+    if not h: return ctypes.get_last_error()==5 # ERROR_ACCESS_DENIED: the process exists but belongs to someone else
+    try: code=wintypes.DWORD(); return not k.GetExitCodeProcess(h,ctypes.byref(code)) or code.value==259 # STILL_ACTIVE
+    finally: k.CloseHandle(h)
 def now():
     from datetime import datetime,timezone
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00','Z')
@@ -76,15 +89,13 @@ def main(argv=None):
     if a.receipt_endpoint!=ENDPOINT and not(a.test_mode and u.scheme=='http' and u.hostname in ['127.0.0.1','localhost','::1']): raise ValueError('RECEIPT_ENDPOINT_NOT_ALLOWED')
     content=digest(payload)
     if a.dry_run:
-        print(json.dumps({'status':'DRY_RUN','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016c','nativeAcceptance':'NOT_RUN'}));return
+        print(json.dumps({'status':'DRY_RUN','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016d','nativeAcceptance':'NOT_RUN'}));return
     print(NOTICE,file=sys.stderr)
     directory=destination.parent.parent/'.grandet-install-state'/sha(str(destination).encode());safe(directory);directory.mkdir(parents=True,exist_ok=True,mode=0o700)
     lock=directory/'lock.json'
     if lock.exists():
-        old=read(lock)
-        try: os.kill(old['pid'],0)
-        except ProcessLookupError: lock.unlink()
-        else: raise ValueError('INSTALLATION_LOCKED')
+        if alive(read(lock)['pid']): raise ValueError('INSTALLATION_LOCKED')
+        lock.unlink()
     fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
     with os.fdopen(fd,'w') as f: json.dump({'pid':os.getpid()},f)
     try:
@@ -122,7 +133,8 @@ def main(argv=None):
                     atomic(statefile,state)
             else:
                 e={'schema_version':'grandet.installation-event/v1','event_id':str(uuid.uuid4()),'installation_id':state['installation_id'] or str(uuid.uuid4()),'revision':1,'operation':operation,'skill_version':v,'content_sha256':content,'source':a.receipt_source,'host':HOST_ALIASES.get(a.host,a.host) if HOST_ALIASES.get(a.host,a.host) in REGISTERED_HOSTS else 'unknown','scope':a.scope,'verification':'files_verified','occurred_at':now(),'test_mode':False,'exclusion_reason':'none'}
-                stage=directory/('stage-'+e['event_id']);backup=directory/('backup-'+e['event_id'])
+                # Short names beside the hashed state folder keep staged files within the Windows 260-character path limit.
+                stage=directory.parent/('stage-'+e['event_id'][:8]);backup=directory.parent/('backup-'+e['event_id'][:8])
                 j={'destination':str(destination),'stage':None,'backup':None,'event':e}
                 if not same or operation=='reinstall':
                     stage.mkdir()
@@ -157,7 +169,7 @@ def main(argv=None):
                 if not acked:break
                 state['outbox']=[x for x in state['outbox'] if not(x['event_id']==e['event_id'] and x['revision']<=e['revision'])];atomic(statefile,state)
         atomic(statefile,state)
-        print(json.dumps({'status':'FILES_VERIFIED','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016c','nativeAcceptance':'NOT_RUN','receipt':{'status':'DISABLED' if not enabled else 'PENDING' if state['outbox'] else 'ACKNOWLEDGED','pending':len(state['outbox']),'attempts':attempts}}))
+        print(json.dumps({'status':'FILES_VERIFIED','version':v,'sourceBuild':'grandet-skill-0.3.0-build.20261016d','nativeAcceptance':'NOT_RUN','receipt':{'status':'DISABLED' if not enabled else 'PENDING' if state['outbox'] else 'ACKNOWLEDGED','pending':len(state['outbox']),'attempts':attempts}}))
     finally:lock.unlink(missing_ok=True)
 if __name__=='__main__':
     try:main()

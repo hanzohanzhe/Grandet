@@ -13,7 +13,8 @@ const operations=['install','update','repair','reinstall','reuse','existing_seen
 async function json(path, fallback=null) { try { return JSON.parse(await readFile(path,'utf8')); } catch(e) { if(e.code==='ENOENT') return fallback; throw e; } }
 async function exists(path) {try {await lstat(path); return true;} catch(e){if(e.code==='ENOENT')return false;throw e;}}
 async function safe(path) { for(let p=resolve(path);;p=dirname(p)){try{if((await lstat(p)).isSymbolicLink())throw Error('STATE_SYMLINK_NOT_ALLOWED');}catch(e){if(e.code!=='ENOENT')throw e;}if(dirname(p)===p)break;} }
-async function atomic(path, data) { await safe(path); const tmp=`${path}.${randomUUID()}.tmp`;await writeFile(tmp,JSON.stringify(data,null,2)+'\n',{mode:0o600,flag:'wx'});const handle=await open(tmp,'r');try{await handle.sync();}finally{await handle.close();}await rename(tmp,path); }
+// Write and fsync through one writable handle: Windows rejects fsync on a read-only handle (EPERM).
+async function atomic(path, data) { await safe(path); const tmp=`${path}.${randomUUID()}.tmp`;const handle=await open(tmp,'wx',0o600);try{await handle.writeFile(JSON.stringify(data,null,2)+'\n');await handle.sync();}finally{await handle.close();}await rename(tmp,path); }
 export async function openReceipt(destination, {disabled=false,test=false,url=endpoint}={}) {
   if(url!==endpoint && !(test && /^http:\/\/(127\.0\.0\.1|localhost|\[::1\])(?::\d+)?\//.test(url))) throw Error('RECEIPT_ENDPOINT_NOT_ALLOWED');
   const dir=join(dirname(dirname(destination)),'.grandet-install-state',sha(resolve(destination)));
