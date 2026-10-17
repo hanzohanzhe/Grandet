@@ -207,6 +207,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "scripts/check-build-id.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "scripts/install-price-finder.mjs",
       "rights": "Apache-2.0"
     },
@@ -340,6 +344,10 @@
     },
     {
       "path": "tests/registry-stage.test.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/skill-build-i.test.mjs",
       "rights": "Apache-2.0"
     },
     {

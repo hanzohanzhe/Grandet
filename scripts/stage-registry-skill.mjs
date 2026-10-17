@@ -11,6 +11,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { inflateRawSync } from 'node:zlib';
+import { fileProblems } from './check-build-id.mjs';
 
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const SLUG = 'grandet-api-price-finder';
@@ -175,6 +176,9 @@ export async function stage({ root = ROOT, tag, out, clawhubRevision }) {
   if (release.build !== fromSkill.build) throw new Error(`TAG_BUILD_MISMATCH: tag ${release.build}, SKILL.md ${fromSkill.build}`);
   const wrong = chinaLinkMismatches(kit, release.registryVersion);
   if (wrong.length) throw new Error(`CHINA_DOWNLOAD_VERSION_MISMATCH: ${wrong.join(', ')} (build is ${release.registryVersion})`);
+  const texts = Object.fromEntries([...kit].filter(([name]) => /\.(md|json|mjs|js|py|txt|ya?ml)$/.test(name)).map(([name, bytes]) => [name, bytes.toString('utf8')]));
+  const mismatched = fileProblems(texts, fromSkill.build);
+  if (mismatched.length) throw new Error(`BUILD_ID_MISMATCH: ${mismatched.join(', ')} (build is ${fromSkill.build})`);
   const releaseManifest = kit.get('package-manifest.json');
   if (!releaseManifest) throw new Error('PACKAGE_MANIFEST_MISSING');
   const clawVersion = clawhubVersion(release.registryVersion, clawhubRevision);

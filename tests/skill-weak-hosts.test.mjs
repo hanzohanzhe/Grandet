@@ -65,14 +65,18 @@ test('the body opens with copy-paste requests for hosts without the grandet_* to
   assert.match(powershell, /^irm https:\/\/grandet\.ai\/api\/v1\/board -UseBasicParsing -UserAgent grandet-skill\/0\.3\.0 /);
 });
 
-test('uninstalling is spelled out per host, with no uninstall command claimed', async () => {
+test('uninstalling is spelled out per host, said the same way everywhere', async () => {
   const short = section(body, 'Uninstall or install this Skill');
-  assert.match(short, /There is no uninstall command\./);
+  assert.match(short, /Uninstalling means moving the `grandet-api-price-finder` folder out of the app's skills folder; no app has a command for a copied Skill folder\./);
+  assert.match(short, /`node scripts\/install-price-finder\.mjs --app <app> --uninstall`/);
+  // One wording: the folder move is the uninstall, and the bundled installer can do it. Nothing says there is no way.
+  for (const text of [body, await read('references/installation.md')]) assert.doesNotMatch(text, /no uninstall command/i);
   for (const words of ['$HERMES_HOME/skills/', '~/.hermes/skills/', '%LOCALAPPDATA%\\hermes\\skills\\', 'hermes skills list', '~/.claude/skills/', '~/.agents/skills/', '"Uninstalling" in [installation](references/installation.md)']) {
     assert.ok(short.includes(words), words);
   }
   const reference = section(await read('references/installation.md'), 'Uninstalling');
-  assert.match(reference, /There is no uninstall command in the installed Skill/);
+  assert.match(reference, /The apps have no command for a copied Skill folder/);
+  assert.match(reference, /--uninstall/);
   assert.match(reference, /`hermes skills uninstall` only removes Hermes hub skills/);
   assert.match(reference, /`hermes skills list` must no longer show `grandet-api-price-finder`/);
   for (const command of [...blocks(reference, 'sh'), ...blocks(reference, 'powershell')]) {

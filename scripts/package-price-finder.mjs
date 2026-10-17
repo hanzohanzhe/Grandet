@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { lstat, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, posix, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { checkBuildId } from './check-build-id.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const skillPath = 'skills/grandet-api-price-finder';
@@ -69,6 +70,9 @@ async function main() {
   await rejectLinks(out);
   try { await lstat(out); throw new Error('OUTPUT_EXISTS'); }
   catch (error) { if (error.code !== 'ENOENT') throw error; }
+
+  const ids = await checkBuildId(root, { requireLastLine: false });
+  if (ids.problems.length) throw new Error(`BUILD_ID_MISMATCH: ${ids.problems.join('; ')}`);
 
   await rejectLinks(join(root, distributionPath));
   const distribution = JSON.parse(await readFile(join(root, distributionPath), 'utf8'));
@@ -141,18 +145,18 @@ async function main() {
   for (const adapter of chatAdapters) {
     const template = await readSource(adapter.source);
     const sources = Object.fromEntries([adapter.source, ...embeddedSources].map((source) => [source, hash(source === adapter.source ? template : sourceBytes.get(source))]));
-    const document = `> Integrated installation build: grandet-skill-0.3.0-build.20261016h; Receipt-aware tools are included. Product version: ${manifest.version}. PUBLIC_PREVIEW / 公开试用。Native use / 原生使用: NOT_RUN. Packaging does not certify native installation or register an application-catalogue entry / 打包不证明原生安装通过，也不登记应用目录入口。\n\n${template.toString('utf8').trim()}\n\n---\n\n## Shared Skill and references / 共同 Skill 与参考资料\n\nThe following content is generated from the single common Skill source. Local links point to embedded source sections. Source SHA-256 values are recorded in package-manifest.json.\n\n下文从唯一共同 Skill 源文件生成；本地链接指向本文内嵌的源文件段落，源文件 SHA-256 记录在 package-manifest.json。\n\n${commonDocument}`;
+    const document = `> Integrated installation build: grandet-skill-0.3.0-build.20261017; Receipt-aware tools are included. Product version: ${manifest.version}. PUBLIC_PREVIEW / 公开试用。Native use / 原生使用: NOT_RUN. Packaging does not certify native installation or register an application-catalogue entry / 打包不证明原生安装通过，也不登记应用目录入口。\n\n${template.toString('utf8').trim()}\n\n---\n\n## Shared Skill and references / 共同 Skill 与参考资料\n\nThe following content is generated from the single common Skill source. Local links point to embedded source sections. Source SHA-256 values are recorded in package-manifest.json.\n\n下文从唯一共同 Skill 源文件生成；本地链接指向本文内嵌的源文件段落，源文件 SHA-256 记录在 package-manifest.json。\n\n${commonDocument}`;
     payload.push([adapter.path, Buffer.from(document)]);
-    adapterMetadata.push({id: adapter.id, path: adapter.path, version: manifest.version, status: 'PUBLIC_PREVIEW', sourceBuild: 'grandet-skill-0.3.0-build.20261016h', releasePackage: true, nativeUse: 'NOT_RUN', sources});
+    adapterMetadata.push({id: adapter.id, path: adapter.path, version: manifest.version, status: 'PUBLIC_PREVIEW', sourceBuild: 'grandet-skill-0.3.0-build.20261017', releasePackage: true, nativeUse: 'NOT_RUN', sources});
   }
   const hashes = Object.fromEntries(payload.toSorted(([a], [b]) => a.localeCompare(b, 'en')).map(([path, bytes]) => [path, hash(bytes)]));
-  payload.push(['package-manifest.json', Buffer.from(`${JSON.stringify({schema: 'grandet-price-finder-package/v1', name: manifest.name, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261016h', releasePackage: true, distributionManifest: 'application-distribution.json', resourceTargets, chatAdapters: adapterMetadata, files: hashes}, null, 2)}\n`)]);
+  payload.push(['package-manifest.json', Buffer.from(`${JSON.stringify({schema: 'grandet-price-finder-package/v1', name: manifest.name, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261017', releasePackage: true, distributionManifest: 'application-distribution.json', resourceTargets, chatAdapters: adapterMetadata, files: hashes}, null, 2)}\n`)]);
   await mkdir(dirname(out), { recursive: true });
   await mkdir(out); // Atomic refusal of an existing target, including races.
   for (const [path, bytes] of payload) {
     await mkdir(dirname(join(out, path)), { recursive: true });
     await writeFile(join(out, path), bytes, { flag: 'wx' });
   }
-  process.stdout.write(`${JSON.stringify({ directory: out, files: payload.length, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261016h', releasePackage: true, installed: false, published: false })}\n`);
+  process.stdout.write(`${JSON.stringify({ directory: out, files: payload.length, version: manifest.version, sourceBuild: 'grandet-skill-0.3.0-build.20261017', releasePackage: true, installed: false, published: false })}\n`);
 }
 main().catch((error) => { process.stderr.write(`${error.message}\n`); process.exitCode = 1; });

@@ -21,6 +21,15 @@ For an upload screen, use the native `.skill` package, not the larger installati
 
 To look up live prices the app also needs a Grandet MCP connection or a way to make HTTP requests. Adding the MCP server only adds tools; it does not install this Skill's workflow.
 
+## Installing or updating: four steps agents get wrong
+
+In past installs that agents did on their own, these four steps were the ones that failed. Do each of them.
+
+1. **Read the instructions with `curl`:** `curl -sS https://grandet.ai/download.md` (Windows: `curl.exe`). Never use a web-page reader, browser or search tool (`web_extract`, `fetch` and the like): they can return a cached old copy that links an older build. Newer versions of the website also answer `curl -sS https://grandet.ai/dl/latest.json`; when that returns JSON, take `build`, `zip.url` and `zip.sha256` from it. Otherwise (404), use the build and the pinned links at the top of download.md.
+2. **Install that build, not one you remember.** Download the ZIP named in step 1, check its SHA-256, extract it, and run the bundled installer in the extracted folder: `node scripts/install-price-finder.mjs --app <installer-id>` (for example `--app hermes`).
+3. **Check the build.** The installed `SKILL.md` ends with an `Installation build` line. It must name the build from step 1; an older build means an old copy was installed, so start again at step 1. The installed folder must hold `SKILL.md`, `references/` and `agents/`.
+4. **Hermes goes into `$HERMES_HOME/skills/` only.** Run `echo "$HERMES_HOME"` (PowerShell: `$env:HERMES_HOME`) first. When it is set, the Skill goes into `$HERMES_HOME/skills/grandet-api-price-finder/` and nowhere else; `~/.hermes/skills/` is only for when it is empty. Check with `hermes skills list`.
+
 ## Installation and update checks
 
 Do these on every install or update:
@@ -91,7 +100,7 @@ If the new conversation asks for the file again, the install did not persist. Fi
 
 ## Uninstalling
 
-There is no uninstall command in the installed Skill, and the apps have none for a copied Skill folder (`hermes skills uninstall` only removes Hermes hub skills). Uninstalling means taking the `grandet-api-price-finder` folder out of every skill folder the app reads (the table under "Local apps"), then checking in a new session that the Skill is gone. Moving it into `.grandet-skill-backups` beside the skill folder keeps a copy to restore; delete it instead only if the user wants it gone for good.
+Uninstalling means taking the `grandet-api-price-finder` folder out of every skill folder the app reads (the table under "Local apps"), then checking in a new session that the Skill is gone. The apps have no command for a copied Skill folder (`hermes skills uninstall` only removes Hermes hub skills); the bundled installer does the same move with `--uninstall` (below). Moving it into `.grandet-skill-backups` beside the skill folder keeps a copy to restore; delete it instead only if the user wants it gone for good.
 
 Hermes on macOS or Linux (uses `HERMES_HOME` when set, as for installing):
 
@@ -107,15 +116,15 @@ $H = if ($env:HERMES_HOME) { $env:HERMES_HOME } else { "$env:LOCALAPPDATA\hermes
 
 Then `hermes skills list` must no longer show `grandet-api-price-finder`. If the backup folder already holds an older copy, move or rename that one first. For another app, use the same two steps with its folder from the table, for example `~/.claude/skills/` (Claude Code) or `~/.agents/skills/` (Codex, OpenCode).
 
-With the extracted kit at hand, the installer does this for you: `node scripts/install-price-finder.mjs --app <installer-id> --uninstall` (`--dry-run` previews it). It moves this app's `grandet-api-price-finder` folder, and any copy in the app's own legacy folder, into `.grandet-skill-backups` beside the skill folder, where an update keeps the old copy. Nothing is deleted; move the backup back to restore. A copy in another app's own folder (for example `~/.agents/skills/` when uninstalling Cursor or Gemini CLI) is left alone and the installer names the app to uninstall with. Several apps share `~/.agents/skills/`, so removing the copy there removes it for all of them. Without Node, move the folder out of every skill folder by hand. Uninstalling sends no receipt and keeps local receipt state.
+With the extracted kit at hand (a folder installed from the `.skill` or SkillHub also holds the installer), it does this for you: `node scripts/install-price-finder.mjs --app <installer-id> --uninstall` (`--dry-run` previews it). It moves this app's `grandet-api-price-finder` folder, and any copy in the app's own legacy folder, into `.grandet-skill-backups` beside the skill folder, where an update keeps the old copy. Nothing is deleted; move the backup back to restore. A copy in another app's own folder (for example `~/.agents/skills/` when uninstalling Cursor or Gemini CLI) is left alone and the installer names the app to uninstall with. Several apps share `~/.agents/skills/`, so removing the copy there removes it for all of them. Without Node, move the folder out of every skill folder by hand. Uninstalling sends no receipt and keeps local receipt state.
 
 Account, web and cloud apps: delete or disable the Skill in the Skills manager where it was saved. A local uninstall does not change a copy already synced to Cursor Cloud Agents.
 
-Use the current files from [Grandet's GitHub repository](https://github.com/hanzohanzhe/Grandet). New installations default to the registered **skill-v0.3.0-build.20261016h Release ZIP or .skill attachment**; reuse complete existing checkouts and caches without re-downloading. Exact contents are identified by commit and SHA-256.
+Use the current files from [Grandet's GitHub repository](https://github.com/hanzohanzhe/Grandet). New installations default to the registered **skill-v0.3.0-build.20261017 Release ZIP or .skill attachment**; reuse complete existing checkouts and caches without re-downloading. Exact contents are identified by commit and SHA-256.
 
-**Mainland China, or when GitHub is slow or unreachable / 中国大陆或 GitHub 下载慢、打不开时:** download the same kit from Tencent SkillHub, no account needed: `https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261016.8` (page: [skillhub.cn/skills/grandet-api-price-finder](https://skillhub.cn/skills/grandet-api-price-finder)). It holds the `.skill` contents with the files at the archive root, plus SkillHub's own `_meta.json`. Extract it into a folder named `grandet-api-price-finder` and treat that folder as an extracted `.skill` root (`--receipt-source release_skill`). Each file's SHA-256 is in its `package-manifest.json`. A 404 means SkillHub is still reviewing this build; use the GitHub link.
+**Mainland China, or when GitHub is slow or unreachable / 中国大陆或 GitHub 下载慢、打不开时:** download the same kit from Tencent SkillHub, no account needed: `https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261017.0` (page: [skillhub.cn/skills/grandet-api-price-finder](https://skillhub.cn/skills/grandet-api-price-finder)). It holds the `.skill` contents with the files at the archive root, plus SkillHub's own `_meta.json`. Extract it into a folder named `grandet-api-price-finder` and treat that folder as an extracted `.skill` root (`--receipt-source release_skill`). Each file's SHA-256 is in its `package-manifest.json`. A 404 means SkillHub is still reviewing this build; use the GitHub link.
 
 ## Included receipt tools
 
 
-Product/API version is 0.3.0; content build `grandet-skill-0.3.0-build.20261016h`. The `skill-v0.3.0-build.20261016h` ZIP and .skill include receipt-aware installers and a Python verifier. Follow the bundled INSTALL.md, with no additional helper download. Native importing does not execute a receipt callback automatically: absent readable saved files or a host callback, retain NOT_RUN. Existing older installs need no forced download/reinstall and are not backfilled.
+Product/API version is 0.3.0; content build `grandet-skill-0.3.0-build.20261017`. The `skill-v0.3.0-build.20261017` ZIP and .skill include receipt-aware installers and a Python verifier. Follow the bundled INSTALL.md, with no additional helper download. Native importing does not execute a receipt callback automatically: absent readable saved files or a host callback, retain NOT_RUN. Existing older installs need no forced download/reinstall and are not backfilled.

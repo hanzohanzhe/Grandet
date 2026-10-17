@@ -208,5 +208,5 @@ How to use it:
 |---|---|---|---|
 | SOURCE_UPDATE_HELD_PENDING_REVIEW_PREVIOUS_DATA | `coverage.excluded` 里的计数：这个站有一批报价更新在等 Grandet 复核，复核前相关报价不参与排序（按代码名理解） | 只用于理解，不展示 | 未核实 |
 | CACHE_PRICE_UNKNOWN | `coverage.excluded` 里的计数：报价没标缓存命中价；用量含缓存读取（如编程预设）时不参与排序 | 回答里加一行“另有 N 条没标缓存价，未参与排序” | 未核实 |
-| OTHER_BILLING_UNIT | `coverage.excluded` 里的计数：按张、按次、按秒等非 token 单位计价的报价，不进按 token 的排序 | 用户问按张或按次价格时，说有 N 条，并给带 `view=declarations` 的榜单链接 | 未核实 |
+| OTHER_BILLING_UNIT | `coverage.excluded` 里的计数：按张、按次、按秒等非 token 单位计价的报价，不进按 token 的排序 | 用户问按张或按次价格时，说有 N 条，并给榜单网页链接；API 没有按张的 view，不要试别的路径 | 未核实 |
 | REVIEW_FLAG | 行的 `riskSignals`：Grandet 复核时把这条报价标为价格存疑 | 列为参考，理由写“Grandet 复核时标记为价格存疑” | 未核实 |
