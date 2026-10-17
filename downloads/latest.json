@@ -1,0 +1,30 @@
+{
+  "schema": "grandet.skill-latest/v1",
+  "version": "0.3.0",
+  "build": "grandet-skill-0.3.0-build.20261017",
+  "tag": "skill-v0.3.0-build.20261017",
+  "releaseId": 415806361,
+  "sourceCommit": "a650d78a8ed269f503bf523b82a08d9959e23063",
+  "zip": {
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.zip",
+    "bytes": 373443,
+    "sha256": "f8371ff30df1b5d7478c1681c8507e2a42a10d2d72bc1cbe76fac8206723d7c1",
+    "assetId": 650480774
+  },
+  "skill": {
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.skill",
+    "bytes": 119831,
+    "sha256": "6e965e62754bbf9539122ea86f25e94f6a41dcb2c61c3c76c6e98755f36c2fd4",
+    "assetId": 650480775
+  },
+  "skillhubVersion": "0.3.0-build.20261017.0",
+  "gate": {
+    "result": "HOLD",
+    "summary": "Skill gate HOLD · gate-bank-v1 48题×1通道（ainzy-deepseek-v4.1-flash；站长按 deepseek 定，glm 通道中途停）· 词典口径 基线 48/48 → 候选 47/48 · 只基线对 1 / 只候选对 0 · 题型无退步 · token 中位数 ×0.936 · targets 10/13（免费额度链接 7/8、价格题问接哪个应用 14/16、response-format 每题 0.208）· 两版判定器结果相同"
+  },
+  "approved": {
+    "by": "owner",
+    "at": "2026-10-17T13:00:00Z",
+    "quote": "不是，我要求你上传i5，因为只有上传i5了网页才可以更新，至于之后的就i6，如果性能更好会更新的"
+  }
+}
