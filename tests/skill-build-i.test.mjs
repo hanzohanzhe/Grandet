@@ -33,6 +33,10 @@ test('"Get the data first" names the only requests and treats an empty board as 
   // The paths h made up when a board had no per-token price, and the bulk files that answer 403.
   for (const words of ['/api/v1/models/<id>', '/api/v1/model/<id>', '/models/<id>.json', 'view=declarations', 'evidenceUrl', 'BULK_AUTHORIZATION_REQUIRED']) assert.ok(dataFirst.includes(words), words);
   assert.match(dataFirst, /An empty board is the answer, not an error\./);
+  // The one INVALID_QUERY left in the formal gate: a helper sent skillVersion/skillBuild to every path.
+  assert.match(dataFirst, /A helper that adds `skillVersion` and `skillBuild` adds them to board, free-credits, models and prices only\./);
+  assert.match(dataFirst, /never fetch it/);
+  assert.match(dataFirst, /RESPONSE_BUDGET_EXCEEDED/);
   assert.match(dataFirst, /`OTHER_BILLING_UNIT`/);
   assert.match(dataFirst, /no second request with another path, view or name/);
   // No reference tells the agent to add view=declarations to a request any more.
