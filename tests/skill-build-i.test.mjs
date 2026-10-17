@@ -59,6 +59,12 @@ test('answers have a hard length and the price shape sits in step 4', () => {
   assert.match(lowest, /\[Response format\]\(references\/response-format\.md\) is only for what this shape does not cover/);
 });
 
+test('a relay term is explained from the glossary file itself, not a folder-wide search', () => {
+  const always = section(body, 'Always');
+  assert.match(always, /open that file with your skill file reader \(Hermes: `skill_view` with `file_path` `references\/glossary\.md`\)/);
+  assert.match(always, /Don't search the whole Skill folder for the word/);
+});
+
 test('free-credit answers end with the grandet.ai page link', async () => {
   assert.match(section(body, '2. Free credits'), /https:\/\/grandet\.ai\/zh-CN\/free-tokens\/\?q=<q>/);
   const free = await read('references/free-credits.md');
