@@ -88,7 +88,7 @@ test('GitHub, SkillHub and ClawHub ship the same Skill; each copy differs only w
     // ClawHub publishes every Skill as MIT-0: no LICENSE, no license line, plus its runtime metadata. The Skill
     // body and every other file are the release's.
     const claw = await readTree(r.clawhub.dir);
-    assert.deepEqual([...claw.keys()].sort(), [...kit.keys()].filter((n) => n !== 'LICENSE').sort());
+    assert.deepEqual([...claw.keys()].sort(), [...kit.keys()].filter((n) => n !== 'LICENSE' && n !== 'data/price-snapshot.json').sort());
     for (const [name, bytes] of claw) if (name !== 'SKILL.md' && name !== 'package-manifest.json') assert.deepEqual(bytes, kit.get(name), name);
     const original = kit.get('SKILL.md').toString('utf8'), clawSkill = claw.get('SKILL.md').toString('utf8');
     // splitSkill reads only the source's two-level front matter; ClawHub's metadata.openclaw goes deeper.
@@ -96,7 +96,7 @@ test('GitHub, SkillHub and ClawHub ship the same Skill; each copy differs only w
     assert.equal(clawSkill.slice(clawSkill.indexOf('\n---\n') + 5), splitSkill(original).body);
     const openclaw = ['  openclaw:', '    homepage: https://grandet.ai', '    requires:', '      anyBins:', '        - curl', '        - node'];
     assert.deepEqual(front(clawSkill), [...front(original).filter((l) => !/^license:/.test(l)), ...openclaw]);
-    assert.equal(ownManifest(claw, 'clawhub').length, 2);
+    assert.equal(ownManifest(claw, 'clawhub').length, kit.has('data/price-snapshot.json') ? 3 : 2);
     assert.equal(r.clawhub.files, claw.size);
     assert.equal(r.clawhub.version, r.registryVersion);
     assert.equal(r.clawhub.changelog, r.changelog);

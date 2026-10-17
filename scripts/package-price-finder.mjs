@@ -26,7 +26,7 @@ const inputs = [
     ['docs/skills/installation-receipts.md','installation-receipts.md'],
   ['docs/skills/installation-routes.json','installation-routes.json'],
   [distributionPath, 'application-distribution.json'],
-  ...['SKILL.md', 'scripts/connect.mjs', 'scripts/connect-mcp.mjs', 'agents/openai.yaml', 'references/workloads.md', 'references/http-fallback.md', 'references/response-format.md', 'references/host-setup.md', 'references/app-catalog.md', 'references/entrypoints.md'].map((path) => [`${skillPath}/${path}`, `${skillPath}/${path}`]),
+  ...['SKILL.md', 'scripts/connect.mjs', 'scripts/connect-mcp.mjs', 'agents/openai.yaml', 'references/workloads.md', 'references/http-fallback.md', 'references/response-format.md', 'references/host-setup.md', 'references/app-catalog.md', 'references/entrypoints.md', 'scripts/offline-lookup.mjs', 'data/price-snapshot.json'].map((path) => [`${skillPath}/${path}`, `${skillPath}/${path}`]),
 ];
 function isWithin(parent, child) {
   const rel = relative(parent, child);
