@@ -251,6 +251,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "scripts/write-latest-pointer.py",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "skills/grandet-api-price-finder/SKILL.md",
       "rights": "Apache-2.0"
     },
@@ -324,6 +328,10 @@
     },
     {
       "path": "tests/installation-receipts.test.py",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/latest-pointer.test.py",
       "rights": "Apache-2.0"
     },
     {
