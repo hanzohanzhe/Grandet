@@ -48,13 +48,14 @@ test('parameter limits and mix are spelled out with live-checked examples', asyn
 
 test('answers have a hard length and the price shape sits in step 4', () => {
   const always = section(body, 'Always');
-  assert.match(always, /\*\*Length\.\*\* Every answer stays within 8 lines and 600 characters \(English: 100 words\), the link included/);
+  assert.match(always, /\*\*Length\.\*\* Every answer stays within 8 lines and 600 characters \(English: 100 words\), the link and the closing question included/);
   const lowest = section(body, '1. Lowest price');
   const shape = /4\. Answer in this shape[\s\S]*?```text\n([\s\S]*?)\n\s*```/.exec(lowest);
   assert.ok(shape, 'step 4 holds the answer shape');
   const lines = shape[1].split('\n').filter((line) => line.trim());
   assert.ok(lines.length >= 6 && lines.length <= 8, `${lines.length} lines`);
   for (const words of ['额度价，非现金', '报价出处：', '官方价（现金）', '要帮你接到 <app> 吗？']) assert.ok(shape[1].includes(words), words);
+  assert.match(lowest, /The last line is always the question "要帮你接到 <app> 吗？"[\s\S]*never the link or the question/);
   assert.match(lowest, /\[Response format\]\(references\/response-format\.md\) is only for what this shape does not cover/);
 });
 
