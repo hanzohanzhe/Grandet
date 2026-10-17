@@ -2,6 +2,8 @@
 
 Short, in the user's language. Name the model first so the choice stays visible. Read only the fields below; do not print schema names, row IDs or long URLs beyond the one link.
 
+The usual answer is the 8-line shape in step 4 of the Skill's "1. Lowest price"; it needs nothing from this file. Use this file for the cases that shape leaves out. The limit stays the same: 8 lines and 600 characters (English: 100 words), link included. When a case below adds a line, drop the reference or gated line rather than go over.
+
 ## Fields used
 
 - Top level: `priceFormat.unitDenominator` (`PER_MILLION_TOTAL_TOKENS` = price per 1,000,000 total tokens), `scope.mix` (the token shares used), `scope.application.status`, `coverage.excluded` (rows left out of the ranking, counted by reason), `notices`. In `view=compact`, `integrationCards` holds the shared connection cards.
@@ -36,12 +38,14 @@ Check that the returned model and target app match the request before answering.
    - `listing.action=REFERENCE`: its `listing.hint` (for example "站点写明实际倍率 1.28（标价倍率 1.6）");
    - `reviewReasons`: `CROSS_SOURCE_OUTLIER` → "明显低于其他多数站的同模型报价" / "far below most other sites"; `UNIT_TEXT_CONTRADICTION` → "名称里写的计价单位和标价对不上"; `FLOAT_ARTIFACT` → "标价数字像换算误差"; `PLACEHOLDER_RATIO` → "倍率像是占位值";
    - `riskSignals`: `REVIEW_FLAG` → "Grandet 复核时标记为价格存疑"; `NONSTANDARD_CHANNEL` → "站点自己声明为非标准渠道"; `STALE` or `STALE_REFERENCE` → "报价较旧（观察于 <date>）"; `ZERO_PRICE_UNVERIFIED` → "标价为 0，未核实";
-   - a hinted row of kind `test` → its hint ("站点标注为测试分组").
+   - a hinted row of kind `test` → its hint ("站点标注为测试分组");
+   - `listing.usage` (newer service): `NO_TOOL_CALLS` → "站点写明不支持工具调用"; `CHAT_ONLY` → "站点写明只能聊天"; `NOT_FOR_CODING` → "站点写明不用于编程"; `IMAGE_ONLY` → "站点写明仅生图".
    Say it may really be this cheap; the user can test it before topping up much.
 4. **折叠 / Folded**: one line per `folded` entry: "另有 N 条仅限 <client> 使用的报价，已折叠。" Add "其中 M 条比上面的最低价还低" when `lowerThanLowestCount` is above 0. If the user says they use that client, query again with that `targetApp`.
 5. **未参与排序 / Not ranked**, from `coverage.excluded`, at most one line each:
    - `CACHE_PRICE_UNKNOWN` above 0 and `scope.mix.cacheRead` above 0: "另有 N 条没标缓存价，未参与排序。" / "N more quotes list no cache price and were not ranked."
-   - `OTHER_BILLING_UNIT` above 0 and the user asked for a per-image or per-request price: "另有 N 条按张或按次计价的报价，不在按 token 的排序里：" plus the board link (item 8) with `&view=declarations` added.
+   - `OTHER_BILLING_UNIT` above 0 and the user asked for a per-image or per-request price: "另有 N 条按张或按次计价的报价，不在按 token 的排序里，可在网页上看：" plus the board link (item 8). Grandet's API has no per-image view: never send `view=declarations` or try another path for them.
+   - `coverage.estimated.CACHE_READ_FROM_INPUT` above 0 (newer service): rows with `estimates: ["CACHE_READ_FROM_INPUT"]` list no cache price, so the server priced cache reads at the input price. Add "（缓存价按输入价估算）" after such a row.
 6. Other boards: at most one line, such as "人民币额度另有一档，最低 X；单位不同，不能直接比较。"
 7. **官方价与推理服务商 / Official and inference prices** (cash), only when `official` or `listings.inference` has entries:
    - 官方价: vendor, input and output prices with currency, for example "官方价（现金）：Anthropic 输入 3 / 输出 15 美元／百万 token，10 月 16 日观察". When several entries differ only in cache conditions, show the first and mention cache prices only if the user asked about caching.
@@ -50,7 +54,7 @@ Check that the returned model and target app match the request before answering.
    - Never compute a percentage yourself, never say a relay is N% cheaper than official, and never convert credit into cash. If the user asked for the official price and `official` is empty, say Grandet has not recorded it for this model.
 8. **链接 / Link**: the first `lowest` row's `boardUrl`, copied exactly, as "报价出处：<boardUrl>" / "Price sources: <boardUrl>". You may drop `utm_*` parameters; keep every other one (`model`, `currency`, `share` …). Every answer that gives lowest prices includes it.
 9. One question, in the user's language: "要帮你接到 <app> 吗？" / "Want me to connect it to <app>?" (if the app is unknown: "要接到哪个应用？" / "Which app should I connect it to?").
-10. Optional last line: one free-credit mention when it applies ([free credits](free-credits.md)), then any relevant unexpired `notices`, once per notice ID.
+10. Optional last line: one free-credit mention when it applies ([free credits](free-credits.md)), then any relevant unexpired `notices`, once per notice ID. A notice of `kind=skill-update` becomes one line with its `title` and `url`; never update the Skill unless the user asks.
 
 Labels: credit boards say "额度价，非现金" / "credit price, not cash"; cash boards say "站点现金标价" / "listed cash price". Every price you write carries its unit, including prices in the reference, gated and folded lines: board prices are "／百万总 token" / "per million total tokens"; official and inference prices are input and output prices "／百万 token" / "per million tokens". A monthly estimate is `blended × monthly tokens / 1,000,000`, only when the user gave a volume. The shares come from `scope.mix`; say "按编程用量估算" or similar when it is a preset.
 

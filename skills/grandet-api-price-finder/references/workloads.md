@@ -23,7 +23,21 @@ Missing inference evidence, including current Cursor/Windsurf definitions or an 
 
 Initial presets are chat 75/0/25, coding 20/70/10, and long_output 35/0/65 for uncached input/cache read/output. These are comparison scenarios, not measured behavior. Coding proportions require later calibration; never claim to have observed a 70% cache rate. The server's returned mix is authoritative. Transcription and image models have no preset of their own: the chat preset is only an estimate for them, so say so.
 
-For explicit proportions, both MCP and HTTP use the string `mix=in:20,cacheRead:70,out:10`. Always include `cacheRead`, even when it is 0: equal input and output is `mix=in:50,cacheRead:0,out:50`; `in:50,out:50` returns 400 `INVALID_MIX`. The server also supports a `cacheWrite` bucket, defaulting to zero when omitted. Input, cache read, cache write and output are mutually exclusive token buckets; if the user says input includes cached tokens, subtract cache only when the figures share a denominator. Otherwise use the suitable preset and label the assumption, or ask one essential question if the answer changes compatibility. Preserve `scope.mixOrigin` (`PRESET` or `USER_DECLARED`) and `scope.preset`; neither claims measured history.
+For explicit proportions, both MCP and HTTP use the string `mix=in:20,cacheRead:70,out:10`. Always include `cacheRead`, even when it is 0: equal input and output is `mix=in:50,cacheRead:0,out:50`; `in:50,out:50` returns 400 `INVALID_MIX`. The server also supports a `cacheWrite` bucket, defaulting to zero when omitted.
+
+`mix` is either a preset name or `in:<n>,cacheRead:<n>,out:<n>` (optionally `,cacheWrite:<n>`), whole numbers that add up to 100. Checked against the live service:
+
+| Write | Result |
+|---|---|
+| `mix=coding`, `mix=chat`, `mix=long_output` | preset |
+| `mix=in:50,cacheRead:0,out:50` | 50 % input, 50 % output |
+| `mix=in:20,cacheRead:70,out:10` | the coding shares, written out |
+| `mix=in:20,cacheRead:60,cacheWrite:10,out:10` | with cache writes |
+| `mix=in:50,out:50` | 400 `INVALID_MIX`: `cacheRead` missing |
+| `mix=20/70/10`, `mix=in:0.2,cacheRead:0.7,out:0.1` | 400 `INVALID_MIX`: not `name:whole number` |
+| `mix=in:30,cacheRead:30,out:30` | 400 `INVALID_MIX`: adds up to 90 |
+
+Turn the user's figures into whole-number shares yourself (for example 3M input and 1M output → `in:75,cacheRead:0,out:25`). On `INVALID_MIX`, fix the string once from this table; if the user gave no shares, drop `mix` and use the preset. Input, cache read, cache write and output are mutually exclusive token buckets; if the user says input includes cached tokens, subtract cache only when the figures share a denominator. Otherwise use the suitable preset and label the assumption, or ask one essential question if the answer changes compatibility. Preserve `scope.mixOrigin` (`PRESET` or `USER_DECLARED`) and `scope.preset`; neither claims measured history.
 
 Keep absolute token counts local. Under the supported linear per-token comparison, proportions determine ordering; monthly tokens can explain scale only when every needed rate and unit is known. Never extrapolate a credit rate into cash spending, or ignore fixed fees, request charges and tiers that the result does not cover.
 

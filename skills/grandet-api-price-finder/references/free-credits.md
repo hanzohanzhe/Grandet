@@ -19,7 +19,7 @@ Call `grandet_find_free_credits` once with:
 - `q`: the model family or provider the user cares about (`gemini`, `claude`, `deepseek` …). It matches provider, title, benefit text and the models a free group covers. Leave it out to list everything. If a model family returns no official offer, query once more with the vendor's name (qwen → `百炼` or `alibaba`, kimi → `moonshot`, glm → `智谱` or `zhipu`) and merge the official offers.
 - `kind=all`, so official and relay offers both come back. Use `official` or `relay` only when the user asked for one kind.
 - `userCanMeet`: `no_card` when the user said they have no card, `student` when they said they are a student, otherwise leave it out. `no_card` keeps only offers that **state** no card is needed; when it returns nothing, query again without it and mark each offer "是否需绑卡未写明".
-- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261016h`, and the known `host`/`targetApp`.
+- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017`, and the known `host`/`targetApp`.
 
 Without MCP, send the same parameters to `GET https://grandet.ai/api/v1/free-credits` (see [HTTP fallback](http-fallback.md)). If both fail, give the web page instead: `https://grandet.ai/zh-CN/free-tokens/` (English: `https://grandet.ai/free-tokens/`), with `?q=<word>` to filter.
 
@@ -51,6 +51,8 @@ For each offer, one line:
 
 Keep each line's hint within 50 characters; a line with several stated limits may run longer rather than lose one. Then filter by what the user has told you about themselves.
 
+Then give the page link, always, in its own line: "完整列表：https://grandet.ai/zh-CN/free-tokens/?q=<q>" (English: "Full list: https://grandet.ai/free-tokens/?q=<q>"), with the `q` you sent (leave `?q=` out when you sent none). Keep the whole answer within 8 lines and 600 characters (English: 100 words).
+
 End with **at most one question**, the one that really changes the result, such as "能绑卡吗？" or "你在哪个国家或地区？". Asking which offer to use and which app to connect it to is two questions: ask which offer first, and ask about the app only when the user wants to connect.
 
 Put `STATED_FREE_TINY_RATIO` groups after the real free offers, only when they cover the user's model, as "标为免费，实际按小倍率计费". Never count them as free. "free号 / free逆 / free池" in a group name means the site's upstream accounts are free tiers; it is not free credit for the user.
@@ -66,4 +68,5 @@ Do not say which free offer is better and do not repeat a provider's quality cla
 > 4. B 站：QQ 邮箱注册送 1 刀站内额度；其他条件未写明。
 > 5. C 站「福利gemini」标为免费，实际按小倍率计费。
 >
+> 完整列表：https://grandet.ai/zh-CN/free-tokens/?q=gemini
 > 领取资格和是否还能领，Grandet 没有核实。要接哪一个？

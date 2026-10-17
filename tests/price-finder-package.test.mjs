@@ -13,7 +13,7 @@ const script = join(root, 'scripts/package-price-finder.mjs');
 const run = (...args) => spawnSync(process.execPath, [script, ...args], { encoding: 'utf8', cwd: root });
 const adapters = ['grok-bot', 'your-dot', 'muse'];
 const commonPath = 'skills/grandet-api-price-finder';
-const fixturePaths = ['scripts/package-price-finder.mjs', 'scripts/installation-receipts.mjs','scripts/installation-receipts-source-build.json','scripts/verify-installation.py','docs/skills/installation-receipts.md','docs/skills/installation-routes.json', 'scripts/install-price-finder.mjs', 'LICENSES/Apache-2.0.txt', 'docs/skills/QUICKSTART.md', 'docs/skills/INSTALL.md', 'docs/skills/application-distribution.generated.json', 'docs/skills/chat-adapters', commonPath, 'plugins/grandet-api-price-finder'];
+const fixturePaths = ['scripts/package-price-finder.mjs', 'scripts/check-build-id.mjs', 'scripts/installation-receipts.mjs','scripts/installation-receipts-source-build.json','scripts/verify-installation.py','docs/skills/installation-receipts.md','docs/skills/installation-routes.json', 'scripts/install-price-finder.mjs', 'LICENSES/Apache-2.0.txt', 'docs/skills/QUICKSTART.md', 'docs/skills/INSTALL.md', 'docs/skills/application-distribution.generated.json', 'docs/skills/chat-adapters', commonPath, 'plugins/grandet-api-price-finder'];
 async function copySource(fixture) {
   for (const path of fixturePaths) {
     await mkdir(dirname(join(fixture, path)), { recursive: true });

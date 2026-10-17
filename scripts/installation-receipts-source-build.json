@@ -1,6 +1,6 @@
 {
   "schema": "grandet.receipt-helper-source/v1",
-  "sourceBuild": "grandet-skill-0.3.0-build.20261016h",
+  "sourceBuild": "grandet-skill-0.3.0-build.20261017",
   "compatibleSkillVersions": [
     "0.3.0"
   ],
@@ -16,6 +16,6 @@
   },
   "version": "0.3.0",
   "releaseBuild": true,
-  "plannedTag": "skill-v0.3.0-build.20261016h",
+  "plannedTag": "skill-v0.3.0-build.20261017",
   "receiptSupport": "INCLUDED"
 }
