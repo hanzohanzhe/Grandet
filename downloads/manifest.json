@@ -11,14 +11,14 @@
   "files": [
     {
       "file": "grandet-api-price-finder-0.3.0.zip",
-      "bytes": 434620,
-      "sha256": "f27c7039304d0f056bf71c01e020ba3303a79e04eacbaa67ef0c528fbaf3dcea",
+      "bytes": 434665,
+      "sha256": "aabf2c784fa7f3825d8ce26159d22fea94690e39ce05892181627daa33719f62",
       "files": 32
     },
     {
       "file": "grandet-api-price-finder-0.3.0.skill",
-      "bytes": 133360,
-      "sha256": "ea81e790f05f8574d007782959c7310751a20b2b5a9f9a3178c1b2818ec0cf8a",
+      "bytes": 133374,
+      "sha256": "d02359bb8fcfeeb7b7e05d4c2c9dd7f5b9d9fa07ea7f3ffea9637e6be62f43f5",
       "files": 23
     }
   ],
@@ -42,7 +42,7 @@
     "scripts/package-price-finder.mjs": "6ecfc49c4573bed5c603ee8a46ee1fcade369645b06ea33ad53d9e1094cbc285",
     "scripts/register-skill-release.py": "a40f33f4d27cde1bb3f69795a08e88f0e37b21cab75297568eaa878d1ca15a43",
     "scripts/verify-installation.py": "03116374d35eb583790b14e890a4bf7930a85dfde2e82198b6d97ca85ea9e1fc",
-    "skills\\grandet-api-price-finder\\SKILL.md": "e6849424008b2fab878dc53ca593ce661b377cde72c55aae42c807b79c6d7b13",
+    "skills\\grandet-api-price-finder\\SKILL.md": "19ff5f1ecf3884d4224b1daf2d3af8fcf4d0d2ec6c999acfb0807dc483e2f8a4",
     "skills\\grandet-api-price-finder\\agents\\openai.yaml": "a4ed21c5daf8d43b07db4d0ffa3eb5bae3c17267dcc5f66e3c403a520a764889",
     "skills\\grandet-api-price-finder\\references\\app-catalog.md": "0f79b30d568635ef38ff0f482deb88d24d96c55bebe67ddae6091ba6d93c8035",
     "skills\\grandet-api-price-finder\\references\\entrypoints.md": "c019850e72aba08d0ce87f5efbb73c1007dd080aac49ccb666fa88e6c348af44",
