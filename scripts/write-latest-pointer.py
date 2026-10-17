@@ -99,7 +99,7 @@ def main():
     p.add_argument('--gate-summary', required=True, help='one line from gate.md')
     p.add_argument('--approved-at', required=True, help='UTC time of the owner confirmation, e.g. 2026-10-17T12:30:00Z')
     p.add_argument('--approved-quote', default='', help="owner's words; required when the gate result is HOLD")
-    p.add_argument('--skillhub-version', required=True, help='e.g. 0.3.0-build.20261017.0')
+    p.add_argument('--skillhub-version', required=True, help='e.g. 0.3.0-build.20261017.2')
     p.add_argument('--out', type=Path, default=ROOT / 'downloads/latest.json')
     a = p.parse_args()
     manifest = json.loads((ROOT / 'downloads/manifest.json').read_text())

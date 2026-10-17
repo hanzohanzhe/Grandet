@@ -18,23 +18,23 @@ Prices and free credits come from grandet.ai. **Do not web-search prices; this e
 Prices (on Windows, type `curl.exe`):
 
 ```sh
-curl -sS --max-time 20 -A grandet-skill/0.3.0 -G "https://grandet.ai/api/v1/board?view=compact&lang=zh-CN&limit=10&skillVersion=0.3.0&skillBuild=grandet-skill-0.3.0-build.20261017" --data-urlencode "model=Claude Opus 4.6"
+curl -sS --max-time 20 -A grandet-skill/0.3.0 -G "https://grandet.ai/api/v1/board?view=compact&lang=zh-CN&limit=10&skillVersion=0.3.0&skillBuild=grandet-skill-0.3.0-build.20261017b" --data-urlencode "model=Claude Opus 4.6"
 ```
 
 Free credits:
 
 ```sh
-curl -sS --max-time 20 -A grandet-skill/0.3.0 -G "https://grandet.ai/api/v1/free-credits?lang=zh-CN&limit=10&skillVersion=0.3.0&skillBuild=grandet-skill-0.3.0-build.20261017" --data-urlencode "q=gemini"
+curl -sS --max-time 20 -A grandet-skill/0.3.0 -G "https://grandet.ai/api/v1/free-credits?lang=zh-CN&limit=10&skillVersion=0.3.0&skillBuild=grandet-skill-0.3.0-build.20261017b" --data-urlencode "q=gemini"
 ```
 
 No curl: use Python (`python` on Windows) or PowerShell. For free credits, put `/api/v1/free-credits` and `q` in place of `/api/v1/board` and `model`, and drop `view`.
 
 ```sh
-python3 -c "import sys,urllib.parse as p,urllib.request as r;q=p.urlencode({'model':'Claude Opus 4.6','view':'compact','lang':'zh-CN','limit':10,'skillVersion':'0.3.0','skillBuild':'grandet-skill-0.3.0-build.20261017'});sys.stdout.buffer.write(r.urlopen(r.Request('https://grandet.ai/api/v1/board?'+q,headers={'User-Agent':'grandet-skill/0.3.0'}),timeout=20).read())"
+python3 -c "import sys,urllib.parse as p,urllib.request as r;q=p.urlencode({'model':'Claude Opus 4.6','view':'compact','lang':'zh-CN','limit':10,'skillVersion':'0.3.0','skillBuild':'grandet-skill-0.3.0-build.20261017b'});sys.stdout.buffer.write(r.urlopen(r.Request('https://grandet.ai/api/v1/board?'+q,headers={'User-Agent':'grandet-skill/0.3.0'}),timeout=20).read())"
 ```
 
 ```powershell
-irm https://grandet.ai/api/v1/board -UseBasicParsing -UserAgent grandet-skill/0.3.0 -Body @{model='Claude Opus 4.6';view='compact';lang='zh-CN';limit=10;skillVersion='0.3.0';skillBuild='grandet-skill-0.3.0-build.20261017'} | ConvertTo-Json -Depth 30
+irm https://grandet.ai/api/v1/board -UseBasicParsing -UserAgent grandet-skill/0.3.0 -Body @{model='Claude Opus 4.6';view='compact';lang='zh-CN';limit=10;skillVersion='0.3.0';skillBuild='grandet-skill-0.3.0-build.20261017b'} | ConvertTo-Json -Depth 30
 ```
 
 The reply is long JSON. For prices, read each `boards[]` entry's `unit` and `listings.lowest` (`sourceId` is the site, `plan` the group, `blended` the price per million total tokens), then `official` (cash prices), and answer as in step 4 of "1. Lowest price". For free credits, read `offers[]` as in [free credits](references/free-credits.md). If the request fails, see the retry rule under "Always".
@@ -67,7 +67,7 @@ Price, free-credit and quality lookups only read from grandet.ai and change noth
 ## Always
 
 - **Requests.**
-  - Send `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017` and the known `host`/`targetApp` only where they are accepted: every MCP tool except `grandet_glossary`, and HTTP `/api/v1/board`, `/api/v1/free-credits`, `/api/v1/models` and `/api/v1/prices`. Never send them to `grandet_glossary`, `/api/v1/glossary`, `/api/v1/providers`, `/api/v1/catalog-version` or `/api/grandet/page`; those return 400. `/api/v1/models` and `/api/v1/prices` also reject `lang`, and `/api/v1/prices` needs `model` (`MODEL_SELECTOR_REQUIRED` without it).
+  - Send `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017b` and the known `host`/`targetApp` only where they are accepted: every MCP tool except `grandet_glossary`, and HTTP `/api/v1/board`, `/api/v1/free-credits`, `/api/v1/models` and `/api/v1/prices`. Never send them to `grandet_glossary`, `/api/v1/glossary`, `/api/v1/providers`, `/api/v1/catalog-version` or `/api/grandet/page`; those return 400. `/api/v1/models` and `/api/v1/prices` also reject `lang`, and `/api/v1/prices` needs `model` (`MODEL_SELECTOR_REQUIRED` without it).
   - Parameters the service rejects with 400: `limit` above 20 (`INVALID_LIMIT`, `INVALID_PAGINATION`), a `mix` that is not a preset name or whole numbers adding up to 100 with `cacheRead` written out (`INVALID_MIX`, see [workloads](references/workloads.md)), a repeated `skillBuild`. On a 400, correct that one parameter from this list and send once more; never switch to another path.
   - Every HTTP request carries a User-Agent such as `grandet-skill/0.3.0 (<host>)`. In Python set it explicitly; never rely on a library's default.
   - On a network error (connection reset, timeout, HTTP 5xx) or a 403 whose body is `error code: 1010`, send the same request once more (with the User-Agent above). If it still fails, say what could not be read and give the matching grandet.ai page; never answer as if the data were empty.
@@ -82,7 +82,7 @@ Price, free-credit and quality lookups only read from grandet.ai and change noth
 ## 1. Lowest price
 
 1. Pass the user's model name as `model` directly, as written; the server resolves a unique match (`resolvedFrom.model`) and you keep that ID for follow-ups. Never rewrite the name yourself: `qwen3.8-flash` stays `qwen3.8-flash` (not `qwen3-8b-flash`), and Haiku 4.5 is never 3.5 Haiku. If it returns `NEEDS_CLARIFICATION`, ask "你指的是 X 还是 Y？" with its candidates when `resolution.totalCandidates` is 1 or 2; when there are more, ask which exact model and version the user means. If it returns `SELECTION_NOT_FOUND` (HTTP 404), search once with `GET https://grandet.ai/api/v1/models?q=<name>&scope=all` and ask which one the user means, giving up to three `data.items[].modelName` closest to what they wrote; then query with the chosen `modelName` exactly. Never switch generation silently. `grandet_resolve_model` remains available when you only need the ID.
-2. Call `grandet_find_cheapest_api` once with `model`, `lang` (`zh-CN` or `en`), `limit=10`, `view=compact`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017`, the known `host` (the app you run in) and, when the user named where the API will be used (including "here"), `targetApp`. Add `mix` only for a stated workload: `mix=coding`, `mix=long_output`, or shares such as `mix=in:20,cacheRead:70,out:10` ([workloads](references/workloads.md)); add `endpointType` only if the user named a protocol. Ask nothing else up front.
+2. Call `grandet_find_cheapest_api` once with `model`, `lang` (`zh-CN` or `en`), `limit=10`, `view=compact`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017b`, the known `host` (the app you run in) and, when the user named where the API will be used (including "here"), `targetApp`. Add `mix` only for a stated workload: `mix=coding`, `mix=long_output`, or shares such as `mix=in:20,cacheRead:70,out:10` ([workloads](references/workloads.md)); add `endpointType` only if the user named a protocol. Ask nothing else up front.
 3. If MCP is unavailable, run the command in "Get the data first" (more options in [HTTP fallback](references/http-fallback.md)) with the same parameters. If that also fails, give `https://grandet.ai/` with the model to search and say the current price could not be checked; never fill in prices from a web search.
 4. Answer in this shape, filling only the lines that have data (English: the same lines in English, "credit price, not cash", "per million total tokens"; the original group name stays the name to select, with `planEn` beside it, as in the "English conversations" part of [response format](references/response-format.md)):
 
@@ -119,4 +119,4 @@ If you cannot edit files on the user's computer (for example a cloud chat), give
 - Which apps and protocols Grandet knows: [app catalogue](references/app-catalog.md) and [entry points](references/entrypoints.md). A listing is not a tested installation.
 - Installing or uninstalling this Skill: [installation](references/installation.md), section "Uninstalling" for removal.
 
-Installation build: `grandet-skill-0.3.0-build.20261017` (product/API 0.3.0). Native acceptance: NOT_RUN.
+Installation build: `grandet-skill-0.3.0-build.20261017b` (product/API 0.3.0). Native acceptance: NOT_RUN.
