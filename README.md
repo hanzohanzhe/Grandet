@@ -1,8 +1,14 @@
-# Grandet
+# Grandet: find the cheapest API for any model
 
 [简体中文](README.zh-CN.md) · [Website](https://grandet.ai) · [Installation](INSTALL.md)
 
-**Ask your agent for the cheapest API for a model, then let it connect that API to your own app.**
+**Grandet compares listed API prices for each model across official APIs, inference providers and relay sites. Your AI agent can look them up and connect the cheapest one to your app.**
+
+| Use it as | How |
+|---|---|
+| Website | <https://grandet.ai> |
+| Remote MCP server | `https://grandet.ai/mcp` (Streamable HTTP, no sign-up, no API key) |
+| Agent Skill | Tell your agent: `Install Grandet Skill for me: https://grandet.ai/download.md` |
 
 ## Install
 
@@ -17,6 +23,18 @@ The agent does the rest. If it needs you to sign in or approve something, it tel
 > I code in Claude Code. Find me the cheapest Claude Sonnet 4.6 API.
 
 No need to mention Grandet or attach files again. Price lookups need no account or API key. To install by hand, or for apps such as ChatGPT or Claude on the web that take an uploaded skill file, see [Manual installation](INSTALL.md#manual-installation).
+
+## MCP server
+
+Add it to any MCP client that supports remote servers:
+
+```json
+{ "mcpServers": { "grandet": { "url": "https://grandet.ai/mcp" } } }
+```
+
+In Claude Code: `claude mcp add --transport http grandet https://grandet.ai/mcp`
+
+Tools: `grandet_find_cheapest_api`, `grandet_find_free_credits`, `grandet_resolve_model`, `grandet_quote_evidence`, `grandet_glossary`, `grandet_list_apps`.
 
 ## What it does
 

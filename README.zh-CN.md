@@ -1,8 +1,14 @@
-# Grandet
+# Grandet：查任意模型最便宜的 API
 
 [English](README.md) · [官网](https://grandet.ai) · [安装说明](INSTALL.md)
 
-**在你的 Agent 里一句话查到某个模型最便宜的 API，再让它帮你接到自己的应用上。**
+**Grandet 按模型比较官方 API、推理服务商和中转站公布的价格。你的 AI 助手可以直接查价，并把最便宜的一家接到你的应用上。**
+
+| 用法 | 地址 |
+|---|---|
+| 网站 | <https://grandet.ai> |
+| 远程 MCP 服务 | `https://grandet.ai/mcp`（Streamable HTTP，不用注册，不用 API Key） |
+| Agent Skill | 对你的 Agent 说：`帮我安装 Grandet Skill：https://grandet.ai/download.md` |
 
 ## 安装
 
@@ -19,6 +25,18 @@
 不用提 Grandet，也不用再发文件。查价不需要注册账号或 API Key。想自己动手装，或者用的是 ChatGPT、Claude 网页版这类要上传技能文件的应用，看[手动安装](INSTALL.md#手动安装)。
 
 GitHub 下载慢或打不开？同一个安装包也在[腾讯 SkillHub](https://skillhub.cn/skills/grandet-api-price-finder) 上，不用注册就能下载；Agent 下载 GitHub 失败时会自动改用它。
+
+## MCP 服务
+
+支持远程 MCP 的客户端都能直接添加：
+
+```json
+{ "mcpServers": { "grandet": { "url": "https://grandet.ai/mcp" } } }
+```
+
+Claude Code 里：`claude mcp add --transport http grandet https://grandet.ai/mcp`
+
+工具：`grandet_find_cheapest_api`（查最低价）、`grandet_find_free_credits`（找免费额度）、`grandet_resolve_model`（识别模型名）、`grandet_quote_evidence`（查报价来源）、`grandet_glossary`（中转站术语）、`grandet_list_apps`（支持的应用）。
 
 ## 它做三件事
 
