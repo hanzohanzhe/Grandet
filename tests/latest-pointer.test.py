@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-import copy, hashlib, importlib.util, json, sys, tempfile, unittest
+import copy, hashlib, importlib.util, json, shutil, sys, tempfile, unittest
 from pathlib import Path
 
 sys.dont_write_bytecode = True  # validate-public.mjs runs after this and rejects stray __pycache__ files
@@ -33,7 +33,7 @@ class LatestPointer(unittest.TestCase):
 
     def build(self, manifest=None, release=None, gate='PASS', quote='', approved_at='2026-10-17T12:30:00Z', skillhub='0.3.0-build.20261017.1'):
         return pointer.build_pointer(manifest or self.manifest, release or self.release, COMMIT, gate, 'targets 10/10, no regression',
-                                     approved_at, quote, skillhub, root=self.root)
+                                     approved_at, quote, skillhub, ['1' * 64, '2' * 64], root=self.root)
 
     def test_pass_writes_the_published_build(self):
         p = self.build()
@@ -43,6 +43,7 @@ class LatestPointer(unittest.TestCase):
         self.assertEqual(p['skill']['assetId'], 101)
         self.assertEqual(p['zip']['sha256'], self.manifest['files'][0]['sha256'])
         self.assertEqual(p['gate']['result'], 'PASS')
+        self.assertEqual(p['installation'], {'contentDigestAlgorithm': 'sha256-path-nul-file-sha256-lf-codepoint-v1', 'contentSha256s': ['1' * 64, '2' * 64]})
 
     def test_hold_needs_the_owner_quote(self):
         with self.assertRaisesRegex(ValueError, 'HOLD_NEEDS_OWNER_QUOTE'):
@@ -82,6 +83,36 @@ class LatestPointer(unittest.TestCase):
             self.build(approved_at='today')
         with self.assertRaisesRegex(ValueError, 'SKILLHUB_VERSION_FORMAT'):
             self.build(skillhub='latest')
+
+    def test_installation_digests_come_from_the_archives(self):
+        # The repository's own archives, run through their own installer in --dry-run mode.
+        node = shutil.which('node')
+        if not node:
+            self.skipTest('node not found')
+        digests = pointer.installation_digests(ROOT, node=node)
+        self.assertEqual(len(digests), 2)
+        self.assertTrue(all(len(d) == 64 for d in digests))
+
+    def test_refuses_unsafe_archive(self):
+        bad = self.root / 'bad.zip'
+        import zipfile
+        with zipfile.ZipFile(bad, 'w') as z:
+            z.writestr('../escape.txt', 'x')
+        with self.assertRaisesRegex(ValueError, 'UNSAFE_ARCHIVE_ENTRY'):
+            pointer._extract(bad, self.root / 'out')
+
+    def test_approved_builds_append_only(self):
+        f = self.root / 'downloads/installation-approved-builds.json'
+        f.write_text(json.dumps({'schema': 'grandet.installation-approved-builds/v1', 'status': 'FROZEN', 'measurement_start': None,
+                                 'builds': [{'build_id': 'grandet-skill-0.3.0-build.20261016h', 'skill_version': '0.3.0',
+                                             'content_digest_algorithm': 'sha256-path-nul-file-sha256-lf-codepoint-v1', 'content_sha256s': ['3' * 64, '4' * 64]}]}))
+        b = 'grandet-skill-0.3.0-build.20261017a'
+        self.assertTrue(pointer.append_approved_build(b, ['1' * 64, '2' * 64], root=self.root))
+        self.assertFalse(pointer.append_approved_build(b, ['1' * 64, '2' * 64], root=self.root))
+        with self.assertRaisesRegex(ValueError, 'APPROVED_BUILD_ALREADY_LISTED_WITH_OTHER_DIGESTS'):
+            pointer.append_approved_build(b, ['5' * 64, '6' * 64], root=self.root)
+        builds = json.loads(f.read_text())['builds']
+        self.assertEqual([x['build_id'] for x in builds], ['grandet-skill-0.3.0-build.20261016h', b])
 
     def test_public_map_entry_added_once(self):
         (self.root / 'public-export-manifest.json').write_text(json.dumps({'files': [{'path': 'downloads/manifest.json'}, {'path': 'downloads/releases.json'}]}, indent=2) + '\n')

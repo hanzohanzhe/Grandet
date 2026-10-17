@@ -18,6 +18,13 @@
     "assetId": 650480775
   },
   "skillhubVersion": "0.3.0-build.20261017.0",
+  "installation": {
+    "contentDigestAlgorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+    "contentSha256s": [
+      "ba94270f0ff00d57a4fd63446a88a544bef618b8d04282e1c3b1ef26f31b5124",
+      "14f585795a08a449872c034d8fbd5556a7fb9ac396c132503d4d9177008ef604"
+    ]
+  },
   "gate": {
     "result": "HOLD",
     "summary": "Skill gate HOLD · gate-bank-v1 48题×1通道（ainzy-deepseek-v4.1-flash；站长按 deepseek 定，glm 通道中途停）· 词典口径 基线 48/48 → 候选 47/48 · 只基线对 1 / 只候选对 0 · 题型无退步 · token 中位数 ×0.936 · targets 10/13（免费额度链接 7/8、价格题问接哪个应用 14/16、response-format 每题 0.208）· 两版判定器结果相同"

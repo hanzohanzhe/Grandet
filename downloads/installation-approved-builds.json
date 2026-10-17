@@ -1,0 +1,142 @@
+{
+  "schema": "grandet.installation-approved-builds/v1",
+  "status": "FROZEN",
+  "measurement_start": "2026-10-14T20:46:07.000Z",
+  "builds": [
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261014",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "37eed9c5c9d4fc1a234d058c67dce84365eceec7a49cb0dd5e5b4ed67133cf89",
+        "10ae5dbad94a5df853724f250bdf9d7f3ec7c06264c58e56caa5f464902198a1"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261015",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "0d34a2b7c69ce89167b3e96e3d1b2d9cb25242bd5ebd88afb3b669b309f53f25",
+        "adc80893a24431d67f2bdae999f2125ba875a1d5cef3c9b0258cd7c7ad731f0e"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261015b",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "cbf9c18f6a43523941d0e4390ffebf33e7410b2b7921edc811147bfeb0eba99e",
+        "543d97bdeab2970a14e8d7fe8d16125c7090f8f2a7100d11b8201ee77a6f3d28"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261015c",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "ea0e2cbb11ab9e9b457342e18c9e7ae01a82993a7eb0075d24ff4e356ba64035",
+        "0773ec5901fc515f3a1a7e7a26584d5310b1ead24dd60014ee7b83eefe56b605"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261015d",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "47b5c043b1c274c2d183fbec3589f7304d5f9f6ff89188a88bedb0aaccf6c104",
+        "5b58fe86e1bf0ec0ad636dcacb924c8645fa8aa47ec7ca7859fad53c31acdfb2"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261015e",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "d7aab6a604829d49262299846c240b135f07ddd6405cb9f223a02ed43c30c263",
+        "7018ffb5ae38f0de70ede80c6fcf10bae7d62c44caa91f9b7e8354091799d396"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "de738b6b640ff6223bfcca8c14d8807546717b12af862185c786df03dc08fae5",
+        "6abcc77c96e98bd8312c4056ad549fa35c7a5935e42746f8121d9962ff5770ee"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016b",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "dbecdbedc5d9dec44ec1fd7386bdd77dee6222f896ecc801b9864da25aa8c4d8",
+        "9432ea8e0f425ae63b382e0693e7944041bda6de391a27ce91fef4940ef009cc"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016c",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "9acbdc10dcd0b09e13623ca58a68ac0f83952b33650c029d97711f72142a0044",
+        "ca65f6ab2a421595fc90bd5e97a40402f8fa02a3e135b0e87f69f42bf89b8f54"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016f",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "522acbfa183a4c0ba5d752da36f02ce0dc80a31ff82cfc70a1837de0792494c4",
+        "49d412f480ed2b4e5f2130f117ae2f2197714906bdba9c8296e085addda1f539"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016g",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "fdaa131803a4c7ea81bbb59c27157a1c810cdc65d6b1dd10ee7aa7676d53340f",
+        "8a7b600917977d9e8fba7caae0fd2c424ce313014044d4dfeefb7e5853deaacc"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016h",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "961df8188a240c7a130a4c96c20dc302b4864662e9e50369bcb46286da73f1ab",
+        "ef4441952a28f678d7bc38c14876453c23e0d8df64523ab9b51fe2a94fc44cb8"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016d",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "52330221925d63e376f5d60c92b30a266eaa646b70df8fac603844170e12247f",
+        "f00e003335151d68f86ece87e274c80bf82921768c6e64097366bdd5177758b2"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261016e",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "a28b6e0ff8fe91b05209206b39f1d6396ee60ef61e29535f08de7fd222cbf1b5",
+        "eb96034eddb8053f988c176051d43fa94e4cc751dbf7552d1dcade6cca6fa5ac"
+      ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261017",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "ba94270f0ff00d57a4fd63446a88a544bef618b8d04282e1c3b1ef26f31b5124",
+        "14f585795a08a449872c034d8fbd5556a7fb9ac396c132503d4d9177008ef604"
+      ]
+    }
+  ]
+}
