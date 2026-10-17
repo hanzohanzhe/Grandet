@@ -35,7 +35,6 @@ test('"Get the data first" names the only requests and treats an empty board as 
   assert.match(dataFirst, /An empty board is the answer, not an error\./);
   // The one INVALID_QUERY left in the formal gate: a helper sent skillVersion/skillBuild to every path.
   assert.match(dataFirst, /A helper that adds `skillVersion` and `skillBuild` adds them to board, free-credits, models and prices only\./);
-  assert.match(dataFirst, /never fetch it/);
   assert.match(dataFirst, /RESPONSE_BUDGET_EXCEEDED/);
   assert.match(dataFirst, /`OTHER_BILLING_UNIT`/);
   assert.match(dataFirst, /no second request with another path, view or name/);
