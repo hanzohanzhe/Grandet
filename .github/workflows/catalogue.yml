@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -18,3 +19,5 @@ jobs:
       - run: node --test tests/*.test.mjs
       - run: node scripts/catalogue.mjs generate --check
       - run: node scripts/validate-public.mjs
+      # grandet.ai must be able to follow downloads/latest.json; see docs/skills/site-follow.md.
+      - run: node scripts/check-site-follow.mjs --previous-ref HEAD^
