@@ -102,7 +102,11 @@ async function pool(items, worker) {
 const version = (await get('/api/v1/catalog-version')).body;
 if (!version?.version?.releaseSet) throw new Error('CATALOG_VERSION_UNREADABLE');
 const sitemap = (await get('/sitemaps/pages-1.xml', 'text')).body;
-let ids = [...new Set([...sitemap.matchAll(/leaderboard\/\?model=([^<&"]+)/g)].map((m) => decodeURIComponent(m[1].replace(/&amp;/g, '&'))))].sort();
+// Model pages: W41 listed /leaderboard/?model=<id>; W42 lists /entities/<vendor>--<model>/ (the part after
+// "--" is the board's model selector). Read both; the zh-CN copies of the same pages are skipped.
+const fromLeaderboard = [...sitemap.matchAll(/leaderboard\/\?model=([^<&"]+)/g)].map((m) => m[1].replace(/&amp;/g, '&'));
+const fromEntities = [...sitemap.matchAll(/<loc>https?:\/\/[^/<]+\/entities\/[^/<]*?--([^/<]+)\/?<\/loc>/g)].map((m) => m[1]);
+let ids = [...new Set([...fromLeaderboard, ...fromEntities].map((s) => decodeURIComponent(s)))].sort();
 if (limitModels > 0) ids = ids.slice(0, limitModels);
 if (!ids.length) throw new Error('NO_MODEL_PAGES_IN_SITEMAP');
 
