@@ -1,37 +1,37 @@
 {
   "schema": "grandet.skill-latest/v1",
   "version": "0.3.0",
-  "build": "grandet-skill-0.3.0-build.20261018",
-  "tag": "skill-v0.3.0-build.20261018",
-  "releaseId": 416247759,
-  "sourceCommit": "dbb91bad58f0877c25b4c6dd84f59a6a3d079333",
+  "build": "grandet-skill-0.3.0-build.20261018b",
+  "tag": "skill-v0.3.0-build.20261018b",
+  "releaseId": 416671672,
+  "sourceCommit": "66de8f80a34575a6bf35877df36ccfb7b6da0f79",
   "zip": {
-    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018/grandet-api-price-finder-0.3.0.zip",
-    "bytes": 435666,
-    "sha256": "8fffbb70384bd56a633f9f2b6cd1608ed9f432906ae60f8691cb79ba736a4a9d",
-    "assetId": 652542450
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018b/grandet-api-price-finder-0.3.0.zip",
+    "bytes": 522388,
+    "sha256": "6b6f7e9a7b0e056e82edd0cdeacf0042a4e86fd36108dc9aae4a1326d35ef287",
+    "assetId": 654342635
   },
   "skill": {
-    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018/grandet-api-price-finder-0.3.0.skill",
-    "bytes": 133539,
-    "sha256": "ac485e25def0cfbd462136a8b62f12c5dd7369060f1f3e06828a958427377838",
-    "assetId": 652542451
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018b/grandet-api-price-finder-0.3.0.skill",
+    "bytes": 217827,
+    "sha256": "8b83eee15012783571fcc837e171abbde0c134078ba84741925a5ab338c68f2a",
+    "assetId": 654342636
   },
-  "skillhubVersion": "0.3.0-build.20261018.0",
+  "skillhubVersion": "0.3.0-build.20261018.2",
   "installation": {
     "contentDigestAlgorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
     "contentSha256s": [
-      "6093ca12327bee3329f568dc3822a261de8a35bd8020593d980039d25c97b82a",
-      "65030ef7fccb433c9c8abe51ead80a186cd79023bcacf19fa82fc0060b81644a"
+      "88099cc9369e6d382078a2c5c7e1af3f66b653bc2549643ab7b1a3c4ad899653",
+      "f9e0e1bc452c4b84c79fa45f61124b23b4fa2d45bdc96a526b89cafed93f78a0"
     ]
   },
   "gate": {
     "result": "PASS",
-    "summary": "Skill gate PASS · gate-bank-v1 48题×2通道（deepseek-v4.1-flash、glm-5.3）· 词典口径 基线 95/96 → 候选 95/96 · 只基线对 0 / 只候选对 0 · 题型无退步 · token 中位数 ×0.895 · targets 15/15 · 比价题绕路会话 10/16 → 2/16、limit=20 16/16 · 环境错误剔除 0/96"
+    "summary": "Skill gate PASS · gate-bank-v1 48题×2通道（deepseek-v4.1-flash、glm-5.3）· 词典口径 基线 96/96 → 候选 96/96 · 只基线对 0 / 只候选对 0 · 题型无退步 · token 中位数 ×1.041 · targets 18/18 · PAGE_NOT_FOUND 0、价格条件题走页面接口的会话 0.062 → 0 · 价格准确率 0.974 → 1 · 环境错误剔除 0/96"
   },
   "approved": {
     "by": "owner",
-    "at": "2026-10-18T05:05:00Z",
-    "quote": "发布 i8：先合 PR #17，再发预发布、登记、指针改到 i8，写交接单。"
+    "at": "2026-10-18T19:45:00Z",
+    "quote": "发布 j2（合 PR、预发布 skill-v0.3.0-build.20261018b、登记、指针改到 j2、交接单和更新简报）；小闸门装好后批准跑 j2 对 c 的小闸门，过了再跑全量（合计约 ¥16）。"
   }
 }
