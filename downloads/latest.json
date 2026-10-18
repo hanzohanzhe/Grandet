@@ -1,37 +1,37 @@
 {
   "schema": "grandet.skill-latest/v1",
   "version": "0.3.0",
-  "build": "grandet-skill-0.3.0-build.20261017b",
-  "tag": "skill-v0.3.0-build.20261017b",
-  "releaseId": 416169953,
-  "sourceCommit": "165ba40af39f932273ea74925e4a8f96edf9536b",
+  "build": "grandet-skill-0.3.0-build.20261018",
+  "tag": "skill-v0.3.0-build.20261018",
+  "releaseId": 416247759,
+  "sourceCommit": "dbb91bad58f0877c25b4c6dd84f59a6a3d079333",
   "zip": {
-    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.zip",
-    "bytes": 434665,
-    "sha256": "aabf2c784fa7f3825d8ce26159d22fea94690e39ce05892181627daa33719f62",
-    "assetId": 652118462
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018/grandet-api-price-finder-0.3.0.zip",
+    "bytes": 435666,
+    "sha256": "8fffbb70384bd56a633f9f2b6cd1608ed9f432906ae60f8691cb79ba736a4a9d",
+    "assetId": 652542450
   },
   "skill": {
-    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.skill",
-    "bytes": 133374,
-    "sha256": "d02359bb8fcfeeb7b7e05d4c2c9dd7f5b9d9fa07ea7f3ffea9637e6be62f43f5",
-    "assetId": 652118460
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018/grandet-api-price-finder-0.3.0.skill",
+    "bytes": 133539,
+    "sha256": "ac485e25def0cfbd462136a8b62f12c5dd7369060f1f3e06828a958427377838",
+    "assetId": 652542451
   },
-  "skillhubVersion": "0.3.0-build.20261017.2",
+  "skillhubVersion": "0.3.0-build.20261018.0",
   "installation": {
     "contentDigestAlgorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
     "contentSha256s": [
-      "1d7c46c337ca2b9b3df5ff3301d6c6c5a8bd31fa5e524cdb02a88409c6f2f4ab",
-      "0d075032ee4588be53270e747bf7904833cff1884f5fc056123376b7f04c701c"
+      "6093ca12327bee3329f568dc3822a261de8a35bd8020593d980039d25c97b82a",
+      "65030ef7fccb433c9c8abe51ead80a186cd79023bcacf19fa82fc0060b81644a"
     ]
   },
   "gate": {
-    "result": "HOLD",
-    "summary": "Skill gate HOLD · gate-bank-v1 48题×2通道（deepseek-v4.1-flash、glm-5.3）· 词典口径 基线 95/96 → 候选 95/96 · 只基线对 0 / 只候选对 0 · 题型无退步 · token 中位数 ×1.028 · targets 11/13（INVALID_LIMIT 1 次、cheaper_provider_output 链接 15/16，均来自 glm 同一会话）· 问接哪个应用 25/32 → 28/32 · 每题工具 7.10 → 7.07 · 环境错误剔除 0/96"
+    "result": "PASS",
+    "summary": "Skill gate PASS · gate-bank-v1 48题×2通道（deepseek-v4.1-flash、glm-5.3）· 词典口径 基线 95/96 → 候选 95/96 · 只基线对 0 / 只候选对 0 · 题型无退步 · token 中位数 ×0.895 · targets 15/15 · 比价题绕路会话 10/16 → 2/16、limit=20 16/16 · 环境错误剔除 0/96"
   },
   "approved": {
     "by": "owner",
-    "at": "2026-10-18T01:25:00Z",
-    "quote": "照发 i7：i6b 没过的两项都修好了，新的两项来自同一个会话，答对持平。按 HOLD 发布并把指针改到 i7。"
+    "at": "2026-10-18T05:05:00Z",
+    "quote": "发布 i8：先合 PR #17，再发预发布、登记、指针改到 i8，写交接单。"
   }
 }
