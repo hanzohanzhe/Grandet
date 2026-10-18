@@ -255,6 +255,54 @@ test('openclaw: anthropic proxy, JSON5 and comments are refused', async () => {
   await assert.rejects(plan(base(h, 'openclaw', { protocol: 'openai-response' })), { code: 'PROTOCOL_NOT_SUPPORTED_BY_APP' });
 });
 
+test('workbuddy: models.json entry, key written by the key command, other models kept, undo is byte-exact', async () => {
+  const h = await home(); await mkdir(join(h, '.codebuddy'), { recursive: true });
+  const original = `${JSON.stringify({ models: [{ id: 'my-local', name: 'Local', vendor: 'me', apiKey: 'sk-mine-77777777', url: 'http://127.0.0.1:8000/v1/chat/completions' }], availableModels: ['my-local'] }, null, 2)}\n`;
+  await writeFile(join(h, '.codebuddy/models.json'), original, { mode: 0o600 });
+  const opts = base(h, 'workbuddy', { protocol: 'openai' });
+  const preview = publicPlan(await plan(opts));
+  assert.doesNotMatch(JSON.stringify(preview), /sk-mine-77777777/);
+  await apply({ ...opts, yes: true, planHash: preview.planHash });
+  const file = join(h, '.codebuddy/models.json');
+  assert.equal((await stat(file)).mode & 0o777, 0o600, 'permissions kept');
+  const cfg = JSON.parse(await read(file));
+  assert.deepEqual(cfg.models[1], { id: 'claude-sonnet-4-6', name: 'claude-sonnet-4-6 (apijing.com)', vendor: 'apijing.com (Grandet)', apiKey: 'GRANDET_KEY_PLACEHOLDER', url: 'https://apijing.com/v1/chat/completions', supportsToolCall: true });
+  assert.equal(cfg.models[0].apiKey, 'sk-mine-77777777');
+  assert.deepEqual(cfg.availableModels, ['my-local', 'claude-sonnet-4-6']);
+  await storeKey(opts, KEY);
+  assert.equal(JSON.parse(await read(file)).models[1].apiKey, KEY);
+  assert.equal((await apply({ ...opts, yes: true })).unchanged, true, 're-applying keeps the stored key');
+  await restore({ home: h });
+  assert.equal(await read(file), original);
+});
+
+test('workbuddy: new file is private, responses API, refuses a model the user configured', async () => {
+  const h = await home();
+  await apply({ ...base(h, 'workbuddy', { protocol: 'openai-response' }), yes: true });
+  const file = join(h, '.codebuddy/models.json');
+  assert.equal((await stat(file)).mode & 0o777, 0o600);
+  const cfg = JSON.parse(await read(file));
+  assert.equal(cfg.models[0].url, 'https://apijing.com/v1'); assert.equal(cfg.models[0].api, 'openai-responses');
+  assert.equal(cfg.availableModels, undefined, 'availableModels is never created');
+  const c = await home(); await mkdir(join(c, '.codebuddy'), { recursive: true });
+  await writeFile(join(c, '.codebuddy/models.json'), JSON.stringify({ models: [{ id: 'claude-sonnet-4-6', vendor: 'me' }] }));
+  await assert.rejects(plan(base(c, 'workbuddy')), { code: 'MODEL_ALREADY_CONFIGURED' });
+  await assert.rejects(plan(base(c, 'workbuddy', { protocol: 'anthropic' })), { code: 'PROTOCOL_NOT_SUPPORTED_BY_APP' });
+});
+
+test('rewriting a config keeps its permissions', async () => {
+  const h = await home(); await mkdir(join(h, '.continue'), { recursive: true });
+  await writeFile(join(h, '.continue/config.yaml'), 'name: mine\nmodels:\n  - name: x\n    provider: openai\n    model: x\n    apiKey: sk-x\n', { mode: 0o600 });
+  const opts = base(h, 'continue', { protocol: 'openai' });
+  await apply({ ...opts, yes: true });
+  assert.equal((await stat(join(h, '.continue/config.yaml'))).mode & 0o777, 0o600);
+  await storeKey(opts, KEY);
+  assert.equal((await stat(join(h, '.continue/config.yaml'))).mode & 0o777, 0o600, 'storing the key keeps it too');
+  const fresh = await home();
+  await apply({ ...base(fresh, 'gemini-cli', { protocol: 'gemini' }), yes: true });
+  assert.equal((await stat(join(fresh, '.env'))).mode & 0o777, 0o600, 'a new file that will hold the key is private');
+});
+
 test('address guard: other domain needs confirmation, http only on loopback, /v1 is stripped', async () => {
   const h = await home();
   await assert.rejects(plan(base(h, 'codex', { baseUrl: 'https://api.other.com' })), { code: 'BASE_URL_OTHER_DOMAIN' });

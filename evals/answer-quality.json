@@ -1,7 +1,7 @@
 {
   "schema": "grandet.skill-answer-evals/v1",
-  "build": "grandet-skill-0.3.0-build.20261017",
-  "howTo": "Ask each prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--board <board.json>]. For E1 save the board response the answer used (or fetch the same parameters once) and pass it with --board. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request. scripts/run-answer-evals.mjs runs every case automatically with the local Codex CLI in empty test folders, replays the board request the agent made and checks each final answer.",
+  "build": "grandet-skill-0.3.0-build.20261017b",
+  "howTo": "Ask each prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--board <board.json>]. For E1, E4 and E5 save the board response the answer used (or fetch the same parameters once) and pass it with --board. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request. scripts/run-answer-evals.mjs runs every case automatically with the local Codex CLI in empty test folders, replays the board request the agent made and checks each final answer.",
   "cases": [
     {
       "id": "E1",
@@ -98,6 +98,71 @@
         "turns": [
           "Claude Sonnet 4.6 哪家 API 便宜？我平时用来写代码。",
           "用第一个，帮我接到 OpenCode。要改的配置我同意，直接写。"
+        ]
+      }
+    },
+    {
+      "id": "E4",
+      "covers": [
+        "EN1"
+      ],
+      "host": "any",
+      "setup": "No earlier messages.",
+      "prompt": "What is the cheapest API for Claude Sonnet 5.5? I use it for coding.",
+      "expect": [
+        "Answers in English.",
+        "Gives each lowest site's group name exactly as the site writes it (often Chinese), with an English explanation beside it: planEn when the service returns it, otherwise the glossary's English meaning.",
+        "Never uses the English text as the group name to select.",
+        "Every price carries its unit in English (per million total tokens, credit price, not cash)."
+      ],
+      "checks": [
+        "lowestRows",
+        "referenceRows",
+        "unitsOnPriceLines",
+        "answerInEnglish",
+        "originalPlanNames",
+        "planEnBesidePlan",
+        "notComparableLine",
+        "noInventedPercent"
+      ],
+      "automation": {
+        "turns": [
+          "What is the cheapest API for Claude Sonnet 5.5? I use it for coding."
+        ]
+      }
+    },
+    {
+      "id": "E5",
+      "covers": [
+        "EN1",
+        "CF3",
+        "CF4"
+      ],
+      "host": "local agent that can run commands",
+      "setup": "Continue the E4 conversation.",
+      "prompt": "Use the first one and connect it to OpenCode. I agree to the config change, go ahead and write it.",
+      "expect": [
+        "Answers in English.",
+        "The executor command's --group and --model are the site's original group name and model name, not translations.",
+        "The key is stored by the user with the executor's key command; never in a curl header, an argument or the chat.",
+        "Separates the free check from a real message, which spends credit."
+      ],
+      "checks": [
+        "answerInEnglish",
+        "usesExecutor",
+        "originalGroupInCommands",
+        "noKeyInCurl",
+        "noKeyArgument",
+        "noKeyRequestInChat",
+        "keyCommandGiven",
+        "freeCheckNamed",
+        "paidTestSeparated",
+        "notCalledWorking"
+      ],
+      "automation": {
+        "turns": [
+          "What is the cheapest API for Claude Sonnet 5.5? I use it for coding.",
+          "Use the first one and connect it to OpenCode. I agree to the config change, go ahead and write it."
         ]
       }
     }

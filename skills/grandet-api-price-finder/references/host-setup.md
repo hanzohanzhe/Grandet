@@ -11,7 +11,7 @@ Goal: the user's app calls the chosen site with the chosen model. You prepare an
 - **Target app**: the app the user named. If none, ask once: "接到哪个应用？" and query again with that `targetApp`, so the row's `integration` card fits that app.
 - The row's `integration` card gives the app's documented `configurationFormat`, `configurationPath`, `docsUrl` and `steps`. In `view=compact`, the row carries `integration.card`, an index into the top-level `integrationCards`; that card's `stepsTemplate` has `{{model}}` and `{{tokenGroup}}` to replace with the row's literal values.
 
-Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`; Hermes takes `openai`, `openai-response` or `anthropic`; OpenClaw takes `openai` or `anthropic`. If the row does not offer it, say so and offer the next row that does.
+Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`; Hermes takes `openai`, `openai-response` or `anthropic`; OpenClaw takes `openai` or `anthropic`; WorkBuddy takes `openai` or `openai-response`. If the row does not offer it, say so and offer the next row that does.
 
 ## 2. Find the API address
 
@@ -34,12 +34,12 @@ Tell the user exactly these three steps, then wait:
 
 ## Use the connect executor (preferred)
 
-This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). It previews, backs up, writes, checks for free and undoes the connection for **Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes and OpenClaw**. Use it instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these eight, or the executor stops with a code that says to edit by hand.
+This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). It previews, backs up, writes, checks for free and undoes the connection for **Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes, OpenClaw and WorkBuddy**. Use it instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these nine, or the executor stops with a code that says to edit by hand.
 
 Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs"`. Fill the values from the row (section 1) and the address rules (section 2). Pass values exactly; quote ones that contain spaces or non-ASCII text.
 
 1. **Preview**, then show the user the diff and notes, and the three steps on the site (section 3):
-   `CONNECT preview --app <codex|claude-code|opencode|kilo-code|continue|gemini-cli|hermes|openclaw> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"`
+   `CONNECT preview --app <codex|claude-code|opencode|kilo-code|continue|gemini-cli|hermes|openclaw|workbuddy> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"`
    - `baseUrlMode=SUGGESTION`: ask the user to confirm the address first, then add `--confirmed-other-domain`.
    - Codex, OpenCode and Kilo Code have one default model. When a note says `Will change the default model from X to Y` (or `Will set Y as the default model`; `defaultModel` in `--json` and MCP output), tell the user that in one line.
    - The output ends with `plan-hash <hash>`; keep it.
@@ -172,9 +172,23 @@ model:
 }
 ```
 
+**WorkBuddy** (also the CodeBuddy CLI) — `~/.codebuddy/models.json`; the app reloads it. Add one entry to `models`; `url` is the full path for `openai` (`<origin>/v1/chat/completions`), or `<origin>/v1` with `"api": "openai-responses"`. If the file has `availableModels`, add the model there too; never create that list, it would hide every other model. If an entry with the same `id` already exists, ask the user before changing it. The key goes into `apiKey`; ask the user to paste it into the file themselves, and keep the file readable by them only.
+
+```json
+{"models": [{"id": "<modelName>", "name": "<modelName> (<site>)", "vendor": "<site> (Grandet)",
+  "apiKey": "PASTE_YOUR_KEY_HERE", "url": "<origin>/v1/chat/completions", "supportsToolCall": true}]}
+```
+
 **Scripts and OpenAI-compatible SDKs** — `OPENAI_BASE_URL=<origin>/v1` and `OPENAI_API_KEY` from `<VAR>`.
 
-**Other apps** (Cline, Roo Code, Cherry Studio, Chatbox, TRAE, WorkBuddy, Cursor, Windsurf): give the field card below and the app's documentation link from the [app catalogue](app-catalog.md). If you can edit that app's config file and its official documentation gives the exact format, you may write it with the same preview, backup and confirmation.
+**Other apps**: give the field card below and the app's documentation link from the [app catalogue](app-catalog.md); the user fills it in the app's own settings.
+
+- Cline, TRAE, Cherry Studio, Chatbox: settings in the app (OpenAI format; TRAE, Cherry Studio and Chatbox also take Anthropic). Do not use `cline auth -k`: it takes the key as a command argument.
+- Cursor: only the app's "Override OpenAI Base URL" setting; Grandet has not checked it with relays.
+- Windsurf (renamed Devin Desktop on 2026-06-02): no documented way to set an API address, so a relay cannot be connected. Say so.
+- Roo Code: shut down on 2026-05-15. Suggest Cline or Kilo Code instead.
+
+If you can edit an app's config file and its official documentation gives the exact format, you may write it with the same preview, backup and confirmation.
 
 ```text
 应用 / App: <target app>
@@ -220,25 +234,25 @@ Cloud chats, web apps and bots cannot edit the user's files: a cloud computer's 
 macOS / Linux:
 
 ```sh
-mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
+mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
 node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
 ```
 
 Windows PowerShell:
 
 ```powershell
-$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
+$g="$HOME\.grandet"; New-Item -ItemType Directory -Force $g | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.skill'; Expand-Archive -Force "$g\grandet-skill.zip" $g
 node "$HOME\.grandet\grandet-api-price-finder\scripts\connect.mjs" preview --app <app> --site <sourceId> --base-url <origin> --protocol <protocol> --model <model> --group "<group>"
 ```
 
 If the user is in mainland China, or the GitHub download fails, give this first line instead. It downloads the same kit from Tencent SkillHub, whose archive has no top folder, so it extracts into the folder itself; the `node` line stays the same.
 
 ```sh
-mkdir -p ~/.grandet/grandet-api-price-finder && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261017.0' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet/grandet-api-price-finder || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet/grandet-api-price-finder)
+mkdir -p ~/.grandet/grandet-api-price-finder && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261017.2' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet/grandet-api-price-finder || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet/grandet-api-price-finder)
 ```
 
 ```powershell
-$g="$HOME\.grandet"; New-Item -ItemType Directory -Force "$g\grandet-api-price-finder" | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261017.0'; Expand-Archive -Force "$g\grandet-skill.zip" "$g\grandet-api-price-finder"
+$g="$HOME\.grandet"; New-Item -ItemType Directory -Force "$g\grandet-api-price-finder" | Out-Null; Invoke-WebRequest -UseBasicParsing -OutFile "$g\grandet-skill.zip" 'https://api.skillhub.cn/api/v1/download?slug=grandet-api-price-finder&version=0.3.0-build.20261017.2'; Expand-Archive -Force "$g\grandet-skill.zip" "$g\grandet-api-price-finder"
 ```
 
 Then tell the user, in order:

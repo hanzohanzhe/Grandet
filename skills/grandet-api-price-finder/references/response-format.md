@@ -91,6 +91,17 @@ Labels: credit boards say "额度价，非现金" / "credit price, not cash"; ca
 >
 > Want me to connect it to Codex?
 
+## English conversations
+
+With `lang=en`, a newer service adds English next to the original text. Older services leave these fields out; then answer as before, show the original group name, and explain terms from the English column of the [glossary](glossary.md).
+
+- `planEn` (with `planTranslationMethod`): write the group name exactly as `plan`, then `planEn` in parentheses, for example: A site, group 「官key-特价」 ("official key, special price"). `planEn` is an explanation, never the name to select.
+- `conditionsEn[]` lines up with `conditions[]`; use the English entry, and the original where it is `null`.
+- `listing.hintEn`: show it instead of `listing.hint`. Without it, show `listing.hint` as it is.
+- `modelNameEn` may explain a model name; `modelName` stays the exact name for the config.
+- `integration.tokenGroup` and `modelName` are always the original text in the steps, the commands and the executor's `--group` and `--model`. `integration.tokenGroupNote` says the same: select this exact group name on the site.
+- The fixed phrases in this file in English: "credit price, not cash"; "per million total tokens"; "older quote (observed <date>)"; "far below most other sites"; "the unit in the name does not match the price"; "the price looks like a conversion error"; "the rate multiplier looks like a placeholder"; "flagged by Grandet's review as a doubtful price"; "the site declares it a non-standard channel"; "listed at 0, not verified"; "N more offers limited to <client> are folded"; "N more quotes list no cache price and were not ranked"; "Relay prices are credit; official and inference prices are cash, so they cannot be compared directly."
+
 ## Special results
 
 - `status=NO_ELIGIBLE_RECOMMENDATION` on every board: "这组条件下暂时没有可列出的报价：<returned reason>。" plus the link. Do not switch model or search outside Grandet.

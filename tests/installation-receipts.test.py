@@ -100,7 +100,7 @@ class Receipts(unittest.TestCase):
         self.node('--dry-run');self.assertFalse(self.home.exists());self.assertEqual(self.events,[])
         bad=Path(self.temp.name)/'bad';shutil.copytree(SOURCE,bad);(bad/'references/workloads.md').unlink();r=self.node('--source',str(bad),success=False);self.assertNotEqual(r.returncode,0);self.assertEqual(self.events,[])
     def test_source_build_is_030_compatible_and_rejects_candidate_version(self):
-        result=self.node();self.assertEqual(result['productVersion'],'0.3.0');self.assertEqual(result['sourceBuild'],'grandet-skill-0.3.0-build.20261017');self.assertEqual(self.events[-1]['skill_version'],'0.3.0')
+        result=self.node();self.assertEqual(result['productVersion'],'0.3.0');self.assertEqual(result['sourceBuild'],'grandet-skill-0.3.0-build.20261017b');self.assertEqual(self.events[-1]['skill_version'],'0.3.0')
         wrong=Path(self.temp.name)/'candidate';shutil.copytree(SOURCE,wrong);(wrong/'SKILL.md').write_bytes((wrong/'SKILL.md').read_bytes().replace(b'Package version: `0.3.0`',b'Package version: `0.3.1`'))
         before=len(self.events);result=self.node('--source',str(wrong),success=False);self.assertNotEqual(result.returncode,0);self.assertEqual(len(self.events),before)
     def test_reported_digest_matches_receipt_digest(self):

@@ -19,7 +19,7 @@ Call `grandet_find_free_credits` once with:
 - `q`: the model family or provider the user cares about (`gemini`, `claude`, `deepseek` …). It matches provider, title, benefit text and the models a free group covers. Leave it out to list everything. If a model family returns no official offer, query once more with the vendor's name (qwen → `百炼` or `alibaba`, kimi → `moonshot`, glm → `智谱` or `zhipu`) and merge the official offers.
 - `kind=all`, so official and relay offers both come back. Use `official` or `relay` only when the user asked for one kind.
 - `userCanMeet`: `no_card` when the user said they have no card, `student` when they said they are a student, otherwise leave it out. `no_card` keeps only offers that **state** no card is needed; when it returns nothing, query again without it and mark each offer "是否需绑卡未写明".
-- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017`, and the known `host`/`targetApp`.
+- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261017b`, and the known `host`/`targetApp`.
 
 Without MCP, send the same parameters to `GET https://grandet.ai/api/v1/free-credits` (see [HTTP fallback](http-fallback.md)). If both fail, give the web page instead: `https://grandet.ai/zh-CN/free-tokens/` (English: `https://grandet.ai/free-tokens/`), with `?q=<word>` to filter.
 
@@ -46,7 +46,7 @@ For each offer, one line:
 - who offers it and what it gives (their words, shortened);
 - the conditions marked required (for example "需绑卡、需实名"); unknown ones as "条件未写明";
 - every usage limit the offer's own `conditions` state, such as only for one client, a daily or hourly cap, slower at peak times, or only some models (for example "仅限 rp-hub、每日 240 次、高峰限速"). Never drop a stated limit to shorten the line, and never call a stated limit "未写明";
-- for a relay free group, the group name to choose: 「<plan>」;
+- for a relay free group, the group name to choose: 「<plan>」; in English, add `planEn` in parentheses when the service returns it, and keep 「<plan>」 as the name to select;
 - "截止 <date>" / "ends <date>" only from `deadline.statedDate` or `deadline.statedText`; for a relay free group's `deadline.endAt`, "记录有效期至 <date>" / "record valid until <date>"; and the claim link (`claimUrl`, or the site for a relay).
 
 Keep each line's hint within 50 characters; a line with several stated limits may run longer rather than lose one. Then filter by what the user has told you about themselves.

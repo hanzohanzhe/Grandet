@@ -35,7 +35,7 @@ const badPrice = `Claude Sonnet 4.6 最低价：oojj.top 0.3，bearlab.ai 0.3 �
 
 const goodCloud = `我在云端，改不了你 Mac 上的文件。请在你自己的终端运行：
 \`\`\`sh
-mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
+mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
 node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs preview --app claude-code --site oojj.top --base-url https://oojj.top --protocol anthropic --model claude-sonnet-4-6 --group "aws0-ex"
 \`\`\`
 1. 看过预览后，把 preview 换成 apply --yes --plan-hash <预览打印的值>。
@@ -51,7 +51,7 @@ curl -H "Authorization: Bearer $GRANDET_OOJJ_TOP_KEY" https://oojj.top/v1/models
 test('cases file lists known checks only', () => {
   assert.equal(cases.schema, 'grandet.skill-answer-evals/v1');
   for (const c of cases.cases) for (const id of c.checks) assert.ok(CHECKS[id], `${c.id}: ${id}`);
-  assert.deepEqual([...new Set(cases.cases.flatMap((c) => c.covers))].sort(), ['CF1', 'CF2', 'CF3', 'CF4']);
+  assert.deepEqual([...new Set(cases.cases.flatMap((c) => c.covers))].sort(), ['CF1', 'CF2', 'CF3', 'CF4', 'EN1']);
 });
 
 test('E1 passes a complete price answer', () => {
@@ -136,4 +136,26 @@ test('E2: emphasis inside a phrase does not hide that the user runs the commands
 test('the free check may be named in different words', () => {
   for (const a of ["I'll run the free connection check", 'It checks for free whether the key works', '用免费检查确认 Key']) assert.equal(CHECKS.freeCheckNamed(a).pass, true, a);
   assert.equal(CHECKS.freeCheckNamed('Restart the app.').pass, false);
+});
+
+const enBoard = (planEn) => ({ boards: [{ unit: 'USD_CREDIT', listings: { lowest: [
+  { sourceId: 'api.zq4i.com', plan: 'claude-0.09倍率-华强北kiro（不稳定可切换）', ...(planEn ? { planEn } : {}), integration: { tokenGroup: 'claude-0.09倍率-华强北kiro（不稳定可切换）' } },
+  { sourceId: '00ccc.cn', plan: 'kiro', integration: { tokenGroup: 'kiro' } }], gated: [], reference: [] } }] });
+
+test('E4: English answer with the original group name and planEn beside it', () => {
+  const good = 'Claude Sonnet 5.5, cheapest (credit price, not cash):\n1. api.zq4i.com, group 「claude-0.09倍率-华强北kiro（不稳定可切换）」 ("0.09x rate, Huaqiangbei Kiro channel") at 0.36 USD credit per million total tokens, observed Oct 10\n2. 00ccc.cn, group 「kiro」 at 0.40 USD credit per million total tokens';
+  const pick = (r, id) => r.results.find((x) => x.id === id).status;
+  const withEn = checkAnswer('E4', good, enBoard('0.09x rate, Huaqiangbei Kiro channel'));
+  for (const id of ['answerInEnglish', 'originalPlanNames', 'planEnBesidePlan']) assert.equal(pick(withEn, id), 'PASS', id);
+  assert.equal(pick(checkAnswer('E4', good, enBoard(null)), 'planEnBesidePlan'), 'PASS', 'older service without planEn');
+  const translatedOnly = good.replace('「claude-0.09倍率-华强北kiro（不稳定可切换）」', '"0.09x rate, Huaqiangbei Kiro channel"');
+  assert.equal(pick(checkAnswer('E4', translatedOnly, enBoard('x')), 'originalPlanNames'), 'FAIL');
+  assert.equal(pick(checkAnswer('E4', '最便宜的是 api.zq4i.com，0.36 美元额度／百万总 token，适合写代码。', enBoard(null)), 'answerInEnglish'), 'FAIL');
+});
+
+test('E5: --group must be the original group name, not its translation', () => {
+  const pick = (a) => checkAnswer('E5', a, enBoard('0.09x rate, Huaqiangbei Kiro channel')).results.find((x) => x.id === 'originalGroupInCommands').status;
+  assert.equal(pick('node connect.mjs preview --app opencode --site api.zq4i.com --group "claude-0.09倍率-华强北kiro（不稳定可切换）"'), 'PASS');
+  assert.equal(pick('node connect.mjs preview --app opencode --site api.zq4i.com --group "0.09x rate, Huaqiangbei Kiro channel"'), 'FAIL');
+  assert.equal(pick('node connect.mjs preview --app opencode --site api.zq4i.com --group "<group>"'), 'PASS');
 });

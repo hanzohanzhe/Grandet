@@ -31,7 +31,38 @@ const DECIMAL = /(?<![\d.])\d+\.\d+(?![\d.])/;
 
 const PERCENT_CLAIM = /(便宜|低|高|贵|省|cheaper|lower|higher|less|more|save|saving)[^\n%]{0,12}\d+(?:\.\d+)?\s*[%％]|\d+(?:\.\d+)?\s*[%％][^\n]{0,12}(便宜|低|高|贵|省|cheaper|lower|higher|off|less|saving)/i;
 
+const CJK = /[\u3400-\u9fff\uf900-\ufaff]/g;
+/** Text outside quotes, 「」, parentheses and code: what the answer itself says, not quoted site names. */
+const ownWords = (a) => a.replace(/```[\s\S]*?```|`[^`]*`|「[^」]*」|"[^"\n]*"|“[^”\n]*”|\([^)\n]*\)|（[^）\n]*）|<[^>\n]*>/g, ' ');
+const lowestPlans = (board) => (chosenBoard(board)?.listings.lowest ?? []).map((r) => r);
+
 export const CHECKS = {
+  answerInEnglish: (a) => {
+    const text = ownWords(a), cjk = (text.match(CJK) ?? []).length, latin = (text.match(/[A-Za-z]/g) ?? []).length;
+    const share = cjk / Math.max(1, cjk + latin);
+    return { pass: share < 0.05, detail: `${Math.round(share * 100)}% of the answer's own words are Chinese (quoted site names excluded)` };
+  },
+  originalPlanNames: (a, board) => {
+    const rows = lowestPlans(board); if (!rows.length) return null;
+    const missing = rows.filter((r) => CJK.test(r.plan) && (CJK.lastIndex = 0, !a.includes(r.plan))).map((r) => `${r.sourceId} 「${r.plan}」`);
+    CJK.lastIndex = 0;
+    return { pass: missing.length === 0, detail: missing.length ? `original group name not given verbatim: ${missing.join(', ')}` : 'original group names given verbatim' };
+  },
+  planEnBesidePlan: (a, board) => {
+    const rows = lowestPlans(board).filter((r) => r.planEn); if (!lowestPlans(board).length) return null;
+    if (!rows.length) return { pass: true, detail: 'no planEn in the response (older service)' };
+    const missing = rows.filter((r) => !a.toLowerCase().includes(String(r.planEn).toLowerCase())).map((r) => r.sourceId);
+    return { pass: missing.length === 0, detail: missing.length ? `planEn not shown next to the group: ${missing.join(', ')}` : 'planEn shown next to the group' };
+  },
+  originalGroupInCommands: (a, board) => {
+    const groups = [...a.matchAll(/--group\s+(?:"([^"]*)"|'([^']*)'|(\S+))/g)].map((m) => m[1] ?? m[2] ?? m[3]);
+    if (!groups.length) return { pass: true, detail: 'no --group in the answer' };
+    const known = new Set((board?.boards ?? []).flatMap((b) => [...(b.listings?.lowest ?? []), ...(b.listings?.gated ?? []), ...(b.listings?.reference ?? []), ...(b.rows ?? [])])
+      .flatMap((r) => [r.plan, r.integration?.tokenGroup]).filter(Boolean));
+    const translated = new Set((board?.boards ?? []).flatMap((b) => [...(b.listings?.lowest ?? []), ...(b.rows ?? [])]).map((r) => r.planEn).filter(Boolean));
+    const bad = groups.filter((g) => translated.has(g) || (known.size && !known.has(g) && !/^<[^>]+>$/.test(g)));
+    return { pass: bad.length === 0, detail: bad.length ? `--group is not the site's original group name: ${bad.join(', ')}` : 'commands use the original group name' };
+  },
   lowestRows: (a, board) => {
     const b = chosenBoard(board); if (!b) return null;
     const missing = b.listings.lowest.map((r) => r.sourceId).filter((s) => !includesSite(a, s));
