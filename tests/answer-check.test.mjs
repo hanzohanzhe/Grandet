@@ -35,7 +35,7 @@ const badPrice = `Claude Sonnet 4.6 最低价：oojj.top 0.3，bearlab.ai 0.3 �
 
 const goodCloud = `我在云端，改不了你 Mac 上的文件。请在你自己的终端运行：
 \`\`\`sh
-mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
+mkdir -p ~/.grandet && curl -fsSL -o ~/.grandet/grandet-skill.zip 'https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261018b/grandet-api-price-finder-0.3.0.skill' && (unzip -oq ~/.grandet/grandet-skill.zip -d ~/.grandet || python3 -m zipfile -e ~/.grandet/grandet-skill.zip ~/.grandet)
 node ~/.grandet/grandet-api-price-finder/scripts/connect.mjs preview --app claude-code --site oojj.top --base-url https://oojj.top --protocol anthropic --model claude-sonnet-4-6 --group "aws0-ex"
 \`\`\`
 1. 看过预览后，把 preview 换成 apply --yes --plan-hash <预览打印的值>。
