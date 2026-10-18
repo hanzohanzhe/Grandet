@@ -19,7 +19,7 @@ Call `grandet_find_free_credits` once with:
 - `q`: the model family or provider the user cares about (`gemini`, `claude`, `deepseek` …). It matches provider, title, benefit text and the models a free group covers. Leave it out to list everything. If a model family returns no official offer, query once more with the vendor's name (qwen → `百炼` or `alibaba`, kimi → `moonshot`, glm → `智谱` or `zhipu`) and merge the official offers.
 - `kind=all`, so official and relay offers both come back. Use `official` or `relay` only when the user asked for one kind.
 - `userCanMeet`: `no_card` when the user said they have no card, `student` when they said they are a student, otherwise leave it out. `no_card` keeps only offers that **state** no card is needed; when it returns nothing, query again without it and mark each offer "是否需绑卡未写明".
-- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261018`, and the known `host`/`targetApp`.
+- `lang` (`zh-CN` or `en`), `limit=20`, `skillVersion=0.3.0`, `skillBuild=grandet-skill-0.3.0-build.20261018b`, and the known `host`/`targetApp`.
 
 Without MCP, send the same parameters to `GET https://grandet.ai/api/v1/free-credits` (see [HTTP fallback](http-fallback.md)). If both fail, give the web page instead: `https://grandet.ai/zh-CN/free-tokens/` (English: `https://grandet.ai/free-tokens/`), with `?q=<word>` to filter.
 
@@ -32,7 +32,7 @@ Read `offers[]`, plus `total` and `pagination` to know whether more pages exist.
 - `kind`: `official-free-tier` or `official-program` (trial, startup, student and developer programmes; `category` says which); `relay-credit` (sign-up, check-in, invite); `relay-free-group`.
 - `provider`, `title`, `benefitText` (the provider's own words), `conditions`.
 - `requirements.<card|identity|payment|invite|application|renewal>.state`.
-- `deadline`, `claimUrl`, `observedAt`. `deadline.statedDate` (official) and `deadline.statedText` (relay credit) are end dates the provider wrote. A relay free group has only `deadline.endAt`: how long Grandet keeps the record valid, not an end date the site stated.
+- `deadline`, `claimUrl`, `observedAt`. `deadline.statedDate` (official) and `deadline.statedText` (relay credit) are end dates the provider wrote. A relay free group has only `deadline.endAt`: how long Grandet keeps the record valid, not an end date the site stated. `deadline.kind` names which it is: `PROMOTION_END` (the provider's end date, in `statedDate`), `OBSERVATION_WINDOW` (Grandet's record window, in `endAt`), `UNKNOWN` (no date: write none).
 - For `relay-free-group` only: `plan` (the group to choose when creating the token), `modelNames`, and `declaration`:
   - `ZERO_RATIO`: the group really charges ratio 0. It is free credit.
   - `STATED_FREE_TINY_RATIO`: the site calls it free or 福利, but the ratio is not 0. It is a paid offer with a small ratio, not free credit.

@@ -207,6 +207,10 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": "scripts/build-price-snapshot.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "scripts/build-skill-archives.py",
       "rights": "Apache-2.0"
     },
@@ -279,6 +283,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "skills/grandet-api-price-finder/data/price-snapshot.json",
+      "rights": "FACTUAL_COMPILATION_SOURCE_RIGHTS_RETAINED"
+    },
+    {
       "path": "skills/grandet-api-price-finder/references/app-catalog.md",
       "rights": "Apache-2.0"
     },
@@ -327,6 +335,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "skills/grandet-api-price-finder/scripts/offline-lookup.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "style.css",
       "rights": "AGPL-3.0-only"
     },
@@ -348,6 +360,10 @@
     },
     {
       "path": "tests/latest-pointer.test.py",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/offline-snapshot.test.mjs",
       "rights": "Apache-2.0"
     },
     {

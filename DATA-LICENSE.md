@@ -6,6 +6,7 @@ The software licences in this repository (AGPL-3.0-only, and Apache-2.0 for the 
 
 - `data/free-tokens.json` and its readable view `CATALOGUE.md`. [data/MANIFEST.json](data/MANIFEST.json) gives each record's source owner, observation date, evidence references and publication scope.
 - `data/free-tokens-v3.json` and `CATALOGUE-v3.md`, pinned by `data/RELEASE-v3.json` together with their observation policy. The structured prerequisite notes are Grandet's editorial facts, not supplier text.
+- `skills/grandet-api-price-finder/data/price-snapshot.json`: an offline copy of grandet.ai's listed prices and free-credit offers for one release, built by `scripts/build-price-snapshot.mjs` from the public API. Each row keeps its site, observation date and source link. It ships in the GitHub and SkillHub packages so the Skill can answer when grandet.ai cannot be reached; it is not covered by the Skill's Apache-2.0 licence, and the ClawHub copy (published as MIT-0) leaves it out.
 
 Grandet's factual summaries are published as attributed research. No blanket open-data licence, and no sublicence of supplier statements, is granted. A page being publicly reachable does not make it free to redistribute. Source links and SHA references grant no rights to the material they point to.
 
@@ -15,4 +16,4 @@ New data needs a reviewed manifest of source, owner, date and rights, plus compl
 
 ## 中文
 
-本仓库的软件许可只覆盖代码和 Grandet 自己写的文档，不覆盖供应商数据、原文或商标。两份事实汇编（原始版和 v3）按上文清单注明出处发布，不附带统一的开放数据许可，也不转授供应商内容的权利。网页能公开访问不代表可以转载；来源链接和 SHA 引用不授予对应内容的任何权利。新增数据需附经审核的来源、权利人、日期和权利清单。
+本仓库的软件许可只覆盖代码和 Grandet 自己写的文档，不覆盖供应商数据、原文或商标。两份事实汇编（原始版和 v3）按上文清单注明出处发布；Skill 包里的价格快照 `price-snapshot.json` 是 grandet.ai 某一期标价和免费额度的离线副本，供网站连不上时使用，不在 Skill 的 Apache-2.0 许可范围内，ClawHub 副本（按 MIT-0 发布）不含此文件。以上数据不附带统一的开放数据许可，也不转授供应商内容的权利。网页能公开访问不代表可以转载；来源链接和 SHA 引用不授予对应内容的任何权利。新增数据需附经审核的来源、权利人、日期和权利清单。

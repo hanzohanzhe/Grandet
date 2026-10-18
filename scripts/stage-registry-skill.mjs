@@ -5,7 +5,9 @@
 // notably in mainland China, download everything from the registry. A copy differs from the release only where
 // its registry requires it. SkillHub refuses files without an extension, so LICENSE becomes LICENSE.txt.
 // ClawHub publishes every Skill as MIT-0, so its copy has no Apache license line or LICENSE file, and its
-// SKILL.md carries ClawHub's runtime metadata. Each copy's package-manifest.json lists that copy's own files.
+// SKILL.md carries ClawHub's runtime metadata. MIT-0 would also cover the price snapshot, which is a factual
+// compilation published without an open licence (DATA-LICENSE.md), so the ClawHub copy leaves data/price-snapshot.json
+// out; its offline lookup then reports SNAPSHOT_NOT_INCLUDED. Each copy's package-manifest.json lists that copy's own files.
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
@@ -16,6 +18,7 @@ import { fileProblems } from './check-build-id.mjs';
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 export const SLUG = 'grandet-api-price-finder';
 export const HOMEPAGE = 'https://grandet.ai';
+export const SNAPSHOT = 'data/price-snapshot.json';
 export const CHINA_DOWNLOAD = `https://api.skillhub.cn/api/v1/download?slug=${SLUG}&version=`;
 export const LISTING = {
   clawhub: {
@@ -184,10 +187,11 @@ export async function stage({ root = ROOT, tag, out, clawhubRevision }) {
   const clawVersion = clawhubVersion(release.registryVersion, clawhubRevision);
 
   if (await exists(out) && (await readdir(out)).length) throw new Error(`OUTPUT_NOT_EMPTY: ${out}`);
-  const claw = new Map([...kit].filter(([name]) => name !== 'LICENSE').map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b]));
+  const claw = new Map([...kit].filter(([name]) => name !== 'LICENSE' && name !== SNAPSHOT).map(([name, b]) => [name, name === 'SKILL.md' ? Buffer.from(clawhubSkill(text)) : b]));
   claw.set('package-manifest.json', registryManifest(releaseManifest, claw, 'clawhub', [
     'LICENSE omitted and SKILL.md license line removed: ClawHub publishes every Skill under MIT-0',
     'SKILL.md: metadata.openclaw added',
+    ...(kit.has(SNAPSHOT) ? [`${SNAPSHOT} omitted: MIT-0 would cover it, and the price snapshot carries no open licence (DATA-LICENSE.md)`] : []),
   ]));
   const hub = new Map([...kit].map(([name, b]) => [skillhubName(name), b]));
   hub.set('package-manifest.json', registryManifest(releaseManifest, hub, 'skillhub', [...kit.keys()]
