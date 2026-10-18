@@ -1,37 +1,37 @@
 {
   "schema": "grandet.skill-latest/v1",
   "version": "0.3.0",
-  "build": "grandet-skill-0.3.0-build.20261017",
-  "tag": "skill-v0.3.0-build.20261017",
-  "releaseId": 415806361,
-  "sourceCommit": "a650d78a8ed269f503bf523b82a08d9959e23063",
+  "build": "grandet-skill-0.3.0-build.20261017b",
+  "tag": "skill-v0.3.0-build.20261017b",
+  "releaseId": 416169953,
+  "sourceCommit": "165ba40af39f932273ea74925e4a8f96edf9536b",
   "zip": {
-    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.zip",
-    "bytes": 373443,
-    "sha256": "f8371ff30df1b5d7478c1681c8507e2a42a10d2d72bc1cbe76fac8206723d7c1",
-    "assetId": 650480774
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.zip",
+    "bytes": 434665,
+    "sha256": "aabf2c784fa7f3825d8ce26159d22fea94690e39ce05892181627daa33719f62",
+    "assetId": 652118462
   },
   "skill": {
-    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017/grandet-api-price-finder-0.3.0.skill",
-    "bytes": 119831,
-    "sha256": "6e965e62754bbf9539122ea86f25e94f6a41dcb2c61c3c76c6e98755f36c2fd4",
-    "assetId": 650480775
+    "url": "https://github.com/hanzohanzhe/Grandet/releases/download/skill-v0.3.0-build.20261017b/grandet-api-price-finder-0.3.0.skill",
+    "bytes": 133374,
+    "sha256": "d02359bb8fcfeeb7b7e05d4c2c9dd7f5b9d9fa07ea7f3ffea9637e6be62f43f5",
+    "assetId": 652118460
   },
-  "skillhubVersion": "0.3.0-build.20261017.0",
+  "skillhubVersion": "0.3.0-build.20261017.2",
   "installation": {
     "contentDigestAlgorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
     "contentSha256s": [
-      "ba94270f0ff00d57a4fd63446a88a544bef618b8d04282e1c3b1ef26f31b5124",
-      "14f585795a08a449872c034d8fbd5556a7fb9ac396c132503d4d9177008ef604"
+      "1d7c46c337ca2b9b3df5ff3301d6c6c5a8bd31fa5e524cdb02a88409c6f2f4ab",
+      "0d075032ee4588be53270e747bf7904833cff1884f5fc056123376b7f04c701c"
     ]
   },
   "gate": {
     "result": "HOLD",
-    "summary": "Skill gate HOLD · gate-bank-v1 48题×1通道（ainzy-deepseek-v4.1-flash；站长按 deepseek 定，glm 通道中途停）· 词典口径 基线 48/48 → 候选 47/48 · 只基线对 1 / 只候选对 0 · 题型无退步 · token 中位数 ×0.936 · targets 10/13（免费额度链接 7/8、价格题问接哪个应用 14/16、response-format 每题 0.208）· 两版判定器结果相同"
+    "summary": "Skill gate HOLD · gate-bank-v1 48题×2通道（deepseek-v4.1-flash、glm-5.3）· 词典口径 基线 95/96 → 候选 95/96 · 只基线对 0 / 只候选对 0 · 题型无退步 · token 中位数 ×1.028 · targets 11/13（INVALID_LIMIT 1 次、cheaper_provider_output 链接 15/16，均来自 glm 同一会话）· 问接哪个应用 25/32 → 28/32 · 每题工具 7.10 → 7.07 · 环境错误剔除 0/96"
   },
   "approved": {
     "by": "owner",
-    "at": "2026-10-17T13:00:00Z",
-    "quote": "不是，我要求你上传i5，因为只有上传i5了网页才可以更新，至于之后的就i6，如果性能更好会更新的"
+    "at": "2026-10-18T01:25:00Z",
+    "quote": "照发 i7：i6b 没过的两项都修好了，新的两项来自同一个会话，答对持平。按 HOLD 发布并把指针改到 i7。"
   }
 }

@@ -137,6 +137,15 @@
         "ba94270f0ff00d57a4fd63446a88a544bef618b8d04282e1c3b1ef26f31b5124",
         "14f585795a08a449872c034d8fbd5556a7fb9ac396c132503d4d9177008ef604"
       ]
+    },
+    {
+      "build_id": "grandet-skill-0.3.0-build.20261017b",
+      "skill_version": "0.3.0",
+      "content_digest_algorithm": "sha256-path-nul-file-sha256-lf-codepoint-v1",
+      "content_sha256s": [
+        "1d7c46c337ca2b9b3df5ff3301d6c6c5a8bd31fa5e524cdb02a88409c6f2f4ab",
+        "0d075032ee4588be53270e747bf7904833cff1884f5fc056123376b7f04c701c"
+      ]
     }
   ]
 }
