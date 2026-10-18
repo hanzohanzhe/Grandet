@@ -172,10 +172,25 @@ def main():
     pointer = build_pointer(manifest, json.loads(a.release_json.read_text()), a.commit, a.gate_result,
                             a.gate_summary, a.approved_at, a.approved_quote, a.skillhub_version,
                             installation_digests(ROOT, manifest, a.node))
-    a.out.write_text(json.dumps(pointer, indent=2, ensure_ascii=False) + '\n')
     real = a.out.resolve() == (ROOT / 'downloads/latest.json').resolve()
+    touched = [a.out] + ([ROOT / 'downloads/installation-approved-builds.json', ROOT / 'public-export-manifest.json'] if real else [])
+    before = {p: (p.read_bytes() if p.exists() else None) for p in touched}
+    a.out.write_text(json.dumps(pointer, indent=2, ensure_ascii=False) + '\n')
     added = add_to_public_map() if real else False
     appended = append_approved_build(pointer['build'], pointer['installation']['contentSha256s']) if real else False
+    if real:
+        # grandet.ai keeps serving the previous build when it cannot follow the pointer.
+        # Refuse to leave a pointer it would not follow; restore the files instead.
+        check = subprocess.run([a.node, str(ROOT / 'scripts/check-site-follow.mjs'), '--root', str(ROOT), '--previous-ref', 'HEAD'],
+                               capture_output=True, text=True)
+        print(check.stdout, end='')
+        if check.returncode != 0:
+            for path, data in before.items():
+                if data is None:
+                    path.unlink(missing_ok=True)
+                else:
+                    path.write_bytes(data)
+            raise SystemExit('SITE_CANNOT_FOLLOW_POINTER: files restored; see scripts/check-site-follow.mjs output above')
     print(json.dumps({'written': str(a.out), 'build': pointer['build'], 'gate': a.gate_result,
                       'installationContentSha256s': pointer['installation']['contentSha256s'],
                       'approvedBuildsAppended': appended, 'publicMapUpdated': added}))
