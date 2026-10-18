@@ -1,6 +1,6 @@
 # Installation receipts
 
-The integrated installation build `grandet-skill-0.3.0-build.20261017b` for Grandet **0.3.0** sends a small receipt during installation or an explicit later installation verification/flush. Ordinary price questions send no extra tracking request. A receipt is a client report, not a person, account or independent proof of use.
+The integrated installation build `grandet-skill-0.3.0-build.20261018` for Grandet **0.3.0** sends a small receipt during installation or an explicit later installation verification/flush. Ordinary price questions send no extra tracking request. A receipt is a client report, not a person, account or independent proof of use.
 
 The request contains only random installation/event UUIDs, event revision, operation, Skill version, file-content SHA-256, known source category, host/scope categories, verification level, occurrence time and a test flag that is always false. The server adds receipt time. It collects no local path, username, account, chat, query, key, device fingerprint or installer stdout. Raw records are retained for 24 months; later archive policy is separate.
 
@@ -8,7 +8,7 @@ Disable sending with `--no-telemetry` or `GRANDET_INSTALL_TELEMETRY=0`. Installa
 
 ## Local file installation
 
-The `skill-v0.3.0-build.20261017b` ZIP includes the complete Skill, receipt-aware Node installer, receipt module, Python verifier and build manifest. The `.skill` includes these same tools inside its one native Skill root. From the extracted ZIP use `node scripts/install-price-finder.mjs --app codex --receipt-source release_zip`. Without Node, use the bundled Python 3 tool:
+The `skill-v0.3.0-build.20261018` ZIP includes the complete Skill, receipt-aware Node installer, receipt module, Python verifier and build manifest. The `.skill` includes these same tools inside its one native Skill root. From the extracted ZIP use `node scripts/install-price-finder.mjs --app codex --receipt-source release_zip`. Without Node, use the bundled Python 3 tool:
 
 ```sh
 python3 scripts/verify-installation.py --source skills/grandet-api-price-finder --destination <actual-persistent-skill-folder> --host codex --scope user --receipt-source release_zip
@@ -38,4 +38,4 @@ ChatGPT/Claude import, text editors, Grok Bot, Your dot, Muse, Cursor Cloud priv
 
 ## Artifact and version boundary
 
-The product/API version remains 0.3.0. Content build `grandet-skill-0.3.0-build.20261017b` uses distinct immutable assets under `skill-v0.3.0-build.20261017b`; its manifest records the new bytes and integrated tools. The earlier `skill-v0.3.0` assets and Git history remain historical and are not replaced. Counting begins with this build’s newly registered assets and actual receipts, with no historical installation backfill or forced reinstall. A local file check does not certify native host acceptance.
+The product/API version remains 0.3.0. Content build `grandet-skill-0.3.0-build.20261018` uses distinct immutable assets under `skill-v0.3.0-build.20261018`; its manifest records the new bytes and integrated tools. The earlier `skill-v0.3.0` assets and Git history remain historical and are not replaced. Counting begins with this build’s newly registered assets and actual receipts, with no historical installation backfill or forced reinstall. A local file check does not certify native host acceptance.

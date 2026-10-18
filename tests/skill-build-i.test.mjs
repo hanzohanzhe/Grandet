@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Lessons from c's 316 live rounds and the c/h A/B, re-judged with the fixed judge (build.20261017b):
+// Lessons from c's 316 live rounds and the c/h A/B, re-judged with the fixed judge (build.20261018):
 // no guessed paths or views, stated parameter limits, a hard answer length with the shape inline,
 // a page link on free-credit answers, curl-only install instructions, and one build ID everywhere.
 import assert from 'node:assert/strict';
@@ -90,7 +90,7 @@ test('one build ID everywhere a release ships or pins it', async () => {
   const result = await checkBuildId();
   assert.deepEqual(result.problems, []);
   assert.equal(result.skillMentions, SKILL_BUILD_MENTIONS);
-  assert.deepEqual(identity('grandet-skill-0.3.0-build.20261017b'), { build: 'grandet-skill-0.3.0-build.20261017b', tag: 'skill-v0.3.0-build.20261017b', registryVersion: '0.3.0-build.20261017.2' });
+  assert.deepEqual(identity('grandet-skill-0.3.0-build.20261018'), { build: 'grandet-skill-0.3.0-build.20261018', tag: 'skill-v0.3.0-build.20261018', registryVersion: '0.3.0-build.20261018.0' });
   assert.equal(identity('grandet-skill-0.3.0-build.20261016h').registryVersion, '0.3.0-build.20261016.8');
   assert.deepEqual(mentions('x 0.3.0-build.20261016.8 y skill-v0.3.0-build.20261016h').map((m) => m.build), ['grandet-skill-0.3.0-build.20261016h', 'grandet-skill-0.3.0-build.20261016h']);
 });
@@ -100,10 +100,10 @@ test('the check refuses a stale build ID and a wrong SKILL.md count', async (t) 
   t.after(() => rm(dir, { recursive: true, force: true }));
   await cp(new URL('skills/grandet-api-price-finder', root), join(dir, 'skills/grandet-api-price-finder'), { recursive: true });
   const free = join(dir, 'skills/grandet-api-price-finder/references/free-credits.md');
-  await writeFile(free, (await readFile(free, 'utf8')).replace('build.20261017b', 'build.20261016h'));
+  await writeFile(free, (await readFile(free, 'utf8')).replace('build.20261018', 'build.20261016h'));
   const stale = await checkBuildId(dir);
   assert.ok(stale.problems.some((p) => p.includes('free-credits.md') && p.includes('20261016h')), stale.problems.join('\n'));
   const skill = join(dir, 'skills/grandet-api-price-finder/SKILL.md');
-  await writeFile(skill, (await readFile(skill, 'utf8')).replace('skillBuild=grandet-skill-0.3.0-build.20261017b', 'skillBuild=x'));
+  await writeFile(skill, (await readFile(skill, 'utf8')).replace('skillBuild=grandet-skill-0.3.0-build.20261018', 'skillBuild=x'));
   assert.ok((await checkBuildId(dir)).problems.some((p) => p.includes(`expected ${SKILL_BUILD_MENTIONS}`)));
 });
