@@ -106,6 +106,10 @@ node scripts/serve.mjs
 
 Sourced corrections and improvements are welcome; see the [contributing guide](CONTRIBUTING.md) and [methodology](METHODOLOGY.md).
 
+## Friends
+
+- [LINUX DO](https://linux.do): Chinese-language tech community
+
 ## Licence
 
 - Skill files: **Apache-2.0**.

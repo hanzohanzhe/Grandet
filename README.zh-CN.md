@@ -108,6 +108,10 @@ node scripts/serve.mjs
 
 欢迎提交带来源的更正和改进，见[贡献指南](CONTRIBUTING.md)和[整理方法](METHODOLOGY.md)。
 
+## 友情链接
+
+- [LINUX DO](https://linux.do)：新的理想型社区
+
 ## 许可
 
 - Skill 相关文件：**Apache-2.0**。
