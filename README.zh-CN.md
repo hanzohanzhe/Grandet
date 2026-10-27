@@ -9,6 +9,7 @@
 | 网站 | <https://grandet.ai> |
 | 远程 MCP 服务 | `https://grandet.ai/mcp`（Streamable HTTP，不用注册，不用 API Key） |
 | Agent Skill | 对你的 Agent 说：`帮我安装 Grandet Skill：https://grandet.ai/download.md` |
+| Git | `git clone --depth 1 --branch skill-v0.3.0-build.20261018b https://github.com/hanzohanzhe/Grandet.git`，然后看[用 git 安装](#用-git-安装) |
 
 ## 安装
 
@@ -25,6 +26,23 @@
 不用提 Grandet，也不用再发文件。查价不需要注册账号或 API Key。想自己动手装，或者用的是 ChatGPT、Claude 网页版这类要上传技能文件的应用，看[手动安装](INSTALL.md#手动安装)。
 
 GitHub 下载慢或打不开？同一个安装包也在[腾讯 SkillHub](https://skillhub.cn/skills/grandet-api-price-finder) 上，不用注册就能下载；Agent 下载 GitHub 失败时会自动改用它。
+
+## 用 git 安装
+
+官网和上面那句话装的都是 **build.20261018b**（内部代号 j2），也是 GitHub 上标为 Latest 的版本。clone 它的 tag 装到的是同一份 Skill：装好的文件夹和 Release ZIP 装出来的内容哈希一致。
+
+```sh
+git clone --depth 1 --branch skill-v0.3.0-build.20261018b https://github.com/hanzohanzhe/Grandet.git
+cd Grandet
+node scripts/install-price-finder.mjs --app claude-code --receipt-source checkout
+```
+
+- `claude-code` 换成你的应用：`codex`、`cursor`、`opencode`、`gemini-cli`、`cline`、`roo-code`、`kilo-code`、`windsurf`、`continue`、`hermes`、`openclaw`、`trae-cn` 或 `trae-intl`。`--list` 列出全部应用和各自装到哪个文件夹。
+- 安装器要 Node.js 20 或更新。没有 Node，就把整个 `skills/grandet-api-price-finder` 文件夹复制到应用的技能文件夹：Claude Code 是 `~/.claude/skills/`，Codex 是 `~/.agents/skills/`，其他应用看[逐个应用的说明](skills/grandet-api-price-finder/references/installation.md)。
+- 装好后新开一个对话问价。装好的 `SKILL.md` 最后一行写着构建号。
+- 安装器会发一条匿名安装回执（不含路径、名字和 Key），用来统计安装数；`--receipt-source checkout` 表示这次是用 git 装的。加 `--no-telemetry` 就什么都不发。
+- **换别的版本：** 把 `--branch` 后面换成[版本记录](#版本记录)里的 tag，再跑同一条安装命令。它会替换已装的那份，旧的备份到技能文件夹外面。已经 clone 过的：先 `git fetch --depth 1 origin tag <tag>`，再 `git checkout <tag>`。
+- clone tag，别 clone `main`。`main` 平时和最新发布一致，但两次发布之间可能有还没测过的改动。
 
 ## MCP 服务
 
@@ -77,6 +95,47 @@ Codex、Claude Code、OpenCode、Kilo Code、Continue、Gemini CLI、Hermes、Op
 | **[grandet.ai](https://grandet.ai)** | 比较模型 API 价格，官方、推理服务商和中转站分开；查看供应商、免费额度和赠金，核对来源和观察日期 |
 | **Grandet Skill** | 在你的 Agent 里查最低价、找免费额度、把选好的 API 接到应用上 |
 | **[MCP 服务](https://grandet.ai/mcp)** | 同样的查价和免费额度查询，任何 MCP 客户端都能用，匿名、无需 Key |
+
+## 版本记录
+
+所有构建的产品版本号都是 0.3.0，区别在构建号。构建的 tag 是 `skill-v0.3.0-build.<构建号>`（例如 `skill-v0.3.0-build.20261018b`）。每个 tag 和它的安装包都留在 [GitHub Releases](https://github.com/hanzohanzhe/Grandet/releases) 上，哪一个都能用[上面的 git 命令](#用-git-安装)装。官网装的是 **20261018b（j2）**。
+
+从 20261017 起，每个构建发布前都和上一个构建比过：同样 48 道题，在 Hermes 里用 deepseek-v4.1-flash 和 glm-5.3 各问一遍。**PASS** 表示各项指标都达标；**HOLD** 表示有指标没达标，这些构建是逐项看过没达标的原因后才发布的。「用上 Skill」指通过 Skill 作答的会话数。
+
+### 怎么选
+
+- **大多数人：20261018b（j2）。** 官网装的就是它，目前测试结果最好。连不上 grandet.ai 时，它还能用 2026 年 10 月 18 日的价格快照回答，并且先说明快照日期。代价是安装包最大（ZIP 522 KB，`.skill` 218 KB）。
+- **不要快照、包小一点：20261018（i8）。** ZIP 436 KB。连不上 grandet.ai 就答不了；测试里查分组条件的 16 个会话有 1 个去请求了网站已下线的页面。
+- **只用中文、想让中转站术语题少花 token：20261017（i5）。** 20261017b 给术语表加了英文列，文件从 33.9 KB 涨到 64.2 KB。20261017 没有英文列，也不能接 WorkBuddy，没有点名站点对比，GitHub 慢时不会在 30 秒后改用 SkillHub。
+- **想要更长的回答：20261016h 或更早。** 这些版本没有 8 行限制（h 的回答中位数 841 字，20261017 是 484 字），但请求不存在地址的次数多得多（48 道题 18 次参数错误，后者是 0）。拿 j2 和 20261016c 做过一次小规模对比（32 道题，deepseek-v4.1-flash）：用上 Skill 90% → 100%，每题 API 错误 0.47 → 0.03，回答中位数 890 → 530 字。
+- **原生 Windows 别用 20261016d 之前的版本。** 它们的 Node 安装器在 Windows 上可能报 EPERM，只能手动复制文件夹。20261016e 之前没有给中国大陆用的 SkillHub 下载；20261016h 之前的描述，较弱的模型更不容易触发（A/B 测试里 47% 对 85%）。
+- 每个构建都是按当时的网站接口写的。网站之后改过，越旧的版本越可能请求已经不存在的页面或字段。
+
+### 全部构建
+
+| 构建 | 发布时间（UTC） | 改了什么 | 和上一个构建比 |
+|---|---|---|---|
+| **20261018b**（j2）· 官网 · Latest | 2026-10-18 | 带价格快照（469 个模型、174 条免费额度），连不上 grandet.ai 时用；分组条件改从价格数据取，不再访问已下线的页面；沿用上一轮的报价会标出来；模型名找不到时给最多 5 个候选 | PASS 18/18 · 用上 Skill 96/96（和 20261018 相同）· 报价和 Grandet 数据一致 97.4% → 100% · token ×1.04 |
+| 20261018（i8） | 2026-10-18 | 用户点名的站点从看板前 20 行里比；GitHub 慢 30 秒就改用 SkillHub | PASS 15/15 · 用上 Skill 95/96（相同）· token ×0.90 · 点名站点题绕路查询 10/16 → 2/16 · 报价 36/36 一致 |
+| 20261017b（i7） | 2026-10-18 | 术语表加英文列；英文回答保留中转站原来的分组名；能接 WorkBuddy | HOLD 11/13 · 用上 Skill 95/96（相同）· token ×1.03 |
+| 20261017（i5） | 2026-10-17 | 只发文档里写明的请求，不猜路径；写明参数上限；回答不超过 8 行、600 字 | HOLD 10/13（只跑了 deepseek）· 用上 Skill 47/48（h 是 48/48）· 参数错误 18 → 0 · 回答中位数 841 → 484 字 |
+| 20261016h | 2026-10-16 | 描述开头写中转站黑话（A/B 测试触发率 47% → 85%）；没有 MCP 工具的宿主也有现成的只读请求；赠金额度不和现金价比较 | 没跑 |
+| 20261016g | 2026-10-16 | 存 Key 的文件只有本人可读（0600）；新增一节说明 Skill 会改你电脑上的哪些东西；自动加载时只查价 | 没跑 |
+| 20261016f | 2026-10-16 | 按 Agent 测试报告修回答（编程用量、模型名照原样、免费额度截止时间）；各平台的副本能通过自己的清单校验 | 没跑 |
+| 20261016e | 2026-10-16 | 中国大陆可从腾讯 SkillHub 下载；各平台上架完整安装包 | 没跑 |
+| 20261016d | 2026-10-16 | 安装器支持原生 Windows；新增 `--uninstall`；第一个上架 ClawHub 和 SkillHub 的构建 | 没跑 |
+| 20261016c | 2026-10-16 | 接入时不再显示应用里已有的 Key；能接 Hermes 和 OpenClaw | 没跑 |
+| 20261016b | 2026-10-16 | 改用官网首页的安装句子；只有旧报价的模型也能回答 | 没跑 |
+| 20261016 | 2026-10-16 | 读官方和推理服务商的现金价，和中转站赠金额度分开列 | 没跑 |
+| 20261015e | 2026-10-15 | 接入程序修复：撤销能原样恢复文件 | 没跑 |
+| 20261015d | 2026-10-15 | 新增接入程序（`scripts/connect.mjs`，也能当本地 MCP 服务） | 没跑 |
+| 20261015c | 2026-10-15 | 修好术语表查询；请求带明确的 User-Agent，网络错误重试一次 | 没跑 |
+| 20261015b | 2026-10-15 | 读网站新增的免费额度和报价字段 | 没跑 |
+| 20261015 | 2026-10-15 | 重写：查最低价、找免费额度、接入 API、中转站术语表 | 没跑 |
+| 20261014 | 2026-10-14 | Skill 和 0.3.0 相同，加了安装器和安装回执 | 没跑 |
+| 0.3.0（tag `skill-v0.3.0`） | 2026-10-14 | 第一个公开试用版，没有安装回执 | 没跑 |
+
+`skill-v0.3.1` 是发布前撤回的候选版，不要用。
 
 ## 反馈
 
