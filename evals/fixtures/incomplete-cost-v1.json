@@ -1,0 +1,94 @@
+{
+  "schema": "grandet.skill-answer-fixture/v1",
+  "id": "incomplete-cost-v1",
+  "revision": 1,
+  "simulated": true,
+  "identity": {
+    "responseSchema": "grandet.board/v1",
+    "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+    "evaluatedAt": "2026-10-30T01:20:00.000Z",
+    "evaluation": "issue-37-incomplete-cost-v1"
+  },
+  "request": {
+    "path": "/api/v1/board",
+    "params": {
+      "model": "fixture-tiered-model",
+      "mix": "in:20,cacheRead:60,out:20,cacheWrite:0",
+      "view": "compact",
+      "lang": "en"
+    }
+  },
+  "response": {
+    "schema": "grandet.board/v1",
+    "version": {
+      "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+      "evaluatedAt": "2026-10-30T01:20:00.000Z"
+    },
+    "scope": {
+      "mix": {
+        "in": 20,
+        "cacheRead": 60,
+        "out": 20,
+        "cacheWrite": 0
+      }
+    },
+    "coverage": {
+      "excluded": {
+        "CACHE_PRICE_UNKNOWN": 2
+      }
+    },
+    "official": [
+      {
+        "vendor": "Fixture AI",
+        "currency": "USD",
+        "unit": "PER_MILLION_TOKENS",
+        "input": "2.00",
+        "output": "8.00",
+        "observedAt": "2026-10-22T11:00:00.000Z",
+        "contextTier": "SHORT_CONTEXT",
+        "conditionNotes": [
+          "Applies when the prompt is no more than 200K tokens."
+        ]
+      },
+      {
+        "vendor": "Fixture AI",
+        "currency": "USD",
+        "unit": "PER_MILLION_TOKENS",
+        "input": "4.00",
+        "output": "12.00",
+        "observedAt": "2026-10-22T11:00:00.000Z",
+        "contextTier": "LONG_CONTEXT",
+        "conditionNotes": [
+          "Applies when the prompt exceeds 200K tokens."
+        ]
+      }
+    ],
+    "listings": {
+      "inference": []
+    },
+    "boards": [
+      {
+        "unit": "USD_CREDIT",
+        "basis": "LISTED_CREDIT",
+        "status": "RECOMMENDED",
+        "listings": {
+          "lowest": [
+            {
+              "sourceId": "cache-known.invalid",
+              "plan": "cache-priced",
+              "blended": "0.62",
+              "observedAt": "2026-10-23T08:00:00.000Z",
+              "freshness": "FRESH",
+              "listing": {
+                "action": "LIST"
+              }
+            }
+          ],
+          "gated": [],
+          "reference": [],
+          "folded": []
+        }
+      }
+    ]
+  }
+}

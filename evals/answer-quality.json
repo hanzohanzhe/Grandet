@@ -1,7 +1,7 @@
 {
   "schema": "grandet.skill-answer-evals/v1",
   "build": "grandet-skill-0.3.0-build.20261018b",
-  "howTo": "Ask each prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--board <board.json>]. For E1, E4 and E5 save the board response the answer used (or fetch the same parameters once) and pass it with --board. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request. scripts/run-answer-evals.mjs runs every case automatically with the local Codex CLI in empty test folders, replays the board request the agent made and checks each final answer.",
+  "howTo": "Ask each live prompt in a new conversation of the host, save the final answer as text, then run: node scripts/check-answer.mjs --case <id> --answer <file> [--response <response.json>]. --board remains an alias for existing E1/E4/E5 workflows. E6-E11 load their pinned simulated fixture automatically and are deterministic unit checks, not live host probes. Free tests only: fake keys, isolated target folders, no supplier sign-up, top-up or paid request. scripts/run-answer-evals.mjs runs only cases with live automation turns and may replay only those cases' board requests.",
   "cases": [
     {
       "id": "E1",
@@ -164,6 +164,131 @@
           "What is the cheapest API for Claude Sonnet 5.5? I use it for coding.",
           "Use the first one and connect it to OpenCode. I agree to the config change, go ahead and write it."
         ]
+      }
+    },
+    {
+      "id": "E6",
+      "covers": [
+        "AS1"
+      ],
+      "host": "deterministic fixture check",
+      "setup": "Use the pinned simulated NEEDS_CLARIFICATION response; no network or live catalogue.",
+      "prompt": "What is the cheapest API for Fixture Nova?",
+      "pass": [
+        "Asks the user to choose among the returned candidates.",
+        "Does not rank candidates or invent a price before the model is resolved."
+      ],
+      "checks": [
+        "clarificationCandidates",
+        "clarificationNoPriceRanking"
+      ],
+      "fixture": {
+        "id": "ambiguity-v1",
+        "path": "evals/fixtures/ambiguity-v1.json"
+      }
+    },
+    {
+      "id": "E7",
+      "covers": [
+        "AS2"
+      ],
+      "host": "deterministic fixture check",
+      "setup": "Use the pinned simulated response whose boards all have NO_ELIGIBLE_RECOMMENDATION.",
+      "prompt": "Find the lowest token price for fixture-image-model.",
+      "pass": [
+        "States the returned exclusion reason and gives the model leaderboard link.",
+        "Does not switch models, search elsewhere, or present an unavailable lowest price."
+      ],
+      "checks": [
+        "emptyBoardReasonAndLink",
+        "emptyBoardNoFallbackRecommendation"
+      ],
+      "fixture": {
+        "id": "no-eligible-v1",
+        "path": "evals/fixtures/no-eligible-v1.json"
+      }
+    },
+    {
+      "id": "E8",
+      "covers": [
+        "AS3"
+      ],
+      "host": "deterministic fixture check",
+      "setup": "Use the pinned simulated reference-only board response.",
+      "prompt": "What is the current listed price for fixture-reference-model?",
+      "pass": [
+        "Says no current listed price is available.",
+        "Shows up to two reference rows with observation dates and stale or reference qualification, never as a lowest result."
+      ],
+      "checks": [
+        "referenceOnlyRowsQualified"
+      ],
+      "fixture": {
+        "id": "reference-only-v1",
+        "path": "evals/fixtures/reference-only-v1.json"
+      }
+    },
+    {
+      "id": "E9",
+      "covers": [
+        "AS4"
+      ],
+      "host": "deterministic fixture check",
+      "setup": "Use the pinned simulated USD-credit, CNY-credit, and official-cash response.",
+      "prompt": "Compare all returned prices for fixture-multi-unit-model.",
+      "pass": [
+        "Preserves every returned price unit and evidence date.",
+        "Keeps USD credit, CNY credit, and cash separate without conversion, combination, or cross-unit ranking."
+      ],
+      "checks": [
+        "unitRowsAndDatesPreserved",
+        "unlikeUnitsNotCompared"
+      ],
+      "fixture": {
+        "id": "unit-separation-v1",
+        "path": "evals/fixtures/unit-separation-v1.json"
+      }
+    },
+    {
+      "id": "E10",
+      "covers": [
+        "AS5"
+      ],
+      "host": "deterministic fixture check",
+      "setup": "Use the pinned simulated cache-exclusion and official context-tier response.",
+      "prompt": "What will fixture-tiered-model cost for this cached workload?",
+      "pass": [
+        "Explains that quotes missing cache prices were excluded and the cost result is incomplete; never assumes zero cache cost.",
+        "Explains that the official context tier is unresolved; never silently selects one tier."
+      ],
+      "checks": [
+        "cacheUnknownIsIncomplete",
+        "officialTierNotAssumed"
+      ],
+      "fixture": {
+        "id": "incomplete-cost-v1",
+        "path": "evals/fixtures/incomplete-cost-v1.json"
+      }
+    },
+    {
+      "id": "E11",
+      "covers": [
+        "AS6"
+      ],
+      "host": "deterministic fixture check",
+      "setup": "Use the pinned simulated first page of a paginated free-credit response.",
+      "prompt": "List the free API credits for fixture.",
+      "pass": [
+        "States the bounded page or partial scope when more pages exist.",
+        "Does not claim that the returned page is the complete list."
+      ],
+      "checks": [
+        "paginationScopeBounded",
+        "paginationNoFalseCompleteness"
+      ],
+      "fixture": {
+        "id": "free-credit-pagination-v1",
+        "path": "evals/fixtures/free-credit-pagination-v1.json"
       }
     }
   ]

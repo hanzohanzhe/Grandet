@@ -1,0 +1,43 @@
+{
+  "schema": "grandet.skill-answer-fixture/v1",
+  "id": "ambiguity-v1",
+  "revision": 1,
+  "simulated": true,
+  "identity": {
+    "responseSchema": "grandet.board/v1",
+    "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+    "evaluatedAt": "2026-10-30T01:00:00.000Z",
+    "evaluation": "issue-37-ambiguity-v1"
+  },
+  "request": {
+    "path": "/api/v1/board",
+    "params": {
+      "model": "Fixture Nova",
+      "view": "compact",
+      "lang": "en"
+    }
+  },
+  "response": {
+    "schema": "grandet.board/v1",
+    "status": "NEEDS_CLARIFICATION",
+    "version": {
+      "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+      "evaluatedAt": "2026-10-30T01:00:00.000Z"
+    },
+    "resolution": {
+      "totalCandidates": 2,
+      "candidates": [
+        {
+          "id": "fixture/nova-1.0",
+          "officialId": "fixture-nova-1.0",
+          "name": "Fixture Nova 1.0"
+        },
+        {
+          "id": "fixture/nova-2.0",
+          "officialId": "fixture-nova-2.0",
+          "name": "Fixture Nova 2.0"
+        }
+      ]
+    }
+  }
+}
