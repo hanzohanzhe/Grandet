@@ -22,6 +22,9 @@ const TOOLS = [
   { name: 'grandet_connect_verify', description: 'Free check: list the models the stored key can use on the site, without spending credit. The key must already be stored by the user.', inputSchema: { type: 'object', additionalProperties: false, required: ['app', 'site', 'model'], properties: pick(['app', 'site', 'baseUrl', 'protocol', 'model', 'confirmedOtherDomain', 'home']) } },
   { name: 'grandet_connect_restore', description: 'Undo the latest Grandet connection (or a given change id) from its backups.', inputSchema: { type: 'object', additionalProperties: false, properties: { id: { type: 'string' }, app: connection.app, site: connection.site, force: { type: 'boolean' }, deleteKey: { type: 'boolean' }, home: connection.home } } },
 ];
+const SUPPORTED_PROTOCOL_VERSIONS = ['2025-06-18']; // oldest to newest
+const NEWEST_SUPPORTED_PROTOCOL_VERSION = SUPPORTED_PROTOCOL_VERSIONS.at(-1);
+const negotiateProtocolVersion = (requested) => SUPPORTED_PROTOCOL_VERSIONS.includes(requested) ? requested : NEWEST_SUPPORTED_PROTOCOL_VERSION;
 async function call(name, args = {}) {
   if (args.home !== undefined && (typeof args.home !== 'string' || !args.home.startsWith('/') && !/^[A-Za-z]:[\\/]/.test(args.home))) throw Object.assign(new Error('home must be absolute'), { code: 'HOME_MUST_BE_ABSOLUTE' });
   switch (name) {
@@ -41,7 +44,7 @@ rl.on('line', async (line) => {
   const { id, method, params } = msg;
   if (id === undefined) return; // notifications
   try {
-    if (method === 'initialize') send({ jsonrpc: '2.0', id, result: { protocolVersion: params?.protocolVersion || '2025-06-18', capabilities: { tools: {} }, serverInfo: { name: 'grandet-connect', version: VERSION } } });
+    if (method === 'initialize') send({ jsonrpc: '2.0', id, result: { protocolVersion: negotiateProtocolVersion(params?.protocolVersion), capabilities: { tools: {} }, serverInfo: { name: 'grandet-connect', version: VERSION } } });
     else if (method === 'tools/list') send({ jsonrpc: '2.0', id, result: { tools: TOOLS } });
     else if (method === 'tools/call') {
       try {
