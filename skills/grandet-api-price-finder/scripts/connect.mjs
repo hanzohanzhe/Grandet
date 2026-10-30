@@ -562,10 +562,12 @@ export async function verify(input) {
   const o = normalise(input);
   const key = (await readText(input.keyFile ? resolve(input.keyFile) : o.keyPath))?.trim();
   if (!key) fail('KEY_NOT_STORED', `No key at ${o.keyPath}. Ask the user to run the key command first`);
-  const url = `${o.origin}/v1/models`;
+  const gemini = o.protocol === 'gemini';
+  const url = `${o.origin}${gemini ? '/v1beta/models' : '/v1/models'}`;
+  const authentication = gemini ? { 'x-goog-api-key': key } : { Authorization: `Bearer ${key}`, 'x-api-key': key };
   let response;
   try {
-    response = await fetch(url, { headers: { Authorization: `Bearer ${key}`, 'x-api-key': key, 'User-Agent': `grandet-connect/${VERSION}`, Accept: 'application/json' }, redirect: 'manual', signal: AbortSignal.timeout((input.timeout || 20) * 1000) });
+    response = await fetch(url, { headers: { ...authentication, 'User-Agent': `grandet-connect/${VERSION}`, Accept: 'application/json' }, redirect: 'manual', signal: AbortSignal.timeout((input.timeout || 20) * 1000) });
   } catch (error) { return { ok: false, status: null, reason: 'NETWORK_ERROR', message: 'Could not reach the site; check the address or try again', url }; }
   const base = { status: response.status, url };
   if (response.status >= 300 && response.status < 400) return { ...base, ok: false, reason: 'REDIRECT_REFUSED', message: 'The site redirected; the key was not sent anywhere else' };
