@@ -320,10 +320,10 @@ test('restore refuses when the user edited the file after apply', async () => {
   await restore({ home: h, force: true });
 });
 
-test('verify: free model list check, key rejection, redirect refusal, missing key', async () => {
+test('verify: OpenAI-compatible route and headers, key rejection, redirect refusal, missing key', async () => {
   const seen = [];
   const server = createServer((req, res) => {
-    seen.push({ url: req.url, auth: req.headers.authorization });
+    seen.push({ url: req.url, authorization: req.headers.authorization, xApiKey: req.headers['x-api-key'], xGoogApiKey: req.headers['x-goog-api-key'] });
     if (req.headers.authorization !== `Bearer ${KEY}`) { res.writeHead(401).end('{}'); return; }
     if (req.url === '/redir/v1/models') { res.writeHead(302, { Location: 'https://evil.example/' }).end(); return; }
     res.writeHead(200, { 'Content-Type': 'application/json' }).end(JSON.stringify({ data: [{ id: 'claude-sonnet-4-6' }, { id: 'x' }] }));
@@ -331,16 +331,40 @@ test('verify: free model list check, key rejection, redirect refusal, missing ke
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
   const port = server.address().port;
   try {
-    const h = await home(); const opts = base(h, 'claude-code', { baseUrl: `http://127.0.0.1:${port}` });
+    const h = await home(); const opts = base(h, 'opencode', { baseUrl: `http://127.0.0.1:${port}`, protocol: 'openai' });
     await assert.rejects(verify(opts), { code: 'KEY_NOT_STORED' });
     await storeKey(opts, KEY);
     const ok = await verify(opts);
-    assert.equal(ok.ok, true); assert.equal(ok.reason, 'MODEL_LISTED'); assert.equal(seen.at(-1).url, '/v1/models');
+    assert.equal(ok.ok, true); assert.equal(ok.reason, 'MODEL_LISTED');
+    assert.deepEqual(seen.at(-1), { url: '/v1/models', authorization: `Bearer ${KEY}`, xApiKey: KEY, xGoogApiKey: undefined });
     assert.doesNotMatch(JSON.stringify(ok), new RegExp(KEY));
     assert.equal((await verify({ ...opts, model: 'other-model' })).reason, 'MODEL_NOT_LISTED');
     assert.equal((await verify({ ...opts, baseUrl: `http://127.0.0.1:${port}/redir` })).reason, 'REDIRECT_REFUSED');
     await storeKey(opts, 'sk-wrong-key');
     assert.equal((await verify(opts)).reason, 'KEY_REJECTED');
+  } finally { server.close(); }
+});
+
+test('verify: Gemini uses the native route and authentication header', async () => {
+  const seen = [];
+  const server = createServer((req, res) => {
+    seen.push({ url: req.url, authorization: req.headers.authorization, xApiKey: req.headers['x-api-key'], xGoogApiKey: req.headers['x-goog-api-key'] });
+    if (req.url !== '/v1beta/models') { res.writeHead(404).end('{}'); return; }
+    if (req.headers['x-goog-api-key'] !== KEY || req.headers.authorization || req.headers['x-api-key']) { res.writeHead(401).end('{}'); return; }
+    res.writeHead(200, { 'Content-Type': 'application/json' }).end(JSON.stringify({ models: [{ name: 'models/gemini-3.8-flash' }, { name: 'models/gemini-3.8-pro' }] }));
+  });
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  const port = server.address().port;
+  try {
+    const h = await home(); const keyFile = join(h, 'key');
+    await writeFile(keyFile, KEY);
+    const opts = base(h, 'gemini-cli', { baseUrl: `http://127.0.0.1:${port}`, protocol: 'gemini', model: 'gemini-3.8-flash', keyFile });
+    const ok = await verify(opts);
+    assert.equal(ok.ok, true); assert.equal(ok.reason, 'MODEL_LISTED'); assert.equal(ok.modelCount, 2);
+    assert.deepEqual(seen.at(-1), { url: '/v1beta/models', authorization: undefined, xApiKey: undefined, xGoogApiKey: KEY });
+    assert.doesNotMatch(JSON.stringify(ok), new RegExp(KEY));
+    const missing = await verify({ ...opts, model: 'gemini-3.8-nano' });
+    assert.equal(missing.ok, false); assert.equal(missing.reason, 'MODEL_NOT_LISTED');
   } finally { server.close(); }
 });
 
