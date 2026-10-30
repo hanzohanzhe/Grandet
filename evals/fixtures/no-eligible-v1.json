@@ -1,0 +1,61 @@
+{
+  "schema": "grandet.skill-answer-fixture/v1",
+  "id": "no-eligible-v1",
+  "revision": 1,
+  "simulated": true,
+  "identity": {
+    "responseSchema": "grandet.board/v1",
+    "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+    "evaluatedAt": "2026-10-30T01:05:00.000Z",
+    "evaluation": "issue-37-no-eligible-v1"
+  },
+  "request": {
+    "path": "/api/v1/board",
+    "params": {
+      "model": "fixture-image-model",
+      "view": "compact",
+      "lang": "en"
+    }
+  },
+  "response": {
+    "schema": "grandet.board/v1",
+    "version": {
+      "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+      "evaluatedAt": "2026-10-30T01:05:00.000Z"
+    },
+    "scope": {
+      "model": "fixture-image-model"
+    },
+    "coverage": {
+      "excluded": {
+        "OTHER_BILLING_UNIT": 3
+      }
+    },
+    "boards": [
+      {
+        "unit": "USD_CREDIT",
+        "basis": "LISTED_CREDIT",
+        "status": "NO_ELIGIBLE_RECOMMENDATION",
+        "reason": "OTHER_BILLING_UNIT",
+        "listings": {
+          "lowest": [],
+          "gated": [],
+          "reference": [],
+          "folded": []
+        }
+      },
+      {
+        "unit": "CNY_CREDIT",
+        "basis": "LISTED_CREDIT",
+        "status": "NO_ELIGIBLE_RECOMMENDATION",
+        "reason": "OTHER_BILLING_UNIT",
+        "listings": {
+          "lowest": [],
+          "gated": [],
+          "reference": [],
+          "folded": []
+        }
+      }
+    ]
+  }
+}
