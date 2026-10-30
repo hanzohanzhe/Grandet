@@ -349,6 +349,17 @@ const run = (args, input) => new Promise((resolve) => {
   let out = '', err = ''; child.stdout.on('data', (d) => (out += d)); child.stderr.on('data', (d) => (err += d));
   child.on('close', (code) => resolve({ code, out, err })); child.stdin.end(input ?? '');
 });
+const initializeMcp = (params) => new Promise((resolve, reject) => {
+  const child = spawn(process.execPath, [mcp], { stdio: ['pipe', 'pipe', 'pipe'] });
+  let out = '', err = '';
+  child.stdout.on('data', (d) => (out += d)); child.stderr.on('data', (d) => (err += d));
+  child.on('error', reject);
+  child.on('close', (code) => {
+    if (code !== 0) { reject(new Error(`MCP server exited ${code}: ${err}`)); return; }
+    try { resolve(JSON.parse(out.trim())); } catch (error) { reject(new Error(`Invalid MCP response: ${out}\n${err}`, { cause: error })); }
+  });
+  child.stdin.end(`${JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', ...(params === undefined ? {} : { params }) })}\n`);
+});
 
 test('CLI: preview, apply with plan hash, key from stdin, restore; the key never appears in output', async () => {
   const h = await home(); const common = ['--app', 'codex', '--site', 'apijing.com', '--base-url', 'https://apijing.com', '--model', 'gpt-6.1-sol', '--home', h, '--platform', 'linux'];
@@ -392,6 +403,24 @@ test('codex and opencode: preview says the default model changes, undo brings th
   assert.equal(publicPlan(await plan(base(o, 'claude-code'))).defaultModel, null, 'only Codex, OpenCode and Kilo Code report it');
 });
 
+test('MCP: initialize returns only an explicitly supported protocol version', async () => {
+  const valid = { capabilities: {}, clientInfo: { name: 't', version: '1' } };
+  const cases = [
+    ['supported revision', { ...valid, protocolVersion: '2025-06-18' }],
+    ['unsupported revision', { ...valid, protocolVersion: '2099-01-01' }],
+    ['missing protocolVersion', valid],
+    ['missing params', undefined],
+    ['empty protocolVersion', { ...valid, protocolVersion: '' }],
+    ['null protocolVersion', { ...valid, protocolVersion: null }],
+    ['numeric protocolVersion', { ...valid, protocolVersion: 20250618 }],
+    ['object protocolVersion', { ...valid, protocolVersion: { revision: '2025-06-18' } }],
+  ];
+  for (const [label, params] of cases) {
+    const reply = await initializeMcp(params);
+    assert.equal(reply.result.protocolVersion, '2025-06-18', label);
+  }
+});
+
 test('MCP: lists four tools and previews without writing', async () => {
   const h = await home();
   const child = spawn(process.execPath, [mcp], { stdio: ['pipe', 'pipe', 'pipe'] });
@@ -400,7 +429,9 @@ test('MCP: lists four tools and previews without writing', async () => {
   const send = (m) => child.stdin.write(`${JSON.stringify(m)}\n`);
   const wait = async (id) => { for (let t = 0; t < 200; t++) { const r = replies.find((x) => x.id === id); if (r) return r; await new Promise((r2) => setTimeout(r2, 10)); } throw new Error(`no reply ${id}`); };
   send({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 't', version: '1' } } });
-  assert.equal((await wait(1)).result.serverInfo.name, 'grandet-connect');
+  const initialized = await wait(1);
+  assert.equal(initialized.result.protocolVersion, '2025-06-18');
+  assert.equal(initialized.result.serverInfo.name, 'grandet-connect');
   send({ jsonrpc: '2.0', method: 'notifications/initialized' });
   send({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
   assert.deepEqual((await wait(2)).result.tools.map((t) => t.name), ['grandet_connect_preview', 'grandet_connect_apply', 'grandet_connect_verify', 'grandet_connect_restore']);
