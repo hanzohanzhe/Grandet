@@ -128,6 +128,14 @@ async function main() {
     if (JSON.stringify(identity[key]) !== JSON.stringify(built[key])) problems.push(`identity ${key}`);
   }
   if (distribution.summary.profileCount !== built.profileCount) problems.push('distribution profileCount');
+  const embedded = distribution.catalogueIdentity;
+  if (!embedded) {
+    problems.push('distribution catalogueIdentity missing');
+  } else {
+    for (const key of ['schema', 'revision', 'profileSetSha256', 'profileCount']) {
+      if (JSON.stringify(embedded[key]) !== JSON.stringify(built[key])) problems.push(`distribution catalogueIdentity ${key}`);
+    }
+  }
   if (problems.length) {
     console.error(`APP_CATALOG_IDENTITY_STALE: ${[...new Set(problems)].join(', ')}`);
     process.exitCode = 1;

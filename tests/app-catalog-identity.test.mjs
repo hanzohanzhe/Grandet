@@ -43,6 +43,12 @@ test('the distribution artifact reports the same profile set size', async () => 
   assert.equal(distribution.summary.profileCount, identity.profileCount);
   assert.equal(distribution.summary.applicationCount, identity.applicationCount);
   assert.equal(distribution.summary.templateCount, identity.templateCount);
+  assert.deepEqual(distribution.catalogueIdentity, {
+    schema: identity.schema,
+    revision: identity.revision,
+    profileSetSha256: identity.profileSetSha256,
+    profileCount: identity.profileCount,
+  }, 'the distribution artifact embeds the catalogue identity');
   assert.ok(Array.isArray(distribution.generatedFrom) && distribution.generatedFrom.length > 0);
 });
 

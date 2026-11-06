@@ -155,5 +155,11 @@
     "lib/control-plane/integrations/client-adapter-registry.ts",
     "lib/control-plane/integrations/common-client-guides.ts",
     "lib/control-plane/integrations/client-application-metadata.ts"
-  ]
+  ],
+  "catalogueIdentity": {
+    "schema": "grandet.app-catalog-identity/v1",
+    "revision": "grandet.app-catalog/v1+ac2d23f161e9",
+    "profileSetSha256": "ac2d23f161e9ddccdd8ffc8326450caeb314c203c9a4525a9f21a7a32d08f80f",
+    "profileCount": 29
+  }
 }

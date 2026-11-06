@@ -7,10 +7,10 @@ The public checkout ships two generated application-catalogue artifacts:
 - `docs/skills/application-distribution.generated.json` — the packaged
   distribution summary.
 
-Both describe one profile set. The Markdown header and
-`docs/skills/app-catalog-identity.json` record the same revision
-(`grandet.app-catalog/v1+<12-hex>`), profile count and SHA-256 over the canonical
-profile rows. Any change to an app, profile, endpoint, format, path, scope or
+Both describe one profile set. The Markdown header,
+`docs/skills/app-catalog-identity.json` and the distribution artifact embed the
+same revision (`grandet.app-catalog/v1+<12-hex>`), profile count and SHA-256 over
+the canonical profile rows. Any change to an app, profile, endpoint, format, path, scope or
 field list changes the hash.
 
 ## Public check / 公共校验
