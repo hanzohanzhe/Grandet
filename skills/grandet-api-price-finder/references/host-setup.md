@@ -48,7 +48,10 @@ Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs
 4. **Free check:** `CONNECT verify --app <app> --site <sourceId> --base-url <origin> --model <model>`. It lists the models the key can use, without spending credit.
    - `MODEL_LISTED`: the free check passed: the key, the group and the model name match. Tell the user to restart the app (or open a new terminal). Say separately that the first real message spends a little credit, and that you send a test request only if they agree.
    - `MODEL_NOT_LISTED`: the key works but the token is probably in another group; ask the user to check the group is「<group>」.
-   - `KEY_REJECTED`: wrong key, expired, or no balance.
+   - `KEY_REJECTED` (401): the site rejected the key; re-enter it or create a new token.
+   - `ACCESS_FORBIDDEN` (403): the site refused access; check the token group, protocol, or endpoint entitlement.
+   - `RATE_LIMITED` (429): wait briefly, then retry.
+   - Other/unknown errors: keep the link fallback and ask the site owner for help.
    - Never call the free check a working connection. A real request costs credit: send one short request only if the user agrees, after this check passes.
 5. **Undo:** `CONNECT restore` undoes the latest connection from its backups (`--app <app>` for a specific app), including the old default model, and prints `Default model back to X`. Add `--delete-key` only if the user wants the stored key removed.
 
@@ -217,7 +220,8 @@ $k=Get-Content -Raw "$HOME\.grandet\keys\<site>"; $r=Invoke-RestMethod -Uri '<or
 ```
 
 - 200 and the model is listed: the free check passed. Tell the user to restart the app (or open a new terminal), and say separately that the first real message spends a little credit.
-- 401 or 403: the key is wrong or has no balance. Model missing: the token is probably in another group; ask the user to check the group is「<group>」.
+- 401: the site rejected the key; re-enter it or create a new token. 403: access was refused; check the token group, protocol, or endpoint entitlement. 429: wait briefly and retry. For other or unknown errors, keep the link fallback and ask the site owner for help. Model missing: the token is probably in another group; ask the user to check the group is「<group>」.
+- 中文：401 表示网站拒绝了密钥，请重新输入或创建新令牌；403 表示访问被拒，请检查令牌分组、协议或端点权限；429 表示请求过多，请稍后重试；其他或未知错误请保留链接备用方案，并联系网站维护者。
 - A real request costs credit. Send one short request only if the user agrees, and only after the free check passes.
 - A group locked to one client (for example "仅限 CC") may still reject other apps on a real request; only connect it to that client.
 

@@ -558,6 +558,36 @@ export async function storeKey(input, keyText) {
 }
 
 // ---------- verify ----------
+async function readErrorBody(response, limit = 4096) {
+  if (!response.body) return '';
+  const reader = response.body.getReader();
+  const chunks = [];
+  let size = 0;
+  try {
+    while (size < limit) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const part = value.subarray(0, limit - size);
+      chunks.push(part);
+      size += part.length;
+      if (part.length < value.length) { await reader.cancel(); break; }
+    }
+    if (size === limit) await reader.cancel();
+  } catch { /* Error classification remains useful when an upstream truncates its body. */ }
+  finally { reader.releaseLock(); }
+  return new TextDecoder().decode(Buffer.concat(chunks.map((chunk) => Buffer.from(chunk))));
+}
+
+function safeUpstreamFields(body) {
+  let parsed;
+  try { parsed = JSON.parse(body); } catch { return {}; }
+  const error = parsed?.error;
+  const short = (value) => typeof value === 'string' && value.trim() ? value.trim().slice(0, 120) : undefined;
+  const type = short(error && typeof error === 'object' ? error.type : error);
+  const code = short(error && typeof error === 'object' ? error.code : undefined);
+  return { ...(type ? { upstreamType: type } : {}), ...(code ? { upstreamCode: code } : {}) };
+}
+
 export async function verify(input) {
   const o = normalise(input);
   const key = (await readText(input.keyFile ? resolve(input.keyFile) : o.keyPath))?.trim();
@@ -569,7 +599,12 @@ export async function verify(input) {
   } catch (error) { return { ok: false, status: null, reason: 'NETWORK_ERROR', message: 'Could not reach the site; check the address or try again', url }; }
   const base = { status: response.status, url };
   if (response.status >= 300 && response.status < 400) return { ...base, ok: false, reason: 'REDIRECT_REFUSED', message: 'The site redirected; the key was not sent anywhere else' };
-  if (response.status === 401 || response.status === 403) return { ...base, ok: false, reason: 'KEY_REJECTED', message: 'The key is wrong, expired or out of balance' };
+  if (response.status === 401 || response.status === 403 || response.status === 429) {
+    const upstream = safeUpstreamFields(await readErrorBody(response));
+    if (response.status === 401) return { ...base, ...upstream, ok: false, reason: 'KEY_REJECTED', message: 'The site rejected this key; check it or create a new token' };
+    if (response.status === 403) return { ...base, ...upstream, ok: false, reason: 'ACCESS_FORBIDDEN', message: 'The site refused access; check the token group, protocol, or endpoint entitlement' };
+    return { ...base, ...upstream, ok: false, reason: 'RATE_LIMITED', message: 'The site is rate limiting requests; wait briefly and retry' };
+  }
   if (response.status !== 200) return { ...base, ok: false, reason: 'HTTP_ERROR', message: `The site answered ${response.status}` };
   let ids = [];
   try {

@@ -320,12 +320,21 @@ test('restore refuses when the user edited the file after apply', async () => {
   await restore({ home: h, force: true });
 });
 
-test('verify: free model list check, key rejection, redirect refusal, missing key', async () => {
+test('verify: model list and conservative HTTP error reasons', async () => {
   const seen = [];
   const server = createServer((req, res) => {
     seen.push({ url: req.url, auth: req.headers.authorization });
-    if (req.headers.authorization !== `Bearer ${KEY}`) { res.writeHead(401).end('{}'); return; }
     if (req.url === '/redir/v1/models') { res.writeHead(302, { Location: 'https://evil.example/' }).end(); return; }
+    const errors = {
+      '/401/v1/models': [401, '{"error":{"type":"invalid_api_key","code":"invalid_api_key"}}'],
+      '/403/v1/models': [403, '{"error":{"type":"permission_denied","message":"endpoint not enabled for this group"}}'],
+      '/403-opaque/v1/models': [403, 'private upstream diagnostics'],
+      '/429/v1/models': [429, '{"error":{"type":"rate_limit_error"}}'],
+      '/500/v1/models': [500, '{"error":"server error"}'],
+      '/not-json/v1/models': [200, 'not json'],
+    };
+    const failure = errors[req.url];
+    if (failure) { res.writeHead(failure[0], { 'Content-Type': 'application/json' }).end(failure[1]); return; }
     res.writeHead(200, { 'Content-Type': 'application/json' }).end(JSON.stringify({ data: [{ id: 'claude-sonnet-4-6' }, { id: 'x' }] }));
   });
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
@@ -339,8 +348,27 @@ test('verify: free model list check, key rejection, redirect refusal, missing ke
     assert.doesNotMatch(JSON.stringify(ok), new RegExp(KEY));
     assert.equal((await verify({ ...opts, model: 'other-model' })).reason, 'MODEL_NOT_LISTED');
     assert.equal((await verify({ ...opts, baseUrl: `http://127.0.0.1:${port}/redir` })).reason, 'REDIRECT_REFUSED');
-    await storeKey(opts, 'sk-wrong-key');
-    assert.equal((await verify(opts)).reason, 'KEY_REJECTED');
+    const at = (path) => verify({ ...opts, baseUrl: `http://127.0.0.1:${port}/${path}` });
+    const unauthorized = await at('401');
+    const forbidden = await at('403');
+    const opaque = await at('403-opaque');
+    const limited = await at('429');
+    const serverError = await at('500');
+    const notJson = await at('not-json');
+    assert.equal(unauthorized.reason, 'KEY_REJECTED');
+    assert.equal(forbidden.reason, 'ACCESS_FORBIDDEN');
+    assert.notEqual(unauthorized.reason, forbidden.reason);
+    assert.equal(forbidden.upstreamType, 'permission_denied');
+    assert.equal(unauthorized.upstreamCode, 'invalid_api_key');
+    assert.equal(opaque.upstreamType, undefined);
+    assert.equal(limited.reason, 'RATE_LIMITED');
+    assert.equal(serverError.reason, 'HTTP_ERROR');
+    assert.equal(serverError.status, 500);
+    assert.equal(notJson.reason, 'NOT_JSON');
+    for (const result of [unauthorized, forbidden, opaque, limited, serverError, notJson]) {
+      assert.doesNotMatch(JSON.stringify(result), /balance/i);
+      assert.doesNotMatch(JSON.stringify(result), new RegExp(KEY));
+    }
   } finally { server.close(); }
 });
 
