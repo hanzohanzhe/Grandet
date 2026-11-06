@@ -347,6 +347,40 @@ test('dry run plans a single app without creating a home, settings, directories 
   await absent(home);
 });
 
+test('runtime requirements are shared with packaging and every missing runtime file fails before writing', async (t) => {
+  const runtimeFiles = ['scripts/connect.mjs', 'scripts/connect-mcp.mjs', 'scripts/offline-lookup.mjs', 'data/price-snapshot.json'];
+  const installer = await readFile(script, 'utf8');
+  const requiredMatch = installer.match(/const runtimeFiles = (\[[^\]]+\]);/);
+  assert.ok(requiredMatch, 'installer declares its required runtime files');
+  assert.deepEqual([...requiredMatch[1].matchAll(/'([^']+)'/g)].map((match) => match[1]), runtimeFiles);
+  const packageScript = await readFile(join(root, 'scripts/package-price-finder.mjs'), 'utf8');
+  const packagedMatch = packageScript.match(/\.\.\.\[(?:'[^']*',\s*)*'data\/price-snapshot\.json'\]\.map/);
+  assert.ok(packagedMatch, 'packager declares the Skill files it includes');
+  const packagedFiles = [...packagedMatch[0].matchAll(/'([^']+)'/g)].map((match) => match[1]);
+  assert.deepEqual(runtimeFiles.filter((path) => packagedFiles.includes(path)), runtimeFiles);
+
+  const { temporary } = await fixture(t);
+  for (const path of runtimeFiles) {
+    const broken = join(temporary, path.replaceAll('/', '-'));
+    const home = join(temporary, `${path.replaceAll('/', '-')}-home`);
+    await cp(source, broken, { recursive: true });
+    await rm(join(broken, path));
+    const result = run('--app', 'codex', '--dry-run', '--home', home, '--source', broken, '--no-telemetry');
+    assert.notEqual(result.status, 0, path);
+    assert.match(result.stderr, /INCOMPLETE_SKILL/, path);
+    await absent(home);
+  }
+});
+
+test('the complete unmodified Skill still produces a successful dry run', async (t) => {
+  const { home } = await fixture(t);
+  const result = json(run('--app', 'codex', '--dry-run', '--home', home, '--source', source, '--no-telemetry'));
+  assert.equal(result.status, 'DRY_RUN');
+  assert.equal(result.plannedAction, 'INSTALLED');
+  assert.equal(result.files, Object.keys(await tree(source)).length);
+  await absent(home);
+});
+
 test('unsupported apps, duplicate app choices and unsupported platforms fail before writing', async (t) => {
   const { home } = await fixture(t);
   for (const args of [['--app', 'chatgpt'], ['--app', '../codex'], ['--app', 'codex', '--app', 'cursor'], ['--app', 'codex', '--platform', 'freebsd']]) {

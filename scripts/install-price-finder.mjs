@@ -32,7 +32,8 @@ const routes = [
   { id: 'trae-cn', catalogAppId: 'trae', root: '.trae-cn/skills', scope: 'TRAE China local user' },
   { id: 'trae-intl', catalogAppId: 'trae', root: '.trae/skills', scope: 'TRAE International local user' },
 ];
-const required = ['SKILL.md', 'agents/openai.yaml', 'references/app-catalog.md', 'references/entrypoints.md', 'references/host-setup.md', 'references/http-fallback.md', 'references/response-format.md', 'references/workloads.md'];
+const runtimeFiles = ['scripts/connect.mjs', 'scripts/connect-mcp.mjs', 'scripts/offline-lookup.mjs', 'data/price-snapshot.json'];
+const required = ['SKILL.md', 'agents/openai.yaml', 'references/app-catalog.md', 'references/entrypoints.md', 'references/host-setup.md', 'references/http-fallback.md', 'references/response-format.md', 'references/workloads.md', ...runtimeFiles];
 const usage = 'Usage: node install-price-finder.mjs --app <id> [--dry-run] [--home <explicit-test-root>] [--source <complete-skill-folder>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --app <id> --uninstall [--dry-run] [--home <explicit-test-root>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --list';
 function fail(code, detail = '') { throw new Error(`${code}${detail ? `: ${detail}` : ''}`); }
 function inside(parent, child) {
