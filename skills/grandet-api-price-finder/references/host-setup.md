@@ -183,10 +183,12 @@ model:
 
 **Other apps**: give the field card below and the app's documentation link from the [app catalogue](app-catalog.md); the user fills it in the app's own settings.
 
+The bundled file installer lists routes with `node scripts/install-price-finder.mjs --list`. It labels each route `current` or `retired`; retired routes require `--allow-retired` for a new copy, while `--uninstall` remains available for cleanup.
+
 - Cline, TRAE, Cherry Studio, Chatbox: settings in the app (OpenAI format; TRAE, Cherry Studio and Chatbox also take Anthropic). Do not use `cline auth -k`: it takes the key as a command argument.
 - Cursor: only the app's "Override OpenAI Base URL" setting; Grandet has not checked it with relays.
-- Windsurf (renamed Devin Desktop on 2026-06-02): no documented way to set an API address, so a relay cannot be connected. Say so.
-- Roo Code: shut down on 2026-05-15. Suggest Cline or Kilo Code instead.
+- Windsurf (retired; renamed Devin Desktop on 2026-06-02): no documented way to set an API address, so a relay cannot be connected. Say so; `--allow-retired` only permits copying the Skill files and does not connect a relay.
+- Roo Code (retired; shut down on 2026-05-15): suggest Cline or Kilo Code instead. `--allow-retired` is only for users who explicitly need the old local route.
 
 If you can edit an app's config file and its official documentation gives the exact format, you may write it with the same preview, backup and confirmation.
 

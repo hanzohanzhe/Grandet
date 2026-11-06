@@ -39,11 +39,65 @@ async function absent(path) { await assert.rejects(stat(path), { code: 'ENOENT' 
 test('lists only documented local copy routes and does not present cloud products as file installs', () => {
   const result = json(run('--list'));
   assert.equal(result.productVersion, '0.3.0');
+  assert.ok(result.applications.every((entry) => ['current', 'legacy', 'retired'].includes(entry.lifecycle)));
   for (const app of ['codex', 'claude-code', 'cursor', 'opencode', 'gemini-cli', 'cline', 'roo-code', 'kilo-code', 'windsurf', 'continue', 'hermes', 'openclaw', 'trae-cn', 'trae-intl']) {
     assert.ok(result.applications.some((entry) => entry.id === app), app);
   }
   assert.ok(!result.applications.some((entry) => ['chatgpt', 'cursor-cloud-agent', 'your-dot', 'muse', 'grok-bot'].includes(entry.id)));
+  const roo = result.applications.find((entry) => entry.id === 'roo-code');
+  const windsurf = result.applications.find((entry) => entry.id === 'windsurf');
+  assert.equal(roo.lifecycle, 'retired');
+  assert.deepEqual(roo.retirement, { date: '2026-05-15', reason: 'Roo Code shut down.', replacement: 'Cline or Kilo Code' });
+  assert.equal(windsurf.lifecycle, 'retired');
+  assert.deepEqual(windsurf.retirement, { date: '2026-06-02', reason: 'Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.', replacement: 'none' });
+  assert.deepEqual(result.retired.map((entry) => entry.id).sort(), ['roo-code', 'windsurf']);
+  assert.equal(result.counts.retired, 2);
   assert.equal(result.nativeAcceptance, 'NOT_RUN');
+});
+
+test('retired routes are blocked before writing unless explicitly allowed', async (t) => {
+  const { home } = await fixture(t);
+  for (const app of ['roo-code', 'windsurf']) {
+    const blocked = run('--app', app, '--home', home, '--dry-run');
+    assert.notEqual(blocked.status, 0);
+    assert.match(blocked.stderr, /APP_RETIRED/);
+    assert.match(blocked.stderr, /2026-05-15|2026-06-02/);
+    assert.match(blocked.stderr, /Cline or Kilo Code|relay cannot be connected/);
+    await absent(home);
+    const allowed = json(run('--app', app, '--home', home, '--dry-run', '--allow-retired'));
+    assert.equal(allowed.status, 'DRY_RUN');
+    assert.equal(allowed.lifecycle, 'retired');
+    assert.match(allowed.warning, /Retired .* Replacement:/);
+    assert.match(allowed.warning, app === 'roo-code' ? /Cline or Kilo Code/ : /Replacement: none/);
+    await absent(home);
+  }
+});
+
+test('current routes install normally and retired routes remain uninstallable', async (t) => {
+  const { home } = await fixture(t);
+  const current = json(run('--app', 'cline', '--home', home, '--no-telemetry'));
+  assert.equal(current.status, 'INSTALLED');
+  assert.equal(current.lifecycle, 'current');
+  assert.equal(current.warning, undefined);
+  assert.equal(current.destination, join(home, '.cline/skills', skillName));
+
+  json(run('--app', 'roo-code', '--home', home, '--allow-retired'));
+  const removed = json(run('--app', 'roo-code', '--home', home, '--uninstall', '--no-telemetry'));
+  assert.equal(removed.status, 'UNINSTALLED');
+  assert.equal(removed.lifecycle, 'retired');
+  assert.match(removed.warning, /Cline or Kilo Code/);
+  await absent(join(home, '.roo/skills', skillName));
+});
+
+test('installer retired routes match retired hosts in the routes artifact', async () => {
+  const listed = json(run('--list'));
+  const artifact = JSON.parse(await readFile(join(root, 'docs/skills/installation-routes.json'), 'utf8'));
+  const installerRetired = listed.applications.filter((route) => route.lifecycle === 'retired').map((route) => route.id).sort();
+  const artifactRetired = [...new Set(artifact.routes.filter((route) => route.lifecycle === 'retired').map((route) => route.host))].sort();
+  assert.deepEqual(artifactRetired, installerRetired);
+  for (const route of artifact.routes.filter((entry) => entry.lifecycle === 'retired')) {
+    assert.deepEqual(route.retirement, listed.applications.find((entry) => entry.id === route.host).retirement);
+  }
 });
 
 test('one install copies the complete common Skill and preserves other skills and application settings', async (t) => {
@@ -186,7 +240,7 @@ test('different alias content or multiple discovered copies fail without moving 
 
 test('regional editions and runtime-specific defaults produce separate plans within an explicit test home', async (t) => {
   const { home } = await fixture(t);
-  for (const [app, suffix] of [['trae-cn', '.trae-cn/skills'], ['trae-intl', '.trae/skills'], ['windsurf', '.codeium/windsurf/skills'], ['continue', '.continue/skills'], ['openclaw', '.openclaw/skills']]) {
+  for (const [app, suffix] of [['trae-cn', '.trae-cn/skills'], ['trae-intl', '.trae/skills'], ['continue', '.continue/skills'], ['openclaw', '.openclaw/skills']]) {
     const result = json(run('--app', app, '--home', home, '--dry-run'));
     assert.equal(result.destination, join(home, suffix, skillName));
   }

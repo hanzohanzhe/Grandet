@@ -17,23 +17,23 @@ const platforms = ['win32', 'linux', 'darwin'];
 // Installation destinations only. Runtime model/app identities remain the website's contract.
 // Verified 2026-10-13 against the official Skills documentation for the named applications.
 const routes = [
-  { id: 'codex', root: '.agents/skills', aliases: ['.codex/skills'], scope: 'Local user; shared Agent Skills directory' },
-  { id: 'claude-code', root: '.claude/skills', scope: 'Local user; excludes cloud/Cowork' },
-  { id: 'cursor', root: '.cursor/skills', aliases: ['.agents/skills', '.claude/skills', '.codex/skills'], scope: 'Local IDE user; cloud requires separate private sync' },
-  { id: 'opencode', root: '.agents/skills', aliases: ['.config/opencode/skills', '.claude/skills'], scope: 'Local user; documented shared directory' },
-  { id: 'gemini-cli', root: '.gemini/skills', aliases: ['.agents/skills'], scope: 'Local user; host activation consent remains' },
-  { id: 'cline', root: '.cline/skills', scope: 'Local user; no claim of cloud synchronization' },
-  { id: 'roo-code', root: '.roo/skills', aliases: ['.agents/skills'], scope: 'Local user; all modes unless host overrides' },
-  { id: 'kilo-code', root: '.kilo/skills', aliases: ['.agents/skills'], scope: 'Current local Kilo platform; excludes cloud runners' },
-  { id: 'windsurf', root: '.codeium/windsurf/skills', scope: 'Local Cascade user across workspaces' },
-  { id: 'continue', root: '.continue/skills', environment: 'CONTINUE_GLOBAL_DIR', scope: 'Selected local Continue runtime/build' },
-  { id: 'hermes', root: '.hermes/skills', environment: 'HERMES_HOME', scope: 'Selected local Hermes runtime/profile; not remote backend' },
-  { id: 'openclaw', root: '.openclaw/skills', environment: 'OPENCLAW_STATE_DIR', scope: 'Actual local Gateway state; WSL/remote runtimes install there separately' },
-  { id: 'trae-cn', catalogAppId: 'trae', root: '.trae-cn/skills', scope: 'TRAE China local user' },
-  { id: 'trae-intl', catalogAppId: 'trae', root: '.trae/skills', scope: 'TRAE International local user' },
+  { id: 'codex', root: '.agents/skills', aliases: ['.codex/skills'], scope: 'Local user; shared Agent Skills directory', lifecycle: 'current' },
+  { id: 'claude-code', root: '.claude/skills', scope: 'Local user; excludes cloud/Cowork', lifecycle: 'current' },
+  { id: 'cursor', root: '.cursor/skills', aliases: ['.agents/skills', '.claude/skills', '.codex/skills'], scope: 'Local IDE user; cloud requires separate private sync', lifecycle: 'current' },
+  { id: 'opencode', root: '.agents/skills', aliases: ['.config/opencode/skills', '.claude/skills'], scope: 'Local user; documented shared directory', lifecycle: 'current' },
+  { id: 'gemini-cli', root: '.gemini/skills', aliases: ['.agents/skills'], scope: 'Local user; host activation consent remains', lifecycle: 'current' },
+  { id: 'cline', root: '.cline/skills', scope: 'Local user; no claim of cloud synchronization', lifecycle: 'current' },
+  { id: 'roo-code', root: '.roo/skills', aliases: ['.agents/skills'], scope: 'Local user; all modes unless host overrides', lifecycle: 'retired', retirement: { date: '2026-05-15', reason: 'Roo Code shut down.', replacement: 'Cline or Kilo Code' } },
+  { id: 'kilo-code', root: '.kilo/skills', aliases: ['.agents/skills'], scope: 'Current local Kilo platform; excludes cloud runners', lifecycle: 'current' },
+  { id: 'windsurf', root: '.codeium/windsurf/skills', scope: 'Local Cascade user across workspaces', lifecycle: 'retired', retirement: { date: '2026-06-02', reason: 'Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.', replacement: 'none' } },
+  { id: 'continue', root: '.continue/skills', environment: 'CONTINUE_GLOBAL_DIR', scope: 'Selected local Continue runtime/build', lifecycle: 'current' },
+  { id: 'hermes', root: '.hermes/skills', environment: 'HERMES_HOME', scope: 'Selected local Hermes runtime/profile; not remote backend', lifecycle: 'current' },
+  { id: 'openclaw', root: '.openclaw/skills', environment: 'OPENCLAW_STATE_DIR', scope: 'Actual local Gateway state; WSL/remote runtimes install there separately', lifecycle: 'current' },
+  { id: 'trae-cn', catalogAppId: 'trae', root: '.trae-cn/skills', scope: 'TRAE China local user', lifecycle: 'current' },
+  { id: 'trae-intl', catalogAppId: 'trae', root: '.trae/skills', scope: 'TRAE International local user', lifecycle: 'current' },
 ];
 const required = ['SKILL.md', 'agents/openai.yaml', 'references/app-catalog.md', 'references/entrypoints.md', 'references/host-setup.md', 'references/http-fallback.md', 'references/response-format.md', 'references/workloads.md'];
-const usage = 'Usage: node install-price-finder.mjs --app <id> [--dry-run] [--home <explicit-test-root>] [--source <complete-skill-folder>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --app <id> --uninstall [--dry-run] [--home <explicit-test-root>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --list';
+const usage = 'Usage: node install-price-finder.mjs --app <id> [--dry-run] [--allow-retired] [--home <explicit-test-root>] [--source <complete-skill-folder>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --app <id> --uninstall [--dry-run] [--home <explicit-test-root>] [--platform win32|linux|darwin]\n       node install-price-finder.mjs --list (shows current and retired routes)\nRetired routes require --allow-retired to install; uninstall remains available.';
 function fail(code, detail = '') { throw new Error(`${code}${detail ? `: ${detail}` : ''}`); }
 function inside(parent, child) {
   const rel = relative(parent, child);
@@ -88,9 +88,9 @@ function argumentsFor(argv) {
   const options = {};
   for (let index = 0; index < argv.length; index++) {
     const flag = argv[index];
-    if (!['--app', '--dry-run', '--home', '--source', '--platform', '--list', '--no-telemetry', '--receipt-source', '--receipt-endpoint', '--flush', '--operation', '--uninstall'].includes(flag)) fail('INVALID_ARGUMENT', usage);
+    if (!['--app', '--dry-run', '--allow-retired', '--home', '--source', '--platform', '--list', '--no-telemetry', '--receipt-source', '--receipt-endpoint', '--flush', '--operation', '--uninstall'].includes(flag)) fail('INVALID_ARGUMENT', usage);
     if (Object.hasOwn(options, flag)) fail('DUPLICATE_OPTION', flag);
-    if (['--dry-run', '--list', '--no-telemetry', '--flush', '--uninstall'].includes(flag)) options[flag] = true;
+    if (['--dry-run', '--allow-retired', '--list', '--no-telemetry', '--flush', '--uninstall'].includes(flag)) options[flag] = true;
     else {
       const value = argv[++index];
       if (!value || value.startsWith('--')) fail('MISSING_ARGUMENT', flag);
@@ -134,11 +134,14 @@ async function uninstall(options, route, { platform, home, destination, backups 
   }
   const action = found.length ? 'UNINSTALLED' : 'NOT_INSTALLED';
   const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, removed: found, backup: null, receiptSent: false, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']) };
+  report.lifecycle = route.lifecycle;
+  if (route.retirement) report.retirement = route.retirement;
   const shared = [...new Set(found.flatMap((item) => item.sharedWith))];
   report.nextStep = found.length
     ? `Moved out of skill discovery, not deleted: to restore, move the backup folder back or install again. Start a fresh session to confirm the Skill no longer loads.${shared.length ? ` The same folder also served ${shared.join(', ')}.` : ''} Uninstall sends no receipt and keeps local receipt state, so a later install continues the same installation ID.`
     : 'No Grandet Skill folder was found for this app; nothing changed.';
   if (route.id === 'cursor' && found.length) report.nextStep += ' Copies already synced to Cursor Cloud Agents are not changed by a local uninstall.';
+  if (route.retirement) report.warning = `Retired ${route.id} on ${route.retirement.date}: ${route.retirement.reason} Replacement: ${route.retirement.replacement}.`;
   if (options['--dry-run'] || !found.length) return report;
   const moved = [];
   try {
@@ -169,10 +172,15 @@ async function main() {
   const platform = options['--platform'] ?? process.platform;
   if (!platforms.includes(platform)) fail('UNSUPPORTED_PLATFORM', platform);
   if (options['--list']) {
-    return { productVersion, sourceBuild, nativeAcceptance: 'NOT_RUN', applications: routes.map((route) => ({ id: route.id, catalogAppId: route.catalogAppId ?? route.id, userRoot: route.id === 'hermes' && platform === 'win32' ? '%LOCALAPPDATA%/hermes/skills (HERMES_HOME overrides)' : `~/${route.root}`, scope: route.scope, documentedAliases: (route.aliases ?? []).map((path) => `~/${path}`) })) };
+    const applications = routes.map((route) => ({ id: route.id, catalogAppId: route.catalogAppId ?? route.id, lifecycle: route.lifecycle, ...(route.retirement ? { retirement: route.retirement } : {}), userRoot: route.id === 'hermes' && platform === 'win32' ? '%LOCALAPPDATA%/hermes/skills (HERMES_HOME overrides)' : `~/${route.root}`, scope: route.scope, documentedAliases: (route.aliases ?? []).map((path) => `~/${path}`) }));
+    return { productVersion, sourceBuild, nativeAcceptance: 'NOT_RUN', applications, retired: applications.filter((route) => route.lifecycle === 'retired'), counts: { current: applications.filter((route) => route.lifecycle === 'current').length, retired: applications.filter((route) => route.lifecycle === 'retired').length } };
   }
   const route = routes.find((item) => item.id === options['--app']);
   if (!route) fail('UNSUPPORTED_APP', options['--app'] ?? usage);
+  if (route.lifecycle === 'retired' && !options['--uninstall'] && !options['--allow-retired']) {
+    const { date, reason, replacement } = route.retirement;
+    fail('APP_RETIRED', `${route.id} retired ${date}: ${reason} Replacement: ${replacement}. Pass --allow-retired to install anyway.`);
+  }
   if (platform !== process.platform && !options['--dry-run']) fail('CROSS_PLATFORM_REQUIRES_DRY_RUN');
   if (options['--home'] && !isAbsolute(options['--home'])) fail('TEST_HOME_MUST_BE_ABSOLUTE');
   const home = resolve(options['--home'] ?? homedir());
@@ -210,7 +218,8 @@ async function main() {
   const identical = existing && same(existing.files, payload);
   if (existing && existing.path !== destination && !identical) fail('ALIAS_CONTENT_CONFLICT', existing.path);
   const action = identical ? (existing.path === destination ? 'UNCHANGED' : 'REUSED') : existing ? 'UPDATED' : 'INSTALLED';
-  const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, source, destination: identical ? existing.path : destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, backup: null, files: payload.size, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']), nextStep: 'Start a fresh session and ask an ordinary API-price question without an attachment, Skill selection or the Grandet name. File installation alone does not verify activation or network access.' };
+  const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, lifecycle: route.lifecycle, ...(route.retirement ? { retirement: route.retirement } : {}), source, destination: identical ? existing.path : destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, backup: null, files: payload.size, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']), nextStep: 'Start a fresh session and ask an ordinary API-price question without an attachment, Skill selection or the Grandet name. File installation alone does not verify activation or network access.' };
+  if (route.retirement) report.warning = `Retired ${route.id} on ${route.retirement.date}: ${route.retirement.reason} Replacement: ${route.retirement.replacement}.`;
   if (route.id === 'cursor') {
     report.cloudSyncStatus = report.destination === destination ? 'REQUIRES_PRIVATE_SYNC' : 'ALIAS_REUSED_LOCAL_ONLY';
     report.nextStep += report.destination === destination

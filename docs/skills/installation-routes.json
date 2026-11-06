@@ -3782,7 +3782,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -3817,7 +3823,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -3852,7 +3864,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -3887,7 +3905,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -3922,7 +3946,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -3957,7 +3987,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -3992,7 +4028,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4027,7 +4069,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4062,7 +4110,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4097,7 +4151,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4132,7 +4192,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4167,7 +4233,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4202,7 +4274,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4237,7 +4315,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4272,7 +4356,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4307,7 +4397,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4342,7 +4438,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "windsurf",
@@ -4377,7 +4479,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-06-02",
+        "reason": "Windsurf was renamed to Devin Desktop; no documented API-address setting exists, so a relay cannot be connected.",
+        "replacement": "none"
+      }
     },
     {
       "host": "cline",
@@ -8822,7 +8930,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -8857,7 +8971,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -8892,7 +9012,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -8927,7 +9053,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -8962,7 +9094,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -8997,7 +9135,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9032,7 +9176,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9067,7 +9217,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9102,7 +9258,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9137,7 +9299,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9172,7 +9340,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9207,7 +9381,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9242,7 +9422,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9277,7 +9463,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9312,7 +9504,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9347,7 +9545,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9382,7 +9586,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "roo-code",
@@ -9417,7 +9627,13 @@
       "tested_at": null,
       "evidence": null,
       "gap": "Host runtime/version not installed or not exercised in this isolated build. Run native save/readback, receipt confirmation and fresh-session trigger.",
-      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b"
+      "receipt_helper_source_build": "grandet-skill-0.3.0-build.20261018b",
+      "lifecycle": "retired",
+      "retirement": {
+        "date": "2026-05-15",
+        "reason": "Roo Code shut down.",
+        "replacement": "Cline or Kilo Code"
+      }
     },
     {
       "host": "chatgpt",
