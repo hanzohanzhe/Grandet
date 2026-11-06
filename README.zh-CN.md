@@ -163,7 +163,7 @@ node --test tests/*.test.mjs
 node scripts/serve.mjs
 ```
 
-`serve.mjs` 在 `http://127.0.0.1:8787/` 打开本地浏览页。这些命令只检查本地文件，不会更新官网价格。
+`node scripts/serve.mjs` 在 `http://127.0.0.1:8787/` 提供目录服务；请在浏览器中打开该地址。按 Ctrl+C 停止服务（终端提示：Ctrl+C to stop）。添加 `--open` 可选择尝试自动打开浏览器。这些命令只检查本地文件，不会更新官网价格。
 
 欢迎提交带来源的更正和改进，见[贡献指南](CONTRIBUTING.md)和[整理方法](METHODOLOGY.md)。
 

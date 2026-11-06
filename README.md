@@ -161,7 +161,7 @@ node --test tests/*.test.mjs
 node scripts/serve.mjs
 ```
 
-`serve.mjs` opens a local browser view at `http://127.0.0.1:8787/`. These commands check local files only and never update the website's prices.
+`node scripts/serve.mjs` serves the catalogue at `http://127.0.0.1:8787/`; open that address in a browser. Press Ctrl+C to stop. Add `--open` to opt in to a best-effort browser launch. These commands check local files only and never update the website's prices.
 
 Sourced corrections and improvements are welcome; see the [contributing guide](CONTRIBUTING.md) and [methodology](METHODOLOGY.md).
 
