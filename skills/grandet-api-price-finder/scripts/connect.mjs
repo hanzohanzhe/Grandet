@@ -412,7 +412,7 @@ export async function plan(input) {
   if (o.app === 'hermes') notes.push(o.platform === 'win32' ? 'Hermes reads the key from a user environment variable; restart Hermes after storing the key' : 'Hermes reads the key file through key_cmd; restart Hermes after storing the key');
   if (o.app === 'workbuddy') notes.push('WorkBuddy and the CodeBuddy CLI read ~/.codebuddy/models.json and reload it; the key command writes the key into that file (readable by you only). Not yet tested in the WorkBuddy app');
   if (o.app === 'openclaw') notes.push(`OpenClaw reads the key from ${o.keyPath} (a file SecretRef); restart the OpenClaw gateway after storing the key`);
-  const planHash = sha(JSON.stringify({ app: o.app, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, changes: changes.map(({ path, beforeSha, afterSha }) => ({ path, beforeSha, afterSha })) }));
+  const planHash = sha(JSON.stringify({ app: o.app, site: o.site, origin: o.origin, protocol: o.protocol, model: o.model, group: o.group, changes: changes.map(({ path, beforeSha, afterSha }) => ({ path, beforeSha, afterSha })) }));
   return { o, changes, notes, steps, planHash, keyCommand, defaultModel };
 }
 function keepExistingKey(before, after, o) {
@@ -447,10 +447,11 @@ async function atomicWrite(path, text, mode) {
 const stamp = () => new Date().toISOString().replace(/[-:]/g, '').replace('T', '-').slice(0, 15);
 
 export async function apply(input) {
+  if (typeof input.planHash !== 'string' || !input.planHash.trim()) fail('PLAN_HASH_REQUIRED', input.via === 'mcp' ? 'Pass the planHash returned by grandet_connect_preview' : 'Pass --plan-hash <hash from preview>');
   const p = await plan(input);
   const mcp = input.via === 'mcp';
   if (!input.yes) fail('CONFIRMATION_REQUIRED', mcp ? 'Show the preview to the user; call grandet_connect_apply again with confirmed: true and the preview planHash only after they agree' : 'Show the preview to the user and pass --yes --plan-hash <hash from preview> only after they agree');
-  if (input.planHash && input.planHash !== p.planHash) fail('PLAN_CHANGED', mcp ? 'The file changed since the preview; call grandet_connect_preview again' : 'The file changed since the preview; preview again');
+  if (input.planHash !== p.planHash) fail('PLAN_CHANGED', mcp ? 'The plan changed since the preview; call grandet_connect_preview again' : 'The plan changed since the preview; preview again');
   const state = await loadState(p.o.home);
   const record = { id: randomUUID(), at: new Date().toISOString(), app: p.o.app, site: p.o.site, variable: p.o.variable, platform: p.o.platform, files: [], defaultModel: p.defaultModel, restoredAt: null };
   for (const c of p.changes) {
@@ -646,7 +647,7 @@ const SWITCHES = { '--yes': 'yes', '--json': 'json', '--confirmed-other-domain':
 const USAGE = `Usage: node connect.mjs <apps|preview|apply|key|verify|restore|status> [options]
   --app <${Object.keys(APPS).join('|')}>  --site <sourceId>  --base-url <https origin>
   --protocol <openai|openai-response|anthropic|gemini>  --model <exact model name>  [--group <token group>]
-  apply: --yes [--plan-hash <from preview>]   restore: [--id <change id>] [--delete-key] [--force]
+  apply: --yes --plan-hash <required hash from preview>   restore: [--id <change id>] [--delete-key] [--force]
   [--home <test root>] [--platform win32|linux|darwin] [--json]`;
 export function parseArgs(argv) {
   const [command, ...rest] = argv; const opts = {};

@@ -6,12 +6,16 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
-import { plan, publicPlan, apply, storeKey, verify, restore } from '../skills/grandet-api-price-finder/scripts/connect.mjs';
+import { plan, publicPlan, apply as applyRaw, storeKey, verify, restore } from '../skills/grandet-api-price-finder/scripts/connect.mjs';
 
 const script = new URL('../skills/grandet-api-price-finder/scripts/connect.mjs', import.meta.url).pathname;
 const mcp = new URL('../skills/grandet-api-price-finder/scripts/connect-mcp.mjs', import.meta.url).pathname;
 const home = () => mkdtemp(join(tmpdir(), 'grandet-connect-'));
 const base = (h, app, extra = {}) => ({ app, site: 'apijing.com', baseUrl: 'https://apijing.com', model: 'claude-sonnet-4-6', group: 'claudecode带缓存', home: h, platform: 'linux', ...extra });
+const apply = async (input) => {
+  const preview = await plan(input);
+  return applyRaw({ ...input, planHash: input.planHash ?? preview.planHash });
+};
 const read = async (p) => (await readFile(p)).toString('utf8');
 const KEY = 'sk-test-0123456789abcdef';
 const POSIX = process.platform !== 'win32';
@@ -42,6 +46,38 @@ test('codex: preview, apply, key, restore keep other settings byte-exact', async
   assert.equal(await read(join(h, '.bashrc')), '# mine\n');
   assert.ok(undo.keyKept);
   await assert.rejects(restore({ home: h }), { code: 'NOTHING_TO_RESTORE' });
+});
+
+test('apply requires a plan hash before reading or writing, and binds every preview input', async () => {
+  const h = await home();
+  const opts = base(h, 'codex', { protocol: 'openai-response' });
+  await assert.rejects(applyRaw({ ...opts, yes: true }), { code: 'PLAN_HASH_REQUIRED' });
+  await assert.rejects(stat(join(h, '.codex/config.toml')));
+  await assert.rejects(stat(join(h, '.grandet/connect/state.json')));
+
+  const variants = [
+    { group: 'group-after' },
+    { baseUrl: 'https://api.apijing.com/v2' },
+    { protocol: 'openai' },
+    { model: 'gpt-6.1-sol' },
+    { app: 'codex', protocol: 'openai-response' },
+    { site: 'other.example', baseUrl: 'https://other.example' },
+  ];
+  for (const change of variants) {
+    const root = await home();
+    const previewOpts = base(root, 'opencode', { protocol: 'openai-response' });
+    const preview = await plan(previewOpts);
+    await assert.rejects(applyRaw({ ...previewOpts, ...change, yes: true, planHash: preview.planHash }), { code: 'PLAN_CHANGED' }, JSON.stringify(change));
+    await assert.rejects(stat(join(root, '.config/opencode/opencode.json')), JSON.stringify(change));
+    await assert.rejects(stat(join(root, '.grandet/connect/state.json')), JSON.stringify(change));
+  }
+
+  const stableRoot = await home();
+  const stable = base(stableRoot, 'codex', { protocol: 'openai-response' });
+  const preview = await plan(stable);
+  assert.equal((await applyRaw({ ...stable, yes: true, planHash: preview.planHash })).applied, true);
+  const unchangedPreview = await plan(stable);
+  assert.equal((await applyRaw({ ...stable, yes: true, planHash: unchangedPreview.planHash })).unchanged, true);
 });
 
 test('codex key and undo: a profile Grandet created is removed, others come back byte-exact, re-running key keeps one line', async () => {
@@ -353,6 +389,10 @@ const run = (args, input) => new Promise((resolve) => {
 test('CLI: preview, apply with plan hash, key from stdin, restore; the key never appears in output', async () => {
   const h = await home(); const common = ['--app', 'codex', '--site', 'apijing.com', '--base-url', 'https://apijing.com', '--model', 'gpt-6.1-sol', '--home', h, '--platform', 'linux'];
   const preview = JSON.parse((await run(['preview', ...common, '--json'])).out);
+  const missing = await run(['apply', ...common, '--yes']);
+  assert.notEqual(missing.code, 0); assert.match(missing.err, /PLAN_HASH_REQUIRED/);
+  await assert.rejects(stat(join(h, '.codex/config.toml')));
+  await assert.rejects(stat(join(h, '.grandet/connect/state.json')));
   const applied = await run(['apply', ...common, '--yes', '--plan-hash', preview.planHash]);
   assert.equal(applied.code, 0, applied.err); assert.match(applied.out, /Connected/);
   const key = await run(['key', '--app', 'codex', '--site', 'apijing.com', '--home', h, '--platform', 'linux'], `${KEY}\n`);
@@ -403,13 +443,15 @@ test('MCP: lists four tools and previews without writing', async () => {
   assert.equal((await wait(1)).result.serverInfo.name, 'grandet-connect');
   send({ jsonrpc: '2.0', method: 'notifications/initialized' });
   send({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
-  assert.deepEqual((await wait(2)).result.tools.map((t) => t.name), ['grandet_connect_preview', 'grandet_connect_apply', 'grandet_connect_verify', 'grandet_connect_restore']);
+  const tools = (await wait(2)).result.tools;
+  assert.deepEqual(tools.map((t) => t.name), ['grandet_connect_preview', 'grandet_connect_apply', 'grandet_connect_verify', 'grandet_connect_restore']);
+  assert.deepEqual(tools.find((t) => t.name === 'grandet_connect_apply').inputSchema.required, ['app', 'site', 'model', 'confirmed', 'planHash']);
   send({ jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'grandet_connect_preview', arguments: { app: 'codex', site: 'apijing.com', baseUrl: 'https://apijing.com', model: 'gpt-6.1-sol', home: h } } });
   const r = await wait(3); assert.equal(r.result.isError, false); assert.match(r.result.content[0].text, /model_provider/);
   send({ jsonrpc: '2.0', id: 4, method: 'tools/call', params: { name: 'grandet_connect_apply', arguments: { app: 'codex', site: 'apijing.com', model: 'gpt-6.1-sol', home: h } } });
   const refused = await wait(4);
   assert.equal(refused.result.isError, true, 'apply without confirmed=true is refused');
-  assert.match(refused.result.content[0].text, /confirmed: true/); assert.doesNotMatch(refused.result.content[0].text, /--yes/);
+  assert.match(refused.result.content[0].text, /PLAN_HASH_REQUIRED/); assert.doesNotMatch(refused.result.content[0].text, /--yes/);
   await assert.rejects(stat(join(h, '.codex/config.toml')));
   child.stdin.end(); child.kill();
 });
