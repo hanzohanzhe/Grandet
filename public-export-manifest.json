@@ -191,6 +191,10 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": "package.json",
+      "rights": "AGPL-3.0-only"
+    },
+    {
       "path": "plugins/grandet-api-price-finder/.claude-plugin/plugin.json",
       "rights": "Apache-2.0"
     },
@@ -365,6 +369,10 @@
     {
       "path": "tests/offline-snapshot.test.mjs",
       "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/package-scripts.test.mjs",
+      "rights": "AGPL-3.0-only"
     },
     {
       "path": "tests/site-follow.test.mjs",

@@ -157,8 +157,8 @@ Local development needs **Node.js 20+** and no third-party packages:
 node scripts/catalogue.mjs validate
 node scripts/catalogue.mjs generate --check
 node scripts/validate-public.mjs
-node --test tests/*.test.mjs
-node scripts/serve.mjs
+npm test # or: node --test tests/*.test.mjs
+npm run serve # or: node scripts/serve.mjs
 ```
 
 `serve.mjs` opens a local browser view at `http://127.0.0.1:8787/`. These commands check local files only and never update the website's prices.

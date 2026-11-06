@@ -1,0 +1,14 @@
+{
+  "name": "grandet",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "serve": "node scripts/serve.mjs",
+    "catalogue": "node scripts/catalogue.mjs",
+    "check:site-follow": "node scripts/check-site-follow.mjs"
+  }
+}

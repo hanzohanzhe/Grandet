@@ -159,8 +159,8 @@ Codex、Claude Code、OpenCode、Kilo Code、Continue、Gemini CLI、Hermes、Op
 node scripts/catalogue.mjs validate
 node scripts/catalogue.mjs generate --check
 node scripts/validate-public.mjs
-node --test tests/*.test.mjs
-node scripts/serve.mjs
+npm test # 或：node --test tests/*.test.mjs
+npm run serve # 或：node scripts/serve.mjs
 ```
 
 `serve.mjs` 在 `http://127.0.0.1:8787/` 打开本地浏览页。这些命令只检查本地文件，不会更新官网价格。
