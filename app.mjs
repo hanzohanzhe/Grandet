@@ -1,6 +1,16 @@
 // SPDX-License-Identifier: AGPL-3.0-only
+import {statusLines, statusUnavailable} from './status-view.mjs';
+
 const $=id=>document.getElementById(id);
 const el=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
+const statusElement=$('website-status');
+const renderWebsiteStatus=lines=>{statusElement.textContent=lines.join('\n');};
+const statusPromise=fetch('WEBSITE-STATUS.json')
+ .then(response=>{if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();})
+ .then(status=>statusLines(status,'WEBSITE-STATUS.json'))
+ .catch(()=>statusUnavailable())
+ .then(renderWebsiteStatus);
+
 try {
  const response=await fetch('data/free-tokens.json');if(!response.ok)throw new Error(`HTTP ${response.status}`);const data=await response.json();
  const rows=[...data.officialOffers.map(o=>({o,kind:'official'})),...data.offers.map(o=>({o,kind:'third'}))];
@@ -21,3 +31,4 @@ try {
  }
  $('filters').addEventListener('submit',e=>e.preventDefault());$('filters').addEventListener('input',render);render();
 }catch(e){$('status').textContent=`Catalogue could not be loaded: ${e.message}`;}
+await statusPromise;

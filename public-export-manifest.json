@@ -255,6 +255,10 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": "status-view.mjs",
+      "rights": "AGPL-3.0-only"
+    },
+    {
       "path": "scripts/stage-registry-skill.mjs",
       "rights": "Apache-2.0"
     },
@@ -369,6 +373,10 @@
     {
       "path": "tests/site-follow.test.mjs",
       "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/website-status.test.mjs",
+      "rights": "AGPL-3.0-only"
     },
     {
       "path": "tests/packaged-receipts.test.py",
