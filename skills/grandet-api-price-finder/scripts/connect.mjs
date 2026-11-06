@@ -27,6 +27,11 @@ export const APPS = {
   openclaw: { name: 'OpenClaw', protocols: ['openai', 'anthropic'], file: (h, env) => env.OPENCLAW_CONFIG_PATH || join(h, '.openclaw', 'openclaw.json'), format: 'openclaw-json' },
   workbuddy: { name: 'WorkBuddy', protocols: ['openai', 'openai-response'], file: (h) => join(h, '.codebuddy', 'models.json'), format: 'codebuddy-json' },
 };
+// Public, immutable-by-convention view for documentation and consistency checks.
+// Deriving this from APPS keeps the executor matrix as the source of truth.
+export const APP_PROTOCOLS = Object.fromEntries(
+  Object.entries(APPS).map(([id, app]) => [id, [...app.protocols]]),
+);
 const ALIASES = { kilo: 'kilo-code', claude: 'claude-code', gemini: 'gemini-cli', codebuddy: 'workbuddy' };
 // Formats that keep the key inside the config file: a new file is created readable by the user only.
 const KEY_IN_FILE = new Set(['continue-yaml', 'dotenv', 'codebuddy-json']);

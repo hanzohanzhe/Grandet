@@ -347,6 +347,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "tests/app-catalog.test.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "tests/catalogue.test.mjs",
       "rights": "AGPL-3.0-only"
     },

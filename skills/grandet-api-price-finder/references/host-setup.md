@@ -11,7 +11,7 @@ Goal: the user's app calls the chosen site with the chosen model. You prepare an
 - **Target app**: the app the user named. If none, ask once: "接到哪个应用？" and query again with that `targetApp`, so the row's `integration` card fits that app.
 - The row's `integration` card gives the app's documented `configurationFormat`, `configurationPath`, `docsUrl` and `steps`. In `view=compact`, the row carries `integration.card`, an index into the top-level `integrationCards`; that card's `stepsTemplate` has `{{model}}` and `{{tokenGroup}}` to replace with the row's literal values.
 
-Pick the protocol the target app needs: Codex needs `openai-response`; Claude Code needs `anthropic`; Gemini CLI needs `gemini`; OpenCode, Kilo Code, Continue and most chat apps use `openai`; Hermes takes `openai`, `openai-response` or `anthropic`; OpenClaw takes `openai` or `anthropic`; WorkBuddy takes `openai` or `openai-response`. If the row does not offer it, say so and offer the next row that does.
+Pick the protocol the target app needs. `CONNECT preview` accepts `openai-response` for Codex, `anthropic` for Claude Code, `gemini` for Gemini CLI, `openai` or `openai-response` for OpenCode and Kilo Code, `openai` for Continue, `openai`, `openai-response` or `anthropic` for Hermes, `openai` or `anthropic` for OpenClaw, and `openai` or `openai-response` for WorkBuddy. For OpenClaw, `openai-response` and `gemini` are manual-only: use OpenClaw's custom-provider configuration and do not run `CONNECT preview` for those protocols. If a row does not offer an accepted protocol, say so and offer the next row that does.
 
 ## 2. Find the API address
 
@@ -159,7 +159,7 @@ model:
   provider: custom:grandet-<site>
 ```
 
-**OpenClaw** — `~/.openclaw/openclaw.json` (`$OPENCLAW_CONFIG_PATH` if set). The key stays in the Grandet key file and OpenClaw reads it through a file SecretRef, so the file never holds the key. Use `api: anthropic-messages` and `baseUrl: <origin>` for `anthropic`. Write the full path of the key file. Restart the OpenClaw gateway afterwards (`openclaw gateway restart`).
+**OpenClaw** — `~/.openclaw/openclaw.json` (`$OPENCLAW_CONFIG_PATH` if set). `CONNECT preview` accepts only `openai` and `anthropic` for OpenClaw. The key stays in the Grandet key file and OpenClaw reads it through a file SecretRef, so the file never holds the key. For `anthropic`, use `api: anthropic-messages` and `baseUrl: <origin>`. For `openai`, use `api: openai-completions` and `baseUrl: <origin>/v1` as shown below. Write the full path of the key file. Restart the OpenClaw gateway afterwards (`openclaw gateway restart`). For `openai-response` or `gemini`, configure a custom provider manually using [OpenClaw's custom-provider docs](https://docs.openclaw.ai/concepts/model-providers/custom-providers); `connect.mjs` does not automate these protocols. Do not pass them to `CONNECT preview`.
 
 ```json
 {
