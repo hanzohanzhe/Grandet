@@ -119,6 +119,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "docs/skills/app-catalog-provenance.md",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "docs/skills/app-catalog-identity.json",
       "rights": "Apache-2.0"
     },

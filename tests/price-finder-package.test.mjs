@@ -392,17 +392,28 @@ test('packaged MCP examples are accepted by the actual registered tool schemas',
   assert.deepEqual(observed.calls, ['/api/v1/board', '/api/v1/models', '/api/v1/prices']);
 });
 
-test('test and release package entry points verify the generated application catalog first', async (t) => {
+test('the public checkout verifies the generated application catalog before shipping it', async () => {
+  let upstream = true;
   try { await readFile(join(root, 'tools/website/generate-price-finder-app-catalog.ts')); }
   catch (error) {
     if (error.code !== 'ENOENT') throw error;
-    t.skip('Website catalogue generation is outside this public Skill source export');
+    upstream = false;
+  }
+  if (upstream) {
+    const { scripts } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+    assert.equal(scripts['price-finder:catalog'], 'tsx tools/website/generate-price-finder-app-catalog.ts');
+    assert.equal(scripts['price-finder:catalog:check'], 'npm run price-finder:catalog -- --check');
+    for (const command of ['price-finder:test', 'price-finder:package']) {
+      assert.match(scripts[command], /^npm run price-finder:catalog:check && /, command);
+    }
     return;
   }
-  const { scripts } = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
-  assert.equal(scripts['price-finder:catalog'], 'tsx tools/website/generate-price-finder-app-catalog.ts');
-  assert.equal(scripts['price-finder:catalog:check'], 'npm run price-finder:catalog -- --check');
-  for (const command of ['price-finder:test', 'price-finder:package']) {
-    assert.match(scripts[command], /^npm run price-finder:catalog:check && /, command);
-  }
+  const workflow = await readFile(join(root, '.github/workflows/catalogue.yml'), 'utf8');
+  assert.match(workflow, /node scripts\/app-catalog-identity\.mjs --check/,
+    'CI verifies the public catalogue identity when the website generator is absent');
+  const identity = JSON.parse(await readFile(join(root, 'docs/skills/app-catalog-identity.json'), 'utf8'));
+  const distribution = JSON.parse(await readFile(join(root, 'docs/skills/application-distribution.generated.json'), 'utf8'));
+  assert.ok(identity.revision.startsWith('grandet.app-catalog/v1+'));
+  assert.equal(distribution.summary.profileCount, identity.profileCount);
+  assert.match(await readFile(join(root, 'docs/skills/app-catalog-provenance.md'), 'utf8'), /app-catalog-identity\.mjs --check/);
 });
