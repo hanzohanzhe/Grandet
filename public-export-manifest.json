@@ -123,6 +123,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "docs/skills/application-distribution-exclusions.json",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "docs/skills/chat-adapters/grok-bot.md",
       "rights": "Apache-2.0"
     },
@@ -352,6 +356,10 @@
     },
     {
       "path": "tests/connect.test.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/distribution-coverage.test.mjs",
       "rights": "Apache-2.0"
     },
     {

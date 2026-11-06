@@ -21,6 +21,7 @@ const BUILD = /^grandet-skill-(0\.3\.0)-build\.(\d{8})([a-z]{0,4})$/;
 const HASH = /^[a-f0-9]{64}$/, COMMIT = /^[a-f0-9]{40}$/;
 const DOCS = ['INSTALL.md', 'skills/grandet-api-price-finder/references/installation.md', 'docs/skills/installation-receipts.md'];
 const APP_FILES = ['docs/skills/installation-routes.json', 'docs/skills/application-distribution.generated.json'];
+const EXCLUSIONS_FILE = 'docs/skills/application-distribution-exclusions.json';
 
 export function skillhubVersion(build) {
   const m = BUILD.exec(build);
@@ -93,10 +94,31 @@ export function checkSiteFollow({latest, releases, approved, previous = null, do
   }
   if (apps) {
     const routes = apps['docs/skills/installation-routes.json'], dist = apps['docs/skills/application-distribution.generated.json'];
+    const exclusions = apps[EXCLUSIONS_FILE];
     if (routes?.buildId !== p.build) warnings.push(`APP_ROUTES_BUILD: installation-routes.json buildId is ${routes?.buildId ?? 'missing'}, not ${p.build}; per-app instructions keep the site's own text`);
-    const hosts = new Set((routes?.routes ?? []).map((r) => r.host)), listed = new Set((dist?.entries ?? []).map((e) => e.appId));
-    const missing = [...hosts].filter((h) => !listed.has(h));
-    if (missing.length) warnings.push(`APP_DISTRIBUTION_INCOMPLETE: application-distribution.generated.json lacks ${missing.length} of ${hosts.size} routed apps`);
+    const routesList = Array.isArray(routes?.routes) ? routes.routes : [];
+    const hosts = new Set(routesList.map((r) => r?.host).filter((h) => typeof h === 'string'));
+    const listed = new Set((Array.isArray(dist?.entries) ? dist.entries : []).map((e) => e?.appId).filter((id) => typeof id === 'string'));
+    const excludedRows = Array.isArray(exclusions?.excludedHosts) ? exclusions.excludedHosts : [];
+    const excluded = new Set();
+    need(exclusions?.schema === 'grandet.price-finder-distribution-exclusions/v1', 'APP_DISTRIBUTION_EXCLUSIONS_SCHEMA');
+    need(exclusions?.buildId === routes?.buildId, 'APP_DISTRIBUTION_EXCLUSIONS_BUILD', `${exclusions?.buildId ?? 'missing'} should match ${routes?.buildId ?? 'missing'}`);
+    need(Array.isArray(exclusions?.excludedHosts), 'APP_DISTRIBUTION_EXCLUSIONS_ENTRIES');
+    const seen = new Set();
+    for (const row of excludedRows) {
+      const host = row?.host;
+      if (typeof host === 'string') {
+        need(!seen.has(host), 'APP_DISTRIBUTION_EXCLUSION_DUPLICATE', host);
+        seen.add(host);
+        need(hosts.has(host), 'APP_DISTRIBUTION_EXCLUSION_UNKNOWN_HOST', host);
+        need(!listed.has(host), 'APP_DISTRIBUTION_EXCLUSION_ALREADY_LISTED', host);
+        excluded.add(host);
+      } else need(false, 'APP_DISTRIBUTION_EXCLUSION_HOST');
+      need(typeof row?.reason === 'string' && row.reason.trim().length > 0, 'APP_DISTRIBUTION_EXCLUSION_REASON', typeof host === 'string' ? host : 'entry');
+      need(row?.status === 'UNPUBLISHED_IN_PUBLIC_CHECKOUT', 'APP_DISTRIBUTION_EXCLUSION_STATUS', `${typeof host === 'string' ? host : 'entry'} must be UNPUBLISHED_IN_PUBLIC_CHECKOUT`);
+    }
+    const missing = [...hosts].filter((h) => !listed.has(h) && !excluded.has(h));
+    if (missing.length) errors.push(`APP_DISTRIBUTION_INCOMPLETE: application-distribution.generated.json lacks ${missing.length} of ${hosts.size} routed apps without reviewed exclusions: ${missing.join(', ')}`);
   }
   return {errors, warnings};
 }
@@ -125,7 +147,13 @@ function main(argv) {
   const haveCommit = typeof commit === 'string' && gitShow(root, commit, 'INSTALL.md') !== null;
   const docs = haveCommit ? Object.fromEntries(DOCS.map((p) => [p, gitShow(root, commit, p)])) : null;
   let apps = null;
-  if (haveCommit) { apps = {}; for (const p of APP_FILES) { const t = gitShow(root, commit, p); try { apps[p] = t ? JSON.parse(t) : null; } catch { apps[p] = null; } } }
+  if (haveCommit) {
+    apps = {};
+    for (const p of APP_FILES) { const t = gitShow(root, commit, p); try { apps[p] = t ? JSON.parse(t) : null; } catch { apps[p] = null; } }
+    // Exclusions describe gaps in the checkout being reviewed, not in the pinned build; read them
+    // from the working tree while routes and distribution entries stay pinned to sourceCommit.
+    try { apps[EXCLUSIONS_FILE] = readJson(join(root, EXCLUSIONS_FILE)); } catch { apps[EXCLUSIONS_FILE] = null; }
+  }
   const result = checkSiteFollow({latest, releases, approved, previous, docs, apps});
   if (!haveCommit) result.warnings.push(`SOURCE_COMMIT_NOT_LOCAL: ${commit}; documents not checked`);
   if (argv.includes('--json')) console.log(JSON.stringify({build: latest.build, ...result}, null, 1));

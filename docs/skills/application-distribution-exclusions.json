@@ -1,0 +1,26 @@
+{
+  "schema": "grandet.price-finder-distribution-exclusions/v1",
+  "buildId": "grandet-skill-0.3.0-build.20261018b",
+  "excludedHosts": [
+    { "host": "cursor-cloud-agent", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "opencode", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "gemini-cli", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "windsurf", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "cline", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "hermes", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "openclaw", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "trae-cn", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "trae-intl", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "kilo-code", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "continue", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "roo-code", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "chatgpt", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "claude-web", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "chatbox", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "workbuddy-cn", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "workbuddy-intl", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "grok-bot", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "your-dot", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" },
+    { "host": "muse", "reason": "No reviewed public distribution template exists in this checkout; track the gap under issue #63.", "status": "UNPUBLISHED_IN_PUBLIC_CHECKOUT" }
+  ]
+}
