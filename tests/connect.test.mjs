@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
-import { plan, publicPlan, apply, storeKey, verify, restore } from '../skills/grandet-api-price-finder/scripts/connect.mjs';
+import { plan, publicPlan, apply, storeKey, verify, restore, status } from '../skills/grandet-api-price-finder/scripts/connect.mjs';
 
 const script = new URL('../skills/grandet-api-price-finder/scripts/connect.mjs', import.meta.url).pathname;
 const mcp = new URL('../skills/grandet-api-price-finder/scripts/connect-mcp.mjs', import.meta.url).pathname;
@@ -316,8 +316,46 @@ test('restore refuses when the user edited the file after apply', async () => {
   const h = await home(); const opts = base(h, 'claude-code');
   await apply({ ...opts, yes: true });
   await writeFile(join(h, '.claude/settings.json'), '{"changed":true}\n');
-  await assert.rejects(restore({ home: h }), { code: 'CHANGED_SINCE_APPLY' });
+  await assert.rejects(restore({ home: h, dryRun: true }), (e) => e.code === 'FILE_CHANGED_SINCE_APPLY' && e.message.includes('.claude/settings.json'));
+  await assert.rejects(restore({ home: h }), { code: 'FILE_CHANGED_SINCE_APPLY' });
   await restore({ home: h, force: true });
+});
+
+test('status preserves connection identity for multiple changes at the same app and site', async () => {
+  const h = await home();
+  const first = base(h, 'hermes', { model: 'model-one', group: 'group-a', protocol: 'openai', baseUrl: 'https://apijing.com' });
+  const second = base(h, 'hermes', { model: 'model-two', group: 'group-b', protocol: 'anthropic', baseUrl: 'https://api.apijing.com' });
+  await apply({ ...first, yes: true }); await apply({ ...second, yes: true });
+  const { changes } = await status({ home: h });
+  assert.deepEqual(changes.map(({ model, group, origin, protocol }) => ({ model, group, origin, protocol })), [
+    { model: 'model-one', group: 'group-a', origin: 'https://apijing.com', protocol: 'openai' },
+    { model: 'model-two', group: 'group-b', origin: 'https://api.apijing.com', protocol: 'anthropic' },
+  ]);
+  assert.equal(changes[0].backups[0].available, false, 'a newly created config has no backup');
+  assert.match(changes[0].selectsLatest, /latest unrestored/);
+});
+
+test('restore dry-run reports target and backup without writing or changing state', async () => {
+  const h = await home(); const opts = base(h, 'claude-code');
+  await mkdir(join(h, '.claude'), { recursive: true }); await writeFile(join(h, '.claude/settings.json'), '{"custom":true}\n');
+  await apply({ ...opts, yes: true });
+  const before = await read(join(h, '.claude/settings.json'));
+  const stateBefore = await read(join(h, '.grandet/connect/state.json'));
+  const preview = await restore({ home: h, dryRun: true });
+  assert.equal(preview.dryRun, true); assert.equal(preview.target.model, opts.model);
+  assert.equal(preview.files[0].path, join(h, '.claude/settings.json'));
+  assert.equal(preview.files[0].backupAvailable, true); assert.equal(preview.files[0].currentMatchesAfterSha, true);
+  assert.equal(await read(join(h, '.claude/settings.json')), before);
+  assert.equal(await read(join(h, '.grandet/connect/state.json')), stateBefore);
+});
+
+test('old connection state loads with missing identity as null and unknown backups', async () => {
+  const h = await home(); await mkdir(join(h, '.grandet/connect'), { recursive: true });
+  await writeFile(join(h, '.grandet/connect/state.json'), JSON.stringify({ schema: 'grandet.connect-state/v1', changes: [{ id: 'old', at: '2020-01-01T00:00:00.000Z', app: 'claude-code', site: 'apijing.com', files: [{ path: join(h, '.claude/settings.json'), existed: false }], restoredAt: null }] }));
+  const [record] = (await status({ home: h })).changes;
+  assert.equal(record.model, null); assert.equal(record.origin, null); assert.equal(record.protocol, null); assert.equal(record.group, null);
+  assert.equal(record.defaultModel, null); assert.deepEqual(record.files, [join(h, '.claude/settings.json')]);
+  assert.deepEqual(record.backups, [{ path: join(h, '.claude/settings.json'), backupPath: null, available: false }]);
 });
 
 test('verify: free model list check, key rejection, redirect refusal, missing key', async () => {

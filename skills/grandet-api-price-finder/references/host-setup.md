@@ -50,7 +50,7 @@ Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs
    - `MODEL_NOT_LISTED`: the key works but the token is probably in another group; ask the user to check the group is「<group>」.
    - `KEY_REJECTED`: wrong key, expired, or no balance.
    - Never call the free check a working connection. A real request costs credit: send one short request only if the user agrees, after this check passes.
-5. **Undo:** `CONNECT restore` undoes the latest connection from its backups (`--app <app>` for a specific app), including the old default model, and prints `Default model back to X`. Add `--delete-key` only if the user wants the stored key removed.
+5. **Status and undo:** `CONNECT status --json` shows each change's model, origin, protocol, group, variable, platform, default-model transition, file paths and backup availability. Older records show unavailable identity fields as `null`. `CONNECT restore --dry-run` previews the selected target and each file's backup/current-file status without writing. Without `--id`, restore selects the latest unrestored change matching any supplied `--app` and `--site`; pass `--id <change id>` to select explicitly. A changed file is reported as `FILE_CHANGED_SINCE_APPLY`; after checking the preview, `--force` allows restoring it anyway. A real `CONNECT restore` restores the backups, including the old default model. Add `--delete-key` only if the user wants the stored key removed.
 
 When it stops with a code:
 
@@ -61,7 +61,7 @@ When it stops with a code:
 | `BASE_URL_NOT_HTTPS` | Use `https://<site>` |
 | `COMMENTS_PRESENT`, `COMPLEX_TOML`, `COMPLEX_YAML`, `INVALID_JSON` | The file cannot be rewritten safely; use the manual steps below for this app |
 | `PLAN_CHANGED` | The file changed since the preview; preview again |
-| `CHANGED_SINCE_APPLY` | The user edited the file after Grandet wrote it; ask before adding `--force` to restore |
+| `FILE_CHANGED_SINCE_APPLY` | The user edited the file after Grandet wrote it; inspect `restore --dry-run` and ask before adding `--force` to restore |
 | `KEY_NOT_STORED`, `NOT_CONNECTED_YET` | Do the steps in order: apply, then the user stores the key, then verify |
 
 If the app can use MCP but you cannot run commands, the same executor runs as a local MCP server: `node "<folder of this SKILL.md>/scripts/connect-mcp.mjs"` (stdio). Its tools are `grandet_connect_preview`, `grandet_connect_apply` (pass `confirmed: true` only after the user agrees, plus the preview `planHash`), `grandet_connect_verify` and `grandet_connect_restore`. Adding it to the app's MCP settings is a one-time step for the user. The key is still stored by the user with the `key` command above.
@@ -225,7 +225,9 @@ If the target app is the app you are running in, finish this check **before** wr
 
 ## 7. Undo
 
-"恢复 / undo": prefer `CONNECT restore`, which puts every file back byte for byte. By hand: copy the latest `<file>.grandet-backup-*` back; if a file did not exist before, delete it; remove the profile line ending with `# grandet:<site>` (or delete the profile if Grandet created it); and tell the user the key file `~/.grandet/keys/<site>` can be deleted. On Windows, also remove the user environment variable. If a backup could not be made, say so before writing, never after.
+"状态 / status": `CONNECT status --json` lists each change's model, origin, protocol, group, variable, platform, default-model transition, file paths and backup availability. Older records show unavailable identity fields as `null`. Without `--id`, restore selects the latest unrestored change matching any supplied `--app` and `--site`; use `--id <change id>` to choose another entry.
+
+"恢复 / undo": first run `CONNECT restore --dry-run` to preview the selected target, files, backup availability and whether current files still match the applied version. It writes nothing. If it reports `FILE_CHANGED_SINCE_APPLY`, inspect the edited file and get the user's agreement before retrying with `--force`. A real `CONNECT restore` puts every file back byte for byte. By hand: copy the latest `<file>.grandet-backup-*` back; if a file did not exist before, delete it; remove the profile line ending with `# grandet:<site>` (or delete the profile if Grandet created it); and tell the user the key file `~/.grandet/keys/<site>` can be deleted. On Windows, also remove the user environment variable. If a backup could not be made, say so before writing, never after.
 
 ## When you cannot reach the user's computer
 

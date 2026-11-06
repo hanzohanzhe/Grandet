@@ -452,13 +452,20 @@ export async function apply(input) {
   if (!input.yes) fail('CONFIRMATION_REQUIRED', mcp ? 'Show the preview to the user; call grandet_connect_apply again with confirmed: true and the preview planHash only after they agree' : 'Show the preview to the user and pass --yes --plan-hash <hash from preview> only after they agree');
   if (input.planHash && input.planHash !== p.planHash) fail('PLAN_CHANGED', mcp ? 'The file changed since the preview; call grandet_connect_preview again' : 'The file changed since the preview; preview again');
   const state = await loadState(p.o.home);
-  const record = { id: randomUUID(), at: new Date().toISOString(), app: p.o.app, site: p.o.site, variable: p.o.variable, platform: p.o.platform, files: [], defaultModel: p.defaultModel, restoredAt: null };
+  const record = {
+    id: randomUUID(), at: new Date().toISOString(), app: p.o.app, site: p.o.site,
+    model: p.o.model, origin: p.o.origin, protocol: p.o.protocol, group: p.o.group,
+    variable: p.o.variable, platform: p.o.platform, files: [], defaultModel: p.defaultModel,
+    defaultModelTransition: p.defaultModel ? { changed: true, from: p.defaultModel.from, to: p.defaultModel.to } : { changed: false, from: null, to: null },
+    restoredAt: null,
+  };
   for (const c of p.changes) {
     let backup = null;
     if (c.action === 'modify') { backup = `${c.path}.grandet-backup-${stamp()}`; let n = 1; while (await exists(backup)) backup = `${c.path}.grandet-backup-${stamp()}-${n++}`; await copyFile(c.path, backup); }
     await atomicWrite(c.path, c.content, c.action === 'create' && KEY_IN_FILE.has(APPS[p.o.app].format) ? 0o600 : undefined);
     if (sha((await readFile(c.path)).toString('utf8')) !== c.afterSha) fail('READBACK_MISMATCH', c.path);
-    record.files.push({ path: c.path, existed: c.action === 'modify', backup, writtenSha: sha(keyNeutral(c.content, p.o.app, p.o.site)) });
+    const afterSha = sha(keyNeutral(c.content, p.o.app, p.o.site));
+    record.files.push({ path: c.path, existed: c.action === 'modify', backup, backupPath: backup, afterSha, writtenSha: afterSha });
   }
   if (record.files.length) { state.changes.push(record); await saveState(p.o.home, state); }
   return { ...publicPlan(p), applied: record.files.length > 0, changeId: record.files.length ? record.id : null, backups: record.files.map((f) => f.backup).filter(Boolean), unchanged: record.files.length === 0 };
@@ -588,13 +595,22 @@ export async function restore(input) {
   const record = input.id ? state.changes.find((c) => c.id === input.id) : [...state.changes].reverse().find((c) => !c.restoredAt && (!input.site || c.site === input.site) && (!input.app || c.app === (ALIASES[input.app] || input.app)));
   if (!record) fail('NOTHING_TO_RESTORE');
   if (record.restoredAt) fail('ALREADY_RESTORED');
-  const results = [];
+  const files = [];
   for (const f of record.files) {
     const current = await readText(f.path);
-    if (current !== null && sha(keyNeutral(current, record.app, record.site)) !== f.writtenSha && !input.force) fail('CHANGED_SINCE_APPLY', `${f.path} changed after Grandet wrote it; pass --force to restore anyway`);
+    const currentMatchesAfterSha = f.afterSha ? current !== null && sha(keyNeutral(current, record.app, record.site)) === f.afterSha : f.writtenSha ? current !== null && sha(keyNeutral(current, record.app, record.site)) === f.writtenSha : null;
+    const backupPath = f.backupPath ?? f.backup ?? null;
+    const backupAvailable = Boolean(backupPath && await exists(backupPath));
+    const item = { path: f.path, backupPath, backupAvailable, currentMatchesAfterSha, action: f.existed ? 'restore-backup' : 'remove-created-file' };
+    files.push(item);
+    if (current !== null && currentMatchesAfterSha === false && !input.force) fail('FILE_CHANGED_SINCE_APPLY', `${f.path} changed after Grandet wrote it; pass --force to restore anyway`);
   }
+  const target = await statusRecord(record);
+  if (input.dryRun) return { restored: false, dryRun: true, changeId: record.id, app: record.app, site: record.site, target, files, force: Boolean(input.force) };
+  const results = [];
   for (const f of record.files) {
-    if (f.existed) { await copyFile(f.backup, f.path); results.push({ path: f.path, action: 'restored', from: f.backup }); }
+    const backup = f.backupPath ?? f.backup;
+    if (f.existed) { await copyFile(backup, f.path); results.push({ path: f.path, action: 'restored', from: backup }); }
     else { await rm(f.path, { force: true }); results.push({ path: f.path, action: 'removed' }); }
   }
   if (record.defaultModel) {
@@ -635,18 +651,32 @@ export async function restore(input) {
   await saveState(home, state);
   return { restored: true, changeId: record.id, app: record.app, site: record.site, results, keyKept: input.deleteKey ? null : keyPath };
 }
+async function statusRecord(c) {
+  const transition = c.defaultModelTransition ?? (c.defaultModel ? { changed: true, from: c.defaultModel.from ?? null, to: c.defaultModel.to ?? null } : null);
+  const files = Array.isArray(c.files) ? c.files : [];
+  return {
+    id: c.id, at: c.at, app: c.app, site: c.site,
+    model: c.model ?? null, origin: c.origin ?? null, protocol: c.protocol ?? null, group: c.group ?? null,
+    variable: c.variable ?? null, platform: c.platform ?? null, defaultModel: c.defaultModel ?? null,
+    defaultModelTransition: transition,
+    files: files.map((f) => f.path),
+    backups: await Promise.all(files.map(async (f) => { const backupPath = f.backupPath ?? f.backup ?? null; return { path: f.path, backupPath, available: Boolean(backupPath && await exists(backupPath)) }; })),
+    restoredAt: c.restoredAt ?? null,
+    selectsLatest: 'When --id is omitted, restore selects the latest unrestored change matching --app and --site (if supplied).',
+  };
+}
 export async function status(input) {
   const home = resolve(input.home || homedir());
-  return { changes: (await loadState(home)).changes.map(({ id, at, app, site, files, restoredAt }) => ({ id, at, app, site, files: files.map((f) => f.path), restoredAt })) };
+  return { changes: await Promise.all((await loadState(home)).changes.map(statusRecord)) };
 }
 
 // ---------- CLI ----------
 const FLAGS = { '--app': 'app', '--site': 'site', '--base-url': 'baseUrl', '--protocol': 'protocol', '--model': 'model', '--group': 'group', '--home': 'home', '--platform': 'platform', '--plan-hash': 'planHash', '--id': 'id', '--key-file': 'keyFile', '--timeout': 'timeout' };
-const SWITCHES = { '--yes': 'yes', '--json': 'json', '--confirmed-other-domain': 'confirmedOtherDomain', '--force': 'force', '--delete-key': 'deleteKey' };
+const SWITCHES = { '--yes': 'yes', '--json': 'json', '--confirmed-other-domain': 'confirmedOtherDomain', '--force': 'force', '--delete-key': 'deleteKey', '--dry-run': 'dryRun' };
 const USAGE = `Usage: node connect.mjs <apps|preview|apply|key|verify|restore|status> [options]
   --app <${Object.keys(APPS).join('|')}>  --site <sourceId>  --base-url <https origin>
   --protocol <openai|openai-response|anthropic|gemini>  --model <exact model name>  [--group <token group>]
-  apply: --yes [--plan-hash <from preview>]   restore: [--id <change id>] [--delete-key] [--force]
+  apply: --yes [--plan-hash <from preview>]   restore: [--id <change id>] [--dry-run] [--delete-key] [--force]
   [--home <test root>] [--platform win32|linux|darwin] [--json]`;
 export function parseArgs(argv) {
   const [command, ...rest] = argv; const opts = {};
@@ -667,6 +697,7 @@ function human(command, r) {
   }
   if (command === 'verify') return `${r.ok ? 'OK' : 'FAILED'} (${r.status ?? 'no response'}): ${r.message}`;
   if (command === 'key') return [...r.done, 'The key was not shown. Go back to the assistant and say it is done.'].join('\n');
+  if (command === 'restore' && r.dryRun) return [`Restore preview: ${r.app} · ${r.site} · ${r.changeId}`, ...r.files.map((f) => `${f.action} ${f.path} (backup ${f.backupAvailable ? 'available' : 'not available'}; current file ${f.currentMatchesAfterSha === null ? 'unknown' : f.currentMatchesAfterSha ? 'matches apply' : 'changed'})`)].join('\n');
   if (command === 'restore') return [`Undone: ${r.app} · ${r.site}`, ...r.results.map((x) => (x.action === 'default-model-restored' ? `Default model back to ${x.model ?? "the app's own default"}` : `${x.action} ${x.path}`)), ...(r.keyKept ? [`The stored key is kept at ${r.keyKept}; delete it if you no longer need it.`] : [])].join('\n');
   return JSON.stringify(r, null, 2);
 }
