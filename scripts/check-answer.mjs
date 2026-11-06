@@ -36,7 +36,52 @@ const CJK = /[\u3400-\u9fff\uf900-\ufaff]/g;
 const ownWords = (a) => a.replace(/```[\s\S]*?```|`[^`]*`|「[^」]*」|"[^"\n]*"|“[^”\n]*”|\([^)\n]*\)|（[^）\n]*）|<[^>\n]*>/g, ' ');
 const lowestPlans = (board) => (chosenBoard(board)?.listings.lowest ?? []).map((r) => r);
 
+const QUALITY_ATTRIBUTION = /\b(?:according\s+to|source\s*:|(?:supplier|provider|vendor)[^.!?。！？\n]{0,40}\b(?:says|declares?|declared|claims?|reports?)|(?:says|declares?|declared|claims?|reports?)[^.!?。！？\n]{0,40}\b(?:supplier|provider|vendor))|供应商[^。！？\n]{0,30}声明|声明[^。！？\n]{0,30}供应商/i;
+const NOT_MEASURED = /\b(?:not\s+measured|unmeasured|no\s+measured)\b|未实测|尚未实测|未验证/i;
+const QUALITY_SUPERLATIVE = /\bbest\s+(?:answer\s+)?quality\b|\bmost\s+stable\b|\bhighest\s+quality\b|最稳定|质量最好|不降智/i;
+const PERCENT = /\d+(?:\.\d+)?\s*(?:%|％|percent(?:age)?\b)/i;
+// Work sentence by sentence so a declaration elsewhere in the answer cannot license a claim.
+function sentences(text) {
+  return ownWords(text).split(/(?<=[.!?。！？])\s+|\n+/).map((s) => s.trim()).filter(Boolean);
+}
+function hasQualityClaim(sentence) {
+  const uptimePercent = /(\buptime\b|\bavailability\b|可用率|在线率)/i.test(sentence) && PERCENT.test(sentence);
+  const latencyMs = /(\blatency\b|延迟)/i.test(sentence) && /\d+(?:\.\d+)?\s*(?:ms\b|毫秒)/i.test(sentence);
+  return uptimePercent || latencyMs || QUALITY_SUPERLATIVE.test(sentence);
+}
+function permittedClaim(sentence) {
+  return QUALITY_ATTRIBUTION.test(sentence) || NOT_MEASURED.test(sentence);
+}
+function benchmarkClaim(sentence) {
+  const line = withoutModelNames(sentence).replace(/\b(?:19|20)\d{2}[-/.]\d{1,2}[-/.]\d{1,2}\b/g, ' ');
+  const score = /\b(?:MMLU|HumanEval|SWE[- ]?bench|GSM8K|AIME)\b/i;
+  const winRate = /\bwin\s*rate\b/i;
+  const accuracy = PERCENT.test(line) && /\baccuracy\b/i.test(line);
+  const hasNearbyScore = (match) => {
+    if (!match) return false;
+    const tail = line.slice(match.index + match[0].length, match.index + match[0].length + 32);
+    const numbers = [...tail.matchAll(/\d+(?:\.\d+)?\s*(?:%|％|percent(?:age)?\b|points?\b|score\b|分\b)?/gi)];
+    return numbers.some((n) => !/^(?:19|20)\d{2}$/.test(n[0].trim()) || /(?:%|％|percent|points?|score|分)/i.test(n[0]));
+  };
+  const ttft = line.match(/\bTTFT\b/i);
+  const throughput = (ttft && /\d+(?:\.\d+)?\s*(?:ms\b|毫秒)/i.test(line.slice(ttft.index + ttft[0].length, ttft.index + ttft[0].length + 24)))
+    || /\b\d+(?:\.\d+)?\s*tokens?\s*\/\s*s\b/i.test(line);
+  const scoreMatch = line.match(score);
+  const winMatch = line.match(winRate);
+  return hasNearbyScore(scoreMatch)
+    || (winMatch && (PERCENT.test(line) || hasNearbyScore(winMatch)))
+    || accuracy || throughput;
+}
+
 export const CHECKS = {
+  qualityClaimsAttributed: (a) => {
+    const bad = sentences(a).filter((s) => hasQualityClaim(s) && !permittedClaim(s));
+    return { pass: bad.length === 0, detail: bad.length ? `quality claim lacks same-sentence attribution or measurement caveat: "${bad[0]}"` : 'quality claims are attributed or marked unmeasured' };
+  },
+  noUnmeasuredBenchmark: (a) => {
+    const bad = sentences(a).filter((s) => benchmarkClaim(s) && !permittedClaim(s));
+    return { pass: bad.length === 0, detail: bad.length ? `benchmark claim lacks same-sentence attribution or measurement caveat: "${bad[0]}"` : 'benchmark figures are attributed or marked unmeasured' };
+  },
   answerInEnglish: (a) => {
     const text = ownWords(a), cjk = (text.match(CJK) ?? []).length, latin = (text.match(/[A-Za-z]/g) ?? []).length;
     const share = cjk / Math.max(1, cjk + latin);

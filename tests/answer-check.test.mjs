@@ -51,7 +51,7 @@ curl -H "Authorization: Bearer $GRANDET_OOJJ_TOP_KEY" https://oojj.top/v1/models
 test('cases file lists known checks only', () => {
   assert.equal(cases.schema, 'grandet.skill-answer-evals/v1');
   for (const c of cases.cases) for (const id of c.checks) assert.ok(CHECKS[id], `${c.id}: ${id}`);
-  assert.deepEqual([...new Set(cases.cases.flatMap((c) => c.covers))].sort(), ['CF1', 'CF2', 'CF3', 'CF4', 'EN1']);
+  assert.deepEqual([...new Set(cases.cases.flatMap((c) => c.covers))].sort(), ['CF1', 'CF2', 'CF3', 'CF4', 'EN1', 'QA1']);
 });
 
 test('E1 passes a complete price answer', () => {
@@ -158,4 +158,21 @@ test('E5: --group must be the original group name, not its translation', () => {
   assert.equal(pick('node connect.mjs preview --app opencode --site api.zq4i.com --group "claude-0.09倍率-华强北kiro（不稳定可切换）"'), 'PASS');
   assert.equal(pick('node connect.mjs preview --app opencode --site api.zq4i.com --group "0.09x rate, Huaqiangbei Kiro channel"'), 'FAIL');
   assert.equal(pick('node connect.mjs preview --app opencode --site api.zq4i.com --group "<group>"'), 'PASS');
+});
+
+test('E6: unsupported quality and benchmark claims fail, declarations and price lines pass', () => {
+  const fabricated = 'This supplier has 99.9% uptime and the best answer quality on the market';
+  assert.equal(CHECKS.qualityClaimsAttributed(fabricated).pass, false);
+  assert.match(CHECKS.qualityClaimsAttributed(fabricated).detail, /This supplier has 99\.9% uptime/);
+  assert.equal(CHECKS.qualityClaimsAttributed('The supplier declares 99.9% uptime (apijing.com, observed 2026-11-06); Grandet has no measured uptime for this route.').pass, true);
+  assert.equal(CHECKS.qualityClaimsAttributed('Uptime was not measured for this route; the supplier claims 99.9%.').pass, true);
+  for (const check of ['qualityClaimsAttributed', 'noUnmeasuredBenchmark']) {
+    assert.equal(CHECKS[check]('Input is $0.30 per million tokens').pass, true, check);
+  }
+  assert.equal(CHECKS.noUnmeasuredBenchmark('The route scores 92% on MMLU and has a 78% win rate.').pass, false);
+  assert.equal(CHECKS.noUnmeasuredBenchmark('AIME 2025 was held on 2025-11-06; the route uses Claude 4.6.').pass, true);
+  assert.equal(CHECKS.qualityClaimsAttributed('Checked on 2026-11-06 with Claude 4.6.').pass, true);
+  const r = checkAnswer('E6', 'Uptime was not measured for this route.');
+  assert.equal(r.status, 'PASS', JSON.stringify(r.results));
+  assert.ok(r.results.every((x) => x.status !== 'NOT_RUN'));
 });

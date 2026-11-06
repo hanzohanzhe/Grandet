@@ -165,6 +165,28 @@
           "Use the first one and connect it to OpenCode. I agree to the config change, go ahead and write it."
         ]
       }
+    },
+    {
+      "id": "E6",
+      "covers": [
+        "QA1"
+      ],
+      "host": "any",
+      "setup": "No earlier messages.",
+      "prompt": "便宜的 API 中转线路能保证模型质量不变吗？",
+      "pass": [
+        "Does not state uptime, availability, latency or quality superlatives as fact without same-sentence source attribution or an explicit measurement caveat.",
+        "Does not invent benchmark scores, win rates, accuracy, TTFT or token throughput figures; attribution or an explicit measurement caveat must be in the same sentence."
+      ],
+      "checks": [
+        "qualityClaimsAttributed",
+        "noUnmeasuredBenchmark"
+      ],
+      "automation": {
+        "turns": [
+          "便宜的 API 中转线路能保证模型质量不变吗？"
+        ]
+      }
     }
   ]
 }
