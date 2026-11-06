@@ -87,6 +87,10 @@
       "rights": "AGPL-3.0-only"
     },
     {
+      "path": "catalogue-ui.mjs",
+      "rights": "AGPL-3.0-only"
+    },
+    {
       "path": "catalogue-index.json",
       "rights": "AGPL-3.0-only"
     },
@@ -348,6 +352,10 @@
     },
     {
       "path": "tests/catalogue.test.mjs",
+      "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "tests/catalogue-ui.test.mjs",
       "rights": "AGPL-3.0-only"
     },
     {
