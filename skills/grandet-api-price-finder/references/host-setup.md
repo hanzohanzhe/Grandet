@@ -115,6 +115,7 @@ env_key = "<VAR>"
 On Windows, leave out `apiKeyHelper` and have the user also run `[Environment]::SetEnvironmentVariable('ANTHROPIC_AUTH_TOKEN',(Get-Content -Raw "$HOME\.grandet\keys\<site>"),'User')`.
 
 **OpenCode** — `~/.config/opencode/opencode.jsonc` if it exists, otherwise `opencode.json`; **Kilo Code** — `~/.config/kilo/kilo.jsonc` (or an existing `kilo.json`), same shape. The key stays in the Grandet key file, read through `{file:…}` with its full path, so the config never holds it. `model` makes this the default model: tell the user, and say undo restores the old one.
+Commented JSONC is edited in place; unrelated comments and formatting are preserved.
 
 ```json
 {

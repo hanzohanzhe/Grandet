@@ -133,9 +133,19 @@ function stripJsonc(text) {
     if (c === '"') { inStr = true; out += c; continue; }
     if (c === '/' && n === '/') { comment = true; while (i < text.length && text[i] !== '\n') i++; out += '\n'; continue; }
     if (c === '/' && n === '*') { comment = true; i += 2; while (i < text.length && !(text[i] === '*' && text[i + 1] === '/')) i++; i++; continue; }
+    if (c === ',') {
+      let j = i + 1;
+      while (j < text.length) {
+        if (/\s/.test(text[j])) { j++; continue; }
+        if (text[j] === '/' && text[j + 1] === '/') { j += 2; while (j < text.length && text[j] !== '\n') j++; continue; }
+        if (text[j] === '/' && text[j + 1] === '*') { j += 2; while (j < text.length && !(text[j] === '*' && text[j + 1] === '/')) j++; j += 2; continue; }
+        break;
+      }
+      if (text[j] === '}' || text[j] === ']') continue;
+    }
     out += c;
   }
-  return { json: out.replace(/,(\s*[}\]])/g, '$1'), comment };
+  return { json: out, comment };
 }
 function editClaude(text, o) {
   const obj = parseStrictJson(text, 'settings.json');
@@ -149,24 +159,121 @@ function editClaude(text, o) {
   else obj.apiKeyHelper = `cat '${o.keyPath.replace(/'/g, "'\\''")}'`;
   return { text: `${JSON.stringify(obj, null, 2)}\n`, notes: removed.length ? [`Removed ${removed.join(', ')} from settings env so the new key is used; undo restores them`] : [] };
 }
-function editOpencode(text, o) {
-  let obj = {};
-  if (text !== null && text.trim() !== '') {
-    const { json, comment } = stripJsonc(text);
-    if (comment) fail('COMMENTS_PRESENT', 'The config has comments that a rewrite would drop; edit it by hand with the snippet');
-    try { obj = JSON.parse(json); } catch { fail('INVALID_JSON', 'The config is not valid JSON'); }
-    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) fail('INVALID_JSON');
-  }
-  if (!obj.$schema) obj.$schema = 'https://opencode.ai/config.json';
-  obj.provider = obj.provider && typeof obj.provider === 'object' ? obj.provider : {};
-  obj.provider[o.id] = {
+const opencodeProvider = (o) => ({
     npm: o.protocol === 'openai-response' ? '@ai-sdk/openai' : '@ai-sdk/openai-compatible',
     name: `${o.site} (Grandet)`,
     options: { baseURL: `${o.origin}/v1`, apiKey: `{file:${o.keyPath}}` },
     models: { [o.model]: { name: o.model } },
+  });
+function jsoncStructure(text) {
+  let i = 0;
+  const trivia = () => {
+    while (i < text.length) {
+      if (/\s/.test(text[i])) { i++; continue; }
+      if (text[i] === '/' && text[i + 1] === '/') { i += 2; while (i < text.length && text[i] !== '\n') i++; continue; }
+      if (text[i] === '/' && text[i + 1] === '*') { i += 2; while (i < text.length && !(text[i] === '*' && text[i + 1] === '/')) i++; i += 2; continue; }
+      break;
+    }
   };
-  obj.model = `${o.id}/${o.model}`;
-  return `${JSON.stringify(obj, null, 2)}\n`;
+  const string = () => {
+    const start = i++;
+    while (i < text.length) { if (text[i] === '\\') i += 2; else if (text[i++] === '"') break; }
+    return { start, end: i, value: JSON.parse(text.slice(start, i)) };
+  };
+  const value = () => {
+    trivia(); const start = i;
+    if (text[i] === '"') return string();
+    if (text[i] === '{') {
+      i++; const props = []; trivia();
+      while (text[i] !== '}') {
+        trivia(); const key = string(); trivia(); i++; const val = value(); props.push({ key: key.value, keyStart: key.start, value: val });
+        trivia(); if (text[i] === ',') { i++; trivia(); if (text[i] === '}') break; } else if (text[i] !== '}') fail('UNSUPPORTED_JSONC', 'Unexpected token while locating JSONC object properties');
+      }
+      const close = i++; return { type: 'object', start, end: i, close, props };
+    }
+    if (text[i] === '[') {
+      i++; trivia(); while (text[i] !== ']') { value(); trivia(); if (text[i] === ',') { i++; trivia(); if (text[i] === ']') break; } else if (text[i] !== ']') fail('UNSUPPORTED_JSONC', 'Unexpected token while locating JSONC array values'); }
+      i++; return { type: 'array', start, end: i };
+    }
+    while (i < text.length && !/[\s,}\]]/.test(text[i]) && !(text[i] === '/' && (text[i + 1] === '/' || text[i + 1] === '*'))) i++;
+    if (i === start) fail('UNSUPPORTED_JSONC', 'Unexpected token while locating JSONC values');
+    return { type: 'scalar', start, end: i };
+  };
+  trivia(); const root = value(); trivia();
+  if (i !== text.length || root.type !== 'object') fail('UNSUPPORTED_JSONC', 'Expected one top-level JSON object');
+  return root;
+}
+function editOpencode(text, o) {
+  const source = text ?? '';
+  let obj;
+  if (source.trim() === '') obj = {};
+  else {
+    try { obj = JSON.parse(stripJsonc(source).json); } catch { fail('INVALID_JSON', 'The config is not valid JSON'); }
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) fail('INVALID_JSON', 'The config is not a top-level JSON object');
+  }
+  if (text === null || source.trim() === '') obj = { $schema: 'https://opencode.ai/config.json', provider: { [o.id]: opencodeProvider(o) }, model: `${o.id}/${o.model}` };
+  const root = source.trim() === '' ? null : jsoncStructure(source);
+  if (!root) return `${JSON.stringify(obj, null, 2)}\n`;
+  const eol = source.includes('\r\n') ? '\r\n' : '\n';
+  const unit = jsonIndentUnit(source);
+  const rootIndent = propertyIndent(source, root) ?? '';
+  const rootChild = propertyIndent(source, root) ?? unit;
+  const edits = [];
+  const missingRoot = [];
+  const modelProps = root.props.filter((p) => p.key === 'model');
+  if (modelProps.length > 1) fail('UNSUPPORTED_JSONC', 'Duplicate top-level model properties cannot be edited losslessly');
+  if (modelProps.length) edits.push({ start: modelProps[0].value.start, end: modelProps[0].value.end, text: JSON.stringify(`${o.id}/${o.model}`) });
+  const providerProps = root.props.filter((p) => p.key === 'provider');
+  if (providerProps.length > 1) fail('UNSUPPORTED_JSONC', 'Duplicate top-level provider properties cannot be edited losslessly');
+  if (!providerProps.length) {
+    const val = formatJsonValue({ [o.id]: opencodeProvider(o) }, rootChild, unit, eol);
+    missingRoot.push(['provider', val]);
+  } else {
+    const provider = providerProps[0].value;
+    if (provider.type !== 'object') fail('UNSUPPORTED_JSONC', 'Top-level provider is not an object and cannot be edited losslessly');
+    const matches = provider.props.filter((p) => p.key === o.id);
+    if (matches.length > 1) fail('UNSUPPORTED_JSONC', `Duplicate provider.${o.id} properties cannot be edited losslessly`);
+    const pIndent = propertyIndent(source, provider) ?? (rootChild + unit);
+    if (matches.length) edits.push({ start: matches[0].value.start, end: matches[0].value.end, text: formatJsonValue(opencodeProvider(o), pIndent, unit, eol) });
+    else {
+      const val = formatJsonValue(opencodeProvider(o), pIndent, unit, eol);
+      edits.push({ start: provider.start + 1, end: provider.start + 1, text: insertObjectProperties(source, provider, rootChild, unit, eol, [[o.id, val]]) });
+    }
+  }
+  if (!modelProps.length) {
+    missingRoot.push(['model', JSON.stringify(`${o.id}/${o.model}`)]);
+  }
+  if (missingRoot.length) edits.push({ start: root.start + 1, end: root.start + 1, text: insertObjectProperties(source, root, rootIndent, unit, eol, missingRoot) });
+  edits.sort((a, b) => b.start - a.start || b.end - a.end);
+  let result = source;
+  for (const e of edits) result = result.slice(0, e.start) + e.text + result.slice(e.end);
+  return result;
+}
+function jsonIndentUnit(text) {
+  const m = text.match(/\r?\n([ \t]+)"/);
+  if (m) return m[1];
+  return text.match(/\r?\n([ \t]+)/)?.[1]?.startsWith('\t') ? '\t' : '  ';
+}
+function propertyIndent(text, object) {
+  for (const p of object.props) {
+    const line = text.lastIndexOf('\n', p.keyStart - 1) + 1;
+    const prefix = text.slice(line, p.keyStart);
+    if (/^[ \t]*$/.test(prefix)) return prefix;
+  }
+  return null;
+}
+function formatJsonValue(value, indent, unit, eol) {
+  return JSON.stringify(value, null, unit).replace(/\n/g, `${eol}${indent}`);
+}
+function insertObjectProperties(text, object, parentIndent, unit, eol, entries) {
+  const childIndent = propertyIndent(text, object) ?? parentIndent + unit;
+  const values = entries.map(([key, val]) => `${JSON.stringify(key)}: ${val}`);
+  const newlineAfterOpen = /^[ \t]*\r?\n/.test(text.slice(object.start + 1));
+  const body = values.map((v) => childIndent + v).join(`,${eol}`);
+  // A pretty-printed object already carries a newline after "{"; keep it and add no trailing
+  // whitespace. A compact object needs the newline before its first existing property.
+  if (!object.props.length) return newlineAfterOpen ? `${eol}${body}` : `${eol}${body}${eol}${parentIndent}`;
+  return `${eol}${body},${newlineAfterOpen ? '' : `${eol}${childIndent}`}`;
 }
 const marker = (o, what) => `# grandet:${o.site} ${what}`;
 function removeBlock(lines, o) {

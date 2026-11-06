@@ -101,7 +101,7 @@ test('claude-code: a new settings file is removed again on undo; invalid JSON is
   await assert.rejects(plan(opts), { code: 'INVALID_JSON' });
 });
 
-test('opencode and kilo: provider uses a file reference, comments are refused', async () => {
+test('opencode and kilo: provider uses a file reference; JSONC comments and unrelated entries survive', async () => {
   const h = await home(); await mkdir(join(h, '.config/opencode'), { recursive: true });
   await writeFile(join(h, '.config/opencode/opencode.json'), '{"theme":"x","provider":{"other":{"npm":"y"}}}\n');
   const opts = base(h, 'opencode', { protocol: 'openai', model: 'gpt-6.1-sol' });
@@ -111,8 +111,51 @@ test('opencode and kilo: provider uses a file reference, comments are refused', 
   assert.equal(c.provider['grandet-apijing-com'].options.apiKey, `{file:${join(h, '.grandet/keys/apijing.com')}}`);
   assert.equal(c.provider['grandet-apijing-com'].npm, '@ai-sdk/openai-compatible');
   const k = await home(); await mkdir(join(k, '.config/kilo'), { recursive: true });
-  await writeFile(join(k, '.config/kilo/kilo.jsonc'), '{\n  // mine\n  "theme": "x"\n}\n');
-  await assert.rejects(plan(base(k, 'kilo-code', { protocol: 'openai' })), { code: 'COMMENTS_PRESENT' });
+  const kiloOriginal = '{\n  // mine\n  "theme": "x",\n  "description": "https://example.invalid/a//b",\n}\n';
+  await writeFile(join(k, '.config/kilo/kilo.jsonc'), kiloOriginal);
+  const kiloOpts = base(k, 'kilo-code', { protocol: 'openai' });
+  const kiloPreview = await plan(kiloOpts);
+  assert.ok(kiloPreview.changes.length);
+  await apply({ ...kiloOpts, yes: true, planHash: kiloPreview.planHash });
+  const kiloText = await read(join(k, '.config/kilo/kilo.jsonc'));
+  assert.match(kiloText, /\/\/ mine/); assert.match(kiloText, /"theme": "x",/);
+  assert.ok(kiloText.includes('"description": "https://example.invalid/a//b"'));
+  assert.match(kiloText, /"model": "grandet-apijing-com\/claude-sonnet-4-6"/);
+  assert.match(kiloText, /"grandet-apijing-com": \{/);
+  assert.equal((await apply({ ...kiloOpts, yes: true })).unchanged, true);
+  await restore({ home: k });
+  assert.equal(await read(join(k, '.config/kilo/kilo.jsonc')), kiloOriginal);
+
+  const commented = await home(); await mkdir(join(commented, '.config/opencode'), { recursive: true });
+  const block = '/* keep this block exactly */';
+  const opencodeOriginal = `{\n  "provider": {\n    ${block}\n    "other": { "npm": "kept", "options": { "baseURL": "https://other.invalid/v1" } }\n  },\n  "theme": "dark",\n}\n`;
+  await writeFile(join(commented, '.config/opencode/opencode.jsonc'), opencodeOriginal);
+  const opencodeOpts = base(commented, 'opencode', { protocol: 'openai' });
+  await apply({ ...opencodeOpts, yes: true });
+  const opencodeText = await read(join(commented, '.config/opencode/opencode.jsonc'));
+  assert.ok(opencodeText.includes(block));
+  assert.ok(opencodeText.includes('"other": { "npm": "kept", "options": { "baseURL": "https://other.invalid/v1" } }'));
+  assert.equal(opencodeText.split(block).length, opencodeOriginal.split(block).length);
+  await restore({ home: commented });
+  assert.equal(await read(join(commented, '.config/opencode/opencode.jsonc')), opencodeOriginal);
+
+  const crlf = await home(); await mkdir(join(crlf, '.config/kilo'), { recursive: true });
+  const crlfOriginal = '{\r\n\t"theme": "x",\r\n\t/* keep */\r\n}\r\n';
+  await writeFile(join(crlf, '.config/kilo/kilo.jsonc'), crlfOriginal);
+  const crlfOpts = base(crlf, 'kilo-code', { protocol: 'openai' });
+  await apply({ ...crlfOpts, yes: true });
+  const crlfText = await read(join(crlf, '.config/kilo/kilo.jsonc'));
+  assert.doesNotMatch(crlfText.replace(/\r\n/g, ''), /\n/, 'all inserted line endings match the existing CRLF convention');
+  assert.match(crlfText, /\/\* keep \*\//);
+  assert.equal((await apply({ ...crlfOpts, yes: true })).unchanged, true);
+  await restore({ home: crlf });
+  assert.equal(await read(join(crlf, '.config/kilo/kilo.jsonc')), crlfOriginal);
+
+  const invalid = await home(); await mkdir(join(invalid, '.config/kilo'), { recursive: true });
+  const invalidText = '{\n  "theme": "x",\n  // comment\n  "bad": }\n';
+  await writeFile(join(invalid, '.config/kilo/kilo.jsonc'), invalidText);
+  await assert.rejects(plan(base(invalid, 'kilo-code')), { code: 'INVALID_JSON' });
+  assert.equal(await read(join(invalid, '.config/kilo/kilo.jsonc')), invalidText, 'invalid JSONC is rejected before any write');
   const k2 = await home();
   const r = await apply({ ...base(k2, 'kilo', { protocol: 'openai-response' }), yes: true });
   assert.equal(r.changes[0].path, join(k2, '.config/kilo/kilo.jsonc'));
