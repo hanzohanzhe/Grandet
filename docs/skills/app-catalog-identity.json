@@ -1,0 +1,11 @@
+{
+  "schema": "grandet.app-catalog-identity/v1",
+  "catalogueSchema": "grandet.app-catalog/v1",
+  "revision": "grandet.app-catalog/v1+ac2d23f161e9",
+  "profileCount": 29,
+  "applicationCount": 16,
+  "templateCount": 6,
+  "profileSetSha256": "ac2d23f161e9ddccdd8ffc8326450caeb314c203c9a4525a9f21a7a32d08f80f",
+  "updated": "2026-11-06",
+  "sourceCommit": "99787ab22a639e8e99e352ef3ec2f73e5d4009aa"
+}

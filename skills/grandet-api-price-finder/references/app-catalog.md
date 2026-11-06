@@ -1,5 +1,8 @@
 # App catalog / 应用清单
 
+<!-- app-catalog-identity: {"schema":"grandet.app-catalog-identity/v1","catalogueSchema":"grandet.app-catalog/v1","revision":"grandet.app-catalog/v1+ac2d23f161e9","profileCount":29,"applicationCount":16,"templateCount":6,"profileSetSha256":"ac2d23f161e9ddccdd8ffc8326450caeb314c203c9a4525a9f21a7a32d08f80f","updated":"2026-11-06","sourceCommit":"99787ab22a639e8e99e352ef3ec2f73e5d4009aa"} -->
+Catalogue revision / 目录版本: `grandet.app-catalog/v1+ac2d23f161e9` · 29 profiles · updated 2026-11-06 · source commit `99787ab22a639e8e99e352ef3ec2f73e5d4009aa`
+
 Generated from one shared application capability catalog. / 从统一应用能力目录生成。
 
 16 named applications + 6 generic templates; 29 inference profiles. / 16 个具名应用、6 个通用模板、29 个推理配置。

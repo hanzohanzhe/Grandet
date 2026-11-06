@@ -119,6 +119,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "docs/skills/app-catalog-identity.json",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "docs/skills/application-distribution.generated.json",
       "rights": "Apache-2.0"
     },
@@ -205,6 +209,10 @@
     {
       "path": "public-export-manifest.json",
       "rights": "AGPL-3.0-only"
+    },
+    {
+      "path": "scripts/app-catalog-identity.mjs",
+      "rights": "Apache-2.0"
     },
     {
       "path": "scripts/build-price-snapshot.mjs",
@@ -344,6 +352,10 @@
     },
     {
       "path": "tests/answer-check.test.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/app-catalog-identity.test.mjs",
       "rights": "Apache-2.0"
     },
     {
