@@ -34,7 +34,7 @@ Tell the user exactly these three steps, then wait:
 
 ## Use the connect executor (preferred)
 
-This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). It previews, backs up, writes, checks for free and undoes the connection for **Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes, OpenClaw and WorkBuddy**. Use it instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these nine, or the executor stops with a code that says to edit by hand.
+This Skill includes a small program, `scripts/connect.mjs`, in the same folder as its `SKILL.md` (needs Node 18 or later). Its connect actions are implemented for **Codex, Claude Code, OpenCode, Kilo Code, Continue, Gemini CLI, Hermes, OpenClaw and WorkBuddy**; native acceptance status is in the [connect capability matrix](https://github.com/hanzohanzhe/Grandet/blob/main/docs/skills/connect-capability-matrix.md). `NOT_RUN` is visible there before choosing automated connect. Use the executor instead of editing files by hand. Use the manual steps in sections 4–7 only when Node is missing, the app is not one of these nine, or the executor stops with a code that says to edit by hand.
 
 Below, `CONNECT` stands for `node "<folder of this SKILL.md>/scripts/connect.mjs"`. Fill the values from the row (section 1) and the address rules (section 2). Pass values exactly; quote ones that contain spaces or non-ASCII text.
 
@@ -172,7 +172,7 @@ model:
 }
 ```
 
-**WorkBuddy** (also the CodeBuddy CLI) — `~/.codebuddy/models.json`; the app reloads it. Add one entry to `models`; `url` is the full path for `openai` (`<origin>/v1/chat/completions`), or `<origin>/v1` with `"api": "openai-responses"`. If the file has `availableModels`, add the model there too; never create that list, it would hide every other model. If an entry with the same `id` already exists, ask the user before changing it. The key goes into `apiKey`; ask the user to paste it into the file themselves, and keep the file readable by them only.
+**WorkBuddy** (also the CodeBuddy CLI) — `~/.codebuddy/models.json`; the app reloads it. The executor path is implemented, but native acceptance has not been run; see the [connect capability matrix](https://github.com/hanzohanzhe/Grandet/blob/main/docs/skills/connect-capability-matrix.md). Add one entry to `models`; `url` is the full path for `openai` (`<origin>/v1/chat/completions`), or `<origin>/v1` with `"api": "openai-responses"`. If the file has `availableModels`, add the model there too; never create that list, it would hide every other model. If an entry with the same `id` already exists, ask the user before changing it. The key goes into `apiKey`; ask the user to paste it into the file themselves, and keep the file readable by them only.
 
 ```json
 {"models": [{"id": "<modelName>", "name": "<modelName> (<site>)", "vendor": "<site> (Grandet)",

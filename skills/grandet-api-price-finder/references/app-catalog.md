@@ -12,7 +12,7 @@ Legacy kind records the desktop source category. Legacy mcp and desktopControl.m
 
 This catalog does not mark host tests complete by listing an application. Consult the per-capability validation records. / 列入清单不代表已完成宿主实测，请按具体能力查看验收记录。
 
-Capability validation / 能力验收: NOT_RUN: 35; PASS: 0; FAIL: 0
+Capability validation / 能力验收: profile validation remains NOT_RUN: 35; PASS: 0; FAIL: 0. Connect executor per-action states are listed in the [connect capability matrix](https://github.com/hanzohanzhe/Grandet/blob/main/docs/skills/connect-capability-matrix.md).
 
 | App / 应用 | ID | Entity / 身份 | Setup / 支持方式 | Default / 默认场景 | Price finder entry / 比价入口 | Inference profiles / 推理配置 |
 | --- | --- | --- | --- | --- | --- | --- |

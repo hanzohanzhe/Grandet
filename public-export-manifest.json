@@ -123,6 +123,10 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "docs/skills/connect-capability-matrix.md",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "docs/skills/chat-adapters/grok-bot.md",
       "rights": "Apache-2.0"
     },
@@ -352,6 +356,10 @@
     },
     {
       "path": "tests/connect.test.mjs",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "tests/connect-capability-matrix.test.mjs",
       "rights": "Apache-2.0"
     },
     {
