@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Deterministically build both self-contained 0.3.0 build archives; never overwrite outputs."""
 import argparse,hashlib,json,zipfile
-from pathlib import Path
+from pathlib import Path,PureWindowsPath
 p=argparse.ArgumentParser();p.add_argument('--package',type=Path,required=True);p.add_argument('--out',type=Path,required=True);a=p.parse_args()
 root=Path(__file__).resolve().parents[1];version='0.3.0';build='grandet-skill-0.3.0-build.20261018b';tag='skill-v0.3.0-build.20261018b'
 package=json.loads((a.package/'package-manifest.json').read_text())
@@ -30,10 +30,12 @@ for ext,files in [('zip',entries),('skill',[('grandet-api-price-finder/'+n,b) fo
             if z.read(arc)!=body:raise ValueError('ARCHIVE_ROUNDTRIP_MISMATCH')
     records.append({'file':output.name,'bytes':output.stat().st_size,'sha256':hashlib.sha256(output.read_bytes()).hexdigest(),'files':len(files)})
 paths=set(['scripts/package-price-finder.mjs','scripts/build-skill-archives.py','scripts/register-skill-release.py','scripts/installation-receipts-source-build.json'])
-paths.update(str(f.relative_to(root)) for f in (root/'skills/grandet-api-price-finder').rglob('*') if f.is_file())
+paths.update(f.relative_to(root).as_posix() for f in (root/'skills/grandet-api-price-finder').rglob('*') if f.is_file())
 paths.update(['LICENSES/Apache-2.0.txt','docs/skills/QUICKSTART.md','docs/skills/INSTALL.md','docs/skills/installation-receipts.md','docs/skills/installation-routes.json','scripts/install-price-finder.mjs','scripts/installation-receipts.mjs','scripts/verify-installation.py','docs/skills/application-distribution.generated.json'])
-paths.update(str(f.relative_to(root)) for f in (root/'docs/skills/chat-adapters').glob('*.md'))
-paths.update(str(f.relative_to(root)) for f in (root/'plugins/grandet-api-price-finder').rglob('*') if f.is_file())
+paths.update(f.relative_to(root).as_posix() for f in (root/'docs/skills/chat-adapters').glob('*.md'))
+paths.update(f.relative_to(root).as_posix() for f in (root/'plugins/grandet-api-price-finder').rglob('*') if f.is_file())
+for name in paths:
+    if '\\' in name or Path(name).is_absolute() or PureWindowsPath(name).is_absolute():raise ValueError(f'INVALID_SOURCE_PATH:{name}')
 manifest={'schema':'grandet.skill-downloads/v1','version':version,'buildId':build,'status':'RELEASE_BUILD','repository':'https://github.com/hanzohanzhe/Grandet','installation':'../INSTALL.md','license':'Apache-2.0','plannedTag':tag,'receiptSupport':'INCLUDED','files':records,'sourceFiles':{n:hashlib.sha256((root/n).read_bytes()).hexdigest() for n in sorted(paths)},'verification':{'archiveRoundTrip':'PASS','packageHashes':'PASS','nativeArchiveIncludesLicense':True,'allHostsNativeAcceptance':'NOT_COMPLETE','nativeAcceptance':'NOT_RUN','historicalInstallationsBackfilled':False},'reproducibility':'sourceFiles pins exclude generated archives and this manifest; post-upload registry independently binds actual source commit and asset IDs'}
 output=a.out/'manifest.json'
 with output.open('x') as f:f.write(json.dumps(manifest,indent=2)+'\n')
