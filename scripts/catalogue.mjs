@@ -11,6 +11,8 @@ export function structuredProjection(data){
  for(const o of d.offers){delete o.fullStatement;delete o.editorialFacts;delete o.derivedFrom;for(const e of o.evidence)delete e.excerpt;}return d;
 }
 export function validate(data,bytes,manifest){
+ const stamps=[...data.officialOffers.map(o=>o.checkedAt),...data.offers.map(o=>o.observedAt)].map(v=>Date.parse(v));
+ assert(Number.isFinite(Date.parse(data.observationWindow?.first))&&Number.isFinite(Date.parse(data.observationWindow?.last))&&Date.parse(data.observationWindow.first)===Math.min(...stamps)&&Date.parse(data.observationWindow.last)===Math.max(...stamps),'Observation window does not match records');
  assert(hash(Buffer.from(JSON.stringify(structuredProjection(data))))===manifest.structuralSha256,'Structured source fields changed');
  assert(data.derivedFrom?.sha256==='581a6fcd246070d9a69eacdbbebe1630d734c67c3c168ccf3680fbdcf27f405b','Invalid derivation pin');
  for(const o of data.offers){assert(!Object.hasOwn(o,'fullStatement')&&o.evidence.every(e=>!Object.hasOwn(e,'excerpt')),'Vendor text must be omitted');assert(Array.isArray(o.editorialFacts)&&o.editorialFacts.length&&o.derivedFrom?.recordId===o.id,'Missing factual summary/derivation');}

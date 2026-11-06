@@ -3,6 +3,8 @@ import test from 'node:test';import assert from 'node:assert/strict';import {rea
 const bytes=await readFile(root+'data/free-tokens.json'),data=JSON.parse(bytes),manifest=JSON.parse(await readFile(root+'data/MANIFEST.json'));
 const checked=d=>{const b=Buffer.from(JSON.stringify(d));return validate(d,b,{...manifest,bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')});};
 test('pinned complete snapshot',()=>assert.equal(validate(data,bytes,manifest).official,73));
+test('observation window matches record timestamps',()=>{for(const field of ['first','last']){const d=structuredClone(data);d.observationWindow[field]=field==='first'?'2026-10-03T23:42:40.702Z':'2026-10-04T18:03:46.022Z';assert.throws(()=>checked(d),/Observation window does not match records/);}});
+test('v3 snapshot shares the canonical observation window',async()=>{const v3=JSON.parse(await readFile(root+'data/free-tokens-v3.json'));assert.deepEqual(v3.observationWindow,data.observationWindow);});
 test('reject changed body',()=>assert.throws(()=>validate(data,Buffer.concat([bytes,Buffer.from(' ')]),manifest)));
 test('reject duplicate identity',()=>{const d=structuredClone(data);d.offers[0].id=d.officialOffers[0].id;assert.throws(()=>checked(d),/Structured|duplicate/);});
 test('reject dropped payment condition field',()=>{const d=structuredClone(data);delete d.offers[0].requiresPayment;assert.throws(()=>checked(d),/Structured|payment/);});

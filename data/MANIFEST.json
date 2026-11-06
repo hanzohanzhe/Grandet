@@ -1,8 +1,8 @@
 {
   "schema": "grandet.public-hub-data-manifest/v1",
   "file": "data/free-tokens.json",
-  "sha256": "a5990be035d1fb01c78fe336d9969591b36c48e961fc96d3520f60b99cac1653",
-  "bytes": 283346,
+  "sha256": "f289974dd0105c2a78c48cc5b0d1e3b357dc09083ef2a0501b439638b04ed9c9",
+  "bytes": 283354,
   "officialRecords": 73,
   "thirdPartyMechanismRecords": 34,
   "source": "Grandet reviewed public projection; primary sources identified inside each record",
@@ -2039,7 +2039,7 @@
     "sha256": "581a6fcd246070d9a69eacdbbebe1630d734c67c3c168ccf3680fbdcf27f405b",
     "transformation": "Official objects unchanged; third-party fullStatement and evidence[].excerpt removed; editorialFacts and derivation metadata added. No observation refresh."
   },
-  "structuralSha256": "ccf73983dc25785e11598bcfaca46238fa45a0355350172dd66c4ab8b1e50dec",
+  "structuralSha256": "d1a0b1e13d5e23d1b29872eca3fde583903e3c28adeb41b7a5519a9bbec2140b",
   "allowedChanges": [
     "schema",
     "derivedFrom",
