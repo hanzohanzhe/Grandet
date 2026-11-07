@@ -183,6 +183,34 @@
       "rights": "Apache-2.0"
     },
     {
+      "path": "evals/fixtures/README.md",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "evals/fixtures/ambiguity-v1.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "evals/fixtures/free-credit-pagination-v1.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "evals/fixtures/incomplete-cost-v1.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "evals/fixtures/no-eligible-v1.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "evals/fixtures/reference-only-v1.json",
+      "rights": "Apache-2.0"
+    },
+    {
+      "path": "evals/fixtures/unit-separation-v1.json",
+      "rights": "Apache-2.0"
+    },
+    {
       "path": "index.html",
       "rights": "AGPL-3.0-only"
     },

@@ -1,0 +1,88 @@
+{
+  "schema": "grandet.skill-answer-fixture/v1",
+  "id": "unit-separation-v1",
+  "revision": 1,
+  "simulated": true,
+  "identity": {
+    "responseSchema": "grandet.board/v1",
+    "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+    "evaluatedAt": "2026-10-30T01:15:00.000Z",
+    "evaluation": "issue-37-unit-separation-v1"
+  },
+  "request": {
+    "path": "/api/v1/board",
+    "params": {
+      "model": "fixture-multi-unit-model",
+      "view": "compact",
+      "lang": "en"
+    }
+  },
+  "response": {
+    "schema": "grandet.board/v1",
+    "version": {
+      "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+      "evaluatedAt": "2026-10-30T01:15:00.000Z"
+    },
+    "official": [
+      {
+        "vendor": "Fixture AI",
+        "providerCategory": "OFFICIAL",
+        "currency": "USD",
+        "unit": "PER_MILLION_TOKENS",
+        "input": "2.00",
+        "output": "8.00",
+        "observedAt": "2026-10-22T11:00:00.000Z",
+        "conditions": []
+      }
+    ],
+    "listings": {
+      "inference": []
+    },
+    "boards": [
+      {
+        "unit": "USD_CREDIT",
+        "basis": "LISTED_CREDIT",
+        "status": "RECOMMENDED",
+        "listings": {
+          "lowest": [
+            {
+              "sourceId": "usd-relay.invalid",
+              "plan": "usd-plan",
+              "blended": "0.40",
+              "observedAt": "2026-10-20T09:00:00.000Z",
+              "freshness": "FRESH",
+              "listing": {
+                "action": "LIST"
+              }
+            }
+          ],
+          "gated": [],
+          "reference": [],
+          "folded": []
+        }
+      },
+      {
+        "unit": "CNY_CREDIT",
+        "basis": "LISTED_CREDIT",
+        "status": "RECOMMENDED",
+        "listings": {
+          "lowest": [
+            {
+              "sourceId": "cny-relay.invalid",
+              "plan": "cny-plan",
+              "blended": "3.20",
+              "observedAt": "2026-10-21T10:00:00.000Z",
+              "freshness": "FRESH",
+              "listing": {
+                "action": "LIST"
+              }
+            }
+          ],
+          "gated": [],
+          "reference": [],
+          "folded": []
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "grandet.skill-answer-fixture/v1",
+  "id": "free-credit-pagination-v1",
+  "revision": 1,
+  "simulated": true,
+  "identity": {
+    "responseSchema": "grandet.free-credits/v1",
+    "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+    "evaluatedAt": "2026-10-30T01:25:00.000Z",
+    "evaluation": "issue-37-free-credit-pagination-v1"
+  },
+  "request": {
+    "path": "/api/v1/free-credits",
+    "params": {
+      "q": "fixture",
+      "kind": "all",
+      "page": 1,
+      "limit": 2,
+      "lang": "en"
+    }
+  },
+  "response": {
+    "schema": "grandet.free-credits/v1",
+    "version": {
+      "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+      "evaluatedAt": "2026-10-30T01:25:00.000Z"
+    },
+    "page": 1,
+    "pages": 2,
+    "limit": 2,
+    "count": 2,
+    "total": 4,
+    "pagination": {
+      "method": "BYTE_AND_COUNT_BOUNDED",
+      "limitIsMaximum": true,
+      "maximumOfferBytes": 229376
+    },
+    "offers": [
+      {
+        "kind": "official-free-tier",
+        "provider": "Fixture Cloud",
+        "title": "Fixture API free tier",
+        "benefitText": "100 requests per day",
+        "observedAt": "2026-10-24T08:00:00.000Z",
+        "claimUrl": "https://cloud.invalid/claim"
+      },
+      {
+        "kind": "relay-credit",
+        "provider": "fixture-relay.invalid",
+        "title": "Sign-up credit",
+        "benefitText": "1 USD credit",
+        "observedAt": "2026-10-24T09:00:00.000Z",
+        "claimUrl": "https://fixture-relay.invalid/claim"
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Runs the fixed answer-quality cases (evals/answer-quality.json) with the local Codex CLI and checks each final answer.
+// Runs live answer-quality cases (evals/answer-quality.json) with the local Codex CLI and checks each final answer.
 //
 //   node scripts/run-answer-evals.mjs --skill <Skill folder, .skill or .zip> --out <new folder> [--cases E1,E3] [--codex <path>] [--model <name>]
 //
@@ -8,7 +8,8 @@
 // key is used and nothing is paid. The case folders are fixed (~/.cache/grandet-answer-evals/<case>) and emptied
 // before each run, because Codex records every folder it runs in as a project in its own config.
 //
-// After the last turn, the checks read the first complete board response the agent printed, which is the data its
+// Deterministic cases with a pinned `fixture` are intentionally excluded; run them through check-answer.mjs or the
+// unit tests. After the last live turn, the checks read the first complete board response the agent printed, which is the data its
 // answer used. When the transcript has none, the first board request the agent made is replayed once (a public GET
 // without the statistics parameters). Results: <out>/results.json and <out>/summary.md.
 // Exit code 0 = every run check passed, 1 = a check failed or a run did not finish, 2 = usage error.
@@ -132,12 +133,19 @@ async function main() {
   }
   const out = resolve(opt.out);
   if (existsSync(out)) { console.error(`--out already exists: ${out}`); process.exit(2); }
-  mkdirSync(out, { recursive: true });
   const codex = opt.codex || process.env.CODEX_BIN || DEFAULT_CODEX;
   const wanted = opt.cases ? new Set(opt.cases.split(',')) : null;
+  const fixtureCases = cases.cases.filter((c) => c.fixture);
+  const mixed = fixtureCases.filter((c) => c.automation?.turns?.length);
+  if (mixed.length) throw new Error(`fixture cases cannot have live automation turns: ${mixed.map((c) => c.id).join(', ')}`);
+  const unknown = wanted ? [...wanted].filter((id) => !cases.cases.some((c) => c.id === id)) : [];
+  if (unknown.length) throw new Error(`unknown cases: ${unknown.join(', ')}`);
+  const pinned = wanted ? fixtureCases.filter((c) => wanted.has(c.id)) : [];
+  if (pinned.length) throw new Error(`pinned simulated fixture cases do not run through live Codex: ${pinned.map((c) => c.id).join(', ')}; use check-answer.mjs or node --test tests/answer-check.test.mjs`);
+  mkdirSync(out, { recursive: true });
   const baseFlags = ['-c', 'sandbox_workspace_write.network_access=true', ...(opt.model ? ['-m', opt.model] : [])];
   const results = [];
-  for (const c of cases.cases.filter((x) => (!wanted || wanted.has(x.id)) && x.automation)) {
+  for (const c of cases.cases.filter((x) => (!wanted || wanted.has(x.id)) && x.automation?.turns?.length)) {
     const base = join(homedir(), '.cache', 'grandet-answer-evals', c.id);
     rmSync(base, { recursive: true, force: true });
     const workspace = join(base, 'workspace'), home = join(base, 'home');

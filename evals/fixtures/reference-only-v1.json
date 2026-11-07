@@ -1,0 +1,73 @@
+{
+  "schema": "grandet.skill-answer-fixture/v1",
+  "id": "reference-only-v1",
+  "revision": 1,
+  "simulated": true,
+  "identity": {
+    "responseSchema": "grandet.board/v1",
+    "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+    "evaluatedAt": "2026-10-30T01:10:00.000Z",
+    "evaluation": "issue-37-reference-only-v1"
+  },
+  "request": {
+    "path": "/api/v1/board",
+    "params": {
+      "model": "fixture-reference-model",
+      "view": "compact",
+      "lang": "en"
+    }
+  },
+  "response": {
+    "schema": "grandet.board/v1",
+    "version": {
+      "releaseSet": "3737373737373737373737373737373737373737373737373737373737373737",
+      "evaluatedAt": "2026-10-30T01:10:00.000Z"
+    },
+    "boards": [
+      {
+        "unit": "USD_CREDIT",
+        "basis": "LISTED_CREDIT",
+        "status": "NO_ELIGIBLE_RECOMMENDATION",
+        "listings": {
+          "lowest": [],
+          "gated": [],
+          "folded": [],
+          "reference": [
+            {
+              "sourceId": "old-one.invalid",
+              "plan": "archive-a",
+              "blended": "0.42",
+              "observedAt": "2026-09-18T08:00:00.000Z",
+              "freshness": "STALE",
+              "riskSignals": [
+                "STALE_REFERENCE"
+              ],
+              "reviewReasons": [],
+              "listing": {
+                "action": "REFERENCE",
+                "hint": "older than the freshness limit"
+              },
+              "boardUrl": "https://grandet.ai/leaderboard/?model=fixture-reference-model&currency=USD_CREDIT"
+            },
+            {
+              "sourceId": "old-two.invalid",
+              "plan": "archive-b",
+              "blended": "0.51",
+              "observedAt": "2026-09-20T09:00:00.000Z",
+              "freshness": "STALE",
+              "riskSignals": [
+                "STALE_REFERENCE"
+              ],
+              "reviewReasons": [],
+              "listing": {
+                "action": "REFERENCE",
+                "hint": "older than the freshness limit"
+              },
+              "boardUrl": "https://grandet.ai/leaderboard/?model=fixture-reference-model&currency=USD_CREDIT"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

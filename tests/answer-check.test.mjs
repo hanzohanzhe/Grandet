@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import test from 'node:test';
-import { CHECKS, cases, checkAnswer } from '../scripts/check-answer.mjs';
+import { CHECKS, caseFixture, cases, checkAnswer } from '../scripts/check-answer.mjs';
 import { boardRequest, boardResponse } from '../scripts/run-answer-evals.mjs';
 
 const row = (sourceId, plan, blended, extra = {}) => ({ sourceId, plan, blended, unit: 'USD_CREDIT', providerCategory: 'RELAY', observedAt: '2026-10-10T07:00:00Z', freshness: 'FRESH', riskSignals: [], reviewReasons: [], listing: { action: 'LIST' }, ...extra });
@@ -51,7 +55,7 @@ curl -H "Authorization: Bearer $GRANDET_OOJJ_TOP_KEY" https://oojj.top/v1/models
 test('cases file lists known checks only', () => {
   assert.equal(cases.schema, 'grandet.skill-answer-evals/v1');
   for (const c of cases.cases) for (const id of c.checks) assert.ok(CHECKS[id], `${c.id}: ${id}`);
-  assert.deepEqual([...new Set(cases.cases.flatMap((c) => c.covers))].sort(), ['CF1', 'CF2', 'CF3', 'CF4', 'EN1']);
+  assert.deepEqual([...new Set(cases.cases.flatMap((c) => c.covers))].sort(), ['AS1', 'AS2', 'AS3', 'AS4', 'AS5', 'AS6', 'CF1', 'CF2', 'CF3', 'CF4', 'EN1']);
 });
 
 test('E1 passes a complete price answer', () => {
@@ -123,8 +127,36 @@ test('the runner finds the board request the agent ran, not examples it read', (
   assert.equal(boardResponse(`exec\ncat x\n succeeded in 0ms:\n{"schema": "grandet.board/v1", "boards": [`), null, 'an incomplete response is not used');
 });
 
-test('every case has automation turns', () => {
-  for (const c of cases.cases) assert.ok(c.automation?.turns?.length >= 1, c.id);
+test('live cases and deterministic fixture cases remain separate', () => {
+  for (const c of cases.cases) {
+    assert.notEqual(Boolean(c.fixture), Boolean(c.automation?.turns?.length), `${c.id}: exactly one execution mode`);
+  }
+});
+
+test('the live runner refuses to replay a pinned fixture case', (t) => {
+  const dir = mkdtempSync(join(tmpdir(), 'grandet-answer-runner-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const out = join(dir, 'out');
+  const done = spawnSync(process.execPath, ['scripts/run-answer-evals.mjs', '--skill', 'skills/grandet-api-price-finder', '--out', out, '--cases', 'E6'], { encoding: 'utf8' });
+  assert.equal(done.status, 2);
+  assert.match(done.stderr, /pinned simulated fixture cases do not run through live Codex: E6/);
+  assert.equal(existsSync(out), false, 'rejected fixture selection creates no output folder');
+});
+
+test('pinned fixtures cannot be replaced through checkAnswer', () => {
+  const answer = 'The response is ambiguous: do you mean Fixture Nova 1.0 or Fixture Nova 2.0? Please choose one.';
+  const replacement = { status: 'NEEDS_CLARIFICATION', resolution: { totalCandidates: 1, candidates: [{ name: 'Injected Candidate' }] } };
+  assert.equal(checkAnswer('E6', answer, replacement).status, 'PASS');
+});
+
+test('the CLI rejects response overrides for pinned cases before reading files', () => {
+  for (const option of ['--response', '--board']) {
+    const done = spawnSync(process.execPath, ['scripts/check-answer.mjs', '--case', 'E6', '--answer', 'missing-answer.txt', option, 'missing-response.json'], { encoding: 'utf8' });
+    assert.equal(done.status, 2, option);
+    assert.match(done.stderr, /E6 uses pinned fixture ambiguity-v1; --response\/--board is not allowed/);
+    assert.doesNotMatch(done.stderr, /ENOENT/);
+    assert.equal(done.stdout, '', `${option} must not print a check result`);
+  }
 });
 
 test('E2: emphasis inside a phrase does not hide that the user runs the commands', () => {
@@ -136,6 +168,129 @@ test('E2: emphasis inside a phrase does not hide that the user runs the commands
 test('the free check may be named in different words', () => {
   for (const a of ["I'll run the free connection check", 'It checks for free whether the key works', '用免费检查确认 Key']) assert.equal(CHECKS.freeCheckNamed(a).pass, true, a);
   assert.equal(CHECKS.freeCheckNamed('Restart the app.').pass, false);
+});
+
+test('exceptional response fixtures pin schema and evaluation identity without live data', () => {
+  for (const id of ['E6', 'E7', 'E8', 'E9', 'E10', 'E11']) {
+    const fixture = caseFixture(id);
+    assert.equal(fixture.schema, 'grandet.skill-answer-fixture/v1');
+    assert.equal(fixture.simulated, true);
+    assert.equal(fixture.identity.responseSchema, fixture.response.schema);
+    assert.equal(fixture.identity.releaseSet, fixture.response.version.releaseSet);
+    assert.equal(fixture.identity.evaluatedAt, fixture.response.version.evaluatedAt);
+    assert.match(fixture.identity.evaluation, /^issue-37-/);
+  }
+
+  const ambiguity = caseFixture('E6').response;
+  assert.equal(ambiguity.status, 'NEEDS_CLARIFICATION');
+  assert.equal(ambiguity.resolution.totalCandidates, 2);
+  assert.equal('resolvedFrom' in ambiguity, false);
+  assert.deepEqual(ambiguity.resolution.candidates, [
+    { id: 'fixture/nova-1.0', officialId: 'fixture-nova-1.0', name: 'Fixture Nova 1.0' },
+    { id: 'fixture/nova-2.0', officialId: 'fixture-nova-2.0', name: 'Fixture Nova 2.0' },
+  ]);
+
+  for (const id of ['E7', 'E8', 'E9', 'E10', 'E11']) assert.equal('status' in caseFixture(id).response, false, `${id}: no fabricated top-level status`);
+  for (const id of ['E9', 'E10']) {
+    const populated = caseFixture(id).response.boards.filter((board) => board.listings.lowest.length);
+    assert.ok(populated.length, `${id}: expected a populated board`);
+    for (const board of populated) assert.equal(board.status, 'RECOMMENDED');
+  }
+
+  const official = caseFixture('E10').response.official;
+  assert.deepEqual(official.map((entry) => entry.contextTier), ['SHORT_CONTEXT', 'LONG_CONTEXT']);
+  for (const entry of official) {
+    assert.equal('conditions' in entry, false);
+    assert.ok(Array.isArray(entry.conditionNotes) && entry.conditionNotes.every((note) => note.length > 10));
+  }
+
+  const freeCredits = caseFixture('E11').response;
+  assert.deepEqual([freeCredits.page, freeCredits.pages, freeCredits.limit, freeCredits.count, freeCredits.total], [1, 2, 2, 2, 4]);
+  assert.deepEqual(freeCredits.pagination, { method: 'BYTE_AND_COUNT_BOUNDED', limitIsMaximum: true, maximumOfferBytes: 229376 });
+});
+
+test('E6: ambiguity asks for a returned candidate without inventing a ranking or price', () => {
+  const good = 'The response is ambiguous: do you mean Fixture Nova 1.0 or Fixture Nova 2.0? Please choose one.';
+  const bad = 'Fixture Nova 1.0 is the cheapest at 0.10 USD credit per million tokens, so I recommend it.';
+  assert.equal(checkAnswer('E6', good).status, 'PASS');
+  const response = caseFixture('E6').response;
+  assert.equal(CHECKS.clarificationNoPriceRanking('I cannot rank, recommend, or quote a price until you choose a candidate.', response).pass, true);
+  assert.equal(CHECKS.clarificationNoPriceRanking('在你选择候选项之前，我无法排序、推荐或报价。', response).pass, true);
+  assert.equal(CHECKS.clarificationNoPriceRanking('Fixture Nova 1.0 is the best choice.', response).pass, false);
+  assert.deepEqual(checkAnswer('E6', bad).results.filter((r) => r.status === 'FAIL').map((r) => r.id).sort(), ['clarificationCandidates', 'clarificationNoPriceRanking']);
+});
+
+test('E7: all-empty boards keep the returned reason and link and do not substitute a result', () => {
+  const good = 'No eligible token quote is available: the 3 returned offers are priced per image, request, or second.\nhttps://grandet.ai/leaderboard/?model=fixture-image-model';
+  const explicitAbstention = 'There is no lowest price available because the offers are priced per image or request.\nhttps://grandet.ai/leaderboard/?model=fixture-image-model';
+  const bad = 'Switch to another model. Google shows the lowest price is 0.10 USD per million tokens.';
+  assert.equal(checkAnswer('E7', good).status, 'PASS');
+  assert.equal(checkAnswer('E7', explicitAbstention).status, 'PASS');
+  const response = caseFixture('E7').response;
+  assert.equal(CHECKS.emptyBoardNoFallbackRecommendation('Do not switch models or search the web; I cannot recommend another provider.', response).pass, true);
+  assert.equal(CHECKS.emptyBoardNoFallbackRecommendation('不要切换到其他模型或搜索全网；我无法推荐其他服务商。', response).pass, true);
+  assert.equal(CHECKS.emptyBoardNoFallbackRecommendation('I recommend using the returned leaderboard link, waiting, or retrying later.', response).pass, true);
+  assert.equal(CHECKS.emptyBoardNoFallbackRecommendation('建议使用返回的排行榜链接，等待后重试。', response).pass, true);
+  assert.equal(CHECKS.emptyBoardNoFallbackRecommendation(bad, response).pass, false);
+  assert.deepEqual(checkAnswer('E7', bad).results.filter((r) => r.status === 'FAIL').map((r) => r.id).sort(), ['emptyBoardNoFallbackRecommendation', 'emptyBoardReasonAndLink']);
+});
+
+test('E8: reference-only rows carry dates and qualifications and are never called lowest', () => {
+  const good = `No current listed price is available.
+Reference: old-one.invalid archive-a 0.42 USD credit per million total tokens, observed 2026-09-18 (stale).
+Reference: old-two.invalid archive-b 0.51 USD credit per million total tokens, observed 2026-09-20 (older quote).`;
+  const explicitAbstention = `${good}\nThese reference rows are not the lowest result.`;
+  const bad = 'Lowest listed price: old-one.invalid archive-a 0.42 USD credit per million total tokens.';
+  assert.equal(checkAnswer('E8', good).status, 'PASS');
+  assert.equal(checkAnswer('E8', explicitAbstention).status, 'PASS');
+  assert.deepEqual(checkAnswer('E8', bad).results.filter((r) => r.status === 'FAIL').map((r) => r.id), ['referenceOnlyRowsQualified']);
+});
+
+test('E9: credit and cash rows preserve units and dates without cross-unit arithmetic', () => {
+  const good = `usd-relay.invalid: 0.40 USD credit per million total tokens, observed 2026-10-20.
+cny-relay.invalid: 3.20 CNY credit per million total tokens, observed 2026-10-21.
+Fixture AI official cash: input 2.00 / output 8.00 USD cash per million tokens, observed 2026-10-22.
+These are different units and cannot be converted, combined, or ranked.`;
+  const bad = 'usd-relay.invalid is 0.40; cny-relay.invalid is 3.20. At 7 CNY per USD, the USD offer is cheapest overall. Fixture AI is 2.00 / 8.00.';
+  assert.equal(checkAnswer('E9', good).status, 'PASS');
+  assert.deepEqual(checkAnswer('E9', bad).results.filter((r) => r.status === 'FAIL').map((r) => r.id).sort(), ['unitRowsAndDatesPreserved', 'unlikeUnitsNotCompared']);
+});
+
+test('E10: missing cache prices and unresolved official tiers remain incomplete', () => {
+  const good = '2 quotes have missing cache prices and were excluded from ranking, so this cached-workload result is incomplete.\nOfficial prices have separate context tiers; context length was not specified, so I cannot select a tier.';
+  const bad = 'Cache cost is 0, so the result is complete. The official price is input 2.00 and output 8.00 USD.';
+  assert.equal(checkAnswer('E10', good).status, 'PASS');
+  assert.equal(checkAnswer('E10', `${good}\nDo not assume zero cache cost.`).status, 'PASS');
+  assert.equal(checkAnswer('E10', '2 条报价缺少缓存价格并被排除，结果不完整。不要假设缓存成本为零。\n官方价格有不同的上下文档位；上下文长度未知，无法选择档位。').status, 'PASS');
+  assert.deepEqual(checkAnswer('E10', bad).results.filter((r) => r.status === 'FAIL').map((r) => r.id).sort(), ['cacheUnknownIsIncomplete', 'officialTierNotAssumed']);
+});
+
+test('E10 tier detection remains compatible with older conditions arrays', () => {
+  const response = { official: [{ conditions: [{ kind: 'CONTEXT_TIER', label: 'short' }] }, { conditions: [{ kind: 'CONTEXT_TIER', label: 'long' }] }] };
+  assert.equal(CHECKS.officialTierNotAssumed('Official context tiers are unresolved because the context length is not specified.', response).pass, true);
+});
+
+test('E10 contextTier is the primary official tier identity', () => {
+  const response = { official: [
+    { contextTier: 'SHORT_CONTEXT', conditionNotes: ['up to 100K tokens'] },
+    { contextTier: 'SHORT_CONTEXT', conditionNotes: ['a differently worded note'] },
+  ] };
+  assert.equal(CHECKS.officialTierNotAssumed('The official price is shown.', response), null);
+});
+
+test('E11: a free-credit page with a continuation is explicitly bounded', () => {
+  const good = 'Page 1 of 2 (2 of 4 offers), so this is a partial result: Fixture Cloud free tier; fixture-relay.invalid sign-up credit.';
+  const bad = 'These are the complete list of all offers: Fixture Cloud and fixture-relay.invalid.';
+  assert.equal(checkAnswer('E11', good).status, 'PASS');
+  const response = caseFixture('E11').response;
+  for (const answer of ['This is not the complete list', 'These are not all offers', '这不是完整列表', '并非全部优惠']) {
+    assert.equal(CHECKS.paginationNoFalseCompleteness(answer, response).pass, true, answer);
+  }
+  for (const answer of ['This is the complete list', 'These are all offers', '这就是完整列表', '以上就是全部优惠']) {
+    assert.equal(CHECKS.paginationNoFalseCompleteness(answer, response).pass, false, answer);
+  }
+  assert.equal(CHECKS.paginationNoFalseCompleteness('This is not the complete list, but these are all offers.', response).pass, false);
+  assert.deepEqual(checkAnswer('E11', bad).results.filter((r) => r.status === 'FAIL').map((r) => r.id).sort(), ['paginationNoFalseCompleteness', 'paginationScopeBounded']);
 });
 
 const enBoard = (planEn) => ({ boards: [{ unit: 'USD_CREDIT', listings: { lowest: [
