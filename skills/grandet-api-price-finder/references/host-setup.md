@@ -200,9 +200,9 @@ Key: 在应用里本地填写 / enter it in the app yourself
 
 ## 6. Check it without spending credit
 
-List the models the token can use. This uses no credit on New API sites and shows whether the key, the group and the model name are right. Print only the status code and whether the model is in the list.
+List the models the token can use. This makes no inference request and shows whether the key, the group and the model name are right. OpenAI-compatible protocols use `<origin>/v1/models` with Bearer authentication; Gemini uses its native `<origin>/v1beta/models` endpoint with `x-goog-api-key`. Print only the status code and whether the model is in the list.
 
-macOS / Linux:
+OpenAI-compatible, macOS / Linux:
 
 ```sh
 f=$(mktemp) && printf 'header = "Authorization: Bearer %s"\n' "$(cat ~/.grandet/keys/<site>)" | curl -sS -K - -o "$f" -w '%{http_code}\n' '<origin>/v1/models'; python3 -c 'import json,sys; print(sys.argv[2] in [m.get("id") for m in json.load(open(sys.argv[1])).get("data", [])])' "$f" '<modelName>'; rm -f "$f"
@@ -210,10 +210,22 @@ f=$(mktemp) && printf 'header = "Authorization: Bearer %s"\n' "$(cat ~/.grandet/
 
 The key goes to curl through standard input, so it never appears in the command line or the process list. Never write a key into a curl argument, a URL or a command you show in chat.
 
-Windows PowerShell:
+OpenAI-compatible, Windows PowerShell:
 
 ```powershell
 $k=Get-Content -Raw "$HOME\.grandet\keys\<site>"; $r=Invoke-RestMethod -Uri '<origin>/v1/models' -Headers @{Authorization="Bearer $k"}; Remove-Variable k; $r.data.id -contains '<modelName>'
+```
+
+Gemini, macOS / Linux:
+
+```sh
+f=$(mktemp) && printf 'header = "x-goog-api-key: %s"\n' "$(cat ~/.grandet/keys/<site>)" | curl -sS -K - -o "$f" -w '%{http_code}\n' '<origin>/v1beta/models'; python3 -c 'import json,sys; print(sys.argv[2] in [m.get("name", "").removeprefix("models/") for m in json.load(open(sys.argv[1])).get("models", [])])' "$f" '<modelName>'; rm -f "$f"
+```
+
+Gemini, Windows PowerShell:
+
+```powershell
+$k=Get-Content -Raw "$HOME\.grandet\keys\<site>"; $r=Invoke-RestMethod -Uri '<origin>/v1beta/models' -Headers @{'x-goog-api-key'=$k}; Remove-Variable k; (($r.models.name -replace '^models/','') -contains '<modelName>')
 ```
 
 - 200 and the model is listed: the free check passed. Tell the user to restart the app (or open a new terminal), and say separately that the first real message spends a little credit.
