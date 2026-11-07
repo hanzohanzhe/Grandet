@@ -1,10 +1,12 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {mkdtemp,readFile,rm,symlink} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
 import {root} from '../scripts/catalogue.mjs';
 import {loadCatalogue,recordView,validateCatalogue,validateCatalogueIndex,validateRelease} from '../app.mjs';
-import {handleRequest,routes} from '../scripts/serve.mjs';
+import {handleRequest,isMainModule,routes} from '../scripts/serve.mjs';
 
 const readJson=async path=>JSON.parse(await readFile(root+path,'utf8'));
 const index=await readJson('catalogue-index.json');
@@ -102,4 +104,18 @@ test('browser page makes v3 primary and labels v1 as historical',async()=>{
  assert.ok(latest>=0&&historical>latest);
  for(const href of ['CATALOGUE-v3.md','data/free-tokens-v3.json','data/RELEASE-v3.json','catalogue-index.json','CATALOGUE.md','data/free-tokens.json'])assert.ok(html.includes(`href="${href}"`));
  for(const field of ['compiledAt','websiteStatus','desktopReleaseStatus','personalVerificationPerformed'])assert.ok((await readFile(root+'app.mjs','utf8')).includes(field));
+});
+
+test('the local server still starts when the checkout is reached through a symlink',async()=>{
+ const dir=await mkdtemp(path.join(tmpdir(),'grandet-serve-'));
+ try{
+  const linked=path.join(dir,'scripts');
+  await symlink(path.join(root,'scripts'),linked,'junction');
+  const serveUrl=new URL('../scripts/serve.mjs',import.meta.url).href;
+  assert.equal(isMainModule(path.join(root,'scripts','serve.mjs'),serveUrl),true);
+  assert.equal(isMainModule(path.join(linked,'serve.mjs'),serveUrl),true);
+  assert.equal(isMainModule(path.join(linked,'catalogue.mjs'),serveUrl),false);
+  assert.equal(isMainModule(path.join(dir,'missing.mjs'),serveUrl),false);
+  assert.equal(isMainModule(undefined,serveUrl),false);
+ }finally{await rm(dir,{recursive:true,force:true});}
 });

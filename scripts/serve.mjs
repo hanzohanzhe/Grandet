@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 import {createServer} from 'node:http';
+import {realpathSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
@@ -35,4 +36,11 @@ export function startServer(){
  return createServer((req,res)=>handleRequest(req,res)).listen(8787,'127.0.0.1',()=>console.log('Grandet catalogue: http://127.0.0.1:8787/ (Ctrl+C to stop)'));
 }
 
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))startServer();
+// Compare real paths: Node loads the main module through its real path, so a plain
+// path comparison silently skips startServer() when the checkout is reached through a symlink.
+export function isMainModule(argv1=process.argv[1],moduleUrl=import.meta.url){
+ if(!argv1)return false;
+ try{return realpathSync(argv1)===realpathSync(fileURLToPath(moduleUrl));}catch{return false;}
+}
+
+if(isMainModule())startServer();
