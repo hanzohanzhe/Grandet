@@ -5,7 +5,7 @@ import {mkdtemp,readFile,rm,symlink} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {root} from '../scripts/catalogue.mjs';
-import {loadCatalogue,recordView,validateCatalogue,validateCatalogueIndex,validateRelease} from '../app.mjs';
+import {loadCatalogue,loadWebsiteStatus,recordView,runBrowser,safeRepositoryPath,validateCatalogue,validateCatalogueIndex,validateRelease} from '../app.mjs';
 import {handleRequest,isMainModule,routes} from '../scripts/serve.mjs';
 
 const readJson=async path=>JSON.parse(await readFile(root+path,'utf8'));
@@ -86,7 +86,7 @@ async function request(method,url){
 }
 
 test('local server exposes only its explicit v3 and historical allowlist',async()=>{
- assert.deepEqual([...routes.keys()],['/','/app.mjs','/style.css','/catalogue-index.json','/data/RELEASE-v3.json','/data/free-tokens-v3.json','/CATALOGUE-v3.md','/data/free-tokens.json','/data/MANIFEST.json','/CATALOGUE.md']);
+ assert.deepEqual([...routes.keys()],['/','/app.mjs','/style.css','/catalogue-index.json','/data/RELEASE-v3.json','/data/free-tokens-v3.json','/CATALOGUE-v3.md','/WEBSITE-STATUS.json','/data/free-tokens.json','/data/MANIFEST.json','/CATALOGUE.md']);
  const catalogue=await request('GET','/data/free-tokens-v3.json?download=1');
  assert.equal(catalogue.status,200);
  assert.match(catalogue.headers['Content-Type'],/^application\/json/);
@@ -118,4 +118,49 @@ test('the local server still starts when the checkout is reached through a symli
   assert.equal(isMainModule(path.join(dir,'missing.mjs'),serveUrl),false);
   assert.equal(isMainModule(undefined,serveUrl),false);
  }finally{await rm(dir,{recursive:true,force:true});}
+});
+
+// Minimal stand-in for the DOM calls app.mjs makes, so the page can be rendered without a browser.
+function fakeDocument(language='en'){
+ const make=tag=>({tag,children:[],textContent:'',value:'',append(...nodes){this.children.push(...nodes);},replaceChildren(...nodes){this.children=nodes;},addEventListener(){}});
+ const ids={};
+ for(const id of ['summary','site-status','release-meta','filters','query','kind','category','language','status','cards','coverage'])ids[id]=make(`#${id}`);
+ ids['site-status'].textContent='Loading current status… / 正在读取当前状态…';
+ ids.kind.value='all';ids.category.value='all';ids.language.value=language;
+ return {ids,getElementById:id=>ids[id]??null,createElement:make};
+}
+const textOf=node=>[node.textContent,...node.children.map(textOf)].join('\n');
+const repositoryFetcher=(missing=new Set())=>async file=>{
+ safeRepositoryPath(file);
+ if(missing.has(file))return new Response('Not found',{status:404});
+ try{return new Response(await readFile(root+file),{status:200});}catch{return new Response('Not found',{status:404});}
+};
+
+test('page shows the current status file next to the compile-time release status',async()=>{
+ const site=await readJson(index.website.statusManifest);
+ assert.deepEqual(await loadWebsiteStatus(index,repositoryFetcher()),site);
+ const doc=fakeDocument();
+ await runBrowser(doc,repositoryFetcher());
+ const status=textOf(doc.ids['site-status']);
+ assert.ok(status.includes(`grandet.ai ${site.status}`),status);
+ assert.ok(status.includes(`Desktop client / 桌面客户端 ${site.desktopReleaseStatus}`),status);
+ const meta=textOf(doc.ids['release-meta']);
+ assert.ok(meta.includes('websiteStatus at compilation / 编制时网站状态\n'+release.websiteStatus),meta);
+ assert.ok(meta.includes('desktopReleaseStatus at compilation / 编制时桌面端状态\n'+release.desktopReleaseStatus),meta);
+ assert.equal(doc.ids.cards.children.length,release.officialRecords+release.thirdPartyMechanismRecords);
+ const html=await readFile(root+'index.html','utf8');
+ assert.ok(!html.includes('未通过上线验收'),'index.html must not hard-code a website status');
+ assert.ok(html.includes('id="site-status"'));
+});
+
+test('catalogue still renders when the status file cannot be read',async()=>{
+ const doc=fakeDocument();
+ await runBrowser(doc,repositoryFetcher(new Set([index.website.statusManifest])));
+ assert.match(doc.ids['site-status'].textContent,/could not be loaded.*HTTP 404/);
+ assert.equal(doc.ids.cards.children.length,release.officialRecords+release.thirdPartyMechanismRecords);
+ const failed=fakeDocument();
+ await runBrowser(failed,repositoryFetcher(new Set(['catalogue-index.json'])));
+ assert.match(failed.ids.status.textContent,/Catalogue could not be loaded/);
+ assert.equal(failed.ids['site-status'].textContent,'Current status not loaded / 当前状态未读取');
+ await assert.rejects(()=>loadWebsiteStatus({...index,website:{statusManifest:'../WEBSITE-STATUS.json'}},repositoryFetcher()),/unsafe/);
 });

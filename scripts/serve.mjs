@@ -14,6 +14,7 @@ export const routes=new Map([
  ['/data/RELEASE-v3.json', ['data/RELEASE-v3.json','application/json']],
  ['/data/free-tokens-v3.json', ['data/free-tokens-v3.json','application/json']],
  ['/CATALOGUE-v3.md', ['CATALOGUE-v3.md','text/plain']],
+ ['/WEBSITE-STATUS.json', ['WEBSITE-STATUS.json','application/json']],
  ['/data/free-tokens.json', ['data/free-tokens.json','application/json']],
  ['/data/MANIFEST.json', ['data/MANIFEST.json','application/json']],
  ['/CATALOGUE.md', ['CATALOGUE.md','text/plain']]

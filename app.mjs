@@ -2,6 +2,7 @@
 const INDEX_SCHEMA='grandet.machine-entry-index/v1';
 const RELEASE_SCHEMA='grandet.public-catalogue-release/v1';
 const CATALOGUE_SCHEMA='grandet.free-token-offers/v3';
+const WEBSITE_STATUS_SCHEMA='grandet.website-status/v1';
 const REQUIREMENTS=['card','identity','payment','invite','application','renewal'];
 const REQUIREMENT_STATES=new Set(['unknown','required','not-required','conditional']);
 
@@ -115,6 +116,22 @@ export async function loadCatalogue(fetcher=globalThis.fetch){
  return {index,release,data:validateCatalogue(data,release)};
 }
 
+// Release metadata keeps the status it had when it was compiled; the index's status
+// manifest (WEBSITE-STATUS.json) describes the current website and desktop status.
+export function validateWebsiteStatus(status){
+ object(status,'Website status must be an object');
+ assert(status.schema===WEBSITE_STATUS_SCHEMA,`Unsupported website status schema: ${status.schema??'missing'}`);
+ text(status.status,'Website status is missing');
+ text(status.desktopReleaseStatus,'Website status desktopReleaseStatus is missing');
+ return status;
+}
+
+export async function loadWebsiteStatus(index,fetcher=globalThis.fetch){
+ const file=index.website?.statusManifest;
+ assert(file!==undefined,'Catalogue index does not name a website status file');
+ return validateWebsiteStatus(await fetchJson(fetcher,safeRepositoryPath(file,'Website status manifest path'),'Website status'));
+}
+
 const valueFor=(value,lang)=>typeof value==='string'?value:value?.[lang]??'';
 export function recordView(record,kind,lang){
  const third=kind==='third';
@@ -129,18 +146,23 @@ export function recordView(record,kind,lang){
 
 const requirementLabels={card:'Card / 银行卡',identity:'Identity / 实名',payment:'Payment / 付费',invite:'Invitation / 邀请',application:'Application / 申请',renewal:'Renewal / 续期'};
 
+const SITE_STATUS_PENDING='Loading current status… / 正在读取当前状态…';
 export async function runBrowser(doc=document,fetcher=globalThis.fetch){
  const $=id=>doc.getElementById(id);
  const el=(tag,content)=>{const node=doc.createElement(tag);if(content!==undefined)node.textContent=content;return node;};
  try{
-  const {release,data}=await loadCatalogue(fetcher);
+  const {index,release,data}=await loadCatalogue(fetcher);
+  try{
+   const site=await loadWebsiteStatus(index,fetcher);
+   $('site-status').textContent=`Current status / 当前状态 (${index.website.statusManifest}): grandet.ai ${site.status} · Desktop client / 桌面客户端 ${site.desktopReleaseStatus}`;
+  }catch(error){$('site-status').textContent=`Current status could not be loaded / 当前状态读取失败: ${error.message}`;}
   const rows=[...data.officialOffers.map(record=>({record,kind:'official'})),...data.offers.map(record=>({record,kind:'third'}))];
   for(const category of [...new Set(rows.map(row=>row.record.category))].sort()){const option=el('option',category);option.value=category;$('category').append(option);}
   $('coverage').textContent=JSON.stringify(data.searchCoverage,null,2);
   const metadata=[
    ['compiledAt (compilation date, not a new observation)',release.compiledAt],
-   ['websiteStatus',release.websiteStatus],
-   ['desktopReleaseStatus',release.desktopReleaseStatus],
+   ['websiteStatus at compilation / 编制时网站状态',release.websiteStatus],
+   ['desktopReleaseStatus at compilation / 编制时桌面端状态',release.desktopReleaseStatus],
    ['personalVerificationPerformed',String(release.personalVerificationPerformed)]
   ];
   for(const [key,value] of metadata)$('release-meta').append(el('dt',key),el('dd',value));
@@ -164,7 +186,10 @@ export async function runBrowser(doc=document,fetcher=globalThis.fetch){
    }
   }
   $('filters').addEventListener('submit',event=>event.preventDefault());$('filters').addEventListener('input',render);render();
- }catch(error){$('status').textContent=`Catalogue could not be loaded: ${error.message}`;}
+ }catch(error){
+  $('status').textContent=`Catalogue could not be loaded: ${error.message}`;
+  if($('site-status').textContent===SITE_STATUS_PENDING)$('site-status').textContent='Current status not loaded / 当前状态未读取';
+ }
 }
 
 if(typeof document!=='undefined')runBrowser();
