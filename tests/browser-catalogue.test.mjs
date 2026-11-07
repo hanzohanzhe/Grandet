@@ -164,3 +164,20 @@ test('catalogue still renders when the status file cannot be read',async()=>{
  assert.equal(failed.ids['site-status'].textContent,'Current status not loaded / 当前状态未读取');
  await assert.rejects(()=>loadWebsiteStatus({...index,website:{statusManifest:'../WEBSITE-STATUS.json'}},repositoryFetcher()),/unsafe/);
 });
+
+test('cards show the deadline a v3 record states even when endAt is unknown',async()=>{
+ const stated=v3.offers.find(record=>record.endAt===null&&record.deadlineLabel);
+ assert.ok(stated,'fixture needs a record with a stated deadline and no endAt');
+ assert.equal(recordView(stated,'third','en').deadline,stated.deadlineLabel.en);
+ assert.equal(recordView(stated,'third','zh-CN').deadline,stated.deadlineLabel['zh-CN']);
+ const official=v3.officialOffers.find(record=>record.activityDeadline);
+ assert.ok(official);
+ assert.equal(recordView(official,'official','en').deadline,`${official.activityDeadline.date} · timezone ${official.activityDeadline.timezone}`);
+ const doc=fakeDocument('en');
+ await runBrowser(doc,repositoryFetcher());
+ const card=doc.ids.cards.children.find(node=>textOf(node).includes(stated.id));
+ assert.ok(textOf(card).includes(`Deadline / 截止时间: ${stated.deadlineLabel.en}`));
+ assert.ok(textOf(card).includes('Top-up or purchase / 充值或消费 — '));
+ const broken=structuredClone(v3);broken.offers.find(record=>record.id===stated.id).deadlineLabel={en:'only English'};
+ assert.throws(()=>validateCatalogue(broken,release),/deadlineLabel is not localized/);
+});

@@ -67,6 +67,8 @@ function validateRecord(record,kind,index){
  text(record.personalEligibility,`Record ${record.id} personalEligibility is missing`);
  text(record.documentStatus,`Record ${record.id} documentStatus is missing`);
  text(record.activityStatus,`Record ${record.id} activityStatus is missing`);
+ if(record.deadlineLabel!==undefined)localized(record.deadlineLabel,`Record ${record.id} deadlineLabel is not localized`);
+ if(record.activityDeadline!==undefined){object(record.activityDeadline,`Record ${record.id} activityDeadline is invalid`);text(record.activityDeadline.date,`Record ${record.id} activityDeadline date is missing`);}
  if(kind==='third'){
   localized(record.titleText,`Record ${record.id} titleText is not localized`);
   localized(record.benefitTextLocalized,`Record ${record.id} benefitTextLocalized is not localized`);
@@ -140,11 +142,13 @@ export function recordView(record,kind,lang){
   benefit:valueFor(third?record.benefitTextLocalized:record.benefitText,lang),
   conditions:(third?record.conditionsLocalized:record.conditions)[lang],
   requirements:REQUIREMENTS.map(key=>({key,state:record.requirements[key].state,note:record.requirements[key].note[lang]})),
-  statuses:['personalEligibility','documentStatus','activityStatus','rewardKind'].filter(key=>Object.hasOwn(record,key)).map(key=>({key,value:record[key]}))
+  deadline:record.deadlineLabel?record.deadlineLabel[lang]:record.activityDeadline?`${record.activityDeadline.date} · timezone ${record.activityDeadline.timezone??'unknown'}`:undefined,
+  statuses:['personalEligibility','documentStatus','activityStatus','statusScope','rewardKind'].filter(key=>Object.hasOwn(record,key)).map(key=>({key,value:record[key]}))
  };
 }
 
-const requirementLabels={card:'Card / 银行卡',identity:'Identity / 实名',payment:'Payment / 付费',invite:'Invitation / 邀请',application:'Application / 申请',renewal:'Renewal / 续期'};
+// Same requirement names as the free-credits page on grandet.ai.
+const requirementLabels={card:'Card or payment method / 绑卡或付款方式',identity:'Identity verification / 实名认证',payment:'Top-up or purchase / 充值或消费',invite:'Invitation / 邀请',application:'Application & review / 申请审核',renewal:'Paying after it ends / 到期后付费'};
 
 const SITE_STATUS_PENDING='Loading current status… / 正在读取当前状态…';
 export async function runBrowser(doc=document,fetcher=globalThis.fetch){
@@ -178,9 +182,10 @@ export async function runBrowser(doc=document,fetcher=globalThis.fetch){
     card.append(el('p',`Observed/checked: ${record.checkedAt??record.observedAt}`));
     if(Object.hasOwn(record,'requiresPayment'))card.append(el('p',`Requires payment / 需付费: ${record.requiresPayment??'unknown / 未知'} · Declared status: ${record.declaredStatus} · End: ${record.endAt??'unknown / 未知'}`));
     if(record.billingText)card.append(el('p',valueFor(record.billingText,lang)));
-    const statuses=el('ul');for(const status of view.statuses)statuses.append(el('li',`${status.key}: ${status.value}`));card.append(el('h3','v3 status fields / v3 状态字段'),statuses);
-    const requirements=el('ul');for(const requirement of view.requirements)requirements.append(el('li',`${requirementLabels[requirement.key]} — ${requirement.state}: ${requirement.note}`));card.append(el('h3','Structured requirements / 结构化条件'),requirements);
-    const conditions=el('ul');for(const condition of view.conditions)conditions.append(el('li',condition));card.append(el('h3','Localized conditions / 本地化完整条件'),conditions);
+    if(view.deadline)card.append(el('p',`Deadline / 截止时间: ${view.deadline}`));
+    const statuses=el('ul');for(const status of view.statuses)statuses.append(el('li',`${status.key}: ${status.value}`));card.append(el('h3','Status / 状态'),statuses);
+    const requirements=el('ul');for(const requirement of view.requirements)requirements.append(el('li',`${requirementLabels[requirement.key]} — ${requirement.state}: ${requirement.note}`));card.append(el('h3','Requirements / 领取条件'),requirements);
+    const conditions=el('ul');for(const condition of view.conditions)conditions.append(el('li',condition));card.append(el('h3','Conditions / 完整条件'),conditions);
     for(const evidence of record.evidence){const url=new URL(evidence.url??evidence.sourceUrl);if(!['https:','http:'].includes(url.protocol)||url.username||url.password)continue;const link=el('a',evidence.title??'Source statement / 来源声明');link.href=url.href;link.rel='noreferrer noopener';card.append(link,el('p',`SHA-256: ${evidence.bodySha256}`));}
     const details=el('details');details.append(el('summary','Complete derived fields / 衍生公开版全字段'),el('pre',JSON.stringify(record,null,2)));card.append(details);$('cards').append(card);
    }
