@@ -79,6 +79,20 @@ test('a portable package contains one complete skill and working host manifest r
   assert.equal(receipt.distributionManifest, 'application-distribution.json');
 });
 
+test('the packaged installer validates its source identity without a repository-only helper', async (t) => {
+  const directory = await workspace(t);
+  const out = join(directory, 'plugin');
+  assert.equal(run('--out', out).status, 0);
+  await assert.rejects(readFile(join(out, 'scripts/check-build-id.mjs')), { code: 'ENOENT' });
+  const home = join(directory, 'home');
+  const result = spawnSync(process.execPath, [join(out, 'scripts/install-price-finder.mjs'), '--app', 'codex', '--home', home, '--dry-run'], { encoding: 'utf8', cwd: out });
+  assert.equal(result.status, 0, result.stderr);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.sourceBuild, 'grandet-skill-0.3.0-build.20261018b');
+  assert.equal(report.sourceBound, true);
+  await assert.rejects(readdir(home), { code: 'ENOENT' });
+});
+
 test('the package includes only audited files with hashes matching every shipped byte', async (t) => {
   const directory = await workspace(t);
   const out = join(directory, 'plugin');

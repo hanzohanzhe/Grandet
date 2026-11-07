@@ -12,8 +12,10 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const script = join(root, 'scripts/install-price-finder.mjs');
 const source = join(root, 'skills/grandet-api-price-finder');
 const skillName = 'grandet-api-price-finder';
+const currentBuild = 'grandet-skill-0.3.0-build.20261018b';
 const run = (...args) => spawnSync(process.execPath, [script, ...args], { encoding: 'utf8', cwd: root });
 const json = (result) => { assert.equal(result.status, 0, result.stderr); return JSON.parse(result.stdout); };
+const beforeBuild = (skill, addition) => skill.replace(/^Installation build:/m, `${addition}\nInstallation build:`);
 async function fixture(t) {
   const parent = tmpdir();
   const temporary = await mkdtemp(join(parent, 'skill-installer-test-'));
@@ -34,11 +36,25 @@ async function tree(directory, prefix = '') {
   }
   return result;
 }
+async function filesystemState(directory, prefix = '') {
+  const result = {};
+  for (const item of await readdir(join(directory, prefix), { withFileTypes: true })) {
+    const path = prefix ? `${prefix}/${item.name}` : item.name;
+    const info = await stat(join(directory, path));
+    if (item.isDirectory()) {
+      result[`${path}/`] = { type: 'directory', mtimeMs: info.mtimeMs };
+      Object.assign(result, await filesystemState(directory, path));
+    } else result[path] = { type: 'file', mtimeMs: info.mtimeMs, bytes: (await readFile(join(directory, path))).toString('base64') };
+  }
+  return result;
+}
 async function absent(path) { await assert.rejects(stat(path), { code: 'ENOENT' }); }
 
 test('lists only documented local copy routes and does not present cloud products as file installs', () => {
   const result = json(run('--list'));
   assert.equal(result.productVersion, '0.3.0');
+  assert.equal(result.sourceBuild, currentBuild);
+  assert.equal(result.sourceBound, false);
   for (const app of ['codex', 'claude-code', 'cursor', 'opencode', 'gemini-cli', 'cline', 'roo-code', 'kilo-code', 'windsurf', 'continue', 'hermes', 'openclaw', 'trae-cn', 'trae-intl']) {
     assert.ok(result.applications.some((entry) => entry.id === app), app);
   }
@@ -55,6 +71,8 @@ test('one install copies the complete common Skill and preserves other skills an
   const result = json(run('--app', 'codex', '--home', home));
   assert.equal(result.status, 'INSTALLED');
   assert.equal(result.productVersion, '0.3.0');
+  assert.equal(result.sourceBuild, currentBuild);
+  assert.equal(result.sourceBound, true);
   assert.equal(result.destination, join(home, '.agents/skills', skillName));
   assert.deepEqual(await tree(result.destination), await tree(source));
   for (const path of ['SKILL.md', 'agents/openai.yaml', 'references/app-catalog.md', 'references/entrypoints.md', 'references/host-setup.md', 'references/http-fallback.md', 'references/response-format.md', 'references/workloads.md']) {
@@ -112,6 +130,35 @@ test('a complete matching Skill in a documented alias is reused without a duplic
   assert.equal(result.destination, original.destination);
   assert.deepEqual(await tree(home), before);
   await absent(join(home, '.gemini'));
+});
+
+test('an older same-version source supplies the build for dry-run, install, reuse and update reports', async (t) => {
+  const { temporary, home } = await fixture(t);
+  const olderBuild = 'grandet-skill-0.3.0-build.20261017';
+  const older = join(temporary, 'older-source');
+  await cp(source, older, { recursive: true });
+  const skill = join(older, 'SKILL.md');
+  await writeFile(skill, (await readFile(skill, 'utf8')).replaceAll(currentBuild, olderBuild));
+
+  const planned = json(run('--app', 'codex', '--home', home, '--source', older, '--dry-run'));
+  assert.equal(planned.plannedAction, 'INSTALLED');
+  assert.equal(planned.sourceBuild, olderBuild);
+  assert.equal(planned.sourceBound, true);
+  await absent(home);
+
+  const installed = json(run('--app', 'codex', '--home', home, '--source', older));
+  assert.equal(installed.status, 'INSTALLED');
+  assert.equal(installed.sourceBuild, olderBuild);
+  const reused = json(run('--app', 'gemini-cli', '--home', home, '--source', older));
+  assert.equal(reused.status, 'REUSED');
+  assert.equal(reused.sourceBuild, olderBuild);
+
+  const updatedCurrent = json(run('--app', 'codex', '--home', home));
+  assert.equal(updatedCurrent.status, 'UPDATED');
+  assert.equal(updatedCurrent.sourceBuild, currentBuild);
+  const updatedOlder = json(run('--app', 'codex', '--home', home, '--source', older));
+  assert.equal(updatedOlder.status, 'UPDATED');
+  assert.equal(updatedOlder.sourceBuild, olderBuild);
 });
 
 test('Codex reuses a complete legacy .codex Skill without writing a new .agents copy', async (t) => {
@@ -235,7 +282,7 @@ test('an update keeps an exact recoverable old directory outside skill discovery
   const old = await tree(first.destination);
   const revised = join(temporary, 'revised');
   await cp(source, revised, { recursive: true });
-  await writeFile(join(revised, 'SKILL.md'), `${await readFile(join(revised, 'SKILL.md'), 'utf8')}\nA test update.\n`);
+  await writeFile(join(revised, 'SKILL.md'), beforeBuild(await readFile(join(revised, 'SKILL.md'), 'utf8'), 'A test update.'));
   const result = json(run('--app', 'claude-code', '--home', home, '--source', revised));
   assert.equal(result.status, 'UPDATED');
   assert.ok(!relative(join(home, '.claude/skills'), result.backup).startsWith(skillName));
@@ -274,6 +321,8 @@ test('uninstall moves the Skill out of discovery like an update backup, and a re
   assert.deepEqual(await tree(home), before);
   const result = json(run('--app', 'codex', '--home', home, '--uninstall'));
   assert.equal(result.status, 'UNINSTALLED');
+  assert.equal(result.sourceBuild, currentBuild);
+  assert.equal(result.sourceBound, false);
   assert.equal(result.receiptSent, false);
   assert.deepEqual(result.removed.map((item) => item.path), [first.destination]);
   assert.ok(result.removed[0].sharedWith.includes('opencode'));
@@ -377,12 +426,37 @@ test('incomplete sources and missing local references fail without changing an e
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /INCOMPLETE_SKILL/);
   await cp(source, broken, { recursive: true });
-  await writeFile(join(broken, 'SKILL.md'), `${await readFile(join(broken, 'SKILL.md'), 'utf8')}\n[missing](references/missing.md)\n`);
+  await writeFile(join(broken, 'SKILL.md'), beforeBuild(await readFile(join(broken, 'SKILL.md'), 'utf8'), '[missing](references/missing.md)'));
   result = run('--app', 'codex', '--home', home, '--source', broken);
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /MISSING_SKILL_REFERENCE/);
   assert.deepEqual(await tree(home), before);
   assert.ok(await stat(first.destination));
+});
+
+test('invalid installation build declarations fail before destination, backup or receipt state changes', async (t) => {
+  const { temporary, home } = await fixture(t);
+  const installed = json(run('--app', 'codex', '--home', home));
+  const baseline = await filesystemState(home);
+  const original = await readFile(join(source, 'SKILL.md'), 'utf8');
+  const finalLine = original.trimEnd().split(/\r?\n/).at(-1);
+  const variants = [
+    ['missing', original.replace(`${finalLine}\n`, ''), /INSTALLATION_BUILD_MISSING/],
+    ['duplicate', original.replace(finalLine, `${finalLine}\n${finalLine}`), /INSTALLATION_BUILD_DUPLICATE/],
+    ['malformed', original.replace(finalLine, finalLine.replace('20261018b', '20261018B')), /INSTALLATION_BUILD_MALFORMED/],
+    ['non-final', `${original.trimEnd()}\nUnexpected trailing content.\n`, /INSTALLATION_BUILD_NOT_FINAL/],
+    ['version-mismatch', original.replace(finalLine, finalLine.replace('grandet-skill-0.3.0-', 'grandet-skill-0.3.1-')), /INSTALLATION_BUILD_VERSION_MISMATCH/],
+  ];
+  for (const [name, skill, expected] of variants) {
+    const candidate = join(temporary, name);
+    await cp(source, candidate, { recursive: true });
+    await writeFile(join(candidate, 'SKILL.md'), skill);
+    const result = run('--app', 'codex', '--home', home, '--source', candidate);
+    assert.notEqual(result.status, 0, name);
+    assert.match(result.stderr, expected, name);
+    assert.deepEqual(await filesystemState(home), baseline, `${name} mutated destination, backup or receipt state`);
+    assert.ok(await stat(installed.destination));
+  }
 });
 
 test('source and destination overlap is rejected before modification', async (t) => {

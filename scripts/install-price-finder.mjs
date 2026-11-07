@@ -8,8 +8,10 @@ import { fileURLToPath } from 'node:url';
 
 import { openReceipt, digest, notice, sources } from './installation-receipts.mjs';
 
-const productVersion = '0.3.0';
-const sourceBuild = 'grandet-skill-0.3.0-build.20261018b';
+const currentProductVersion = '0.3.0';
+const currentSourceBuild = 'grandet-skill-0.3.0-build.20261018b';
+// Commands without a source payload report this installer's identity, explicitly marked unbound.
+const unboundIdentity = { productVersion: currentProductVersion, sourceBuild: currentSourceBuild, sourceBound: false };
 const skillName = 'grandet-api-price-finder';
 const scriptRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const defaultSource = await lstat(join(scriptRoot, 'SKILL.md')).then(() => scriptRoot, () => join(scriptRoot, 'skills', skillName));
@@ -66,7 +68,20 @@ async function readTree(directory, prefix = '', files = new Map()) {
 function validateSource(files, source) {
   for (const path of required) if (!files.has(path)) fail('INCOMPLETE_SKILL', path);
   const skill = files.get('SKILL.md').toString('utf8');
-  if (!/^name:\s*grandet-api-price-finder\s*$/m.test(skill) || !/Package version:\s*`0\.3\.0`/.test(skill)) fail('INVALID_SKILL_IDENTITY');
+  const packageVersions = [...skill.matchAll(/^Package version:\s*`(\d+\.\d+\.\d+)`/gm)];
+  if (!/^name:\s*grandet-api-price-finder\s*$/m.test(skill) || packageVersions.length !== 1) fail('INVALID_SKILL_IDENTITY');
+  const productVersion = packageVersions[0][1];
+  const buildDeclarations = [...skill.matchAll(/^Installation build:[^\r\n]*$/gm)];
+  if (!buildDeclarations.length) fail('INSTALLATION_BUILD_MISSING');
+  if (buildDeclarations.length !== 1) fail('INSTALLATION_BUILD_DUPLICATE');
+  const declaration = buildDeclarations[0][0];
+  const build = /^Installation build: `(grandet-skill-(\d+\.\d+\.\d+)-build\.\d{8}[a-z]?)`(?: .*)?$/.exec(declaration);
+  if (!build) fail('INSTALLATION_BUILD_MALFORMED');
+  const lines = skill.split(/\r?\n/);
+  while (lines.length && !lines.at(-1).trim()) lines.pop();
+  if (lines.at(-1) !== declaration) fail('INSTALLATION_BUILD_NOT_FINAL');
+  if (build[2] !== productVersion) fail('INSTALLATION_BUILD_VERSION_MISMATCH', `${build[2]} != ${productVersion}`);
+  if (productVersion !== currentProductVersion) fail('INVALID_SKILL_IDENTITY');
   for (const [path, bytes] of files) {
     if (!path.endsWith('.md')) continue;
     const markdown = bytes.toString('utf8');
@@ -80,6 +95,7 @@ function validateSource(files, source) {
       if (!files.has(targetName)) fail('MISSING_SKILL_REFERENCE', `${path}: ${link}`);
     }
   }
+  return { productVersion, sourceBuild: build[1], sourceBound: true };
 }
 function same(left, right) {
   return left.size === right.size && [...left].every(([path, bytes]) => right.get(path)?.equals(bytes));
@@ -133,7 +149,7 @@ async function uninstall(options, route, { platform, home, destination, backups 
     found.push({ path, backup: null, sharedWith });
   }
   const action = found.length ? 'UNINSTALLED' : 'NOT_INSTALLED';
-  const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, removed: found, backup: null, receiptSent: false, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']) };
+  const report = { ...unboundIdentity, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, removed: found, backup: null, receiptSent: false, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']) };
   const shared = [...new Set(found.flatMap((item) => item.sharedWith))];
   report.nextStep = found.length
     ? `Moved out of skill discovery, not deleted: to restore, move the backup folder back or install again. Start a fresh session to confirm the Skill no longer loads.${shared.length ? ` The same folder also served ${shared.join(', ')}.` : ''} Uninstall sends no receipt and keeps local receipt state, so a later install continues the same installation ID.`
@@ -169,7 +185,7 @@ async function main() {
   const platform = options['--platform'] ?? process.platform;
   if (!platforms.includes(platform)) fail('UNSUPPORTED_PLATFORM', platform);
   if (options['--list']) {
-    return { productVersion, sourceBuild, nativeAcceptance: 'NOT_RUN', applications: routes.map((route) => ({ id: route.id, catalogAppId: route.catalogAppId ?? route.id, userRoot: route.id === 'hermes' && platform === 'win32' ? '%LOCALAPPDATA%/hermes/skills (HERMES_HOME overrides)' : `~/${route.root}`, scope: route.scope, documentedAliases: (route.aliases ?? []).map((path) => `~/${path}`) })) };
+    return { ...unboundIdentity, nativeAcceptance: 'NOT_RUN', applications: routes.map((route) => ({ id: route.id, catalogAppId: route.catalogAppId ?? route.id, userRoot: route.id === 'hermes' && platform === 'win32' ? '%LOCALAPPDATA%/hermes/skills (HERMES_HOME overrides)' : `~/${route.root}`, scope: route.scope, documentedAliases: (route.aliases ?? []).map((path) => `~/${path}`) })) };
   }
   const route = routes.find((item) => item.id === options['--app']);
   if (!route) fail('UNSUPPORTED_APP', options['--app'] ?? usage);
@@ -186,7 +202,7 @@ async function main() {
   if ([destination, ...aliases, backups].some((path) => inside(source, path) || inside(path, source))) fail('OVERLAPPING_PATHS');
   await rejectLinks(source);
   const payload = await readTree(source);
-  validateSource(payload, source);
+  const identity = validateSource(payload, source);
   await rejectLinks(home);
   await rejectLinks(backups);
   if (!sources.includes(options['--receipt-source'] ?? 'unknown')) fail('INVALID_RECEIPT_SOURCE');
@@ -210,14 +226,14 @@ async function main() {
   const identical = existing && same(existing.files, payload);
   if (existing && existing.path !== destination && !identical) fail('ALIAS_CONTENT_CONFLICT', existing.path);
   const action = identical ? (existing.path === destination ? 'UNCHANGED' : 'REUSED') : existing ? 'UPDATED' : 'INSTALLED';
-  const report = { productVersion, sourceBuild, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, source, destination: identical ? existing.path : destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, backup: null, files: payload.size, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']), nextStep: 'Start a fresh session and ask an ordinary API-price question without an attachment, Skill selection or the Grandet name. File installation alone does not verify activation or network access.' };
+  const report = { ...identity, app: route.id, catalogAppId: route.catalogAppId ?? route.id, platform, scope: route.scope, source, destination: identical ? existing.path : destination, status: options['--dry-run'] ? 'DRY_RUN' : action, plannedAction: action, backup: null, files: payload.size, nativeAcceptance: 'NOT_RUN', explicitTestHome: Boolean(options['--home']), nextStep: 'Start a fresh session and ask an ordinary API-price question without an attachment, Skill selection or the Grandet name. File installation alone does not verify activation or network access.' };
   if (route.id === 'cursor') {
     report.cloudSyncStatus = report.destination === destination ? 'REQUIRES_PRIVATE_SYNC' : 'ALIAS_REUSED_LOCAL_ONLY';
     report.nextStep += report.destination === destination
       ? ' Cloud Agents additionally require the private Sync Skills step in Cursor settings.'
       : ' The reused alias is available to local Cursor; Cloud Agents sync only ~/.cursor/skills. Resolve a single-copy migration before cloud sync rather than creating a duplicate.';
   }
-  const version = payload.get('SKILL.md').toString('utf8').match(/Package version:\s*`([^`]+)`/)?.[1];
+  const version = identity.productVersion;
   const content = digest(payload);
   report.contentSha256 = content;
   if (options['--dry-run']) return report;
@@ -268,7 +284,7 @@ async function main() {
   report.contentSha256 = content; // Same canonical digest as the installation receipt.
   return report;
   } catch(error) {
-    if(receipt)await receipt.failure({content:digest(payload),version:payload.get('SKILL.md').toString('utf8').match(/Package version:\s*`([^`]+)`/)?.[1],source:options['--receipt-source'],host:route.catalogAppId??route.id}).catch(()=>{});
+    if(receipt)await receipt.failure({content:digest(payload),version:identity.productVersion,source:options['--receipt-source'],host:route.catalogAppId??route.id}).catch(()=>{});
     throw error;
   } finally { await receipt?.close(); }
 }

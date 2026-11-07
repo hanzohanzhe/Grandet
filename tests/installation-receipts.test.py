@@ -65,7 +65,7 @@ class Receipts(unittest.TestCase):
         journal=json.loads(next(self.home.rglob('journal.json')).read_text(encoding='utf-8'));self.node('--flush');self.assertEqual(len(self.events),1);self.assertEqual(self.events[0],journal['event']);self.assertFalse(list(self.home.rglob('journal.json')))
     def test_update_crash_before_move_resumes_without_counting_install(self):
         self.node();old=self.events[-1]
-        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_bytes((changed/'SKILL.md').read_bytes()+b'\nUpdate\n')
+        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);skill=changed/'SKILL.md';skill.write_bytes(skill.read_bytes().replace(b'\nInstallation build:',b'\nUpdate\nInstallation build:'))
         r=self.node('--source',str(changed),env={'GRANDET_INSTALL_CRASH_BEFORE_MOVE':'1'},success=False);self.assertEqual(r.returncode,86)
         journal=json.loads(next(self.home.rglob('journal.json')).read_text(encoding='utf-8'));self.py('--source',str(changed),'--flush');self.assertEqual(self.events[-1],journal['event']);self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual(self.events[-1]['installation_id'],old['installation_id'])
     def test_deep_home_python_staging_fits_windows_path_limit(self):
@@ -74,7 +74,7 @@ class Receipts(unittest.TestCase):
         if pad<1:self.skipTest('temporary directory too deep')
         self.home=base/('h'*pad);self.dest=self.home/'.agents/skills/grandet-api-price-finder';self.assertEqual(len(str(self.dest)),170)
         self.py('--source',str(SOURCE))
-        changed=base/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_bytes((SOURCE/'SKILL.md').read_bytes()+b'\nUpdate\n')
+        changed=base/'changed';shutil.copytree(SOURCE,changed);skill=changed/'SKILL.md';skill.write_bytes(skill.read_bytes().replace(b'\nInstallation build:',b'\nUpdate\nInstallation build:'))
         self.py('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual((self.dest/'SKILL.md').read_bytes(),(changed/'SKILL.md').read_bytes())
         # Stage and backup folders share one depth; the kept backup shows it.
         backups=[p.parent for p in self.home.rglob('SKILL.md') if self.dest not in p.parents];self.assertEqual(len(backups),1)
@@ -83,7 +83,7 @@ class Receipts(unittest.TestCase):
         r=self.py('--source',str(SOURCE),env={'GRANDET_INSTALL_CRASH_AFTER_WRITE':'1'},success=False);self.assertEqual(r.returncode,86);journal=json.loads(next(self.home.rglob('journal.json')).read_text(encoding='utf-8'));self.node('--flush');self.assertEqual(self.events[0],journal['event'])
     def test_update_same_version_repair_reinstall_and_actions(self):
         self.node();first=self.events[-1]
-        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);(changed/'SKILL.md').write_bytes((changed/'SKILL.md').read_bytes()+b'\nNew content\n')
+        changed=Path(self.temp.name)/'changed';shutil.copytree(SOURCE,changed);skill=changed/'SKILL.md';skill.write_bytes(skill.read_bytes().replace(b'\nInstallation build:',b'\nNew content\nInstallation build:'))
         self.node('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'update');self.assertEqual(self.events[-1]['skill_version'],first['skill_version']);self.assertNotEqual(self.events[-1]['content_sha256'],first['content_sha256'])
         (self.dest/'SKILL.md').write_bytes(b'damaged');self.node('--source',str(changed));self.assertEqual(self.events[-1]['operation'],'repair')
         self.py('--source',str(changed),'--operation','reinstall');self.assertEqual(self.events[-1]['operation'],'reinstall')
